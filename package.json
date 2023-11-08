@@ -19,6 +19,9 @@
     "postinstall": "prisma generate",
     "email": "email dev --dir emails --port 3333"
   },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "pnpm run test"
+  },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
     "@next-auth/prisma-adapter": "^1.0.7",
@@ -109,6 +112,7 @@
     "eslint-plugin-tailwindcss": "^3.13.0",
     "eslint-plugin-unicorn": "^49.0.0",
     "husky": "^8.0.3",
+    "lint-staged": "^15.0.2",
     "mdast-util-toc": "^7.0.0",
     "postcss": "^8.4.31",
     "prettier": "^3.0.3",
