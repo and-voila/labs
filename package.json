@@ -1,17 +1,20 @@
 {
-  "name": "saas-starter",
-  "version": "0.1.0",
+  "name": "and-voila-labs",
+  "version": "0.0.1",
   "private": true,
   "author": {
-    "name": "mickasmt",
-    "url": "https://twitter.com/mickasmt"
+    "name": "And Voila by BRIL.LA, LLC.",
+    "url": "https://andvoila.gg"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3001",
     "build": "contentlayer build && next build",
-    "turbo": "next dev --turbo",
+    "turbo": "next dev --port 3001 --turbo",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --no-cache",
+    "type-check": "tsc --noEmit",
+    "prettier": "prettier --write .",
+    "test": "pnpm run lint && pnpm run prettier && pnpm run type-check",
     "preview": "next build && next start",
     "postinstall": "prisma generate",
     "email": "email dev --dir emails --port 3333"
