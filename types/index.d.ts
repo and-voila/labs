@@ -75,3 +75,11 @@ export type UserSubscriptionPlan = SubscriptionPlan & {
   interval: 'month' | 'year' | null;
   isCanceled?: boolean;
 };
+
+export type MarketingBenefitsProps = {
+  id: string;
+  title: string;
+  description: string;
+  emoji: string;
+  emojiDescription: string;
+};
