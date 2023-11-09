@@ -1,7 +1,8 @@
 'use client';
 
-import { useTransition } from 'react';
-import { updateUserName, type FormData } from '@/actions/update-user-name';
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import { type FormData } from '@/actions/update-user-name';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { User } from '@prisma/client';
 import { useForm } from 'react-hook-form';
@@ -22,14 +23,12 @@ import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
 import { Icons } from '@/components/shared/icons';
 
-interface UserNameFormProps {
+interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
   user: Pick<User, 'id' | 'name'>;
 }
 
-export function UserNameForm({ user }: UserNameFormProps) {
-  const [isPending, startTransition] = useTransition();
-  const updateUserNameWithId = updateUserName.bind(null, user.id);
-
+export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
+  const router = useRouter();
   const {
     handleSubmit,
     register,
@@ -40,27 +39,45 @@ export function UserNameForm({ user }: UserNameFormProps) {
       name: user?.name || '',
     },
   });
+  const [isSaving, setIsSaving] = React.useState<boolean>(false);
 
-  const onSubmit = handleSubmit((data) => {
-    startTransition(async () => {
-      const { status } = await updateUserNameWithId(data);
+  async function onSubmit(data: FormData) {
+    setIsSaving(true);
 
-      if (status !== 'success') {
-        toast({
-          title: 'Something went wrong.',
-          description: 'Your name was not updated. Please try again.',
-          variant: 'destructive',
-        });
-      } else {
-        toast({
-          description: 'Your name has been updated.',
-        });
-      }
+    const response = await fetch(`/api/users/${user.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: data.name,
+      }),
     });
-  });
+
+    setIsSaving(false);
+
+    if (!response?.ok) {
+      return toast({
+        title: 'Oh no, this again!?',
+        description: 'Your name was not updated. Please try again.',
+        variant: 'destructive',
+      });
+    }
+
+    toast({
+      title: 'Cool beans!',
+      description: 'Your name has been updated.',
+    });
+
+    router.refresh();
+  }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form
+      className={cn(className)}
+      onSubmit={handleSubmit(onSubmit)}
+      {...props}
+    >
       <Card>
         <CardHeader>
           <CardTitle>Your Name</CardTitle>
@@ -89,12 +106,12 @@ export function UserNameForm({ user }: UserNameFormProps) {
           <button
             type="submit"
             className={cn(buttonVariants())}
-            disabled={isPending}
+            disabled={isSaving}
           >
-            {isPending && (
+            {isSaving && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            <span>{isPending ? 'Saving' : 'Save'}</span>
+            <span>{isSaving ? 'Saving' : 'Save'}</span>
           </button>
         </CardFooter>
       </Card>
