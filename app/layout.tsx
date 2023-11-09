@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 
-import { fontHeading, fontSans, fontUrban } from '@/assets/fonts';
+import { fontBricolage } from '@/assets/fonts';
 
 import { env } from '@/env.mjs';
 import { siteConfig } from '@/config/site';
@@ -47,10 +47,6 @@ export const metadata = {
     },
   ],
   creator: 'Rebekah Radice',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#e7ebef' },
-    { media: '(prefers-color-scheme: dark)', color: '#010101' },
-  ],
   openGraph: {
     type: 'website',
     title: siteConfig.name,
@@ -125,16 +121,13 @@ export const metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${fontBricolage.variable} text-base antialiased`}
+      suppressHydrationWarning
+    >
       <head />
-      <body
-        className={cn(
-          'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable,
-          fontUrban.variable,
-          fontHeading.variable,
-        )}
-      >
+      <body className={cn('min-h-screen bg-background dark:bg-[#242629]')}>
         <Providers attribute="class" defaultTheme="system" enableSystem>
           {children}
           <Analytics />

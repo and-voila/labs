@@ -35,7 +35,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Pricing
         </p>
-        <h2 className="font-heading text-3xl leading-[1.1] md:text-5xl">
+        <h2 className="text-3xl leading-[1.1] md:text-5xl">
           Start at full speed !
         </h2>
       </div>
@@ -58,7 +58,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
             key={offer.title}
           >
             <div className="min-h-[150px] items-start space-y-4 bg-secondary/70 p-6">
-              <p className="flex font-urban text-sm font-bold uppercase tracking-wider text-muted-foreground">
+              <p className="flex text-sm font-bold uppercase tracking-wider text-muted-foreground">
                 {offer.title}
               </p>
 

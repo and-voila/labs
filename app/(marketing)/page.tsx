@@ -42,7 +42,7 @@ export default async function IndexPage() {
           </Link>
 
           <h1
-            className="animate-fade-up font-urban text-4xl font-extrabold tracking-tight opacity-0 sm:text-5xl md:text-6xl lg:text-7xl"
+            className="animate-fade-up text-4xl font-extrabold tracking-tight opacity-0 sm:text-5xl md:text-6xl lg:text-7xl"
             style={{ animationDelay: '0.25s', animationFillMode: 'forwards' }}
           >
             <Balancer>

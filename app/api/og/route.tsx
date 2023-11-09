@@ -1,21 +1,23 @@
+// TODO: Fix og image
+
 import { ImageResponse } from '@vercel/og';
 
 import { ogImageSchema } from '@/lib/validations/og';
 
 export const runtime = 'edge';
 
-const interRegular = fetch(
-  new URL('../../../assets/fonts/Inter-Regular.ttf', import.meta.url),
+const bricolageRegular = fetch(
+  new URL('../../../assets/fonts/bricolage-regular.ttf', import.meta.url),
 ).then((res) => res.arrayBuffer());
 
-const interBold = fetch(
-  new URL('../../../assets/fonts/CalSans-SemiBold.ttf', import.meta.url),
+const bricolageBold = fetch(
+  new URL('../../../assets/fonts/bricolage-bold.ttf', import.meta.url),
 ).then((res) => res.arrayBuffer());
 
 export async function GET(req: Request) {
   try {
-    const fontRegular = await interRegular;
-    const fontBold = await interBold;
+    const fontRegular = await bricolageRegular;
+    const fontBold = await bricolageBold;
 
     const url = new URL(req.url);
     const values = ogImageSchema.parse(Object.fromEntries(url.searchParams));
