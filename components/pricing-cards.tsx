@@ -18,10 +18,7 @@ interface PricingCardsProps {
 }
 
 export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
-  const isYearlyDefault =
-    !subscriptionPlan?.interval || subscriptionPlan.interval === 'year'
-      ? true
-      : false;
+  const isYearlyDefault = subscriptionPlan!.interval === 'year' ? true : false;
   const [isYearly, setIsYearly] = useState<boolean>(!!isYearlyDefault);
   const signInModal = useSigninModal();
 
@@ -30,12 +27,12 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   };
 
   return (
-    <section className="container flex flex-col items-center text-center">
+    <section className="container flex flex-col items-center py-16 text-center lg:py-20">
       <div className="mx-auto mb-10 flex w-full flex-col gap-5">
-        <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
+        <p className="text-sm font-semibold uppercase tracking-widest text-brand">
           Pricing
         </p>
-        <h2 className="text-3xl leading-[1.1] md:text-5xl">
+        <h2 className="text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-8xl">
           Start at full speed !
         </h2>
       </div>
@@ -54,20 +51,20 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
       <div className="mx-auto grid max-w-screen-lg gap-5 bg-inherit py-5 md:grid-cols-3 lg:grid-cols-3">
         {pricingData.map((offer) => (
           <div
-            className="relative flex flex-col overflow-hidden rounded-xl border"
+            className="relative flex flex-col overflow-hidden rounded-xl border bg-card"
             key={offer.title}
           >
-            <div className="min-h-[150px] items-start space-y-4 bg-secondary/70 p-6">
-              <p className="flex text-sm font-bold uppercase tracking-wider text-muted-foreground">
+            <div className="min-h-[150px] items-start space-y-4 p-6">
+              <p className="flex text-sm font-semibold uppercase tracking-widest text-brand">
                 {offer.title}
               </p>
 
               <div className="flex flex-row">
                 <div className="flex items-end">
-                  <div className="flex text-left text-3xl font-semibold leading-6">
+                  <div className="flex text-left text-3xl font-semibold leading-6 lg:text-5xl">
                     {isYearly && offer.prices.monthly > 0 ? (
                       <>
-                        <span className="mr-2 text-muted-foreground line-through">
+                        <span className="mr-2 text-xl text-muted-foreground/70 line-through">
                           ${offer.prices.monthly}
                         </span>
                         <span>${Math.floor(offer.prices.yearly / 12)}</span>
@@ -84,8 +81,8 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
               {offer.prices.monthly > 0 ? (
                 <div className="text-left text-sm text-muted-foreground">
                   {isYearly
-                    ? `$${offer.prices.yearly} will be charged when annual`
-                    : 'when charged monthly'}
+                    ? `You'll be billed $${offer.prices.yearly} now for the year.`
+                    : 'billed monthly'}
                 </div>
               ) : null}
             </div>
@@ -94,7 +91,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
               <ul className="space-y-2 text-left text-sm font-medium leading-normal">
                 {offer.benefits.map((feature) => (
                   <li className="flex items-start" key={feature}>
-                    <Icons.check className="mr-3 h-5 w-5 shrink-0" />
+                    <Icons.check className="mr-3 h-5 w-5 shrink-0 text-brand/70" />
                     <p>{feature}</p>
                   </li>
                 ))}
@@ -117,7 +114,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
                     href="/dashboard"
                     className={buttonVariants({
                       className: 'w-full',
-                      variant: 'default',
+                      variant: 'secondary',
                     })}
                   >
                     Go to dashboard
@@ -139,18 +136,16 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
 
       <p className="mt-3 text-center text-base text-muted-foreground">
         <Balancer>
-          Email{' '}
+          Reach out to our{' '}
           <a
-            className="font-medium text-primary hover:underline"
-            href="mailto:support@saas-starter.com"
+            className="font-medium text-brand hover:underline"
+            href="mailto:yo@andvoila.gg"
           >
-            support@saas-starter.com
+            Support Team
           </a>{' '}
-          for to contact our support team.
+          if you have any questions.
           <br />
-          <strong>
-            You can test the subscriptions and won&apos;t be charged.
-          </strong>
+          <strong>Backed by our 100% Delight Guarantee. Cancel anytime.</strong>
         </Balancer>
       </p>
     </section>

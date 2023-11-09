@@ -37,7 +37,7 @@ export function BillingFormButton({
 
   return (
     <Button
-      variant="default"
+      variant="custom"
       className="w-full"
       disabled={isLoading}
       onClick={stripeSessionAction}
