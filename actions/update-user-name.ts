@@ -1,10 +1,13 @@
-"use server";
+'use server';
 
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/db";
-import { userNameSchema } from "@/lib/validations/user";
-import { getServerSession } from "next-auth";
-import { revalidatePath } from "next/cache";
+import { revalidatePath } from 'next/cache';
+import { getServerSession } from 'next-auth';
+
+import { authOptions } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { userNameSchema } from '@/lib/validations/user';
+import { getServerSession } from 'next-auth';
+import { revalidatePath } from 'next/cache';
 
 export type FormData = {
   name: string;
@@ -12,28 +15,28 @@ export type FormData = {
 
 export async function updateUserName(userId: string, data: FormData) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await getServerSession(authOptions);
 
     if (!session?.user || session?.user.id !== userId) {
-      throw new Error("Unauthorized");
+      throw new Error('Unauthorized');
     }
 
     const { name } = userNameSchema.parse(data);
 
     // Update the user name.
-    await prisma.user.update({
+    await db.user.update({
       where: {
         id: userId,
       },
       data: {
         name: name,
       },
-    })
+    });
 
     revalidatePath('/dashboard/settings');
-    return { status: "success" };
+    return { status: 'success' };
   } catch (error) {
-    console.log(error)
-    return { status: "error" }
+    console.log(error);
+    return { status: 'error' };
   }
 }
