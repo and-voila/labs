@@ -13,7 +13,7 @@ export default async function IndexPage() {
     {
       ...(env.GITHUB_OAUTH_TOKEN && {
         headers: {
-          Authorization: `Bearer ${process.env.GITHUB_OAUTH_TOKEN}`,
+          Authorization: `Bearer ${env.GITHUB_OAUTH_TOKEN}`,
           'Content-Type': 'application/json',
         },
       }),

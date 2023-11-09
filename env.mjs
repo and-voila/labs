@@ -12,6 +12,7 @@ export const env = createEnv({
     GITHUB_OAUTH_TOKEN: z.string().min(1),
     RESEND_API_KEY: z.string().min(1),
     STRIPE_API_KEY: z.string().min(1),
+    STRIPE_COUPON_ID: z.string().min(1),
     STRIPE_WEBHOOK_SECRET: z.string().min(1),
     DISCORD_CLIENT_ID: z.string().min(1),
     DISCORD_CLIENT_SECRET: z.string().min(1),
@@ -62,6 +63,7 @@ export const env = createEnv({
     UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID,
     UPLOADTHING_SECRET: process.env.UPLOADTHING_SECRET,
     STRIPE_API_KEY: process.env.STRIPE_API_KEY,
+    STRIPE_COUPON_ID: process.env.STRIPE_COUPON_ID,
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
     NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PLAN_ID:
       process.env.NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PLAN_ID,

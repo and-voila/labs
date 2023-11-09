@@ -4,6 +4,7 @@ import { parse } from 'url';
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 
+import { env } from '@/env.mjs';
 import { authOptions } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { stripe } from '@/lib/stripe';
@@ -52,7 +53,7 @@ export async function GET(req: NextRequest) {
       mode: 'subscription',
       discounts: [
         {
-          coupon: process.env.STRIPE_COUPON_ID,
+          coupon: env.STRIPE_COUPON_ID,
         },
       ],
       billing_address_collection: 'auto',
