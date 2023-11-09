@@ -1,76 +1,138 @@
-import "@/styles/globals.css";
+import '@/styles/globals.css';
 
-import { fontHeading, fontSans, fontUrban } from "@/assets/fonts";
-import { Analytics } from "@/components/analytics";
-import { ModalProvider } from "@/components/modal-provider";
-import { Providers } from "@/components/providers";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
-import { Toaster } from "@/components/ui/toaster";
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
+import { fontHeading, fontSans, fontUrban } from '@/assets/fonts';
+
+import { env } from '@/env.mjs';
+import { siteConfig } from '@/config/site';
+import { cn, ensureStartsWith } from '@/lib/utils';
+import { Toaster } from '@/components/ui/toaster';
+import { Analytics } from '@/components/analytics';
+import { ModalProvider } from '@/components/modal-provider';
+import { Providers } from '@/components/providers';
+import { TailwindIndicator } from '@/components/tailwind-indicator';
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
+const { TWITTER_CREATOR, TWITTER_SITE } = env;
+const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  : 'http://localhost:3001';
+const twitterCreator = TWITTER_CREATOR
+  ? ensureStartsWith(TWITTER_CREATOR, '@')
+  : undefined;
+const twitterSite = TWITTER_SITE
+  ? ensureStartsWith(TWITTER_SITE, 'https://')
+  : undefined;
+
 export const metadata = {
+  metadataBase: new URL(baseUrl),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
-    "Next.js",
-    "React",
-    "Prisma",
-    "PlanetScale",
-    "Auth.js",
-    "shadcn ui",
-    "Resend",
-    "React Email",
-    "Stripe"
+    'Exclusive Digital Marketing Community',
+    'Digital Marketing Community',
+    'Discord Server for Digital Marketers',
+    'Digital Marketing Optimization',
+    'Rebekah Radice',
   ],
   authors: [
     {
-      name: "mickasmt",
+      name: 'Rebekah Radice',
+      url: 'https://bril.la',
     },
   ],
-  creator: "mickasmt",
-  metadataBase: new URL(siteConfig.url),
+  creator: 'Rebekah Radice',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#e7ebef' },
+    { media: '(prefers-color-scheme: dark)', color: '#010101' },
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteConfig.url,
+    type: 'website',
     title: siteConfig.name,
     description: siteConfig.description,
+    images: [
+      {
+        url: '/open-graph.gif',
+        width: 1200,
+        height: 630,
+        alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+      },
+    ],
     siteName: siteConfig.name,
   },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: "@miickasmt",
+  category: 'digital marketing community',
+  robots: {
+    follow: false,
+    index: false,
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
+  ...(twitterCreator &&
+    twitterSite && {
+      twitter: {
+        title: siteConfig.name,
+        description: siteConfig.description,
+        card: 'summary_large_image',
+        creator: twitterCreator,
+        site: twitterSite,
+        images: [
+          {
+            url: '/open-graph.gif',
+            alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          },
+        ],
+      },
+    }),
+  icons: [
+    {
+      rel: 'icon',
+      url: '/favicon.ico',
+    },
+    {
+      rel: 'apple',
+      url: '/icons/apple-touch-icon.png',
+    },
+    {
+      rel: 'icon',
+      url: '/icons/favicon-16x16.png',
+      sizes: '16x16',
+    },
+    {
+      rel: 'icon',
+      url: '/icons/favicon-32x32.png',
+      sizes: '32x32',
+    },
+    {
+      rel: 'icon',
+      url: '/icons/favicon-194x194.png',
+      sizes: '194x194',
+    },
+    {
+      rel: 'icon',
+      url: '/icons/android-chrome-192x192.png',
+      sizes: '194x194',
+    },
+    {
+      rel: 'mask-icon',
+      url: '/icons/safari-pinned-tab.svg',
+    },
+  ],
   manifest: `${siteConfig.url}/site.webmanifest`,
-}
+};
 
 export default function RootLayout({ children }: RootLayoutProps) {
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          'min-h-screen bg-background font-sans antialiased',
           fontSans.variable,
           fontUrban.variable,
-          fontHeading.variable
+          fontHeading.variable,
         )}
       >
         <Providers attribute="class" defaultTheme="system" enableSystem>
@@ -82,5 +144,5 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </Providers>
       </body>
     </html>
-  )
+  );
 }
