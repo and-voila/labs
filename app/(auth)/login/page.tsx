@@ -22,7 +22,7 @@ export default function LoginPage() {
         )}
       >
         <>
-          <Icons.chevronLeft className="mr-2 h-4 w-4" />
+          <Icons.caretLeft className="mr-2 h-4 w-4" />
           Back
         </>
       </Link>
@@ -40,7 +40,7 @@ export default function LoginPage() {
         <p className="px-8 text-center text-sm text-muted-foreground">
           <Link
             href="/register"
-            className="hover:text-brand underline underline-offset-4"
+            className="underline underline-offset-4 hover:text-brand"
           >
             Don&apos;t have an account? Sign Up
           </Link>

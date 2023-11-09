@@ -105,7 +105,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
                       className="flex items-start text-muted-foreground"
                       key={feature}
                     >
-                      <Icons.close className="mr-3 h-5 w-5 shrink-0" />
+                      <Icons.crossLarge className="mr-3 h-5 w-5 shrink-0" />
                       <p>{feature}</p>
                     </li>
                   ))}

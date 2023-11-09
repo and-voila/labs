@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { CreditCard, LayoutDashboard, LogOut, Settings } from 'lucide-react';
 import type { User } from 'next-auth';
 import { signOut } from 'next-auth/react';
 
@@ -13,6 +12,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { UserAvatar } from '@/components/shared/user-avatar';
+
+import { Icons } from '../shared/icons';
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, 'name' | 'image' | 'email'>;
@@ -41,7 +42,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link href="/dashboard" className="flex items-center space-x-2.5">
-            <LayoutDashboard className="h-4 w-4" />
+            <Icons.dashboard className="h-4 w-4" />
             <p className="text-sm">Dashboard</p>
           </Link>
         </DropdownMenuItem>
@@ -50,7 +51,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             href="/dashboard/billing"
             className="flex items-center space-x-2.5"
           >
-            <CreditCard className="h-4 w-4" />
+            <Icons.creditCard className="h-4 w-4" />
             <p className="text-sm">Billing</p>
           </Link>
         </DropdownMenuItem>
@@ -59,7 +60,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             href="/dashboard/settings"
             className="flex items-center space-x-2.5"
           >
-            <Settings className="h-4 w-4" />
+            <Icons.settings className="h-4 w-4" />
             <p className="text-sm">Settings</p>
           </Link>
         </DropdownMenuItem>
@@ -74,7 +75,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           }}
         >
           <div className="flex items-center space-x-2.5">
-            <LogOut className="h-4 w-4" />
+            <Icons.signOut className="h-4 w-4" />
             <p className="text-sm">Log out </p>
           </div>
         </DropdownMenuItem>

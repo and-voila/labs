@@ -23,7 +23,7 @@ const rightHeader = () => (
     </div>
     <nav className="flex space-x-4">
       <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
-        <Icons.gitHub className="h-7 w-7" />
+        <Icons.github className="h-7 w-7" />
         <span className="sr-only">GitHub</span>
       </Link>
     </nav>

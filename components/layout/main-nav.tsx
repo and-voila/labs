@@ -69,7 +69,7 @@ export function MainNav({ items, children }: MainNavProps) {
         className="flex items-center space-x-2 md:hidden"
         onClick={toggleMobileMenu}
       >
-        {showMobileMenu ? <Icons.close /> : <Icons.logo />}
+        {showMobileMenu ? <Icons.crossLarge /> : <Icons.logo />}
         <span className="font-bold">Menu</span>
       </button>
       {showMobileMenu && items && (

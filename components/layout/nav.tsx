@@ -21,7 +21,7 @@ export function DashboardNav({ items }: DashboardNavProps) {
   return (
     <nav className="grid items-start gap-2">
       {items.map((item, index) => {
-        const Icon = Icons[item.icon || 'arrowRight'];
+        const Icon = Icons[item.icon || 'arrowSquareOut'];
         return (
           item.href && (
             <Link key={index} href={item.disabled ? '/' : item.href}>
