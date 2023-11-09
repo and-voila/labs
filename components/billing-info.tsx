@@ -40,7 +40,10 @@ export function BillingInfo({ subscriptionPlan }: BillingInfoProps) {
             {subscriptionPlan.isCanceled
               ? 'Your plan will be canceled on '
               : 'Your plan renews on '}
-            {formatDate(subscriptionPlan.stripeCurrentPeriodEnd)}.
+            {subscriptionPlan.stripeCurrentPeriodEnd
+              ? formatDate(subscriptionPlan.stripeCurrentPeriodEnd)
+              : 'N/A'}
+            .
           </p>
         ) : null}
       </CardFooter>

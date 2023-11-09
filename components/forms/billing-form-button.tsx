@@ -1,8 +1,6 @@
-'use client';
-
-import { useTransition } from 'react';
-import { generateUserStripe } from '@/actions/generate-user-stripe';
+import { useState } from 'react';
 import { SubscriptionPlan, UserSubscriptionPlan } from '@/types';
+import axios from 'axios';
 
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/shared/icons';
@@ -18,25 +16,33 @@ export function BillingFormButton({
   offer,
   subscriptionPlan,
 }: BillingFormButtonProps) {
-  const [isPending, startTransition] = useTransition();
-  const generateUserStripeSession = generateUserStripe.bind(
-    null,
-    offer.stripeIds[year ? 'yearly' : 'monthly'] || '',
-  );
+  const [isLoading, setLoading] = useState(false);
 
-  const stripeSessionAction = () =>
-    startTransition(
-      async () => await generateUserStripeSession().then(() => undefined),
-    );
+  const stripeSessionAction = async () => {
+    setLoading(true);
+    try {
+      const stripePriceId = offer.stripeIds[year ? 'yearly' : 'monthly'];
+      if (!stripePriceId) {
+        throw new Error('Stripe price ID not found');
+      }
+      const response = await axios.get('/api/stripe', {
+        params: { priceId: stripePriceId },
+      });
+      window.location.href = response.data.url;
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Button
       variant="default"
       className="w-full"
-      disabled={isPending}
+      disabled={isLoading}
       onClick={stripeSessionAction}
     >
-      {isPending ? (
+      {isLoading ? (
         <>
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> Loading...
         </>
