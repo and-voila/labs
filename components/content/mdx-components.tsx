@@ -67,21 +67,39 @@ const components = {
   ),
   a: ({ className, ...props }: MDXComponentProps) => (
     <a
-      className={cn('font-medium underline underline-offset-4', className)}
+      className={cn(
+        'font-semibold text-brand underline underline-offset-4 lg:text-lg',
+        className,
+      )}
       {...props}
     />
   ),
   p: ({ className, ...props }: MDXComponentProps) => (
     <p
-      className={cn('leading-7 [&:not(:first-child)]:mt-6', className)}
+      className={cn(
+        'leading-7 text-muted-foreground lg:text-lg [&:not(:first-child)]:mt-6',
+        className,
+      )}
       {...props}
     />
   ),
   ul: ({ className, ...props }: MDXComponentProps) => (
-    <ul className={cn('my-6 ml-6 list-disc', className)} {...props} />
+    <ul
+      className={cn(
+        'list my-6 ml-6 list-disc text-muted-foreground lg:text-lg',
+        className,
+      )}
+      {...props}
+    />
   ),
   ol: ({ className, ...props }: MDXComponentProps) => (
-    <ol className={cn('my-6 ml-6 list-decimal', className)} {...props} />
+    <ol
+      className={cn(
+        'my-6 ml-6 list-decimal text-muted-foreground lg:text-lg',
+        className,
+      )}
+      {...props}
+    />
   ),
   li: ({ className, ...props }: MDXComponentProps) => (
     <li className={cn('mt-2', className)} {...props} />
@@ -89,7 +107,7 @@ const components = {
   blockquote: ({ className, ...props }: MDXComponentProps) => (
     <blockquote
       className={cn(
-        'mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground',
+        'mt-6 border-l-4 border-l-brand py-6 pl-6 italic lg:text-lg [&>*]:text-muted-foreground',
         className,
       )}
       {...props}
@@ -145,7 +163,7 @@ const components = {
   code: ({ className, ...props }: MDXComponentProps) => (
     <code
       className={cn(
-        'relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm',
+        'relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm md:text-base lg:text-lg',
         className,
       )}
       {...props}

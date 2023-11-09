@@ -97,7 +97,7 @@ export default async function PostPage({ params }: PostPageProps) {
   );
 
   return (
-    <article className="container relative max-w-3xl py-6 lg:py-10">
+    <article className="container relative max-w-3xl py-6 lg:py-20">
       <Link
         href="/blog"
         className={cn(
@@ -105,8 +105,8 @@ export default async function PostPage({ params }: PostPageProps) {
           'absolute left-[-200px] top-14 hidden xl:inline-flex',
         )}
       >
-        <Icons.caretLeft className="mr-2 h-4 w-4" />
-        See all posts
+        <Icons.caretLeft className="mr-2 h-4 w-4 text-brand" />
+        Back to all posts
       </Link>
       <div>
         {post.date && (
@@ -117,7 +117,7 @@ export default async function PostPage({ params }: PostPageProps) {
             Published on {formatDate(post.date)}
           </time>
         )}
-        <h1 className="mt-2 inline-block text-4xl leading-tight lg:text-5xl">
+        <h1 className="mt-2 inline-block text-4xl font-bold leading-tight lg:text-6xl">
           <Balancer>{post.title}</Balancer>
         </h1>
         {authors?.length ? (

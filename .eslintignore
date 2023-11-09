@@ -5,3 +5,4 @@ build/
 dist/
 .contentlayer
 cursor/
+**/*.mdx
