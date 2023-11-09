@@ -20,7 +20,7 @@
     "email": "email dev --dir emails --port 3333"
   },
   "lint-staged": {
-    "*.{js,ts,jsx,tsx,md,mdx}": [
+    "app/**/*.{js,ts,jsx,tsx,md,mdx}": [
       "pnpm run prettier --write",
       "next lint"
     ]

@@ -9,16 +9,13 @@ declare global {
   var prisma: PrismaClient | undefined;
 }
 
-// Instantiate libSQL
 const libsql = createClient({
   url: env.TURSO_DATABASE_URL,
   authToken: env.TURSO_AUTH_TOKEN,
 });
 
-// Instantiate the libSQL driver adapter
 const adapter = new PrismaLibSQL(libsql);
 
-// Pass the adapter option to the Prisma Client instance
 const prisma = globalThis.prisma || new PrismaClient({ adapter });
 
 export const db = prisma;
