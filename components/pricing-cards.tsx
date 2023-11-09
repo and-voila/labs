@@ -112,7 +112,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
               </ul>
 
               {userId && subscriptionPlan ? (
-                offer.title === 'Starter' ? (
+                offer.title === 'Good' ? (
                   <Link
                     href="/dashboard"
                     className={buttonVariants({
