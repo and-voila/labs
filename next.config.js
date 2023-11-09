@@ -1,6 +1,6 @@
-// FIX: I changed .mjs to .js
-// More info: https://github.com/shadcn-ui/taxonomy/issues/100#issuecomment-1605867844
+// TODO: Related to https://github.com/shadcn-ui/taxonomy/issues/100#issuecomment-1605867844
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { createContentlayerPlugin } = require('next-contentlayer');
 
 import('./env.mjs');
@@ -26,8 +26,6 @@ const nextConfig = {
   },
 };
 
-const withContentlayer = createContentlayerPlugin({
-  // Additional Contentlayer config options
-});
+const withContentlayer = createContentlayerPlugin({});
 
 module.exports = withContentlayer(nextConfig);

@@ -4,3 +4,4 @@ target/
 build/
 dist/
 .contentlayer
+cursor/
