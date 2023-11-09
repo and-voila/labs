@@ -11,7 +11,7 @@
     "build": "contentlayer build && next build",
     "turbo": "next dev --port 3001 --turbo",
     "start": "next start",
-    "lint": "next lint --no-cache",
+    "lint": "next lint",
     "type-check": "tsc --noEmit",
     "prettier": "prettier --write .",
     "test": "pnpm run lint && pnpm run prettier && pnpm run type-check",
@@ -20,7 +20,10 @@
     "email": "email dev --dir emails --port 3333"
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": "pnpm run test"
+    "*.{js,ts,jsx,tsx,md,mdx}": [
+      "pnpm run prettier --write",
+      "next lint"
+    ]
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",

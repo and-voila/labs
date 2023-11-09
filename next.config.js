@@ -1,9 +1,9 @@
-// FIX: I changed .mjs to .js 
+// FIX: I changed .mjs to .js
 // More info: https://github.com/shadcn-ui/taxonomy/issues/100#issuecomment-1605867844
 
-const { createContentlayerPlugin } = require("next-contentlayer");
+const { createContentlayerPlugin } = require('next-contentlayer');
 
-import("./env.mjs");
+import('./env.mjs');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -22,9 +22,9 @@ const nextConfig = {
     ],
   },
   experimental: {
-    serverComponentsExternalPackages: ["@prisma/client"],
+    serverComponentsExternalPackages: ['@prisma/client'],
   },
-}
+};
 
 const withContentlayer = createContentlayerPlugin({
   // Additional Contentlayer config options

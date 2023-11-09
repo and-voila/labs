@@ -1,22 +1,22 @@
-import { notFound } from "next/navigation"
+import { notFound } from 'next/navigation';
 
-import { DashboardNav } from "@/components/layout/nav"
-import { NavBar } from "@/components/layout/navbar"
-import { SiteFooter } from "@/components/layout/site-footer"
-import { dashboardConfig } from "@/config/dashboard"
-import { getCurrentUser } from "@/lib/session"
+import { dashboardConfig } from '@/config/dashboard';
+import { getCurrentUser } from '@/lib/session';
+import { DashboardNav } from '@/components/layout/nav';
+import { NavBar } from '@/components/layout/navbar';
+import { SiteFooter } from '@/components/layout/site-footer';
 
 interface DashboardLayoutProps {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
-  const user = await getCurrentUser()
+  const user = await getCurrentUser();
 
   if (!user) {
-    return notFound()
+    return notFound();
   }
 
   return (
@@ -33,5 +33,5 @@ export default async function DashboardLayout({
       </div>
       <SiteFooter className="border-t" />
     </div>
-  )
+  );
 }

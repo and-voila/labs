@@ -1,52 +1,53 @@
-import Link from "next/link"
-import { notFound } from "next/navigation"
-import { allGuides } from "contentlayer/generated"
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { allGuides } from 'contentlayer/generated';
 
-import { getTableOfContents } from "@/lib/toc"
-import { Icons } from "@/components/shared/icons"
-import { Mdx } from "@/components/content/mdx-components"
-import { DocsPageHeader } from "@/components/docs/page-header"
-import { DashboardTableOfContents } from "@/components/shared/toc"
+import { getTableOfContents } from '@/lib/toc';
+import { Mdx } from '@/components/content/mdx-components';
+import { DocsPageHeader } from '@/components/docs/page-header';
+import { Icons } from '@/components/shared/icons';
+import { DashboardTableOfContents } from '@/components/shared/toc';
 
-import "@/styles/mdx.css"
-import { Metadata } from "next"
+import '@/styles/mdx.css';
 
-import { env } from "@/env.mjs"
-import { absoluteUrl, cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { Metadata } from 'next';
+
+import { env } from '@/env.mjs';
+import { absoluteUrl, cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
 
 interface GuidePageProps {
   params: {
-    slug: string[]
-  }
+    slug: string[];
+  };
 }
 
-async function getGuideFromParams(params) {
-  const slug = params?.slug?.join("/")
-  const guide = allGuides.find((guide) => guide.slugAsParams === slug)
+async function getGuideFromParams(params: GuidePageProps['params']) {
+  const slug = params?.slug?.join('/');
+  const guide = allGuides.find((guide) => guide.slugAsParams === slug);
 
   if (!guide) {
-    null
+    null;
   }
 
-  return guide
+  return guide;
 }
 
 export async function generateMetadata({
   params,
 }: GuidePageProps): Promise<Metadata> {
-  const guide = await getGuideFromParams(params)
+  const guide = await getGuideFromParams(params);
 
   if (!guide) {
-    return {}
+    return {};
   }
 
-  const url = env.NEXT_PUBLIC_APP_URL
+  const url = env.NEXT_PUBLIC_APP_URL;
 
-  const ogUrl = new URL(`${url}/api/og`)
-  ogUrl.searchParams.set("heading", guide.title)
-  ogUrl.searchParams.set("type", "Guide")
-  ogUrl.searchParams.set("mode", "dark")
+  const ogUrl = new URL(`${url}/api/og`);
+  ogUrl.searchParams.set('heading', guide.title);
+  ogUrl.searchParams.set('type', 'Guide');
+  ogUrl.searchParams.set('mode', 'dark');
 
   return {
     title: guide.title,
@@ -54,7 +55,7 @@ export async function generateMetadata({
     openGraph: {
       title: guide.title,
       description: guide.description,
-      type: "article",
+      type: 'article',
       url: absoluteUrl(guide.slug),
       images: [
         {
@@ -66,30 +67,30 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: guide.title,
       description: guide.description,
       images: [ogUrl.toString()],
     },
-  }
+  };
 }
 
 export async function generateStaticParams(): Promise<
-  GuidePageProps["params"][]
+  GuidePageProps['params'][]
 > {
   return allGuides.map((guide) => ({
-    slug: guide.slugAsParams.split("/"),
-  }))
+    slug: guide.slugAsParams.split('/'),
+  }));
 }
 
 export default async function GuidePage({ params }: GuidePageProps) {
-  const guide = await getGuideFromParams(params)
+  const guide = await getGuideFromParams(params);
 
   if (!guide) {
-    notFound()
+    notFound();
   }
 
-  const toc = await getTableOfContents(guide.body.raw)
+  const toc = await getTableOfContents(guide.body.raw);
 
   return (
     <main className="relative py-6 lg:grid lg:grid-cols-[1fr_300px] lg:gap-10 lg:py-10 xl:gap-20">
@@ -100,7 +101,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
         <div className="flex justify-center py-6 lg:py-10">
           <Link
             href="/guides"
-            className={cn(buttonVariants({ variant: "ghost" }))}
+            className={cn(buttonVariants({ variant: 'ghost' }))}
           >
             <Icons.chevronLeft className="mr-2 h-4 w-4" />
             See all guides
@@ -113,5 +114,5 @@ export default async function GuidePage({ params }: GuidePageProps) {
         </div>
       </div>
     </main>
-  )
+  );
 }

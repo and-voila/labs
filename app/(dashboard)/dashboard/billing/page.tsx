@@ -1,27 +1,27 @@
-import { redirect } from "next/navigation"
+import { redirect } from 'next/navigation';
 
-import { authOptions } from "@/lib/auth"
-import { getCurrentUser } from "@/lib/session"
-import { getUserSubscriptionPlan } from "@/lib/subscription"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { BillingInfo } from "@/components/billing-info"
-import { DashboardHeader } from "@/components/dashboard/header"
-import { Icons } from "@/components/shared/icons"
-import { DashboardShell } from "@/components/dashboard/shell"
+import { authOptions } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/session';
+import { getUserSubscriptionPlan } from '@/lib/subscription';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { BillingInfo } from '@/components/billing-info';
+import { DashboardHeader } from '@/components/dashboard/header';
+import { DashboardShell } from '@/components/dashboard/shell';
+import { Icons } from '@/components/shared/icons';
 
 export const metadata = {
-  title: "Billing",
-  description: "Manage billing and your subscription plan.",
-}
+  title: 'Billing',
+  description: 'Manage billing and your subscription plan.',
+};
 
 export default async function BillingPage() {
-  const user = await getCurrentUser()
+  const user = await getCurrentUser();
 
   if (!user) {
-    redirect(authOptions?.pages?.signIn || "/login")
+    redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  const subscriptionPlan = await getUserSubscriptionPlan(user.id)
+  const subscriptionPlan = await getUserSubscriptionPlan(user.id);
 
   return (
     <DashboardShell>
@@ -34,8 +34,8 @@ export default async function BillingPage() {
           <Icons.warning />
           <AlertTitle>This is a demo app.</AlertTitle>
           <AlertDescription>
-            SaaS Starter app is a demo app using a Stripe test environment. You can
-            find a list of test card numbers on the{" "}
+            SaaS Starter app is a demo app using a Stripe test environment. You
+            can find a list of test card numbers on the{' '}
             <a
               href="https://stripe.com/docs/testing#cards"
               target="_blank"
@@ -47,10 +47,8 @@ export default async function BillingPage() {
             .
           </AlertDescription>
         </Alert>
-        <BillingInfo
-          subscriptionPlan={subscriptionPlan}
-        />
+        <BillingInfo subscriptionPlan={subscriptionPlan} />
       </div>
     </DashboardShell>
-  )
+  );
 }
