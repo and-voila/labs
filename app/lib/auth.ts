@@ -7,8 +7,7 @@ import { env } from '@/env.mjs';
 import { siteConfig } from '@/app/config/site';
 import MagicLinkEmail from '@/app/emails/magic-link-email';
 import { db } from '@/app/lib/db';
-
-import { resend } from './email';
+import { resend } from '@/app/lib/email';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
