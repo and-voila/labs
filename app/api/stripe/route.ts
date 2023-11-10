@@ -5,10 +5,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 
 import { env } from '@/env.mjs';
-import { authOptions } from '@/lib/auth';
-import { db } from '@/lib/db';
-import { stripe } from '@/lib/stripe';
-import { absoluteUrl } from '@/lib/utils';
+import { authOptions } from '@/app/lib/auth';
+import { db } from '@/app/lib/db';
+import { stripe } from '@/app/lib/stripe';
+import { absoluteUrl } from '@/app/lib/utils';
 
 const settingsUrl = absoluteUrl('/pricing');
 

@@ -28,6 +28,58 @@
 
 Welcome to Labs x And Voila – a confluence of advanced tools and community, powered by the latest in web tech including Next.js 14, Typescript, Prisma, Kysely, Turso, and a lot more.
 
+## Project structure
+
+This project follows the recommendations of the the Next JS team for v14.
+
+```
+/and-voila/labs
+|
+|-- /app
+|   |
+|   |-- /(routes)                       # Route group for routes ¯\_(ツ)_/¯
+|   |   |-- /(auth)                     # Authentication pages
+|   |   |-- /(dashboard)                # Dashboard pages
+|   |   |-- /(insights)                 # Insights pages
+|   |   |-- /(learn)                    # Learn pages
+|   |   |-- /(marketing)                # Marketing pages
+|   |   `-- /(tools)                    # Tools pages
+|   |
+|   |-- /api                            # API routes
+|   |
+|   |-- /lib                            # Reusable libraries and utility functions
+|   |   |-- /actions                    # Server actions
+|   |   |-- /types                      # Types
+|   |   |-- /validations                # Zod stuff
+|   |   `-- /...                        # Other lib stuff
+|   |
+|   |-- /components                     # All UI components
+|   |   |-- /layout                     # Shared stuff organized into sub-folders
+|   |   |-- /...
+|   |   `-- /ui                         # Shadcn UI components
+|   |
+|   |-- /config                         # Configuration files for different parts of the app
+|   |
+|   `-- /styles                         # Global styles
+|
+|-- /content                     # Contentlayer blogs, docs, etc.
+|
+|-- /public                      # Static files like fonts, images, etc.
+|
+|-- /scripts                     # Scripts like seeding scripts
+|
+|-- next.config.js
+|-- .env.example
+|-- .eslintrc.json
+|-- .prettierrc
+|-- .gitignore
+|-- .nvmrc
+|-- LICENSE.md
+|-- README.md
+|-- package.json
+`-- tsconfig.json
+```
+
 ## Installation
 
 Get started with Labs x And Voila by cloning the repo and setting up your environment:
