@@ -18,6 +18,13 @@ export type IconKey = keyof typeof Icons;
 
 // :: Navigation Types ::
 
+export type Route = {
+  id: string;
+  icon?: IconName;
+  label: string;
+  href: string;
+};
+
 export type NavItem = {
   id?: string;
   title: string;
@@ -48,7 +55,7 @@ export type SidebarNavItem = {
 );
 
 export interface SidebarItemProps {
-  icon: IconName;
+  icon: keyof typeof Icons;
   label: string;
   href: string;
 }
@@ -103,6 +110,17 @@ export interface CourseNavbarProps {
   apiLimitCount: number;
   isPaidMember: boolean;
 }
+
+// :: Course & Chapter Types ::
+
+export type ChapterType = {
+  id: string;
+  title: string;
+  description: string;
+  video: string;
+  thumbnail: string;
+  userProgress?: { isCompleted: boolean }[];
+};
 
 // :: Config Types ::
 
