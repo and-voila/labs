@@ -2,16 +2,16 @@
 
 import { ImageResponse } from '@vercel/og';
 
-import { ogImageSchema } from '@/lib/validations/og';
+import { ogImageSchema } from '@/app/lib/validations/og';
 
 export const runtime = 'edge';
 
 const bricolageRegular = fetch(
-  new URL('../../../assets/fonts/bricolage-regular.ttf', import.meta.url),
+  new URL('/public/fonts/bricolage-regular.ttf', import.meta.url),
 ).then((res) => res.arrayBuffer());
 
 const bricolageBold = fetch(
-  new URL('../../../assets/fonts/bricolage-bold.ttf', import.meta.url),
+  new URL('/public/fonts/bricolage-bold.ttf', import.meta.url),
 ).then((res) => res.arrayBuffer());
 
 export async function GET(req: Request) {

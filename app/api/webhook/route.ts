@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
 import { env } from '@/env.mjs';
-import { db } from '@/lib/db';
-import { stripe } from '@/lib/stripe';
+import { db } from '@/app/lib/db';
+import { stripe } from '@/app/lib/stripe';
 
 export async function POST(req: Request) {
   const body = await req.text();
