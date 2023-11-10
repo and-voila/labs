@@ -3,7 +3,7 @@ import { allPages } from 'contentlayer/generated';
 
 import { Mdx } from '@/app/components/content/mdx-components';
 
-import '@/styles/mdx.css';
+import '@/app/styles/mdx.css';
 
 import { Metadata } from 'next';
 

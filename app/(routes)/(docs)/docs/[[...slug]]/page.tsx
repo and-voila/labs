@@ -7,7 +7,7 @@ import { DocsPager } from '@/app/components/docs/pager';
 import { DashboardTableOfContents } from '@/app/components/shared/toc';
 import { getTableOfContents } from '@/app/lib/toc';
 
-import '@/styles/mdx.css';
+import '@/app/styles/mdx.css';
 
 import { Metadata } from 'next';
 
