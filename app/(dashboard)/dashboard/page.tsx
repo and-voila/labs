@@ -25,7 +25,7 @@ export default async function DashboardPage() {
       </DashboardHeader>
       <div>
         <EmptyPlaceholder>
-          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Icon name="file" />
           <EmptyPlaceholder.Title>No content created</EmptyPlaceholder.Title>
           <EmptyPlaceholder.Description>
             You don&apos;t have any content yet. Start creating content.
