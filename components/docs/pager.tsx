@@ -25,19 +25,19 @@ export function DocsPager({ doc }: DocsPagerProps) {
       {pager?.prev && (
         <Link
           href={pager.prev.href}
-          className={cn(buttonVariants({ variant: 'ghost' }))}
+          className={cn(buttonVariants({ variant: 'outline' }))}
         >
-          <Icons.caretLeft className="mr-2 h-4 w-4" />
+          <Icons.caretLeft className="mr-2 h-4 w-4 text-brand" />
           {pager.prev.title}
         </Link>
       )}
       {pager?.next && (
         <Link
           href={pager.next.href}
-          className={cn(buttonVariants({ variant: 'ghost' }), 'ml-auto')}
+          className={cn(buttonVariants({ variant: 'outline' }), 'ml-auto')}
         >
           {pager.next.title}
-          <Icons.caretRight className="ml-2 h-4 w-4" />
+          <Icons.caretRight className="ml-2 h-4 w-4 text-brand" />
         </Link>
       )}
     </div>

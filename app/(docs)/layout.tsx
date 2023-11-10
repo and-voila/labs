@@ -1,7 +1,4 @@
-import Link from 'next/link';
-
 import { docsConfig } from '@/config/docs';
-import { siteConfig } from '@/config/site';
 import { getCurrentUser } from '@/lib/session';
 import { DocsSearch } from '@/components/docs/search';
 import { DocsSidebarNav } from '@/components/docs/sidebar-nav';
@@ -21,12 +18,6 @@ const rightHeader = () => (
     <div className="flex lg:hidden">
       <Icons.search className="h-6 w-6 text-muted-foreground" />
     </div>
-    <nav className="flex space-x-4">
-      <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
-        <Icons.github className="h-7 w-7" />
-        <span className="sr-only">GitHub</span>
-      </Link>
-    </nav>
   </div>
 );
 

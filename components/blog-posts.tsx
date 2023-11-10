@@ -56,7 +56,7 @@ export function BlogPosts({ posts }: BlogPostsProps) {
         <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-brand">
           Popular Posts
         </h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {posts.slice(1).map((post) => (
             <article
               key={post._id}
@@ -71,9 +71,7 @@ export function BlogPosts({ posts }: BlogPostsProps) {
                   className="rounded-md border bg-muted transition-colors"
                 />
               )}
-              <h2 className="text-2xl font-bold md:text-3xl lg:text-4xl">
-                {post.title}
-              </h2>
+              <h2 className="text-2xl font-bold">{post.title}</h2>
               {post.description && (
                 <p className="text-muted-foreground">{post.description}</p>
               )}
