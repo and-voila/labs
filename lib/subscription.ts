@@ -1,63 +1,83 @@
-// @ts-nocheck
-// TODO: Fix this when we turn strict mode on.
-import { pricingData } from "@/config/subscriptions";
-import { prisma } from "@/lib/db";
-import { stripe } from "@/lib/stripe";
-import { UserSubscriptionPlan } from "types";
+import { UserSubscriptionPlan } from 'types';
+import { pricingData } from '@/config/subscriptions';
+import { db } from '@/lib/db';
+import { stripe } from '@/lib/stripe';
+
+const DAY_IN_MS = 86_400_000;
 
 export async function getUserSubscriptionPlan(
-  userId: string
+  userId: string,
 ): Promise<UserSubscriptionPlan> {
-  const user = await prisma.user.findFirst({
+  const userSubscription = await db.userSubscription.findUnique({
     where: {
-      id: userId,
+      userId: userId,
     },
     select: {
-      stripeSubscriptionId: true,
-      stripeCurrentPeriodEnd: true,
       stripeCustomerId: true,
+      stripeSubscriptionId: true,
       stripePriceId: true,
+      stripeCurrentPeriodEnd: true,
     },
-  })
+  });
 
-  if (!user) {
-    throw new Error("User not found")
+  if (!userSubscription) {
+    const freePlan = pricingData.find((plan) => plan.title === 'Good');
+    if (!freePlan) {
+      throw new Error('Free plan not found in pricing data');
+    }
+    return {
+      ...freePlan,
+      stripeCustomerId: null,
+      stripeSubscriptionId: null,
+      stripePriceId: null,
+      stripeCurrentPeriodEnd: null,
+      isPaid: false,
+      interval: null,
+      isCanceled: false,
+    };
   }
 
-  // Check if user is on a paid plan.
+  // TODO: Fix null check
   const isPaid =
-    user.stripePriceId &&
-    user.stripeCurrentPeriodEnd?.getTime() + 86_400_000 > Date.now() ? true : false;
+    userSubscription.stripePriceId &&
+    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+    userSubscription.stripeCurrentPeriodEnd?.getTime()! + DAY_IN_MS > Date.now()
+      ? true
+      : false;
 
-  // Find the pricing data corresponding to the user's plan
   const userPlan =
-    pricingData.find((plan) => plan.stripeIds.monthly === user.stripePriceId) ||
-    pricingData.find((plan) => plan.stripeIds.yearly === user.stripePriceId);
+    pricingData.find(
+      (plan) => plan.stripeIds.monthly === userSubscription.stripePriceId,
+    ) ||
+    pricingData.find(
+      (plan) => plan.stripeIds.yearly === userSubscription.stripePriceId,
+    );
 
-  const plan = isPaid && userPlan ? userPlan : pricingData[0]
+  const plan = isPaid && userPlan ? userPlan : pricingData[0];
 
   const interval = isPaid
-    ? userPlan?.stripeIds.monthly === user.stripePriceId
-      ? "month"
-      : userPlan?.stripeIds.yearly === user.stripePriceId
-      ? "year"
+    ? userPlan?.stripeIds.monthly === userSubscription.stripePriceId
+      ? 'month'
+      : userPlan?.stripeIds.yearly === userSubscription.stripePriceId
+      ? 'year'
       : null
     : null;
 
   let isCanceled = false;
-  if (isPaid && user.stripeSubscriptionId) {
+  if (isPaid && userSubscription.stripeSubscriptionId) {
     const stripePlan = await stripe.subscriptions.retrieve(
-      user.stripeSubscriptionId
-    )
-    isCanceled = stripePlan.cancel_at_period_end
+      userSubscription.stripeSubscriptionId,
+    );
+    isCanceled = stripePlan.cancel_at_period_end;
   }
 
   return {
     ...plan,
-    ...user,
-    stripeCurrentPeriodEnd: user.stripeCurrentPeriodEnd?.getTime(),
+    ...userSubscription,
+    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+    stripeCurrentPeriodEnd: userSubscription.stripeCurrentPeriodEnd?.getTime()!,
     isPaid,
     interval,
-    isCanceled
-  }
+    isCanceled,
+  };
 }

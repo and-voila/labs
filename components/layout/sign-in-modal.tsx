@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
+import { signIn } from 'next-auth/react';
 
-import { Icons } from "@/components/shared/icons";
-import { Modal } from "@/components/shared/modal";
-import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/config/site";
-import { useSigninModal } from "@/hooks/use-signin-modal";
-import { signIn } from "next-auth/react";
+import { siteConfig } from '@/config/site';
+import { useSigninModal } from '@/hooks/use-signin-modal';
+import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/shared/icons';
+import { Modal } from '@/components/shared/modal';
 
 export const SignInModal = () => {
   const signInModal = useSigninModal();
@@ -20,7 +20,7 @@ export const SignInModal = () => {
           <a href={siteConfig.url}>
             <Icons.logo className="h-10 w-10" />
           </a>
-          <h3 className="font-urban text-2xl font-bold">Sign In</h3>
+          <h3 className="text-2xl font-bold">Sign In</h3>
           <p className="text-sm text-gray-500">
             This is strictly for demo purposes - only your email and profile
             picture will be stored.
@@ -33,11 +33,11 @@ export const SignInModal = () => {
             disabled={signInClicked}
             onClick={() => {
               setSignInClicked(true);
-              signIn("google", { redirect: false }).then(() =>
+              signIn('google', { redirect: false }).then(() =>
                 // TODO: fix this without setTimeOut(), modal closes too quickly. Idea: update value before redirect
                 setTimeout(() => {
                   signInModal.onClose();
-                }, 1000)
+                }, 1000),
               );
             }}
           >
@@ -45,7 +45,7 @@ export const SignInModal = () => {
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             ) : (
               <Icons.google className="mr-2 h-4 w-4" />
-            )}{" "}
+            )}{' '}
             Sign In with Google
           </Button>
         </div>

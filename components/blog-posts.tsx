@@ -1,19 +1,35 @@
-import { formatDate } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
-export function BlogPosts({ posts }) {
+import { formatDate } from '@/lib/utils';
+
+interface Post {
+  _id: string;
+  title: string;
+  description: string;
+  date: string;
+  slug: string;
+  image: string;
+}
+
+interface BlogPostsProps {
+  posts: Post[];
+}
+
+export function BlogPosts({ posts }: BlogPostsProps) {
   return (
-    <div className="container space-y-10 py-6 md:py-10">
+    <div className="container space-y-10 py-6 md:py-10 lg:py-20">
       <section>
-        <h2 className="mb-4 font-heading text-3xl">Last Post</h2>
+        <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-brand">
+          Just Dropped
+        </h2>
         <article className="relative grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             {posts[0].image && (
               <Image
                 alt={posts[0].title}
-                className="w-full rounded-lg border object-cover object-center md:h-64 lg:h-72"
+                className="w-full rounded-lg border object-cover object-center md:h-64 lg:h-96"
                 height={452}
                 src={posts[0].image}
                 width={804}
@@ -21,16 +37,12 @@ export function BlogPosts({ posts }) {
             )}
           </div>
           <div className="flex flex-col justify-center">
-            <h3 className="mb-2 font-heading text-2xl md:text-4xl">
-              <Balancer>
-                {posts[0].title}
-              </Balancer>
+            <h3 className="mb-2 text-2xl font-bold md:text-4xl lg:text-6xl">
+              <Balancer>{posts[0].title}</Balancer>
             </h3>
             {posts[0].description && (
               <p className="text-muted-foreground md:text-lg">
-                <Balancer>
-                  {posts[0].description}
-                </Balancer>
+                <Balancer>{posts[0].description}</Balancer>
               </p>
             )}
             <Link href={posts[0].slug} className="absolute inset-0">
@@ -41,10 +53,15 @@ export function BlogPosts({ posts }) {
       </section>
 
       <section>
-        <h2 className="mb-4 font-heading text-3xl">Blog Posts</h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-brand">
+          Popular Posts
+        </h2>
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {posts.slice(1).map((post) => (
-            <article key={post._id} className="group relative flex flex-col space-y-2">
+            <article
+              key={post._id}
+              className="group relative flex flex-col space-y-2"
+            >
               {post.image && (
                 <Image
                   alt={post.title}
@@ -54,14 +71,12 @@ export function BlogPosts({ posts }) {
                   className="rounded-md border bg-muted transition-colors"
                 />
               )}
-              <h2 className="line-clamp-1 font-heading text-2xl">{post.title}</h2>
+              <h2 className="text-2xl font-bold">{post.title}</h2>
               {post.description && (
-                <p className="line-clamp-1 text-muted-foreground">{post.description}</p>
+                <p className="text-muted-foreground">{post.description}</p>
               )}
               {post.date && (
-                <p className="text-sm text-muted-foreground">
-                  {formatDate(post.date)}
-                </p>
+                <p className="text-sm text-brand">{formatDate(post.date)}</p>
               )}
               <Link href={post.slug} className="absolute inset-0">
                 <span className="sr-only">View Article</span>
@@ -73,4 +88,3 @@ export function BlogPosts({ posts }) {
     </div>
   );
 }
-

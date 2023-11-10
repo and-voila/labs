@@ -1,18 +1,19 @@
-<a href="https://next-saas-stripe-starter.vercel.app">
-  <img alt="SaaS Starter" src="public/og.jpg">
-  <h1 align="center">Next SaaS Stripe Starter</h1>
+<a href="https://labs.andvoila.gg">
+  <img alt="A featured image for the Labs x And Voila web app for digital marketers" src="public/open-graph.gif">
+  <h1 align="center">Labs x And Voila</h1>
 </a>
 
 <p align="center">
-  Start at full speed with SaaS Starter !
+  Community, Insights, and AI-assisted tools to help you crush your digital marketing goals.
 </p>
 
 <p align="center">
-  <a href="https://twitter.com/miickasmt">
-    <img src="https://img.shields.io/twitter/follow/miickasmt?style=flat&label=miickasmt&logo=twitter&color=0bf&logoColor=fff" alt="Mickasmt Twitter follower count" />
+  <a href="https://twitter.com/rebekahradice">
+    <img src="https://img.shields.io/twitter/follow/rebekahradice?style=flat&label=@rebekahradice&logo=twitter&color=0bf&logoColor=fff" alt="Rebekah Radice Twitter follower count" />
   </a>
 </p>
 
+<!--
 <p align="center">
   <a href="#introduction"><strong>Introduction</strong></a> ·
   <a href="#installation"><strong>Installation</strong></a> ·
@@ -21,19 +22,18 @@
   <a href="#credits"><strong>Credits</strong></a>
 </p>
 <br/>
+-->
 
 ## Introduction
 
-Empower your next project with the stack of Next.js 14, Prisma, Planetscale, Auth.js, Resend, React Email, Shadcn/ui, and Stripe.
-<br/>
-All seamlessly integrated with the SaaS Starter to accelerate your development and saas journey.
+Welcome to Labs x And Voila – a confluence of advanced tools and community, powered by the latest in web tech including Next.js 14, Typescript, Prisma, Kysely, Turso, and a lot more.
 
 ## Installation
 
-Clone & create this repo locally with the following command:
+Get started with Labs x And Voila by cloning the repo and setting up your environment:
 
 ```bash
-npx create-next-app my-saas-project --example "https://github.com/mickasmt/next-saas-stripe-starter"
+npx create-next-app my-marketing-lab --example "https://github.com/and-voila/labs"
 ```
 
 1. Install dependencies using pnpm:
@@ -42,13 +42,13 @@ npx create-next-app my-saas-project --example "https://github.com/mickasmt/next-
 pnpm install
 ```
 
-2. Copy `.env.example` to `.env.local` and update the variables.
+2. Copy `.env.example` to `.env.local` and fill in the necessary details:
 
 ```sh
 cp .env.example .env.local
 ```
 
-3. Start the development server:
+3. Fire up the development server:
 
 ```sh
 pnpm dev
@@ -56,17 +56,20 @@ pnpm dev
 
 ## Roadmap
 
-- [x] ~Fix Vaul drawer for mobile sign in~  
-- [x] ~Update OG image~  
-- [x] ~Add Server Actions on billing form (stripe)~
-- [x] ~Add Server Actions on user name form~
-- [ ] Add resend for success subscriptions  
-- [ ] Update documentation
-- [ ] Switch subscription plan
-
-## Tech Stack + Features
-
-https://github.com/mickasmt/next-saas-stripe-starter/assets/62285783/828a4e0f-30e3-4cfe-96ff-4dfd9cd55124
+- [x] ~"Borrow" code from https://github.com/mickasmt/next-saas-stripe-starter/~
+- [x] ~Engage in a thrilling battle of wits with our local development environment~
+- [ ] Attempt a daring migration from Turbo repo, armed only with a keyboard and a strong cup of coffee
+- [ ] Embark on a quest to discover the ancient secrets of user authentication
+- [ ] Delve into the arcane arts of user authorization
+- [ ] Engage in a philosophical debate: To struggle with server actions, or not to struggle?
+- [ ] Concoct a cunning plan to convince users to part with their hard-earned cash
+- [ ] Invent some shiny new features that users didn't even know they needed
+- [ ] Embrace the bleeding edge, migrating to Next JS 14, because who needs stability anyway?
+- [ ] Attempt to decipher the cryptic riddles of the Next JS documentation
+- [ ] Engage in a high-stakes game of "guess the dependency version"
+- [ ] Wrestle with TypeScript, the programming language equivalent of a Rubik's cube
+- [ ] Try to remember why we thought migrating to an open source template was a good idea in the first place
+- [ ] Celebrate our inevitable success with a well-deserved nap
 
 ### Frameworks
 
@@ -78,7 +81,8 @@ https://github.com/mickasmt/next-saas-stripe-starter/assets/62285783/828a4e0f-30
 ### Platforms
 
 - [Vercel](https://vercel.com/) – Easily preview & deploy changes with git
-- [PlanetScale](https://planetscale.com/) – A cutting-edge database platform for seamless, scalable data management
+- [Turso](https://turso.tech/) – The Fastest,
+  easiest, cheapest database in the world, oh my!
 - [Resend](https://resend.com/) – A powerful email framework for streamlined email development
 
 ### UI
@@ -86,13 +90,13 @@ https://github.com/mickasmt/next-saas-stripe-starter/assets/62285783/828a4e0f-30
 - [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS framework for rapid UI development
 - [Shadcn/ui](https://ui.shadcn.com/) – Re-usable components built using Radix UI and Tailwind CSS
 - [Framer Motion](https://framer.com/motion) – Motion library for React to animate components with ease
-- [Lucide](https://lucide.dev/) – Beautifully simple, pixel-perfect icons
+- [Phosphor](https://phosphoricons.com/) – Phosphor is a flexible icon family for interfaces, diagrams, presentations — whatever, really.
 - [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) – Optimize custom fonts and remove external network requests for improved performance
 - [`ImageResponse`](https://nextjs.org/docs/app/api-reference/functions/image-response) – Generate dynamic Open Graph images at the edge
 
 ### Hooks and Utilities
 
-- `useIntersectionObserver` –  React hook to observe when an element enters or leaves the viewport
+- `useIntersectionObserver` – React hook to observe when an element enters or leaves the viewport
 - `useLocalStorage` – Persist data in the browser's local storage
 - `useScroll` – React hook to observe scroll position ([example](https://github.com/mickasmt/precedent/blob/main/components/layout/navbar.tsx#L12))
 - `nFormatter` – Format numbers with suffixes like `1.2k` or `1.2M`
@@ -112,13 +116,14 @@ https://github.com/mickasmt/next-saas-stripe-starter/assets/62285783/828a4e0f-30
 
 ## Author
 
-Created by [@miickasmt](https://twitter.com/miickasmt) in 2023, released under the [MIT license](https://github.com/shadcn/taxonomy/blob/main/LICENSE.md).
+Labs x And Voila is a project developed by **[BRIL.LA](https://bril.la)**, crafted to serve the digital marketing community with cutting-edge tools and insights. Released under the MIT License.
 
 ## Credits
 
-This project was inspired by shadcn's [Taxonomy](https://github.com/shadcn-ui/taxonomy), Steven Tey’s [Precedent](https://github.com/steven-tey/precedent), and Antonio Erdeljac's [Next 13 AI SaaS](https://github.com/AntonioErdeljac/next13-ai-saas).
+Special thanks to **[@mickasmt](https://github.com/mickasmt/)** for creating the Next SaaS Starter Stripe, which served as a foundation for this project. Our project also draws inspiration from other great works in the open-source community, which we've adapted and expanded upon to create a unique experience for digital marketers.
+
+This project was inspired by shadcn's [Taxonomy](https://github.com/shadcn-ui/taxonomy), Steven Tey’s [Precedent](https://github.com/steven-tey/precedent), and Antonio Erdeljac's amazing OSS projects.
 
 - Shadcn ([@shadcn](https://twitter.com/shadcn))
 - Steven Tey ([@steventey](https://twitter.com/steventey))
 - Antonio Erdeljac ([@YTCodeAntonio](https://twitter.com/AntonioErdeljac))
-

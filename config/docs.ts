@@ -1,106 +1,176 @@
-import { DocsConfig } from "types"
+import { DocsConfig } from 'types';
 
 export const docsConfig: DocsConfig = {
   mainNav: [
     {
-      title: "Documentation",
-      href: "/docs",
+      title: 'Insights',
+      href: '/docs',
     },
     {
-      title: "Guides",
-      href: "/guides",
+      title: 'Guides',
+      href: '/guides',
     },
   ],
   sidebarNav: [
     {
-      title: "Getting Started",
+      title: 'Getting Started',
       items: [
         {
-          title: "Introduction",
-          href: "/docs",
+          title: 'Introduction',
+          href: '/docs',
         },
       ],
     },
     {
-      title: "Documentation",
+      title: 'Artifical Intelligence',
       items: [
         {
-          title: "Introduction",
-          href: "/docs/documentation",
+          title: 'Intro to AI',
+          href: '/docs/documentation',
         },
         {
-          title: "Contentlayer",
-          href: "/docs/in-progress",
+          title: 'ChatGPT vs. Bard',
+          href: '/docs/in-progress',
           disabled: true,
         },
         {
-          title: "Components",
-          href: "/docs/documentation/components",
+          title: 'Protecting IP',
+          href: '/docs/documentation/components',
         },
         {
-          title: "Code Blocks",
-          href: "/docs/documentation/code-blocks",
+          title: 'Awesome prompts',
+          href: '/docs/documentation/code-blocks',
         },
         {
-          title: "Style Guide",
-          href: "/docs/documentation/style-guide",
+          title: 'Cool hacks',
+          href: '/docs/documentation/style-guide',
         },
       ],
     },
     {
-      title: "Blog",
+      title: 'Business',
       items: [
         {
-          title: "Introduction",
-          href: "/docs/in-progress",
+          title: 'Starting up',
+          href: '/docs/in-progress',
           disabled: true,
         },
         {
-          title: "Build your own",
-          href: "/docs/in-progress",
+          title: 'Software we use',
+          href: '/docs/in-progress',
           disabled: true,
         },
         {
-          title: "Writing Posts",
-          href: "/docs/in-progress",
+          title: 'Hiring',
+          href: '/docs/in-progress',
           disabled: true,
         },
       ],
     },
     {
-      title: "Dashboard",
+      title: 'Content',
       items: [
         {
-          title: "Introduction",
-          href: "/docs/in-progress",
+          title: 'Introduction',
+          href: '/docs/in-progress',
           disabled: true,
         },
         {
-          title: "Layouts",
-          href: "/docs/in-progress",
+          title: 'Layouts',
+          href: '/docs/in-progress',
           disabled: true,
         },
         {
-          title: "Server Components",
-          href: "/docs/in-progress",
+          title: 'Server Components',
+          href: '/docs/in-progress',
           disabled: true,
         },
         {
-          title: "Authentication",
-          href: "/docs/in-progress",
+          title: 'Authentication',
+          href: '/docs/in-progress',
           disabled: true,
         },
         {
-          title: "Database with Prisma",
-          href: "/docs/in-progress",
+          title: 'Database with Prisma',
+          href: '/docs/in-progress',
           disabled: true,
         },
         {
-          title: "API Routes",
-          href: "/docs/in-progress",
+          title: 'API Routes',
+          href: '/docs/in-progress',
+          disabled: true,
+        },
+      ],
+    },
+    {
+      title: 'Design',
+      items: [
+        {
+          title: 'Introduction',
+          href: '/docs/in-progress',
+          disabled: true,
+        },
+        {
+          title: 'Layouts',
+          href: '/docs/in-progress',
+          disabled: true,
+        },
+        {
+          title: 'Server Components',
+          href: '/docs/in-progress',
+          disabled: true,
+        },
+        {
+          title: 'Authentication',
+          href: '/docs/in-progress',
+          disabled: true,
+        },
+        {
+          title: 'Database with Prisma',
+          href: '/docs/in-progress',
+          disabled: true,
+        },
+        {
+          title: 'API Routes',
+          href: '/docs/in-progress',
+          disabled: true,
+        },
+      ],
+    },
+    {
+      title: 'Social',
+      items: [
+        {
+          title: 'Introduction',
+          href: '/docs/in-progress',
+          disabled: true,
+        },
+        {
+          title: 'Layouts',
+          href: '/docs/in-progress',
+          disabled: true,
+        },
+        {
+          title: 'Server Components',
+          href: '/docs/in-progress',
+          disabled: true,
+        },
+        {
+          title: 'Authentication',
+          href: '/docs/in-progress',
+          disabled: true,
+        },
+        {
+          title: 'Database with Prisma',
+          href: '/docs/in-progress',
+          disabled: true,
+        },
+        {
+          title: 'API Routes',
+          href: '/docs/in-progress',
           disabled: true,
         },
       ],
     },
   ],
-}
+};

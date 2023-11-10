@@ -1,32 +1,55 @@
-import { DashboardConfig } from "types"
+import { DashboardConfig } from 'types';
 
 export const dashboardConfig: DashboardConfig = {
   mainNav: [
     {
-      title: "Documentation",
-      href: "/docs",
+      title: 'Dashboard',
+      href: '/dashboard',
+      isLoggedIn: true,
     },
     {
-      title: "Support",
-      href: "/support",
-      disabled: true,
+      title: 'Admin',
+      href: '/admin',
+      isTeacher: true,
+    },
+    {
+      title: 'Community',
+      href: 'https://discord.com/channels/1151749282806910976/1154115151407091862',
+      isExternal: true,
+    },
+    {
+      title: 'Playbooks',
+      href: '/learn',
+    },
+    {
+      title: 'Tools',
+      href: '/tools',
+    },
+    {
+      title: 'Insights',
+      href: '/docs',
     },
   ],
   sidebarNav: [
     {
-      title: "Panel",
-      href: "/dashboard",
-      icon: "post",
+      title: 'Dashboard',
+      href: '/dashboard',
+      icon: 'dashboard',
     },
     {
-      title: "Billing",
-      href: "/dashboard/billing",
-      icon: "billing",
+      title: 'Billing',
+      href: '/dashboard/billing',
+      icon: 'creditCard',
     },
     {
-      title: "Settings",
-      href: "/dashboard/settings",
-      icon: "settings",
+      title: 'Settings',
+      href: '/dashboard/settings',
+      icon: 'settings',
+    },
+    {
+      title: 'Support',
+      href: '/dashboard/support',
+      icon: 'help',
     },
   ],
-}
+};

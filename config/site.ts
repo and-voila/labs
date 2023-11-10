@@ -1,17 +1,18 @@
-import { env } from "@/env.mjs";
-import { SiteConfig } from "types"
+import { SiteConfig } from 'types';
+import { env } from '@/env.mjs';
 
-const site_url = env.NEXT_PUBLIC_APP_URL;
+const siteUrl = env.NEXT_PUBLIC_APP_URL;
 
 export const siteConfig: SiteConfig = {
-  name: "SaaS Starter",
+  company: 'BRIL.LA, LLC.',
+  name: 'And Voila',
   description:
-    "Get your project off to an explosive start with SaaS Starter! Harness the power of Next.js 14, Prisma, Planetscale, Auth.js, Resend, React Email, Shadcn/ui and Stripe to build your next big thing.",
-  url: site_url,
-  ogImage: `${site_url}/og.jpg`,
+    'We help digital marketers gain superpowers. Join the community, use our playbooks, and AI-assisted tools. And voila! Watch your marketing ROI skyrocket. 🔥',
+  url: siteUrl,
+  ogImage: `${siteUrl}/open-graph.gif`,
   links: {
-    twitter: "https://twitter.com/miickasmt",
-    github: "https://github.com/mickasmt/next-saas-stripe-starter",
+    twitter: 'https://twitter.com/rebekahradice',
+    github: 'https://github.com/and-voila/labs/',
   },
-  mailSupport: "support@saas-starter.com"
-}
+  mailSupport: 'yo@andvoila.gg',
+};

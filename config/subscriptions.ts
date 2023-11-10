@@ -1,21 +1,18 @@
-import { SubscriptionPlan } from "types"
-import { env } from "@/env.mjs"
+import { SubscriptionPlan } from 'types';
+import { env } from '@/env.mjs';
 
 export const pricingData: SubscriptionPlan[] = [
   {
-    title: 'Starter',
-    description: 'For Beginners',
+    title: 'Good',
+    description:
+      'The Good plan is free for everyone. It offers a primer to our premium Discord community, selected classes, and 30 AI-assist tokens to get you started.',
     benefits: [
-      'Up to 100 monthly posts',
-      'Basic analytics and reporting',
-      'Access to standard templates',
+      'Community access with select AMA sessions',
+      'Entry to the standard playbook library',
+      'Weekly marketing digests to keep you updated',
+      '30 AI-assist tokens per month to boost your marketing',
     ],
-    limitations: [
-      'No priority access to new features.',
-      'Limited customer support',
-      'No custom branding',
-      'Limited access to business resources.',
-    ],
+    limitations: [],
     prices: {
       monthly: 0,
       yearly: 0,
@@ -26,22 +23,20 @@ export const pricingData: SubscriptionPlan[] = [
     },
   },
   {
-    title: 'Pro',
-    description: 'Unlock Advanced Features',
+    title: 'Better',
+    description:
+      'The Better plan is a value-packed upgrade. Gain full access to our Discord community, direct mod support, all classes, and 3,000 AI-assist tokens for a deeper dive.',
     benefits: [
-      'Up to 500 monthly posts',
-      'Advanced analytics and reporting',
-      'Access to business templates',
-      'Priority customer support',
-      'Exclusive webinars and training.',
+      'Unrestricted community access and support from mods',
+      'Unlimited access to all classes and premium content',
+      '3,000 AI-assist tokens for expansive campaign reach',
+      'Advanced analytics for deeper insights',
+      'Priority customer support for quicker resolutions',
     ],
-    limitations: [
-      'No custom branding',
-      'Limited access to business resources.',
-    ],
+    limitations: [],
     prices: {
-      monthly: 15,
-      yearly: 144,
+      monthly: 49,
+      yearly: 480,
     },
     stripeIds: {
       monthly: env.NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PLAN_ID,
@@ -49,19 +44,20 @@ export const pricingData: SubscriptionPlan[] = [
     },
   },
   {
-    title: 'Business',
-    description: 'For Power Users',
+    title: 'Best',
+    description:
+      'The Best plan is the ultimate package. Unlock all-access to our Discord community, top-tier support, comprehensive classes, and 7,500 AI-assist tokens for maximum impact.',
     benefits: [
-      'Unlimited posts',
-      'Real-time analytics and reporting',
-      'Access to all templates, including custom branding',
-      '24/7 business customer support',
-      'Personalized onboarding and account management.',
+      'Priority access to new features and updates',
+      'Comprehensive playbook access for strategic advantage',
+      '7,500 AI-assist tokens to perfect your campaigns',
+      'Real-time analytics for instant marketing adaptability',
+      '24/7 dedicated support and personalized onboarding',
     ],
     limitations: [],
     prices: {
-      monthly: 30,
-      yearly: 300,
+      monthly: 99,
+      yearly: 950,
     },
     stripeIds: {
       monthly: env.NEXT_PUBLIC_STRIPE_BUSINESS_MONTHLY_PLAN_ID,
