@@ -42,7 +42,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link href="/dashboard" className="flex items-center space-x-2.5">
-            <Icons.dashboard className="h-4 w-4" />
+            <Icons.dashboard className="h-4 w-4 text-brand" />
             <p className="text-sm">Dashboard</p>
           </Link>
         </DropdownMenuItem>
@@ -51,7 +51,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             href="/dashboard/billing"
             className="flex items-center space-x-2.5"
           >
-            <Icons.creditCard className="h-4 w-4" />
+            <Icons.creditCard className="h-4 w-4 text-brand" />
             <p className="text-sm">Billing</p>
           </Link>
         </DropdownMenuItem>
@@ -60,7 +60,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             href="/dashboard/settings"
             className="flex items-center space-x-2.5"
           >
-            <Icons.settings className="h-4 w-4" />
+            <Icons.settings className="h-4 w-4 text-brand" />
             <p className="text-sm">Settings</p>
           </Link>
         </DropdownMenuItem>
@@ -75,7 +75,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           }}
         >
           <div className="flex items-center space-x-2.5">
-            <Icons.signOut className="h-4 w-4" />
+            <Icons.signOut className="h-4 w-4 text-brand" />
             <p className="text-sm">Log out </p>
           </div>
         </DropdownMenuItem>

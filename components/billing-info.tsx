@@ -23,15 +23,25 @@ export function BillingInfo({ subscriptionPlan }: BillingInfoProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Subscription Plan</CardTitle>
+        <CardTitle>Membership Plan</CardTitle>
         <CardDescription>
-          You are currently on the <strong>{subscriptionPlan.title}</strong>{' '}
+          You are currently on the{' '}
+          <span className="text-brand">
+            <strong>{subscriptionPlan.title}</strong>
+          </span>{' '}
           plan.
         </CardDescription>
       </CardHeader>
       <CardContent>{subscriptionPlan.description}</CardContent>
       <CardFooter className="flex flex-col items-start space-y-2 md:flex-row md:justify-between md:space-x-0">
-        <Link href="/pricing" className={cn(buttonVariants())}>
+        <Link
+          href="/pricing"
+          className={cn(
+            buttonVariants({
+              variant: subscriptionPlan.isPaid ? 'secondary' : 'custom',
+            }),
+          )}
+        >
           {subscriptionPlan.isPaid ? 'Manage Subscription' : 'Upgrade now'}
         </Link>
 

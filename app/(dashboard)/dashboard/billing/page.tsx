@@ -27,26 +27,20 @@ export default async function BillingPage() {
     <DashboardShell>
       <DashboardHeader
         heading="Billing"
-        text="Manage billing and your subscription plan."
+        text="Manage billing and your membership plan."
       />
-      <div className="grid gap-8">
-        <Alert className="!pl-14">
-          <Icons.warning />
-          <AlertTitle>This is a demo app.</AlertTitle>
-          <AlertDescription>
-            SaaS Starter app is a demo app using a Stripe test environment. You
-            can find a list of test card numbers on the{' '}
-            <a
-              href="https://stripe.com/docs/testing#cards"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-8"
-            >
-              Stripe docs
-            </a>
-            .
-          </AlertDescription>
-        </Alert>
+      <div className="grid max-w-3xl gap-8">
+        {!subscriptionPlan && (
+          <Alert className="!pl-14">
+            <Icons.rocket className="fill-brand" />
+            <AlertTitle>Welcome to early access</AlertTitle>
+            <AlertDescription className="text-muted-foreground">
+              Get ready to watch your marketing ROI soar! Scoop up early access
+              membership now to guarantee a year of top-tier digital marketing
+              results at half the investment.
+            </AlertDescription>
+          </Alert>
+        )}
         <BillingInfo subscriptionPlan={subscriptionPlan} />
       </div>
     </DashboardShell>
