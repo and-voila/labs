@@ -1,0 +1,112 @@
+/* 
+====================
+PREVIEW COMPONENT
+====================
+*/
+
+/* Structure */
+.myQuill .ql-container {
+  @apply prose;
+  @apply dark:prose-invert;
+  @apply lg:prose-lg;
+}
+
+/* Headings */
+.myQuill .ql-editor h1,
+.myQuill .ql-editor h2,
+.myQuill .ql-editor h3 {
+  margin: 0.25em 0 0.25em 0;
+  padding: 0;
+  letter-spacing: -0.025em;
+  @apply text-foreground;
+  @apply prose-headings:font-display;
+  @apply prose-headings:leading-loose;
+}
+
+/* Paragraphs */
+.myQuill .ql-editor p {
+  margin: 0;
+  padding: 0;
+  @apply text-muted-foreground;
+  @apply prose-p:leading-normal;
+  @apply prose-strong:text-muted-foreground;
+}
+
+/* Links */
+.myQuill .ql-editor a {
+  @apply text-brand;
+  @apply prose-a:underline-offset-4;
+  @apply prose-a:font-bold;
+}
+
+/* List Items */
+.myQuill .ql-editor ul,
+.myQuill .ql-editor ol {
+  margin: 0;
+  padding: 0;
+  @apply text-muted-foreground prose-strong:text-muted-foreground prose-ol:leading-normal prose-ul:leading-normal;
+}
+
+/* 
+====================
+EDITOR COMPONENT
+====================
+*/
+
+/* Structure */
+.ql-snow .ql-editor {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Headings */
+.ql-snow.ql-container h1,
+.ql-snow.ql-container h2,
+.ql-snow.ql-container h3 {
+  color: #1f2937;
+}
+
+.ql-editor h1 {
+  line-height: 1.4;
+}
+
+.ql-editor h2 {
+  line-height: 1.5;
+}
+
+.ql-editor h3 {
+  line-height: 1.5;
+}
+
+/* Paragraphs */
+.ql-snow.ql-container p,
+.ql-snow.ql-container ul,
+.ql-snow.ql-container ol {
+  color: #4b5563;
+}
+
+.ql-editor p {
+  margin: 1em 0;
+  padding: 0;
+}
+
+/* Links */
+.ql-snow.ql-container a {
+  color: #6847c2;
+}
+
+/* List Items */
+.ql-editor ul,
+.ql-editor ol,
+.ql-editor li {
+  margin: 0.5em 0;
+}
+
+/* Misc */
+.ql-snow .ql-toolbar .ql-formats .ql-picker-label {
+  color: #000000;
+}
+
+.ql-snow .ql-tooltip.ql-editing input[type='text'] {
+  background-color: white;
+}
