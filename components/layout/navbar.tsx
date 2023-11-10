@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { MainNavItem } from '@/types';
 import { User } from 'next-auth';
 
+import { isTeacher } from '@/lib/teacher';
 import { cn } from '@/lib/utils';
 import useScroll from '@/hooks/use-scroll';
 import { useSigninModal } from '@/hooks/use-signin-modal';
@@ -13,7 +14,7 @@ import { MainNav } from './main-nav';
 import { UserAccountNav } from './user-account-nav';
 
 interface NavBarProps {
-  user: Pick<User, 'name' | 'image' | 'email'> | undefined;
+  user: Pick<User, 'name' | 'image' | 'email' | 'id'> | undefined;
   items?: MainNavItem[];
   children?: React.ReactNode;
   rightElements?: React.ReactNode;
@@ -30,6 +31,12 @@ export function NavBar({
   const scrolled = useScroll(50);
   const signInModal = useSigninModal();
 
+  const filteredItems = items?.filter((item) => {
+    if (item.isLoggedIn && !user) return false;
+    if (item.isTeacher && !isTeacher(user?.id)) return false;
+    return true;
+  });
+
   return (
     <header
       className={`sticky top-0 z-40 flex w-full justify-center bg-background/60 backdrop-blur-xl transition-all ${
@@ -37,7 +44,7 @@ export function NavBar({
       }`}
     >
       <div className="container flex h-16 items-center justify-between py-4">
-        <MainNav items={items}>{children}</MainNav>
+        <MainNav items={filteredItems}>{children}</MainNav>
 
         <div className="flex items-center space-x-3">
           {rightElements}

@@ -4,6 +4,9 @@ export type NavItem = {
   title: string;
   href: string;
   disabled?: boolean;
+  isExternal?: boolean;
+  isLoggedIn?: boolean;
+  isTeacher?: boolean;
 };
 
 export type MainNavItem = NavItem;

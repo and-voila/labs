@@ -55,10 +55,13 @@ export function MainNav({ items, children }: MainNavProps) {
               className={cn(
                 'flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm',
                 item.href.startsWith(`/${segment}`)
-                  ? 'text-foreground'
+                  ? 'font-semibold text-brand'
                   : 'text-foreground/60',
                 item.disabled && 'cursor-not-allowed opacity-80',
               )}
+              target={item.isExternal ? '_blank' : '_self'}
+              rel={item.isExternal ? 'noopener noreferrer' : ''}
+              aria-label={item.isExternal ? 'Opens in a new tab' : ''}
             >
               {item.title}
             </Link>
