@@ -9,7 +9,7 @@ export default function DashboardBillingLoading() {
         heading="Billing"
         text="Manage billing and your subscription plan."
       />
-      <div className="grid gap-10">
+      <div className="grid max-w-3xl gap-10">
         <CardSkeleton />
       </div>
     </DashboardShell>
