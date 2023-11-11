@@ -1,59 +1,64 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 
-import { UserAuthForm } from '@/app/components/forms/user-auth-form';
-import { Icons } from '@/app/components/shared/icons';
+import { Logo } from '@/app/components/logo-square';
 import { buttonVariants } from '@/app/components/ui/button';
+import UserAuthForm from '@/app/components/user-auth-form';
 import { cn } from '@/app/lib/utils';
 
-export const metadata = {
-  title: 'Create an account',
-  description: 'Create an account to get started.',
+export const metadata: Metadata = {
+  title: 'Register Account',
+  description:
+    'Unlock your marketing potential with And Voila. Create a free account for access to exclusive playbooks, AI tools, and a vibrant community of experts.',
 };
 
 export default function RegisterPage() {
   return (
-    <div className="container grid h-screen w-screen flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
-      <Link
-        href="/login"
-        className={cn(
-          buttonVariants({ variant: 'ghost' }),
-          'absolute right-4 top-4 md:right-8 md:top-8',
-        )}
-      >
-        Login
-      </Link>
-      <div className="hidden h-full bg-muted lg:block" />
-      <div className="lg:p-8">
-        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-          <div className="flex flex-col space-y-2 text-center">
-            <Icons.logo className="mx-auto h-6 w-6" />
-            <h1 className="text-2xl font-semibold tracking-tight">
-              Create an account
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              Enter your email below to create your account
-            </p>
+    <>
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <Link
+          href="/login"
+          className={cn(
+            buttonVariants({ variant: 'outline', size: 'sm' }),
+            'absolute right-6 top-6 md:right-10 md:top-10',
+          )}
+        >
+          Log in
+        </Link>
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="flex items-center justify-center p-6">
+            <Logo fillOnHover className="h-6 md:h-8" />
+            <sup className="-ml-2 font-mono text-xs text-brand md:-ml-3">
+              beta
+            </sup>
           </div>
-          <UserAuthForm type="register" />
-          <p className="px-8 text-center text-sm text-muted-foreground">
-            By clicking continue, you agree to our{' '}
+        </div>
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <UserAuthForm isRegistration />
+          <p className="mx-auto mt-4 max-w-xs text-center text-sm text-muted-foreground">
+            No credit card required. If you&apos;re interested, here&apos;s our
             <Link
-              href="/terms"
-              className="underline underline-offset-4 hover:text-brand"
+              href="https://andvoila.gg/privacy"
+              target="_blank"
+              aria-label="Naivgate to And Voila's Privacy Policy on their website in a new window"
+              className="text-brand hover:underline"
             >
-              Terms of Service
-            </Link>{' '}
+              {' '}
+              Privacy Policy{' '}
+            </Link>
             and{' '}
             <Link
-              href="/privacy"
-              className="underline underline-offset-4 hover:text-brand"
+              href="https://andvoila.gg/terms"
+              target="_blank"
+              aria-label="Naivgate to And Voila's Terms of Service on their website in a new window"
+              className="text-brand hover:underline"
             >
-              Privacy Policy
+              Terms of Service
             </Link>
             .
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 }
