@@ -1,9 +1,16 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Logo } from '@/app/components/logo-square';
 import { buttonVariants } from '@/app/components/ui/button';
 import UserAuthForm from '@/app/components/user-auth-form';
 import { cn } from '@/app/lib/utils';
+
+export const metadata: Metadata = {
+  title: 'Login',
+  description:
+    'Log in to And Voila to continue honing your marketing skills with cutting-edge playbooks, innovative AI tools, and a collaborative expert community.',
+};
 
 const LoginPage = () => {
   return (
