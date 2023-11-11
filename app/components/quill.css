@@ -19,7 +19,7 @@ PREVIEW COMPONENT
   padding: 0;
   letter-spacing: -0.025em;
   @apply text-foreground;
-  @apply prose-headings:font-display;
+  @apply prose-headings:font-bold;
   @apply prose-headings:leading-loose;
 }
 

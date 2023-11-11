@@ -1,6 +1,6 @@
-import { LearnConfig } from '@/app/lib/types';
+import { PlaybooksConfig } from '@/app/lib/types';
 
-export const learnConfig: LearnConfig = {
+export const playbooksConfig: PlaybooksConfig = {
   mainNav: [
     {
       title: 'Dashboard',

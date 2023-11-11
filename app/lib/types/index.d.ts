@@ -151,9 +151,13 @@ export type FooterConfig = {
   footerNav: MainNavItem[];
 };
 
-export type LearnConfig = {
+export type PlaybooksConfig = {
   mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
+};
+
+export type PlaybookConfig = {
+  mainNav: MainNavItem[];
 };
 
 export type MarketingConfig = {

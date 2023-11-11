@@ -45,7 +45,7 @@ export const FreeCounter = ({
       <Card className="border bg-primary-foreground">
         <CardContent className="py-4">
           <div className="mb-4 space-y-2 text-center text-xs text-foreground">
-            <h2 className="font-display text-lg uppercase text-foreground">
+            <h2 className="text-lg font-bold uppercase text-foreground">
               Get Early Access
             </h2>
             <p className="text-muted-foreground">
