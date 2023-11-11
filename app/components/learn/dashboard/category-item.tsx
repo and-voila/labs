@@ -39,7 +39,7 @@ export const CategoryItem = ({ label, value }: CategoryItemProps) => {
     <button
       onClick={onClick}
       className={cn(
-        'flex items-center gap-x-1 rounded-lg border px-3 py-2 font-mono text-sm transition hover:border-brand hover:bg-brand/20',
+        'flex items-center gap-x-1 rounded-lg border px-3 py-1 font-mono text-sm transition hover:border-brand hover:bg-brand/20',
         isSelected && 'border-brand bg-brand/20 font-semibold text-foreground',
       )}
       type="button"

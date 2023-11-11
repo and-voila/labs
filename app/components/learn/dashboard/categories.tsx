@@ -12,7 +12,7 @@ interface CategoriesProps {
 
 export const Categories = ({ items }: CategoriesProps) => {
   return (
-    <div className="flex items-center gap-x-2 overflow-x-auto p-2">
+    <div className="flex items-center gap-x-2 overflow-x-auto">
       <Suspense fallback={<CategoryItemSkeleton />}>
         {items.map((item) => (
           <CategoryItem key={item.id} label={item.name} value={item.id} />

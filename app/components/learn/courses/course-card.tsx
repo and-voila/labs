@@ -48,26 +48,24 @@ export const CourseCard = ({
         <div className="mt-1 flex flex-col p-4">
           <div className="mb-2 flex items-center justify-between">
             <Suspense fallback={<Skeleton className="h-4 w-12" />}>
-              <p className="font-mono text-sm text-muted-foreground">
-                {category}
-              </p>
+              <p className="text-sm text-muted-foreground">{category}</p>
             </Suspense>
             <Suspense fallback={<Skeleton className="h-4 w-12" />}>
               {progress !== null ? (
                 progress === 0 ? (
-                  <p className="font-mono text-sm text-brand">Not Started</p>
+                  <p className="text-sm text-brand">Not Started</p>
                 ) : progress === 100 ? (
-                  <p className="font-mono text-sm text-alternate">Complete</p>
+                  <p className="text-sm text-alternate">Complete</p>
                 ) : (
-                  <p className="font-mono text-sm text-brand">In Progress</p>
+                  <p className="text-sm text-brand">In Progress</p>
                 )
               ) : (
-                <p className="font-mono text-sm text-brand">{displayPrice}</p>
+                <p className="text-sm text-brand">{displayPrice}</p>
               )}
             </Suspense>
           </div>
           <Suspense fallback={<Skeleton className="h-8 w-3/4" />}>
-            <div className="line-clamp-2 text-lg font-semibold leading-tight transition group-hover:text-brand">
+            <div className="line-clamp-2 text-lg font-bold leading-tight transition group-hover:text-brand">
               {title}
             </div>
           </Suspense>

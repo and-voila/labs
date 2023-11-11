@@ -151,6 +151,11 @@ export type FooterConfig = {
   footerNav: MainNavItem[];
 };
 
+export type LearnConfig = {
+  mainNav: MainNavItem[];
+  sidebarNav: SidebarNavItem[];
+};
+
 export type MarketingConfig = {
   mainNav: MainNavItem[];
 };
