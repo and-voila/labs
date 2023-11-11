@@ -20,8 +20,48 @@ import { cn } from '@/app/lib/utils';
 
 export const metadata = {
   title: 'Support',
-  description: 'Get the help you need fast.',
+  description:
+    "Find all the support you need on And Voila's Support page. From live Discord support to email assistance and extensive guides, we're here to help you excel in digital marketing.",
 };
+
+interface SupportItemProps {
+  icon: React.ComponentType<SVGProps<SVGSVGElement>>;
+  title: string;
+  description: string;
+  linkText: string;
+  linkHref: string;
+  isExternal?: boolean;
+}
+
+const supportItems: SupportItemProps[] = [
+  {
+    icon: Icons.discord,
+    title: 'Live support',
+    description:
+      'Hit us up on Discord for real-life support from...you guessed it, real people.',
+    linkText: 'Contact live support',
+    linkHref:
+      'https://discord.com/channels/1151749282806910976/1151825811427561623',
+    isExternal: true,
+  },
+  {
+    icon: Icons.atSymbol,
+    title: 'Email us',
+    description:
+      "Not so much into chatting? No worries, drop us a line and we'll get back to you in one business day.",
+    linkText: 'Contact email support',
+    linkHref: 'mailto:yo@andvoila.gg',
+    isExternal: true,
+  },
+  {
+    icon: Icons.file,
+    title: 'Review guides',
+    description:
+      "Looking for something right here, right now? We're putting together a growing list of briefs, guides, and blogs.",
+    linkText: 'Review guides',
+    linkHref: '/insights',
+  },
+];
 
 export default async function SupportPage() {
   const user = await getCurrentUser();
@@ -30,53 +70,14 @@ export default async function SupportPage() {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  interface SupportItemProps {
-    icon: React.ComponentType<SVGProps<SVGSVGElement>>;
-    title: string;
-    description: string;
-    linkText: string;
-    linkHref: string;
-    isExternal?: boolean;
-  }
-
-  const supportItem: SupportItemProps[] = [
-    {
-      icon: Icons.discord,
-      title: 'Live support',
-      description:
-        'Hit us up on Discord for real-life support from...you guessed it, real people.',
-      linkText: 'Contact live support',
-      linkHref:
-        'https://discord.com/channels/1151749282806910976/1151825811427561623',
-      isExternal: true,
-    },
-    {
-      icon: Icons.atSymbol,
-      title: 'Email us',
-      description:
-        "Not so much into chatting? No worries, drop us a line and we'll get back to you in one business day.",
-      linkText: 'Contact email support',
-      linkHref: 'mailto:yo@andvoila.gg',
-      isExternal: true,
-    },
-    {
-      icon: Icons.file,
-      title: 'Review guides',
-      description:
-        "Looking for something right here, right now? We're putting together a growing list of briefs, guides, and blogs.",
-      linkText: 'Review guides',
-      linkHref: '/insights',
-    },
-  ];
-
   return (
     <DashboardShell>
       <DashboardHeader
         heading="Support"
         text="Need help with something? No problem, hit us up and we'll give you a hand, or two."
       />
-      <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {supportItem.map((item, index) => (
+      <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
+        {supportItems.map((item, index) => (
           <Card key={index} className="flex flex-col" aria-label={item.title}>
             <CardHeader>
               <CardTitle className="flex items-center gap-3">
