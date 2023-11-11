@@ -53,9 +53,9 @@ export const FreeCounterSkeleton = () => {
 
 export const SearchInputSkeleton = () => {
   return (
-    <div className="relative flex items-center pl-4">
-      <Skeleton className="absolute left-6 h-4 w-4 rounded-full" />{' '}
-      <Skeleton className="h-6 w-full rounded-lg" />
+    <div className="relative flex items-center">
+      <Skeleton className="absolute left-2 h-4 w-4 rounded-full" />
+      <Skeleton className="h-6 w-full rounded-lg pl-9 md:w-[300px]" />
     </div>
   );
 };
@@ -222,6 +222,18 @@ export const VideoPlayerSkeleton = () => {
       </div>
       <div className="absolute bottom-0 left-0 h-1 w-full">
         <Skeleton className="h-full w-1/4 bg-brand" />
+      </div>
+    </div>
+  );
+};
+
+export const InfoCardSkeleton = () => {
+  return (
+    <div className="flex items-center gap-x-2 rounded-md border bg-white p-3 shadow dark:bg-background">
+      <Skeleton className="h-6 w-6" />
+      <div>
+        <Skeleton className="mb-2 h-4 w-24" />
+        <Skeleton className="h-3 w-16" />
       </div>
     </div>
   );
