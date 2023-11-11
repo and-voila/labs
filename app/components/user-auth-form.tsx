@@ -79,7 +79,7 @@ export function UserAuthForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Card className="py-6">
           <CardHeader className="space-y-1">
-            <CardTitle className="font-display text-2xl">
+            <CardTitle className="text-2xl font-bold">
               {isRegistration ? 'Create your free account' : 'Welcome back'}
             </CardTitle>
             <CardDescription>
@@ -128,7 +128,7 @@ export function UserAuthForm({
                 <span className="w-full border-t border-brand/70" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 font-mono text-muted-foreground">
+                <span className="bg-card px-2 text-muted-foreground">
                   Or continue with
                 </span>
               </div>
@@ -168,7 +168,7 @@ export function UserAuthForm({
                 <Link
                   href="/register"
                   aria-label="Navigate to And Voila's Registration page to create an account."
-                  className="text-brand hover:underline"
+                  className="font-semibold text-brand hover:underline"
                 >
                   create one
                 </Link>
@@ -180,7 +180,7 @@ export function UserAuthForm({
                 <Link
                   href="/login"
                   aria-label="Navigate to And Voila's Login page to log in to your account."
-                  className="text-brand hover:underline"
+                  className="font-semibold text-brand hover:underline"
                 >
                   log in now
                 </Link>

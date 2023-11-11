@@ -1,5 +1,6 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { NextAuthOptions } from 'next-auth';
+import DiscordProvider from 'next-auth/providers/discord';
 import EmailProvider from 'next-auth/providers/email';
 import GoogleProvider from 'next-auth/providers/google';
 
@@ -18,13 +19,18 @@ export const authOptions: NextAuthOptions = {
     signIn: '/login',
   },
   providers: [
+    DiscordProvider({
+      clientId: env.DISCORD_CLIENT_ID as string,
+      clientSecret: env.DISCORD_CLIENT_SECRET as string,
+      allowDangerousEmailAccountLinking: true,
+    }),
     GoogleProvider({
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      allowDangerousEmailAccountLinking: true,
     }),
     EmailProvider({
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      sendVerificationRequest: async ({ identifier, url, provider }) => {
+      sendVerificationRequest: async ({ identifier, url }) => {
         const user = await db.user.findUnique({
           where: {
             email: identifier,
@@ -43,7 +49,7 @@ export const authOptions: NextAuthOptions = {
         try {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const result = await resend.emails.send({
-            from: 'SaaS Starter App <onboarding@resend.dev>',
+            from: 'And Voila Labs <onboarding@resend.dev>',
             to:
               process.env.NODE_ENV === 'development'
                 ? 'delivered@resend.dev'
