@@ -18,7 +18,7 @@ interface PricingCardsProps {
 }
 
 export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
-  const isYearlyDefault = subscriptionPlan!.interval === 'year' ? true : false;
+  const isYearlyDefault = subscriptionPlan?.interval === 'year' ? true : false;
   const [isYearly, setIsYearly] = useState<boolean>(!!isYearlyDefault);
   const signInModal = useSigninModal();
 
@@ -28,13 +28,18 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
 
   return (
     <section className="container flex flex-col items-center py-16 text-center lg:py-20">
-      <div className="mx-auto mb-10 flex w-full flex-col gap-5">
+      <div className="mx-auto mb-10 max-w-5xl">
         <p className="text-sm font-semibold uppercase tracking-widest text-brand">
-          Pricing
+          Membership Plans
         </p>
-        <h2 className="text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-8xl">
-          Start at full speed !
+        <h2 className="mt-2 text-7xl font-bold tracking-tight">
+          Crush your marketing goals
         </h2>
+        <p className="mx-auto mt-2 max-w-2xl text-center text-lg leading-8 text-muted-foreground">
+          Propel your digital marketing journey with Early Access. Dive into a
+          world of cutting-edge Playbooks, AI-enhanced tools, and a vibrant
+          community that’s always one step ahead.
+        </p>
       </div>
 
       <div className="mb-4 flex items-center gap-5">
@@ -54,44 +59,34 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
             className="relative flex flex-col overflow-hidden rounded-xl border bg-card"
             key={offer.title}
           >
-            <div className="min-h-[150px] items-start space-y-4 p-6">
+            <div className="min-h-[120px] items-start space-y-4 p-6">
               <p className="flex text-sm font-semibold uppercase tracking-widest text-brand">
                 {offer.title}
               </p>
-
-              <div className="flex flex-row">
-                <div className="flex items-end">
-                  <div className="flex text-left text-3xl font-semibold leading-6 lg:text-5xl">
-                    {isYearly && offer.prices.monthly > 0 ? (
-                      <>
-                        <span className="mr-2 text-xl text-muted-foreground/70 line-through">
-                          ${offer.prices.monthly}
-                        </span>
-                        <span>${Math.floor(offer.prices.yearly / 12)}</span>
-                      </>
-                    ) : (
-                      `$${offer.prices.monthly}`
-                    )}
-                  </div>
-                  <div className="-mb-1 ml-2 text-left text-sm font-medium">
-                    <div>/mo</div>
-                  </div>
-                </div>
+              <div className="mt-6 flex items-baseline gap-x-1">
+                <span className="text-5xl font-bold tracking-tight text-foreground lg:text-6xl">
+                  {isYearly && offer.prices.monthly > 0 ? (
+                    <>
+                      <span>${Math.floor(offer.prices.yearly / 12)}</span>
+                    </>
+                  ) : offer.prices.monthly > 0 ? (
+                    `$${offer.prices.monthly}`
+                  ) : (
+                    'Free'
+                  )}
+                </span>
+                {offer.prices.monthly > 0 && (
+                  <span className="text-sm leading-6 text-muted-foreground">
+                    /month{isYearly ? ', billed yearly' : ''}
+                  </span>
+                )}
               </div>
-              {offer.prices.monthly > 0 ? (
-                <div className="text-left text-sm text-muted-foreground">
-                  {isYearly
-                    ? `You'll be billed $${offer.prices.yearly} now for the year.`
-                    : 'billed monthly'}
-                </div>
-              ) : null}
             </div>
-
             <div className="flex h-full flex-col justify-between gap-16 p-6">
               <ul className="space-y-2 text-left text-sm font-medium leading-normal">
                 {offer.benefits.map((feature) => (
                   <li className="flex items-start" key={feature}>
-                    <Icons.check className="mr-3 h-5 w-5 shrink-0 text-brand/70" />
+                    <Icons.radixCheck className="mr-3 h-5 w-5 shrink-0 text-brand/70" />
                     <p>{feature}</p>
                   </li>
                 ))}
