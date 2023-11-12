@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
+import { SignInModal } from '@/app/components/layout/sign-in-modal';
 import { ProModal } from '@/app/components/modals/pro-modal';
 
 export const ModalProvider = () => {
@@ -18,6 +19,7 @@ export const ModalProvider = () => {
   return (
     <>
       <ProModal />
+      <SignInModal />
     </>
   );
 };
