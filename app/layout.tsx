@@ -3,11 +3,7 @@ import '@/app/styles/globals.css';
 import { fontBricolage } from '@/public/fonts';
 
 import { env } from '@/env.mjs';
-import { Analytics } from '@/app/components/analytics';
-import { ModalProvider } from '@/app/components/modal-provider';
-import { Providers } from '@/app/components/providers';
-import { TailwindIndicator } from '@/app/components/tailwind-indicator';
-import { Toaster } from '@/app/components/ui/toaster';
+import { Providers } from '@/app/components/providers/providers';
 import { siteConfig } from '@/app/config/site';
 import { cn, ensureStartsWith } from '@/app/lib/utils';
 
@@ -128,13 +124,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <head />
       <body className={cn('min-h-screen bg-background dark:bg-[#242629]')}>
-        <Providers attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          <Analytics />
-          <Toaster />
-          <ModalProvider />
-          <TailwindIndicator />
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
