@@ -97,7 +97,7 @@ export const teacherCourseListColumns: ColumnDef<Course>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <Link href={`/learn/teacher/courses/${id}`}>
+            <Link href={`/admin/teacher/courses/${id}`}>
               <DropdownMenuItem>
                 <Icons.pencil className="mr-2 h-4 w-4" />
                 Edit

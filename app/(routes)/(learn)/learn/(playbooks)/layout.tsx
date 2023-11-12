@@ -1,9 +1,10 @@
-import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 import { DashboardNav } from '@/app/components/layout/nav';
 import { NavBar } from '@/app/components/layout/navbar';
 import { SiteFooter } from '@/app/components/layout/site-footer';
 import { playbooksConfig } from '@/app/config/playbooks';
+import { authOptions } from '@/app/lib/auth';
 import { getCurrentUser } from '@/app/lib/session';
 
 interface PlaybooksLayoutProps {
@@ -16,7 +17,7 @@ export default async function PlaybooksLayout({
   const user = await getCurrentUser();
 
   if (!user) {
-    return notFound();
+    redirect(authOptions?.pages?.signIn || '/login');
   }
 
   return (
