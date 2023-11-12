@@ -1,6 +1,5 @@
 'use client';
 
-import { Metadata } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { COURSE_DEFAULT_PRICE } from '@/constants';
@@ -23,12 +22,6 @@ import {
 } from '@/app/components/ui/form';
 import { Input } from '@/app/components/ui/input';
 import { toast } from '@/app/components/ui/use-toast';
-
-export const metadata: Metadata = {
-  title: 'Playbook Title',
-  description:
-    'Set the stage for your new playbook. Craft a compelling title that captures the essence and value of your marketing insights.',
-};
 
 const formSchema = z.object({
   title: z
