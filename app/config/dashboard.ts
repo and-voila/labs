@@ -24,10 +24,12 @@ export const dashboardConfig: DashboardConfig = {
     {
       title: 'Tools',
       href: '/tools',
+      disabled: true,
     },
     {
       title: 'Insights',
       href: '/docs',
+      disabled: true,
     },
   ],
   sidebarNav: [
@@ -50,6 +52,7 @@ export const dashboardConfig: DashboardConfig = {
       title: 'Support',
       href: '/dashboard/support',
       icon: 'help',
+      disabled: true,
     },
   ],
 };

@@ -5,10 +5,12 @@ export const docsConfig: DocsConfig = {
     {
       title: 'Insights',
       href: '/docs',
+      disabled: true,
     },
     {
       title: 'Guides',
       href: '/guides',
+      disabled: true,
     },
   ],
   sidebarNav: [

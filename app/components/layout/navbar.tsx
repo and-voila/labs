@@ -3,9 +3,8 @@
 import Link from 'next/link';
 import { User } from 'next-auth';
 
-import { Button, buttonVariants } from '@/app/components/ui/button';
+import { buttonVariants } from '@/app/components/ui/button';
 import useScroll from '@/app/hooks/use-scroll';
-import { useSigninModal } from '@/app/hooks/use-signin-modal';
 import { isTeacher } from '@/app/lib/teacher';
 import { MainNavItem } from '@/app/lib/types';
 import { cn } from '@/app/lib/utils';
@@ -29,7 +28,6 @@ export function NavBar({
   scroll = false,
 }: NavBarProps) {
   const scrolled = useScroll(50);
-  const signInModal = useSigninModal();
 
   const filteredItems = items?.filter((item) => {
     if (item.isLoggedIn && !user) return false;
@@ -54,21 +52,19 @@ export function NavBar({
               href="/login"
               className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))}
             >
-              Login Page
+              Login
             </Link>
           ) : null}
 
           {user ? (
             <UserAccountNav user={user} />
           ) : (
-            <Button
-              className="px-3"
-              variant="default"
-              size="sm"
-              onClick={signInModal.onOpen}
+            <Link
+              href="/register"
+              className={cn(buttonVariants({ variant: 'custom', size: 'sm' }))}
             >
-              Sign In
-            </Button>
+              Register
+            </Link>
           )}
         </div>
       </div>

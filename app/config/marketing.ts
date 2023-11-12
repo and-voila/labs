@@ -24,14 +24,17 @@ export const marketingConfig: MarketingConfig = {
     {
       title: 'Tools',
       href: '/tools',
+      disabled: true,
     },
     {
       title: 'Insights',
       href: '/docs',
+      disabled: true,
     },
     {
       title: 'Blog',
       href: '/blog',
+      disabled: true,
     },
     {
       title: 'Pricing',

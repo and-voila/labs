@@ -32,6 +32,7 @@ interface DashboardItemProps {
   linkText: string;
   linkHref: string;
   isExternal?: boolean;
+  isDisabled?: boolean;
 }
 
 const dashboardItems: DashboardItemProps[] = [
@@ -60,6 +61,7 @@ const dashboardItems: DashboardItemProps[] = [
     linkText: 'Hack it',
     description:
       'Launch your own website in under 3 minutes with a custom domain and smash writer’s block with an AI-assist.',
+    isDisabled: true,
   },
 ];
 
@@ -100,10 +102,13 @@ export default async function DashboardPage() {
                 href={item.linkHref}
                 target={item.isExternal ? '_blank' : undefined}
                 rel={item.isExternal ? 'noopener noreferrer' : undefined}
-                className={buttonVariants({
-                  className: 'mt-4 w-full justify-between',
-                  variant: 'secondary',
-                })}
+                className={cn(
+                  buttonVariants({
+                    className: 'mt-4 w-full justify-between',
+                    variant: 'secondary',
+                  }),
+                  item.isDisabled ? 'cursor-not-allowed opacity-80' : '',
+                )}
                 aria-label={`Link to ${item.title} - ${item.linkText}`}
               >
                 {item.linkText}
