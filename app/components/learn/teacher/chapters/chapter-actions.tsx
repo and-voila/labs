@@ -70,7 +70,7 @@ export const ChapterActions = ({
         description: 'Your play has been deleted, like forever.',
       });
       router.refresh();
-      router.push(`/learn/teacher/courses/${courseId}`);
+      router.push(`/admin/teacher/courses/${courseId}`);
     } catch {
       toast({
         title: 'Aw, snap! Not again.',

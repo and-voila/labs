@@ -8,6 +8,7 @@ import { Preview } from '@/app/components/preview';
 import { Icons } from '@/app/components/shared/icons';
 import { Separator } from '@/app/components/ui/separator';
 import { getChapter } from '@/app/lib/actions/get-chapter';
+import { authOptions } from '@/app/lib/auth';
 import { getCurrentUser } from '@/app/lib/session';
 
 const ChapterIdPage = async ({
@@ -19,7 +20,7 @@ const ChapterIdPage = async ({
   const userId = user?.id;
 
   if (!userId) {
-    return redirect('/');
+    redirect(authOptions?.pages?.signIn || '/login');
   }
 
   const {

@@ -4,6 +4,7 @@ import { CourseSidebar } from '@/app/components/learn/courses/course-sidebar';
 import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { getProgress } from '@/app/lib/actions/get-progress';
 import { getApiLimitCount } from '@/app/lib/api-limit';
+import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
 import { getCurrentUser } from '@/app/lib/session';
 
@@ -20,7 +21,7 @@ const PlaybookLayout = async ({
   const userId = user?.id;
 
   if (!userId) {
-    return redirect('/');
+    redirect(authOptions?.pages?.signIn || '/login');
   }
 
   const course = await db.course.findUnique({
@@ -47,7 +48,7 @@ const PlaybookLayout = async ({
   });
 
   if (!course) {
-    return redirect('/');
+    return redirect('/admin/teacher/courses');
   }
 
   const progressCount = await getProgress(userId, course.id);

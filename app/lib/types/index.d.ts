@@ -137,6 +137,11 @@ export type SiteConfig = {
   };
 };
 
+export type AdminConfig = {
+  mainNav: MainNavItem[];
+  sidebarNav: SidebarNavItem[];
+};
+
 export type DashboardConfig = {
   mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
@@ -151,6 +156,10 @@ export type FooterConfig = {
   footerNav: MainNavItem[];
 };
 
+export type MarketingConfig = {
+  mainNav: MainNavItem[];
+};
+
 export type PlaybooksConfig = {
   mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
@@ -160,8 +169,9 @@ export type PlaybookConfig = {
   mainNav: MainNavItem[];
 };
 
-export type MarketingConfig = {
+export type TeacherConfig = {
   mainNav: MainNavItem[];
+  sidebarNav: SidebarNavItem[];
 };
 
 // :: Stripe and Subscription Types ::

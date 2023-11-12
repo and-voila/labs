@@ -64,7 +64,7 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
           'Your playbook has been deleted, like totally, no evidence, nada, zilch.',
       });
       router.refresh();
-      router.push('/learn/teacher/courses');
+      router.push('/admin/teacher/courses');
     } catch {
       toast({
         title: 'Yikes! An error occurred.',

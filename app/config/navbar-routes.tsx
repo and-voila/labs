@@ -12,7 +12,7 @@ import { isTeacher } from '@/app/lib/teacher';
 export const NavbarRoutes = ({ userId }: { userId: string }) => {
   const pathname = usePathname();
 
-  const isTeacherPage = pathname?.startsWith('/learn/teacher');
+  const isTeacherPage = pathname?.startsWith('/admin/teacher');
   const isCoursePage = pathname?.includes('/learn/courses');
   const isSearchPage = pathname === '/learn/search';
 
@@ -32,7 +32,7 @@ export const NavbarRoutes = ({ userId }: { userId: string }) => {
             </Button>
           </Link>
         ) : isTeacher(userId) ? (
-          <Link href="/learn/teacher/courses">
+          <Link href="/admin/teacher/courses">
             <Button size="sm" variant="outline">
               Teacher mode
             </Button>

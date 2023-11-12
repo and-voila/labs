@@ -1,31 +1,31 @@
-import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 import { DashboardNav } from '@/app/components/layout/nav';
 import { NavBar } from '@/app/components/layout/navbar';
 import { SiteFooter } from '@/app/components/layout/site-footer';
-import { playbooksConfig } from '@/app/config/playbooks';
+import { adminConfig } from '@/app/config/admin';
 import { getCurrentUser } from '@/app/lib/session';
+import { isTeacher } from '@/app/lib/teacher';
 
-interface PlaybooksLayoutProps {
+interface AdminLayoutProps {
   children?: React.ReactNode;
 }
 
-export default async function PlaybooksLayout({
-  children,
-}: PlaybooksLayoutProps) {
+export default async function AdminLayout({ children }: AdminLayoutProps) {
   const user = await getCurrentUser();
+  const userId = user?.id;
 
-  if (!user) {
-    return notFound();
+  if (!isTeacher(userId)) {
+    return redirect('/not-authorized');
   }
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">
-      <NavBar user={user} items={playbooksConfig.mainNav} scroll={false} />
+      <NavBar user={user} items={adminConfig.mainNav} scroll={false} />
 
       <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
         <aside className="hidden w-[200px] flex-col md:flex">
-          <DashboardNav items={playbooksConfig.sidebarNav} />
+          <DashboardNav items={adminConfig.sidebarNav} />
         </aside>
         <main className="flex w-full flex-1 flex-col overflow-hidden">
           {children}

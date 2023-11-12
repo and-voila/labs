@@ -93,7 +93,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
             </Label>
             <Input
               id="name"
-              className="w-[400px]"
+              className="w-full sm:w-[400px]"
               size={32}
               {...register('name')}
             />

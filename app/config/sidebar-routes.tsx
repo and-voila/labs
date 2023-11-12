@@ -70,13 +70,13 @@ const teacherRoutes: Route[] = [
     id: 'courses',
     icon: 'courses',
     label: 'Courses',
-    href: '/learn/teacher/courses',
+    href: '/admin/teacher/courses',
   },
   {
     id: 'analytics',
     icon: 'barchart',
     label: 'Analytics',
-    href: '/learn/teacher/analytics',
+    href: '/admin/teacher/analytics',
   },
 ];
 
@@ -106,7 +106,7 @@ export const SidebarRoutes = () => {
 
   let routes: Route[] = [];
 
-  if (pathname?.startsWith('/learn/teacher')) {
+  if (pathname?.startsWith('/admin/teacher')) {
     routes = teacherRoutes;
   } else if (pathname?.startsWith('/learn')) {
     routes = learnRoutes;

@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { UserAccountNav } from '@/app/components/layout/user-account-nav';
 import { CourseMobileSidebar } from '@/app/components/learn/courses/course-mobile-sidebar';
 import { NavbarRoutes } from '@/app/config/navbar-routes';
+import { authOptions } from '@/app/lib/auth';
 import { getCurrentUser } from '@/app/lib/session';
 import { CourseNavbarProps } from '@/app/lib/types';
 
@@ -15,7 +16,7 @@ export const CourseNavbar = async ({
   const user = await getCurrentUser();
   const userId = user?.id;
   if (!userId) {
-    return redirect('/login');
+    redirect(authOptions?.pages?.signIn || '/login');
   }
   return (
     <div className="flex h-full items-center border-b bg-[#dcdfe5] p-4 shadow-sm dark:bg-[#16161a]">

@@ -5,6 +5,7 @@ import { Logo } from '@/app/components/logo-square';
 import { SidebarProps } from '@/app/lib/types';
 
 import { SidebarRoutes } from '../config/sidebar-routes';
+import { authOptions } from '../lib/auth';
 import { getCurrentUser } from '../lib/session';
 
 export const Sidebar = async ({
@@ -14,7 +15,7 @@ export const Sidebar = async ({
   const user = await getCurrentUser();
   const userId = user?.id;
   if (!userId) {
-    return redirect('/');
+    redirect(authOptions?.pages?.signIn || '/login');
   }
   return (
     <div className="flex h-full flex-col overflow-y-auto bg-[#d0d5dd] shadow-sm dark:bg-[#010101]">
