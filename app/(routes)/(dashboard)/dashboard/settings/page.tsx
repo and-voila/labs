@@ -8,7 +8,7 @@ import { getCurrentUser } from '@/app/lib/session';
 
 export const metadata = {
   title: 'Settings',
-  description: 'Manage account and website settings.',
+  description: 'Manage your account settings.',
 };
 
 export default async function SettingsPage() {

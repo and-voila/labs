@@ -1,16 +1,17 @@
 import { DashboardHeader } from '@/app/components/dashboard/header';
 import { DashboardShell } from '@/app/components/dashboard/shell';
 
-export default function ChapterIdPageLoading() {
+export default function PlaybooksAdminLoading() {
   return (
     <DashboardShell>
       <DashboardHeader
-        heading="Setup the play"
-        text="Ugh, this might take a minute..."
+        heading="Playbooks Analytics"
+        text="Crunch the numbers, see what's working, then iterate."
       />
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-medium tracking-tight text-foreground">
-          Gathering Rose family wisdom for an experience worth tweeting about!
+          Just like David&apos;s sweaters, we&apos;re knitting everything
+          together.
         </h2>
       </div>
     </DashboardShell>

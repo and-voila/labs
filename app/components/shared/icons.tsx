@@ -791,8 +791,6 @@ export const Icons = {
       width="15"
       height="15"
       fill="currentColor"
-      fill-rule="evenodd"
-      clip-rule="evenodd"
       viewBox="0 0 15 15"
       {...props}
     >
@@ -806,8 +804,6 @@ export const Icons = {
       width="15"
       height="15"
       fill="currentColor"
-      fill-rule="evenodd"
-      clip-rule="evenodd"
       viewBox="0 0 15 15"
       {...props}
     >
@@ -821,8 +817,6 @@ export const Icons = {
       width="15"
       height="15"
       fill="currentColor"
-      fill-rule="evenodd"
-      clip-rule="evenodd"
       viewBox="0 0 15 15"
       {...props}
     >
@@ -836,8 +830,6 @@ export const Icons = {
       width="15"
       height="15"
       fill="currentColor"
-      fill-rule="evenodd"
-      clip-rule="evenodd"
       viewBox="0 0 15 15"
       {...props}
     >
@@ -851,8 +843,6 @@ export const Icons = {
       width="15"
       height="15"
       fill="currentColor"
-      fill-rule="evenodd"
-      clip-rule="evenodd"
       viewBox="0 0 15 15"
       {...props}
     >
@@ -866,8 +856,6 @@ export const Icons = {
       width="15"
       height="15"
       fill="currentColor"
-      fill-rule="evenodd"
-      clip-rule="evenodd"
       viewBox="0 0 15 15"
       {...props}
     >
@@ -881,8 +869,6 @@ export const Icons = {
       width="15"
       height="15"
       fill="currentColor"
-      fill-rule="evenodd"
-      clip-rule="evenodd"
       viewBox="0 0 15 15"
       {...props}
     >

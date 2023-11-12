@@ -6,7 +6,10 @@ import { Button } from '@/app/components/ui/button';
 export default function DashboardLoading() {
   return (
     <DashboardShell>
-      <DashboardHeader heading="Posts" text="Create and manage posts.">
+      <DashboardHeader
+        heading="Dashboard"
+        text="Head over to Discord, check out a playbook, or start publishing."
+      >
         <Button>Fake button</Button>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">

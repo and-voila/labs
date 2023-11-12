@@ -24,10 +24,12 @@ export const teacherConfig: TeacherConfig = {
     {
       title: 'Tools',
       href: '/tools',
+      disabled: true,
     },
     {
       title: 'Insights',
       href: '/docs',
+      disabled: true,
     },
   ],
   sidebarNav: [
