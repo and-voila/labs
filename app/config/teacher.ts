@@ -13,11 +13,6 @@ export const teacherConfig: TeacherConfig = {
       isTeacher: true,
     },
     {
-      title: 'Community',
-      href: 'https://discord.com/channels/1151749282806910976/1154115151407091862',
-      isExternal: true,
-    },
-    {
       title: 'Playbooks',
       href: '/learn',
     },
@@ -36,7 +31,7 @@ export const teacherConfig: TeacherConfig = {
     {
       title: 'Admin home',
       href: '/admin',
-      icon: 'gauge',
+      icon: 'home',
     },
     {
       title: 'Playbooks admin',

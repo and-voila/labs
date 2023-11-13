@@ -56,7 +56,7 @@ export function MainNav({ items, children }: MainNavProps) {
                 'flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm',
                 pathname.startsWith(item.href)
                   ? 'font-semibold text-brand underline decoration-4 underline-offset-4'
-                  : 'text-foreground/60',
+                  : 'text-muted-foreground',
                 item.disabled && 'cursor-not-allowed opacity-80',
               )}
               target={item.isExternal ? '_blank' : '_self'}
