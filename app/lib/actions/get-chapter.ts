@@ -1,3 +1,5 @@
+'use server';
+
 import { Attachment, Chapter } from '@prisma/client';
 
 import { checkSubscription } from '@/app/lib/actions/check-subscription';
