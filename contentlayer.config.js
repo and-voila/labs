@@ -18,7 +18,7 @@ const computedFields = {
 
 export const Doc = defineDocumentType(() => ({
   name: 'Doc',
-  filePathPattern: `docs/**/*.mdx`,
+  filePathPattern: 'docs/**/*.mdx',
   contentType: 'mdx',
   fields: {
     title: {
@@ -38,7 +38,7 @@ export const Doc = defineDocumentType(() => ({
 
 export const Guide = defineDocumentType(() => ({
   name: 'Guide',
-  filePathPattern: `guides/**/*.mdx`,
+  filePathPattern: 'guides/**/*.mdx',
   contentType: 'mdx',
   fields: {
     title: {
@@ -66,7 +66,7 @@ export const Guide = defineDocumentType(() => ({
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
-  filePathPattern: `blog/**/*.mdx`,
+  filePathPattern: 'blog/**/*.mdx',
   contentType: 'mdx',
   fields: {
     title: {
@@ -103,7 +103,7 @@ export const Post = defineDocumentType(() => ({
 
 export const Author = defineDocumentType(() => ({
   name: 'Author',
-  filePathPattern: `authors/**/*.mdx`,
+  filePathPattern: 'authors/**/*.mdx',
   contentType: 'mdx',
   fields: {
     title: {
@@ -127,7 +127,7 @@ export const Author = defineDocumentType(() => ({
 
 export const Page = defineDocumentType(() => ({
   name: 'Page',
-  filePathPattern: `pages/**/*.mdx`,
+  filePathPattern: 'pages/**/*.mdx',
   contentType: 'mdx',
   fields: {
     title: {
