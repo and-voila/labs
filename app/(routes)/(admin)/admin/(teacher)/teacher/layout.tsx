@@ -21,7 +21,9 @@ export default async function TeacherLayout({ children }: TeacherLayoutProps) {
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">
-      <NavBar user={user} items={teacherConfig.mainNav} scroll={false} />
+      <NavBar user={user} items={teacherConfig.mainNav} scroll={false}>
+        <DashboardNav items={teacherConfig.sidebarNav} />
+      </NavBar>
 
       <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
         <aside className="hidden w-[200px] flex-col md:flex">

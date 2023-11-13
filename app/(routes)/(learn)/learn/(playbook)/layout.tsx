@@ -1,10 +1,12 @@
 import Link from 'next/link';
 
+import { DashboardNav } from '@/app/components/layout/nav';
 import { NavBar } from '@/app/components/layout/navbar';
 import { SiteFooter } from '@/app/components/layout/site-footer';
 import { Icons } from '@/app/components/shared/icons';
 import { Button } from '@/app/components/ui/button';
 import { playbookConfig } from '@/app/config/playbook';
+import { playbooksConfig } from '@/app/config/playbooks';
 import { getCurrentUser } from '@/app/lib/session';
 
 interface PlaybookRootLayoutProps {
@@ -33,7 +35,9 @@ export default async function PlaybookRootLayout({
         user={user}
         items={playbookConfig.mainNav}
         rightElements={rightHeader()}
-      />
+      >
+        <DashboardNav items={playbooksConfig.sidebarNav} />
+      </NavBar>
       <div className="container flex-1">{children}</div>
       <SiteFooter className="border-t" />
     </div>
