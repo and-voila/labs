@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { COURSE_DEFAULT_PRICE } from '@/constants';
@@ -134,5 +135,67 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     );
   }
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { courseId: string };
+}): Promise<Metadata> {
+  const course = await db.course.findUnique({
+    where: {
+      id: params.courseId,
+    },
+    select: {
+      title: true,
+      preview: true,
+    },
+  });
+
+  if (!course) {
+    return {};
+  }
+
+  const title = course.title;
+  const description =
+    course.preview ??
+    'Access the And Voila Dashboard for advanced marketing playbooks, effective AI tools, and to mingle in the best digital marketing Discord.';
+
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/learn/courses/${params.courseId}`
+    : `http://localhost:3001/learn/courses/${params.courseId}`;
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'article',
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+      url,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+  };
+
+  return metadata;
+}
 
 export default CourseIdPage;

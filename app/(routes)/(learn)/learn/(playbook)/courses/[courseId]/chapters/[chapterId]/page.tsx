@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { Banner } from '@/app/components/banner';
@@ -9,6 +10,7 @@ import { Icons } from '@/app/components/shared/icons';
 import { Separator } from '@/app/components/ui/separator';
 import { getChapter } from '@/app/lib/actions/get-chapter';
 import { authOptions } from '@/app/lib/auth';
+import { db } from '@/app/lib/db';
 import { getCurrentUser } from '@/app/lib/session';
 
 const ChapterIdPage = async ({
@@ -109,5 +111,70 @@ const ChapterIdPage = async ({
     </div>
   );
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { courseId: string; chapterId: string };
+}): Promise<Metadata> {
+  const chapter = await db.chapter.findUnique({
+    where: {
+      id: params.chapterId,
+    },
+    select: {
+      title: true,
+      description: true,
+    },
+  });
+
+  if (!chapter) {
+    return {};
+  }
+
+  const title = chapter.title;
+  let description =
+    chapter.description ??
+    'Access the And Voila Dashboard for advanced marketing playbooks, effective AI tools, and to mingle in the best digital marketing Discord.';
+  if (description.length > 160) {
+    description = description.substring(0, 157) + '...';
+  }
+
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/learn/courses/${params.courseId}/chapters/${params.chapterId}`
+    : `http://localhost:3001/learn/courses/${params.courseId}/chapters/${params.chapterId}`;
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'article',
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+      url,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+  };
+
+  return metadata;
+}
 
 export default ChapterIdPage;
