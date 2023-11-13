@@ -7,11 +7,48 @@ import { buttonVariants } from '@/app/components/ui/button';
 import UserAuthForm from '@/app/components/user-auth-form';
 import { cn } from '@/app/lib/utils';
 
-export const metadata: Metadata = {
-  title: 'Login',
-  description:
-    'Log in to And Voila to continue honing your marketing skills with cutting-edge playbooks, innovative AI tools, and a collaborative expert community.',
-};
+export function generateMetadata(): Metadata {
+  const title = 'Login';
+  const description =
+    'Log in to Labs by And Voila. Check out marketing playbooks, innovative AI tools, and join our community of digital marketing experts. Light your metrics up.';
+
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/login`
+    : 'http://localhost:3001/login';
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+      url,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+  };
+
+  return metadata;
+}
 
 const LoginPage = () => {
   return (

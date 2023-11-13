@@ -8,12 +8,6 @@ import { getDashboardCourses } from '@/app/lib/actions/get-dashboard-courses';
 import { authOptions } from '@/app/lib/auth';
 import { getCurrentUser } from '@/app/lib/session';
 
-export const metadata: Metadata = {
-  title: 'My Playbooks',
-  description:
-    'Access your Playbooks library on And Voila. Explore, track, and revisit your marketing guide collection, tailored for dynamic digital marketing success.',
-};
-
 export default async function MyPlaybooksPage() {
   const user = await getCurrentUser();
   const userId = user?.id;
@@ -45,4 +39,47 @@ export default async function MyPlaybooksPage() {
       </div>
     </DashboardShell>
   );
+}
+
+export function generateMetadata(): Metadata {
+  const title = 'My Playbooks';
+  const description =
+    'Access your Playbooks library on And Voila. Explore, track, and revisit your marketing guide collection, tailored for dynamic digital marketing success.';
+
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/learn`
+    : 'http://localhost:3001/learn';
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+      url,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+  };
+
+  return metadata;
 }

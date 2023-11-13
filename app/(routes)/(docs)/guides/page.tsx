@@ -1,15 +1,10 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { allGuides } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 
 import { DocsPageHeader } from '@/app/components/docs/page-header';
 import { formatDate } from '@/app/lib/utils';
-
-export const metadata = {
-  title: 'Guides',
-  description:
-    'This section includes end-to-end guides for developing Next.js 13 apps.',
-};
 
 export default function GuidesPage() {
   const guides = allGuides
@@ -22,7 +17,7 @@ export default function GuidesPage() {
     <div className="py-6 lg:py-10">
       <DocsPageHeader
         heading="Guides"
-        text="This section includes end-to-end guides for developing Next.js 13 apps."
+        text="Comprehensive digital marketing insights and best practices, passing on our legos for your success journey."
       />
       {guides?.length ? (
         <div className="grid gap-4 md:grid-cols-2 md:gap-6">
@@ -60,4 +55,47 @@ export default function GuidesPage() {
       )}
     </div>
   );
+}
+
+export function generateMetadata(): Metadata {
+  const title = 'Guides';
+  const description =
+    'Explore Guides by And Voila: Comprehensive digital marketing insights and best practices, passing on our legos for your success journey.';
+
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/guides`
+    : 'http://localhost:3001/guides';
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+      url,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+  };
+
+  return metadata;
 }

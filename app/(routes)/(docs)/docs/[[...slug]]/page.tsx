@@ -11,7 +11,6 @@ import '@/app/styles/mdx.css';
 
 import { Metadata } from 'next';
 
-import { env } from '@/env.mjs';
 import { absoluteUrl } from '@/app/lib/utils';
 
 interface DocPageProps {
@@ -40,13 +39,6 @@ export async function generateMetadata({
     return {};
   }
 
-  const url = env.NEXT_PUBLIC_APP_URL;
-
-  const ogUrl = new URL(`${url}/api/og`);
-  ogUrl.searchParams.set('heading', doc.description ?? doc.title);
-  ogUrl.searchParams.set('type', 'Documentation');
-  ogUrl.searchParams.set('mode', 'dark');
-
   return {
     title: doc.title,
     description: doc.description,
@@ -57,10 +49,10 @@ export async function generateMetadata({
       url: absoluteUrl(doc.slug),
       images: [
         {
-          url: ogUrl.toString(),
+          url: '/open-graph.gif',
           width: 1200,
           height: 630,
-          alt: doc.title,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
         },
       ],
     },
@@ -68,7 +60,14 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: doc.title,
       description: doc.description,
-      images: [ogUrl.toString()],
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
     },
   };
 }

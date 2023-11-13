@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { BillingInfo } from '@/app/components/billing-info';
@@ -8,11 +9,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/app/components/ui/alert';
 import { authOptions } from '@/app/lib/auth';
 import { getCurrentUser } from '@/app/lib/session';
 import { getUserSubscriptionPlan } from '@/app/lib/subscription';
-
-export const metadata = {
-  title: 'Billing',
-  description: 'Manage billing and your subscription plan.',
-};
 
 export default async function BillingPage() {
   const user = await getCurrentUser();
@@ -45,4 +41,47 @@ export default async function BillingPage() {
       </div>
     </DashboardShell>
   );
+}
+
+export function generateMetadata(): Metadata {
+  const title = 'Billing';
+  const description =
+    "Subscribe, upgrade, downgrade, or even cancel with And Voila's easy-to-manage, secure billing portal. Powered by our friends at Stripe.";
+
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/dashboard/billing`
+    : 'http://localhost:3001/dashboard/billing';
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+      url,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+  };
+
+  return metadata;
 }

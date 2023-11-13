@@ -1,11 +1,8 @@
+import { Metadata } from 'next';
 import { allPosts } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 
 import { BlogPosts } from '@/app/components/blog-posts';
-
-export const metadata = {
-  title: 'Blog',
-};
 
 export default async function BlogPage() {
   const posts = allPosts
@@ -23,4 +20,47 @@ export default async function BlogPage() {
       <BlogPosts posts={posts} />
     </main>
   );
+}
+
+export function generateMetadata(): Metadata {
+  const title = 'Blog';
+  const description =
+    "Dive into And Voila's Blog for fresh, snackable posts, and videos that help digital marketers thrive. Want more insights? Create a free account now.";
+
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/blog`
+    : 'http://localhost:3001/blog';
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+      url,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+  };
+
+  return metadata;
 }

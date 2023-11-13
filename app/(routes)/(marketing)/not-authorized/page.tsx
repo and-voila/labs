@@ -6,12 +6,6 @@ import { Icons } from '@/app/components/shared/icons';
 import { buttonVariants } from '@/app/components/ui/button';
 import { cn } from '@/app/lib/utils';
 
-export const metadata: Metadata = {
-  title: 'Unauthorized Access',
-  description:
-    "Looks like you've taken a wrong turn into the Rose family's exclusive space. This area is for admins. Please return to more familiar grounds or seek assistance.",
-};
-
 const NotAuthorizedPage = () => {
   return (
     <main className="relative isolate h-screen">
@@ -50,3 +44,46 @@ const NotAuthorizedPage = () => {
 };
 
 export default NotAuthorizedPage;
+
+export function generateMetadata(): Metadata {
+  const title = 'Not Authorized';
+  const description =
+    "Looks like you've taken a wrong turn into the Rose family's exclusive space. This area is for And Voila admins and mods. Please return to more familiar grounds.";
+
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/not-authorized`
+    : 'http://localhost:3001/not-authorized';
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+      url,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+  };
+
+  return metadata;
+}
