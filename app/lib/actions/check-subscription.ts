@@ -1,3 +1,5 @@
+'use server';
+
 import { db } from '@/app/lib/db';
 import { getCurrentUser } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';

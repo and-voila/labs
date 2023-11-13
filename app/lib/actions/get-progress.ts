@@ -1,3 +1,5 @@
+'use server';
+
 import { db } from '@/app/lib/db';
 
 export const getProgress = async (
