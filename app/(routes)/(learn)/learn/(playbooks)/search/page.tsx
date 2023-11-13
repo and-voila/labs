@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { DashboardShell } from '@/app/components/dashboard/shell';
@@ -9,12 +10,6 @@ import { getCourses } from '@/app/lib/actions/get-courses';
 import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
 import { getCurrentUser } from '@/app/lib/session';
-
-export const metadata = {
-  title: 'Browse Playbooks',
-  description:
-    'Dive into your collection of exclusive Playbooks on And Voila. Tailored for digital marketing success, each guide is a step towards mastering your craft.',
-};
 
 interface PlaybooksSearchPageProps {
   searchParams: {
@@ -59,3 +54,46 @@ const PlaybooksSearchPage = async ({
 };
 
 export default PlaybooksSearchPage;
+
+export function generateMetadata(): Metadata {
+  const title = 'Browse Playbooks';
+  const description =
+    'Dive into a growing collection of proven marketing Playbooks on And Voila. Tailored for digital marketing pros who need the gist in 3 minutes or less.';
+
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/learn/search`
+    : 'http://localhost:3001/learn/search';
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+      url,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+  };
+
+  return metadata;
+}

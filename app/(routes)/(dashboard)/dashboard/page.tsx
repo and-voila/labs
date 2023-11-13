@@ -19,12 +19,6 @@ import { authOptions } from '@/app/lib/auth';
 import { getCurrentUser } from '@/app/lib/session';
 import { cn } from '@/app/lib/utils';
 
-export const metadata: Metadata = {
-  title: 'Dashboard',
-  description:
-    'Access your exclusive And Voila Dashboard to navigate through advanced marketing playbooks, utilize AI tools, and engage with a network of digital marketing experts.',
-};
-
 interface DashboardItemProps {
   icon: React.ComponentType<SVGProps<SVGSVGElement>>;
   title: string;
@@ -124,4 +118,47 @@ export default async function DashboardPage() {
       </div>
     </DashboardShell>
   );
+}
+
+export function generateMetadata(): Metadata {
+  const title = 'Dashboard';
+  const description =
+    'Access the And Voila Dashboard for advanced marketing playbooks, effective AI tools, and to mingle in the best digital marketing Discord.';
+
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/dashboard`
+    : 'http://localhost:3001/dashboard';
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+      url,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+  };
+
+  return metadata;
 }

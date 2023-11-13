@@ -1,4 +1,5 @@
 import { SVGProps } from 'react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
@@ -17,12 +18,6 @@ import {
 import { authOptions } from '@/app/lib/auth';
 import { getCurrentUser } from '@/app/lib/session';
 import { cn } from '@/app/lib/utils';
-
-export const metadata = {
-  title: 'Support',
-  description:
-    "Find all the support you need on And Voila's Support page. From live Discord support to email assistance and extensive guides, we're here to help you excel in digital marketing.",
-};
 
 interface SupportItemProps {
   icon: React.ComponentType<SVGProps<SVGSVGElement>>;
@@ -119,4 +114,47 @@ export default async function SupportPage() {
       </div>
     </DashboardShell>
   );
+}
+
+export function generateMetadata(): Metadata {
+  const title = 'Get Supoort';
+  const description =
+    "Find all the support you need on And Voila's Support page. From live Discord support to email assistance and extensive guides, we're here to help.";
+
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/dashboard/support`
+    : 'http://localhost:3001/dashboard/support';
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+      url,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+  };
+
+  return metadata;
 }

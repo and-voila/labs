@@ -12,7 +12,7 @@ import { isTeacher } from '@/app/lib/teacher';
 export const metadata: Metadata = {
   title: 'Playbooks Admin',
   description:
-    'Master the art of playbook management. Create, analyze, and refine marketing playbooks, ensuring our community stays at the forefront of digital marketing trends and tactics.',
+    'Master the art of playbook management. Create, analyze, and refine marketing playbooks, ensuring our community stays at the forefront of digital marketing.',
 };
 
 const CoursesPage = async () => {

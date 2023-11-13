@@ -7,11 +7,48 @@ import { buttonVariants } from '@/app/components/ui/button';
 import UserAuthForm from '@/app/components/user-auth-form';
 import { cn } from '@/app/lib/utils';
 
-export const metadata: Metadata = {
-  title: 'Register Account',
-  description:
-    'Unlock your marketing potential with And Voila. Create a free account for access to exclusive playbooks, AI tools, and a vibrant community of experts.',
-};
+export function generateMetadata(): Metadata {
+  const title = 'Register';
+  const description =
+    'Create your free account on Labs by And Voila for instant access to killer digital marketing playbooks, AI tools, and a community of experts. Thank us later.';
+
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/register`
+    : 'http://localhost:3001/register';
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+      url,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
+    },
+  };
+
+  return metadata;
+}
 
 export default function RegisterPage() {
   return (

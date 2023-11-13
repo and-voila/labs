@@ -7,8 +7,6 @@ import '@/app/styles/mdx.css';
 
 import { Metadata } from 'next';
 
-import { env } from '@/env.mjs';
-import { siteConfig } from '@/app/config/site';
 import { absoluteUrl } from '@/app/lib/utils';
 
 interface PageProps {
@@ -37,27 +35,20 @@ export async function generateMetadata({
     return {};
   }
 
-  const url = env.NEXT_PUBLIC_APP_URL;
-
-  const ogUrl = new URL(`${url}/api/og`);
-  ogUrl.searchParams.set('heading', page.title);
-  ogUrl.searchParams.set('type', siteConfig.name);
-  ogUrl.searchParams.set('mode', 'light');
-
   return {
     title: page.title,
     description: page.description,
     openGraph: {
       title: page.title,
       description: page.description,
-      type: 'article',
+      type: 'website',
       url: absoluteUrl(page.slug),
       images: [
         {
-          url: ogUrl.toString(),
+          url: '/open-graph.gif',
           width: 1200,
           height: 630,
-          alt: page.title,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
         },
       ],
     },
@@ -65,7 +56,14 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: page.title,
       description: page.description,
-      images: [ogUrl.toString()],
+      images: [
+        {
+          url: '/open-graph.gif',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
     },
   };
 }
