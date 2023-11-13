@@ -9,6 +9,7 @@ PREVIEW COMPONENT
   @apply prose;
   @apply dark:prose-invert;
   @apply lg:prose-lg;
+  @apply font-sans;
 }
 
 /* Headings */

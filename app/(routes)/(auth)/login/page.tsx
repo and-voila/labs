@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Logo } from '@/app/components/logo-square';
+import { Icons } from '@/app/components/shared/icons';
 import { buttonVariants } from '@/app/components/ui/button';
 import UserAuthForm from '@/app/components/user-auth-form';
 import { cn } from '@/app/lib/utils';
@@ -14,48 +15,62 @@ export const metadata: Metadata = {
 
 const LoginPage = () => {
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Link
-        href="/register"
+        href="/"
         className={cn(
           buttonVariants({ variant: 'outline', size: 'sm' }),
-          'absolute right-6 top-6 md:right-10 md:top-10',
+          'absolute left-4 top-4 md:left-8 md:top-8',
         )}
       >
-        Register
+        <>
+          <Icons.arrowLeft className="mr-2 h-4 w-4" />
+          Home
+        </>
       </Link>
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <div className="flex items-center justify-center p-6">
-          <Logo fillOnHover className="h-6 md:h-8" />
-          <sup className="-ml-2 font-mono text-xs text-brand md:-ml-3">
-            beta
-          </sup>
+      <div className="flex flex-1 flex-col justify-center py-12">
+        <Link
+          href="/register"
+          className={cn(
+            buttonVariants({ variant: 'outline', size: 'sm' }),
+            'absolute right-4 top-4 md:right-8 md:top-8',
+          )}
+        >
+          Register
+        </Link>
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="flex items-center justify-center p-6">
+            <Logo fillOnHover className="h-6 md:h-8" />
+            <sup className="-ml-2 font-mono text-xs text-brand md:-ml-3">
+              beta
+            </sup>
+          </div>
         </div>
-      </div>
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <UserAuthForm />
-        <p className="mx-auto mt-4 max-w-xs text-center text-sm text-muted-foreground">
-          No credit card required. If you&apos;re interested, here&apos;s our
-          <Link
-            href="https://andvoila.gg/privacy"
-            target="_blank"
-            aria-label="Naivgate to And Voila's Privacy Policy on their website in a new window"
-            className="text-brand hover:underline"
-          >
-            {' '}
-            Privacy Policy{' '}
-          </Link>
-          and{' '}
-          <Link
-            href="https://andvoila.gg/terms"
-            target="_blank"
-            aria-label="Naivgate to And Voila's Terms of Service on their website in a new window"
-            className="text-brand hover:underline"
-          >
-            Terms of Service
-          </Link>
-          .
-        </p>
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <UserAuthForm />
+          <p className="mx-auto mt-4 max-w-xs text-center text-sm text-muted-foreground">
+            No credit card required. If you&apos;re interested, here&apos;s our
+            <Link
+              href="https://andvoila.gg/privacy"
+              target="_blank"
+              aria-label="Naivgate to And Voila's Privacy Policy on their website in a new window"
+              className="text-brand hover:underline"
+            >
+              {' '}
+              Privacy Policy{' '}
+            </Link>
+            and{' '}
+            <Link
+              href="https://andvoila.gg/terms"
+              target="_blank"
+              aria-label="Naivgate to And Voila's Terms of Service on their website in a new window"
+              className="text-brand hover:underline"
+            >
+              Terms of Service
+            </Link>
+            .
+          </p>
+        </div>
       </div>
     </div>
   );

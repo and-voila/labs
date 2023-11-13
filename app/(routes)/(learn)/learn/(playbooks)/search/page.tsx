@@ -49,7 +49,7 @@ const PlaybooksSearchPage = async ({
 
   return (
     <DashboardShell>
-      <div className="space-y-8 p-6 lg:p-8">
+      <div className="mx-auto grid space-y-8 p-6 lg:p-8">
         <SearchInput />
         <Categories items={categories} />
         <CoursesList items={courses} />

@@ -3,7 +3,6 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import DashboardWidget from '@/app/components/admin/dashboard-widget';
 import { DashboardHeader } from '@/app/components/dashboard/header';
 import { DashboardShell } from '@/app/components/dashboard/shell';
 import { Icons } from '@/app/components/shared/icons';
@@ -79,7 +78,7 @@ export default async function AdminPage() {
         heading="Admin center"
         text="This is the future home of our super duper admin dashboard."
       />
-      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-2 sm:grid-cols-1 lg:grid-cols-2">
         {adminItems.map((item, index) => (
           <Card key={index} className="flex flex-col" aria-label={item.title}>
             <CardHeader>
@@ -124,7 +123,6 @@ export default async function AdminPage() {
           </Card>
         ))}
       </div>
-      <DashboardWidget />
     </DashboardShell>
   );
 }

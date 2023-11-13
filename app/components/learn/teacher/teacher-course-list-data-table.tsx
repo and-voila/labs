@@ -57,19 +57,19 @@ export function TeacherCourseListDataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center justify-between py-4">
+      <div className="flex items-center py-4 md:justify-between">
         <Input
           placeholder="Filter courses by title..."
           value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
           onChange={(event) =>
             table.getColumn('title')?.setFilterValue(event.target.value)
           }
-          className="max-w-sm bg-white dark:bg-background"
+          className=" max-w-[300px] bg-white dark:bg-background md:max-w-sm"
         />
         <Link href="/admin/teacher/create">
-          <Button variant="custom" size="sm">
-            <Icons.plusCircled className="mr-2 h-4 w-4" />
-            New playbook
+          <Button variant="custom" size="sm" className="mx-2">
+            <Icons.plusCircled className="mr-2 h-4 w-4 shrink-0" />
+            New
           </Button>
         </Link>
       </div>
