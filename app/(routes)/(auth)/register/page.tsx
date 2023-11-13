@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Logo } from '@/app/components/logo-square';
+import { Icons } from '@/app/components/shared/icons';
 import { buttonVariants } from '@/app/components/ui/button';
 import UserAuthForm from '@/app/components/user-auth-form';
 import { cn } from '@/app/lib/utils';
@@ -14,13 +15,25 @@ export const metadata: Metadata = {
 
 export default function RegisterPage() {
   return (
-    <>
+    <div className="container flex h-screen w-screen flex-col items-center justify-center">
+      <Link
+        href="/"
+        className={cn(
+          buttonVariants({ variant: 'outline', size: 'sm' }),
+          'absolute left-4 top-4 md:left-8 md:top-8',
+        )}
+      >
+        <>
+          <Icons.arrowLeft className="mr-2 h-4 w-4" />
+          Home
+        </>
+      </Link>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <Link
           href="/login"
           className={cn(
             buttonVariants({ variant: 'outline', size: 'sm' }),
-            'absolute right-6 top-6 md:right-10 md:top-10',
+            'absolute right-4 top-4 md:right-8 md:top-8',
           )}
         >
           Log in
@@ -59,6 +72,6 @@ export default function RegisterPage() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

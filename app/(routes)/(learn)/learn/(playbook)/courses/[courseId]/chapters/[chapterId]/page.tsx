@@ -63,7 +63,7 @@ const ChapterIdPage = async ({
           </div>
           <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
             <div className="flex flex-col items-center justify-between space-y-4 p-4 lg:flex-row lg:space-y-0">
-              <h2 className="mb-2 flex-grow text-3xl font-bold tracking-tight">
+              <h2 className="mb-2 flex-grow text-3xl font-bold leading-tight tracking-tight">
                 {chapter.title}
               </h2>
               <CourseProgressButton

@@ -63,7 +63,7 @@ export const teacherCourseListColumns: ColumnDef<Course>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
-          Published
+          Status
           <Icons.caretSort className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -78,7 +78,7 @@ export const teacherCourseListColumns: ColumnDef<Course>[] = [
             isPublished && ' border-brand bg-transparent text-brand',
           )}
         >
-          {isPublished ? 'Published' : 'Draft'}
+          {isPublished ? 'Live' : 'Draft'}
         </Badge>
       );
     },
@@ -89,22 +89,24 @@ export const teacherCourseListColumns: ColumnDef<Course>[] = [
       const { id } = row.original;
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-4 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <Icons.dotsHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <Link href={`/admin/teacher/courses/${id}`}>
-              <DropdownMenuItem>
-                <Icons.pencil className="mr-2 h-4 w-4" />
-                Edit
-              </DropdownMenuItem>
-            </Link>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="pr-3 md:pr-2">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-4 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <Icons.dotsHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <Link href={`/admin/teacher/courses/${id}`}>
+                <DropdownMenuItem>
+                  <Icons.pencil className="mr-2 h-4 w-4" />
+                  Edit
+                </DropdownMenuItem>
+              </Link>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       );
     },
   },
