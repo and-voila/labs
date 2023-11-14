@@ -12,6 +12,7 @@ import '@/app/styles/mdx.css';
 
 import { Metadata } from 'next';
 
+import { env } from '@/env.mjs';
 import { buttonVariants } from '@/app/components/ui/button';
 import { absoluteUrl, cn } from '@/app/lib/utils';
 
@@ -41,6 +42,14 @@ export async function generateMetadata({
     return {};
   }
 
+  const baseUrl =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
+      ? process.env.NEXT_PUBLIC_VERCEL_URL
+      : env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
+
+  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  ogImageUrl.searchParams.set('title', guide.title);
+
   return {
     title: guide.title,
     description: guide.description,
@@ -51,10 +60,10 @@ export async function generateMetadata({
       url: absoluteUrl(guide.slug),
       images: [
         {
-          url: '/open-graph.gif',
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
-          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          alt: guide.title,
         },
       ],
     },
@@ -64,10 +73,10 @@ export async function generateMetadata({
       description: guide.description,
       images: [
         {
-          url: '/open-graph.gif',
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
-          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          alt: guide.title,
         },
       ],
     },

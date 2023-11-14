@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
+import { env } from '@/env.mjs';
 import { Banner } from '@/app/components/banner';
 import { Container } from '@/app/components/container';
 import { CourseProgressButton } from '@/app/components/learn/courses/course-progress-button';
@@ -139,9 +140,15 @@ export async function generateMetadata({
     description = description.substring(0, 157) + '...';
   }
 
-  const url = process.env.NEXT_PUBLIC_VERCEL_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/learn/courses/${params.courseId}/chapters/${params.chapterId}`
-    : `http://localhost:3001/learn/courses/${params.courseId}/chapters/${params.chapterId}`;
+  const baseUrl =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
+      ? process.env.NEXT_PUBLIC_VERCEL_URL
+      : env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
+
+  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  ogImageUrl.searchParams.set('title', title);
+
+  const chapterUrl = `${baseUrl}/learn/courses/${params.courseId}/chapters/${params.chapterId}`;
 
   const metadata = {
     title,
@@ -152,23 +159,23 @@ export async function generateMetadata({
       description,
       images: [
         {
-          url: '/open-graph.gif',
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
-          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          alt: title,
         },
       ],
-      url,
+      url: chapterUrl,
     },
     twitter: {
       title,
       description,
       images: [
         {
-          url: '/open-graph.gif',
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
-          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          alt: title,
         },
       ],
     },

@@ -125,9 +125,15 @@ export function generateMetadata(): Metadata {
   const description =
     'Access the And Voila Dashboard for advanced marketing playbooks, effective AI tools, and to mingle in the best digital marketing Discord.';
 
-  const url = process.env.NEXT_PUBLIC_VERCEL_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/dashboard`
-    : 'http://localhost:3001/dashboard';
+  const baseUrl =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
+      ? process.env.NEXT_PUBLIC_VERCEL_URL
+      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
+
+  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  ogImageUrl.searchParams.set('title', title);
+
+  const pageUrl = `${baseUrl}/dashboard`;
 
   const metadata = {
     title,
@@ -138,23 +144,23 @@ export function generateMetadata(): Metadata {
       description,
       images: [
         {
-          url: '/open-graph.gif',
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
-          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          alt: title,
         },
       ],
-      url,
+      url: pageUrl,
     },
     twitter: {
       title,
       description,
       images: [
         {
-          url: '/open-graph.gif',
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
-          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          alt: title,
         },
       ],
     },

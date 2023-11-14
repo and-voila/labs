@@ -62,9 +62,15 @@ export function generateMetadata(): Metadata {
   const description =
     'Explore Guides by And Voila: Comprehensive digital marketing insights and best practices, passing on our legos for your success journey.';
 
-  const url = process.env.NEXT_PUBLIC_VERCEL_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/guides`
-    : 'http://localhost:3001/guides';
+  const baseUrl =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
+      ? process.env.NEXT_PUBLIC_VERCEL_URL
+      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
+
+  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  ogImageUrl.searchParams.set('title', title);
+
+  const pageUrl = `${baseUrl}/guides`;
 
   const metadata = {
     title,
@@ -75,23 +81,23 @@ export function generateMetadata(): Metadata {
       description,
       images: [
         {
-          url: '/open-graph.gif',
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
-          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          alt: title,
         },
       ],
-      url,
+      url: pageUrl,
     },
     twitter: {
       title,
       description,
       images: [
         {
-          url: '/open-graph.gif',
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
-          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          alt: title,
         },
       ],
     },
