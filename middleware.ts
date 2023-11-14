@@ -4,6 +4,16 @@ import { withAuth } from 'next-auth/middleware';
 
 export default withAuth(
   async function middleware(req) {
+    const userAgent = req.headers.get('user-agent') || '';
+    const isCrawler =
+      /facebookexternalhit|baiduspider|bingbot|discordbot|duckduckbot|googlebot|linkedinbot|pinterestbot|slackbot|tiktokbot|twitterbot|yandexbot/i.test(
+        userAgent,
+      );
+
+    if (isCrawler) {
+      return NextResponse.next();
+    }
+
     const token = await getToken({ req });
     const isAuth = !!token;
     const isAuthPage =
