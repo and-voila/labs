@@ -27,9 +27,15 @@ export function generateMetadata(): Metadata {
   const description =
     "Get started free, no credit card required. Access our playbooks, check out our AI tools, and browse the community. When you're ready, upgrade your membership.";
 
-  const url = process.env.NEXT_PUBLIC_VERCEL_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/pricing`
-    : 'http://localhost:3001/pricing';
+  const baseUrl =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
+
+  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  ogImageUrl.searchParams.set('title', title);
+
+  const pageUrl = `${baseUrl}/pricing`;
 
   const metadata = {
     title,
@@ -40,23 +46,23 @@ export function generateMetadata(): Metadata {
       description,
       images: [
         {
-          url: '/open-graph.gif',
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
-          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          alt: title,
         },
       ],
-      url,
+      url: pageUrl,
     },
     twitter: {
       title,
       description,
       images: [
         {
-          url: '/open-graph.gif',
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
-          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          alt: title,
         },
       ],
     },

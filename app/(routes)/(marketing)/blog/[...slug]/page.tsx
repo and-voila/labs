@@ -41,12 +41,13 @@ export async function generateMetadata({
     return {};
   }
 
-  const url = env.NEXT_PUBLIC_APP_URL;
+  const baseUrl =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
 
-  const ogUrl = new URL(`${url}/api/og`);
-  ogUrl.searchParams.set('heading', post.title);
-  ogUrl.searchParams.set('type', 'Blog Post');
-  ogUrl.searchParams.set('mode', 'dark');
+  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  ogImageUrl.searchParams.set('title', post.title);
 
   return {
     title: post.title,
@@ -61,7 +62,7 @@ export async function generateMetadata({
       url: absoluteUrl(post.slug),
       images: [
         {
-          url: ogUrl.toString(),
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
           alt: post.title,
@@ -72,7 +73,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: post.title,
       description: post.description,
-      images: [ogUrl.toString()],
+      images: [ogImageUrl.toString()],
     },
   };
 }

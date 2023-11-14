@@ -32,9 +32,15 @@ export function generateMetadata(): Metadata {
   const description =
     "Wow, the And Voila Settings page was created just so you could...update your name? LOL, we're working on it, promise.";
 
-  const url = process.env.NEXT_PUBLIC_VERCEL_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/dashboard/settings`
-    : 'http://localhost:3001/dashboard/settings';
+  const baseUrl =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
+
+  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  ogImageUrl.searchParams.set('title', title);
+
+  const pageUrl = `${baseUrl}/dashboard/settings`;
 
   const metadata = {
     title,
@@ -45,23 +51,23 @@ export function generateMetadata(): Metadata {
       description,
       images: [
         {
-          url: '/open-graph.gif',
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
-          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          alt: title,
         },
       ],
-      url,
+      url: pageUrl,
     },
     twitter: {
       title,
       description,
       images: [
         {
-          url: '/open-graph.gif',
+          url: ogImageUrl.toString(),
           width: 1200,
           height: 630,
-          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+          alt: title,
         },
       ],
     },
