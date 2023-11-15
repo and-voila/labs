@@ -92,26 +92,44 @@ export default async function DashboardPage() {
               </CardDescription>
             </CardContent>
             <CardFooter className="mt-auto justify-end">
-              <Link
-                href={item.linkHref}
-                target={item.isExternal ? '_blank' : undefined}
-                rel={item.isExternal ? 'noopener noreferrer' : undefined}
-                className={cn(
-                  buttonVariants({
-                    className: 'mt-4 w-full justify-between',
-                    variant: 'secondary',
-                  }),
-                  item.isDisabled ? 'cursor-not-allowed opacity-80' : '',
-                )}
-                aria-label={`Link to ${item.title} - ${item.linkText}`}
-              >
-                {item.linkText}
-                {''}
-                <Icons.arrowRight
-                  className="h-5 w-5 justify-end text-brand"
-                  aria-hidden="true"
-                />
-              </Link>
+              {item.isDisabled ? (
+                <button
+                  className={cn(
+                    buttonVariants({
+                      className: 'mt-4 w-full justify-between',
+                      variant: 'secondary',
+                    }),
+                    'cursor-not-allowed opacity-80',
+                  )}
+                  aria-label={`Link to ${item.title} - ${item.linkText}`}
+                  disabled
+                >
+                  {item.linkText}
+                  <Icons.arrowRight
+                    className="h-5 w-5 justify-end text-brand"
+                    aria-hidden="true"
+                  />
+                </button>
+              ) : (
+                <Link
+                  href={item.linkHref}
+                  target={item.isExternal ? '_blank' : undefined}
+                  rel={item.isExternal ? 'noopener noreferrer' : undefined}
+                  className={cn(
+                    buttonVariants({
+                      className: 'mt-4 w-full justify-between',
+                      variant: 'secondary',
+                    }),
+                  )}
+                  aria-label={`Link to ${item.title} - ${item.linkText}`}
+                >
+                  {item.linkText}
+                  <Icons.arrowRight
+                    className="h-5 w-5 justify-end text-brand"
+                    aria-hidden="true"
+                  />
+                </Link>
+              )}
             </CardFooter>
           </Card>
         ))}

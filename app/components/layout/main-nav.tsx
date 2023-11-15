@@ -48,24 +48,37 @@ export function MainNav({ items, children }: MainNavProps) {
       </Link>
       {items?.length ? (
         <nav className="hidden gap-6 md:flex">
-          {items?.map((item, index) => (
-            <Link
-              key={index}
-              href={item.disabled ? '#' : item.href}
-              className={cn(
-                'flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm',
-                pathname.startsWith(item.href)
-                  ? 'font-semibold text-brand underline decoration-4 underline-offset-4'
-                  : 'text-muted-foreground',
-                item.disabled && 'cursor-not-allowed opacity-80',
-              )}
-              target={item.isExternal ? '_blank' : '_self'}
-              rel={item.isExternal ? 'noopener noreferrer' : ''}
-              aria-label={item.isExternal ? 'Opens in a new tab' : ''}
-            >
-              {item.title}
-            </Link>
-          ))}
+          {items?.map((item, index) =>
+            item.disabled ? (
+              <button
+                key={index}
+                className={cn(
+                  'flex items-center text-lg font-medium text-muted-foreground sm:text-sm',
+                  'cursor-not-allowed opacity-80',
+                )}
+                aria-label={item.title}
+                disabled
+              >
+                {item.title}
+              </button>
+            ) : (
+              <Link
+                key={index}
+                href={item.href}
+                className={cn(
+                  'flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm',
+                  pathname.startsWith(item.href)
+                    ? 'font-semibold text-brand underline decoration-4 underline-offset-4'
+                    : 'text-muted-foreground',
+                )}
+                target={item.isExternal ? '_blank' : '_self'}
+                rel={item.isExternal ? 'noopener noreferrer' : ''}
+                aria-label={item.isExternal ? 'Opens in a new tab' : ''}
+              >
+                {item.title}
+              </Link>
+            ),
+          )}
         </nav>
       ) : null}
       <button

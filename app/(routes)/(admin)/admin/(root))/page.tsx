@@ -93,32 +93,44 @@ export default async function AdminPage() {
               </CardTitle>
             </CardHeader>
             <CardFooter className="mt-auto justify-end">
-              <Link
-                href={item.disabled ? '#' : item.linkHref}
-                target={
-                  item.isExternal && !item.disabled ? '_blank' : undefined
-                }
-                rel={
-                  item.isExternal && !item.disabled
-                    ? 'noopener noreferrer'
-                    : undefined
-                }
-                className={cn(
-                  buttonVariants({
-                    className: 'w-full justify-between',
-                    variant: 'secondary',
-                  }),
-                  item.disabled && 'cursor-not-allowed opacity-80',
-                )}
-                aria-label={`Link to ${item.title} - ${item.linkText}`}
-              >
-                {item.linkText}
-                {''}
-                <Icons.arrowRight
-                  className="h-5 w-5 justify-end text-brand"
-                  aria-hidden="true"
-                />
-              </Link>
+              {item.disabled ? (
+                <button
+                  className={cn(
+                    buttonVariants({
+                      className: 'w-full justify-between',
+                      variant: 'secondary',
+                    }),
+                    'cursor-not-allowed',
+                  )}
+                  aria-label={`Link to ${item.title} - ${item.linkText}`}
+                  disabled
+                >
+                  {item.linkText}
+                  <Icons.arrowRight
+                    className="h-5 w-5 justify-end text-brand"
+                    aria-hidden="true"
+                  />
+                </button>
+              ) : (
+                <Link
+                  href={item.linkHref}
+                  target={item.isExternal ? '_blank' : undefined}
+                  rel={item.isExternal ? 'noopener noreferrer' : undefined}
+                  className={cn(
+                    buttonVariants({
+                      className: 'w-full justify-between',
+                      variant: 'secondary',
+                    }),
+                  )}
+                  aria-label={`Link to ${item.title} - ${item.linkText}`}
+                >
+                  {item.linkText}
+                  <Icons.arrowRight
+                    className="h-5 w-5 justify-end text-brand"
+                    aria-hidden="true"
+                  />
+                </Link>
+              )}
             </CardFooter>
           </Card>
         ))}

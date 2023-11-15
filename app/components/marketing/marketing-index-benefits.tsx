@@ -61,7 +61,7 @@ const marketingBenefits: MarketingBenefitsProps[] = [
     id: '8',
     title: 'Build Credibility',
     description:
-      'Enhance your industry standing. Become the marketer everyone turns to.',
+      'Lift your industry standing. Become the marketer everyone turns to.',
     emoji: '🏆',
     emojiDescription: 'A trophy emoji',
   },
