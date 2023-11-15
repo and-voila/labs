@@ -21,7 +21,6 @@ export async function updateUserName(userId: string, data: FormData) {
 
     const { name } = userNameSchema.parse(data);
 
-    // Update the user name.
     await db.user.update({
       where: {
         id: userId,
@@ -34,8 +33,6 @@ export async function updateUserName(userId: string, data: FormData) {
     revalidatePath('/dashboard/settings');
     return { status: 'success' };
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
     return { status: 'error' };
   }
 }
