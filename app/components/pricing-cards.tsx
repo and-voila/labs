@@ -6,11 +6,12 @@ import Balancer from 'react-wrap-balancer';
 
 import { BillingFormButton } from '@/app/components/forms/billing-form-button';
 import { Icons } from '@/app/components/shared/icons';
-import { Button, buttonVariants } from '@/app/components/ui/button';
+import { buttonVariants } from '@/app/components/ui/button';
 import { Switch } from '@/app/components/ui/switch';
 import { pricingData } from '@/app/config/subscriptions';
-import { useSigninModal } from '@/app/hooks/use-signin-modal';
 import { UserSubscriptionPlan } from '@/app/lib/types';
+
+import { cn } from '../lib/utils';
 
 interface PricingCardsProps {
   userId?: string;
@@ -20,7 +21,6 @@ interface PricingCardsProps {
 export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   const isYearlyDefault = subscriptionPlan?.interval === 'year' ? true : false;
   const [isYearly, setIsYearly] = useState<boolean>(!!isYearlyDefault);
-  const signInModal = useSigninModal();
 
   const toggleBilling = () => {
     setIsYearly(!isYearly);
@@ -122,7 +122,13 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
                   />
                 )
               ) : (
-                <Button onClick={signInModal.onOpen}>Sign in</Button>
+                <Link
+                  href={`/register?from=${encodeURIComponent('/pricing')}`}
+                  passHref
+                  className={cn(buttonVariants({ variant: 'custom' }))}
+                >
+                  Create an Account
+                </Link>
               )}
             </div>
           </div>

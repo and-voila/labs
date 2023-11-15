@@ -22,7 +22,8 @@ export default withAuth(
 
     if (isAuthPage) {
       if (isAuth) {
-        return NextResponse.redirect(new URL('/dashboard', req.url));
+        const from = req.nextUrl.searchParams.get('from') || '/dashboard';
+        return NextResponse.redirect(new URL(from, req.url));
       }
 
       return null;
