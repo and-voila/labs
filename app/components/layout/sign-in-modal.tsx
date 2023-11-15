@@ -22,9 +22,9 @@ export const SignInModal = () => {
           </a>
           <h3 className="text-2xl font-bold">Log in or Create Account</h3>
           <p className="text-sm text-muted-foreground">
-            No credit card required. Start off with the{' '}
-            <span className="font-semibold text-brand">free Good plan</span>. If
-            you need more, upgrade.
+            No credit card required. Start off with the free,{' '}
+            <span className="font-semibold text-brand"> Good plan</span>. If you
+            need more, upgrade.
           </p>
         </div>
 
