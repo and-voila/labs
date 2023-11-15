@@ -17,7 +17,7 @@ const rightHeader = () => (
   <div className="mr-8 flex flex-1 items-center space-x-4 sm:justify-end">
     <Link href="/learn/search">
       <Button size="sm" variant="secondary">
-        <Icons.signOut className="mr-2 h-4 w-4" />
+        <Icons.signOut className="mr-2 h-4 w-4 text-brand" />
         Exit playbook
       </Button>
     </Link>

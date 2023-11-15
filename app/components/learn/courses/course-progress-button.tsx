@@ -74,8 +74,8 @@ export const CourseProgressButton = ({
       variant={isCompleted ? 'outline' : 'custom'}
       className="w-full flex-shrink-0 md:w-auto"
     >
-      {isCompleted ? 'Mark as incomplete' : 'Mark as complete'}
-      <Icon className="ml-2 h-4 w-4" />
+      {isCompleted ? 'Unfinish' : 'Finish'}
+      <Icon className={`ml-2 h-4 w-4 ${isCompleted ? 'text-brand' : ''}`} />
     </Button>
   );
 };

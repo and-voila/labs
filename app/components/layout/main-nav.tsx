@@ -42,7 +42,7 @@ export function MainNav({ items, children }: MainNavProps) {
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
         <Icons.logo />
-        <span className="hidden text-xl font-black uppercase tracking-tighter sm:inline-block lg:text-2xl">
+        <span className="hidden text-lg font-extrabold uppercase tracking-tighter sm:inline-block lg:text-xl">
           {siteConfig.name}
         </span>
       </Link>
