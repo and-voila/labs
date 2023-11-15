@@ -33,6 +33,10 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
         },
       },
     },
+    cacheStrategy: {
+      ttl: 15,
+      swr: 30,
+    },
   });
 
   const userProgress = await db.userProgress.findFirst({

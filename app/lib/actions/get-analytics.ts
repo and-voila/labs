@@ -29,6 +29,10 @@ export const getAnalytics = async () => {
       include: {
         course: true,
       },
+      cacheStrategy: {
+        ttl: 300,
+        swr: 150,
+      },
     });
 
     const groupedEarnings = groupByCourse(purchases);
