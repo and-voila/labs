@@ -2,7 +2,9 @@ import { PrismaClient } from '@prisma/client';
 import { withAccelerate } from '@prisma/extension-accelerate';
 
 const prismaClientSingleton = () => {
-  return new PrismaClient().$extends(withAccelerate());
+  const baseClient = new PrismaClient();
+  const extendedClient = baseClient.$extends(withAccelerate());
+  return extendedClient as PrismaClient & typeof extendedClient;
 };
 
 type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
