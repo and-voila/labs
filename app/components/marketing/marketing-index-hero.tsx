@@ -26,6 +26,9 @@ const MarketingIndexHero = (): JSX.Element => {
             Get Started
           </Link>
         </div>
+        <p className="mt-2 text-center text-xs text-muted-foreground">
+          No credit card required
+        </p>
       </div>
     </section>
   );

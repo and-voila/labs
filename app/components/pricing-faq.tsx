@@ -64,7 +64,7 @@ const pricingFaqData = [
   },
   {
     id: '9',
-    question: 'What is radical Candor?',
+    question: 'What is Radical Candor?',
     answer:
       "That's a great question and one Kim Scott lives by (if you don't know who that is, ask ChatGPT for an intro). Radical Candor is direct feedback that’s also deeply empathetic. It’s not about being blunt, it’s about being honest in a way that fosters personal and professional growth.",
   },
