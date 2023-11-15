@@ -35,9 +35,9 @@ export const CourseSidebar = async ({
 
   return (
     <div className="flex h-full w-full flex-col overflow-y-auto">
-      <div className="flex flex-col rounded-lg border-y bg-muted px-2 py-4 dark:bg-primary-foreground">
+      <div className="flex flex-col py-4">
         <p className="mb-2 text-sm text-brand">Playbook</p>
-        <h1 className="font-medium leading-tight lg:text-lg lg:leading-tight">
+        <h1 className="font-medium leading-tight lg:leading-tight">
           {course.title}
         </h1>
         {(isPaidMember || purchase || course.price === 0) && (

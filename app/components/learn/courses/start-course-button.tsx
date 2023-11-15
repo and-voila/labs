@@ -61,9 +61,9 @@ export const StartCourseButton = ({
       disabled={isLoading}
       type="button"
       variant="custom"
-      className="w-full flex-shrink-0 md:w-auto"
+      className="mt-2 w-full flex-shrink-0 md:mt-0 md:w-auto"
     >
-      {'Start the Playbook'}
+      Start Playbook
       <Icons.play className="ml-2 h-4 w-4" />
     </Button>
   );
