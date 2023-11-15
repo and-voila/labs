@@ -38,6 +38,7 @@ export function BillingInfo({ subscriptionPlan }: BillingInfoProps) {
           href="/pricing"
           className={cn(
             buttonVariants({
+              size: 'sm',
               variant: subscriptionPlan.isPaid ? 'secondary' : 'custom',
             }),
           )}
