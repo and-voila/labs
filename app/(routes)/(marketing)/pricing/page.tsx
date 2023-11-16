@@ -2,11 +2,13 @@ import { Metadata } from 'next';
 
 import { PricingCards } from '@/app/components/pricing-cards';
 import { PricingFaq } from '@/app/components/pricing-faq';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 import { getUserSubscriptionPlan } from '@/app/lib/subscription';
 
 export default async function PricingPage() {
-  const user = await getCurrentUser();
+  const session = await getSession();
+  const user = session?.user || null;
+
   let subscriptionPlan;
 
   if (user) {

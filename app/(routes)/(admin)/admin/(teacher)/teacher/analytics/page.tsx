@@ -5,15 +5,16 @@ import { DashboardShell } from '@/app/components/dashboard/shell';
 import { TeacherAnalyticsChart } from '@/app/components/learn/teacher/teacher-analytics-chart';
 import { TeacherAnalyticsDataCard } from '@/app/components/learn/teacher/teacher-analytics-data-card';
 import { getAnalytics } from '@/app/lib/actions/get-analytics';
-import { getCurrentUser } from '@/app/lib/session';
+import { authOptions } from '@/app/lib/auth';
+import { getSession } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 
 const AnalyticsPage = async () => {
-  const user = await getCurrentUser();
-  const userId = user?.id;
-
-  if (!isTeacher(userId)) {
-    return redirect('/not-authorized');
+  const session = await getSession();
+  if (!session) {
+    redirect(authOptions?.pages?.signIn || '/login');
+  } else if (!isTeacher(session.user.id)) {
+    redirect('/not-authorized');
   }
 
   const { data, totalRevenue, totalSales } = await getAnalytics();

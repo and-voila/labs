@@ -1,21 +1,21 @@
 'use server';
 
 import { db } from '@/app/lib/db';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 
 const DAY_IN_MS = 86_400_000;
 
 export const checkSubscription = async (): Promise<boolean> => {
-  const user = await getCurrentUser();
-  const userId = user?.id;
-
-  if (isTeacher(userId)) {
-    return true;
-  }
+  const session = await getSession();
+  const userId = session?.user?.id;
 
   if (!userId) {
     return false;
+  }
+
+  if (isTeacher(userId)) {
+    return true;
   }
 
   const userSubscription = await db.userSubscription.findUnique({

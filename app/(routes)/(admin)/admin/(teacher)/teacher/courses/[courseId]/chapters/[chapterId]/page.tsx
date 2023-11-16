@@ -11,8 +11,9 @@ import { ChapterTitleForm } from '@/app/components/learn/teacher/chapters/chapte
 import { ChapterVideoForm } from '@/app/components/learn/teacher/chapters/chapter-video-form';
 import { Icons } from '@/app/components/shared/icons';
 import { Button } from '@/app/components/ui/button';
+import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 
 export const metadata: Metadata = {
@@ -26,11 +27,11 @@ const ChapterIdPage = async ({
 }: {
   params: { courseId: string; chapterId: string };
 }) => {
-  const user = await getCurrentUser();
-  const userId = user?.id;
-
-  if (!isTeacher(userId)) {
-    return redirect('/not-authorized');
+  const session = await getSession();
+  if (!session) {
+    redirect(authOptions?.pages?.signIn || '/login');
+  } else if (!isTeacher(session.user.id)) {
+    redirect('/not-authorized');
   }
 
   const chapter = await db.chapter.findUnique({

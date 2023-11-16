@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { db } from '@/app/lib/db';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 
 export async function POST(
@@ -9,13 +9,11 @@ export async function POST(
   { params }: { params: { courseId: string } },
 ) {
   try {
-    const user = await getCurrentUser();
-    const userId = user?.id;
-    const { title } = await req.json();
-
-    if (!isTeacher(userId)) {
+    const session = await getSession();
+    if (!isTeacher(session?.user?.id)) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
+    const { title } = await req.json();
 
     const course = await db.course.findUnique({
       where: {

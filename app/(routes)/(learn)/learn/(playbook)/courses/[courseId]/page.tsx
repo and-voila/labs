@@ -12,13 +12,17 @@ import { Preview } from '@/app/components/preview';
 import { buttonVariants } from '@/app/components/ui/button';
 import { Separator } from '@/app/components/ui/separator';
 import { checkSubscription } from '@/app/lib/actions/check-subscription';
+import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 import { cn } from '@/app/lib/utils';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
-  const user = await getCurrentUser();
-  const userId = user?.id;
+  const session = await getSession();
+  if (!session) {
+    redirect(authOptions?.pages?.signIn || '/login');
+  }
+
   const course = await db.course.findUnique({
     where: {
       id: params.courseId,
@@ -31,7 +35,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
       },
       purchases: {
         where: {
-          userId: userId,
+          userId: session.user.id,
         },
       },
     },
@@ -43,7 +47,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
   const userProgress = await db.userProgress.findFirst({
     where: {
-      userId: userId,
+      userId: session.user.id,
       chapterId: course?.chapters[0].id,
     },
   });

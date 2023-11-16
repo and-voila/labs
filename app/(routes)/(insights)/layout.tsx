@@ -7,7 +7,7 @@ import { SiteFooter } from '@/app/components/layout/site-footer';
 import { Icons } from '@/app/components/shared/icons';
 import { insightsConfig } from '@/app/config/insights';
 import { authOptions } from '@/app/lib/auth';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 
 interface InsightsLayoutProps {
@@ -28,15 +28,14 @@ const rightHeader = () => (
 export default async function InsightsLayout({
   children,
 }: InsightsLayoutProps) {
-  const user = await getCurrentUser();
-
-  if (!user) {
-    return redirect(authOptions?.pages?.signIn || '/login');
+  const session = await getSession();
+  if (!session) {
+    redirect(authOptions?.pages?.signIn || '/login');
+  } else if (!isTeacher(session.user.id)) {
+    redirect('/not-authorized');
   }
 
-  if (!isTeacher(user.id)) {
-    return redirect('/not-authorized');
-  }
+  const user = session.user;
 
   return (
     <div className="flex min-h-screen flex-col">

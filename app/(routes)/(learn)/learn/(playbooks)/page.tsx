@@ -6,18 +6,17 @@ import { CoursesList } from '@/app/components/learn/courses/courses-list';
 import { InfoCard } from '@/app/components/learn/dashboard/info-card';
 import { getDashboardCourses } from '@/app/lib/actions/get-dashboard-courses';
 import { authOptions } from '@/app/lib/auth';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 
 export default async function MyPlaybooksPage() {
-  const user = await getCurrentUser();
-  const userId = user?.id;
-
-  if (!userId) {
+  const session = await getSession();
+  if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  const { completedCourses, coursesInProgress } =
-    await getDashboardCourses(userId);
+  const { completedCourses, coursesInProgress } = await getDashboardCourses(
+    session.user.id,
+  );
 
   return (
     <DashboardShell>

@@ -9,7 +9,7 @@ import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { getCourses } from '@/app/lib/actions/get-courses';
 import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 
 interface PlaybooksSearchPageProps {
   searchParams: {
@@ -21,10 +21,8 @@ interface PlaybooksSearchPageProps {
 const PlaybooksSearchPage = async ({
   searchParams,
 }: PlaybooksSearchPageProps) => {
-  const user = await getCurrentUser();
-  const userId = user?.id;
-
-  if (!userId) {
+  const session = await getSession();
+  if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
@@ -41,7 +39,7 @@ const PlaybooksSearchPage = async ({
   const isPaidMember = await checkSubscription();
 
   const courses = await getCourses({
-    userId,
+    userId: session.user.id,
     ...searchParams,
     isPaidMember,
   });

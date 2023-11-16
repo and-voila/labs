@@ -5,14 +5,15 @@ import { DashboardHeader } from '@/app/components/dashboard/header';
 import { DashboardShell } from '@/app/components/dashboard/shell';
 import { UserNameForm } from '@/app/components/forms/user-name-form';
 import { authOptions } from '@/app/lib/auth';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 
 export default async function SettingsPage() {
-  const user = await getCurrentUser();
-
-  if (!user) {
+  const session = await getSession();
+  if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
+
+  const user = session.user;
 
   return (
     <DashboardShell>

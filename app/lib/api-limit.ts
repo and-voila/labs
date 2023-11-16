@@ -1,11 +1,11 @@
 import { MAX_FREE_TOKENS } from '@/constants';
 
 import { db } from '@/app/lib/db';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 
 export const increaseApiLimit = async () => {
-  const user = await getCurrentUser();
-  const userId = user?.id;
+  const session = await getSession();
+  const userId = session?.user?.id;
 
   if (!userId) {
     return;
@@ -33,8 +33,8 @@ export const increaseApiLimit = async () => {
 };
 
 export const checkApiLimit = async () => {
-  const user = await getCurrentUser();
-  const userId = user?.id;
+  const session = await getSession();
+  const userId = session?.user?.id;
 
   if (!userId) {
     return false;
@@ -54,8 +54,8 @@ export const checkApiLimit = async () => {
 };
 
 export const getApiLimitCount = async () => {
-  const user = await getCurrentUser();
-  const userId = user?.id;
+  const session = await getSession();
+  const userId = session?.user?.id;
 
   if (!userId) {
     return 0;

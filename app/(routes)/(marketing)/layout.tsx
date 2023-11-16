@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { NavBar } from '@/app/components/layout/navbar';
 import { SiteFooter } from '@/app/components/layout/site-footer';
 import { marketingConfig } from '@/app/config/marketing';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 
 interface MarketingLayoutProps {
   children: React.ReactNode;
@@ -12,7 +12,8 @@ interface MarketingLayoutProps {
 export default async function MarketingLayout({
   children,
 }: MarketingLayoutProps) {
-  const user = await getCurrentUser();
+  const session = await getSession();
+  const user = session?.user || null;
 
   return (
     <div className="flex min-h-screen flex-col">

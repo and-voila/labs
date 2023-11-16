@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 import { DashboardNav } from '@/app/components/layout/nav';
 import { NavBar } from '@/app/components/layout/navbar';
@@ -7,7 +8,8 @@ import { Icons } from '@/app/components/shared/icons';
 import { Button } from '@/app/components/ui/button';
 import { playbookConfig } from '@/app/config/playbook';
 import { playbooksConfig } from '@/app/config/playbooks';
-import { getCurrentUser } from '@/app/lib/session';
+import { authOptions } from '@/app/lib/auth';
+import { getSession } from '@/app/lib/session';
 
 interface PlaybookRootLayoutProps {
   children: React.ReactNode;
@@ -27,7 +29,12 @@ const rightHeader = () => (
 export default async function PlaybookRootLayout({
   children,
 }: PlaybookRootLayoutProps) {
-  const user = await getCurrentUser();
+  const session = await getSession();
+  if (!session) {
+    redirect(authOptions?.pages?.signIn || '/login');
+  }
+
+  const user = session.user;
 
   return (
     <div className="flex min-h-screen flex-col">
