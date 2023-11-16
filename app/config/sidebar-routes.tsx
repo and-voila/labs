@@ -34,7 +34,7 @@ const dashboardRoutes: Route[] = [
     id: 'documentation',
     icon: 'docs',
     label: 'Documentation',
-    href: '/docs',
+    href: '/insights',
   },
   {
     id: 'support',

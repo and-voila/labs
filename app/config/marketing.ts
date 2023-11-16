@@ -28,7 +28,12 @@ export const marketingConfig: MarketingConfig = {
     },
     {
       title: 'Insights',
-      href: '/docs',
+      href: '/insights',
+      disabled: true,
+    },
+    {
+      title: 'Guides',
+      href: '/guides',
       disabled: true,
     },
     {

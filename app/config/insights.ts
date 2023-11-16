@@ -23,7 +23,7 @@ export const insightsConfig: InsightsConfig = {
     },
     {
       title: 'Insights',
-      href: '/docs',
+      href: '/insights',
       disabled: true,
     },
     {
