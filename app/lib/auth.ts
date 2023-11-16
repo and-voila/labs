@@ -24,6 +24,19 @@ export const authOptions: NextAuthOptions = {
       clientId: env.DISCORD_CLIENT_ID as string,
       clientSecret: env.DISCORD_CLIENT_SECRET as string,
       allowDangerousEmailAccountLinking: true,
+      profile(profile) {
+        return {
+          id: profile.id,
+          name: profile.username,
+          email: profile.email,
+          image: profile.avatar
+            ? `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`
+            : null,
+          discordId: profile.id,
+          discordUsername: `${profile.username}#${profile.discriminator}`,
+          discordAvatar: profile.avatar,
+        };
+      },
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
