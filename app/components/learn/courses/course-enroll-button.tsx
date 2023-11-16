@@ -1,10 +1,13 @@
 'use client';
 
-import { useState } from 'react';
-import axios from 'axios';
+import { useTransition } from 'react';
 
 import { Button } from '@/app/components/ui/button';
 import { toast } from '@/app/components/ui/use-toast';
+import {
+  CheckoutResponse,
+  generateCourseCheckout,
+} from '@/app/lib/actions/generate-course-checkout';
 import { formatPrice } from '@/app/lib/format';
 
 interface CourseEnrollButtonProps {
@@ -16,36 +19,40 @@ export const CourseEnrollButton = ({
   price,
   courseId,
 }: CourseEnrollButtonProps) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
-  const onClick = async () => {
-    try {
-      setIsLoading(true);
+  const generateCourseCheckoutSession = generateCourseCheckout.bind(
+    null,
+    courseId,
+  );
 
-      const response = await axios.post(`/api/courses/${courseId}/checkout`);
-
-      window.location.assign(response.data.url);
-    } catch {
-      toast({
-        title: 'Uh oh! An error occurred.',
-        description:
-          'Honestly, we have no idea what happened. Please try again.',
-        variant: 'destructive',
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const courseCheckoutAction = () =>
+    startTransition(async () => {
+      try {
+        const response: CheckoutResponse =
+          await generateCourseCheckoutSession();
+        window.location.assign(response.url);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+        toast({
+          title: 'Uh oh! An error occurred.',
+          description:
+            'Honestly, we have no idea what happened. Please try again.',
+          variant: 'destructive',
+        });
+      }
+    });
 
   return (
     <Button
       variant="secondary"
-      onClick={onClick}
-      disabled={isLoading}
+      onClick={courseCheckoutAction}
+      disabled={isPending}
       size="sm"
       className="w-full flex-shrink-0 lg:w-auto"
     >
-      Buy for {formatPrice(price)}
+      {isPending ? 'Processing...' : `Buy for ${formatPrice(price)}`}
     </Button>
   );
 };

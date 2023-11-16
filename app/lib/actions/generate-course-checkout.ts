@@ -1,25 +1,30 @@
-import { NextResponse } from 'next/server';
+'use server';
+
+import { getServerSession } from 'next-auth';
 import Stripe from 'stripe';
 
 import { db } from '@/app/lib/db';
-import { getCurrentUser } from '@/app/lib/session';
 import { stripe } from '@/app/lib/stripe';
 
-export async function POST(
-  req: Request,
-  { params }: { params: { courseId: string } },
-) {
-  try {
-    const user = await getCurrentUser();
-    const userId = user?.id;
+import { authOptions } from '../auth';
 
-    if (!user || !userId || !user.email) {
-      return new NextResponse('Unauthorized', { status: 401 });
+export type CheckoutResponse = {
+  url: string;
+};
+
+export async function generateCourseCheckout(
+  courseId: string,
+): Promise<CheckoutResponse> {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user || !session?.user.email) {
+      throw new Error('Unauthorized');
     }
 
     const course = await db.course.findUnique({
       where: {
-        id: params.courseId,
+        id: courseId,
         isPublished: true,
       },
     });
@@ -27,18 +32,18 @@ export async function POST(
     const purchase = await db.purchase.findUnique({
       where: {
         userId_courseId: {
-          userId: user.id,
-          courseId: params.courseId,
+          userId: session.user.id,
+          courseId: courseId,
         },
       },
     });
 
     if (purchase) {
-      return new NextResponse('Already purchased', { status: 400 });
+      throw new Error('Already purchased');
     }
 
     if (!course) {
-      return new NextResponse('Not found', { status: 404 });
+      throw new Error('Course not found');
     }
 
     // eslint-disable-next-line camelcase
@@ -49,7 +54,7 @@ export async function POST(
           currency: 'USD',
           product_data: {
             name: course.title,
-            description: course.description!,
+            description: course.preview!,
           },
           unit_amount: Math.round(course.price! * 100),
         },
@@ -58,7 +63,7 @@ export async function POST(
 
     let stripeCustomer = await db.stripeCustomer.findUnique({
       where: {
-        userId: user.id,
+        userId: session.user.id,
       },
       select: {
         stripeCustomerId: true,
@@ -67,18 +72,18 @@ export async function POST(
 
     if (!stripeCustomer) {
       const customer = await stripe.customers.create({
-        email: user.email,
+        email: session.user.email,
       });
 
       stripeCustomer = await db.stripeCustomer.create({
         data: {
-          userId: user.id,
+          userId: session.user.id,
           stripeCustomerId: customer.id,
         },
       });
     }
 
-    const session = await stripe.checkout.sessions.create({
+    const stripeSession = await stripe.checkout.sessions.create({
       customer: stripeCustomer.stripeCustomerId,
       line_items,
       mode: 'payment',
@@ -86,12 +91,18 @@ export async function POST(
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/learn/courses/${course.id}?canceled=1`,
       metadata: {
         courseId: course.id,
-        userId: user.id,
+        userId: session.user.id,
       },
     });
 
-    return NextResponse.json({ url: session.url });
+    if (!stripeSession.url) {
+      throw new Error('Stripe session URL not found');
+    }
+
+    return { url: stripeSession.url };
   } catch (error) {
-    return new NextResponse('Internal Error', { status: 500 });
+    // eslint-disable-next-line no-console
+    console.error(error);
+    throw new Error('Internal Error');
   }
 }
