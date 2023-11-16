@@ -8,6 +8,7 @@ import { Icons } from '@/app/components/shared/icons';
 import { insightsConfig } from '@/app/config/insights';
 import { authOptions } from '@/app/lib/auth';
 import { getCurrentUser } from '@/app/lib/session';
+import { isTeacher } from '@/app/lib/teacher';
 
 interface InsightsLayoutProps {
   children: React.ReactNode;
@@ -30,7 +31,11 @@ export default async function InsightsLayout({
   const user = await getCurrentUser();
 
   if (!user) {
-    redirect(authOptions?.pages?.signIn || '/login');
+    return redirect(authOptions?.pages?.signIn || '/login');
+  }
+
+  if (!isTeacher(user.id)) {
+    return redirect('/not-authorized');
   }
 
   return (
