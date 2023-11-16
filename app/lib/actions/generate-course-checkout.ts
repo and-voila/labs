@@ -101,8 +101,6 @@ export async function generateCourseCheckout(
 
     return { url: stripeSession.url };
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error);
     throw new Error('Internal Error');
   }
 }

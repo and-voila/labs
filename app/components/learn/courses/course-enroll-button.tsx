@@ -33,8 +33,6 @@ export const CourseEnrollButton = ({
           await generateCourseCheckoutSession();
         window.location.assign(response.url);
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error);
         toast({
           title: 'Uh oh! An error occurred.',
           description:
