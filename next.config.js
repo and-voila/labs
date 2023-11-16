@@ -13,7 +13,15 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'avatars.githubusercontent.com',
+        hostname: 'abs.twimg.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.discordapp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'google.com',
       },
       {
         protocol: 'https',
@@ -21,11 +29,15 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'utfs.io',
+        hostname: 'pbs.twimg.com',
       },
       {
         protocol: 'https',
-        hostname: 'cdn.discordapp.com',
+        hostname: 'public.blob.vercel-storage.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'utfs.io',
       },
     ],
   },
