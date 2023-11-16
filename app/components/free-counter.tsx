@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-'use client';
 
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { MAX_FREE_TOKENS } from '@/constants';
 
-import { Icons } from '@/app/components/shared/icons';
-import { Button } from '@/app/components/ui/button';
+import { buttonVariants } from '@/app/components/ui/button';
 import { Card, CardContent } from '@/app/components/ui/card';
-import { useProModal } from '@/app/hooks/use-pro-modal';
 import { isTeacher } from '@/app/lib/teacher';
+
+import { cn } from '../lib/utils';
 
 interface FreeCounterProps {
   apiLimitCount: number;
@@ -21,17 +20,6 @@ export const FreeCounter = ({
   isPaidMember = false,
   userId,
 }: FreeCounterProps) => {
-  const proModal = useProModal();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
   if (isPaidMember) {
     return null;
   }
@@ -41,7 +29,7 @@ export const FreeCounter = ({
   }
 
   return (
-    <div className="px-2">
+    <div>
       <Card className="border bg-primary-foreground">
         <CardContent className="py-4">
           <div className="mb-4 space-y-2 text-center text-xs text-foreground">
@@ -49,8 +37,7 @@ export const FreeCounter = ({
               Get Early Access
             </h2>
             <p className="text-muted-foreground">
-              You&apos;re on the free Good plan. Upgrade to the Best plan for
-              some real magic.
+              You&apos;re on the free Good plan. Upgrade for some real magic.
             </p>
             {/*<p>
               You&apos;ve used {apiLimitCount} / {MAX_FREE_TOKENS} AI tokens.
@@ -60,10 +47,12 @@ export const FreeCounter = ({
               className="h3"
             />*/}
           </div>
-          <Button onClick={proModal.onOpen} className="w-full" variant="custom">
+          <Link
+            href="/pricing"
+            className={cn(buttonVariants({ variant: 'custom' }), 'w-full')}
+          >
             Upgrade
-            <Icons.magic className="ml-2 h-4 w-4" />
-          </Button>
+          </Link>
         </CardContent>
       </Card>
     </div>
