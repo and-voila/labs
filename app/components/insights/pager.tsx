@@ -2,19 +2,19 @@
 // @ts-nocheck
 
 import Link from 'next/link';
-import { Doc } from 'contentlayer/generated';
+import { Insight } from 'contentlayer/generated';
 
 import { Icons } from '@/app/components/shared/icons';
 import { buttonVariants } from '@/app/components/ui/button';
-import { docsConfig } from '@/app/config/docs';
+import { insightsConfig } from '@/app/config/insights';
 import { cn } from '@/app/lib/utils';
 
-interface DocsPagerProps {
-  doc: Doc;
+interface InsightsPagerProps {
+  insight: Insight;
 }
 
-export function DocsPager({ doc }: DocsPagerProps) {
-  const pager = getPagerForDoc(doc);
+export function InsightsPager({ insight }: InsightsPagerProps) {
+  const pager = getPagerForInsight(insight);
 
   if (!pager) {
     return null;
@@ -44,10 +44,10 @@ export function DocsPager({ doc }: DocsPagerProps) {
   );
 }
 
-export function getPagerForDoc(doc: Doc) {
-  const flattenedLinks = [null, ...flatten(docsConfig.sidebarNav), null];
+export function getPagerForInsight(insight: Insight) {
+  const flattenedLinks = [null, ...flatten(insightsConfig.sidebarNav), null];
   const activeIndex = flattenedLinks.findIndex(
-    (link) => doc.slug === link?.href,
+    (link) => insight.slug === link?.href,
   );
   const prev = activeIndex !== 0 ? flattenedLinks[activeIndex - 1] : null;
   const next =

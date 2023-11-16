@@ -147,7 +147,7 @@ export type DashboardConfig = {
   sidebarNav: SidebarNavItem[];
 };
 
-export type DocsConfig = {
+export type InsightsConfig = {
   mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
 };

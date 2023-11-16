@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { allGuides } from 'contentlayer/generated';
 
 import { Mdx } from '@/app/components/content/mdx-components';
-import { DocsPageHeader } from '@/app/components/docs/page-header';
+import { InsightsPageHeader } from '@/app/components/insights/page-header';
 import { Icons } from '@/app/components/shared/icons';
 import { DashboardTableOfContents } from '@/app/components/shared/toc';
 import { getTableOfContents } from '@/app/lib/toc';
@@ -103,7 +103,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
   return (
     <main className="relative py-6 lg:grid lg:grid-cols-[1fr_300px] lg:gap-10 lg:py-10 xl:gap-20">
       <div>
-        <DocsPageHeader heading={guide.title} text={guide.description} />
+        <InsightsPageHeader heading={guide.title} text={guide.description} />
         <Mdx code={guide.body.code} />
         <hr className="my-4" />
         <div className="flex justify-center py-6 lg:py-10">

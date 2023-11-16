@@ -23,7 +23,12 @@ export const playbooksConfig: PlaybooksConfig = {
     },
     {
       title: 'Insights',
-      href: '/docs',
+      href: '/insights',
+      disabled: true,
+    },
+    {
+      title: 'Guides',
+      href: '/guides',
       disabled: true,
     },
   ],
