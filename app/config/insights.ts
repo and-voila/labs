@@ -1,6 +1,6 @@
-import { DocsConfig } from '@/app/lib/types';
+import { InsightsConfig } from '@/app/lib/types';
 
-export const docsConfig: DocsConfig = {
+export const insightsConfig: InsightsConfig = {
   mainNav: [
     {
       title: 'Dashboard',

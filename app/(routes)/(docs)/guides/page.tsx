@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { allGuides } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 
-import { DocsPageHeader } from '@/app/components/docs/page-header';
+import { InsightsPageHeader } from '@/app/components/insights/page-header';
 import { formatDate } from '@/app/lib/utils';
 
 export default function GuidesPage() {
@@ -15,7 +15,7 @@ export default function GuidesPage() {
 
   return (
     <div className="py-6 lg:py-10">
-      <DocsPageHeader
+      <InsightsPageHeader
         heading="Guides"
         text="Comprehensive digital marketing insights and best practices, passing on our legos for your success journey."
       />

@@ -6,11 +6,11 @@ import { usePathname } from 'next/navigation';
 import { SidebarNavItem } from '@/app/lib/types';
 import { cn } from '@/app/lib/utils';
 
-export interface DocsSidebarNavProps {
+export interface InsightsSidebarNavProps {
   items: SidebarNavItem[];
 }
 
-export function DocsSidebarNav({ items }: DocsSidebarNavProps) {
+export function InsightsSidebarNav({ items }: InsightsSidebarNavProps) {
   const pathname = usePathname();
 
   return items.length ? (
@@ -21,7 +21,7 @@ export function DocsSidebarNav({ items }: DocsSidebarNavProps) {
             {item.title}
           </h4>
           {item.items ? (
-            <DocsSidebarNavItems items={item.items} pathname={pathname} />
+            <InsightsSidebarNavItems items={item.items} pathname={pathname} />
           ) : null}
         </div>
       ))}
@@ -29,15 +29,15 @@ export function DocsSidebarNav({ items }: DocsSidebarNavProps) {
   ) : null;
 }
 
-interface DocsSidebarNavItemsProps {
+interface InsightsSidebarNavItemsProps {
   items: SidebarNavItem[];
   pathname: string | null;
 }
 
-export function DocsSidebarNavItems({
+export function InsightsSidebarNavItems({
   items,
   pathname,
-}: DocsSidebarNavItemsProps) {
+}: InsightsSidebarNavItemsProps) {
   return items?.length ? (
     <div className="grid grid-flow-row auto-rows-max text-sm">
       {items.map((item) =>

@@ -6,15 +6,15 @@ import { Doc } from 'contentlayer/generated';
 
 import { Icons } from '@/app/components/shared/icons';
 import { buttonVariants } from '@/app/components/ui/button';
-import { docsConfig } from '@/app/config/docs';
+import { insightsConfig } from '@/app/config/insights';
 import { cn } from '@/app/lib/utils';
 
-interface DocsPagerProps {
+interface InsightsPagerProps {
   doc: Doc;
 }
 
-export function DocsPager({ doc }: DocsPagerProps) {
-  const pager = getPagerForDoc(doc);
+export function InsightsPager({ doc }: InsightsPagerProps) {
+  const pager = getPagerForInsight(doc);
 
   if (!pager) {
     return null;
@@ -44,8 +44,8 @@ export function DocsPager({ doc }: DocsPagerProps) {
   );
 }
 
-export function getPagerForDoc(doc: Doc) {
-  const flattenedLinks = [null, ...flatten(docsConfig.sidebarNav), null];
+export function getPagerForInsight(doc: Doc) {
+  const flattenedLinks = [null, ...flatten(insightsConfig.sidebarNav), null];
   const activeIndex = flattenedLinks.findIndex(
     (link) => doc.slug === link?.href,
   );
