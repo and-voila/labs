@@ -5,7 +5,7 @@ import { NavBar } from '@/app/components/layout/navbar';
 import { SiteFooter } from '@/app/components/layout/site-footer';
 import { dashboardConfig } from '@/app/config/dashboard';
 import { authOptions } from '@/app/lib/auth';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 
 interface DashboardLayoutProps {
   children?: React.ReactNode;
@@ -14,11 +14,12 @@ interface DashboardLayoutProps {
 export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
-  const user = await getCurrentUser();
-
-  if (!user) {
+  const session = await getSession();
+  if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
+
+  const user = session.user;
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">

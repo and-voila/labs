@@ -16,7 +16,7 @@ import {
   CardTitle,
 } from '@/app/components/ui/card';
 import { authOptions } from '@/app/lib/auth';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 import { cn } from '@/app/lib/utils';
 
 interface SupportItemProps {
@@ -59,9 +59,8 @@ const supportItems: SupportItemProps[] = [
 ];
 
 export default async function SupportPage() {
-  const user = await getCurrentUser();
-
-  if (!user) {
+  const session = await getSession();
+  if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 

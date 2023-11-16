@@ -4,7 +4,7 @@ import { FreeCounter } from '@/app/components/free-counter';
 import { CourseProgress } from '@/app/components/learn/courses/course-progress';
 import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 import { ChapterType, CourseSidebarProps } from '@/app/lib/types';
 
 import { CourseSidebarItem } from './course-sidebar-item';
@@ -15,12 +15,13 @@ export const CourseSidebar = async ({
   apiLimitCount,
   isPaidMember = false,
 }: CourseSidebarProps) => {
-  const user = await getCurrentUser();
-  const userId = user?.id;
+  const session = await getSession();
 
-  if (!userId) {
+  if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
+
+  const userId = session.user.id;
 
   const purchase = await db.purchase.findUnique({
     where: {

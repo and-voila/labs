@@ -16,7 +16,7 @@ import {
   CardTitle,
 } from '@/app/components/ui/card';
 import { authOptions } from '@/app/lib/auth';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 import { cn } from '@/app/lib/utils';
 
 interface DashboardItemProps {
@@ -60,9 +60,8 @@ const dashboardItems: DashboardItemProps[] = [
 ];
 
 export default async function DashboardPage() {
-  const user = await getCurrentUser();
-
-  if (!user) {
+  const session = await getSession();
+  if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 

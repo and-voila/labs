@@ -12,17 +12,15 @@ import { Separator } from '@/app/components/ui/separator';
 import { getChapter } from '@/app/lib/actions/get-chapter';
 import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 
 const ChapterIdPage = async ({
   params,
 }: {
   params: { courseId: string; chapterId: string };
 }) => {
-  const user = await getCurrentUser();
-  const userId = user?.id;
-
-  if (!userId) {
+  const session = await getSession();
+  if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
@@ -35,7 +33,7 @@ const ChapterIdPage = async ({
     userProgress,
     purchase,
   } = await getChapter({
-    userId,
+    userId: session.user.id,
     chapterId: params.chapterId,
     courseId: params.courseId,
   });

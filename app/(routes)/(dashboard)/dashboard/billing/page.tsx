@@ -7,15 +7,16 @@ import { DashboardShell } from '@/app/components/dashboard/shell';
 import { Icons } from '@/app/components/shared/icons';
 import { Alert, AlertDescription, AlertTitle } from '@/app/components/ui/alert';
 import { authOptions } from '@/app/lib/auth';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 import { getUserSubscriptionPlan } from '@/app/lib/subscription';
 
 export default async function BillingPage() {
-  const user = await getCurrentUser();
-
-  if (!user) {
+  const session = await getSession();
+  if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
+
+  const user = session.user;
 
   const subscriptionPlan = await getUserSubscriptionPlan(user.id);
 

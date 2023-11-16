@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import Mux from '@mux/mux-node';
 
 import { db } from '@/app/lib/db';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 
 const { Video } = new Mux(
@@ -15,10 +15,8 @@ export async function DELETE(
   { params }: { params: { courseId: string } },
 ) {
   try {
-    const user = await getCurrentUser();
-    const userId = user?.id;
-
-    if (!isTeacher(userId)) {
+    const session = await getSession();
+    if (!isTeacher(session?.user?.id)) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
@@ -62,14 +60,12 @@ export async function PATCH(
   { params }: { params: { courseId: string } },
 ) {
   try {
-    const user = await getCurrentUser();
-    const userId = user?.id;
-    const { courseId } = params;
-    const values = await req.json();
-
-    if (!isTeacher(userId)) {
+    const session = await getSession();
+    if (!isTeacher(session?.user?.id)) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
+    const { courseId } = params;
+    const values = await req.json();
 
     const course = await db.course.update({
       where: {

@@ -6,7 +6,7 @@ import { getProgress } from '@/app/lib/actions/get-progress';
 import { getApiLimitCount } from '@/app/lib/api-limit';
 import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 
 const PlaybookLayout = async ({
   children,
@@ -17,10 +17,8 @@ const PlaybookLayout = async ({
 }) => {
   const apiLimitCount = await getApiLimitCount();
   const isPaidMember = await checkSubscription();
-  const user = await getCurrentUser();
-  const userId = user?.id;
-
-  if (!userId) {
+  const session = await getSession();
+  if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
@@ -36,7 +34,7 @@ const PlaybookLayout = async ({
         include: {
           userProgress: {
             where: {
-              userId,
+              userId: session.user.id,
             },
           },
         },
@@ -55,7 +53,7 @@ const PlaybookLayout = async ({
     return redirect('/admin/teacher/courses');
   }
 
-  const progressCount = await getProgress(userId, course.id);
+  const progressCount = await getProgress(session.user.id, course.id);
 
   return (
     <div className="flex-1 md:grid md:grid-cols-[220px_1fr] md:gap-6 lg:grid-cols-[240px_1fr] lg:gap-10">

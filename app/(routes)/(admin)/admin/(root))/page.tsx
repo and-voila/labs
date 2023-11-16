@@ -13,7 +13,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/app/components/ui/card';
-import { getCurrentUser } from '@/app/lib/session';
+import { authOptions } from '@/app/lib/auth';
+import { getSession } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 import { cn } from '@/app/lib/utils';
 
@@ -65,11 +66,11 @@ const adminItems: AdminItemProps[] = [
 ];
 
 export default async function AdminPage() {
-  const user = await getCurrentUser();
-  const userId = user?.id;
-
-  if (!isTeacher(userId)) {
-    return redirect('/not-authorized');
+  const session = await getSession();
+  if (!session) {
+    redirect(authOptions?.pages?.signIn || '/login');
+  } else if (!isTeacher(session.user.id)) {
+    redirect('/not-authorized');
   }
 
   return (

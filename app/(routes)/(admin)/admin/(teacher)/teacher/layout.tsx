@@ -4,7 +4,8 @@ import { DashboardNav } from '@/app/components/layout/nav';
 import { NavBar } from '@/app/components/layout/navbar';
 import { SiteFooter } from '@/app/components/layout/site-footer';
 import { teacherConfig } from '@/app/config/teacher';
-import { getCurrentUser } from '@/app/lib/session';
+import { authOptions } from '@/app/lib/auth';
+import { getSession } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 
 interface TeacherLayoutProps {
@@ -12,12 +13,14 @@ interface TeacherLayoutProps {
 }
 
 export default async function TeacherLayout({ children }: TeacherLayoutProps) {
-  const user = await getCurrentUser();
-  const userId = user?.id;
-
-  if (!isTeacher(userId)) {
-    return redirect('/not-authorized');
+  const session = await getSession();
+  if (!session) {
+    redirect(authOptions?.pages?.signIn || '/login');
+  } else if (!isTeacher(session.user.id)) {
+    redirect('/not-authorized');
   }
+
+  const user = session.user;
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { db } from '@/app/lib/db';
-import { getCurrentUser } from '@/app/lib/session';
+import { getSession } from '@/app/lib/session';
 import { isTeacher } from '@/app/lib/teacher';
 
 export async function DELETE(
@@ -9,10 +9,8 @@ export async function DELETE(
   { params }: { params: { courseId: string; attachmentId: string } },
 ) {
   try {
-    const user = await getCurrentUser();
-    const userId = user?.id;
-
-    if (!isTeacher(userId)) {
+    const session = await getSession();
+    if (!isTeacher(session?.user?.id)) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
