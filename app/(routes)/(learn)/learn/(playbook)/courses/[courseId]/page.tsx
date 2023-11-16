@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { COURSE_DEFAULT_PRICE } from '@/constants';
 
@@ -8,11 +9,12 @@ import { Banner } from '@/app/components/banner';
 import { CourseEnrollButton } from '@/app/components/learn/courses/course-enroll-button';
 import { StartCourseButton } from '@/app/components/learn/courses/start-course-button';
 import { Preview } from '@/app/components/preview';
-import { SubscriptionButton } from '@/app/components/subscription-button';
+import { buttonVariants } from '@/app/components/ui/button';
 import { Separator } from '@/app/components/ui/separator';
 import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { db } from '@/app/lib/db';
 import { getCurrentUser } from '@/app/lib/session';
+import { cn } from '@/app/lib/utils';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const user = await getCurrentUser();
@@ -86,7 +88,15 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
                   courseId={params.courseId}
                   price={course.price!}
                 />
-                <SubscriptionButton isPaidMember={isPaidMember} size="sm" />
+                <Link
+                  href="/pricing"
+                  className={cn(
+                    buttonVariants({ variant: 'custom', size: 'sm' }),
+                    'w-full lg:w-auto',
+                  )}
+                >
+                  Upgrade
+                </Link>
               </div>
             </div>
             <Separator />
