@@ -6,7 +6,7 @@ import { Icons } from '@/app/components/shared/icons';
 import { insightsConfig } from '@/app/config/insights';
 import { getCurrentUser } from '@/app/lib/session';
 
-interface DocsLayoutProps {
+interface InsightsLayoutProps {
   children: React.ReactNode;
 }
 
@@ -21,7 +21,9 @@ const rightHeader = () => (
   </div>
 );
 
-export default async function DocsLayout({ children }: DocsLayoutProps) {
+export default async function InsightsLayout({
+  children,
+}: InsightsLayoutProps) {
   const user = await getCurrentUser();
 
   return (

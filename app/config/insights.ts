@@ -38,7 +38,7 @@ export const insightsConfig: InsightsConfig = {
       items: [
         {
           title: 'Introduction',
-          href: '/docs',
+          href: '/insights',
         },
       ],
     },
@@ -47,24 +47,24 @@ export const insightsConfig: InsightsConfig = {
       items: [
         {
           title: 'Intro to AI',
-          href: '/docs/documentation',
+          href: '/insights/documentation',
         },
         {
           title: 'ChatGPT vs. Bard',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Protecting IP',
-          href: '/docs/documentation/components',
+          href: '/insights/documentation/components',
         },
         {
           title: 'Awesome prompts',
-          href: '/docs/documentation/code-blocks',
+          href: '/insights/documentation/code-blocks',
         },
         {
           title: 'Cool hacks',
-          href: '/docs/documentation/style-guide',
+          href: '/insights/documentation/style-guide',
         },
       ],
     },
@@ -73,17 +73,17 @@ export const insightsConfig: InsightsConfig = {
       items: [
         {
           title: 'Starting up',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Software we use',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Hiring',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
       ],
@@ -93,32 +93,32 @@ export const insightsConfig: InsightsConfig = {
       items: [
         {
           title: 'Introduction',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Layouts',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Server Components',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Authentication',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Database with Prisma',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'API Routes',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
       ],
@@ -128,32 +128,32 @@ export const insightsConfig: InsightsConfig = {
       items: [
         {
           title: 'Introduction',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Layouts',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Server Components',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Authentication',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Database with Prisma',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'API Routes',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
       ],
@@ -163,32 +163,32 @@ export const insightsConfig: InsightsConfig = {
       items: [
         {
           title: 'Introduction',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Layouts',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Server Components',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Authentication',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'Database with Prisma',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
         {
           title: 'API Routes',
-          href: '/docs/in-progress',
+          href: '/insights/in-progress',
           disabled: true,
         },
       ],

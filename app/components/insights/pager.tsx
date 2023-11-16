@@ -2,7 +2,7 @@
 // @ts-nocheck
 
 import Link from 'next/link';
-import { Doc } from 'contentlayer/generated';
+import { Insight } from 'contentlayer/generated';
 
 import { Icons } from '@/app/components/shared/icons';
 import { buttonVariants } from '@/app/components/ui/button';
@@ -10,11 +10,11 @@ import { insightsConfig } from '@/app/config/insights';
 import { cn } from '@/app/lib/utils';
 
 interface InsightsPagerProps {
-  doc: Doc;
+  insight: Insight;
 }
 
-export function InsightsPager({ doc }: InsightsPagerProps) {
-  const pager = getPagerForInsight(doc);
+export function InsightsPager({ insight }: InsightsPagerProps) {
+  const pager = getPagerForInsight(insight);
 
   if (!pager) {
     return null;
@@ -44,10 +44,10 @@ export function InsightsPager({ doc }: InsightsPagerProps) {
   );
 }
 
-export function getPagerForInsight(doc: Doc) {
+export function getPagerForInsight(insight: Insight) {
   const flattenedLinks = [null, ...flatten(insightsConfig.sidebarNav), null];
   const activeIndex = flattenedLinks.findIndex(
-    (link) => doc.slug === link?.href,
+    (link) => insight.slug === link?.href,
   );
   const prev = activeIndex !== 0 ? flattenedLinks[activeIndex - 1] : null;
   const next =
