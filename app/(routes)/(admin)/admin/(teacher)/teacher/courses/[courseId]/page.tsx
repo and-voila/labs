@@ -13,10 +13,7 @@ import { ImageForm } from '@/app/components/learn/teacher/courses/image-form';
 import { PreviewForm } from '@/app/components/learn/teacher/courses/preview-form';
 import { PriceForm } from '@/app/components/learn/teacher/courses/price-form';
 import { TitleForm } from '@/app/components/learn/teacher/courses/title-form';
-import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
-import { getSession } from '@/app/lib/session';
-import { isTeacher } from '@/app/lib/teacher';
 
 export const metadata: Metadata = {
   title: 'Create Playbook',
@@ -25,13 +22,6 @@ export const metadata: Metadata = {
 };
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
-  const session = await getSession();
-  if (!session) {
-    redirect(authOptions?.pages?.signIn || '/login');
-  } else if (!isTeacher(session.user.id)) {
-    redirect('/not-authorized');
-  }
-
   const course = await db.course.findUnique({
     where: {
       id: params.courseId,

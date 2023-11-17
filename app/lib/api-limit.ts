@@ -5,27 +5,26 @@ import { getSession } from '@/app/lib/session';
 
 export const increaseApiLimit = async () => {
   const session = await getSession();
-  const userId = session?.user?.id;
 
-  if (!userId) {
+  if (!session?.user?.id) {
     return;
   }
 
   const userApiLimit = await db.userApiLimit.findUnique({
     where: {
-      userId,
+      userId: session.user.id,
     },
   });
 
   if (userApiLimit) {
     await db.userApiLimit.update({
-      where: { userId: userId },
+      where: { userId: session.user.id },
       data: { count: userApiLimit.count + 1 },
     });
   } else {
     await db.userApiLimit.create({
       data: {
-        userId: userId,
+        userId: session.user.id,
         count: 1,
       },
     });
@@ -34,15 +33,14 @@ export const increaseApiLimit = async () => {
 
 export const checkApiLimit = async () => {
   const session = await getSession();
-  const userId = session?.user?.id;
 
-  if (!userId) {
+  if (!session?.user?.id) {
     return false;
   }
 
   const userApiLimit = await db.userApiLimit.findUnique({
     where: {
-      userId: userId,
+      userId: session.user.id,
     },
   });
 
@@ -55,15 +53,14 @@ export const checkApiLimit = async () => {
 
 export const getApiLimitCount = async () => {
   const session = await getSession();
-  const userId = session?.user?.id;
 
-  if (!userId) {
+  if (!session?.user?.id) {
     return 0;
   }
 
   const userApiLimit = await db.userApiLimit.findUnique({
     where: {
-      userId,
+      userId: session.user.id,
     },
   });
 

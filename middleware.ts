@@ -54,7 +54,6 @@ export default withAuth(
 
 export const config = {
   matcher: [
-    // Exclude specified paths from the middleware
-    '/((?!api/|_next/|_static/|_vercel|pricing|\\w+\\.\\w+|$).*)',
+    '/((?!api/|_next/|_static/|_vercel|pricing|not-authorized|blog(?:/.*)?$|\\w+\\.\\w+|$).*)',
   ],
 };
