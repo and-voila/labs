@@ -23,6 +23,17 @@ export async function POST(req: Request) {
     return new NextResponse(`Webhook Error: ${error.message}`, { status: 400 });
   }
 
+  if (
+    !['checkout.session.completed', 'invoice.payment_succeeded'].includes(
+      event.type,
+    )
+  ) {
+    // Added to silence Stripe staging webhook events that aren't subscribed to
+    // eslint-disable-next-line no-console
+    console.log(`Received unhandled event type: ${event.type}`);
+    return new NextResponse(null, { status: 200 });
+  }
+
   const session = event.data.object as Stripe.Checkout.Session;
 
   if (!session?.metadata?.userId) {

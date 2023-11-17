@@ -5,12 +5,13 @@ export const pricingData: SubscriptionPlan[] = [
   {
     title: 'Good',
     description:
-      'The Good plan is free for everyone. It offers a primer to our premium Discord community, selected classes, and 30 AI-assist tokens to get you started.',
+      'The Good plan is free for everyone. It includes essential resources and tools for a good start in digital marketing.',
     benefits: [
-      'Community access with select AMA sessions',
-      'Entry to the standard playbook library',
-      'Weekly marketing digests to keep you updated',
-      '30 AI-assist tokens per month to boost your marketing',
+      'Access key Discord channels',
+      'Two monthly expert AMAs',
+      'Large Playbooks library',
+      'Insights, Briefs, and Guides',
+      '30 AI-assist tokens or BYOK',
     ],
     limitations: [],
     prices: {
@@ -25,34 +26,45 @@ export const pricingData: SubscriptionPlan[] = [
   {
     title: 'Better',
     description:
-      'The Better plan is a value-packed upgrade. Gain full access to our Discord community, direct mod support, all classes, and 3,000 AI-assist tokens for a deeper dive.',
+      'The Better plan is a value-packed upgrade. Elevate your marketing with full community access, enhanced tools, 3,000 monthly AI-assist tokens, and expert one-on-one support.',
     benefits: [
-      'Unrestricted community access and support from mods',
-      'Unlimited access to all classes and premium content',
-      '3,000 AI-assist tokens for expansive campaign reach',
-      'Advanced analytics for deeper insights',
-      'Priority customer support for quicker resolutions',
+      'Full access to Discord',
+      'Personal AMAs with our expert mods',
+      'Unlimited community AMAs',
+      'Exclusive monthly events',
+      'Full Playbook library',
+      'All our Insights, Briefs, and Guides',
+      'Special discounts on leading marketing tools',
+      '3,000 monthly AI-assist tokens',
+      'Flexible token refills or BYOK',
+      'Fast-track support',
     ],
+
     limitations: [],
     prices: {
       monthly: 49,
       yearly: 480,
     },
     stripeIds: {
-      monthly: env.NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PLAN_ID,
-      yearly: env.NEXT_PUBLIC_STRIPE_PRO_YEARLY_PLAN_ID,
+      monthly: env.NEXT_PUBLIC_STRIPE_BETTER_MONTHLY_PRICE_ID,
+      yearly: env.NEXT_PUBLIC_STRIPE_BETTER_YEARLY_PRICE_ID,
     },
   },
   {
     title: 'Best',
     description:
-      'The Best plan is the ultimate package. Unlock all-access to our Discord community, top-tier support, comprehensive classes, and 7,500 AI-assist tokens for maximum impact.',
+      'The Best plan is the ultimate package. You get all-access to our Discord community, top-tier support, advanced learning, and 7,500 monthly AI-assist tokens.',
     benefits: [
-      'Priority access to new features and updates',
-      'Comprehensive playbook access for strategic advantage',
-      '7,500 AI-assist tokens to perfect your campaigns',
-      'Real-time analytics for instant marketing adaptability',
-      '24/7 dedicated support and personalized onboarding',
+      'Unlimited access to Discord',
+      'Private AMAs with industry experts',
+      'All-access pass to community AMAs and VIP events',
+      'Front-row to monthly events',
+      'Access the entire Playbook library',
+      'Insights, Briefs, Guides, and more',
+      'Killer discounts on top-tier marketing tools',
+      '7,500 monthly AI-assist tokens',
+      'Add more tokens as needed or BYOK',
+      '24/7 personalized support and dedicated assistance',
     ],
     limitations: [],
     prices: {
@@ -60,8 +72,8 @@ export const pricingData: SubscriptionPlan[] = [
       yearly: 950,
     },
     stripeIds: {
-      monthly: env.NEXT_PUBLIC_STRIPE_BUSINESS_MONTHLY_PLAN_ID,
-      yearly: env.NEXT_PUBLIC_STRIPE_BUSINESS_YEARLY_PLAN_ID,
+      monthly: env.NEXT_PUBLIC_STRIPE_BEST_MONTHLY_PRICE_ID,
+      yearly: env.NEXT_PUBLIC_STRIPE_BEST_YEARLY_PRICE_ID,
     },
   },
 ];
