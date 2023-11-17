@@ -9,6 +9,8 @@ import { stripe } from '@/app/lib/stripe';
 import { getUserSubscriptionPlan } from '@/app/lib/subscription';
 import { absoluteUrl } from '@/app/lib/utils';
 
+import { db } from '../db';
+
 export type responseAction = {
   status: 'success' | 'error';
   stripeUrl?: string;
@@ -26,6 +28,28 @@ export async function generateUserStripe(
 
     if (!session?.user || !session?.user.email) {
       throw new Error('Unauthorized');
+    }
+
+    let stripeCustomer = await db.stripeCustomer.findUnique({
+      where: {
+        userId: session.user.id,
+      },
+    });
+
+    if (!stripeCustomer) {
+      const customer = await stripe.customers.create({
+        email: session.user.email,
+        metadata: {
+          userId: session.user.id,
+        },
+      });
+
+      stripeCustomer = await db.stripeCustomer.create({
+        data: {
+          userId: session.user.id,
+          stripeCustomerId: customer.id,
+        },
+      });
     }
 
     const subscriptionPlan = await getUserSubscriptionPlan(session.user.id);

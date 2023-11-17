@@ -73,6 +73,9 @@ export async function generateCourseCheckout(
     if (!stripeCustomer) {
       const customer = await stripe.customers.create({
         email: session.user.email,
+        metadata: {
+          userId: session.user.id,
+        },
       });
 
       stripeCustomer = await db.stripeCustomer.create({
