@@ -8,16 +8,36 @@ import { Client } from 'postmark';
 import { env } from '@/env.mjs';
 import { siteConfig } from '@/app/config/site';
 import { db } from '@/app/lib/db';
+import { getSession } from '@/app/lib/session';
 
 const postmarkClient = new Client(env.POSTMARK_API_TOKEN);
+
+const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   session: {
     strategy: 'jwt',
   },
+  cookies: {
+    sessionToken: {
+      name: `${VERCEL_DEPLOYMENT ? '__Secure-' : ''}next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        // When working on localhost, the cookie domain must be omitted entirely (https://stackoverflow.com/a/1188145)
+        domain: VERCEL_DEPLOYMENT
+          ? `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
+          : undefined,
+        secure: VERCEL_DEPLOYMENT,
+      },
+    },
+  },
   pages: {
     signIn: '/login',
+    verifyRequest: '/login',
+    error: '/login',
   },
   providers: [
     DiscordProvider({
@@ -72,7 +92,7 @@ export const authOptions: NextAuthOptions = {
           },
           Headers: [
             {
-              // Set this to prevent Gmail from threading emails.
+              // Force new gmail conversations, not threads.
               // See https://stackoverflow.com/questions/23434110/force-emails-not-to-be-grouped-into-conversations/25435722.
               Name: 'X-Entity-Ref-ID',
               Value: new Date().getTime() + '',
@@ -94,7 +114,6 @@ export const authOptions: NextAuthOptions = {
         session.user.email = token.email;
         session.user.image = token.picture;
       }
-
       return session;
     },
     async jwt({ token, user }) {
@@ -121,3 +140,62 @@ export const authOptions: NextAuthOptions = {
   },
   // debug: process.env.NODE_ENV !== "production"
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function withSiteAuth(action: any) {
+  return async (
+    formData: FormData | null,
+    siteId: string,
+    key: string | null,
+  ) => {
+    const session = await getSession();
+    if (!session) {
+      return {
+        error: 'Not authenticated',
+      };
+    }
+    const site = await db.site.findUnique({
+      where: {
+        id: siteId,
+      },
+    });
+    if (!site || site.userId !== session.user.id) {
+      return {
+        error: 'Not authorized',
+      };
+    }
+
+    return action(formData, site, key);
+  };
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function withPostAuth(action: any) {
+  return async (
+    formData: FormData | null,
+    postId: string,
+    key: string | null,
+  ) => {
+    const session = await getSession();
+    if (!session?.user.id) {
+      return {
+        error: 'Not authenticated',
+      };
+    }
+    const post = await db.post.findUnique({
+      where: {
+        id: postId,
+      },
+      include: {
+        site: true,
+      },
+    });
+    if (!post || post.userId !== session.user.id) {
+      return {
+        error: 'Post not found',
+      };
+    }
+
+    return action(formData, post, key);
+  };
+}
