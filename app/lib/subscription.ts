@@ -59,8 +59,8 @@ export async function getUserSubscriptionPlan(
     ? userPlan?.stripeIds.monthly === userSubscription.stripePriceId
       ? 'month'
       : userPlan?.stripeIds.yearly === userSubscription.stripePriceId
-      ? 'year'
-      : null
+        ? 'year'
+        : null
     : null;
 
   let isCanceled = false;
