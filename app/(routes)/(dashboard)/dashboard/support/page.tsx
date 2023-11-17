@@ -1,7 +1,6 @@
 import { SVGProps } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 import { DashboardHeader } from '@/app/components/dashboard/header';
 import { DashboardShell } from '@/app/components/dashboard/shell';
@@ -15,8 +14,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/app/components/ui/card';
-import { authOptions } from '@/app/lib/auth';
-import { getSession } from '@/app/lib/session';
 import { cn } from '@/app/lib/utils';
 
 interface SupportItemProps {
@@ -59,11 +56,6 @@ const supportItems: SupportItemProps[] = [
 ];
 
 export default async function SupportPage() {
-  const session = await getSession();
-  if (!session) {
-    redirect(authOptions?.pages?.signIn || '/login');
-  }
-
   return (
     <DashboardShell>
       <DashboardHeader
