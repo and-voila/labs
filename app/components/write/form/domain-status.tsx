@@ -2,8 +2,8 @@
 
 import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 
-import LoadingSpinner from './loading-spinner';
-import { useDomainStatus } from './use-domain-status';
+import LoadingSpinner from '@/app/components/write/form/loading-spinner';
+import { useDomainStatus } from '@/app/components/write/form/use-domain-status';
 
 export default function DomainStatus({ domain }: { domain: string }) {
   const { status, loading } = useDomainStatus({ domain });

@@ -19,7 +19,6 @@ export const playbooksConfig: PlaybooksConfig = {
     {
       title: 'Tools',
       href: '/tools',
-      disabled: true,
     },
     {
       title: 'Insights',

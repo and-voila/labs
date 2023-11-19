@@ -16,7 +16,7 @@ export default function PostCard({
   return (
     <div className="relative rounded-lg border border-stone-200 pb-10 shadow-md transition-all hover:shadow-xl dark:border-stone-700 dark:hover:border-white">
       <Link
-        href={`/post/${data.id}`}
+        href={`/tools/write/post/${data.id}`}
         className="flex flex-col overflow-hidden rounded-lg"
       >
         <div className="relative h-44 overflow-hidden">
@@ -49,7 +49,7 @@ export default function PostCard({
           href={
             process.env.NEXT_PUBLIC_VERCEL_ENV
               ? `https://${url}`
-              : `http://${data.site?.subdomain}.localhost:3002/${data.slug}`
+              : `http://${data.site?.subdomain}.localhost:3001/${data.slug}`
           }
           target="_blank"
           rel="noreferrer"

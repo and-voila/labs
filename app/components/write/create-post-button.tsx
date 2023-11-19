@@ -20,7 +20,7 @@ export default function CreatePostButton() {
           const post = await createPost(null, id, null);
           va.track('Created Post');
           router.refresh();
-          router.push(`/post/${post.id}`);
+          router.push(`/tools/write/post/${post.id}`);
         })
       }
       className={cn(

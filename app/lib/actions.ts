@@ -248,11 +248,6 @@ export const createPost = withSiteAuth(async (_: FormData, site: Site) => {
     data: {
       siteId: site.id,
       userId: session.user.id,
-      // Additional required fields need to be included here
-      // Placeholder values added for title, description, and content
-      title: 'Default Title',
-      description: 'Default Description',
-      content: 'Default Content',
     },
   });
 

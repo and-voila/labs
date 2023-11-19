@@ -105,6 +105,7 @@ export function replaceExamples(prisma: PrismaClient) {
     });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function getExamples(node: any, prisma: PrismaClient) {
   const names = node?.attributes[0].value.split(',');
 
