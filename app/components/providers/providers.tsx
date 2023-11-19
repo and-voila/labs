@@ -7,11 +7,12 @@ import { Provider as BalancerProvider } from 'react-wrap-balancer';
 import { ConfettiProvider } from '@/app/components/providers/confetti-provider';
 import { SessionInfo } from '@/app/components/providers/session-info';
 import { Toaster } from '@/app/components/ui/toaster';
+import { ModalProvider } from '@/app/components/write/modal/provider';
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
     <NextThemesProvider attribute="class" defaultTheme="dark" enableSystem>
-      {children}
+      <ModalProvider>{children}</ModalProvider>
 
       <ConfettiProvider />
       <Toaster />
