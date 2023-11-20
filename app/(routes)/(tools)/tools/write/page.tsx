@@ -20,11 +20,9 @@ export default function Overview() {
         </Suspense>
       </div>
 
-      <div className="flex flex-col space-y-6">
-        <div className="flex items-center justify-between">
-          <h1 className="font-cal text-3xl font-bold dark:text-white">
-            Top Sites
-          </h1>
+      <div className="my-8 flex flex-col space-y-6">
+        <div className="border-b border-brand/70 pb-5">
+          <h3 className="text-2xl font-semibold leading-6">Sites</h3>
         </div>
         <Suspense
           fallback={
@@ -40,9 +38,9 @@ export default function Overview() {
       </div>
 
       <div className="flex flex-col space-y-6">
-        <h1 className="font-cal text-3xl font-bold dark:text-white">
-          Recent Posts
-        </h1>
+        <div className="border-b border-brand/70 pb-5">
+          <h3 className="text-2xl font-semibold leading-6">Recent posts</h3>
+        </div>
         <Suspense
           fallback={
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
