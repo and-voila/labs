@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { notFound, redirect } from 'next/navigation';
 
+import { DashboardHeader } from '@/app/components/dashboard/header';
+import { DashboardShell } from '@/app/components/dashboard/shell';
 import Form from '@/app/components/write/form';
 import DeletePostForm from '@/app/components/write/form/delete-post-form';
 import { updatePostMetadata } from '@/app/lib/actions';
@@ -25,11 +27,12 @@ export default async function PostSettings({
     notFound();
   }
   return (
-    <div className="flex max-w-screen-xl flex-col space-y-12 p-6">
+    <DashboardShell>
       <div className="flex flex-col space-y-6">
-        <h1 className="font-cal text-3xl font-bold dark:text-white">
-          Post Settings
-        </h1>
+        <DashboardHeader
+          heading={`Post Settings for ${data?.title!}`}
+          text={`Personalize the slug, set a featured image, or delete this post. Tailor ${data?.title!} to best suit your audience and SEO needs.`}
+        />
         <Form
           title="Post Slug"
           description="The slug is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."
@@ -57,6 +60,6 @@ export default async function PostSettings({
 
         <DeletePostForm postName={data?.title!} />
       </div>
-    </div>
+    </DashboardShell>
   );
 }

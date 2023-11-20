@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 import { notFound, redirect } from 'next/navigation';
 
+import { DashboardHeader } from '@/app/components/dashboard/header';
+import { DashboardShell } from '@/app/components/dashboard/shell';
 import { db } from '@/app/lib/db';
 import { getSession } from '@/app/lib/session';
 
@@ -30,11 +32,13 @@ export default async function SiteAnalyticsLayout({
   const url = `${data.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`;
 
   return (
-    <>
-      <div className="flex flex-col items-center space-x-4 space-y-2 sm:flex-row sm:space-y-0">
-        <h1 className="font-cal text-xl font-bold dark:text-white sm:text-3xl">
-          Settings for {data.name}
-        </h1>
+    <DashboardShell>
+      <div className="flex flex-col items-center justify-between space-x-4 space-y-2 sm:flex-row sm:space-y-0 md:items-start">
+        <DashboardHeader
+          heading={`Settings for ${data.name}`}
+          text={`Customize your site's domain, meta, and visuals. Tailor ${data.name} to your unique style and audience needs.`}
+        />
+
         <a
           href={
             process.env.NEXT_PUBLIC_VERCEL_ENV
@@ -50,6 +54,6 @@ export default async function SiteAnalyticsLayout({
       </div>
       <SiteSettingsNav />
       {children}
-    </>
+    </DashboardShell>
   );
 }
