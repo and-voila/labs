@@ -335,3 +335,27 @@ export const SessionInfoSkeleton = () => {
     </div>
   );
 };
+
+// Tools Skeletons
+
+export const ToolsDashboardCardSkeleton = () => {
+  return (
+    <>
+      <div className="flex flex-row gap-2">
+        <Skeleton className="h-12 w-12 rounded-sm" />
+        <div className="mt-2 flex flex-col gap-1">
+          <Skeleton className="h-5 w-36 rounded-md" />
+        </div>
+      </div>
+      <div className="mt-8 flex flex-col gap-2">
+        <Skeleton className="h-3 w-96 rounded-md" />
+        <Skeleton className="h-3 w-96 rounded-md" />
+        <Skeleton className="h-3 w-96 rounded-md" />
+        <div className="h-3 w-52 rounded-md" />
+      </div>
+      <div className="flex h-16 flex-row">
+        <Skeleton className="mt-8 h-8 w-full rounded-md" />
+      </div>
+    </>
+  );
+};
