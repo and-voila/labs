@@ -1,19 +1,23 @@
 import { Suspense } from 'react';
 
+import { DashboardHeader } from '@/app/components/dashboard/header';
+import { DashboardShell } from '@/app/components/dashboard/shell';
 import OverviewSitesCTA from '@/app/components/write/overview-sites-cta';
-import OverviewStats from '@/app/components/write/overview-stats';
 import PlaceholderCard from '@/app/components/write/placeholder-card';
 import Posts from '@/app/components/write/posts';
 import Sites from '@/app/components/write/sites';
 
 export default function Overview() {
   return (
-    <div className="flex max-w-screen-xl flex-col space-y-12 p-8">
-      <div className="flex flex-col space-y-6">
-        <h1 className="font-cal text-3xl font-bold dark:text-white">
-          Overview
-        </h1>
-        <OverviewStats />
+    <DashboardShell>
+      <div className="flex flex-col items-center justify-between space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 md:items-start">
+        <DashboardHeader
+          heading="Write"
+          text="Launch your blog in under 3 minutes with a custom domain. Overcome writer's block with our AI-assisted editor."
+        />
+        <Suspense fallback={null}>
+          <OverviewSitesCTA />
+        </Suspense>
       </div>
 
       <div className="flex flex-col space-y-6">
@@ -21,9 +25,6 @@ export default function Overview() {
           <h1 className="font-cal text-3xl font-bold dark:text-white">
             Top Sites
           </h1>
-          <Suspense fallback={null}>
-            <OverviewSitesCTA />
-          </Suspense>
         </div>
         <Suspense
           fallback={
@@ -54,6 +55,6 @@ export default function Overview() {
           <Posts limit={8} />
         </Suspense>
       </div>
-    </div>
+    </DashboardShell>
   );
 }

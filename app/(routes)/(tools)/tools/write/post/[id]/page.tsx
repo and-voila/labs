@@ -1,5 +1,6 @@
 import { notFound, redirect } from 'next/navigation';
 
+import { DashboardShell } from '@/app/components/dashboard/shell';
 import Editor from '@/app/components/write/editor';
 import { db } from '@/app/lib/db';
 import { getSession } from '@/app/lib/session';
@@ -25,5 +26,9 @@ export default async function PostPage({ params }: { params: { id: string } }) {
     notFound();
   }
 
-  return <Editor post={data} />;
+  return (
+    <DashboardShell>
+      <Editor post={data} />
+    </DashboardShell>
+  );
 }
