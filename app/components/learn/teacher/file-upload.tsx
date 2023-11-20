@@ -1,7 +1,7 @@
 'use client';
 
-import { ourFileRouter } from '@/app/api/uploadthing/core';
 import { toast } from '@/app/components/ui/use-toast';
+import { ourFileRouter } from '@/app/api/uploadthing/core';
 import { UploadDropzone } from '@/app/lib/uploadthing';
 
 interface FileUploadProps {
