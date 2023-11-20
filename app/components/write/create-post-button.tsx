@@ -29,7 +29,7 @@ export default function CreatePostButton() {
       })}
       disabled={isPending}
     >
-      {isPending ? <LoadingDots color="#808080" /> : <p>New Post</p>}
+      {isPending ? <LoadingDots color="#808080" /> : <p>New post</p>}
     </button>
   );
 }
