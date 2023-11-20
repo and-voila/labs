@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react';
 import { useFormStatus } from 'react-dom';
 import { toast } from 'sonner';
 
+import { buttonVariants } from '@/app/components/ui/button';
 import DomainConfiguration from '@/app/components/write/form/domain-configuration';
 import DomainStatus from '@/app/components/write/form/domain-status';
 import Uploader from '@/app/components/write/form/uploader';
@@ -62,24 +63,22 @@ export default function Form({
           }
         });
       }}
-      className="rounded-lg border border-stone-200 bg-white dark:border-stone-700 dark:bg-black"
+      className="max-w-3xl rounded-lg border bg-card"
     >
       <div className="relative flex flex-col space-y-4 p-5 sm:p-10">
-        <h2 className="font-cal text-xl dark:text-white">{title}</h2>
-        <p className="text-sm text-stone-500 dark:text-stone-400">
-          {description}
-        </p>
+        <h2 className="text-xl font-semibold">{title}</h2>
+        <p className="text-sm text-muted-foreground">{description}</p>
         {inputAttrs.name === 'image' || inputAttrs.name === 'logo' ? (
           <Uploader
             defaultValue={inputAttrs.defaultValue}
             name={inputAttrs.name}
           />
         ) : inputAttrs.name === 'font' ? (
-          <div className="flex max-w-sm items-center overflow-hidden rounded-lg border border-stone-600">
+          <div className="flex max-w-sm items-center overflow-hidden rounded-lg border">
             <select
               name="font"
               defaultValue={inputAttrs.defaultValue}
-              className="w-full rounded-none border-none bg-white px-4 py-2 text-sm font-medium text-stone-700 focus:outline-none focus:ring-black dark:bg-black dark:text-stone-200 dark:focus:ring-white"
+              className="w-full rounded-none border-none bg-background px-4 py-2 text-sm font-medium text-foreground focus:outline-none focus:ring-ring"
             >
               <option value="font-cal">Cal Sans</option>
               <option value="font-lora">Lora</option>
@@ -91,9 +90,9 @@ export default function Form({
             <input
               {...inputAttrs}
               required
-              className="z-10 flex-1 rounded-l-md border border-stone-300 text-sm text-stone-900 placeholder-stone-300 focus:border-stone-500 focus:outline-none focus:ring-stone-500 dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700"
+              className="z-10 flex-1 rounded-l-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-ring"
             />
-            <div className="flex items-center rounded-r-md border border-l-0 border-stone-300 bg-stone-100 px-3 text-sm dark:border-stone-600 dark:bg-stone-800 dark:text-stone-400">
+            <div className="flex items-center rounded-r-lg border border-l-0 bg-brand/20 px-3 text-sm">
               {process.env.NEXT_PUBLIC_ROOT_DOMAIN}
             </div>
           </div>
@@ -101,7 +100,7 @@ export default function Form({
           <div className="relative flex w-full max-w-md">
             <input
               {...inputAttrs}
-              className="z-10 flex-1 rounded-md border border-stone-300 text-sm text-stone-900 placeholder-stone-300 focus:border-stone-500 focus:outline-none focus:ring-stone-500 dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700"
+              className="z-10 flex-1 rounded-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
             />
             {inputAttrs.defaultValue && (
               <div className="absolute right-3 z-10 flex h-full items-center">
@@ -114,21 +113,21 @@ export default function Form({
             {...inputAttrs}
             rows={3}
             required
-            className="w-full max-w-xl rounded-md border border-stone-300 text-sm text-stone-900 placeholder-stone-300 focus:border-stone-500 focus:outline-none focus:ring-stone-500 dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700"
+            className="w-full max-w-xl rounded-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
           />
         ) : (
           <input
             {...inputAttrs}
             required
-            className="w-full max-w-md rounded-md border border-stone-300 text-sm text-stone-900 placeholder-stone-300 focus:border-stone-500 focus:outline-none focus:ring-stone-500 dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700"
+            className="w-full max-w-md rounded-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
           />
         )}
       </div>
       {inputAttrs.name === 'customDomain' && inputAttrs.defaultValue && (
         <DomainConfiguration domain={inputAttrs.defaultValue} />
       )}
-      <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-stone-200 bg-stone-50 p-3 dark:border-stone-700 dark:bg-stone-800 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
-        <p className="text-sm text-stone-500 dark:text-stone-400">{helpText}</p>
+      <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border border-t bg-primary-foreground p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
+        <p className="text-sm text-muted-foreground">{helpText}</p>
         <FormButton />
       </div>
     </form>
@@ -139,15 +138,12 @@ function FormButton() {
   const { pending } = useFormStatus();
   return (
     <button
-      className={cn(
-        'flex h-8 w-32 items-center justify-center space-x-2 rounded-md border text-sm transition-all focus:outline-none sm:h-10',
-        pending
-          ? 'cursor-not-allowed border-stone-200 bg-stone-100 text-stone-400 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300'
-          : 'border-black bg-black text-white hover:bg-white hover:text-black dark:border-stone-700 dark:hover:border-stone-200 dark:hover:bg-black dark:hover:text-white dark:active:bg-stone-800',
-      )}
+      className={cn(buttonVariants({ variant: 'custom', size: 'sm' }), {
+        'cursor-not-allowed opacity-50': pending,
+      })}
       disabled={pending}
     >
-      {pending ? <LoadingDots color="#808080" /> : <p>Save Changes</p>}
+      {pending ? <LoadingDots color="#808080" /> : <p>Save</p>}
     </button>
   );
 }

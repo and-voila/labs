@@ -14,7 +14,7 @@ export default function CreateSiteButton({
 
   return (
     <Button onClick={() => modal?.show(children)} variant="custom" size="sm">
-      Create site
+      New site
     </Button>
   );
 }

@@ -7,11 +7,10 @@ import { useFormStatus } from 'react-dom';
 import { toast } from 'sonner';
 
 import { env } from '@/env.mjs';
+import { Icons } from '@/app/components/shared/icons';
 import { useModal } from '@/app/components/write/modal/provider';
 import { createSite } from '@/app/lib/actions';
 import { cn } from '@/app/lib/utils';
-
-import { Icons } from '../../shared/icons';
 
 export default function CreateSiteModal() {
   const router = useRouter();
@@ -119,7 +118,7 @@ export default function CreateSiteModal() {
           />
         </div>
       </div>
-      <div className="flex items-center justify-end rounded-b-lg border border-t bg-muted p-3 md:px-10">
+      <div className="flex items-center justify-end rounded-b-lg border border-t bg-primary-foreground p-3 md:px-10">
         <CreateSiteFormButton />
       </div>
     </form>
