@@ -19,7 +19,6 @@ export const toolsConfig: ToolsConfig = {
     {
       title: 'Tools',
       href: '/tools',
-      disabled: true,
     },
     {
       title: 'Insights',
@@ -35,8 +34,8 @@ export const toolsConfig: ToolsConfig = {
   sidebarNav: [
     {
       title: 'Home',
-      href: '/dashboard',
-      icon: 'home',
+      href: '/tools',
+      icon: 'toolbox',
     },
     {
       title: 'Chat',

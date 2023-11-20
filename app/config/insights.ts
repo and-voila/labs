@@ -19,7 +19,6 @@ export const insightsConfig: InsightsConfig = {
     {
       title: 'Tools',
       href: '/tools',
-      disabled: true,
     },
     {
       title: 'Insights',
