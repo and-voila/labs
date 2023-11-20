@@ -46,7 +46,7 @@ EmptyPlaceholder.Icon = function EmptyPlaceHolderIcon({
   }
 
   return (
-    <div className="flex h-20 w-20 items-center justify-center rounded-full">
+    <div className="flex h-16 w-16 items-center justify-center">
       <Icon className={cn('h-10 w-10 text-brand', className)} {...props} />
     </div>
   );
@@ -60,7 +60,7 @@ EmptyPlaceholder.Title = function EmptyPlaceholderTitle({
   ...props
 }: EmptyPlacholderTitleProps) {
   return (
-    <h2 className={cn('mt-6 text-xl font-semibold', className)} {...props} />
+    <h2 className={cn('mt-2 text-xl font-semibold', className)} {...props} />
   );
 };
 
