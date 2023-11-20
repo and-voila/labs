@@ -35,7 +35,7 @@ export default async function PlaybooksLayout({
           {children}
         </main>
       </div>
-      <SiteFooter className="border-t" />
+      <SiteFooter />
     </div>
   );
 }

@@ -47,7 +47,7 @@ export default async function InsightsLayout({
         <InsightsSidebarNav items={insightsConfig.sidebarNav} />
       </NavBar>
       <div className="container flex-1">{children}</div>
-      <SiteFooter className="border-t" />
+      <SiteFooter />
     </div>
   );
 }
