@@ -34,7 +34,7 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
           {children}
         </main>
       </div>
-      <SiteFooter className="border-t" />
+      <SiteFooter />
     </div>
   );
 }

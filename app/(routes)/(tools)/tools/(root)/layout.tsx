@@ -33,7 +33,7 @@ export default async function ToolsLayout({ children }: ToolsLayoutProps) {
           {children}
         </main>
       </div>
-      <SiteFooter className="border-t" />
+      <SiteFooter />
     </div>
   );
 }

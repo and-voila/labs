@@ -36,7 +36,7 @@ export default async function TeacherLayout({ children }: TeacherLayoutProps) {
           {children}
         </main>
       </div>
-      <SiteFooter className="border-t" />
+      <SiteFooter />
     </div>
   );
 }

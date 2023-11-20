@@ -46,7 +46,7 @@ export default async function PlaybookRootLayout({
         <DashboardNav items={playbooksConfig.sidebarNav} />
       </NavBar>
       <div className="container flex-1">{children}</div>
-      <SiteFooter className="border-t" />
+      <SiteFooter />
     </div>
   );
 }
