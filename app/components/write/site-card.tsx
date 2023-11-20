@@ -4,7 +4,7 @@ import { Site } from '@prisma/client';
 import { BarChart, ExternalLink } from 'lucide-react';
 
 import BlurImage from '@/app/components/write/blur-image';
-import { placeholderBlurhash, random } from '@/app/lib/utils';
+import { placeholderBlurhash } from '@/app/lib/utils';
 
 export default function SiteCard({ data }: { data: Site }) {
   const url = `${data.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`;
@@ -45,6 +45,7 @@ export default function SiteCard({ data }: { data: Site }) {
         >
           {url} ↗
         </a>
+        {/*}
         <Link
           href={`/tools/write/site/${data.id}/analytics`}
           className="flex items-center rounded-md bg-green-100 px-2 py-1 text-sm font-medium text-green-600 transition-colors hover:bg-green-200 dark:bg-green-900 dark:bg-opacity-50 dark:text-green-400 dark:hover:bg-green-800 dark:hover:bg-opacity-50"
@@ -52,6 +53,7 @@ export default function SiteCard({ data }: { data: Site }) {
           <BarChart height={16} />
           <p>{random(10, 40)}%</p>
         </Link>
+        */}
       </div>
     </div>
   );
