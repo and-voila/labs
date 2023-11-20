@@ -19,6 +19,7 @@ export const teacherConfig: TeacherConfig = {
     {
       title: 'Tools',
       href: '/tools',
+      disabled: true,
     },
     {
       title: 'Insights',

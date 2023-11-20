@@ -24,6 +24,7 @@ export const marketingConfig: MarketingConfig = {
     {
       title: 'Tools',
       href: '/tools',
+      disabled: true,
     },
     {
       title: 'Insights',

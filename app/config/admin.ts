@@ -19,6 +19,7 @@ export const adminConfig: AdminConfig = {
     {
       title: 'Tools',
       href: '/tools',
+      disabled: true,
     },
     {
       title: 'Insights',

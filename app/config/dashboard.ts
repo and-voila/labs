@@ -19,6 +19,7 @@ export const dashboardConfig: DashboardConfig = {
     {
       title: 'Tools',
       href: '/tools',
+      disabled: true,
     },
     {
       title: 'Insights',

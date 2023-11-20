@@ -19,6 +19,7 @@ export const toolsConfig: ToolsConfig = {
     {
       title: 'Tools',
       href: '/tools',
+      disabled: true,
     },
     {
       title: 'Insights',
