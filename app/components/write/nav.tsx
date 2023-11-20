@@ -1,26 +1,22 @@
 'use client';
 
-import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import {
-  useParams,
-  usePathname,
-  useSelectedLayoutSegments,
-} from 'next/navigation';
-import {
-  ArrowLeft,
-  BarChart3,
-  Edit3,
-  Globe,
-  LayoutDashboard,
-  Menu,
-  Newspaper,
-  Settings,
-} from 'lucide-react';
+import { useParams, useSelectedLayoutSegments } from 'next/navigation';
 
 import { getSiteFromPostId } from '@/app/lib/actions';
+import { cn } from '@/app/lib/utils';
 
-export default function Nav({ children }: { children?: ReactNode }) {
+import { Icons } from '../shared/icons';
+
+type Tab = {
+  name: string;
+  href: string;
+  icon: keyof typeof Icons;
+  isActive?: boolean;
+};
+
+export default function Nav() {
   const segments = useSelectedLayoutSegments();
   const { id } = useParams() as { id?: string };
 
@@ -34,31 +30,31 @@ export default function Nav({ children }: { children?: ReactNode }) {
     }
   }, [segments, id]);
 
-  const tabs = useMemo(() => {
+  const tabs = useMemo<Tab[]>(() => {
     if (segments[0] === 'site' && id) {
       return [
         {
           name: 'Back to All Sites',
           href: '/tools/write/sites',
-          icon: <ArrowLeft width={18} />,
+          icon: 'arrowLeft',
         },
         {
           name: 'Posts',
           href: `/tools/write/site/${id}`,
           isActive: segments.length === 2,
-          icon: <Newspaper width={18} />,
+          icon: 'file',
         },
         {
           name: 'Analytics',
           href: `/tools/write/site/${id}/analytics`,
           isActive: segments.includes('analytics'),
-          icon: <BarChart3 width={18} />,
+          icon: 'barchart',
         },
         {
           name: 'Settings',
           href: `/tools/write/site/${id}/settings`,
           isActive: segments.includes('settings'),
-          icon: <Settings width={18} />,
+          icon: 'settings',
         },
       ];
     } else if (segments[0] === 'post' && id) {
@@ -66,19 +62,19 @@ export default function Nav({ children }: { children?: ReactNode }) {
         {
           name: 'Back to All Posts',
           href: siteId ? `/tools/write/site/${siteId}` : '/tools/write/sites',
-          icon: <ArrowLeft width={18} />,
+          icon: 'arrowLeft',
         },
         {
           name: 'Editor',
           href: `/tools/write/post/${id}`,
           isActive: segments.length === 2,
-          icon: <Edit3 width={18} />,
+          icon: 'pen',
         },
         {
           name: 'Settings',
           href: `/tools/write/post/${id}/settings`,
           isActive: segments.includes('settings'),
-          icon: <Settings width={18} />,
+          icon: 'settings',
         },
       ];
     }
@@ -87,71 +83,43 @@ export default function Nav({ children }: { children?: ReactNode }) {
         name: 'Overview',
         href: '/tools/write/',
         isActive: segments.length === 0,
-        icon: <LayoutDashboard width={18} />,
+        icon: 'home',
       },
       {
         name: 'Sites',
         href: '/tools/write/sites',
         isActive: segments[0] === 'sites',
-        icon: <Globe width={18} />,
+        icon: 'browsers',
       },
       {
         name: 'Settings',
         href: '/tools/write/settings',
         isActive: segments[0] === 'settings',
-        icon: <Settings width={18} />,
+        icon: 'settings',
       },
     ];
   }, [segments, id, siteId]);
 
-  const [showSidebar, setShowSidebar] = useState(false);
-
-  const pathname = usePathname();
-
-  useEffect(() => {
-    // hide sidebar on path change
-    setShowSidebar(false);
-  }, [pathname]);
-
   return (
     <>
-      <button
-        className={`fixed z-20 ${
-          // left align for Editor, right align for other pages
-          segments[0] === 'post' && segments.length === 2 && !showSidebar
-            ? 'left-5 top-5'
-            : 'right-5 top-7'
-        } sm:hidden`}
-        onClick={() => setShowSidebar(!showSidebar)}
-      >
-        <Menu width={20} />
-      </button>
-      <div
-        className={`transform ${
-          showSidebar ? 'w-full translate-x-0' : '-translate-x-full'
-        } fixed z-10 flex h-full flex-col justify-between  p-4 transition-all sm:w-60 sm:translate-x-0`}
-      >
-        <div className="grid gap-2">
-          <div className="grid gap-1">
-            {tabs.map(({ name, href, isActive, icon }) => (
-              <Link
-                key={name}
-                href={href}
-                className={`flex items-center space-x-3 ${
-                  isActive ? 'bg-stone-200 text-black dark:bg-stone-700' : ''
-                } rounded-lg px-2 py-1.5 transition-all duration-150 ease-in-out hover:bg-stone-200 active:bg-stone-300 dark:text-white dark:hover:bg-stone-700 dark:active:bg-stone-800`}
+      <nav className="grid items-start gap-2">
+        {tabs.map(({ name, href, isActive, icon }) => {
+          const Icon = Icons[icon];
+          return (
+            <Link key={name} href={href}>
+              <span
+                className={cn(
+                  'group flex items-center rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/20 hover:text-foreground',
+                  isActive ? 'bg-brand/20 text-foreground' : 'transparent',
+                )}
               >
-                {icon}
-                <span className="text-sm font-medium">{name}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-        <div>
-          <div className="my-2 border-t border-stone-200 dark:border-stone-700" />
-          {children}
-        </div>
-      </div>
+                <Icon className="mr-1 h-4 w-4" />
+                <span>{name}</span>
+              </span>
+            </Link>
+          );
+        })}
+      </nav>
     </>
   );
 }

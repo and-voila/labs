@@ -31,7 +31,7 @@ export function DashboardNav({ items }: DashboardNavProps) {
             )}
             disabled
           >
-            <Icon className="mr-2 h-4 w-4" />
+            <Icon className="mr-1 h-4 w-4" />
             <span>{item.title}</span>
           </button>
         ) : (
@@ -44,7 +44,7 @@ export function DashboardNav({ items }: DashboardNavProps) {
                   : 'transparent',
               )}
             >
-              <Icon className="mr-2 h-4 w-4" />
+              <Icon className="mr-1 h-4 w-4" />
               <span>{item.title}</span>
             </span>
           </Link>
