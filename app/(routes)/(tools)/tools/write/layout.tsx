@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { DashboardNav } from '@/app/components/layout/nav';
 import { NavBar } from '@/app/components/layout/navbar';
 import { SiteFooter } from '@/app/components/layout/site-footer';
-import Nav from '@/app/components/write/nav';
+import WriteNav from '@/app/components/write/write-nav';
 import { toolsConfig } from '@/app/config/tools';
 import { authOptions } from '@/app/lib/auth';
 import { getSession } from '@/app/lib/session';
@@ -28,7 +28,7 @@ export default async function ToolsLayout({ children }: ToolsLayoutProps) {
 
       <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
         <aside className="hidden w-[200px] flex-col md:flex">
-          <Nav />
+          <WriteNav />
         </aside>
         <main className="flex w-full flex-1 flex-col overflow-hidden">
           {children}
