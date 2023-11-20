@@ -9,7 +9,7 @@ import { placeholderBlurhash } from '@/app/lib/utils';
 export default function SiteCard({ data }: { data: Site }) {
   const url = `${data.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`;
   return (
-    <div className="relative rounded-lg border border-stone-200 pb-10 shadow-md transition-all hover:shadow-xl dark:border-stone-700 dark:hover:border-white">
+    <div className="relative rounded-lg border bg-card pb-10 shadow-md transition-all hover:shadow-xl">
       <Link
         href={`/tools/write/site/${data.id}`}
         className="flex flex-col overflow-hidden rounded-lg"
@@ -18,16 +18,14 @@ export default function SiteCard({ data }: { data: Site }) {
           alt={data.name ?? 'Card thumbnail'}
           width={500}
           height={400}
-          className="h-44 object-cover"
+          className="h-44 object-cover grayscale hover:grayscale-0"
           src={data.image ?? '/placeholder.png'}
           placeholder="blur"
           blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
         />
-        <div className="border-t border-stone-200 p-4 dark:border-stone-700">
-          <h3 className="my-0 truncate font-cal text-xl font-bold tracking-wide dark:text-white">
-            {data.name}
-          </h3>
-          <p className="mt-2 line-clamp-1 text-sm font-normal leading-snug text-stone-500 dark:text-stone-400">
+        <div className="border-t p-4">
+          <h3 className="my-0 truncate text-lg font-semibold">{data.name}</h3>
+          <p className="mt-2 line-clamp-1 text-sm leading-snug text-muted-foreground">
             {data.description}
           </p>
         </div>
@@ -41,19 +39,10 @@ export default function SiteCard({ data }: { data: Site }) {
           }
           target="_blank"
           rel="noreferrer"
-          className="truncate rounded-md bg-stone-100 px-2 py-1 text-sm font-medium text-stone-600 transition-colors hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-400 dark:hover:bg-stone-700"
+          className="truncate rounded-md bg-brand/20 px-2 py-1 text-xs text-brand transition-colors hover:opacity-70"
         >
           {url} ↗
         </a>
-        {/*}
-        <Link
-          href={`/tools/write/site/${data.id}/analytics`}
-          className="flex items-center rounded-md bg-green-100 px-2 py-1 text-sm font-medium text-green-600 transition-colors hover:bg-green-200 dark:bg-green-900 dark:bg-opacity-50 dark:text-green-400 dark:hover:bg-green-800 dark:hover:bg-opacity-50"
-        >
-          <BarChart height={16} />
-          <p>{random(10, 40)}%</p>
-        </Link>
-        */}
       </div>
     </div>
   );

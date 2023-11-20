@@ -30,7 +30,7 @@ export default async function PostSettings({
     <DashboardShell>
       <div className="flex flex-col space-y-6">
         <DashboardHeader
-          heading={`Post Settings for ${data?.title!}`}
+          heading={`Settings for ${data?.title!}`}
           text={`Personalize the slug, set a featured image, or delete this post. Tailor ${data?.title!} to best suit your audience and SEO needs.`}
         />
         <Form
