@@ -8,7 +8,7 @@ import BlurImage from '@/app/components/write/blur-image';
 import styles from '@/app/components/write/mdx.module.css';
 import { replaceLinks } from '@/app/lib/remark-plugins';
 
-export default function MDX({ source }: { source: MDXRemoteProps }) {
+export default function NovelMDX({ source }: { source: MDXRemoteProps }) {
   const components = {
     a: replaceLinks,
     BlurImage,
@@ -18,7 +18,7 @@ export default function MDX({ source }: { source: MDXRemoteProps }) {
 
   return (
     <article
-      className={`prose-md prose prose-stone m-auto w-11/12 dark:prose-invert sm:prose-lg sm:w-3/4 ${styles.root}`}
+      className={`prose-md prose prose-gray m-auto w-11/12 dark:prose-invert sm:prose-lg prose-p:text-muted-foreground sm:w-3/4 ${styles.root}`}
       suppressHydrationWarning={true}
     >
       {/* @ts-expect-error TODO: Fix*/}
@@ -64,7 +64,7 @@ function ExamplesCard({ data }: { data: ExampleCardProps }) {
           <h3 className="truncate font-cal text-2xl font-bold tracking-wide">
             {data.name}
           </h3>
-          <p className="mt-3 text-base italic leading-snug text-gray-800">
+          <p className="mt-3 text-base italic leading-snug text-foreground">
             {data.description}
           </p>
         </div>
@@ -82,10 +82,10 @@ function ExamplesCard({ data }: { data: ExampleCardProps }) {
           />
         </div>
         <div className="w-3/5 px-5 py-6">
-          <h3 className="my-0 truncate font-cal text-xl font-bold tracking-wide dark:text-white">
+          <h3 className="my-0 truncate text-xl font-bold tracking-wide">
             {data.name}
           </h3>
-          <p className="mt-3 text-sm font-normal italic leading-snug text-gray-800">
+          <p className="mt-3 text-sm font-normal leading-snug text-muted-foreground">
             {data.description}
           </p>
         </div>
