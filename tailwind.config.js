@@ -154,6 +154,15 @@ module.exports = withUt({
         title: ['var(--font-title)', ...fontFamily.sans],
         mono: ['Consolas', ...fontFamily.mono],
       },
+      width: {
+        1536: '1536px',
+      },
+      height: {
+        150: '37.5rem',
+      },
+      margin: {
+        30: '7.5rem',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: 0 },
