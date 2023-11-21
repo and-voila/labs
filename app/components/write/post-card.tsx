@@ -25,7 +25,7 @@ export default function PostCard({
             width={500}
             height={400}
             className="h-44 object-cover grayscale hover:grayscale-0"
-            src={data.image ?? '/placeholder.png'}
+            src={data.image ?? '/post-placeholder.jpg'}
             placeholder="blur"
             blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
           />

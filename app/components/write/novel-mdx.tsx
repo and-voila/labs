@@ -59,7 +59,7 @@ function ExamplesCard({ data }: { data: ExampleCardProps }) {
             width={500}
             height={400}
             className="h-64 w-full object-cover"
-            src={data.image ?? '/placeholder.png'}
+            src={data.image ?? '/site-placeholder.jpg'}
             placeholder="blur"
             blurDataURL={data.imageBlurhash ?? undefined}
           />
