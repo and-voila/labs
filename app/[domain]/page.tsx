@@ -62,7 +62,7 @@ export default async function SiteHomePage({
                   width={1200}
                   height={630}
                   placeholder="blur"
-                  src={posts[0].image ?? '/placeholder.png'}
+                  src={posts[0].image ?? '/post-placeholder.jpg'}
                 />
               </div>
               <div className="mt-4 flex w-full items-center justify-start space-x-4">
