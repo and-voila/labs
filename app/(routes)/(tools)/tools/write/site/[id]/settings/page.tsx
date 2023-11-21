@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+import { Metadata } from 'next';
+
 import Form from '@/app/components/write/form';
 import DeleteSiteForm from '@/app/components/write/form/delete-site-form';
 import { updateSite } from '@/app/lib/actions';
@@ -47,4 +49,53 @@ export default async function SiteSettingsIndex({
       <DeleteSiteForm siteName={data?.name!} />
     </div>
   );
+}
+
+export function generateMetadata(): Metadata {
+  const title = 'Site Settings';
+  const description =
+    'Personalize your site with And Voila Site Settings. Update the name, description, featured image, domain, and logo. Or delete with ease for total control.';
+
+  const baseUrl =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
+
+  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  ogImageUrl.searchParams.set('title', title);
+
+  const pageUrl = `${baseUrl}/tools/write`;
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: ogImageUrl.toString(),
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      url: pageUrl,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: ogImageUrl.toString(),
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+  };
+
+  return metadata;
 }

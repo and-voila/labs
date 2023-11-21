@@ -5,12 +5,11 @@ import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { fontMapper } from '@/public/fonts';
 
+import { DomainsFooter } from '@/app/components/layout/domains-footer';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import CTA from '@/app/components/write/cta';
 import { getSiteData } from '@/app/lib/fetchers';
-
-import { DomainsFooter } from '../components/layout/domains-footer';
-import { cn } from '../lib/utils';
+import { cn } from '@/app/lib/utils';
 
 export async function generateMetadata({
   params,
@@ -25,7 +24,6 @@ export async function generateMetadata({
   const {
     name: title,
     description,
-    image,
     logo,
   } = data as {
     name: string;
@@ -40,13 +38,25 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      images: [image],
+      images: [
+        {
+          url: '/open-graph.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [image],
+      images: [
+        {
+          url: '/open-graph.jpg',
+          alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
+        },
+      ],
       creator: '@vercel',
     },
     icons: [logo],

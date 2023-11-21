@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+import { Metadata } from 'next';
+
 import Form from '@/app/components/write/form';
 import { updateSite } from '@/app/lib/actions';
 import { db } from '@/app/lib/db';
@@ -45,4 +47,53 @@ export default async function SiteSettingsDomains({
       />
     </div>
   );
+}
+
+export function generateMetadata(): Metadata {
+  const title = 'Site Domain';
+  const description =
+    'Define your online identity with And Voila Site Domain. Effortlessly update your subdomain or elevate your brand with a custom domain.';
+
+  const baseUrl =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
+
+  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  ogImageUrl.searchParams.set('title', title);
+
+  const pageUrl = `${baseUrl}/tools/write`;
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: ogImageUrl.toString(),
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      url: pageUrl,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: ogImageUrl.toString(),
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+  };
+
+  return metadata;
 }
