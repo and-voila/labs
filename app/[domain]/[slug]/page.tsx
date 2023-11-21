@@ -1,11 +1,12 @@
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 import BlogCard from '@/app/components/write/blog-card';
 import BlurImage from '@/app/components/write/blur-image';
-import MDX from '@/app/components/write/mdx';
+import NovelMDX from '@/app/components/write/novel-mdx';
 import { db } from '@/app/lib/db';
 import { getPostData, getSiteData } from '@/app/lib/fetchers';
-import { placeholderBlurhash, toDateString } from '@/app/lib/utils';
+import { toDateString } from '@/app/lib/utils';
 
 export async function generateMetadata({
   params,
@@ -91,21 +92,38 @@ export default async function SitePostPage({
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center">
+      {/* Background image */}
+      {data.image && (
+        <div className="absolute inset-0 box-content h-128 pt-16">
+          <Image
+            className="absolute inset-0 h-full w-full object-cover opacity-25"
+            src={data.image}
+            width={1440}
+            height={577}
+            priority
+            alt={data.title || 'A featured image for the post'}
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-background dark:from-[#242629]"
+            aria-hidden="true"
+          />
+        </div>
+      )}
+      <div className="relative z-10 flex flex-col items-center justify-center ">
         <div className="m-auto w-full text-center md:w-7/12">
-          <p className="m-auto my-5 w-10/12 text-sm font-light text-stone-500 dark:text-stone-400 md:text-base">
+          <p className="m-auto my-5 w-10/12 text-sm text-brand md:text-base">
             {toDateString(data.createdAt)}
           </p>
-          <h1 className="mb-10 font-title text-3xl font-bold text-stone-800 dark:text-white md:text-6xl">
+          <h1 className="mb-10 font-title text-3xl font-bold leading-snug md:text-6xl">
             {data.title}
           </h1>
-          <p className="text-md m-auto w-10/12 text-stone-600 dark:text-stone-400 md:text-lg">
+          <p className="text-md m-auto w-10/12 text-foreground/70 md:text-lg">
             {data.description}
           </p>
         </div>
 
         <div className="my-8">
-          <div className="relative inline-block h-8 w-8 overflow-hidden rounded-full align-middle md:h-12 md:w-12">
+          <div className="relative inline-block h-8 w-8 overflow-hidden rounded-full align-middle md:h-10 md:w-10">
             {data.site?.user?.image ? (
               <BlurImage
                 alt={data.site?.user?.name ?? 'User Avatar'}
@@ -114,29 +132,18 @@ export default async function SitePostPage({
                 width={80}
               />
             ) : (
-              <div className="absolute flex h-full w-full select-none items-center justify-center bg-stone-100 text-4xl text-stone-500">
+              <div className="absolute flex h-full w-full select-none items-center justify-center bg-primary-foreground text-4xl">
                 ?
               </div>
             )}
           </div>
-          <div className="text-md ml-3 inline-block align-middle dark:text-white md:text-lg">
+          <div className="text-md ml-3 inline-block align-middle">
             by <span className="font-semibold">{data.site?.user?.name}</span>
           </div>
         </div>
+        <div className="w-3/5 border-t border-brand py-8" />
+        <NovelMDX source={data.mdxSource} />
       </div>
-      <div className="relative m-auto mb-10 h-80 w-full max-w-screen-lg overflow-hidden md:mb-20 md:h-150 md:w-5/6 md:rounded-2xl lg:w-2/3">
-        <BlurImage
-          alt={data.title ?? 'Post image'}
-          width={1200}
-          height={630}
-          className="h-full w-full object-cover"
-          placeholder="blur"
-          blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
-          src={data.image ?? '/placeholder.png'}
-        />
-      </div>
-
-      <MDX source={data.mdxSource} />
 
       {data.adjacentPosts.length > 0 && (
         <div className="relative mb-20 mt-10 sm:mt-20">
@@ -144,17 +151,17 @@ export default async function SitePostPage({
             className="absolute inset-0 flex items-center"
             aria-hidden="true"
           >
-            <div className="w-full border-t border-stone-300 dark:border-stone-700" />
+            <div className="w-full border-t border-brand" />
           </div>
           <div className="relative flex justify-center">
-            <span className="bg-white px-2 text-sm text-stone-500 dark:bg-black dark:text-stone-400">
+            <span className="bg-background px-2 text-sm uppercase tracking-widest text-muted-foreground dark:bg-[#242629]">
               Continue Reading
             </span>
           </div>
         </div>
       )}
       {data.adjacentPosts && (
-        <div className="mx-5 mb-20 grid max-w-screen-xl grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 xl:mx-auto xl:grid-cols-3">
+        <div className="mx-5 grid max-w-screen-xl grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 xl:mx-auto xl:grid-cols-3">
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {data.adjacentPosts.map((data: any, index: number) => (
             <BlogCard key={index} data={data} />

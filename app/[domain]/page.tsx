@@ -117,7 +117,7 @@ export default async function SiteHomePage({
       </div>
 
       {posts.length > 1 && (
-        <div className="mx-auto px-8 pb-20 lg:px-24">
+        <div className="mx-auto px-8 lg:px-24">
           <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-brand">
             Recent Posts
           </h2>

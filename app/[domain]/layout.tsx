@@ -84,8 +84,13 @@ export default async function SiteLayout({
   }
 
   return (
-    <div className={cn(fontMapper[data.font], 'flex min-h-screen flex-col')}>
-      <div className="ease left-0 right-0 top-0 z-30 flex h-16 bg-background transition-all duration-150">
+    <div
+      className={cn(
+        fontMapper[data.font],
+        'flex min-h-screen flex-col bg-background dark:bg-[#242629]',
+      )}
+    >
+      <div className="sticky top-0 z-40 flex h-16 w-full justify-center bg-background/60 backdrop-blur-xl transition-all">
         <div className="mx-auto flex h-full max-w-screen-xl items-center justify-center space-x-5 px-10 sm:px-20">
           <Link href="/" className="flex items-center justify-center">
             <div className="inline-block h-8 w-8 overflow-hidden rounded-full align-middle">
