@@ -114,7 +114,7 @@ export default async function SitePostPage({
           <p className="m-auto my-5 w-10/12 text-sm text-brand md:text-base">
             {toDateString(data.createdAt)}
           </p>
-          <h1 className="mb-10 font-title text-3xl font-bold leading-snug md:text-6xl">
+          <h1 className="mb-10 font-title text-3xl font-bold leading-snug md:text-7xl">
             {data.title}
           </h1>
           <p className="text-md m-auto w-10/12 text-foreground/70 md:text-lg">

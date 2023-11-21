@@ -57,8 +57,8 @@ const links: DomainsFooterLinkData[] = [
   {
     href: 'https://labs.andvoila.gg',
     label: 'And Voila',
-    ariaLabel: 'Navigate to BRIL.LA website',
-    preText: 'Powered by ',
+    ariaLabel: "Navigate to And Voila's registration page in a new window",
+    preText: 'Create your own free site on ',
   },
   {
     href: 'https://andvoila.gg/privacy',

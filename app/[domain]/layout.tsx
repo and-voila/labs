@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { fontMapper } from '@/public/fonts';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import CTA from '@/app/components/write/cta';
 import { getSiteData } from '@/app/lib/fetchers';
 
@@ -111,7 +112,7 @@ export default async function SiteLayout({
       <div className="mt-20 flex-grow">{children}</div>
 
       <div className="flex flex-col">
-        {domain == `demo.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}` && <CTA />}
+        {/*domain == `demo.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}` && <CTA />*/}
         <DomainsFooter
           className="mt-20"
           name={data.name || 'BRIL.LA, LLC'}
