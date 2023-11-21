@@ -1,12 +1,16 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { Post } from '@prisma/client';
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote';
-import { Tweet } from 'react-tweet';
 
 import BlurImage from '@/app/components/write/blur-image';
 import styles from '@/app/components/write/mdx.module.css';
 import { replaceLinks } from '@/app/lib/remark-plugins';
+
+const Tweet = dynamic(() => import('react-tweet').then((mod) => mod.Tweet), {
+  ssr: false,
+});
 
 export default function NovelMDX({ source }: { source: MDXRemoteProps }) {
   const components = {
