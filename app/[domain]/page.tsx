@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { EmptyPlaceholder } from '@/app/components/shared/empty-placeholder';
 import BlogCard from '@/app/components/write/blog-card';
 import BlurImage from '@/app/components/write/blur-image';
 import { db } from '@/app/lib/db';
@@ -47,82 +47,79 @@ export default async function SiteHomePage({
 
   return (
     <>
-      <div className="mb-20 w-full">
+      <div className="mb-8 w-full px-8 lg:mb-16 lg:px-24">
+        <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-brand">
+          Latest
+        </h2>
         {posts.length > 0 ? (
-          <div className="mx-auto w-full max-w-screen-xl md:mb-28 lg:w-5/6">
+          <div className="mx-auto w-full md:mb-28">
             <Link href={`/${posts[0].slug}`}>
-              <div className="sm:h-150 group relative mx-auto h-80 w-full overflow-hidden lg:rounded-xl">
+              <div className="group relative mx-auto h-80 w-full overflow-hidden sm:h-150 lg:rounded-xl">
                 <BlurImage
                   alt={posts[0].title ?? ''}
                   blurDataURL={posts[0].imageBlurhash ?? placeholderBlurhash}
                   className="h-full w-full object-cover group-hover:scale-105 group-hover:duration-300"
-                  width={1300}
+                  width={1200}
                   height={630}
                   placeholder="blur"
                   src={posts[0].image ?? '/placeholder.png'}
                 />
               </div>
-              <div className="mx-auto mt-10 w-5/6 lg:w-full">
-                <h2 className="my-10 font-title text-4xl dark:text-white md:text-6xl">
+              <div className="mt-4 flex w-full items-center justify-start space-x-4">
+                <div className="relative h-8 w-8 flex-none overflow-hidden rounded-full">
+                  {data.user?.image ? (
+                    <BlurImage
+                      alt={data.user?.name ?? 'User Avatar'}
+                      width={100}
+                      height={100}
+                      className="h-full w-full object-cover"
+                      src={data.user?.image}
+                    />
+                  ) : (
+                    <div className="absolute flex h-full w-full select-none items-center justify-center bg-primary-foreground text-xl text-foreground">
+                      ?
+                    </div>
+                  )}
+                </div>
+                <p className="ml-3 inline-block whitespace-nowrap align-middle text-sm font-medium md:text-base">
+                  By {''}
+                  {data.user?.name}
+                </p>
+                <div className="h-6 border-l border-brand" />
+                <p className="m-auto my-5 w-10/12 text-sm text-muted-foreground md:text-base">
+                  {toDateString(posts[0].createdAt)}
+                </p>
+              </div>
+              <div className="mx-auto w-5/6 lg:w-full">
+                <h2 className="mb-8 font-title text-4xl md:text-6xl">
                   {posts[0].title}
                 </h2>
-                <p className="w-full text-base dark:text-white md:text-lg lg:w-2/3">
+                <p className="w-full text-base text-muted-foreground md:text-lg lg:w-4/5">
                   {posts[0].description}
                 </p>
-                <div className="flex w-full items-center justify-start space-x-4">
-                  <div className="relative h-8 w-8 flex-none overflow-hidden rounded-full">
-                    {data.user?.image ? (
-                      <BlurImage
-                        alt={data.user?.name ?? 'User Avatar'}
-                        width={100}
-                        height={100}
-                        className="h-full w-full object-cover"
-                        src={data.user?.image}
-                      />
-                    ) : (
-                      <div className="absolute flex h-full w-full select-none items-center justify-center bg-stone-100 text-4xl text-stone-500">
-                        ?
-                      </div>
-                    )}
-                  </div>
-                  <p className="ml-3 inline-block whitespace-nowrap align-middle text-sm font-semibold dark:text-white md:text-base">
-                    {data.user?.name}
-                  </p>
-                  <div className="h-6 border-l border-stone-600 dark:border-stone-400" />
-                  <p className="m-auto my-5 w-10/12 text-sm font-light text-stone-500 dark:text-stone-400 md:text-base">
-                    {toDateString(posts[0].createdAt)}
-                  </p>
-                </div>
               </div>
             </Link>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-20">
-            <Image
-              alt="missing post"
-              src="https://illustrations.popsy.co/gray/success.svg"
-              width={400}
-              height={400}
-              className="dark:hidden"
-            />
-            <Image
-              alt="missing post"
-              src="https://illustrations.popsy.co/white/success.svg"
-              width={400}
-              height={400}
-              className="hidden dark:block"
-            />
-            <p className="font-title text-2xl text-stone-600 dark:text-stone-400">
-              No posts yet.
-            </p>
+            <EmptyPlaceholder>
+              <EmptyPlaceholder.Icon name="file" />
+              <EmptyPlaceholder.Title>
+                There are no posts yet
+              </EmptyPlaceholder.Title>
+              <EmptyPlaceholder.Description>
+                This site&apos;s journey is just beginning. Check back soon to
+                see posts and updates as they&apos;re shared.
+              </EmptyPlaceholder.Description>
+            </EmptyPlaceholder>
           </div>
         )}
       </div>
 
       {posts.length > 1 && (
-        <div className="mx-5 mb-20 max-w-screen-xl lg:mx-24 2xl:mx-auto">
-          <h2 className="mb-10 font-title text-4xl dark:text-white md:text-5xl">
-            More stories
+        <div className="mx-auto px-8 pb-20 lg:px-24">
+          <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-brand">
+            Recent Posts
           </h2>
           <div className="grid w-full grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 xl:grid-cols-3">
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}

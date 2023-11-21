@@ -55,8 +55,6 @@
     "react/prop-types": "off",
     "react/self-closing-comp": "error",
     "semi": ["error", "always"],
-    "tailwindcss/classnames-order": "error",
-    "tailwindcss/no-custom-classname": "off",
     "unicorn/filename-case": [
       "error",
       {

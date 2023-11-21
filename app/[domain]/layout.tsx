@@ -6,8 +6,10 @@ import { notFound, redirect } from 'next/navigation';
 import { fontMapper } from '@/public/fonts';
 
 import CTA from '@/app/components/write/cta';
-import ReportAbuse from '@/app/components/write/report-abuse';
 import { getSiteData } from '@/app/lib/fetchers';
+
+import { DomainsFooter } from '../components/layout/domains-footer';
+import { cn } from '../lib/utils';
 
 export async function generateMetadata({
   params,
@@ -82,8 +84,8 @@ export default async function SiteLayout({
   }
 
   return (
-    <div className={fontMapper[data.font]}>
-      <div className="ease left-0 right-0 top-0 z-30 flex h-16 bg-white transition-all duration-150 dark:bg-black dark:text-white">
+    <div className={cn(fontMapper[data.font], 'flex min-h-screen flex-col')}>
+      <div className="ease left-0 right-0 top-0 z-30 flex h-16 bg-background transition-all duration-150">
         <div className="mx-auto flex h-full max-w-screen-xl items-center justify-center space-x-5 px-10 sm:px-20">
           <Link href="/" className="flex items-center justify-center">
             <div className="inline-block h-8 w-8 overflow-hidden rounded-full align-middle">
@@ -101,14 +103,16 @@ export default async function SiteLayout({
         </div>
       </div>
 
-      <div className="mt-20">{children}</div>
+      <div className="mt-20 flex-grow">{children}</div>
 
-      {domain == `demo.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}` ||
-      domain == 'platformize.co' ? (
-        <CTA />
-      ) : (
-        <ReportAbuse />
-      )}
+      <div className="flex flex-col">
+        {domain == `demo.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}` && <CTA />}
+        <DomainsFooter
+          className="mt-20"
+          name={data.name || 'BRIL.LA, LLC'}
+          logo={data.logo || undefined}
+        />
+      </div>
     </div>
   );
 }
