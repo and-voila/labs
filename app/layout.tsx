@@ -1,5 +1,6 @@
 import '@/app/styles/globals.css';
 
+import { Viewport } from 'next';
 import { fontBricolage } from '@/public/fonts';
 
 import { env } from '@/env.mjs';
@@ -113,6 +114,16 @@ export const metadata = {
     },
   ],
   manifest: `${siteConfig.url}/site.webmanifest`,
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#e7ebef' },
+    { media: '(prefers-color-scheme: dark)', color: '#242629' },
+  ],
+  width: 'device-width',
+  initialScale: 1,
+  colorScheme: 'dark light',
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {
