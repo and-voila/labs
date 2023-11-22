@@ -52,7 +52,7 @@ function Examples({ data }: { data: string }) {
 function ExamplesCard({ data }: { data: ExampleCardProps }) {
   return (
     <a href={`https://${data.url}`} target="_blank" rel="noreferrer">
-      <div className="ease hidden rounded-2xl border-2 border-gray-100 bg-white shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-xl lg:block">
+      <div className="ease hidden rounded-2xl border-2 border-border bg-white shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-xl lg:block">
         <div className="overflow-hidden rounded-t-2xl">
           <BlurImage
             alt={data.name ?? 'Card Thumbnail'}

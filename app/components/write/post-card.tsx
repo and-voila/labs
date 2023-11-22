@@ -14,7 +14,7 @@ export default function PostCard({
   const url = `${data.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${data.slug}`;
 
   return (
-    <div className="relative rounded-lg border bg-card pb-10 shadow-md transition-all hover:shadow-xl">
+    <div className="relative rounded-lg border border-border bg-card pb-10 shadow-md transition-all hover:shadow-xl">
       <Link
         href={`/tools/write/post/${data.id}`}
         className="flex flex-col overflow-hidden rounded-lg"
@@ -30,7 +30,7 @@ export default function PostCard({
             blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
           />
           {!data.published && (
-            <span className="absolute bottom-2 right-2 rounded-sm border border-muted-foreground bg-muted-foreground/20 px-1  text-sm font-medium text-muted-foreground shadow-md">
+            <span className="absolute bottom-2 right-2 rounded-sm border border-muted-foreground bg-muted-foreground px-1  text-sm font-medium text-primary-foreground shadow-md">
               Draft
             </span>
           )}

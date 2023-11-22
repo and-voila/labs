@@ -52,11 +52,11 @@ export default function DeletePostForm({ postName }: { postName: string }) {
           required
           pattern={postName}
           placeholder={postName}
-          className="w-full max-w-md rounded-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
+          className="w-full max-w-md rounded-md border-border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
         />
       </div>
 
-      <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border-t bg-primary-foreground p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
+      <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-border bg-primary-foreground p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
         <p className="text-center text-sm text-muted-foreground">
           This action is irreversible. Please proceed with caution.
         </p>

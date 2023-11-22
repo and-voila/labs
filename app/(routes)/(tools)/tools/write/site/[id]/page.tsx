@@ -34,12 +34,7 @@ export default async function SitePosts({
     },
   });
 
-  if (
-    !data ||
-    data.userId !== session.user.id ||
-    data.name === undefined ||
-    data.description === undefined
-  ) {
+  if (!data || data.userId !== session.user.id) {
     notFound();
   }
 
