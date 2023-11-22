@@ -20,33 +20,38 @@ export const writeConfig = {
       icon: 'pen',
     },
     {
-      name: 'My sites',
+      name: 'Sites',
       href: '/tools/write/sites',
       icon: 'browsers',
     },
   ] as Tab[],
   siteTabs: (id: string): Tab[] => [
     {
-      name: 'My sites',
+      name: 'Write',
+      href: '/tools/write',
+      icon: 'pen',
+    },
+    {
+      name: 'Sites',
       href: '/tools/write/sites',
       icon: 'browsers',
     },
     {
-      name: 'Posts',
+      name: 'Manage site',
       href: `/tools/write/site/${id}`,
-      icon: 'file',
-    },
-    {
-      name: 'Settings',
-      href: `/tools/write/site/${id}/settings`,
-      icon: 'settings',
+      icon: 'browser',
     },
   ],
   postTabs: (id: string, siteId: string): Tab[] => [
     {
-      name: 'My posts',
+      name: 'Sites',
+      href: '/tools/write/sites',
+      icon: 'browsers',
+    },
+    {
+      name: 'All posts',
       href: siteId ? `/tools/write/site/${siteId}` : '/tools/write/sites',
-      icon: 'file',
+      icon: 'files',
     },
     {
       name: 'Editor',

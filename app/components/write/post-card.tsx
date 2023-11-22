@@ -51,9 +51,9 @@ export default function PostCard({
           }
           target="_blank"
           rel="noreferrer"
-          className="truncate rounded-md bg-brand/20 px-2 py-1 text-xs text-brand transition-colors hover:opacity-70"
+          className="truncate rounded-md bg-muted-foreground/20 px-2 py-1 font-mono text-xs text-foreground transition-colors hover:opacity-70"
         >
-          {url} ↗
+          {url}
         </a>
       </div>
     </div>
