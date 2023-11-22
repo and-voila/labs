@@ -51,17 +51,20 @@ const CreatePage = () => {
         ...values,
         price: COURSE_DEFAULT_PRICE,
       });
+
       router.push(`/admin/teacher/courses/${response.data.id}`);
       toast({
-        title: 'Way to go!',
+        title: 'Playbook created',
         description:
           'Your playbook title is set and ready for you to make it awesome.',
+        variant: 'success',
       });
     } catch {
       toast({
-        title: 'Oh snap! An error occurred.',
+        title: 'Playbook not created.',
         description:
-          "Something just broke, it's probably Rebekah's fault. Please try again.",
+          "Something just broke, and we couldn't create your Playbook. It's probably Rebekah's fault. Please try again.",
+        variant: 'destructive',
       });
     }
   };

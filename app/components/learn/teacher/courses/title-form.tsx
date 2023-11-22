@@ -56,14 +56,15 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
       toast({
-        title: 'That was easy!',
+        title: 'Playbook title updated',
         description: "Your playbook's title was updated. Anything else?",
+        variant: 'success',
       });
       toggleEdit();
       router.refresh();
     } catch {
       toast({
-        title: 'Yikes, Ambreen broke something.',
+        title: 'Yikes, couldn’t update playbook title',
         description: 'Please try updating the playbook title again. Thank you.',
         variant: 'destructive',
       });

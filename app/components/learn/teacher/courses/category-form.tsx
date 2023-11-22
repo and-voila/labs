@@ -56,15 +56,16 @@ export const CategoryForm = ({
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
       toast({
-        title: 'Cool, category updated.',
+        title: 'Cool, category updated',
         description:
           "The playbook's category was successfully updated and set.",
+        variant: 'success',
       });
       toggleEdit();
       router.refresh();
     } catch {
       toast({
-        title: 'Ugh, not again!?',
+        title: "Oops, couldn't update category",
         description: 'Please try setting the category again, sorry!',
         variant: 'destructive',
       });

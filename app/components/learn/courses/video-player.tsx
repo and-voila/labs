@@ -46,8 +46,10 @@ export const VideoPlayer = ({
         }
 
         toast({
-          title: 'Good stuff!',
-          description: 'Your progress has been updated.',
+          title: 'Your progress has been updated',
+          description:
+            "Great stuff! Keep it up. Don't forget to give us your feedback when you have a chance. We're all ears.",
+          variant: 'success',
         });
         router.refresh();
 
@@ -57,7 +59,7 @@ export const VideoPlayer = ({
       }
     } catch {
       toast({
-        title: 'Ugh! Something just broke.',
+        title: 'Oh no! Unable to update your progress',
         description:
           'Please try again and give us a heads up if the problem persists. Thank you for your patience.',
         variant: 'destructive',

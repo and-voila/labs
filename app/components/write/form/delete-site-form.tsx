@@ -3,9 +3,9 @@
 import { useParams, useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
-import { toast } from 'sonner';
 
 import { buttonVariants } from '@/app/components/ui/button';
+import { toast } from '@/app/components/ui/use-toast';
 import LoadingDots from '@/app/components/write/icons/loading-dots';
 import { deleteSite } from '@/app/lib/actions';
 import { cn } from '@/app/lib/utils';
@@ -20,15 +20,30 @@ export default function DeleteSiteForm({ siteName }: { siteName: string }) {
         deleteSite(data, id, 'delete')
           .then(async (res) => {
             if (res.error) {
-              toast.error(res.error);
+              toast({
+                title: 'Could not delete site',
+                description: `${res.error}. Please try again.`,
+                variant: 'destructive',
+              });
             } else {
               va.track('Deleted Site');
               router.refresh();
               router.push('/tools/write/sites');
-              toast.success('Successfully deleted site!');
+              toast({
+                title: 'Your site was deleted',
+                description:
+                  "Your site was deleted. Create another one so your fans don't miss you.",
+                variant: 'success',
+              });
             }
           })
-          .catch((err: Error) => toast.error(err.message))
+          .catch((err: Error) => {
+            toast({
+              title: 'Error',
+              description: `${err.message}. Please try again.`,
+              variant: 'destructive',
+            });
+          })
       }
       className="max-w-3xl rounded-lg border border-destructive bg-card"
     >

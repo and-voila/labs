@@ -28,14 +28,18 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
       if (isPublished) {
         await axios.patch(`/api/courses/${courseId}/unpublish`);
         toast({
-          title: 'Success!',
-          description: 'Your playbook was unpublished.',
+          title: 'Playbook unpublished',
+          description:
+            'You just unpublished your Playbook. No worries, you can publish it again.',
+          variant: 'success',
         });
       } else {
         await axios.patch(`/api/courses/${courseId}/publish`);
         toast({
-          title: 'Woohoo!',
-          description: 'Your playbook was just published!',
+          title: 'Playbook published',
+          description:
+            'Nice! You just published your Playbook. Let the learning begin.',
+          variant: 'success',
         });
         confetti.onOpen();
       }
@@ -43,8 +47,9 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
       router.refresh();
     } catch {
       toast({
-        title: 'Sorry about that.',
-        description: 'An error occured, please try again.',
+        title: 'Could not update Playbook',
+        description:
+          'An error occured. It happens and we appreciate your patience. Please try again. If the problem persists, holla at Ambreen.',
         variant: 'destructive',
       });
     } finally {
@@ -59,17 +64,18 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
       await axios.delete(`/api/courses/${courseId}`);
 
       toast({
-        title: 'OK then, done!',
+        title: 'Playbook deleted',
         description:
           'Your playbook has been deleted, like totally, no evidence, nada, zilch.',
+        variant: 'success',
       });
       router.refresh();
       router.push('/admin/teacher/courses');
     } catch {
       toast({
-        title: 'Yikes! An error occurred.',
+        title: 'Unable to delete Playbook',
         description:
-          'Please try again and if the problem persists, take a deep breath, then hail the "Serenity Now" Gods.',
+          "We couldn't process your request. It wasn't intentional. Please try again.",
         variant: 'destructive',
       });
     } finally {

@@ -64,15 +64,18 @@ export const DescriptionForm = ({
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
       toast({
-        title: 'Enlightening!',
-        description: 'Your playbook description has been updated.',
+        title: 'Playbook description updated',
+        description:
+          'Awesome, we just saved your updated description for the Playbook.',
+        variant: 'success',
       });
       toggleEdit();
       router.refresh();
     } catch {
       toast({
-        title: 'Awe shucks, something broke.',
-        description: 'Please try saving the playbook description again.',
+        title: 'Unable to update Playbook description',
+        description:
+          'Sorry, but something went wrong. Please try saving the playbook description again.',
         variant: 'destructive',
       });
     }

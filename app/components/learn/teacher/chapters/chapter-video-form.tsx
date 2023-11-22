@@ -40,15 +40,18 @@ export const ChapterVideoForm = ({
         values,
       );
       toast({
-        title: 'Good stuff, grab the popcorn!',
-        description: 'Your video has been uploaded to the Mux cloud.',
+        title: 'Play video updated',
+        description:
+          "Your video is being processed and is on it's way to the Mux cloud.",
+        variant: 'success',
       });
       toggleEdit();
       router.refresh();
     } catch {
       toast({
-        title: 'Crap! An error occurred.',
-        description: 'Please try uploading or saving the video again.',
+        title: 'Could not update video',
+        description:
+          'Sorry for the inconvenience. We were unable to process your request. Please try uploading the video again.',
         variant: 'destructive',
       });
     }

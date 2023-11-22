@@ -61,16 +61,17 @@ export function UserAuthForm({
 
     if (!signInResult?.ok) {
       return toast({
-        title: 'Whoops, we broke something!?',
+        title: 'Unable to process Sign In request',
         description: 'Your sign in request failed. Please try again.',
         variant: 'destructive',
       });
     }
 
     return toast({
-      title: 'Please check your email',
+      title: 'Sign in pending, please check your email',
       description:
-        "We sent you a magic link. Click to get instant access. Be sure to check your spam folder if you't find it.",
+        "We sent you a magic link. Click it to get instant access. Be sure to check your spam folder if you can't find it.",
+      variant: 'success',
     });
   }
 

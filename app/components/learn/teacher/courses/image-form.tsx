@@ -34,16 +34,18 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
       toast({
-        title: "You're an uploading wizard!",
-        description: 'Your image has been added to the playbook.',
+        title: 'Playbook image updated',
+        description:
+          'Wow, your Playbook has a fancy new featured image. Nice work! #cats',
+        variant: 'success',
       });
       toggleEdit();
       router.refresh();
     } catch {
       toast({
-        title: 'Ugh, something broke.',
+        title: 'Could not update image',
         description:
-          'Please try uploading the image again, or saving it again. Whichever will work this time.',
+          'Please try uploading the image again, or saving it again. Whichever will work this time. Thanks for your patience.',
         variant: 'destructive',
       });
     }

@@ -5,9 +5,9 @@ import { useParams, useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useSession } from 'next-auth/react';
 import { useFormStatus } from 'react-dom';
-import { toast } from 'sonner';
 
 import { buttonVariants } from '@/app/components/ui/button';
+import { toast } from '@/app/components/ui/use-toast';
 import DomainConfiguration from '@/app/components/write/form/domain-configuration';
 import DomainStatus from '@/app/components/write/form/domain-status';
 import Uploader from '@/app/components/write/form/uploader';
@@ -50,7 +50,11 @@ export default function Form({
         }
         handleSubmit(data, id, inputAttrs.name).then(async (res: any) => {
           if (res.error) {
-            toast.error(res.error);
+            toast({
+              title: "We couldn't update your domain",
+              description: `${res.error}. Please try again.`,
+              variant: 'destructive',
+            });
           } else {
             va.track(`Updated ${inputAttrs.name}`, id ? { id } : {});
             if (id) {
@@ -59,7 +63,11 @@ export default function Form({
               await update();
               router.refresh();
             }
-            toast.success(`Successfully updated ${inputAttrs.name}!`);
+            toast({
+              title: 'Domain updated',
+              description: `Your domain ${inputAttrs.name} was updated successfully.`,
+              variant: 'success',
+            });
           }
         });
       }}
