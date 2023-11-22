@@ -45,7 +45,7 @@ export default function DeleteSiteForm({ siteName }: { siteName: string }) {
             });
           })
       }
-      className="max-w-3xl rounded-lg border border-destructive bg-card"
+      className="max-w-3xl rounded-lg border-2 border-destructive bg-card"
     >
       <div className="relative flex flex-col space-y-4 p-5 sm:p-10">
         <h2 className="text-xl font-semibold">Delete Site</h2>

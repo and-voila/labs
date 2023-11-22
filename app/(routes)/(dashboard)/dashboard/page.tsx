@@ -52,7 +52,6 @@ const dashboardItems: DashboardItemProps[] = [
     linkText: 'Hack it',
     description:
       'Launch your own website in under 3 minutes with a custom domain and smash writer’s block with an AI-assist.',
-    isDisabled: true,
   },
 ];
 
