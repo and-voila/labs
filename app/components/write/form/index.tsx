@@ -71,7 +71,7 @@ export default function Form({
           }
         });
       }}
-      className="max-w-3xl rounded-lg border bg-card"
+      className="max-w-3xl rounded-lg border-border bg-card"
     >
       <div className="relative flex flex-col space-y-4 p-5 sm:p-10">
         <h2 className="text-xl font-semibold">{title}</h2>
@@ -82,7 +82,7 @@ export default function Form({
             name={inputAttrs.name}
           />
         ) : inputAttrs.name === 'font' ? (
-          <div className="flex max-w-sm items-center overflow-hidden rounded-lg border">
+          <div className="flex max-w-sm items-center overflow-hidden rounded-lg border-border">
             <select
               name="font"
               defaultValue={inputAttrs.defaultValue}
@@ -98,9 +98,9 @@ export default function Form({
             <input
               {...inputAttrs}
               required
-              className="z-10 flex-1 rounded-l-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-ring"
+              className="z-10 flex-1 rounded-l-md border-border bg-background text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-ring"
             />
-            <div className="flex items-center rounded-r-lg border border-l-0 bg-brand/20 px-3 text-sm">
+            <div className="flex items-center rounded-r-lg border-l-0 border-border bg-brand/20 px-3 text-sm">
               {process.env.NEXT_PUBLIC_ROOT_DOMAIN}
             </div>
           </div>
@@ -108,7 +108,7 @@ export default function Form({
           <div className="relative flex w-full max-w-md">
             <input
               {...inputAttrs}
-              className="z-10 flex-1 rounded-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
+              className="z-10 flex-1 rounded-md border-border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
             />
             {inputAttrs.defaultValue && (
               <div className="absolute right-3 z-10 flex h-full items-center">
@@ -121,20 +121,20 @@ export default function Form({
             {...inputAttrs}
             rows={3}
             required
-            className="w-full max-w-xl rounded-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
+            className="w-full max-w-xl rounded-md border-border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
           />
         ) : (
           <input
             {...inputAttrs}
             required
-            className="w-full max-w-md rounded-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
+            className="w-full max-w-md rounded-md border-border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
           />
         )}
       </div>
       {inputAttrs.name === 'customDomain' && inputAttrs.defaultValue && (
         <DomainConfiguration domain={inputAttrs.defaultValue} />
       )}
-      <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border border-t bg-primary-foreground p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
+      <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-border bg-primary-foreground p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
         <p className="text-sm text-muted-foreground">{helpText}</p>
         <FormButton />
       </div>

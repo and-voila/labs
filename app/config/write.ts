@@ -49,7 +49,7 @@ export const writeConfig = {
       icon: 'browsers',
     },
     {
-      name: 'All posts',
+      name: 'Posts',
       href: siteId ? `/tools/write/site/${siteId}` : '/tools/write/sites',
       icon: 'files',
     },
@@ -57,11 +57,6 @@ export const writeConfig = {
       name: 'Editor',
       href: `/tools/write/post/${id}`,
       icon: 'pen',
-    },
-    {
-      name: 'Settings',
-      href: `/tools/write/post/${id}/settings`,
-      icon: 'settings',
     },
   ],
 };
