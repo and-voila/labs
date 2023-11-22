@@ -34,9 +34,9 @@ export const CourseEnrollButton = ({
         window.location.assign(response.url);
       } catch (error) {
         toast({
-          title: 'Uh oh! An error occurred.',
+          title: 'Unable to create Stripe checkout session',
           description:
-            'Honestly, we have no idea what happened. Please try again.',
+            "Sorry for the inconvenience. An error occured and our systems couldn't connect to Stripe to handle your request. Please try again.",
           variant: 'destructive',
         });
       }

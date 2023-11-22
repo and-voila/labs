@@ -35,15 +35,18 @@ export const AttachmentForm = ({
     try {
       await axios.post(`/api/courses/${courseId}/attachments`, values);
       toast({
-        title: 'Kaboom, you did it!',
-        description: 'Your attachment has been added to the playbook.',
+        title: 'Attachment attached successfully',
+        description:
+          "Your attachment has been added to the playbook. You're attached!",
+        variant: 'success',
       });
       toggleEdit();
       router.refresh();
     } catch {
       toast({
-        title: 'Aww nuts, something broke.',
-        description: 'Please try uploading the attachment again.',
+        title: 'Ugh, we have attachment issues',
+        description:
+          "Something went wrong and we couldn't attach your attachment. Please try again.",
         variant: 'destructive',
       });
     }
@@ -54,15 +57,16 @@ export const AttachmentForm = ({
       setDeletingId(id);
       await axios.delete(`/api/courses/${courseId}/attachments/${id}`);
       toast({
-        title: 'Look at you, power deleter!',
-        description: 'Your attachment has been deleted from the playbook.',
+        title: 'Your attachment was deleted',
+        description: 'You just removed the attachment from the playbook.',
+        variant: 'success',
       });
       router.refresh();
     } catch {
       toast({
-        title: 'Uh oh, something broke.',
+        title: 'Whoops, unable to remove attachment',
         description:
-          'Please try again, this is one of those situations where we have no ideer what just happened.',
+          'Please try removing the attachment again. Thanks for your patience.',
         variant: 'destructive',
       });
     } finally {

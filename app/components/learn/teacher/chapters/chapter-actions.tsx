@@ -34,24 +34,29 @@ export const ChapterActions = ({
           `/api/courses/${courseId}/chapters/${chapterId}/unpublish`,
         );
         toast({
-          title: '1,2,3 and done!',
-          description: 'Your play has been unpublished.',
+          title: 'Your Play was unpublished',
+          description:
+            'We hope you enjoyed it while it lasted. Hurry, make the edits and publish it again.',
+          variant: 'success',
         });
       } else {
         await axios.patch(
           `/api/courses/${courseId}/chapters/${chapterId}/publish`,
         );
         toast({
-          title: 'That was painless.',
-          description: 'Your fancy new play has been published.',
+          title: 'Nice! Your Play is published',
+          description:
+            'Way to go, you just made the world smarter. Now onward to the next act of enlightenment.',
+          variant: 'success',
         });
       }
 
       router.refresh();
     } catch {
       toast({
-        title: 'An error occurred.',
-        description: 'Please try again.',
+        title: 'Oops! Unable to update Play',
+        description:
+          "We're sorry but Sam distracted by the affections of Juno when he wrote this code. Please try updating your Play again.",
         variant: 'destructive',
       });
     } finally {
@@ -66,15 +71,18 @@ export const ChapterActions = ({
       await axios.delete(`/api/courses/${courseId}/chapters/${chapterId}`);
 
       toast({
-        title: 'Oh boy, that was fast.',
-        description: 'Your play has been deleted, like forever.',
+        title: 'Your Play has been deleted',
+        description:
+          "Yikes, we hope you meant to do that. Your Play is gone, like forever. That's kind of permanent, you know.",
+        variant: 'success',
       });
       router.refresh();
       router.push(`/admin/teacher/courses/${courseId}`);
     } catch {
       toast({
-        title: 'Aw, snap! Not again.',
-        description: 'An error occured, so please try again.',
+        title: 'We could not delete your Play',
+        description:
+          "An unexpected error occured. It's usually a temporary glitch in the Matrix. Please try again.",
         variant: 'destructive',
       });
     } finally {

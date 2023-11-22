@@ -3,9 +3,9 @@
 import { useParams, useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
-import { toast } from 'sonner';
 
 import { buttonVariants } from '@/app/components/ui/button';
+import { toast } from '@/app/components/ui/use-toast';
 import LoadingDots from '@/app/components/write/icons/loading-dots';
 import { deletePost } from '@/app/lib/actions';
 import { cn } from '@/app/lib/utils';
@@ -19,12 +19,21 @@ export default function DeletePostForm({ postName }: { postName: string }) {
         window.confirm('Are you sure you want to delete your post?') &&
         deletePost(data, id, 'delete').then((res) => {
           if (res.error) {
-            toast.error(res.error);
+            toast({
+              title: 'Could not delete post',
+              description: res.error,
+              variant: 'destructive',
+            });
           } else {
             va.track('Deleted Post');
             router.refresh();
             router.push(`/tools/write/site/${res.siteId}`);
-            toast.success('Successfully deleted post!');
+            toast({
+              title: 'Post deleted',
+              description:
+                "Your post was deleted successfully. Create another one so your audience doesn't miss you.",
+              variant: 'success',
+            });
           }
         })
       }

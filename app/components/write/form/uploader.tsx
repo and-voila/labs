@@ -1,8 +1,8 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { toast } from 'sonner';
 
+import { toast } from '@/app/components/ui/use-toast';
 import { cn } from '@/app/lib/utils';
 
 export default function Uploader({
@@ -24,13 +24,22 @@ export default function Uploader({
   const handleUpload = (file: File | null) => {
     if (file) {
       if (file.size / 1024 / 1024 > 50) {
-        toast.error('File size too big (max 50MB)');
+        toast({
+          title: 'Upload size exceeded',
+          description: 'The max upload size is 50MB. Please try again.',
+          variant: 'destructive',
+        });
       } else if (
         !file.type.includes('png') &&
         !file.type.includes('jpg') &&
         !file.type.includes('jpeg')
       ) {
-        toast.error('Invalid file type (must be .png, .jpg, or .jpeg)');
+        toast({
+          title: 'Invalid file type',
+          description:
+            'At this time we only support .png, .jpg, or .jpeg. Please try again',
+          variant: 'destructive',
+        });
       } else {
         const reader = new FileReader();
         reader.onload = (e) => {

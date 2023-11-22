@@ -19,7 +19,7 @@ export const FileUpload = ({ onChange, endpoint }: FileUploadProps) => {
       }}
       onUploadError={(error: Error) => {
         toast({
-          title: 'Uh oh! An error occurred.',
+          title: 'Unable to upload file',
           description: `Something went wrong. Please try again. If the problem persists, here's the error code for support: ${
             error?.message || 'Unknown error'
           }`,

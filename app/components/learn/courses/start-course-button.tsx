@@ -40,14 +40,17 @@ export const StartCourseButton = ({
       }
 
       toast({
-        title: '#LFG',
-        description: 'Your playbook has been started',
+        title: 'Playbook started #LFG',
+        description:
+          "Woohoo! You're on your way to learn new things and make us all smarter.",
+        variant: 'success',
       });
       router.refresh();
     } catch {
       toast({
-        title: 'Oh no, an error occurred.',
-        description: 'Please try again, that usually does the trick.',
+        title: 'Unable to start Playbook',
+        description:
+          'Our bad, an error occured and we couldn’t start your Playbook. Please try again. Please let us know if the problem persists.',
         variant: 'destructive',
       });
     } finally {

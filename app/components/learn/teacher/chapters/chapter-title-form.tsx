@@ -64,16 +64,17 @@ export const ChapterTitleForm = ({
         values,
       );
       toast({
-        title: 'Alright, all set.',
-        description: 'The title for the play is now official and set.',
+        title: 'Play title updated',
+        description: "You're all set, the Play's title has been updated.",
+        variant: 'success',
       });
       toggleEdit();
       router.refresh();
     } catch {
       toast({
-        title: 'Oops, you broke something.',
+        title: 'Could not update Play title',
         description:
-          "Just kidding, but please try again because it didn't work the last time.",
+          "Oh boy, Rebekah broke something again, just kidding. An unexpected error occured. Please try updating the Play's title again.",
         variant: 'destructive',
       });
     }

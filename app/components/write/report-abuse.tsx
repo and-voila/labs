@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
-import { toast } from 'sonner';
 
+import { toast } from '@/app/components/ui/use-toast';
 import { cn } from '@/app/lib/utils';
 
 import { Icons } from '../shared/icons';
@@ -34,9 +34,12 @@ export default function ReportAbuse() {
               // artificial 1s delay
               await new Promise((resolve) => setTimeout(resolve, 1000));
               setOpen(false);
-              toast.success(
-                'Successfully reported abuse – thank you for helping us keep the internet safe!',
-              );
+              toast({
+                title: 'Your report has been submitted',
+                description:
+                  "Thanks for helping make the And Voila a safer place. We'll review your report and take action as per our Terms of Service.",
+                variant: 'success',
+              });
             }}
             className="absolute bottom-20 right-2 flex w-96 flex-col space-y-6 rounded-lg border bg-card p-8 shadow-lg animate-in slide-in-from-bottom-5"
           >

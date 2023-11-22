@@ -14,7 +14,9 @@ export function InsightsSearch({ className, ...props }: InsightsSearchProps) {
 
     return toast({
       title: 'Not implemented',
-      description: "We're still working on the search.",
+      description:
+        "We're still working on finishing things up including Search. Thank you for your patience. Please try again later.",
+      variant: 'destructive',
     });
   }
 

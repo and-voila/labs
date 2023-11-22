@@ -54,14 +54,16 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
         price,
       });
       toast({
-        title: 'Chaching!',
-        description: 'You just updated the access settings for the playbook.',
+        title: 'Playbook access updated',
+        description:
+          'You just updated the access/pricing settings for the playbook.',
+        variant: 'success',
       });
       toggleEdit();
       router.refresh();
     } catch {
       toast({
-        title: "Oh no, that didn't work.",
+        title: 'Unable to update Playbook access',
         description: 'Something went wrong, so please try again. Thanks!',
         variant: 'destructive',
       });

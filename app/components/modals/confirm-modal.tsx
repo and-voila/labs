@@ -23,9 +23,11 @@ export const ConfirmModal = ({ children, onConfirm }: ConfirmModalProps) => {
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogTitle>
+            Are you sure you want to delete this?
+          </AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone.
+            Deletion is permanent. This action cannot be undone.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

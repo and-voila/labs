@@ -4,10 +4,10 @@ import { useEffect, useState, useTransition } from 'react';
 import { Post } from '@prisma/client';
 import { Editor as NovelEditor } from 'novel';
 import TextareaAutosize from 'react-textarea-autosize';
-import { toast } from 'sonner';
 
 import { Icons } from '@/app/components/shared/icons';
 import { buttonVariants } from '@/app/components/ui/button';
+import { toast } from '@/app/components/ui/use-toast';
 import LoadingDots from '@/app/components/write/icons/loading-dots';
 import { updatePost, updatePostMetadata } from '@/app/lib/actions';
 import { cn } from '@/app/lib/utils';
@@ -68,11 +68,13 @@ export default function Editor({ post }: { post: PostWithSite }) {
             startTransitionPublishing(async () => {
               await updatePostMetadata(formData, post.id, 'published').then(
                 () => {
-                  toast.success(
-                    `Successfully ${
+                  toast({
+                    title: `Successfully ${
                       data.published ? 'unpublished' : 'published'
                     } your post.`,
-                  );
+                    description: 'Your post status has been updated.',
+                    variant: 'success',
+                  });
                   setData((prev) => ({ ...prev, published: !prev.published }));
                 },
               );

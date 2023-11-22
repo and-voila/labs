@@ -46,15 +46,17 @@ export const CourseProgressButton = ({
       }
 
       toast({
-        title: 'Sweet!',
-        description: 'Your progress has been updated.',
+        title: 'Playbook progress updated',
+        description:
+          'Great job! Your progress for this Playbook has been updated.',
+        variant: 'success',
       });
       router.refresh();
     } catch {
       toast({
-        title: 'Ugh, something broke.',
+        title: 'Unable to update playbook progress',
         description:
-          'Please try again. If this keeps happening, please let us know.',
+          "We're so sorry. We couldn't update your playbook progress. Please try again or let us know if the problem persists. Thank you.",
         variant: 'destructive',
       });
     } finally {

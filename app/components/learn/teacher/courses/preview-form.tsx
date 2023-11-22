@@ -58,14 +58,16 @@ export const PreviewForm = ({ initialData, courseId }: PreviewFormProps) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
       toast({
-        title: 'Cool, yo!',
-        description: 'Your playbook preview has been set.',
+        title: 'Cool, Playbook preview text updated',
+        description:
+          'Sweet! You just updated the preview text for the Playbook. Now learners can skim through it before they ignore it.',
+        variant: 'success',
       });
       toggleEdit();
       router.refresh();
     } catch {
       toast({
-        title: 'Whoops! An error occured.',
+        title: 'Unable to save preview text',
         description: 'Please try saving or setting the playbook preview again.',
         variant: 'destructive',
       });

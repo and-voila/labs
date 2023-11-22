@@ -68,15 +68,17 @@ export const ChapterDescriptionForm = ({
         values,
       );
       toast({
-        title: 'Mission accomplished.',
+        title: 'Play description updated',
         description: 'Your play now has a fancy description people can ignore.',
+        variant: 'success',
       });
       toggleEdit();
       router.refresh();
     } catch {
       toast({
-        title: 'Hmmm... something went wrong.',
-        description: 'Please try saving it again.',
+        title: 'Could not update Play description',
+        description:
+          "Sorry about that, but for some reason we couldn't update the description for the Play. Please try again.",
         variant: 'destructive',
       });
     }

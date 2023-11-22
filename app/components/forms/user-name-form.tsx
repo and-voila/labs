@@ -50,14 +50,17 @@ export function UserNameForm({ user }: UserNameFormProps) {
 
       if (status !== 'success') {
         toast({
-          title: 'Oh no, this again!?',
-          description: 'Your name was not updated. Please try again.',
+          title: 'Your name was not updated',
+          description:
+            "Something broke and we couldn't update your name. Apologies! Please try again.",
           variant: 'destructive',
         });
       } else {
         toast({
-          title: 'Cool beans!',
-          description: 'Your name has been updated.',
+          title: 'Your name was updated',
+          description:
+            "Thanks for making And Voila yours. Your name has been updated and you're all set.",
+          variant: 'success',
         });
       }
     });

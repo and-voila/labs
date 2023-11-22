@@ -251,9 +251,6 @@ dependencies:
   shiki:
     specifier: ^0.14.5
     version: 0.14.5
-  sonner:
-    specifier: ^1.2.2
-    version: 1.2.2(react-dom@18.2.0)(react@18.2.0)
   stripe:
     specifier: ^14.5.0
     version: 14.5.0
@@ -11900,16 +11897,6 @@ packages:
 
   /sonner@0.7.4(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-xRVYOCTAxJge7hRGSwu7q+gIS9B2csuOZw8yNEaXe/qlncft5a7UmkttGNb4LOGu79rAB/GJ6JQbUMpJNf51Nw==}
-    peerDependencies:
-      react: ^18.0.0
-      react-dom: ^18.0.0
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
-  /sonner@1.2.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-EHxYBr5tLDQW4CqosTsX95/Qd5oxjDeQN/EbKBZcjdNp4Hjs6snXB6Lmu1kTL27M3su0oG9DxkllfvX+aSoI4Q==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0

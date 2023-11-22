@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
-import { toast } from 'sonner';
 
 import { env } from '@/env.mjs';
 import { Icons } from '@/app/components/shared/icons';
+import { toast } from '@/app/components/ui/use-toast';
 import { useModal } from '@/app/components/write/modal/provider';
 import { createSite } from '@/app/lib/actions';
 import { cn } from '@/app/lib/utils';
@@ -38,14 +38,24 @@ export default function CreateSiteModal() {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         createSite(data).then((res: any) => {
           if (res.error) {
-            toast.error(res.error);
+            toast({
+              title: 'Sorry, an error occurred',
+              description: `${res.error}. Please try again.`,
+              variant: 'destructive',
+            });
           } else {
             va.track('Created Site');
             const { id } = res;
             router.refresh();
             router.push(`/tools/write/site/${id}`);
             modal?.hide();
-            toast.success('Successfully created site!');
+
+            toast({
+              title: 'Your site was created',
+              description:
+                "Way to go! Your site was created. Let's get started.",
+              variant: 'success',
+            });
           }
         })
       }

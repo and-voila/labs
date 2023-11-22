@@ -63,17 +63,18 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     try {
       await axios.post(`/api/courses/${courseId}/chapters`, values);
       toast({
-        title: 'Alright, alright, alright!',
+        title: 'Play created successfully',
         description:
           "Your play was just created and added to the playbook, it's almost official.",
+        variant: 'success',
       });
       toggleCreating();
       router.refresh();
     } catch {
       toast({
-        title: 'An error occured.',
+        title: 'Unable to create Play',
         description:
-          'Please try doing what you just did again but not the same way you did it.',
+          'An unexpected error occured. Please try doing what you just did again but not the same way you did it.',
         variant: 'destructive',
       });
     }
@@ -87,13 +88,15 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
         list: updateData,
       });
       toast({
-        title: "You're a dragger and a dropper!",
-        description: 'Your plays have been re-ordered in the playbook.',
+        title: 'The order of Plays has been updated',
+        description:
+          "You're a dragger and a dropper. Nice work. You just Marie Kondo'd your Plays like a boss.",
+        variant: 'success',
       });
       router.refresh();
     } catch {
       toast({
-        title: 'Oh nuts, something broke.',
+        title: 'Unable to change Play order',
         description:
           'Please check your dragging or your dropping and drag and drop again. Sorry...',
         variant: 'destructive',

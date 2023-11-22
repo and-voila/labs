@@ -2,8 +2,8 @@
 
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { PutBlobResult } from '@vercel/blob';
-import { toast } from 'sonner';
 
+import { toast } from '@/app/components/ui/use-toast';
 import LoadingDots from '@/app/components/write/icons/loading-dots';
 
 export default function Uploader() {
@@ -21,7 +21,12 @@ export default function Uploader() {
       const file = event.currentTarget.files && event.currentTarget.files[0];
       if (file) {
         if (file.size / 1024 / 1024 > 50) {
-          toast.error('File size too big (max 50MB)');
+          toast({
+            title: 'Upload size exceeded',
+            description:
+              "Your upload failed because it's too big. Please try again with a smaller file. The max is 50MB.",
+            variant: 'destructive',
+          });
         } else {
           setFile(file);
           const reader = new FileReader();
@@ -74,7 +79,11 @@ export default function Uploader() {
             );
           } else {
             const error = await res.text();
-            toast.error(error);
+            toast({
+              title: 'An error occurred',
+              description: `${error}. Please try again.`,
+              variant: 'destructive',
+            });
           }
           setSaving(false);
         });
@@ -116,7 +125,12 @@ export default function Uploader() {
               const file = e.dataTransfer.files && e.dataTransfer.files[0];
               if (file) {
                 if (file.size / 1024 / 1024 > 50) {
-                  toast.error('File size too big (max 50MB)');
+                  toast({
+                    title: 'Upload size exceeded',
+                    description:
+                      'The max upload size is 50MB. Please try a smaller file.',
+                    variant: 'destructive',
+                  });
                 } else {
                   setFile(file);
                   const reader = new FileReader();
