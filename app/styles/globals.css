@@ -139,6 +139,30 @@ body,
   height: 0;
 }
 
+/* Custom Typography styles */
+
+.ProseMirror blockquote {
+  border-left-color: #6847c2;
+}
+
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3 {
+  @apply font-bold;
+  @apply font-sans;
+}
+
+.ProseMirror p {
+  @apply text-muted-foreground;
+  @apply font-sans;
+}
+
+.ProseMirror a {
+  color: #6847c2;
+  font-weight: bold;
+  @apply font-sans;
+}
+
 /* Custom image styles */
 
 .ProseMirror img {
@@ -153,6 +177,16 @@ body,
     outline: 3px solid #5abbf7;
     filter: brightness(90%);
   }
+}
+
+.ProseMirror li {
+  @apply text-muted-foreground;
+}
+
+.ProseMirror pre,
+.ProseMirror code {
+  @apply bg-muted;
+  @apply text-foreground;
 }
 
 /* Custom TODO list checkboxes – shoutout to this awesome tutorial: https://moderncss.dev/pure-css-custom-checkbox-style/ */
@@ -171,7 +205,7 @@ ul[data-type='taskList'] li > label {
 ul[data-type='taskList'] li > label input[type='checkbox'] {
   -webkit-appearance: none;
   appearance: none;
-  background-color: #fff;
+  background-color: #d0d5dd;
   margin: 0;
   cursor: pointer;
   width: 1.2em;
@@ -208,7 +242,7 @@ ul[data-type='taskList'] li > label input[type='checkbox'] {
 }
 
 ul[data-type='taskList'] li[data-checked='true'] > div > p {
-  color: #a8a29e;
+  color: #2cb67d;
   text-decoration: line-through;
   text-decoration-thickness: 2px;
 }
