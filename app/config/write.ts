@@ -12,7 +12,7 @@ export const writeConfig = {
     {
       name: 'Tools',
       href: '/tools',
-      icon: 'toolbox',
+      icon: 'home',
     },
     {
       name: 'Write',
