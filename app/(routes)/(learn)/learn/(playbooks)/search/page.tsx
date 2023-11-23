@@ -31,8 +31,8 @@ const PlaybooksSearchPage = async ({
       name: 'asc',
     },
     cacheStrategy: {
-      ttl: 600,
-      swr: 1200,
+      ttl: 86400,
+      swr: 300,
     },
   });
 

@@ -44,8 +44,8 @@ const PlaybookLayout = async ({
       },
     },
     cacheStrategy: {
-      ttl: 30,
-      swr: 60,
+      ttl: 1800,
+      swr: 300,
     },
   });
 

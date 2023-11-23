@@ -57,8 +57,8 @@ export const getCourses = async ({
         createdAt: 'desc',
       },
       cacheStrategy: {
-        ttl: 30,
-        swr: 30,
+        ttl: 3600,
+        swr: 300,
       },
     });
 

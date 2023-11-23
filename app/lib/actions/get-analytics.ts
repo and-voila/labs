@@ -31,7 +31,7 @@ export const getAnalytics = async () => {
       },
       cacheStrategy: {
         ttl: 300,
-        swr: 150,
+        swr: 180,
       },
     });
 

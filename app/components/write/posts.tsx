@@ -28,6 +28,10 @@ export default async function Posts({
     include: {
       site: true,
     },
+    cacheStrategy: {
+      ttl: 300,
+      swr: 60,
+    },
     ...(limit ? { take: limit } : {}),
   });
 

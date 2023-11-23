@@ -20,6 +20,10 @@ export default async function Sites({ limit }: { limit?: number }) {
     orderBy: {
       createdAt: 'asc',
     },
+    cacheStrategy: {
+      ttl: 300,
+      swr: 60,
+    },
     ...(limit ? { take: limit } : {}),
   });
 

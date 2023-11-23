@@ -30,6 +30,10 @@ export const CourseSidebar = async ({
         courseId: course.id,
       },
     },
+    cacheStrategy: {
+      ttl: 180,
+      swr: 60,
+    },
   });
 
   const isComplete = progressCount === 100;
