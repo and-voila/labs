@@ -16,6 +16,10 @@ export default async function OverviewSitesCTA() {
     where: {
       userId: session.user.id as string,
     },
+    cacheStrategy: {
+      ttl: 90,
+      swr: 30,
+    },
   });
 
   return sites > 0 ? (

@@ -52,8 +52,8 @@ export const getDashboardCourses = async (
         purchases: true,
       },
       cacheStrategy: {
-        ttl: 10,
-        swr: 20,
+        ttl: 30,
+        swr: 10,
       },
     });
 

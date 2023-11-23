@@ -32,6 +32,10 @@ export default async function SitePosts({
     where: {
       id: decodeURIComponent(params.id),
     },
+    cacheStrategy: {
+      ttl: 300,
+      swr: 60,
+    },
   });
 
   if (!data || data.userId !== session.user.id) {
