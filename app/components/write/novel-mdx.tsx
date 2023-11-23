@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Post } from '@prisma/client';
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote';
@@ -20,6 +20,19 @@ export default function NovelMDX({ source }: { source: MDXRemoteProps }) {
     Examples,
     Tweet,
   };
+
+  useEffect(() => {
+    const taskItems = document.querySelectorAll('.task-list-item');
+    taskItems.forEach((item) => {
+      const checkbox = item.querySelector(
+        'input[type="checkbox"]',
+      ) as HTMLInputElement;
+      const text = item.querySelector('p');
+      if (checkbox && text && checkbox.checked) {
+        text.style.textDecoration = 'line-through';
+      }
+    });
+  }, []);
 
   return (
     <article

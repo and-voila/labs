@@ -420,6 +420,11 @@ export const defaultEditorContent = {
       content: [
         {
           type: 'taskItem',
+          attrs: { checked: true },
+          content: [{ type: 'text', text: 'Review this introduction.' }],
+        },
+        {
+          type: 'taskItem',
           attrs: { checked: false },
           content: [
             { type: 'text', text: 'Title your post – changeable anytime.' },
