@@ -12,6 +12,8 @@ import LoadingDots from '@/app/components/write/icons/loading-dots';
 import { updatePost, updatePostMetadata } from '@/app/lib/actions';
 import { cn } from '@/app/lib/utils';
 
+import { defaultEditorContent } from './default-editor-content';
+
 type PostWithSite = Post & { site: { subdomain: string | null } | null };
 
 export default function Editor({ post }: { post: PostWithSite }) {
@@ -173,7 +175,7 @@ export default function Editor({ post }: { post: PostWithSite }) {
             defaultValue={post?.title || ''}
             autoFocus
             onChange={(e) => setData({ ...data, title: e.target.value })}
-            className="border-none bg-card px-0 text-2xl font-semibold placeholder:text-muted-foreground/70 focus:outline-none focus:ring-0"
+            className="border-none bg-card px-0 font-sans text-2xl font-semibold placeholder:text-muted-foreground/70 focus:outline-none focus:ring-0"
           />
           {titleError && <p className="text-xs text-red-500">{titleError}</p>}
           <TextareaAutosize
@@ -183,7 +185,7 @@ export default function Editor({ post }: { post: PostWithSite }) {
             required
             defaultValue={post?.description || ''}
             onChange={(e) => setData({ ...data, description: e.target.value })}
-            className="w-[5/6 resize-none border-none bg-card px-0 placeholder:text-muted-foreground/70 focus:outline-none focus:ring-0"
+            className="w-[5/6 resize-none border-none bg-card px-0 font-sans placeholder:text-muted-foreground/70 focus:outline-none focus:ring-0"
           />
           {descriptionError && (
             <p className="text-xs text-red-500">{descriptionError}</p>
@@ -193,8 +195,10 @@ export default function Editor({ post }: { post: PostWithSite }) {
           )}
         </div>
         <NovelEditor
+          key={post.id}
+          storageKey={`novel__content_${post.id}`}
           className="relative block"
-          defaultValue={post?.content || undefined}
+          defaultValue={post?.content || defaultEditorContent}
           onUpdate={(editor) => {
             setData((prev) => ({
               ...prev,

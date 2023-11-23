@@ -1,6 +1,7 @@
 // eslint-disable-next-line camelcase
 import { unstable_cache } from 'next/cache';
 import { serialize } from 'next-mdx-remote/serialize';
+import remarkGfm from 'remark-gfm';
 
 import { db } from '@/app/lib/db';
 import { replaceExamples, replaceTweets } from '@/app/lib/remark-plugins';
@@ -127,7 +128,7 @@ async function getMdxSource(postContents: string) {
   // Serialize the content string into MDX
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [replaceTweets, () => replaceExamples(db)],
+      remarkPlugins: [remarkGfm, replaceTweets, () => replaceExamples(db)],
     },
   });
 
