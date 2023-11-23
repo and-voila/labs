@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 
 import BlogCard from '@/app/components/write/blog-card';
 import BlurImage from '@/app/components/write/blur-image';
+import WriteCta from '@/app/components/write/cta';
 import NovelMDX from '@/app/components/write/novel-mdx';
 import { db } from '@/app/lib/db';
 import { getPostData, getSiteData } from '@/app/lib/fetchers';
@@ -52,13 +53,12 @@ export async function generateMetadata({
         },
       ],
     },
-    // Optional: Set canonical URL to custom domain if it exists
-    // ...(params.domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
-    //   siteData.customDomain && {
-    //     alternates: {
-    //       canonical: `https://${siteData.customDomain}/${params.slug}`,
-    //     },
-    //   }),
+    ...(params.domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
+      siteData.customDomain && {
+        alternates: {
+          canonical: `https://${siteData.customDomain}/${params.slug}`,
+        },
+      }),
   };
 }
 
@@ -157,6 +157,9 @@ export default async function SitePostPage({
         </div>
         <div className="w-3/5 border-t border-brand py-8" />
         <NovelMDX source={data.mdxSource} />
+        <div className="my-12 px-6 lg:px-8">
+          <WriteCta domain={domain} />
+        </div>
       </div>
 
       {data.adjacentPosts.length > 0 && (

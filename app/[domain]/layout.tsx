@@ -6,8 +6,6 @@ import { notFound, redirect } from 'next/navigation';
 import { fontMapper } from '@/public/fonts';
 
 import { DomainsFooter } from '@/app/components/layout/domains-footer';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import CTA from '@/app/components/write/cta';
 import { getSiteData } from '@/app/lib/fetchers';
 import { cn } from '@/app/lib/utils';
 
