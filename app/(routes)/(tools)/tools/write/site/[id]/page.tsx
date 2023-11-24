@@ -33,8 +33,8 @@ export default async function SitePosts({
       id: decodeURIComponent(params.id),
     },
     cacheStrategy: {
-      ttl: 300,
-      swr: 60,
+      ttl: 20,
+      swr: 10,
     },
   });
 

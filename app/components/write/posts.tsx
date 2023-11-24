@@ -29,8 +29,8 @@ export default async function Posts({
       site: true,
     },
     cacheStrategy: {
-      ttl: 300,
-      swr: 60,
+      ttl: 20,
+      swr: 10,
     },
     ...(limit ? { take: limit } : {}),
   });
