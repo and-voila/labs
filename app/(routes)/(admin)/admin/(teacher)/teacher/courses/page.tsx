@@ -17,10 +17,6 @@ const CoursesPage = async () => {
     orderBy: {
       createdAt: 'desc',
     },
-    cacheStrategy: {
-      ttl: 1800,
-      swr: 300,
-    },
   });
 
   return (

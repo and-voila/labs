@@ -38,10 +38,6 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
         },
       },
     },
-    cacheStrategy: {
-      ttl: 60,
-      swr: 30,
-    },
   });
 
   const categories = await db.category.findMany({
