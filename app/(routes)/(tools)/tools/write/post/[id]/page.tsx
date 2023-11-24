@@ -33,10 +33,6 @@ export default async function PostPage({ params }: { params: { id: string } }) {
         },
       },
     },
-    cacheStrategy: {
-      ttl: 30,
-      swr: 15,
-    },
   });
   if (!data || data.userId !== session.user.id) {
     notFound();
