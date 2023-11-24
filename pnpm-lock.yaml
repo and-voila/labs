@@ -120,8 +120,8 @@ dependencies:
     specifier: ^3.11.1
     version: 3.11.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.5)
   '@uploadthing/react':
-    specifier: ^6.0.1
-    version: 6.0.1(next@14.0.3)(react@18.2.0)(uploadthing@6.0.3)
+    specifier: ^6.0.2
+    version: 6.0.2(next@14.0.3)(react@18.2.0)(uploadthing@6.0.3)
   '@upstash/ratelimit':
     specifier: ^0.4.4
     version: 0.4.4
@@ -139,7 +139,7 @@ dependencies:
     version: 0.5.1
   ai:
     specifier: ^2.2.25
-    version: 2.2.25(react@18.2.0)(solid-js@1.8.5)(svelte@4.2.7)(vue@3.3.8)
+    version: 2.2.25(react@18.2.0)(solid-js@1.8.6)(svelte@4.2.7)(vue@3.3.8)
   axios:
     specifier: ^1.6.2
     version: 1.6.2
@@ -202,7 +202,7 @@ dependencies:
     version: 6.9.7
   novel:
     specifier: ^0.1.22
-    version: 0.1.22(@babel/core@7.23.2)(@opentelemetry/api@1.7.0)(react@18.2.0)(solid-js@1.8.5)(svelte@4.2.7)(vue@3.3.8)
+    version: 0.1.22(@babel/core@7.23.2)(@opentelemetry/api@1.7.0)(react@18.2.0)(solid-js@1.8.6)(svelte@4.2.7)(vue@3.3.8)
   openai-edge:
     specifier: ^1.2.2
     version: 1.2.2
@@ -4874,10 +4874,10 @@ packages:
     resolution: {integrity: sha512-ZUo1JHOPPMZDsUw1mOhhVDIvJGlsjj6T0xJ/YJtulyJwL43S9B5pxg1cHcRuTEgjaxj7B55jiqQ6r9mDrrjH9A==}
     dev: false
 
-  /@uploadthing/react@6.0.1(next@14.0.3)(react@18.2.0)(uploadthing@6.0.3):
-    resolution: {integrity: sha512-IJHAdEYV66QXvd3/GMQaWr7ZJncZAVWvBhxg9UhE/b3qn651aJWnHBPgo2Q7W9R4t3ITua+/5cN7n0EpP00dhg==}
+  /@uploadthing/react@6.0.2(next@14.0.3)(react@18.2.0)(uploadthing@6.0.3):
+    resolution: {integrity: sha512-gUJwNvSFs0bg4m0c6wlFo1Fe3uyGTmAp0BESkRZvqyN4hNhIcxMY0TxjqxCKsYkv1T0/y3dHgN/XU2BDAQQh7w==}
     peerDependencies:
-      next: 14.0.1
+      next: '*'
       react: ^17.0.2 || ^18.0.0
       uploadthing: ^6.0.0
     peerDependenciesMeta:
@@ -5115,7 +5115,7 @@ packages:
       - supports-color
     dev: false
 
-  /ai@2.2.25(react@18.2.0)(solid-js@1.8.5)(svelte@4.2.7)(vue@3.3.8):
+  /ai@2.2.25(react@18.2.0)(solid-js@1.8.6)(svelte@4.2.7)(vue@3.3.8):
     resolution: {integrity: sha512-iXu3pzPpDPBGDir8hz86FAJmJTynMfBH4V/DXyR3GGeaHOfjdrErlcMm862CSalR6PDMwDOSCQVwJqtdnvIncQ==}
     engines: {node: '>=14.6'}
     peerDependencies:
@@ -5136,8 +5136,8 @@ packages:
       eventsource-parser: 1.0.0
       nanoid: 3.3.6
       react: 18.2.0
-      solid-js: 1.8.5
-      solid-swr-store: 0.10.7(solid-js@1.8.5)(swr-store@0.10.6)
+      solid-js: 1.8.6
+      solid-swr-store: 0.10.7(solid-js@1.8.6)(swr-store@0.10.6)
       sswr: 2.0.0(svelte@4.2.7)
       svelte: 4.2.7
       swr: 2.2.0(react@18.2.0)
@@ -10047,7 +10047,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /novel@0.1.22(@babel/core@7.23.2)(@opentelemetry/api@1.7.0)(react@18.2.0)(solid-js@1.8.5)(svelte@4.2.7)(vue@3.3.8):
+  /novel@0.1.22(@babel/core@7.23.2)(@opentelemetry/api@1.7.0)(react@18.2.0)(solid-js@1.8.6)(svelte@4.2.7)(vue@3.3.8):
     resolution: {integrity: sha512-hdZ3iV4kvCISNjRNXqQk6fRVkMZmvzWjA3zXM1bU2SXVEufBxZL+77qsdEK/XETkJkeEdQl0mk8ERwLiL0BvRg==}
     peerDependencies:
       react: ^18.2.0
@@ -10075,7 +10075,7 @@ packages:
       '@vercel/analytics': 1.1.1
       '@vercel/blob': 0.9.3
       '@vercel/kv': 0.2.4
-      ai: 2.2.25(react@18.2.0)(solid-js@1.8.5)(svelte@4.2.7)(vue@3.3.8)
+      ai: 2.2.25(react@18.2.0)(solid-js@1.8.6)(svelte@4.2.7)(vue@3.3.8)
       clsx: 1.2.1
       eslint: 8.36.0
       eslint-config-next: 13.2.4(eslint@8.36.0)(typescript@4.9.5)
@@ -11768,8 +11768,8 @@ packages:
     dependencies:
       lru-cache: 6.0.0
 
-  /seroval@0.12.4:
-    resolution: {integrity: sha512-JIsZHp98o+okpYN8HEPyI9Blr0gxAUPIGvg3waXrEMFjPz9obiLYMz0uFiUGezKiCK8loosYbn8WsqO8WtAJUA==}
+  /seroval@0.14.1:
+    resolution: {integrity: sha512-ZlC9y1KVDhZFdEHLYZup1RjKDutyX1tt3ffOauqRbRURa2vRr2NU/bHuVEuNEqR3zE2uCU3WM6LqH6Oinc3tWg==}
     engines: {node: '>=10'}
     dev: false
 
@@ -11877,21 +11877,21 @@ packages:
       is-fullwidth-code-point: 4.0.0
     dev: true
 
-  /solid-js@1.8.5:
-    resolution: {integrity: sha512-xvtJvzJzWbsn35oKFhW9kNwaxG1Z/YLMsDp4tLVcYZTMPzvzQ8vEZuyDQ6nt7xDArVgZJ7TUFrJUwrui/oq53A==}
+  /solid-js@1.8.6:
+    resolution: {integrity: sha512-yiH6ZfBBZ3xj/aU/PBpVKB+8r8WWp100NGF7k/Z0IrK9Y8Lv0jwvFiJY1cHdc6Tj7GqXArKnMBabM0m1k+LzkA==}
     dependencies:
       csstype: 3.1.2
-      seroval: 0.12.4
+      seroval: 0.14.1
     dev: false
 
-  /solid-swr-store@0.10.7(solid-js@1.8.5)(swr-store@0.10.6):
+  /solid-swr-store@0.10.7(solid-js@1.8.6)(swr-store@0.10.6):
     resolution: {integrity: sha512-A6d68aJmRP471aWqKKPE2tpgOiR5fH4qXQNfKIec+Vap+MGQm3tvXlT8n0I8UgJSlNAsSAUuw2VTviH2h3Vv5g==}
     engines: {node: '>=10'}
     peerDependencies:
       solid-js: ^1.2
       swr-store: ^0.10
     dependencies:
-      solid-js: 1.8.5
+      solid-js: 1.8.6
       swr-store: 0.10.6
     dev: false
 
