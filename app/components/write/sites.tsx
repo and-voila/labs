@@ -21,8 +21,8 @@ export default async function Sites({ limit }: { limit?: number }) {
       createdAt: 'asc',
     },
     cacheStrategy: {
-      ttl: 300,
-      swr: 60,
+      ttl: 20,
+      swr: 10,
     },
     ...(limit ? { take: limit } : {}),
   });

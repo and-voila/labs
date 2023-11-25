@@ -43,3 +43,5 @@ next-env.d.ts
 .contentlayer
 
 /cursor/
+
+disallowed-domains.txt
