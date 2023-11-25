@@ -6,6 +6,7 @@ import { Post, Site } from '@prisma/client';
 import { put } from '@vercel/blob';
 import { customAlphabet } from 'nanoid';
 
+import { env } from '@/env.mjs';
 import { withPostAuth, withSiteAuth } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
 import {
@@ -16,6 +17,7 @@ import {
   validDomainRegex,
 } from '@/app/lib/domains';
 import { getSession } from '@/app/lib/session';
+import { isTeacher } from '@/app/lib/teacher';
 import { getBlurDataURL } from '@/app/lib/utils';
 
 const nanoid = customAlphabet(
@@ -33,6 +35,18 @@ export const createSite = async (formData: FormData) => {
   const name = formData.get('name') as string;
   const description = formData.get('description') as string;
   const subdomain = formData.get('subdomain') as string;
+
+  const reservedDomains = env.RESERVED_DOMAINS?.split(',') || [];
+
+  if (
+    !isTeacher(session.user.id) &&
+    reservedDomains.includes(subdomain.toLowerCase())
+  ) {
+    return {
+      error:
+        "Oh no, this is a reserved subdomain and can't be used. Please try another one.",
+    };
+  }
 
   try {
     const response = await db.site.create({
