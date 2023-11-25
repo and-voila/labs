@@ -1,11 +1,10 @@
 import * as React from 'react';
-import Image from 'next/image';
 
 import { ModeToggle } from '@/app/components/layout/mode-toggle';
 import { Icons } from '@/app/components/shared/icons';
-import { cn } from '@/app/lib/utils';
-
-import ReportAbuse from '../write/report-abuse';
+import BlurImage from '@/app/components/write/blur-image';
+import ReportAbuse from '@/app/components/write/report-abuse';
+import { cn, placeholderBlurhash } from '@/app/lib/utils';
 
 interface DomainsFooterLinkData {
   href: string;
@@ -86,12 +85,15 @@ export function DomainsFooter({ className, name, logo }: DomainsFooterProps) {
       <div className="container flex flex-col items-center justify-between gap-4 py-6 md:h-16 md:flex-row md:py-0">
         <div className="flex flex-col items-center gap-4 px-8 text-sm md:flex-row md:gap-2 md:px-0">
           {logo ? (
-            <Image
+            <BlurImage
               src={logo}
               className="mr-2 h-6 w-6"
               width={40}
               height={40}
               alt={name}
+              placeholder="blur"
+              blurDataURL={placeholderBlurhash}
+              role="img"
             />
           ) : (
             <Icons.logo className="mr-2 h-7 text-brand" />

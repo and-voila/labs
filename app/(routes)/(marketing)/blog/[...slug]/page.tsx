@@ -6,14 +6,19 @@ import { Mdx } from '@/app/components/content/mdx-components';
 import '@/app/styles/mdx.css';
 
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
 import { env } from '@/env.mjs';
 import { Icons } from '@/app/components/shared/icons';
 import { buttonVariants } from '@/app/components/ui/button';
-import { absoluteUrl, cn, formatDate } from '@/app/lib/utils';
+import BlurImage from '@/app/components/write/blur-image';
+import {
+  absoluteUrl,
+  cn,
+  formatDate,
+  placeholderBlurhash,
+} from '@/app/lib/utils';
 
 interface PostPageProps {
   params: {
@@ -130,12 +135,16 @@ export default async function PostPage({ params }: PostPageProps) {
                   href={`https://twitter.com/${author.twitter}`}
                   className="flex items-center space-x-2 text-sm"
                 >
-                  <Image
+                  <BlurImage
                     src={author.avatar}
                     alt={author.title}
                     width={42}
                     height={42}
                     className="rounded-full bg-white"
+                    placeholder="blur"
+                    blurDataURL={placeholderBlurhash}
+                    role="img"
+                    aria-label={`An avatar of ${author.title}`}
                   />
                   <div className="flex-1 text-left leading-tight">
                     <p className="font-medium">{author.title}</p>
@@ -150,12 +159,16 @@ export default async function PostPage({ params }: PostPageProps) {
         ) : null}
       </div>
       {post.image && (
-        <Image
+        <BlurImage
           src={post.image}
           alt={post.title}
           width={720}
           height={405}
           className="my-8 rounded-md border bg-muted transition-colors"
+          placeholder="blur"
+          blurDataURL={placeholderBlurhash}
+          role="img"
+          aria-label={`A featured image for ${post.title}`}
           priority
         />
       )}

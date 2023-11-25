@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { COURSE_DEFAULT_PRICE } from '@/constants';
@@ -11,11 +10,12 @@ import { StartCourseButton } from '@/app/components/learn/courses/start-course-b
 import { Preview } from '@/app/components/preview';
 import { buttonVariants } from '@/app/components/ui/button';
 import { Separator } from '@/app/components/ui/separator';
+import BlurImage from '@/app/components/write/blur-image';
 import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
 import { getSession } from '@/app/lib/session';
-import { cn } from '@/app/lib/utils';
+import { cn, placeholderBlurhash } from '@/app/lib/utils';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const session = await getSession();
@@ -77,7 +77,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             variant="warning"
             label={`You can buy this playbook for $${COURSE_DEFAULT_PRICE} or upgrade to get full access to the And Voila ecosystem.`}
           />
-          <Image
+          <BlurImage
             className="mb-4 mt-10 w-full shadow-md grayscale transition duration-200 hover:grayscale-0"
             src={course.imageUrl!}
             alt={`A featured image of an anthropomorphic cat representing ${course.title}`}
@@ -85,6 +85,8 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             height={630}
             role="img"
             aria-label={`A featured image of an anthropomorphic cat representing ${course.title}`}
+            placeholder="blur"
+            blurDataURL={placeholderBlurhash}
           />
           <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
             <div className="flex flex-col items-center justify-between p-4 lg:flex-row">
@@ -119,14 +121,16 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     return (
       <>
         <div className="mx-auto flex flex-col pb-20">
-          <Image
+          <BlurImage
             className="mb-4 mt-10 w-full shadow-md grayscale transition duration-200 hover:grayscale-0"
             src={course.imageUrl!}
             alt={`A featured image of an anthropomorphic cat representing ${course.title}`}
-            width={630}
-            height={1200}
+            width={1200}
+            height={630}
             role="img"
             aria-label={`A featured image of an anthropomorphic cat representing ${course.title}`}
+            placeholder="blur"
+            blurDataURL={placeholderBlurhash}
           />
           <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
             <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
