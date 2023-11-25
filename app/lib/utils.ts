@@ -3,6 +3,8 @@ import ms from 'ms';
 import { twMerge } from 'tailwind-merge';
 
 import { env } from '@/env.mjs';
+import { pricingData } from '@/app/config/subscriptions';
+import { PlanTitle, SubscriptionPlan } from '@/app/lib/types';
 
 export const SITE_URL: string = 'https://labs.andvoila.gg';
 
@@ -125,4 +127,21 @@ export const toDateString = (date: Date) => {
 
 export const random = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+export const calculatePrice = (
+  prices: { monthly: number; yearly: number },
+  isYearly: boolean,
+): string => {
+  if (isYearly) {
+    return `$${Math.floor(prices.yearly / 12)}`;
+  } else {
+    return prices.monthly > 0 ? `$${prices.monthly}` : 'Free';
+  }
+};
+
+export const getPlanByTitle = (
+  title: PlanTitle,
+): SubscriptionPlan | undefined => {
+  return pricingData.find((plan) => plan.title === title);
 };
