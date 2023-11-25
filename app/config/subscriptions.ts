@@ -76,4 +76,30 @@ export const pricingData: SubscriptionPlan[] = [
       yearly: env.NEXT_PUBLIC_STRIPE_BEST_YEARLY_PRICE_ID,
     },
   },
+  {
+    title: 'Teams',
+    description:
+      'The Teams plan includes everything in the Best plan for up to 5 users. It also includes user roles, analytics, priority support, collaboration features, moderation tools, and shared resources/assets.',
+    benefits: [
+      'Everything in the Best plan',
+      'Up to 5 users',
+      'Collaboration features',
+      'Moderation tools',
+      'User roles',
+      'Analytics',
+      'Priority support',
+      'Shared asset library',
+      'Additional users at $59/mo',
+      'Free billing users',
+    ],
+    limitations: [],
+    prices: {
+      monthly: 395,
+      yearly: 3800,
+    },
+    stripeIds: {
+      monthly: env.NEXT_PUBLIC_STRIPE_TEAMS_MONTHLY_PRICE_ID,
+      yearly: env.NEXT_PUBLIC_STRIPE_TEAMS_YEARLY_PRICE_ID,
+    },
+  },
 ];

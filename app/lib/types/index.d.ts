@@ -186,8 +186,10 @@ export type WriteConfig = {
 
 // :: Stripe and Subscription Types ::
 
-export type SubscriptionPlan = {
-  title: string;
+type PlanTitle = 'Good' | 'Better' | 'Best' | 'Teams';
+
+interface SubscriptionPlan {
+  title: PlanTitle;
   description: string;
   benefits: string[];
   limitations: string[];
@@ -199,7 +201,7 @@ export type SubscriptionPlan = {
     monthly: string | null;
     yearly: string | null;
   };
-};
+}
 
 export type UserSubscriptionPlan = SubscriptionPlan & {
   stripeCustomerId: string | null;
