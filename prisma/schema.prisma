@@ -9,6 +9,55 @@ generator client {
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
+model Organization {
+  id            String   @id @default(cuid())
+  name          String
+  primaryDomain String?  @unique
+  ownerId       String
+  logo          String?  @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/eRsvMz1-NM55IyismSKxhuL2Z7AfAEXQ7Qilts.jpeg") @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  members Membership[]
+  sites   Site[]       @relation(name: "OrganizationToSite")
+  courses Course[]     @relation(name: "OrganizationToCourse")
+  owner   User         @relation(name: "UserOwnsOrganization", fields: [ownerId], references: [id])
+
+  @@index([ownerId], name: "idx_organization_owner")
+  @@map(name: "organizations")
+}
+
+model Membership {
+  id             String         @id @default(cuid())
+  organizationId String
+  userId         String
+  role           MembershipRole
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  user         User         @relation(fields: [userId], references: [id])
+
+  @@unique([organizationId, userId])
+  @@index([organizationId], name: "idx_membership_organization")
+  @@index([userId], name: "idx_membership_user")
+  @@map(name: "memberships")
+}
+
+enum MembershipRole {
+  OWNER
+  ADMIN
+  MEMBER
+  BILLING
+}
+
+enum GlobalRole {
+  SUPERADMIN
+  ADMIN
+  TEACHER
+  CUSTOMER
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -18,18 +67,23 @@ model User {
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
 
-  discordId           String?  @unique
+  discordId           String?    @unique
   discordUsername     String?
   discordAvatar       String?
-  discordServerMember Boolean? @default(false)
-  discordPremium      Boolean? @default(false)
+  discordServerMember Boolean?   @default(false)
+  discordPremium      Boolean?   @default(false)
+  role                GlobalRole @default(CUSTOMER)
 
-  accounts     Account[]
-  sessions     Session[]
-  sites        Site[]
-  posts        Post[]
-  userApiLimit UserApiLimit?
+  accounts           Account[]
+  sessions           Session[]
+  sites              Site[]
+  posts              Post[]
+  userApiLimit       UserApiLimit?
+  memberships        Membership[]
+  ownedOrganizations Organization[] @relation(name: "UserOwnsOrganization")
 
+  @@index([email], name: "idx_user_email")
+  @@index([id], name: "idx_user_id")
   @@map(name: "users")
 }
 
@@ -53,7 +107,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
-  @@index([userId])
+  @@index([userId], name: "idx_account_user")
   @@map(name: "accounts")
 }
 
@@ -64,7 +118,7 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId])
+  @@index([userId], name: "idx_session_user")
   @@map(name: "sessions")
 }
 
@@ -83,41 +137,48 @@ model Post {
   description String? @db.Text
   content     String? @db.Text
 
-  slug          String   @default(cuid())
-  image         String?  @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/IoGBwOC-9CvtiYRSGCNZAuY0UAemMZ0UzFtuZ7.jpeg") @db.Text
-  imageBlurhash String?  @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC") @db.Text
-  createdAt     DateTime @default(now()) @map(name: "created_at")
-  updatedAt     DateTime @default(now()) @map(name: "updated_at")
-  published     Boolean  @default(false)
-  site          Site?    @relation(fields: [siteId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  siteId        String?
-  user          User?    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId        String?
+  slug          String  @default(cuid())
+  image         String? @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/IoGBwOC-9CvtiYRSGCNZAuY0UAemMZ0UzFtuZ7.jpeg") @db.Text
+  imageBlurhash String? @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC") @db.Text
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+  published Boolean  @default(false)
+
+  site   Site?   @relation(fields: [siteId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  siteId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String?
 
   @@unique([slug, siteId])
-  @@index([siteId])
-  @@index([userId])
+  @@index([siteId], name: "idx_post_site")
+  @@index([userId], name: "idx_post_user")
   @@map(name: "posts")
 }
 
 model Site {
-  id            String   @id @default(cuid())
-  name          String?
-  description   String?  @db.Text
-  logo          String?  @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/SgQEI5B-KRu6KULIVq8OXj0eKRn7drD4RRCGf1.png") @db.Text
-  font          String   @default("font-cal")
-  image         String?  @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/qbRcbkW-GSx1IuBuKyVEbOJkFlkxBCVaCy5qfD.jpeg") @db.Text
-  imageBlurhash String?  @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC") @db.Text
-  subdomain     String?  @unique
-  customDomain  String?  @unique
-  message404    String?  @default("Oops! You've found a page that doesn't exist.") @db.Text
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  user          User?    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId        String?
-  posts         Post[]
+  id              String   @id @default(cuid())
+  name            String?
+  description     String?  @db.Text
+  logo            String?  @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/SgQEI5B-KRu6KULIVq8OXj0eKRn7drD4RRCGf1.png") @db.Text
+  font            String   @default("font-cal")
+  image           String?  @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/qbRcbkW-GSx1IuBuKyVEbOJkFlkxBCVaCy5qfD.jpeg") @db.Text
+  imageBlurhash   String?  @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC") @db.Text
+  subdomain       String?  @unique
+  customDomain    String?  @unique
+  message404      String?  @default("Oops! You've found a page that doesn't exist.") @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  userId          String?
+  organizationId  String?
+  twitterSiteOrId String?
 
-  @@index([userId])
+  user         User?         @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  organization Organization? @relation(name: "OrganizationToSite", fields: [organizationId], references: [id])
+  posts        Post[]
+
+  @@index([userId], name: "idx_site_user")
+  @@index([organizationId], name: "idx_site_organization")
   @@map(name: "sites")
 }
 
@@ -132,14 +193,15 @@ model Example {
 }
 
 model Course {
-  id          String  @id @default(cuid())
-  userId      String
-  title       String  @db.Text
-  description String? @db.Text
-  preview     String? @db.Text
-  imageUrl    String? @db.Text
-  price       Float?
-  isPublished Boolean @default(false)
+  id             String  @id @default(cuid())
+  userId         String
+  organizationId String?
+  title          String  @db.Text
+  description    String? @db.Text
+  preview        String? @db.Text
+  imageUrl       String? @db.Text
+  price          Float?
+  isPublished    Boolean @default(false)
 
   categoryId String?
   category   Category? @relation(fields: [categoryId], references: [id])
@@ -152,7 +214,11 @@ model Course {
   updatedAt DateTime @updatedAt
   //@@fulltext([title])
 
-  @@index([categoryId])
+  organization Organization? @relation(name: "OrganizationToCourse", fields: [organizationId], references: [id])
+
+  @@index([userId], name: "idx_course_user")
+  @@index([organizationId], name: "idx_course_organization")
+  @@index([categoryId], name: "idx_course_category")
   @@map(name: "courses")
 }
 
@@ -175,7 +241,7 @@ model Attachment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([courseId])
+  @@index([courseId], name: "idx_attachment_course")
   @@map(name: "attachments")
 }
 
@@ -197,7 +263,7 @@ model Chapter {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([courseId])
+  @@index([courseId], name: "idx_chapter_course")
   @@map(name: "chapters")
 }
 
@@ -225,7 +291,7 @@ model UserProgress {
   updatedAt DateTime @updatedAt
 
   @@unique([userId, chapterId])
-  @@index([chapterId])
+  @@index([chapterId], name: "idx_user_progress_chapter")
   @@map(name: "user_progress")
 }
 
@@ -243,11 +309,14 @@ model UserApiLimit {
 model UserSubscription {
   id                     String    @id @default(cuid())
   userId                 String    @unique
+  organizationId         String?   @unique
   stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
   stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
   stripePriceId          String?   @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
 
+  @@index([userId], name: "idx_user_subscription_user")
+  @@index([organizationId], name: "idx_user_subscription_organization")
   @@map(name: "user_subscriptions")
 }
 
@@ -262,14 +331,15 @@ model Purchase {
   updatedAt DateTime @updatedAt()
 
   @@unique([userId, courseId])
-  @@index([courseId])
+  @@index([courseId], name: "idx_purchases_course")
   @@map(name: "purchases")
 }
 
 model StripeCustomer {
-  id               String @id @default(cuid())
-  userId           String @unique
-  stripeCustomerId String @unique
+  id               String  @id @default(cuid())
+  userId           String  @unique
+  organizationId   String? @unique
+  stripeCustomerId String  @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
