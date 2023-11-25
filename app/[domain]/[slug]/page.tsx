@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 import BlogCard from '@/app/components/write/blog-card';
@@ -7,7 +6,7 @@ import WriteCta from '@/app/components/write/cta';
 import NovelMDX from '@/app/components/write/novel-mdx';
 import { db } from '@/app/lib/db';
 import { getPostData, getSiteData } from '@/app/lib/fetchers';
-import { toDateString } from '@/app/lib/utils';
+import { placeholderBlurhash, toDateString } from '@/app/lib/utils';
 
 export async function generateMetadata({
   params,
@@ -109,12 +108,14 @@ export default async function SitePostPage({
       {/* Background image */}
       {data.image && (
         <div className="absolute inset-0 box-content h-128 pt-16">
-          <Image
+          <BlurImage
             className="absolute inset-0 h-full w-full object-cover opacity-25"
             src={data.image}
             width={1440}
             height={577}
-            priority
+            placeholder="blur"
+            blurDataURL={placeholderBlurhash}
+            role="img"
             alt={data.title || 'A featured image for the post'}
           />
           <div

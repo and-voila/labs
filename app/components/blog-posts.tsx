@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
-import { formatDate } from '@/app/lib/utils';
+import BlurImage from '@/app/components/write/blur-image';
+import { formatDate, placeholderBlurhash } from '@/app/lib/utils';
 
 interface Post {
   _id: string;
@@ -27,12 +27,15 @@ export function BlogPosts({ posts }: BlogPostsProps) {
         <article className="relative grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             {posts[0].image && (
-              <Image
+              <BlurImage
                 alt={posts[0].title}
                 className="w-full rounded-lg border object-cover object-center md:h-64 lg:h-96"
                 height={452}
                 src={posts[0].image}
                 width={804}
+                placeholder="blur"
+                blurDataURL={placeholderBlurhash}
+                role="img"
               />
             )}
           </div>
@@ -63,12 +66,15 @@ export function BlogPosts({ posts }: BlogPostsProps) {
               className="group relative flex flex-col space-y-2"
             >
               {post.image && (
-                <Image
+                <BlurImage
                   alt={post.title}
                   src={post.image}
                   width={804}
                   height={452}
                   className="rounded-md border bg-muted transition-colors"
+                  placeholder="blur"
+                  blurDataURL={placeholderBlurhash}
+                  role="img"
                 />
               )}
               <h2 className="text-2xl font-bold">{post.title}</h2>

@@ -15,7 +15,7 @@ export default function BlurImage(props: ComponentProps<typeof Image>) {
       className={cn(
         props.className,
         'duration-700 ease-in-out',
-        isLoading ? 'scale-105 blur-lg' : 'scale-100 blur-0',
+        isLoading ? 'blur-lg' : 'blur-0',
       )}
       onLoad={() => setLoading(false)}
     />

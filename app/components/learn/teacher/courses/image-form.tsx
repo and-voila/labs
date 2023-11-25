@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Course } from '@prisma/client';
 import axios from 'axios';
@@ -11,6 +10,8 @@ import { FileUpload } from '@/app/components/learn/teacher/file-upload';
 import { Icons } from '@/app/components/shared/icons';
 import { Button } from '@/app/components/ui/button';
 import { toast } from '@/app/components/ui/use-toast';
+import BlurImage from '@/app/components/write/blur-image';
+import { placeholderBlurhash } from '@/app/lib/utils';
 
 interface ImageFormProps {
   initialData: Course;
@@ -78,11 +79,14 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
           </div>
         ) : (
           <div className="relative mt-2 aspect-video">
-            <Image
+            <BlurImage
               alt="Upload"
               fill
               className="rounded-md object-cover"
               src={initialData.imageUrl}
+              placeholder="blur"
+              blurDataURL={placeholderBlurhash}
+              role="img"
             />
           </div>
         ))}

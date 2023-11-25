@@ -1,13 +1,13 @@
 import { ReactNode } from 'react';
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { fontMapper } from '@/public/fonts';
 
 import { DomainsFooter } from '@/app/components/layout/domains-footer';
+import BlurImage from '@/app/components/write/blur-image';
 import { getSiteData } from '@/app/lib/fetchers';
-import { cn } from '@/app/lib/utils';
+import { cn, placeholderBlurhash } from '@/app/lib/utils';
 
 export async function generateMetadata({
   params,
@@ -103,11 +103,14 @@ export default async function SiteLayout({
         <div className="mx-auto flex h-full max-w-screen-xl items-center justify-center space-x-5 px-10 sm:px-20">
           <Link href="/" className="flex items-center justify-center">
             <div className="inline-block h-8 w-8 overflow-hidden rounded-full align-middle">
-              <Image
-                alt={data.name || ''}
-                height={40}
+              <BlurImage
                 src={data.logo || ''}
+                alt={data.name || ''}
                 width={40}
+                height={40}
+                placeholder="blur"
+                blurDataURL={placeholderBlurhash}
+                role="img"
               />
             </div>
             <span className="ml-3 inline-block truncate font-title font-medium">

@@ -1,20 +1,23 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { Icons } from '@/app/components/shared/icons';
 import { buttonVariants } from '@/app/components/ui/button';
-import { cn } from '@/app/lib/utils';
+import BlurImage from '@/app/components/write/blur-image';
+import { cn, placeholderBlurhash } from '@/app/lib/utils';
 
 const NotAuthorizedPage = () => {
   return (
     <main className="relative isolate h-screen">
-      <Image
-        src="/images/not-authorized.avif"
+      <BlurImage
+        src="/images/bus-nowhere.jpg"
         alt="A photo of a bus in the middle of nowhere."
-        className="object-fit absolute inset-0 -z-10 h-full w-full object-top grayscale"
-        width={3050}
-        height={2440}
+        className="absolute inset-0 -z-10 h-full w-full object-cover object-top grayscale"
+        width={1920}
+        height={1536}
+        priority
+        blurDataURL={placeholderBlurhash}
+        role="img"
       />
       <div className="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">
         <p className="text-sm font-semibold uppercase tracking-widest">
@@ -28,7 +31,6 @@ const NotAuthorizedPage = () => {
           Tropical. A mistake you say? Contact Stevie at the front desk for
           assistance. Just don&apos;t ask her for a wake-up call.
         </p>
-
         <div className="mt-10 flex justify-center">
           <Link
             href="/dashboard"
@@ -37,6 +39,25 @@ const NotAuthorizedPage = () => {
             <Icons.caretLeft className="mr-2 h-4 w-4" />
             Get me out of here!
           </Link>
+        </div>
+        <div className="mt-6 text-xs">
+          Photo by{' '}
+          <a
+            href="https://unsplash.com/@thebethanyrandall?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold"
+          >
+            Bethany Randall
+          </a>{' '}
+          on{' '}
+          <a
+            href="https://unsplash.com/photos/white-and-red-bus-near-mountain-AJ34jnrB52A?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Unsplash
+          </a>
         </div>
       </div>
     </main>
