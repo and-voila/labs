@@ -53,7 +53,7 @@ const ChapterIdPage = async ({
 
   return (
     <DashboardShell>
-      <div className="max-w-4xl bg-background dark:bg-[#242629]">
+      <div className="max-w-4xl bg-background">
         {!chapter.isPublished && (
           <Banner
             variant="warning"

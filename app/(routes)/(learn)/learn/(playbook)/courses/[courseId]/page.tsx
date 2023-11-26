@@ -88,7 +88,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             placeholder="blur"
             blurDataURL={placeholderBlurhash}
           />
-          <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
+          <div className="rounded-xl bg-card p-6 lg:p-8">
             <div className="flex flex-col items-center justify-between p-4 lg:flex-row">
               <h2 className="mb-2 text-3xl font-bold tracking-tight">
                 {course.title}
@@ -132,7 +132,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             placeholder="blur"
             blurDataURL={placeholderBlurhash}
           />
-          <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
+          <div className="rounded-xl bg-card p-6 lg:p-8">
             <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
               <div className="ml-4 mt-2">
                 <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">

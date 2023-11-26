@@ -62,7 +62,7 @@ const ChapterIdPage = async ({
               completeOnEnd={completeOnEnd}
             />
           </div>
-          <div className="rounded-xl bg-white p-6 dark:bg-background lg:p-8">
+          <div className="rounded-xl bg-card p-6 lg:p-8">
             <div className="flex flex-col items-center justify-between space-y-4 p-4 lg:flex-row lg:space-y-0">
               <h2 className="mb-2 flex-grow text-3xl font-bold leading-tight tracking-tight">
                 {chapter.title}

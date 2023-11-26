@@ -134,7 +134,7 @@ export default function Form({
       {inputAttrs.name === 'customDomain' && inputAttrs.defaultValue && (
         <DomainConfiguration domain={inputAttrs.defaultValue} />
       )}
-      <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-border bg-primary-foreground p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
+      <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-border bg-card p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
         <p className="text-sm text-muted-foreground">{helpText}</p>
         <FormButton />
       </div>

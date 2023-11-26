@@ -66,7 +66,7 @@ export default function ReportAbuse() {
                   id="url"
                   readOnly
                   value={url}
-                  className="block w-full cursor-not-allowed rounded-md border bg-primary-foreground text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
+                  className="block w-full cursor-not-allowed rounded-md border bg-card text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
                 />
               </div>
             </div>

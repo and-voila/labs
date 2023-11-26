@@ -73,7 +73,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
   return (
     <DashboardShell>
-      <div className="max-w-4xl bg-background dark:bg-[#242629] ">
+      <div className="bg-background] max-w-4xl ">
         {!course.isPublished && (
           <Banner label="This playbook ain't published. No one will be able to see it yo." />
         )}

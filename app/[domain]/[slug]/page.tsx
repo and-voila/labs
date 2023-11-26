@@ -147,7 +147,7 @@ export default async function SitePostPage({
                 width={80}
               />
             ) : (
-              <div className="absolute flex h-full w-full select-none items-center justify-center bg-primary-foreground text-4xl">
+              <div className="absolute flex h-full w-full select-none items-center justify-center bg-card text-4xl">
                 ?
               </div>
             )}
@@ -172,7 +172,7 @@ export default async function SitePostPage({
             <div className="w-full border-t border-brand" />
           </div>
           <div className="relative flex justify-center">
-            <span className="bg-background px-2 text-sm uppercase tracking-widest text-muted-foreground dark:bg-[#242629]">
+            <span className="bg-background px-2 text-sm uppercase tracking-widest text-muted-foreground">
               Continue Reading
             </span>
           </div>

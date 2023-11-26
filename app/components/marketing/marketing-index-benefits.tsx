@@ -79,7 +79,7 @@ const MarketingIndexBenefits = () => {
   return (
     <section
       id="benefits"
-      className="container space-y-6 rounded-2xl bg-muted py-8 dark:bg-background md:py-12 lg:py-24"
+      className="container space-y-6 rounded-2xl bg-muted py-8 md:py-12 lg:py-24"
     >
       <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
         <h2 className="text-3xl font-extrabold leading-[1.1] sm:text-3xl md:text-6xl">
@@ -97,7 +97,7 @@ const MarketingIndexBenefits = () => {
         {marketingBenefits.map((benefit) => (
           <div
             key={benefit.id}
-            className="relative overflow-hidden rounded-lg border bg-primary-foreground p-2"
+            className="relative overflow-hidden rounded-lg border bg-card p-2"
           >
             <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
               <span

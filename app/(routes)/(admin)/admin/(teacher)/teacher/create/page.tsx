@@ -71,7 +71,7 @@ const CreatePage = () => {
 
   return (
     <DashboardShell>
-      <div className="flex rounded-xl border bg-white p-6 shadow-md dark:bg-background md:p-12">
+      <div className="flex rounded-xl border bg-card p-6 shadow-md md:p-12">
         <div>
           <H4 as="h1" className="mb-4">
             Name the playbook

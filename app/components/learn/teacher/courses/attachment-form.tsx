@@ -75,7 +75,7 @@ export const AttachmentForm = ({
   };
 
   return (
-    <div className="mt-6 rounded-md border bg-white px-4 py-6 dark:bg-background">
+    <div className="mt-6 rounded-md border bg-card px-4 py-6">
       <div className="mb-4 flex items-center justify-between font-semibold">
         Playbook attachments
         <Button onClick={toggleEdit} variant="ghost" size="sm">
@@ -100,7 +100,7 @@ export const AttachmentForm = ({
               {initialData.attachments.map((attachment) => (
                 <div
                   key={attachment.id}
-                  className="flex w-full items-center rounded-md border bg-white p-3 text-foreground dark:bg-background"
+                  className="flex w-full items-center rounded-md border bg-card p-3 text-foreground"
                 >
                   <Icons.file className="mr-4 h-4 w-4 flex-shrink-0 text-brand" />
                   <p className="line-clamp-1 text-xs">{attachment.name}</p>

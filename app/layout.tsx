@@ -134,7 +134,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       suppressHydrationWarning
     >
       <head />
-      <body className={cn('min-h-screen bg-background dark:bg-[#242629]')}>
+      <body className={cn('min-h-screen bg-background')}>
         <Providers>{children}</Providers>
       </body>
     </html>

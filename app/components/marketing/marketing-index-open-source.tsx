@@ -64,12 +64,11 @@ const MarketingIndexOpenSource = async () => {
             className="mt-4 flex"
             aria-label="See our GitHub stars"
           >
-            <div className="flex h-10 w-10 items-center justify-center space-x-2 rounded-md border border-muted bg-primary-foreground">
+            <div className="mr-2 flex h-10 w-10 items-center justify-center space-x-2 rounded-md border bg-card">
               <Icons.github className="h-5 w-5 text-brand" />
             </div>
             <div className="flex items-center">
-              <div className="h-4 w-4 border-y-8 border-l-0 border-r-8 border-solid border-muted border-y-transparent" />
-              <div className="flex h-10 items-center rounded-md border border-muted bg-primary-foreground px-4 font-medium">
+              <div className="flex h-10 items-center rounded-md border bg-card px-4 font-medium">
                 {stars} stars on GitHub
               </div>
             </div>

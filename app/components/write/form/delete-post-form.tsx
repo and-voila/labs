@@ -56,7 +56,7 @@ export default function DeletePostForm({ postName }: { postName: string }) {
         />
       </div>
 
-      <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-border bg-primary-foreground p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
+      <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-border bg-card p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
         <p className="text-center text-sm text-muted-foreground">
           This action is irreversible. Please proceed with caution.
         </p>
