@@ -34,7 +34,7 @@ export const CourseCard = ({
 
   return (
     <Link href={`/learn/courses/${id}`}>
-      <div className="group h-full overflow-hidden rounded-xl border bg-white transition hover:shadow-sm dark:bg-background">
+      <div className="group h-full overflow-hidden rounded-xl border bg-card transition hover:shadow-sm">
         {displayImage && (
           <div className="relative aspect-video w-full overflow-hidden md:grayscale md:group-hover:grayscale-0">
             <BlurImage

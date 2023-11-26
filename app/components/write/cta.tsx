@@ -10,7 +10,7 @@ interface WriteCtaProps {
 
 const WriteCta = ({ domain }: WriteCtaProps) => {
   return (
-    <div className="rounded-lg border bg-primary-foreground shadow">
+    <div className="rounded-lg border bg-card shadow">
       <div className="px-4 py-4 sm:px-4 sm:py-4 lg:p-6">
         <div className="mx-auto max-w-lg text-center">
           <Logo fillOnHover className="mx-auto my-2 h-6 w-auto" />

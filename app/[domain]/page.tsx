@@ -76,7 +76,7 @@ export default async function SiteHomePage({
                       src={data.user?.image}
                     />
                   ) : (
-                    <div className="absolute flex h-full w-full select-none items-center justify-center bg-primary-foreground text-xl text-foreground">
+                    <div className="absolute flex h-full w-full select-none items-center justify-center bg-card text-xl text-foreground">
                       ?
                     </div>
                   )}

@@ -64,7 +64,7 @@ export function TeacherCourseListDataTable<TData, TValue>({
           onChange={(event) =>
             table.getColumn('title')?.setFilterValue(event.target.value)
           }
-          className=" max-w-[300px] bg-white dark:bg-background md:max-w-sm"
+          className=" max-w-[300px] bg-card md:max-w-sm"
         />
         <Link href="/admin/teacher/create">
           <Button variant="custom" size="sm" className="mx-2">
@@ -74,7 +74,7 @@ export function TeacherCourseListDataTable<TData, TValue>({
         </Link>
       </div>
       <div className="my-6 rounded-md border">
-        <Table className="rounded-xl bg-white dark:bg-background">
+        <Table className="rounded-xl bg-card">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>

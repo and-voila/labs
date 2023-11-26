@@ -80,7 +80,7 @@ export default function CreateSiteModal() {
             onChange={(e) => setData({ ...data, name: e.target.value })}
             maxLength={32}
             required
-            className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-brand dark:bg-[#242629]"
+            className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-brand"
           />
         </div>
 
@@ -102,7 +102,7 @@ export default function CreateSiteModal() {
               pattern="[a-zA-Z0-9\-]+" // only allow lowercase letters, numbers, and dashes
               maxLength={32}
               required
-              className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-brand dark:bg-[#242629]"
+              className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-brand"
             />
             <div className="flex items-center rounded-r-lg border border-l-0 bg-brand/20 px-3 text-sm">
               .{env.NEXT_PUBLIC_ROOT_DOMAIN}
@@ -124,11 +124,11 @@ export default function CreateSiteModal() {
             onChange={(e) => setData({ ...data, description: e.target.value })}
             maxLength={140}
             rows={3}
-            className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-brand dark:bg-[#242629]"
+            className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-brand"
           />
         </div>
       </div>
-      <div className="flex items-center justify-end rounded-b-lg border border-t bg-primary-foreground p-3 md:px-10">
+      <div className="flex items-center justify-end rounded-b-lg border border-t bg-card p-3 md:px-10">
         <CreateSiteFormButton />
       </div>
     </form>

@@ -37,7 +37,7 @@ export const LogoSkeleton = () => {
 export const FreeCounterSkeleton = () => {
   return (
     <div className="px-2">
-      <div className={cn('rounded-md border bg-primary-foreground p-4')}>
+      <div className={cn('rounded-md border bg-card p-4')}>
         <Skeleton className="mx-auto my-2 h-5 w-2/3" />
         <Skeleton className="mx-auto my-2 h-4 w-4/5" />
         <Skeleton className="mx-auto my-2 h-4 w-4/5" />
@@ -114,7 +114,7 @@ export const CourseCardSkeleton = ({
   displayImage = true,
 }: CourseCardSkeletonProps) => {
   return (
-    <div className="h-full overflow-hidden rounded-xl border bg-white dark:bg-background">
+    <div className="h-full overflow-hidden rounded-xl border bg-card">
       {displayImage && <Skeleton className="h-32 w-full rounded-t-xl" />}
       <div className="mt-1 flex flex-col p-4">
         <div className="mb-2 flex items-center justify-between">
@@ -229,7 +229,7 @@ export const VideoPlayerSkeleton = () => {
 
 export const InfoCardSkeleton = () => {
   return (
-    <div className="flex items-center gap-x-2 rounded-md border bg-white p-3 shadow dark:bg-background">
+    <div className="flex items-center gap-x-2 rounded-md border bg-card p-3 shadow">
       <Skeleton className="h-6 w-6" />
       <div>
         <Skeleton className="mb-2 h-4 w-24" />
@@ -251,7 +251,7 @@ export const TeacherCoursesFilterSkeleton = () => {
 
 export const TeacherCoursesTableSkeleton = () => {
   return (
-    <div className="my-6 rounded-md border bg-white dark:bg-background">
+    <div className="my-6 rounded-md border bg-card">
       <div className="rounded-xl">
         <div className="flex">
           <Skeleton className="m-2 h-10 w-1/2 rounded-md" />

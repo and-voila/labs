@@ -96,7 +96,7 @@ export default async function SiteLayout({
     <div
       className={cn(
         fontMapper[data.font],
-        'flex min-h-screen flex-col bg-background dark:bg-[#242629]',
+        'flex min-h-screen flex-col bg-background',
       )}
     >
       <div className="sticky top-0 z-40 flex h-16 w-full justify-center bg-background/60 backdrop-blur-xl transition-all">

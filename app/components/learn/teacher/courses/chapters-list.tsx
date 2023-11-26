@@ -76,8 +76,7 @@ export const ChaptersList = ({
                   <div
                     className={cn(
                       'mb-4 flex items-center gap-x-2 rounded-md border bg-transparent text-sm text-muted-foreground',
-                      chapter.isPublished &&
-                        'border bg-white text-foreground dark:bg-background',
+                      chapter.isPublished && 'border bg-card text-foreground',
                     )}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
