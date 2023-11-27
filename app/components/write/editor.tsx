@@ -3,7 +3,6 @@
 import { useEffect, useReducer, useState, useTransition } from 'react';
 import { Post } from '@prisma/client';
 import { Editor as NovelEditor } from 'novel';
-import TextareaAutosize from 'react-textarea-autosize';
 
 import { Icons } from '@/app/components/shared/icons';
 import { buttonVariants } from '@/app/components/ui/button';
@@ -12,6 +11,9 @@ import { defaultEditorContent } from '@/app/components/write/default-editor-cont
 import LoadingDots from '@/app/components/write/icons/loading-dots';
 import { updatePost, updatePostMetadata } from '@/app/lib/actions';
 import { cn } from '@/app/lib/utils';
+
+import PostDescriptionInput from './editor/post-description-input';
+import PostTitleInput from './editor/post-title-input';
 
 type PostWithSite = Post & { site: { subdomain: string | null } | null };
 
@@ -204,38 +206,26 @@ export default function Editor({ post }: { post: PostWithSite }) {
       </div>
       <div className="relative min-h-[500px] w-full max-w-4xl bg-card px-8 py-12 sm:mb-[calc(20vh)] sm:rounded-lg sm:px-12 sm:shadow-lg">
         <div className="mb-5 flex flex-col space-y-3 border-b border-primary/70 pb-5">
-          <input
-            type="text"
-            placeholder="Your awesome post title of up to 57 characters goes here"
-            minLength={10}
-            maxLength={57}
-            required
-            defaultValue={post?.title || ''}
-            autoFocus
-            onChange={(e) =>
+          <PostTitleInput
+            value={state.data.title || ''}
+            onChange={(newTitle) =>
               dispatch({
                 type: 'setData',
-                payload: { ...state.data, title: e.target.value },
+                payload: { ...state.data, title: newTitle },
               })
             }
-            className="border-none bg-card px-0 font-sans text-2xl font-semibold placeholder:text-muted-foreground/70 focus:outline-none focus:ring-0"
           />
           {state.titleError && (
             <p className="text-xs text-red-500">{state.titleError}</p>
           )}
-          <TextareaAutosize
-            placeholder="Your super descriptive SEO description goes here. It should include keyword(s) for the post and provide a good summary for search. 157 characters max please."
-            minLength={100}
-            maxLength={159}
-            required
-            defaultValue={post?.description || ''}
-            onChange={(e) =>
+          <PostDescriptionInput
+            value={state.data.description || ''}
+            onChange={(newDescription) =>
               dispatch({
                 type: 'setData',
-                payload: { ...state.data, description: e.target.value },
+                payload: { ...state.data, description: newDescription },
               })
             }
-            className="w-[5/6 resize-none border-none bg-card px-0 font-sans placeholder:text-muted-foreground/70 focus:outline-none focus:ring-0"
           />
           {state.descriptionError && (
             <p className="text-xs text-red-500">{state.descriptionError}</p>
