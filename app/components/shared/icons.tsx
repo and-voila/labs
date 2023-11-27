@@ -730,7 +730,7 @@ export const Icons = {
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
-      className="h-7 w-7 text-brand"
+      className="h-7 w-7 text-primary"
       {...props}
     >
       <path

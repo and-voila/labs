@@ -93,7 +93,7 @@ export function UserAuthForm({
             <div className="grid grid-cols-2 gap-6 py-2">
               <button
                 type="button"
-                className={cn(buttonVariants({ variant: 'custom' }))}
+                className={cn(buttonVariants())}
                 onClick={() => {
                   setIsDiscordLoading(true);
                   signIn('discord');
@@ -109,7 +109,7 @@ export function UserAuthForm({
               </button>
               <button
                 type="button"
-                className={cn(buttonVariants({ variant: 'custom' }))}
+                className={cn(buttonVariants())}
                 onClick={() => {
                   setIsGoogleLoading(true);
                   signIn('google');
@@ -126,7 +126,7 @@ export function UserAuthForm({
             </div>
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-brand/70" />
+                <span className="w-full border-t border-primary/70" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
                 <span className="bg-card px-2 text-muted-foreground">
@@ -169,7 +169,7 @@ export function UserAuthForm({
                 <Link
                   href="/register"
                   aria-label="Navigate to And Voila's Registration page to create an account."
-                  className="font-semibold text-brand hover:underline"
+                  className="font-semibold text-primary hover:underline"
                 >
                   create one
                 </Link>
@@ -181,7 +181,7 @@ export function UserAuthForm({
                 <Link
                   href="/login"
                   aria-label="Navigate to And Voila's Login page to log in to your account."
-                  className="font-semibold text-brand hover:underline"
+                  className="font-semibold text-primary hover:underline"
                 >
                   log in now
                 </Link>

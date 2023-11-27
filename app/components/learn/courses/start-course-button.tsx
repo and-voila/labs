@@ -63,7 +63,7 @@ export const StartCourseButton = ({
       onClick={onClick}
       disabled={isLoading}
       type="button"
-      variant="custom"
+      variant="default"
       className="mt-2 w-full flex-shrink-0 md:mt-0 md:w-auto"
     >
       Start Playbook

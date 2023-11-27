@@ -24,7 +24,7 @@ const WriteCta = ({ domain }: WriteCtaProps) => {
           <div className="mt-6 flex items-center justify-center gap-x-4">
             <Link
               href={`https://labs.andvoila.gg/register?utm_source=${domain}`}
-              className={cn(buttonVariants({ variant: 'custom', size: 'sm' }))}
+              className={cn(buttonVariants({ size: 'sm' }))}
             >
               Get started
             </Link>

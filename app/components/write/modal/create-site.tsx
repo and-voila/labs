@@ -80,7 +80,7 @@ export default function CreateSiteModal() {
             onChange={(e) => setData({ ...data, name: e.target.value })}
             maxLength={32}
             required
-            className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-brand"
+            className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-primary"
           />
         </div>
 
@@ -102,9 +102,9 @@ export default function CreateSiteModal() {
               pattern="[a-zA-Z0-9\-]+" // only allow lowercase letters, numbers, and dashes
               maxLength={32}
               required
-              className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-brand"
+              className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-primary"
             />
-            <div className="flex items-center rounded-r-lg border border-l-0 bg-brand/20 px-3 text-sm">
+            <div className="flex items-center rounded-r-lg border border-l-0 bg-primary/20 px-3 text-sm">
               .{env.NEXT_PUBLIC_ROOT_DOMAIN}
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function CreateSiteModal() {
             onChange={(e) => setData({ ...data, description: e.target.value })}
             maxLength={140}
             rows={3}
-            className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-brand"
+            className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-primary"
           />
         </div>
       </div>
@@ -141,8 +141,8 @@ function CreateSiteFormButton() {
       className={cn(
         'flex h-10 w-full items-center justify-center space-x-2 rounded-md border text-sm transition-all focus:outline-none',
         pending
-          ? 'cursor-not-allowed bg-brand font-medium text-background shadow hover:bg-brand/70 disabled:opacity-50 dark:text-foreground'
-          : 'bg-brand font-medium text-background shadow hover:bg-brand/70 dark:text-foreground',
+          ? 'cursor-not-allowed bg-primary font-medium text-background shadow hover:bg-primary/70 disabled:opacity-50 dark:text-foreground'
+          : 'bg-primary font-medium text-background shadow hover:bg-primary/70 dark:text-foreground',
       )}
       disabled={pending}
     >

@@ -125,7 +125,7 @@ export default async function SitePostPage({
       )}
       <div className="relative z-10 flex flex-col items-center justify-center ">
         <div className="m-auto w-full text-center md:w-7/12">
-          <p className="m-auto my-5 w-10/12 text-sm text-brand md:text-base">
+          <p className="m-auto my-5 w-10/12 text-sm text-primary md:text-base">
             {toDateString(data.createdAt)}
           </p>
           <h1 className="mb-10 font-title text-3xl font-bold leading-snug md:text-7xl">
@@ -155,7 +155,7 @@ export default async function SitePostPage({
             by <span className="font-semibold">{data.site?.user?.name}</span>
           </div>
         </div>
-        <div className="w-3/5 border-t border-brand py-8" />
+        <div className="w-3/5 border-t border-primary py-8" />
         <NovelMDX source={data.mdxSource} />
         <div className="my-12 px-6 lg:px-8">
           <WriteCta domain={domain} />
@@ -168,7 +168,7 @@ export default async function SitePostPage({
             className="absolute inset-0 flex items-center"
             aria-hidden="true"
           >
-            <div className="w-full border-t border-brand" />
+            <div className="w-full border-t border-primary" />
           </div>
           <div className="relative flex justify-center">
             <span className="bg-background px-2 text-sm uppercase tracking-widest text-muted-foreground">

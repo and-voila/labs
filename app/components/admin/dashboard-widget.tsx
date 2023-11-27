@@ -39,7 +39,7 @@ export default function DashboardWidget() {
 
           <div className="flex items-center space-x-2">
             <CalendarDateRangePicker />
-            <Button variant="custom" size="sm">
+            <Button variant="default" size="sm">
               Download
             </Button>
           </div>

@@ -23,7 +23,7 @@ const backgroundVariants = cva('rounded-xl flex items-center justify-center', {
 const iconVariants = cva('', {
   variants: {
     variant: {
-      default: 'text-brand',
+      default: 'text-primary',
       success: 'text-emerald-700',
     },
     size: {

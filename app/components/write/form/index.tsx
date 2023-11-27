@@ -100,7 +100,7 @@ export default function Form({
               required
               className="z-10 flex-1 rounded-l-md border-border bg-background text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-ring"
             />
-            <div className="flex items-center rounded-r-lg border-l-0 border-border bg-brand/20 px-3 text-sm">
+            <div className="flex items-center rounded-r-lg border-l-0 border-border bg-primary/20 px-3 text-sm">
               {process.env.NEXT_PUBLIC_ROOT_DOMAIN}
             </div>
           </div>
@@ -146,7 +146,7 @@ function FormButton() {
   const { pending } = useFormStatus();
   return (
     <button
-      className={cn(buttonVariants({ variant: 'custom', size: 'sm' }), {
+      className={cn(buttonVariants({ size: 'sm' }), {
         'cursor-not-allowed opacity-50': pending,
       })}
       disabled={pending}

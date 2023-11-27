@@ -38,7 +38,7 @@ const FooterLink: React.FC<FooterLinkData> = ({
         aria-label={ariaLabel}
         target="_blank"
         rel="noopener"
-        className="font-medium text-brand hover:underline hover:underline-offset-4"
+        className="font-medium text-primary hover:underline hover:underline-offset-4"
       >
         {label}
       </a>
@@ -75,10 +75,10 @@ const links: FooterLinkData[] = [
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
-    <footer className={`${cn(className)} border-t border-brand bg-card`}>
+    <footer className={`${cn(className)} border-t border-primary bg-card`}>
       <div className="container flex flex-col items-center justify-between gap-4 py-6 md:h-16 md:flex-row md:py-0">
         <div className="flex flex-col items-center gap-4 px-8 text-sm md:flex-row md:gap-2 md:px-0">
-          <Icons.logo className="mr-2 h-7 text-brand" />
+          <Icons.logo className="mr-2 h-7 text-primary" />
           <p>{getCopyright()}</p>
           {links.map((link) => (
             <FooterLink key={link.href} {...link} />

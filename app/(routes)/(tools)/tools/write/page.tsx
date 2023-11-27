@@ -22,7 +22,7 @@ export default function Overview() {
       </div>
 
       <div className="my-8 flex flex-col space-y-6">
-        <div className="border-b border-brand/70 pb-5">
+        <div className="border-b border-primary/70 pb-5">
           <h3 className="text-2xl font-semibold leading-6">Sites</h3>
         </div>
         <Suspense
@@ -39,7 +39,7 @@ export default function Overview() {
       </div>
 
       <div className="flex flex-col space-y-6">
-        <div className="border-b border-brand/70 pb-5">
+        <div className="border-b border-primary/70 pb-5">
           <h3 className="text-2xl font-semibold leading-6">Recent posts</h3>
         </div>
         <Suspense

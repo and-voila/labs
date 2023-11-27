@@ -47,10 +47,7 @@ export const FreeCounter = ({
               className="h3"
             />*/}
           </div>
-          <Link
-            href="/pricing"
-            className={cn(buttonVariants({ variant: 'custom' }), 'w-full')}
-          >
+          <Link href="/pricing" className={cn(buttonVariants(), 'w-full')}>
             Upgrade
           </Link>
         </CardContent>

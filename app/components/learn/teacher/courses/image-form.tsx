@@ -60,13 +60,13 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
           {isEditing && <>Cancel</>}
           {!isEditing && !initialData.imageUrl && (
             <>
-              <Icons.plusCircled className="mr-2 h-4 w-4 text-brand" />
+              <Icons.plusCircled className="mr-2 h-4 w-4 text-primary" />
               Add an image
             </>
           )}
           {!isEditing && initialData.imageUrl && (
             <>
-              <Icons.pencil className="mr-2 h-4 w-4 text-brand" />
+              <Icons.pencil className="mr-2 h-4 w-4 text-primary" />
               Edit image
             </>
           )}
@@ -75,7 +75,7 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
       {!isEditing &&
         (!initialData.imageUrl ? (
           <div className="flex h-60 items-center justify-center rounded-md bg-muted">
-            <Icons.image className="h-10 w-10 text-brand" />
+            <Icons.image className="h-10 w-10 text-primary" />
           </div>
         ) : (
           <div className="relative mt-2 aspect-video">

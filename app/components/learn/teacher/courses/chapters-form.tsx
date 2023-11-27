@@ -124,7 +124,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
             <>Cancel</>
           ) : (
             <>
-              <Icons.pencil className="mr-2 h-4 w-4 text-brand" />
+              <Icons.pencil className="mr-2 h-4 w-4 text-primary" />
               Add a play
             </>
           )}
@@ -157,7 +157,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
             />
             <Button
               size="sm"
-              variant="custom"
+              variant="default"
               disabled={!isValid || isSubmitting}
               type="submit"
             >

@@ -69,7 +69,7 @@ export function NavBar({
           ) : (
             <Link
               href="/register"
-              className={cn(buttonVariants({ variant: 'custom', size: 'sm' }))}
+              className={cn(buttonVariants({ size: 'sm' }))}
             >
               Register
             </Link>

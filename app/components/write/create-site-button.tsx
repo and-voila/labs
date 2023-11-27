@@ -13,7 +13,7 @@ export default function CreateSiteButton({
   const modal = useModal();
 
   return (
-    <Button onClick={() => modal?.show(children)} variant="custom" size="sm">
+    <Button onClick={() => modal?.show(children)} variant="default" size="sm">
       New site
     </Button>
   );

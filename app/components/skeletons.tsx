@@ -81,7 +81,7 @@ export const CommunityIconSkeleton = () => {
 };
 
 export const UserAvatarSkeleton = () => {
-  return <Skeleton className="h-8 w-8 rounded-full bg-brand" />;
+  return <Skeleton className="h-8 w-8 rounded-full bg-primary" />;
 };
 
 export const UserAccountNavSkeleton = () => {
@@ -221,7 +221,7 @@ export const VideoPlayerSkeleton = () => {
         <Icons.play className="h-16 w-16 text-gray-500" />
       </div>
       <div className="absolute bottom-0 left-0 h-1 w-full">
-        <Skeleton className="h-full w-1/4 bg-brand" />
+        <Skeleton className="h-full w-1/4 bg-primary" />
       </div>
     </div>
   );

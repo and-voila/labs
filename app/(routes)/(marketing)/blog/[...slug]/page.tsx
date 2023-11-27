@@ -111,7 +111,7 @@ export default async function PostPage({ params }: PostPageProps) {
           'absolute left-[-200px] top-14 hidden xl:inline-flex',
         )}
       >
-        <Icons.caretLeft className="mr-2 h-4 w-4 text-brand" />
+        <Icons.caretLeft className="mr-2 h-4 w-4 text-primary" />
         Back to all posts
       </Link>
       <div>

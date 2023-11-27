@@ -65,7 +65,7 @@ const ChapterIdPage = async ({
             <div className="w-full">
               <Link href={`/admin/teacher/courses/${params.courseId}`}>
                 <Button variant="outline" className="mb-6">
-                  <Icons.arrowLeft className="mr-2 h-4 w-4 text-brand" />
+                  <Icons.arrowLeft className="mr-2 h-4 w-4 text-primary" />
                   Back to playbook setup
                 </Button>
               </Link>

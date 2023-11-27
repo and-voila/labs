@@ -60,7 +60,7 @@ export default async function SitePosts({
         </TabsList>
         <TabsContent value="my-posts">
           <div className="my-8 flex flex-col space-y-6">
-            <div className="mt-10 border-b border-brand pb-5 sm:flex sm:items-center sm:justify-between">
+            <div className="mt-10 border-b border-primary pb-5 sm:flex sm:items-center sm:justify-between">
               <h3 className="text-2xl font-semibold leading-6">
                 Posts for {data.name}
               </h3>
@@ -87,7 +87,7 @@ export default async function SitePosts({
         </TabsContent>
         <TabsContent value="general">
           <div className="my-8 flex flex-col space-y-6">
-            <div className="mt-10 border-b border-brand/70 pb-5">
+            <div className="mt-10 border-b border-primary/70 pb-5">
               <h3 className="text-2xl font-semibold leading-6">
                 General settings
               </h3>
@@ -121,7 +121,7 @@ export default async function SitePosts({
         </TabsContent>
         <TabsContent value="domains">
           <div className="my-8 flex flex-col space-y-6">
-            <div className="mt-10 border-b border-brand/70 pb-5">
+            <div className="mt-10 border-b border-primary/70 pb-5">
               <h3 className="text-2xl font-semibold leading-6">
                 Domain settings
               </h3>
@@ -157,7 +157,7 @@ export default async function SitePosts({
         </TabsContent>
         <TabsContent value="appearance">
           <div className="my-8 flex flex-col space-y-6">
-            <div className="mt-10 border-b border-brand/70 pb-5">
+            <div className="mt-10 border-b border-primary/70 pb-5">
               <h3 className="text-2xl font-semibold leading-6">
                 Appearance settings
               </h3>
@@ -212,7 +212,7 @@ export default async function SitePosts({
         </TabsContent>
         <TabsContent value="danger">
           <div className="my-8 flex flex-col space-y-6">
-            <div className="mt-10 border-b border-brand/70 pb-5">
+            <div className="mt-10 border-b border-primary/70 pb-5">
               <h3 className="text-2xl font-semibold leading-6">Danger zone</h3>
             </div>
             <DeleteSiteForm siteName={data?.name!} />

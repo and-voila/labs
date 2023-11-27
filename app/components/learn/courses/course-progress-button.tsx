@@ -73,11 +73,11 @@ export const CourseProgressButton = ({
       onClick={onClick}
       disabled={isLoading}
       type="button"
-      variant={isCompleted ? 'outline' : 'custom'}
+      variant={isCompleted ? 'outline' : 'default'}
       className="w-full flex-shrink-0 md:w-auto"
     >
       {isCompleted ? 'Unfinish' : 'Finish'}
-      <Icon className={`ml-2 h-4 w-4 ${isCompleted ? 'text-brand' : ''}`} />
+      <Icon className={`ml-2 h-4 w-4 ${isCompleted ? 'text-primary' : ''}`} />
     </Button>
   );
 };

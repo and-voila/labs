@@ -17,7 +17,7 @@ export function InsightsSidebarNav({ items }: InsightsSidebarNavProps) {
     <div className="w-full">
       {items.map((item) => (
         <div key={item.href + item.title} className={cn('pb-8')}>
-          <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-bold text-brand">
+          <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-bold text-primary">
             {item.title}
           </h4>
           {item.items ? (
@@ -48,7 +48,7 @@ export function InsightsSidebarNavItems({
             className={cn(
               'flex w-full items-center rounded-md p-2 hover:underline',
               {
-                'bg-brand/20': pathname === item.href,
+                'bg-primary/20': pathname === item.href,
               },
             )}
             target={item.external ? '_blank' : ''}

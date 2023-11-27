@@ -57,7 +57,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
         </TabsContent>
         <TabsContent value="post-meta">
           <div className="my-8 flex flex-col space-y-6">
-            <div className="mt-10 border-b border-brand/70 pb-5">
+            <div className="mt-10 border-b border-primary/70 pb-5">
               <h3 className="text-2xl font-semibold leading-6">
                 Post metadata
               </h3>
@@ -89,7 +89,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
         </TabsContent>
         <TabsContent value="danger">
           <div className="my-8 flex flex-col space-y-6">
-            <div className="mt-10 border-b border-brand/70 pb-5">
+            <div className="mt-10 border-b border-primary/70 pb-5">
               <h3 className="text-2xl font-semibold leading-6">Danger zone</h3>
             </div>
             <DeletePostForm postName={data?.title!} />
