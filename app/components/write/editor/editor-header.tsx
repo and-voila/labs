@@ -5,7 +5,7 @@ import {
   EditorAction,
   EditorState,
   PostWithSite,
-} from '@/app/components/write/editor';
+} from '@/app/components/write/editor/editor';
 import EditorPublishButton from '@/app/components/write/editor/editor-publish-button';
 import { EditorStatusIndicator } from '@/app/components/write/editor/editor-status-indicator';
 

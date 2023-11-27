@@ -10,7 +10,7 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/app/components/ui/tabs';
-import Editor from '@/app/components/write/editor';
+import Editor from '@/app/components/write/editor/editor';
 import Form from '@/app/components/write/form';
 import DeletePostForm from '@/app/components/write/form/delete-post-form';
 import { updatePostMetadata } from '@/app/lib/actions';

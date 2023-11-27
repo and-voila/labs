@@ -1,6 +1,9 @@
 import { Dispatch } from 'react';
 
-import { EditorAction, EditorState } from '@/app/components/write/editor';
+import {
+  EditorAction,
+  EditorState,
+} from '@/app/components/write/editor/editor';
 import { cn } from '@/app/lib/utils';
 
 interface EditorStatusIndicatorProps {

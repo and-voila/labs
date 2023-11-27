@@ -4,10 +4,11 @@ import { useEffect, useReducer, useState, useTransition } from 'react';
 import { Post } from '@prisma/client';
 import { Editor as NovelEditor } from 'novel';
 
-import { defaultEditorContent } from '@/app/components/write/default-editor-content';
+import { defaultEditorContent } from '@/app/components/write/editor/default-editor-content';
 import { EditorHeader } from '@/app/components/write/editor/editor-header';
 import PostDescriptionInput from '@/app/components/write/editor/post-description-input';
 import PostTitleInput from '@/app/components/write/editor/post-title-input';
+import { useKeyboardSave } from '@/app/hooks/use-keyboard-save';
 import { updatePost } from '@/app/lib/actions';
 
 export type PostWithSite = Post & { site: { subdomain: string | null } | null };
@@ -85,40 +86,29 @@ export default function Editor({ post }: { post: PostWithSite }) {
     ? `https://${state.data.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${state.data.slug}`
     : `http://${state.data.site?.subdomain}.localhost:3001/${state.data.slug}`;
 
-  // listen to CMD + S and override the default behavior
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.metaKey && e.key === 's') {
-        e.preventDefault();
+  useKeyboardSave(() => {
+    dispatch({
+      type: 'setTitleError',
+      payload: validateTitle(state.data.title || ''),
+    });
+    if (!state.data.title) return;
 
-        dispatch({
-          type: 'setTitleError',
-          payload: validateTitle(state.data.title || ''),
-        });
-        if (!state.data.title) return;
+    dispatch({
+      type: 'setDescriptionError',
+      payload: validateDescription(state.data.description || ''),
+    });
+    if (!state.data.description) return;
 
-        dispatch({
-          type: 'setDescriptionError',
-          payload: validateDescription(state.data.description || ''),
-        });
-        if (!state.data.description) return;
+    dispatch({
+      type: 'setContentError',
+      payload: validateContent(state.data.content || ''),
+    });
+    if (!state.data.content) return;
 
-        dispatch({
-          type: 'setContentError',
-          payload: validateContent(state.data.content || ''),
-        });
-        if (!state.data.content) return;
-
-        startTransitionSaving(async () => {
-          await updatePost(state.data);
-        });
-      }
-    };
-    document.addEventListener('keydown', onKeyDown);
-    return () => {
-      document.removeEventListener('keydown', onKeyDown);
-    };
-  }, [state.data, startTransitionSaving]);
+    startTransitionSaving(async () => {
+      await updatePost(state.data);
+    });
+  });
 
   return (
     <>

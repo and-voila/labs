@@ -2,7 +2,10 @@ import { Dispatch } from 'react';
 
 import { buttonVariants } from '@/app/components/ui/button';
 import { toast } from '@/app/components/ui/use-toast';
-import { EditorAction, EditorState } from '@/app/components/write/editor';
+import {
+  EditorAction,
+  EditorState,
+} from '@/app/components/write/editor/editor';
 import LoadingDots from '@/app/components/write/icons/loading-dots';
 import { updatePostMetadata } from '@/app/lib/actions';
 import { cn } from '@/app/lib/utils';
