@@ -10,7 +10,7 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/app/components/ui/tabs';
-import Editor from '@/app/components/write/editor';
+import Editor from '@/app/components/write/editor/editor';
 import Form from '@/app/components/write/form';
 import DeletePostForm from '@/app/components/write/form/delete-post-form';
 import { updatePostMetadata } from '@/app/lib/actions';
@@ -42,7 +42,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
     <DashboardShell>
       <DashboardHeader
         heading="AI Editor"
-        text="Our AI Editor assists you without creating content to safeguard your original IP. Start with '++' and enjoy Notion-inspired functionality with auto-save."
+        text="Our AI Editor assists you without creating content to safeguard your original IP. Start with ++ and enjoy Notion-inspired functionality with auto-save."
       />
       <Tabs defaultValue="editor">
         <TabsList>
