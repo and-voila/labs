@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useTransition } from 'react';
+import { useEffect, useReducer, useState, useTransition } from 'react';
 import { Post } from '@prisma/client';
 import { Editor as NovelEditor } from 'novel';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -8,37 +8,85 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { Icons } from '@/app/components/shared/icons';
 import { buttonVariants } from '@/app/components/ui/button';
 import { toast } from '@/app/components/ui/use-toast';
+import { defaultEditorContent } from '@/app/components/write/default-editor-content';
 import LoadingDots from '@/app/components/write/icons/loading-dots';
 import { updatePost, updatePostMetadata } from '@/app/lib/actions';
 import { cn } from '@/app/lib/utils';
 
-import { defaultEditorContent } from './default-editor-content';
-
 type PostWithSite = Post & { site: { subdomain: string | null } | null };
+
+interface EditorState {
+  data: PostWithSite;
+  titleError: string;
+  descriptionError: string;
+  contentError: string;
+}
+
+type EditorAction =
+  | { type: 'setData'; payload: PostWithSite }
+  | { type: 'setTitleError'; payload: string }
+  | { type: 'setDescriptionError'; payload: string }
+  | { type: 'setContentError'; payload: string };
+
+function editorReducer(state: EditorState, action: EditorAction): EditorState {
+  switch (action.type) {
+    case 'setData':
+      return { ...state, data: action.payload };
+    case 'setTitleError':
+      return { ...state, titleError: action.payload };
+    case 'setDescriptionError':
+      return { ...state, descriptionError: action.payload };
+    case 'setContentError':
+      return { ...state, contentError: action.payload };
+    default:
+      return state;
+  }
+}
+
+function validateTitle(title: string): string {
+  return title
+    ? ''
+    : 'Please enter a valid title of up to 57 characters. You can change it anytime.';
+}
+
+function validateDescription(description: string): string {
+  return description
+    ? ''
+    : 'Please enter a valid description of up to 159 characters. You can change it anytime.';
+}
+
+function validateContent(content: string): string {
+  return content
+    ? ''
+    : '👇🏽 Please create some content below before the auto-save.';
+}
 
 export default function Editor({ post }: { post: PostWithSite }) {
   const [isPendingSaving, startTransitionSaving] = useTransition();
   const [isPendingPublishing, startTransitionPublishing] = useTransition();
-  const [data, setData] = useState<PostWithSite>(post);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [hydrated, setHydrated] = useState(false);
   const [isPublishable, setIsPublishable] = useState(false);
+  const [state, dispatch] = useReducer(editorReducer, {
+    data: post,
+    titleError: '',
+    descriptionError: '',
+    contentError: '',
+  });
 
   useEffect(() => {
     setIsPublishable(
       Boolean(
-        data.title &&
-          data.description &&
-          data.image &&
-          data.slug &&
-          data.content,
+        state.data.title &&
+          state.data.description &&
+          state.data.image &&
+          state.data.slug &&
+          state.data.content,
       ),
     );
-  }, [data]);
+  }, [state.data]);
 
   const url = process.env.NEXT_PUBLIC_VERCEL_ENV
-    ? `https://${data.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${data.slug}`
-    : `http://${data.site?.subdomain}.localhost:3001/${data.slug}`;
+    ? `https://${state.data.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${state.data.slug}`
+    : `http://${state.data.site?.subdomain}.localhost:3001/${state.data.slug}`;
 
   // listen to CMD + S and override the default behavior
   useEffect(() => {
@@ -46,35 +94,26 @@ export default function Editor({ post }: { post: PostWithSite }) {
       if (e.metaKey && e.key === 's') {
         e.preventDefault();
 
-        if (!data.title) {
-          setTitleError(
-            'Please enter a valid title of up to 57 characters. You can change it anytime.',
-          );
-          return;
-        } else {
-          setTitleError('');
-        }
+        dispatch({
+          type: 'setTitleError',
+          payload: validateTitle(state.data.title || ''),
+        });
+        if (!state.data.title) return;
 
-        if (!data.description) {
-          setDescriptionError(
-            'Please enter a valid description of up to 159 characters. You can change it anytime.',
-          );
-          return;
-        } else {
-          setDescriptionError('');
-        }
+        dispatch({
+          type: 'setDescriptionError',
+          payload: validateDescription(state.data.description || ''),
+        });
+        if (!state.data.description) return;
 
-        if (!data.content) {
-          setContentError(
-            '👇🏽 Please create some content below before the inital save.',
-          );
-          return;
-        } else {
-          setContentError('');
-        }
+        dispatch({
+          type: 'setContentError',
+          payload: validateContent(state.data.content || ''),
+        });
+        if (!state.data.content) return;
 
         startTransitionSaving(async () => {
-          await updatePost(data);
+          await updatePost(state.data);
         });
       }
     };
@@ -82,21 +121,17 @@ export default function Editor({ post }: { post: PostWithSite }) {
     return () => {
       document.removeEventListener('keydown', onKeyDown);
     };
-  }, [data, startTransitionSaving]);
-
-  const [titleError, setTitleError] = useState('');
-  const [descriptionError, setDescriptionError] = useState('');
-  const [contentError, setContentError] = useState('');
+  }, [state.data, startTransitionSaving]);
 
   return (
     <>
       <div className="my-8 flex flex-col space-y-6">
         <div className="mt-10 border-b border-primary pb-5 sm:flex sm:items-center sm:justify-between">
           <h3 className="text-2xl font-semibold leading-6">
-            Editing: {data?.title || 'A new post'}
+            Editing: {state.data?.title || 'A new post'}
           </h3>
           <div className="mt-3 flex sm:ml-4 sm:mt-0">
-            {data.published && (
+            {state.data.published && (
               <a href={url} target="_blank" rel="noopener noreferrer">
                 <Icons.arrowSquareOut className="mr-2 inline-flex h-4 w-4 items-center text-primary" />
               </a>
@@ -106,16 +141,16 @@ export default function Editor({ post }: { post: PostWithSite }) {
                 'mr-2 inline-flex items-center rounded-lg px-2 py-1 text-sm ',
                 isPendingSaving
                   ? 'bg-muted-foreground/20 text-muted-foreground'
-                  : (!data.title || !data.description) &&
-                      (titleError || descriptionError)
+                  : (!state.data.title || !state.data.description) &&
+                      (state.titleError || state.descriptionError)
                     ? 'bg-destructive text-white'
                     : 'bg-alternate/20 text-alternate',
               )}
             >
               {isPendingSaving
                 ? 'Saving...'
-                : (!data.title || !data.description) &&
-                    (titleError || descriptionError)
+                : (!state.data.title || !state.data.description) &&
+                    (state.titleError || state.descriptionError)
                   ? 'Not saved'
                   : 'Saved'}
             </div>
@@ -123,29 +158,32 @@ export default function Editor({ post }: { post: PostWithSite }) {
               onClick={() => {
                 const formData = new FormData();
                 // eslint-disable-next-line no-console
-                console.log(data.published, typeof data.published);
-                formData.append('published', String(!data.published));
+                console.log(state.data.published, typeof state.data.published);
+                formData.append('published', String(!state.data.published));
                 startTransitionPublishing(async () => {
                   await updatePostMetadata(formData, post.id, 'published').then(
                     () => {
                       toast({
                         title: `Successfully ${
-                          data.published ? 'unpublished' : 'published'
+                          state.data.published ? 'unpublished' : 'published'
                         } your post.`,
                         description: 'Your post status has been updated.',
                         variant: 'success',
                       });
-                      setData((prev) => ({
-                        ...prev,
-                        published: !prev.published,
-                      }));
+                      dispatch({
+                        type: 'setData',
+                        payload: {
+                          ...state.data,
+                          published: !state.data.published,
+                        },
+                      });
                     },
                   );
                 });
               }}
               className={cn(
                 buttonVariants({
-                  variant: data.published ? 'destructive' : 'default',
+                  variant: state.data.published ? 'destructive' : 'default',
                   size: 'sm',
                 }),
                 {
@@ -158,7 +196,7 @@ export default function Editor({ post }: { post: PostWithSite }) {
               {isPendingPublishing ? (
                 <LoadingDots />
               ) : (
-                <p>{data.published ? 'Unpublish' : 'Publish'}</p>
+                <p>{state.data.published ? 'Unpublish' : 'Publish'}</p>
               )}
             </button>
           </div>
@@ -174,24 +212,36 @@ export default function Editor({ post }: { post: PostWithSite }) {
             required
             defaultValue={post?.title || ''}
             autoFocus
-            onChange={(e) => setData({ ...data, title: e.target.value })}
+            onChange={(e) =>
+              dispatch({
+                type: 'setData',
+                payload: { ...state.data, title: e.target.value },
+              })
+            }
             className="border-none bg-card px-0 font-sans text-2xl font-semibold placeholder:text-muted-foreground/70 focus:outline-none focus:ring-0"
           />
-          {titleError && <p className="text-xs text-red-500">{titleError}</p>}
+          {state.titleError && (
+            <p className="text-xs text-red-500">{state.titleError}</p>
+          )}
           <TextareaAutosize
             placeholder="Your super descriptive SEO description goes here. It should include keyword(s) for the post and provide a good summary for search. 157 characters max please."
             minLength={100}
             maxLength={159}
             required
             defaultValue={post?.description || ''}
-            onChange={(e) => setData({ ...data, description: e.target.value })}
+            onChange={(e) =>
+              dispatch({
+                type: 'setData',
+                payload: { ...state.data, description: e.target.value },
+              })
+            }
             className="w-[5/6 resize-none border-none bg-card px-0 font-sans placeholder:text-muted-foreground/70 focus:outline-none focus:ring-0"
           />
-          {descriptionError && (
-            <p className="text-xs text-red-500">{descriptionError}</p>
+          {state.descriptionError && (
+            <p className="text-xs text-red-500">{state.descriptionError}</p>
           )}
-          {contentError && (
-            <p className="text-xs text-red-500">{contentError}</p>
+          {state.contentError && (
+            <p className="text-xs text-red-500">{state.contentError}</p>
           )}
         </div>
         <NovelEditor
@@ -200,49 +250,40 @@ export default function Editor({ post }: { post: PostWithSite }) {
           className="relative block"
           defaultValue={post?.content || defaultEditorContent}
           onUpdate={(editor) => {
-            setData((prev) => ({
-              ...prev,
-              content: editor?.storage.markdown.getMarkdown(),
-            }));
+            dispatch({
+              type: 'setData',
+              payload: {
+                ...state.data,
+                content: editor?.storage.markdown.getMarkdown(),
+              },
+            });
           }}
           debounceDuration={3000}
           onDebouncedUpdate={() => {
-            if (!data.title) {
-              setTitleError(
-                'Please enter a valid title of up to 57 characters. You can change it anytime.',
-              );
-            } else {
-              setTitleError('');
-            }
-
-            if (!data.description) {
-              setDescriptionError(
-                'Please enter a valid description of up to 159 characters. You can change it anytime.',
-              );
-            } else {
-              setDescriptionError('');
-            }
-
-            if (!data.content) {
-              setContentError(
-                '👇🏽 Please create some content below before the inital save.',
-              );
-              return;
-            } else {
-              setContentError('');
-            }
+            dispatch({
+              type: 'setTitleError',
+              payload: validateTitle(state.data.title || ''),
+            });
+            dispatch({
+              type: 'setDescriptionError',
+              payload: validateDescription(state.data.description || ''),
+            });
+            dispatch({
+              type: 'setContentError',
+              payload: validateContent(state.data.content || ''),
+            });
 
             if (
-              data.title === post.title &&
-              data.description === post.description &&
-              data.content === post.content
+              state.data.title === post.title &&
+              state.data.description === post.description &&
+              state.data.content === post.content
             ) {
               return;
             }
 
-            if (data.title && data.description) {
+            if (state.data.title && state.data.description) {
               startTransitionSaving(async () => {
-                await updatePost(data);
+                await updatePost(state.data);
               });
             }
           }}
