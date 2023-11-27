@@ -124,7 +124,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@types/js-cookie": "^3.0.6",
     "@types/ms": "^0.7.34",
-    "@types/node": "^20.9.4",
+    "@types/node": "^20.10.0",
     "@types/react": "18.2.38",
     "@types/react-dom": "18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
