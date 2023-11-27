@@ -4,27 +4,22 @@ import { useEffect, useReducer, useState, useTransition } from 'react';
 import { Post } from '@prisma/client';
 import { Editor as NovelEditor } from 'novel';
 
-import { Icons } from '@/app/components/shared/icons';
-import { buttonVariants } from '@/app/components/ui/button';
-import { toast } from '@/app/components/ui/use-toast';
 import { defaultEditorContent } from '@/app/components/write/default-editor-content';
-import LoadingDots from '@/app/components/write/icons/loading-dots';
-import { updatePost, updatePostMetadata } from '@/app/lib/actions';
-import { cn } from '@/app/lib/utils';
+import { EditorHeader } from '@/app/components/write/editor/editor-header';
+import PostDescriptionInput from '@/app/components/write/editor/post-description-input';
+import PostTitleInput from '@/app/components/write/editor/post-title-input';
+import { updatePost } from '@/app/lib/actions';
 
-import PostDescriptionInput from './editor/post-description-input';
-import PostTitleInput from './editor/post-title-input';
+export type PostWithSite = Post & { site: { subdomain: string | null } | null };
 
-type PostWithSite = Post & { site: { subdomain: string | null } | null };
-
-interface EditorState {
+export interface EditorState {
   data: PostWithSite;
   titleError: string;
   descriptionError: string;
   contentError: string;
 }
 
-type EditorAction =
+export type EditorAction =
   | { type: 'setData'; payload: PostWithSite }
   | { type: 'setTitleError'; payload: string }
   | { type: 'setDescriptionError'; payload: string }
@@ -127,83 +122,16 @@ export default function Editor({ post }: { post: PostWithSite }) {
 
   return (
     <>
-      <div className="my-8 flex flex-col space-y-6">
-        <div className="mt-10 border-b border-primary pb-5 sm:flex sm:items-center sm:justify-between">
-          <h3 className="text-2xl font-semibold leading-6">
-            Editing: {state.data?.title || 'A new post'}
-          </h3>
-          <div className="mt-3 flex sm:ml-4 sm:mt-0">
-            {state.data.published && (
-              <a href={url} target="_blank" rel="noopener noreferrer">
-                <Icons.arrowSquareOut className="mr-2 inline-flex h-4 w-4 items-center text-primary" />
-              </a>
-            )}
-            <div
-              className={cn(
-                'mr-2 inline-flex items-center rounded-lg px-2 py-1 text-sm ',
-                isPendingSaving
-                  ? 'bg-muted-foreground/20 text-muted-foreground'
-                  : (!state.data.title || !state.data.description) &&
-                      (state.titleError || state.descriptionError)
-                    ? 'bg-destructive text-white'
-                    : 'bg-alternate/20 text-alternate',
-              )}
-            >
-              {isPendingSaving
-                ? 'Saving...'
-                : (!state.data.title || !state.data.description) &&
-                    (state.titleError || state.descriptionError)
-                  ? 'Not saved'
-                  : 'Saved'}
-            </div>
-            <button
-              onClick={() => {
-                const formData = new FormData();
-                // eslint-disable-next-line no-console
-                console.log(state.data.published, typeof state.data.published);
-                formData.append('published', String(!state.data.published));
-                startTransitionPublishing(async () => {
-                  await updatePostMetadata(formData, post.id, 'published').then(
-                    () => {
-                      toast({
-                        title: `Successfully ${
-                          state.data.published ? 'unpublished' : 'published'
-                        } your post.`,
-                        description: 'Your post status has been updated.',
-                        variant: 'success',
-                      });
-                      dispatch({
-                        type: 'setData',
-                        payload: {
-                          ...state.data,
-                          published: !state.data.published,
-                        },
-                      });
-                    },
-                  );
-                });
-              }}
-              className={cn(
-                buttonVariants({
-                  variant: state.data.published ? 'destructive' : 'default',
-                  size: 'sm',
-                }),
-                {
-                  'cursor-not-allowed opacity-50':
-                    isPendingPublishing || !isPublishable,
-                },
-              )}
-              disabled={isPendingPublishing || !isPublishable}
-            >
-              {isPendingPublishing ? (
-                <LoadingDots />
-              ) : (
-                <p>{state.data.published ? 'Unpublish' : 'Publish'}</p>
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
+      <EditorHeader
+        isPendingSaving={isPendingSaving}
+        isPendingPublishing={isPendingPublishing}
+        isPublishable={isPublishable}
+        state={state}
+        dispatch={dispatch}
+        url={url}
+        post={post}
+        startTransitionPublishing={startTransitionPublishing}
+      />
       <div className="relative min-h-[500px] w-full max-w-4xl bg-card px-8 py-12 sm:mb-[calc(20vh)] sm:rounded-lg sm:px-12 sm:shadow-lg">
         <div className="mb-5 flex flex-col space-y-3 border-b border-primary/70 pb-5">
           <PostTitleInput
