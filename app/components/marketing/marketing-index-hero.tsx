@@ -19,10 +19,7 @@ const MarketingIndexHero = (): JSX.Element => {
         </p>
 
         <div className="space-x-4">
-          <Link
-            href="/register"
-            className={cn(buttonVariants({ variant: 'default' }))}
-          >
+          <Link href="/register" className={cn(buttonVariants())}>
             Get Started
           </Link>
         </div>

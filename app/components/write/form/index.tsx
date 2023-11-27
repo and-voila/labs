@@ -146,7 +146,7 @@ function FormButton() {
   const { pending } = useFormStatus();
   return (
     <button
-      className={cn(buttonVariants({ variant: 'default', size: 'sm' }), {
+      className={cn(buttonVariants({ size: 'sm' }), {
         'cursor-not-allowed opacity-50': pending,
       })}
       disabled={pending}

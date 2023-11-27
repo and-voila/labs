@@ -53,7 +53,7 @@ body,
     --popover: 0 0% 0%; /* 950 */
     --popover-foreground: 192 16% 94%; /* 50 */
 
-    --primary: 255 83% 60%; /* primary */
+    --primary: 251 87% 76%; /* primary */
     --primary-foreground: 240 10% 8%; /* 900 */
 
     --secondary: 200 5% 12%; /* 800 */
@@ -71,7 +71,7 @@ body,
     --border: 225 5% 16%; /* 700 */
     --input: 225 5% 16%; /* 700 */
 
-    --ring: 255 83% 60%; /* primary */
+    --ring: 251 87% 76%; /* primary */
     --radius: 0.5rem;
 
     --alternate: 155 61% 44%;

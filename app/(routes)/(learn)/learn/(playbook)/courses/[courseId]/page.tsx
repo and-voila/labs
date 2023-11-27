@@ -101,7 +101,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
                 <Link
                   href="/pricing"
                   className={cn(
-                    buttonVariants({ variant: 'default', size: 'sm' }),
+                    buttonVariants({ size: 'sm' }),
                     'w-full lg:w-auto',
                   )}
                 >

@@ -93,7 +93,7 @@ export function UserAuthForm({
             <div className="grid grid-cols-2 gap-6 py-2">
               <button
                 type="button"
-                className={cn(buttonVariants({ variant: 'default' }))}
+                className={cn(buttonVariants())}
                 onClick={() => {
                   setIsDiscordLoading(true);
                   signIn('discord');
@@ -109,7 +109,7 @@ export function UserAuthForm({
               </button>
               <button
                 type="button"
-                className={cn(buttonVariants({ variant: 'default' }))}
+                className={cn(buttonVariants())}
                 onClick={() => {
                   setIsGoogleLoading(true);
                   signIn('google');

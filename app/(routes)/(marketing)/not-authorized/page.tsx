@@ -32,10 +32,7 @@ const NotAuthorizedPage = () => {
           assistance. Just don&apos;t ask her for a wake-up call.
         </p>
         <div className="mt-10 flex justify-center">
-          <Link
-            href="/dashboard"
-            className={cn(buttonVariants({ variant: 'default' }))}
-          >
+          <Link href="/dashboard" className={cn(buttonVariants())}>
             <Icons.caretLeft className="mr-2 h-4 w-4" />
             Get me out of here!
           </Link>
