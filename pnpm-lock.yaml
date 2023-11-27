@@ -123,8 +123,8 @@ dependencies:
     specifier: ^6.0.2
     version: 6.0.2(next@14.0.3)(react@18.2.0)(uploadthing@6.0.3)
   '@upstash/ratelimit':
-    specifier: ^0.4.4
-    version: 0.4.4
+    specifier: ^1.0.0
+    version: 1.0.0
   '@vercel/analytics':
     specifier: ^1.1.1
     version: 1.1.1
@@ -4915,6 +4915,12 @@ packages:
 
   /@upstash/ratelimit@0.4.4:
     resolution: {integrity: sha512-y3q6cNDdcRQ2MRPRf5UNWBN36IwnZ4kAEkGoH3i6OqdWwz4qlBxNsw4/Rpqn9h93+Nx1cqg5IOq7O2e2zMJY1w==}
+    dependencies:
+      '@upstash/core-analytics': 0.0.6
+    dev: false
+
+  /@upstash/ratelimit@1.0.0:
+    resolution: {integrity: sha512-IUlc+UKuHJQqXGQi7E3UKV0CKfRZ0g6qeNnbSve940k3xLoM+X3H45MrSwDaH7meMWemztLs0Q4yjkd3ItddCw==}
     dependencies:
       '@upstash/core-analytics': 0.0.6
     dev: false
