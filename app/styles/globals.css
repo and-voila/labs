@@ -19,17 +19,17 @@ body,
     --popover: 0 0% 100%; /* white */
     --popover-foreground: 0 0% 0%; /* 950 */
 
-    --primary: 256 50% 52%; /* brand */
+    --primary: 256 50% 52%; /* primary */
     --primary-foreground: 220 15% 92%; /* 100 instead of 50 */
 
     --secondary: 197 10% 87%; /* 200 instead of 100*/
-    --secondary-foreground: 258 50% 4%; /* 900 */
+    --secondary-foreground: 240 10% 8%; /* 900 */
 
     --muted: 197 10% 87%; /* 200 instead of 100 */
     --muted-foreground: 228 5% 40%; /* 500 */
 
     --accent: 197 10% 87%; /* 200 instead of 100 */
-    --accent-foreground: 258 50% 4%; /* 900 */
+    --accent-foreground: 240 10% 8%; /* 900 */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 220 15% 92%; /* 100 instead of 50 */
@@ -37,10 +37,9 @@ body,
     --border: 220 15% 84%; /* 200 */
     --input: 220 15% 84%; /* 200 */
 
-    --ring: 256 50% 52%; /* brand */
+    --ring: 256 50% 52%; /* primary */
     --radius: 0.5rem;
 
-    --brand: 256 50% 52%;
     --alternate: 155 61% 44%;
   }
 
@@ -48,34 +47,33 @@ body,
     --background: 0 0% 0%; /* 950 */
     --foreground: 192 16% 94%; /* 50 instead of white */
 
-    --card: 258 50% 4%; /* brand 900 */
+    --card: 240 10% 8%; /* primary 900 */
     --card-foreground: 0 0% 100%; /* white instead of 50 */
 
     --popover: 0 0% 0%; /* 950 */
     --popover-foreground: 192 16% 94%; /* 50 */
 
-    --primary: 255 83% 60%; /* brand */
-    --primary-foreground: 258 50% 4%; /* 900 */
+    --primary: 255 83% 60%; /* primary */
+    --primary-foreground: 240 10% 8%; /* 900 */
 
-    --secondary: 210 5% 8%; /* 800 */
+    --secondary: 200 5% 12%; /* 800 */
     --secondary-foreground: 0 0% 100%; /* white instead of 50 */
 
-    --muted: 210 5% 8%; /* 800 */
+    --muted: 200 5% 12%; /* 800 */
     --muted-foreground: 228 5% 60%; /* 400 */
 
-    --accent: 210 5% 8%; /* 800 */
+    --accent: 200 5% 12%; /* 800 */
     --accent-foreground: 0 0% 100%; /* white instead of 50 */
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 259 51% 16%; /* 700 */
-    --input: 259 51% 16%; /* 700 */
+    --border: 225 5% 16%; /* 700 */
+    --input: 225 5% 16%; /* 700 */
 
-    --ring: 255 83% 60%; /* brand */
+    --ring: 255 83% 60%; /* primary */
     --radius: 0.5rem;
 
-    --brand: 255 83% 60%;
     --alternate: 155 61% 44%;
   }
 }

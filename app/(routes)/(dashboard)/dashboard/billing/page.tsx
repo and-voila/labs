@@ -29,7 +29,7 @@ export default async function BillingPage() {
       <div className="grid max-w-3xl gap-8">
         {!subscriptionPlan && (
           <Alert className="!pl-14">
-            <Icons.rocket className="fill-brand" />
+            <Icons.rocket className="fill-primary" />
             <AlertTitle>Welcome to early access</AlertTitle>
             <AlertDescription className="text-muted-foreground">
               Get ready to watch your marketing ROI soar! Scoop up early access

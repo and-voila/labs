@@ -69,7 +69,7 @@ export default async function DashboardPage() {
               <CardTitle className="flex items-center gap-3">
                 <div className={cn('rounded-md', item)}>
                   <item.icon
-                    className={cn('h-6 w-6 text-brand', item)}
+                    className={cn('h-6 w-6 text-primary', item)}
                     aria-hidden="true"
                   />
                 </div>
@@ -96,7 +96,7 @@ export default async function DashboardPage() {
                 >
                   {item.linkText}
                   <Icons.arrowRight
-                    className="h-5 w-5 justify-end text-brand"
+                    className="h-5 w-5 justify-end text-primary"
                     aria-hidden="true"
                   />
                 </button>
@@ -115,7 +115,7 @@ export default async function DashboardPage() {
                 >
                   {item.linkText}
                   <Icons.arrowRight
-                    className="h-5 w-5 justify-end text-brand"
+                    className="h-5 w-5 justify-end text-primary"
                     aria-hidden="true"
                   />
                 </Link>

@@ -41,7 +41,7 @@ export const CourseSidebar = async ({
   return (
     <div className="flex h-full w-full flex-col overflow-y-auto">
       <div className="flex flex-col py-4">
-        <p className="mb-2 text-sm text-brand">Playbook</p>
+        <p className="mb-2 text-sm text-primary">Playbook</p>
         <h1 className="font-medium leading-tight lg:leading-tight">
           {course.title}
         </h1>
@@ -55,7 +55,7 @@ export const CourseSidebar = async ({
         )}
       </div>
       <div className="mt-4 flex w-full flex-col">
-        <p className="mb-2 text-sm text-brand">On deck</p>
+        <p className="mb-2 text-sm text-primary">On deck</p>
         {course.chapters.map((chapter: ChapterType) => (
           <CourseSidebarItem
             key={chapter.id}

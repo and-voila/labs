@@ -84,7 +84,7 @@ const LoginPage = () => {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <div className="flex items-center justify-center p-6">
             <Logo fillOnHover className="h-6 md:h-8" />
-            <sup className="-ml-2 font-mono text-xs text-brand md:-ml-3">
+            <sup className="-ml-2 font-mono text-xs text-primary md:-ml-3">
               beta
             </sup>
           </div>
@@ -97,7 +97,7 @@ const LoginPage = () => {
               href="https://andvoila.gg/privacy"
               target="_blank"
               aria-label="Naivgate to And Voila's Privacy Policy on their website in a new window"
-              className="text-brand hover:underline"
+              className="text-primary hover:underline"
             >
               {' '}
               Privacy Policy{' '}
@@ -107,7 +107,7 @@ const LoginPage = () => {
               href="https://andvoila.gg/terms"
               target="_blank"
               aria-label="Naivgate to And Voila's Terms of Service on their website in a new window"
-              className="text-brand hover:underline"
+              className="text-primary hover:underline"
             >
               Terms of Service
             </Link>

@@ -48,7 +48,7 @@ export default async function SiteHomePage({
   return (
     <>
       <div className="mb-8 w-full px-8 lg:mb-16 lg:px-24">
-        <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-brand">
+        <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-primary">
           Latest
         </h2>
         {posts.length > 0 ? (
@@ -85,7 +85,7 @@ export default async function SiteHomePage({
                   By {''}
                   {data.user?.name}
                 </p>
-                <div className="h-6 border-l border-brand" />
+                <div className="h-6 border-l border-primary" />
                 <p className="m-auto my-5 w-10/12 text-sm text-muted-foreground md:text-base">
                   {toDateString(posts[0].createdAt)}
                 </p>
@@ -118,7 +118,7 @@ export default async function SiteHomePage({
 
       {posts.length > 1 && (
         <div className="mx-auto px-8 lg:px-24">
-          <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-brand">
+          <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-primary">
             Recent Posts
           </h2>
           <div className="grid w-full grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 xl:grid-cols-3">

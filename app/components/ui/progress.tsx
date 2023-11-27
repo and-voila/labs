@@ -9,7 +9,7 @@ import { cn } from '@/app/lib/utils';
 const progressVariants = cva('h-full w-full flex-1 bg-primary transition-all', {
   variants: {
     variant: {
-      default: 'bg-brand/70',
+      default: 'bg-primary/70',
       success: 'bg-alternate/70',
     },
   },

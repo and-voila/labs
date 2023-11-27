@@ -67,7 +67,7 @@ export function TeacherCourseListDataTable<TData, TValue>({
           className=" max-w-[300px] bg-card md:max-w-sm"
         />
         <Link href="/admin/teacher/create">
-          <Button variant="custom" size="sm" className="mx-2">
+          <Button variant="default" size="sm" className="mx-2">
             <Icons.plusCircled className="mr-2 h-4 w-4 shrink-0" />
             New
           </Button>

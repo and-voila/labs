@@ -84,7 +84,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             <>Cancel</>
           ) : (
             <>
-              <Icons.pencil className="mr-2 h-4 w-4 text-brand" />
+              <Icons.pencil className="mr-2 h-4 w-4 text-primary" />
               Edit access
             </>
           )}
@@ -128,7 +128,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             <div className="flex items-center gap-x-2">
               <Button
                 size="sm"
-                variant="custom"
+                variant="default"
                 disabled={!isValid || isSubmitting}
                 type="submit"
               >

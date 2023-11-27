@@ -34,7 +34,7 @@ const NotAuthorizedPage = () => {
         <div className="mt-10 flex justify-center">
           <Link
             href="/dashboard"
-            className={cn(buttonVariants({ variant: 'custom' }))}
+            className={cn(buttonVariants({ variant: 'default' }))}
           >
             <Icons.caretLeft className="mr-2 h-4 w-4" />
             Get me out of here!

@@ -91,14 +91,14 @@ export default function Editor({ post }: { post: PostWithSite }) {
   return (
     <>
       <div className="my-8 flex flex-col space-y-6">
-        <div className="mt-10 border-b border-brand pb-5 sm:flex sm:items-center sm:justify-between">
+        <div className="mt-10 border-b border-primary pb-5 sm:flex sm:items-center sm:justify-between">
           <h3 className="text-2xl font-semibold leading-6">
             Editing: {data?.title || 'A new post'}
           </h3>
           <div className="mt-3 flex sm:ml-4 sm:mt-0">
             {data.published && (
               <a href={url} target="_blank" rel="noopener noreferrer">
-                <Icons.arrowSquareOut className="mr-2 inline-flex h-4 w-4 items-center text-brand" />
+                <Icons.arrowSquareOut className="mr-2 inline-flex h-4 w-4 items-center text-primary" />
               </a>
             )}
             <div
@@ -145,7 +145,7 @@ export default function Editor({ post }: { post: PostWithSite }) {
               }}
               className={cn(
                 buttonVariants({
-                  variant: data.published ? 'destructive' : 'custom',
+                  variant: data.published ? 'destructive' : 'default',
                   size: 'sm',
                 }),
                 {
@@ -165,7 +165,7 @@ export default function Editor({ post }: { post: PostWithSite }) {
         </div>
       </div>
       <div className="relative min-h-[500px] w-full max-w-4xl bg-card px-8 py-12 sm:mb-[calc(20vh)] sm:rounded-lg sm:px-12 sm:shadow-lg">
-        <div className="mb-5 flex flex-col space-y-3 border-b border-brand/70 pb-5">
+        <div className="mb-5 flex flex-col space-y-3 border-b border-primary/70 pb-5">
           <input
             type="text"
             placeholder="Your awesome post title of up to 57 characters goes here"

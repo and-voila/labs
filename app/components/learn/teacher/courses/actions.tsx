@@ -88,7 +88,7 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
       <Button
         onClick={onClick}
         disabled={disabled || isLoading}
-        variant={isPublished ? 'destructive' : 'custom'}
+        variant={isPublished ? 'destructive' : 'default'}
         size="sm"
       >
         {isPublished ? 'Unpublish' : 'Publish'}

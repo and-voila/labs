@@ -35,7 +35,7 @@ PREVIEW COMPONENT
 
 /* Links */
 .myQuill .ql-editor a {
-  @apply text-brand;
+  @apply text-primary;
   @apply prose-a:underline-offset-4;
   @apply prose-a:font-bold;
 }

@@ -29,7 +29,7 @@ export default function BlogCard({ data }: BlogCardProps) {
           <p className="text-md my-2 line-clamp-2 h-12 text-muted-foreground">
             {data.description}
           </p>
-          <p className="my-2 text-sm text-brand">
+          <p className="my-2 text-sm text-primary">
             {toDateString(data.createdAt)}
           </p>
         </div>

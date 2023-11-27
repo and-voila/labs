@@ -37,7 +37,7 @@ const GoodPlanCard = ({ plan, userId }: GoodPlanCardProps) => {
           className={cn(
             buttonVariants({
               className: 'w-full sm:w-auto',
-              variant: 'custom',
+              variant: 'default',
             }),
           )}
         >

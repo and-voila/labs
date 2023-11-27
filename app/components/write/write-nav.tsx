@@ -48,9 +48,9 @@ export default function WriteNav() {
             <Link key={name} href={href}>
               <span
                 className={cn(
-                  'group flex items-center rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/20 hover:text-foreground',
+                  'group flex items-center rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-primary/20 hover:text-foreground',
                   pathname === href
-                    ? 'bg-brand/20 text-foreground'
+                    ? 'bg-primary/20 text-foreground'
                     : 'transparent',
                 )}
               >

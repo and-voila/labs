@@ -41,7 +41,9 @@ export default function GuidesPage() {
                   )}
                 </div>
                 {guide.date && (
-                  <p className="text-sm text-brand">{formatDate(guide.date)}</p>
+                  <p className="text-sm text-primary">
+                    {formatDate(guide.date)}
+                  </p>
                 )}
               </div>
               <Link href={guide.slug} className="absolute inset-0">

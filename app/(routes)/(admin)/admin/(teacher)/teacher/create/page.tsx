@@ -111,7 +111,7 @@ const CreatePage = () => {
                   </Button>
                 </Link>
                 <Button
-                  variant="custom"
+                  variant="default"
                   type="submit"
                   size="sm"
                   disabled={!isValid || isSubmitting}

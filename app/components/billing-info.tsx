@@ -26,7 +26,7 @@ export function BillingInfo({ subscriptionPlan }: BillingInfoProps) {
         <CardTitle>Membership Plan</CardTitle>
         <CardDescription>
           You are currently on the{' '}
-          <span className="text-brand">
+          <span className="text-primary">
             <strong>{subscriptionPlan.title}</strong>
           </span>{' '}
           plan.
@@ -39,7 +39,7 @@ export function BillingInfo({ subscriptionPlan }: BillingInfoProps) {
           className={cn(
             buttonVariants({
               size: 'sm',
-              variant: subscriptionPlan.isPaid ? 'secondary' : 'custom',
+              variant: subscriptionPlan.isPaid ? 'secondary' : 'default',
             }),
           )}
         >

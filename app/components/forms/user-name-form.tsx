@@ -95,7 +95,7 @@ export function UserNameForm({ user }: UserNameFormProps) {
         <CardFooter>
           <button
             type="submit"
-            className={cn(buttonVariants({ size: 'sm', variant: 'custom' }))}
+            className={cn(buttonVariants({ size: 'sm', variant: 'default' }))}
             disabled={isPending}
           >
             {isPending && (

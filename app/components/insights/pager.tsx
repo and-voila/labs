@@ -27,7 +27,7 @@ export function InsightsPager({ insight }: InsightsPagerProps) {
           href={pager.prev.href}
           className={cn(buttonVariants({ variant: 'outline' }))}
         >
-          <Icons.caretLeft className="mr-2 h-4 w-4 text-brand" />
+          <Icons.caretLeft className="mr-2 h-4 w-4 text-primary" />
           {pager.prev.title}
         </Link>
       )}
@@ -37,7 +37,7 @@ export function InsightsPager({ insight }: InsightsPagerProps) {
           className={cn(buttonVariants({ variant: 'outline' }), 'ml-auto')}
         >
           {pager.next.title}
-          <Icons.caretRight className="ml-2 h-4 w-4 text-brand" />
+          <Icons.caretRight className="ml-2 h-4 w-4 text-primary" />
         </Link>
       )}
     </div>

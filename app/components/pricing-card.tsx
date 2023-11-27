@@ -25,7 +25,7 @@ const PricingCard = ({
       key={plan.title}
     >
       <div className="min-h-[120px] items-start space-y-4 p-6">
-        <p className="flex text-sm font-semibold uppercase tracking-widest text-brand">
+        <p className="flex text-sm font-semibold uppercase tracking-widest text-primary">
           {plan.title}
         </p>
         <div className="mt-6 flex items-baseline gap-x-1">
@@ -51,7 +51,7 @@ const PricingCard = ({
         <ul className="space-y-2 text-left text-sm font-medium leading-normal">
           {plan.benefits.map((feature) => (
             <li className="flex items-start" key={feature}>
-              <Icons.radixCheck className="mr-3 h-5 w-5 shrink-0 text-brand/70" />
+              <Icons.radixCheck className="mr-3 h-5 w-5 shrink-0 text-primary/70" />
               <p>{feature}</p>
             </li>
           ))}
@@ -77,7 +77,7 @@ const PricingCard = ({
           <Link
             href={`/register?from=${encodeURIComponent('/pricing')}`}
             passHref
-            className={cn(buttonVariants({ variant: 'custom' }))}
+            className={cn(buttonVariants({ variant: 'default' }))}
           >
             Create an Account
           </Link>

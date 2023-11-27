@@ -17,7 +17,7 @@ export function Logomark({ invert, filled, sidebar, ...props }: LogomarkProps) {
         clipPath={`url(#${id}-clip)`}
         className={cn(
           'h-8 transition-all duration-300',
-          invert && !sidebar ? 'fill-gray-50' : 'fill-brand',
+          invert && !sidebar ? 'fill-gray-50' : 'fill-primary',
           filled ? 'w-8' : 'w-0 group-hover/logo:w-8',
         )}
       />

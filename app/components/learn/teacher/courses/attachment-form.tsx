@@ -82,7 +82,7 @@ export const AttachmentForm = ({
           {isEditing && <>Cancel</>}
           {!isEditing && (
             <>
-              <Icons.plusCircled className="mr-2 h-4 w-4 text-brand" />
+              <Icons.plusCircled className="mr-2 h-4 w-4 text-primary" />
               Add a file
             </>
           )}
@@ -102,7 +102,7 @@ export const AttachmentForm = ({
                   key={attachment.id}
                   className="flex w-full items-center rounded-md border bg-card p-3 text-foreground"
                 >
-                  <Icons.file className="mr-4 h-4 w-4 flex-shrink-0 text-brand" />
+                  <Icons.file className="mr-4 h-4 w-4 flex-shrink-0 text-primary" />
                   <p className="line-clamp-1 text-xs">{attachment.name}</p>
                   {deletingId === attachment.id && (
                     <div>

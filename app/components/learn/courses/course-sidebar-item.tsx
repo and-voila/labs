@@ -27,7 +27,7 @@ export const CourseSidebarItem = ({
       className={cn(
         'flex items-center gap-x-2 rounded-sm text-left text-sm leading-tight text-muted-foreground transition-all hover:bg-gray-400/20 hover:text-foreground',
         isActive &&
-          'bg-brand/20 text-foreground hover:bg-brand/40 hover:text-foreground',
+          'bg-primary/20 text-foreground hover:bg-primary/40 hover:text-foreground',
         isCompleted &&
           'text-muted-foreground line-through hover:text-[#186343]',
         isCompleted && isActive && 'bg-alternate/20',
@@ -36,7 +36,7 @@ export const CourseSidebarItem = ({
       <div className="flex px-1 py-2 text-sm">{label}</div>
       <div
         className={cn(
-          'ml-auto h-full border-2 border-brand opacity-0 transition-all',
+          'ml-auto h-full border-2 border-primary opacity-0 transition-all',
           isActive && 'opacity-100',
           isCompleted && 'border-[#186343]',
         )}

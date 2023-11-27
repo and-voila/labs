@@ -29,7 +29,6 @@ module.exports = withUt({
         ring: 'hsl(var(--ring) / <alpha-value>)',
         background: 'hsl(var(--background) / <alpha-value>)',
         foreground: 'hsl(var(--foreground) / <alpha-value>)',
-        brand: 'hsl(var(--brand) / <alpha-value>)',
         alternate: 'hsl(var(--alternate) / <alpha-value>)',
         primary: {
           DEFAULT: 'hsl(var(--primary) / <alpha-value>)',

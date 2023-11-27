@@ -68,7 +68,7 @@ export function MainNav({ items, children }: MainNavProps) {
                 className={cn(
                   'flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm',
                   pathname.startsWith(item.href)
-                    ? 'font-semibold text-brand underline decoration-4 underline-offset-4'
+                    ? 'font-semibold text-primary underline decoration-4 underline-offset-4'
                     : 'text-muted-foreground',
                 )}
                 target={item.isExternal ? '_blank' : '_self'}

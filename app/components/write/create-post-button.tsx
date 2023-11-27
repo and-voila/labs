@@ -24,7 +24,7 @@ export default function CreatePostButton() {
           router.push(`/tools/write/post/${post.id}`);
         })
       }
-      className={cn(buttonVariants({ variant: 'custom', size: 'sm' }), {
+      className={cn(buttonVariants({ variant: 'default', size: 'sm' }), {
         'cursor-not-allowed opacity-50': isPending,
       })}
       disabled={isPending}

@@ -21,7 +21,7 @@ export function BlogPosts({ posts }: BlogPostsProps) {
   return (
     <div className="container space-y-10 py-6 md:py-10 lg:py-20">
       <section>
-        <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-brand">
+        <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-primary">
           Just Dropped
         </h2>
         <article className="relative grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -56,7 +56,7 @@ export function BlogPosts({ posts }: BlogPostsProps) {
       </section>
 
       <section>
-        <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-brand">
+        <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-primary">
           Popular Posts
         </h2>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -82,7 +82,7 @@ export function BlogPosts({ posts }: BlogPostsProps) {
                 <p className="text-muted-foreground">{post.description}</p>
               )}
               {post.date && (
-                <p className="text-sm text-brand">{formatDate(post.date)}</p>
+                <p className="text-sm text-primary">{formatDate(post.date)}</p>
               )}
               <Link href={post.slug} className="absolute inset-0">
                 <span className="sr-only">View Article</span>

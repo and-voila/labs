@@ -65,7 +65,7 @@ const MarketingIndexOpenSource = async () => {
             aria-label="See our GitHub stars"
           >
             <div className="mr-2 flex h-10 w-10 items-center justify-center space-x-2 rounded-md border bg-card">
-              <Icons.github className="h-5 w-5 text-brand" />
+              <Icons.github className="h-5 w-5 text-primary" />
             </div>
             <div className="flex items-center">
               <div className="flex h-10 items-center rounded-md border bg-card px-4 font-medium">

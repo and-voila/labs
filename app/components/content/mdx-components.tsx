@@ -68,7 +68,7 @@ const components = {
   a: ({ className, ...props }: MDXComponentProps) => (
     <a
       className={cn(
-        'font-semibold text-brand underline underline-offset-4 lg:text-lg',
+        'font-semibold text-primary underline underline-offset-4 lg:text-lg',
         className,
       )}
       {...props}
@@ -107,7 +107,7 @@ const components = {
   blockquote: ({ className, ...props }: MDXComponentProps) => (
     <blockquote
       className={cn(
-        'mt-6 border-l-4 border-l-brand py-6 pl-6 italic lg:text-lg [&>*]:text-muted-foreground',
+        'mt-6 border-l-4 border-l-primary py-6 pl-6 italic lg:text-lg [&>*]:text-muted-foreground',
         className,
       )}
       {...props}

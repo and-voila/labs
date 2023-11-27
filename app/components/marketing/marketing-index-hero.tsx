@@ -7,7 +7,7 @@ const MarketingIndexHero = (): JSX.Element => {
   return (
     <section className="space-y-6 py-24 md:py-32 lg:py-48">
       <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
-        <div className="text-sm font-semibold uppercase tracking-widest text-brand">
+        <div className="text-sm font-semibold uppercase tracking-widest text-primary">
           Get Early Access
         </div>
         <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-8xl">
@@ -21,7 +21,7 @@ const MarketingIndexHero = (): JSX.Element => {
         <div className="space-x-4">
           <Link
             href="/register"
-            className={cn(buttonVariants({ variant: 'custom' }))}
+            className={cn(buttonVariants({ variant: 'default' }))}
           >
             Get Started
           </Link>

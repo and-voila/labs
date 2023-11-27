@@ -21,7 +21,7 @@ export const SessionInfo = () => {
   if (process.env.NEXT_PUBLIC_VERCEL_ENV === 'production') return null;
 
   return (
-    <div className="fixed bottom-56 right-6 z-50 flex flex-col rounded-lg border border-brand bg-card p-2 text-xs text-foreground">
+    <div className="fixed bottom-56 right-6 z-50 flex flex-col rounded-lg border border-primary bg-card p-2 text-xs text-foreground">
       <span className="block sm:hidden">xs</span>
       <span className="hidden sm:block md:hidden lg:hidden xl:hidden 2xl:hidden">
         sm

@@ -85,7 +85,7 @@ export const ChaptersList = ({
                       className={cn(
                         'rounded-l-md border-r border-r-muted-foreground px-2 py-3 text-muted-foreground transition hover:bg-muted-foreground hover:text-primary-foreground',
                         chapter.isPublished &&
-                          'border-r-brand text-brand hover:bg-brand',
+                          'border-r-primary text-primary hover:bg-primary',
                       )}
                       {...provided.dragHandleProps}
                     >
@@ -97,7 +97,7 @@ export const ChaptersList = ({
                         className={cn(
                           'pointer-events-none border border-border bg-transparent text-muted-foreground',
                           chapter.isPublished &&
-                            'pointer-events-none border-brand bg-transparent text-brand',
+                            'pointer-events-none border-primary bg-transparent text-primary',
                         )}
                       >
                         {chapter.isPublished ? 'Published' : 'Draft'}
