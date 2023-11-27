@@ -30,9 +30,21 @@ export async function generateMetadata({
     logo: string;
   };
 
+  const authorUrl =
+    params.domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
+    data.customDomain
+      ? `https://${data.customDomain}`
+      : `https://${domain}`;
+
   return {
     title,
     description,
+    authors: [
+      {
+        name: title,
+        url: authorUrl,
+      },
+    ],
     openGraph: {
       title,
       description,
@@ -55,17 +67,16 @@ export async function generateMetadata({
           alt: 'An open graph image that appears to look like a Loading screen with the And Voila logo.',
         },
       ],
-      creator: '@vercel',
     },
     icons: [logo],
     metadataBase: new URL(`https://${domain}`),
-    // Optional: Set canonical URL to custom domain if it exists
-    // ...(params.domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
-    //   data.customDomain && {
-    //     alternates: {
-    //       canonical: `https://${data.customDomain}`,
-    //     },
-    //   }),
+    // Set canonical URL to custom domain if it exists
+    ...(params.domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
+      data.customDomain && {
+        alternates: {
+          canonical: `https://${data.customDomain}`,
+        },
+      }),
   };
 }
 
@@ -83,7 +94,7 @@ export default async function SiteLayout({
     notFound();
   }
 
-  // Optional: Redirect to custom domain if it exists
+  // Redirect to custom domain if it exists
   if (
     domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
     data.customDomain &&
@@ -123,10 +134,9 @@ export default async function SiteLayout({
       <div className="mt-20 flex-grow">{children}</div>
 
       <div className="flex flex-col">
-        {/*domain == `demo.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}` && <CTA />*/}
         <DomainsFooter
           className="mt-20"
-          name={data.name || 'BRIL.LA, LLC'}
+          name={data.name || 'BRIL.LA, LLC.'}
           logo={data.logo || undefined}
         />
       </div>

@@ -44,7 +44,6 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title,
       description,
-      creator: '@vercel',
       images: [
         {
           url: '/open-graph.jpg',
@@ -119,7 +118,7 @@ export default async function SitePostPage({
             alt={data.title || 'A featured image for the post'}
           />
           <div
-            className="absolute inset-0 bg-gradient-to-t from-background dark:from-[#242629]"
+            className="absolute inset-0 bg-gradient-to-t from-background via-background/20"
             aria-hidden="true"
           />
         </div>
