@@ -43,6 +43,7 @@ export function InsightsSidebarNavItems({
       {items.map((item) =>
         !item.disabled && item.href ? (
           <Link
+            prefetch={false}
             key={item.title + item.href}
             href={item.href}
             className={cn(
