@@ -98,7 +98,7 @@ body,
 
 .ProseMirror {
   @apply py-8 !important;
-  @apply px-0 !important;
+  @apply px-4 !important;
 }
 
 .ProseMirror .is-editor-empty:first-child::before {

@@ -16,7 +16,7 @@ const PostDescriptionInput = React.memo(
         required
         defaultValue={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-[5/6 resize-none border-none bg-card px-0 font-sans placeholder:text-muted-foreground/70 focus:outline-none focus:ring-0"
+        className="w-5/6 resize-none border-none bg-card px-0 font-sans placeholder:text-muted-foreground/70 focus:outline-none focus:ring-0"
       />
     );
   },

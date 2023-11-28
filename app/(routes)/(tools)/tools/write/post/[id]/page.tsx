@@ -41,7 +41,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
   return (
     <DashboardShell>
       <DashboardHeader
-        heading="AI Editor"
+        heading={`Editing: ${data.title}`}
         text="Our AI Editor assists you without creating content to safeguard your original IP. Start with ++ and enjoy Notion-inspired functionality with auto-save."
       />
       <Tabs defaultValue="editor">

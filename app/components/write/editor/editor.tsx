@@ -4,7 +4,6 @@ import { useEffect, useReducer, useState, useTransition } from 'react';
 import { Post } from '@prisma/client';
 import { Editor as NovelEditor } from 'novel';
 
-import { defaultEditorContent } from '@/app/components/write/editor/default-editor-content';
 import { EditorHeader } from '@/app/components/write/editor/editor-header';
 import PostDescriptionInput from '@/app/components/write/editor/post-description-input';
 import PostTitleInput from '@/app/components/write/editor/post-title-input';
@@ -122,8 +121,8 @@ export default function Editor({ post }: { post: PostWithSite }) {
         post={post}
         startTransitionPublishing={startTransitionPublishing}
       />
-      <div className="relative min-h-[500px] w-full max-w-4xl bg-card px-8 py-12 sm:mb-[calc(20vh)] sm:rounded-lg sm:px-12 sm:shadow-lg">
-        <div className="mb-5 flex flex-col space-y-3 border-b border-primary/70 pb-5">
+      <div className="relative min-h-[500px] w-full max-w-screen-lg rounded-lg bg-card py-12 sm:mb-[calc(20vh)] sm:px-8 sm:shadow-lg">
+        <div className="mb-5 flex flex-col space-y-3 px-4">
           <PostTitleInput
             value={state.data.title || ''}
             onChange={(newTitle) =>
@@ -151,12 +150,13 @@ export default function Editor({ post }: { post: PostWithSite }) {
           {state.contentError && (
             <p className="text-xs text-red-500">{state.contentError}</p>
           )}
+          <div className="border-b border-border py-4" />
         </div>
         <NovelEditor
           key={post.id}
           storageKey={`novel__content_${post.id}`}
           className="relative block"
-          defaultValue={post?.content || defaultEditorContent}
+          defaultValue={post?.content || ''}
           onUpdate={(editor) => {
             dispatch({
               type: 'setData',
