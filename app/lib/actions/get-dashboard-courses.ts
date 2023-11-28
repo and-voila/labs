@@ -17,16 +17,32 @@ type DashboardCourseWithProgressWithCategory = Course & {
 type DashboardCourses = {
   completedCourses: DashboardCourseWithProgressWithCategory[];
   coursesInProgress: DashboardCourseWithProgressWithCategory[];
+  count: number;
+  totalCompletedCourses: number;
+  totalCoursesInProgress: number;
 };
 
-export const getDashboardCourses = async (
-  userId: string,
-): Promise<DashboardCourses> => {
+export const getDashboardCourses = async ({
+  userId,
+  skip = 0,
+  take = 9,
+}: {
+  userId: string;
+  skip?: number;
+  take?: number;
+}): Promise<DashboardCourses> => {
   try {
     const userProgress = await db.userProgress.findMany({
       where: { userId },
       select: { chapterId: true, isCompleted: true, isStarted: true },
     });
+
+    const totalCompletedCourses = userProgress.filter(
+      (p) => p.isCompleted,
+    ).length;
+    const totalCoursesInProgress = userProgress.filter(
+      (p) => p.isStarted && !p.isCompleted,
+    ).length;
 
     const chapterIdsWithProgress = userProgress.map(
       (progress) => progress.chapterId,
@@ -54,6 +70,20 @@ export const getDashboardCourses = async (
       cacheStrategy: {
         ttl: 30,
         swr: 10,
+      },
+      skip,
+      take,
+    });
+
+    const count = await db.course.count({
+      where: {
+        chapters: {
+          some: {
+            id: {
+              in: chapterIdsWithProgress,
+            },
+          },
+        },
       },
     });
 
@@ -83,11 +113,17 @@ export const getDashboardCourses = async (
     return {
       completedCourses,
       coursesInProgress,
+      count,
+      totalCompletedCourses,
+      totalCoursesInProgress,
     };
   } catch (error) {
     return {
       completedCourses: [],
       coursesInProgress: [],
+      count: 0,
+      totalCompletedCourses: 0,
+      totalCoursesInProgress: 0,
     };
   }
 };

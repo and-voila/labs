@@ -8,15 +8,38 @@ import { getDashboardCourses } from '@/app/lib/actions/get-dashboard-courses';
 import { authOptions } from '@/app/lib/auth';
 import { getSession } from '@/app/lib/session';
 
-export default async function MyPlaybooksPage() {
+interface MyPlaybooksPageProps {
+  searchParams: {
+    page?: string;
+  };
+}
+
+export default async function MyPlaybooksPage({
+  searchParams,
+}: MyPlaybooksPageProps) {
   const session = await getSession();
   if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  const { completedCourses, coursesInProgress } = await getDashboardCourses(
-    session.user.id,
-  );
+  const page = parseInt(searchParams.page as string) || 1;
+  const take = 6;
+  const skip = (page - 1) * take;
+
+  const {
+    completedCourses,
+    coursesInProgress,
+    count,
+    totalCompletedCourses,
+    totalCoursesInProgress,
+  } = await getDashboardCourses({
+    userId: session.user.id,
+    skip,
+    take,
+  });
+
+  const totalPages = Math.ceil(count / take);
+  const hasNextPage = page * take < count;
 
   return (
     <DashboardShell>
@@ -25,16 +48,21 @@ export default async function MyPlaybooksPage() {
           <InfoCard
             icon="clock"
             label="In Progress"
-            numberOfItems={coursesInProgress.length}
+            numberOfItems={totalCoursesInProgress}
           />
           <InfoCard
             icon="circleChecked"
             label="Completed"
-            numberOfItems={completedCourses.length}
-            variant="default"
+            numberOfItems={totalCompletedCourses}
+            variant="success"
           />
         </div>
-        <CoursesList items={[...coursesInProgress, ...completedCourses]} />
+        <CoursesList
+          items={[...completedCourses, ...coursesInProgress]}
+          currentPage={page}
+          totalPages={totalPages}
+          hasNextPage={hasNextPage}
+        />
       </div>
     </DashboardShell>
   );

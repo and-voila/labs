@@ -20,13 +20,20 @@ type GetCourses = {
   title?: string;
   categoryId?: string;
   isPaidMember: boolean;
+  skip?: number;
+  take?: number;
 };
 
 export const getCourses = async ({
   userId,
   title,
   categoryId,
-}: GetCourses): Promise<CourseWithProgressWithCategory[]> => {
+  skip = 0,
+  take = 9,
+}: GetCourses): Promise<{
+  courses: CourseWithProgressWithCategory[];
+  count: number;
+}> => {
   try {
     const courses = await db.course.findMany({
       where: {
@@ -60,6 +67,23 @@ export const getCourses = async ({
         ttl: 3600,
         swr: 300,
       },
+      skip,
+      take,
+    });
+
+    const count = await db.course.count({
+      where: {
+        isPublished: true,
+        ...(title
+          ? {
+              title: {
+                contains: title,
+                mode: 'insensitive',
+              },
+            }
+          : {}),
+        ...(categoryId ? { categoryId } : {}),
+      },
     });
 
     const isPaidMember = await checkSubscription();
@@ -90,8 +114,8 @@ export const getCourses = async ({
         }),
       );
 
-    return coursesWithProgress;
+    return { courses: coursesWithProgress, count };
   } catch (error) {
-    return [];
+    throw error;
   }
 };
