@@ -11,7 +11,6 @@ interface CourseCardProps {
   title: string;
   preview: string;
   imageUrl: string;
-  displayImage?: boolean;
   price: number;
   progress: number | null;
   category: string;
@@ -23,7 +22,6 @@ export const CourseCard = ({
   title,
   preview,
   imageUrl,
-  displayImage = true,
   price,
   progress,
   category,
@@ -35,19 +33,17 @@ export const CourseCard = ({
   return (
     <Link href={`/learn/courses/${id}`}>
       <div className="group h-full overflow-hidden rounded-xl border bg-card transition hover:shadow-sm">
-        {displayImage && (
-          <div className="relative aspect-video w-full overflow-hidden md:grayscale md:group-hover:grayscale-0">
-            <BlurImage
-              fill
-              className="object-cover"
-              alt={title}
-              src={imageUrl}
-              placeholder="blur"
-              blurDataURL={placeholderBlurhash}
-              role="img"
-            />
-          </div>
-        )}
+        <div className="relative aspect-video w-full overflow-hidden md:grayscale md:group-hover:grayscale-0">
+          <BlurImage
+            fill
+            className="object-cover"
+            alt={title}
+            src={imageUrl}
+            placeholder="blur"
+            blurDataURL={placeholderBlurhash}
+            role="img"
+          />
+        </div>
         <div className="mt-1 flex flex-col p-4">
           <div className="mb-2 flex items-center justify-between">
             <Suspense fallback={<Skeleton className="h-4 w-12" />}>
