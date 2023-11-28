@@ -31,11 +31,8 @@ export const EditorHeader: React.FC<EditorHeaderProps> = ({
   startTransitionPublishing,
 }) => {
   return (
-    <div className="my-8 flex flex-col space-y-6">
-      <div className="mt-10 border-b border-primary pb-5 sm:flex sm:items-center sm:justify-between">
-        <h3 className="text-2xl font-semibold leading-6">
-          Editing: {state.data?.title || 'A new post'}
-        </h3>
+    <div className="flex flex-col space-y-6">
+      <div className="pb-5 sm:flex sm:items-center sm:justify-end">
         <div className="mt-3 flex sm:ml-4 sm:mt-0">
           {state.data.published && (
             <a href={url} target="_blank" rel="noopener noreferrer">
