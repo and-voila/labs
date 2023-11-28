@@ -1,6 +1,7 @@
 import { Category, Course } from '@prisma/client';
 
 import { CourseCard } from '@/app/components/learn/courses/course-card';
+import Pagination from '@/app/components/shared/pagination';
 
 type FilteredCoursesWithProgressAndAccess = Course & {
   category: Category | null;
@@ -12,9 +13,17 @@ type FilteredCoursesWithProgressAndAccess = Course & {
 
 interface CoursesListProps {
   items: FilteredCoursesWithProgressAndAccess[];
+  currentPage: number;
+  totalPages: number;
+  hasNextPage: boolean;
 }
 
-export const CoursesList = ({ items }: CoursesListProps) => {
+export const CoursesList = ({
+  items,
+  currentPage,
+  totalPages,
+  hasNextPage,
+}: CoursesListProps) => {
   return (
     <div>
       <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
@@ -38,6 +47,11 @@ export const CoursesList = ({ items }: CoursesListProps) => {
           No courses found
         </div>
       )}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        hasNextPage={hasNextPage}
+      />
     </div>
   );
 };

@@ -106,16 +106,10 @@ export const UserAccountNavSkeleton = () => {
 
 // Playbook Skeletons
 
-interface CourseCardSkeletonProps {
-  displayImage?: boolean;
-}
-
-export const CourseCardSkeleton = ({
-  displayImage = true,
-}: CourseCardSkeletonProps) => {
+export const CourseCardSkeleton = () => {
   return (
     <div className="h-full overflow-hidden rounded-xl border bg-card">
-      {displayImage && <Skeleton className="h-32 w-full rounded-t-xl" />}
+      <Skeleton className="h-48 w-full rounded-t-xl" />
       <div className="mt-1 flex flex-col p-4">
         <div className="mb-2 flex items-center justify-between">
           <Skeleton className="h-4 w-20 rounded-md" />

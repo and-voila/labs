@@ -7,7 +7,7 @@ const backgroundVariants = cva('rounded-xl flex items-center justify-center', {
   variants: {
     variant: {
       default: 'bg-transparent',
-      success: 'bg-emerald-100',
+      success: 'bg-transparent',
     },
     size: {
       default: 'p-2',
@@ -24,7 +24,7 @@ const iconVariants = cva('', {
   variants: {
     variant: {
       default: 'text-primary',
-      success: 'text-emerald-700',
+      success: 'text-alternate',
     },
     size: {
       default: 'h-6 w-6',

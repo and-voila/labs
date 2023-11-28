@@ -13,6 +13,7 @@ import { getSession } from '@/app/lib/session';
 
 interface PlaybooksSearchPageProps {
   searchParams: {
+    page: string;
     title: string;
     categoryId: string;
   };
@@ -38,18 +39,32 @@ const PlaybooksSearchPage = async ({
 
   const isPaidMember = await checkSubscription();
 
-  const courses = await getCourses({
+  const page = parseInt(searchParams.page as string) || 1;
+  const take = 9;
+  const skip = (page - 1) * take;
+
+  const { courses, count } = await getCourses({
     userId: session.user.id,
     ...searchParams,
     isPaidMember,
+    skip,
+    take,
   });
+
+  const totalPages = Math.ceil(count / take);
+  const hasNextPage = page * take < count;
 
   return (
     <DashboardShell>
       <div className="mx-auto grid space-y-8 p-6 lg:p-8">
         <SearchInput />
         <Categories items={categories} />
-        <CoursesList items={courses} />
+        <CoursesList
+          items={courses}
+          currentPage={page}
+          totalPages={totalPages}
+          hasNextPage={hasNextPage}
+        />
       </div>
     </DashboardShell>
   );

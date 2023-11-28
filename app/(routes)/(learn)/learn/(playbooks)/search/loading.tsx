@@ -22,7 +22,7 @@ export default function PlaybooksSearchLoading() {
           <CategoryItemSkeleton />
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:min-w-max lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 lg:min-w-max lg:grid-cols-3 lg:p-8">
         <CourseCardSkeleton />
         <CourseCardSkeleton />
         <CourseCardSkeleton />
