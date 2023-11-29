@@ -19,13 +19,13 @@ export const EditorStatusIndicator: React.FC<EditorStatusIndicatorProps> = ({
   return (
     <div
       className={cn(
-        'mr-2 inline-flex items-center rounded-lg px-2 py-1 text-sm ',
+        'mr-2 inline-flex items-center rounded-md px-3 text-xs font-medium ',
         isPendingSaving
-          ? 'bg-muted-foreground/20 text-muted-foreground'
+          ? 'text-muted-foreground'
           : (!state.data.title || !state.data.description) &&
               (state.titleError || state.descriptionError)
-            ? 'bg-destructive text-white'
-            : 'bg-alternate/20 text-alternate',
+            ? 'text-destructive'
+            : 'text-alternate',
       )}
     >
       {isPendingSaving

@@ -7,6 +7,7 @@ import { Editor as NovelEditor } from 'novel';
 import { EditorHeader } from '@/app/components/write/editor/editor-header';
 import PostDescriptionInput from '@/app/components/write/editor/post-description-input';
 import PostTitleInput from '@/app/components/write/editor/post-title-input';
+import { useGenerationCount } from '@/app/hooks/use-generation-count';
 import { useKeyboardSave } from '@/app/hooks/use-keyboard-save';
 import { updatePost } from '@/app/lib/actions';
 
@@ -81,6 +82,11 @@ export default function Editor({ post }: { post: PostWithSite }) {
     );
   }, [state.data]);
 
+  const { generationCount, handleContentChange } = useGenerationCount(
+    post?.content || '',
+    post.id,
+  );
+
   const url = process.env.NEXT_PUBLIC_VERCEL_ENV
     ? `https://${state.data.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${state.data.slug}`
     : `http://${state.data.site?.subdomain}.localhost:3001/${state.data.slug}`;
@@ -120,6 +126,7 @@ export default function Editor({ post }: { post: PostWithSite }) {
         url={url}
         post={post}
         startTransitionPublishing={startTransitionPublishing}
+        generationCount={generationCount}
       />
       <div className="relative min-h-[500px] w-full max-w-screen-lg rounded-lg bg-card py-12 sm:mb-[calc(20vh)] sm:px-8 sm:shadow-lg">
         <div className="mb-5 flex flex-col space-y-3 px-4">
@@ -158,13 +165,15 @@ export default function Editor({ post }: { post: PostWithSite }) {
           className="relative block"
           defaultValue={post?.content || ''}
           onUpdate={(editor) => {
+            const currentContent = editor?.storage.markdown.getMarkdown();
             dispatch({
               type: 'setData',
               payload: {
                 ...state.data,
-                content: editor?.storage.markdown.getMarkdown(),
+                content: currentContent,
               },
             });
+            handleContentChange(currentContent);
           }}
           debounceDuration={3000}
           onDebouncedUpdate={() => {

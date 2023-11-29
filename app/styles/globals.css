@@ -31,7 +31,7 @@ body,
     --accent: 197 10% 87%; /* 200 instead of 100 */
     --accent-foreground: 240 10% 8%; /* 900 */
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 220 15% 92%; /* 100 instead of 50 */
 
     --border: 220 15% 84%; /* 200 */

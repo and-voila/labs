@@ -42,7 +42,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
     <DashboardShell>
       <DashboardHeader
         heading={`Editing: ${data.title}`}
-        text="Our AI Editor assists you without creating content to safeguard your original IP. Start with ++ and enjoy Notion-inspired functionality with auto-save."
+        text="Use And Voila's AI assist to crush writer's block. Activate it with ++. Keep tabs on your IP protection with the indicator to safeguard your work."
       />
       <Tabs defaultValue="editor">
         <TabsList>

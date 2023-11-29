@@ -9,6 +9,8 @@ import {
 import EditorPublishButton from '@/app/components/write/editor/editor-publish-button';
 import { EditorStatusIndicator } from '@/app/components/write/editor/editor-status-indicator';
 
+import EditorIpStatusIndicator from './editor-ip-status-indicator';
+
 interface EditorHeaderProps {
   isPendingSaving: boolean;
   isPendingPublishing: boolean;
@@ -18,6 +20,7 @@ interface EditorHeaderProps {
   url: string;
   post: PostWithSite;
   startTransitionPublishing: TransitionStartFunction;
+  generationCount: number;
 }
 
 export const EditorHeader: React.FC<EditorHeaderProps> = ({
@@ -29,11 +32,15 @@ export const EditorHeader: React.FC<EditorHeaderProps> = ({
   url,
   post,
   startTransitionPublishing,
+  generationCount,
 }) => {
   return (
-    <div className="flex flex-col space-y-6">
-      <div className="pb-5 sm:flex sm:items-center sm:justify-end">
-        <div className="mt-3 flex sm:ml-4 sm:mt-0">
+    <div className="mt-6 flex flex-col space-y-6">
+      <div className="pb-5 sm:flex sm:items-center sm:justify-between">
+        <div className="justify-start">
+          <EditorIpStatusIndicator generationCount={generationCount} />
+        </div>
+        <div className="mt-3 flex items-center sm:ml-4 sm:mt-0">
           {state.data.published && (
             <a href={url} target="_blank" rel="noopener noreferrer">
               <Icons.arrowSquareOut className="mr-2 inline-flex h-4 w-4 items-center text-primary" />
