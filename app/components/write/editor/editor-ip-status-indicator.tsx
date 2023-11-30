@@ -1,36 +1,35 @@
+import { Icons } from '@/app/components/shared/icons';
+import { Button } from '@/app/components/ui/button';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/app/components//ui/tooltip';
-import { Icons } from '@/app/components/shared/icons';
-
-import { Button } from '../../ui/button';
+} from '@/app/components/ui/tooltip';
 
 type EditorIpStatusIndicatorProps = {
-  generationCount: number;
+  aiContentPercentage: number;
 };
 
 const statusVariants = [
   {
     min: 0,
-    max: 2,
+    max: 20,
     icon: 'circleChecked',
     title: 'Human',
     description: 'Your IP is protected',
     variant: 'human',
   },
   {
-    min: 3,
-    max: 4,
+    min: 21,
+    max: 35,
     icon: 'warning',
     title: 'Assisted',
     description: 'Your IP is at risk',
     variant: 'warning',
   },
   {
-    min: 5,
+    min: 36,
     icon: 'robot',
     title: 'Generated',
     description: 'Your IP is not protected',
@@ -39,13 +38,13 @@ const statusVariants = [
 ];
 
 const EditorIpStatusIndicator = ({
-  generationCount,
+  aiContentPercentage,
 }: EditorIpStatusIndicatorProps) => {
   const statusVariant =
     statusVariants.find(
       (variant) =>
-        generationCount >= variant.min &&
-        (variant.max ? generationCount <= variant.max : true),
+        aiContentPercentage >= variant.min &&
+        (variant.max ? aiContentPercentage <= variant.max : true),
     ) || statusVariants[0];
 
   const Icon = Icons[statusVariant.icon as keyof typeof Icons];
