@@ -41,7 +41,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
   return (
     <DashboardShell>
       <DashboardHeader
-        heading={`Editing: ${data.title}`}
+        heading={`Editing: ${data.title || 'Untitled post'}`}
         text="Use And Voila's AI assist to crush writer's block. Activate it with ++. Keep tabs on your IP protection with the indicator to safeguard your work."
       />
       <Tabs defaultValue="editor">
