@@ -6,10 +6,9 @@ import {
   EditorState,
   PostWithSite,
 } from '@/app/components/write/editor/editor';
+import EditorIpStatusIndicator from '@/app/components/write/editor/editor-ip-status-indicator';
 import EditorPublishButton from '@/app/components/write/editor/editor-publish-button';
 import { EditorStatusIndicator } from '@/app/components/write/editor/editor-status-indicator';
-
-import EditorIpStatusIndicator from './editor-ip-status-indicator';
 
 interface EditorHeaderProps {
   isPendingSaving: boolean;
@@ -20,10 +19,10 @@ interface EditorHeaderProps {
   url: string;
   post: PostWithSite;
   startTransitionPublishing: TransitionStartFunction;
-  generationCount: number;
+  aiContentPercentage: number;
 }
 
-export const EditorHeader: React.FC<EditorHeaderProps> = ({
+export const EditorHeader = ({
   isPendingSaving,
   isPendingPublishing,
   isPublishable,
@@ -32,13 +31,13 @@ export const EditorHeader: React.FC<EditorHeaderProps> = ({
   url,
   post,
   startTransitionPublishing,
-  generationCount,
-}) => {
+  aiContentPercentage,
+}: EditorHeaderProps) => {
   return (
     <div className="mt-6 flex flex-col space-y-6">
       <div className="pb-5 sm:flex sm:items-center sm:justify-between">
         <div className="justify-start">
-          <EditorIpStatusIndicator generationCount={generationCount} />
+          <EditorIpStatusIndicator aiContentPercentage={aiContentPercentage} />
         </div>
         <div className="mt-3 flex items-center sm:ml-4 sm:mt-0">
           {state.data.published && (

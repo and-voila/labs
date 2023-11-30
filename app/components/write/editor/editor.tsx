@@ -7,7 +7,7 @@ import { Editor as NovelEditor } from 'novel';
 import { EditorHeader } from '@/app/components/write/editor/editor-header';
 import PostDescriptionInput from '@/app/components/write/editor/post-description-input';
 import PostTitleInput from '@/app/components/write/editor/post-title-input';
-import { useGenerationCount } from '@/app/hooks/use-generation-count';
+import { useAiContentPercentage } from '@/app/hooks/use-ai-content-percentage';
 import { useKeyboardSave } from '@/app/hooks/use-keyboard-save';
 import { updatePost } from '@/app/lib/actions';
 
@@ -82,7 +82,7 @@ export default function Editor({ post }: { post: PostWithSite }) {
     );
   }, [state.data]);
 
-  const { generationCount, handleContentChange } = useGenerationCount(
+  const { aiContentPercentage, handleContentChange } = useAiContentPercentage(
     post?.content || '',
     post.id,
   );
@@ -126,7 +126,7 @@ export default function Editor({ post }: { post: PostWithSite }) {
         url={url}
         post={post}
         startTransitionPublishing={startTransitionPublishing}
-        generationCount={generationCount}
+        aiContentPercentage={aiContentPercentage}
       />
       <div className="relative min-h-[500px] w-full max-w-screen-lg rounded-lg bg-card py-12 sm:mb-[calc(20vh)] sm:px-8 sm:shadow-lg">
         <div className="mb-5 flex flex-col space-y-3 px-4">
