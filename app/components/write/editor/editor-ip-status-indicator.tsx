@@ -56,9 +56,12 @@ const EditorIpStatusIndicator = ({
             variant={statusVariant.variant as 'human' | 'warning' | 'generated'}
             className="flex items-center"
             size="sm"
+            asChild
           >
-            <Icon className="mr-0.5 h-3 w-3" />
-            <span>{statusVariant.title}</span>
+            <div>
+              <Icon className="mr-0.5 h-3 w-3" />
+              <span>{statusVariant.title}</span>
+            </div>
           </Button>
         </TooltipTrigger>
         <TooltipContent className="-mr-20 border border-input bg-primary-foreground px-4 py-2 text-foreground">
