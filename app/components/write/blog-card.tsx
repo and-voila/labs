@@ -14,7 +14,7 @@ interface BlogCardProps {
 export default function BlogCard({ data }: BlogCardProps) {
   return (
     <Link href={`/${data.slug}`}>
-      <div className="ease overflow-hidden rounded-2xl border bg-card pb-6 shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
+      <div className="ease overflow-hidden rounded-2xl border border-border bg-card pb-6 shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
         <BlurImage
           src={data.image!}
           alt={data.title ?? 'Blog Post'}

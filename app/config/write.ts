@@ -1,4 +1,4 @@
-import { Icons } from '../components/shared/icons';
+import { Icons } from '@/app/components/shared/icons';
 
 type Tab = {
   name: string;

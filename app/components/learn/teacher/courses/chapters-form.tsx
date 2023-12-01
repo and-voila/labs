@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
+import { ChaptersList } from '@/app/components/learn/teacher/courses/chapters-list';
 import { Icons } from '@/app/components/shared/icons';
 import { Button } from '@/app/components/ui/button';
 import {
@@ -21,8 +22,6 @@ import {
 import { Input } from '@/app/components/ui/input';
 import { toast } from '@/app/components/ui/use-toast';
 import { cn } from '@/app/lib/utils';
-
-import { ChaptersList } from './chapters-list';
 
 interface ChaptersFormProps {
   initialData: Course & { chapters: Chapter[] };

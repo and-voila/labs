@@ -9,7 +9,6 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { DashboardShell } from '@/app/components/dashboard/shell';
-import { H4 } from '@/app/components/typography';
 import { Button } from '@/app/components/ui/button';
 import {
   Form,
@@ -73,9 +72,7 @@ const CreatePage = () => {
     <DashboardShell>
       <div className="flex rounded-xl border bg-card p-6 shadow-md md:p-12">
         <div>
-          <H4 as="h1" className="mb-4">
-            Name the playbook
-          </H4>
+          <h1 className="mb-4 text-2xl sm:text-3xl">Name the playbook</h1>
           <p className="text-sm text-muted-foreground lg:text-base">
             Choose a short and SEO friendly title for your playbook.
           </p>

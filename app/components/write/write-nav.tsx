@@ -4,11 +4,10 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 
+import { Icons } from '@/app/components/shared/icons';
 import { writeConfig } from '@/app/config/write';
 import { getSiteFromPostId } from '@/app/lib/actions';
 import { cn } from '@/app/lib/utils';
-
-import { Icons } from '../shared/icons';
 
 export type Tab = {
   name: string;

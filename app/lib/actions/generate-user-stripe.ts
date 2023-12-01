@@ -5,11 +5,10 @@ import { getServerSession } from 'next-auth';
 
 import { env } from '@/env.mjs';
 import { authOptions } from '@/app/lib/auth';
+import { db } from '@/app/lib/db';
 import { stripe } from '@/app/lib/stripe';
 import { getUserSubscriptionPlan } from '@/app/lib/subscription';
 import { absoluteUrl } from '@/app/lib/utils';
-
-import { db } from '../db';
 
 export type responseAction = {
   status: 'success' | 'error';

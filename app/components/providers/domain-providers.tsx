@@ -3,10 +3,9 @@
 import { ReactNode } from 'react';
 import { Provider as BalancerProvider } from 'react-wrap-balancer';
 
+import { ThemeProvider } from '@/app/components/providers/theme-provider';
 import { Toaster } from '@/app/components/ui/toaster';
 import { ModalProvider } from '@/app/components/write/modal/provider';
-
-import { ThemeProvider } from './theme-provider';
 
 export function DomainProviders({ children }: { children: ReactNode }) {
   return (

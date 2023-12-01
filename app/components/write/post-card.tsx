@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Link from 'next/link';
 import { Post, Site } from '@prisma/client';
-import { BarChart, ExternalLink } from 'lucide-react';
 
 import BlurImage from '@/app/components/write/blur-image';
-import { placeholderBlurhash, random } from '@/app/lib/utils';
+import { placeholderBlurhash } from '@/app/lib/utils';
 
 export default function PostCard({
   data,
