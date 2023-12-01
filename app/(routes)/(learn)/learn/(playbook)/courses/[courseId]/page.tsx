@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 
 import { env } from '@/env.mjs';
 import { Banner } from '@/app/components/banner';
+import { DashboardShell } from '@/app/components/dashboard/shell';
 import { StartCourseButton } from '@/app/components/learn/courses/start-course-button';
 import { Preview } from '@/app/components/preview';
 import { buttonVariants } from '@/app/components/ui/button';
@@ -66,8 +67,8 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
   if (isLocked) {
     return (
-      <>
-        <div className="mx-auto flex flex-col pb-20">
+      <DashboardShell>
+        <div className="flex flex-col pb-20">
           {' '}
           <Banner
             variant="warning"
@@ -76,7 +77,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             }
           />
           <BlurImage
-            className="mb-4 mt-10 w-full shadow-md grayscale transition duration-200 hover:grayscale-0"
+            className="mb-4 mt-8 w-full shadow-md grayscale transition duration-200 hover:grayscale-0"
             src={course.imageUrl!}
             alt={`A featured image of an anthropomorphic cat representing ${course.title}`}
             width={1200}
@@ -88,7 +89,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
           />
           <div className="rounded-xl bg-card p-6 lg:p-8">
             <div className="flex flex-col items-center justify-between p-4 lg:flex-row">
-              <h2 className="mb-2 text-3xl font-bold tracking-tight">
+              <h2 className="mb-2 text-2xl font-bold tracking-tight">
                 {course.title}
               </h2>
               <div className="flex w-full flex-col items-center gap-x-4 space-y-6 py-4 sm:py-0 lg:w-auto lg:flex-row lg:space-y-0 lg:p-6">
@@ -109,14 +110,14 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             </div>
           </div>
         </div>
-      </>
+      </DashboardShell>
     );
   } else if (!isStarted && !isLocked) {
     return (
-      <>
-        <div className="mx-auto flex flex-col pb-20">
+      <DashboardShell>
+        <div className="flex flex-col pb-20">
           <BlurImage
-            className="mb-4 mt-10 w-full shadow-md grayscale transition duration-200 hover:grayscale-0"
+            className="mb-4 mt-8 w-full shadow-md grayscale transition duration-200 hover:grayscale-0"
             src={course.imageUrl!}
             alt={`A featured image of an anthropomorphic cat representing ${course.title}`}
             width={1200}
@@ -129,7 +130,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
           <div className="rounded-xl bg-card p-6 lg:p-8">
             <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
               <div className="ml-4 mt-2">
-                <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+                <h2 className="text-2xl font-bold tracking-tight text-foreground">
                   {course.title}
                 </h2>
               </div>
@@ -148,7 +149,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             </div>
           </div>
         </div>
-      </>
+      </DashboardShell>
     );
   } else {
     return redirect(

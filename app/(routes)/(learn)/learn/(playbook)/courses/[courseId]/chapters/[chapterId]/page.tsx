@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 
 import { env } from '@/env.mjs';
 import { Banner } from '@/app/components/banner';
-import { Container } from '@/app/components/container';
+import { DashboardShell } from '@/app/components/dashboard/shell';
 import { CourseProgressButton } from '@/app/components/learn/courses/course-progress-button';
 import { VideoPlayer } from '@/app/components/learn/courses/video-player';
 import { Preview } from '@/app/components/preview';
@@ -38,28 +38,30 @@ const ChapterIdPage = async ({
   const completeOnEnd = !userProgress?.isCompleted;
 
   return (
-    <div>
-      <Container>
-        <div className="mx-auto flex flex-col pb-20">
-          {userProgress?.isCompleted && (
-            <Banner variant="success" label="You've completed this playbook." />
-          )}
-          <div className="mb-4 mt-10">
-            <VideoPlayer
-              chapterId={params.chapterId}
-              title={chapter.title}
-              courseId={params.courseId}
-              nextChapterId={nextChapter?.id}
-              // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-              playbackId={muxData?.playbackId!}
-              completeOnEnd={completeOnEnd}
-            />
-          </div>
-          <div className="rounded-xl bg-card p-6 lg:p-8">
-            <div className="flex flex-col items-center justify-between space-y-4 p-4 lg:flex-row lg:space-y-0">
-              <h2 className="mb-2 flex-grow text-3xl font-bold leading-tight tracking-tight">
+    <DashboardShell>
+      <div className="flex flex-col pb-20">
+        {userProgress?.isCompleted && (
+          <Banner variant="success" label="You've completed this play." />
+        )}
+        <div className="mb-4 mt-8">
+          <VideoPlayer
+            chapterId={params.chapterId}
+            title={chapter.title}
+            courseId={params.courseId}
+            nextChapterId={nextChapter?.id}
+            // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+            playbackId={muxData?.playbackId!}
+            completeOnEnd={completeOnEnd}
+          />
+        </div>
+        <div className="rounded-xl bg-card p-6 lg:p-8">
+          <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between space-y-4 p-4 sm:flex-nowrap">
+            <div className="ml-4 mt-2">
+              <h2 className="mb-2 text-2xl font-bold leading-tight">
                 {chapter.title}
               </h2>
+            </div>
+            <div className="ml-4 mt-2 w-full sm:w-auto md:flex-shrink-0">
               <CourseProgressButton
                 chapterId={params.chapterId}
                 courseId={params.courseId}
@@ -67,40 +69,40 @@ const ChapterIdPage = async ({
                 isCompleted={!!userProgress?.isCompleted}
               />
             </div>
-            <Separator />
-            <div>
-              <Preview value={chapter.description!} />
-            </div>
-            {!!attachments.length && (
-              <>
-                <Separator />
-                <div className="p-4">
-                  {attachments.length > 0 && (
-                    <div className="mt-16 flex items-center gap-x-2">
-                      <h2 className="text-lg font-bold tracking-tight">
-                        Resources & Attachments
-                      </h2>
-                    </div>
-                  )}
-                  {attachments.map((attachment) => (
-                    <a
-                      href={attachment.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      key={attachment.id}
-                      className="mt-8 flex w-full items-center rounded-md border p-3 text-foreground hover:underline"
-                    >
-                      <Icons.file />
-                      <p className="ml-2 line-clamp-1">{attachment.name}</p>
-                    </a>
-                  ))}
-                </div>
-              </>
-            )}
           </div>
+          <Separator />
+          <div>
+            <Preview value={chapter.description!} />
+          </div>
+          {!!attachments.length && (
+            <>
+              <Separator />
+              <div className="p-4">
+                {attachments.length > 0 && (
+                  <div className="mt-16 flex items-center gap-x-2">
+                    <h2 className="text-lg font-bold tracking-tight">
+                      Resources & Attachments
+                    </h2>
+                  </div>
+                )}
+                {attachments.map((attachment) => (
+                  <a
+                    href={attachment.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    key={attachment.id}
+                    className="mt-8 flex w-full items-center rounded-md border p-3 text-foreground hover:underline"
+                  >
+                    <Icons.file />
+                    <p className="ml-2 line-clamp-1">{attachment.name}</p>
+                  </a>
+                ))}
+              </div>
+            </>
+          )}
         </div>
-      </Container>
-    </div>
+      </div>
+    </DashboardShell>
   );
 };
 

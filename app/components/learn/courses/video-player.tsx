@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import MuxPlayer from '@mux/mux-player-react';
+import MuxPlayer from '@mux/mux-player-react/lazy';
 import axios from 'axios';
 
 import { Icons } from '@/app/components/shared/icons';

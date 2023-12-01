@@ -25,20 +25,21 @@ export const CourseSidebarItem = ({
       onClick={onClick}
       type="button"
       className={cn(
-        'flex items-center gap-x-2 rounded-sm text-left text-sm leading-tight text-muted-foreground transition-all hover:bg-gray-400/20 hover:text-foreground',
+        'flex text-left text-xs text-muted-foreground transition-all hover:bg-foreground/20 hover:text-foreground',
         isActive &&
-          'bg-primary/20 text-foreground hover:bg-primary/40 hover:text-foreground',
+          'bg-primary/20 font-medium text-foreground hover:bg-foreground/20 hover:text-foreground',
+        isCompleted && 'line-through',
         isCompleted &&
-          'text-muted-foreground line-through hover:text-[#186343]',
-        isCompleted && isActive && 'bg-alternate/20',
+          isActive &&
+          'bg-foreground/20 text-foreground line-through',
       )}
     >
-      <div className="flex truncate px-1 py-2 text-sm">{label}</div>
+      <div className="flex px-1 py-1">{label}</div>
       <div
         className={cn(
           'ml-auto h-full border-2 border-primary opacity-0 transition-all',
           isActive && 'opacity-100',
-          isCompleted && 'border-[#186343]',
+          isCompleted && 'border-alternate',
         )}
       />
     </button>

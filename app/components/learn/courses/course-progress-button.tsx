@@ -75,7 +75,7 @@ export const CourseProgressButton = ({
       disabled={isLoading}
       type="button"
       variant={isCompleted ? 'outline' : 'default'}
-      className="w-full flex-shrink-0 md:w-auto"
+      className="w-full md:w-auto"
     >
       {isCompleted ? 'Unfinish' : 'Finish'}
       <Icon className={`ml-2 h-4 w-4 ${isCompleted ? 'text-primary' : ''}`} />

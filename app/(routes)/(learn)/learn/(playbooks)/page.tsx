@@ -47,7 +47,7 @@ export default async function MyPlaybooksPage({
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2">
           <InfoCard
             icon="clock"
-            label="In Progress"
+            label="In progress"
             numberOfItems={totalCoursesInProgress}
           />
           <InfoCard

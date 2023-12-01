@@ -66,7 +66,7 @@ export const StartCourseButton = ({
       variant="default"
       className="mt-2 w-full flex-shrink-0 md:mt-0 md:w-auto"
     >
-      Start
+      Start now
     </Button>
   );
 };

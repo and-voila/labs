@@ -55,8 +55,8 @@ export const getChapter = async ({
           courseId: courseId,
         },
         cacheStrategy: {
-          ttl: 900,
-          swr: 1800,
+          ttl: 3600,
+          swr: 300,
         },
       });
     }
@@ -67,8 +67,8 @@ export const getChapter = async ({
           chapterId: chapterId,
         },
         cacheStrategy: {
-          ttl: 900,
-          swr: 1800,
+          ttl: 3600,
+          swr: 300,
         },
       });
 
