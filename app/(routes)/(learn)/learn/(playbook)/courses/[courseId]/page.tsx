@@ -1,11 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { COURSE_DEFAULT_PRICE } from '@/constants';
 
 import { env } from '@/env.mjs';
 import { Banner } from '@/app/components/banner';
-import { CourseEnrollButton } from '@/app/components/learn/courses/course-enroll-button';
 import { StartCourseButton } from '@/app/components/learn/courses/start-course-button';
 import { Preview } from '@/app/components/preview';
 import { buttonVariants } from '@/app/components/ui/button';
@@ -60,11 +58,9 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     return redirect('/learn/search');
   }
 
-  const purchase = course?.purchases[0];
-
   const isPaidMember = await checkSubscription();
 
-  const isLocked = course.price !== 0 && !(isPaidMember || purchase);
+  const isLocked = course.price !== 0 && !isPaidMember;
 
   const isStarted = userProgress?.isStarted || false;
 
@@ -75,7 +71,9 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
           {' '}
           <Banner
             variant="warning"
-            label={`You can buy this playbook for $${COURSE_DEFAULT_PRICE} or upgrade to get full access to the And Voila ecosystem.`}
+            label={
+              'This playbook is only available with a paid membership. Upgrade or check out the library of free playbooks.'
+            }
           />
           <BlurImage
             className="mb-4 mt-10 w-full shadow-md grayscale transition duration-200 hover:grayscale-0"
@@ -94,14 +92,10 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
                 {course.title}
               </h2>
               <div className="flex w-full flex-col items-center gap-x-4 space-y-6 py-4 sm:py-0 lg:w-auto lg:flex-row lg:space-y-0 lg:p-6">
-                <CourseEnrollButton
-                  courseId={params.courseId}
-                  price={course.price!}
-                />
                 <Link
                   href="/pricing"
                   className={cn(
-                    buttonVariants({ size: 'sm' }),
+                    buttonVariants({ size: 'lg' }),
                     'w-full lg:w-auto',
                   )}
                 >

@@ -42,10 +42,5 @@ export const teacherConfig: TeacherConfig = {
       href: '/admin/teacher/courses',
       icon: 'chalkboardTeacher',
     },
-    {
-      title: 'Playbooks analytics',
-      href: '/admin/teacher/analytics',
-      icon: 'analytics',
-    },
   ],
 };

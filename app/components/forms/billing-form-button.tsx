@@ -30,7 +30,12 @@ export function BillingFormButton({
 
   return (
     <Button
-      variant="default"
+      variant={
+        subscriptionPlan.stripePriceId ===
+        offer.stripeIds[year ? 'yearly' : 'monthly']
+          ? 'secondary'
+          : 'default'
+      }
       className="w-full"
       disabled={isPending}
       onClick={stripeSessionAction}

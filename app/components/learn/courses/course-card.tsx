@@ -15,7 +15,6 @@ interface CourseCardProps {
   progress: number | null;
   category: string;
   isPaidMember: boolean;
-  purchased: boolean;
 }
 export const CourseCard = ({
   id,
@@ -26,9 +25,8 @@ export const CourseCard = ({
   progress,
   category,
   isPaidMember,
-  purchased,
 }: CourseCardProps) => {
-  const displayPrice = getCoursePrice(price, isPaidMember, purchased);
+  const displayPrice = getCoursePrice(price, isPaidMember);
 
   return (
     <Link href={`/learn/courses/${id}`}>
@@ -52,14 +50,14 @@ export const CourseCard = ({
             <Suspense fallback={<Skeleton className="h-4 w-12" />}>
               {progress !== null ? (
                 progress === 0 ? (
-                  <p className="text-sm text-primary">Not Started</p>
+                  <p className="text-sm text-primary">Not started</p>
                 ) : progress === 100 ? (
                   <p className="text-sm text-alternate">Complete</p>
                 ) : (
-                  <p className="text-sm text-primary">In Progress</p>
+                  <p className="text-sm text-primary">In progress</p>
                 )
               ) : (
-                <p className="text-sm text-primary">{displayPrice}</p>
+                <p className="text-sm text-alternate">{displayPrice}</p>
               )}
             </Suspense>
           </div>

@@ -11,7 +11,6 @@ type DashboardCourseWithProgressWithCategory = Course & {
   chapters: Chapter[];
   progress: number | null;
   isPaidMember: boolean;
-  purchased: boolean;
 };
 
 type DashboardCourses = {
@@ -65,7 +64,6 @@ export const getDashboardCourses = async ({
             isPublished: true,
           },
         },
-        purchases: true,
       },
       cacheStrategy: {
         ttl: 30,
@@ -90,14 +88,10 @@ export const getDashboardCourses = async ({
     const coursesWithProgress = await Promise.all(
       courses.map(async (course) => {
         const progress = await getProgress(userId, course.id);
-        const purchased = course.purchases.some(
-          (purchase) => purchase.userId === userId,
-        );
         const isPaidMember = await checkSubscription();
         return {
           ...course,
           progress,
-          purchased,
           isPaidMember,
         } as DashboardCourseWithProgressWithCategory;
       }),

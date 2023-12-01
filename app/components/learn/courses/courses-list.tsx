@@ -8,7 +8,6 @@ type FilteredCoursesWithProgressAndAccess = Course & {
   chapters: { id: string }[];
   progress: number | null;
   isPaidMember: boolean;
-  purchased: boolean;
 };
 
 interface CoursesListProps {
@@ -38,7 +37,6 @@ export const CoursesList = ({
             progress={item.progress}
             category={item.category ? item.category.name : 'Uncategorized'}
             isPaidMember={item.isPaidMember}
-            purchased={item.purchased}
           />
         ))}
       </div>

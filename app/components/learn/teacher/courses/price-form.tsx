@@ -73,7 +73,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   return (
     <div className="mt-6 rounded-md border bg-card px-4 py-6">
       <div className="mb-4 flex items-center justify-between font-semibold">
-        Playbook access
+        Available to
         <Button
           onClick={toggleEdit}
           variant="ghost"
@@ -92,7 +92,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
       </div>
       {!isEditing && (
         <p className="mt-2 text-base text-muted-foreground">
-          {initialData.price === 0 ? 'Free' : 'Paid'}
+          {initialData.price === 0 ? 'All members' : 'Paid members only'}
         </p>
       )}
       {isEditing && (
