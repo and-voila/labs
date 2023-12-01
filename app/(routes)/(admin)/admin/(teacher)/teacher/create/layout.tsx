@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import CreatePage from './page';
+import CreatePage from '@/app/(routes)/(admin)/admin/(teacher)/teacher/create/page';
 
 export function generateMetadata(): Metadata {
   const title = 'New Playbook';

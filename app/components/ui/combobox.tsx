@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 
+import { Icons } from '@/app/components/shared/icons';
 import { Button } from '@/app/components/ui/button';
 import {
   Command,
@@ -16,8 +17,6 @@ import {
   PopoverTrigger,
 } from '@/app/components/ui/popover';
 import { cn } from '@/app/lib/utils';
-
-import { Icons } from '../shared/icons';
 
 interface ComboboxProps {
   options: { label: string; value: string }[];

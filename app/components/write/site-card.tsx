@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import { Site } from '@prisma/client';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { BarChart, ExternalLink } from 'lucide-react';
 
 import { Icons } from '@/app/components/shared/icons';
 import BlurImage from '@/app/components/write/blur-image';
@@ -10,7 +8,7 @@ import { placeholderBlurhash } from '@/app/lib/utils';
 export default function SiteCard({ data }: { data: Site }) {
   const url = `${data.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`;
   return (
-    <div className="relative rounded-lg border bg-card pb-10 shadow-md transition-all hover:shadow-xl">
+    <div className="relative rounded-lg border border-border bg-card pb-10 shadow-md transition-all hover:shadow-xl">
       <Link
         href={`/tools/write/site/${data.id}`}
         className="flex flex-col overflow-hidden rounded-lg"

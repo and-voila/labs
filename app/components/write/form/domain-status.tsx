@@ -1,32 +1,18 @@
 'use client';
 
-import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
-
-import LoadingSpinner from '@/app/components/write/form/loading-spinner';
+import { Icons } from '@/app/components/shared/icons';
 import { useDomainStatus } from '@/app/components/write/form/use-domain-status';
 
 export default function DomainStatus({ domain }: { domain: string }) {
   const { status, loading } = useDomainStatus({ domain });
 
   return loading ? (
-    <LoadingSpinner />
+    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
   ) : status === 'Valid Configuration' ? (
-    <CheckCircle2
-      fill="#2563EB"
-      stroke="currentColor"
-      className="text-white dark:text-black"
-    />
+    <Icons.circleChecked className="mr-2 h-6 w-6 text-alternate" />
   ) : status === 'Pending Verification' ? (
-    <AlertCircle
-      fill="#FBBF24"
-      stroke="currentColor"
-      className="text-white dark:text-black"
-    />
+    <Icons.warning className="mr-2 h-6 w-6 text-yellow-600" />
   ) : (
-    <XCircle
-      fill="#DC2626"
-      stroke="currentColor"
-      className="text-white dark:text-black"
-    />
+    <Icons.crossCircled className="mr-2 h-6 w-6 text-destructive" />
   );
 }

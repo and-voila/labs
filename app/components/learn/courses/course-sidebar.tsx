@@ -2,11 +2,10 @@ import { redirect } from 'next/navigation';
 
 import { FreeCounter } from '@/app/components/free-counter';
 import { CourseProgress } from '@/app/components/learn/courses/course-progress';
+import { CourseSidebarItem } from '@/app/components/learn/courses/course-sidebar-item';
 import { authOptions } from '@/app/lib/auth';
 import { getSession } from '@/app/lib/session';
 import { ChapterType, CourseSidebarProps } from '@/app/lib/types';
-
-import { CourseSidebarItem } from './course-sidebar-item';
 
 export const CourseSidebar = async ({
   course,

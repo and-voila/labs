@@ -5,10 +5,9 @@ import { SessionProvider } from 'next-auth/react';
 import { Provider as BalancerProvider } from 'react-wrap-balancer';
 
 import { ConfettiProvider } from '@/app/components/providers/confetti-provider';
+import { ThemeProvider } from '@/app/components/providers/theme-provider';
 import { Toaster } from '@/app/components/ui/toaster';
 import { ModalProvider } from '@/app/components/write/modal/provider';
-
-import { ThemeProvider } from './theme-provider';
 
 export function Providers({ children }: { children: ReactNode }) {
   return (

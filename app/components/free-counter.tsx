@@ -6,8 +6,7 @@ import { MAX_FREE_TOKENS } from '@/constants';
 import { buttonVariants } from '@/app/components/ui/button';
 import { Card, CardContent } from '@/app/components/ui/card';
 import { isTeacher } from '@/app/lib/teacher';
-
-import { cn } from '../lib/utils';
+import { cn } from '@/app/lib/utils';
 
 interface FreeCounterProps {
   apiLimitCount: number;
