@@ -36,9 +36,6 @@ export const getDashboardCourses = async ({
       select: { chapterId: true, isCompleted: true, isStarted: true },
     });
 
-    const totalCompletedCourses = userProgress.filter(
-      (p) => p.isCompleted,
-    ).length;
     const totalCoursesInProgress = userProgress.filter(
       (p) => p.isStarted && !p.isCompleted,
     ).length;
@@ -64,10 +61,6 @@ export const getDashboardCourses = async ({
             isPublished: true,
           },
         },
-      },
-      cacheStrategy: {
-        ttl: 30,
-        swr: 10,
       },
       skip,
       take,
@@ -103,6 +96,8 @@ export const getDashboardCourses = async ({
     const coursesInProgress = coursesWithProgress.filter(
       (course) => (course.progress ?? 0) < 100,
     );
+
+    const totalCompletedCourses = completedCourses.length;
 
     return {
       completedCourses,
