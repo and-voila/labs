@@ -128,7 +128,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
                 <div className="mt-16 flex items-center gap-x-2">
                   <IconBadge icon="rocket" />
                   <h2 className="text-lg font-bold tracking-tight">
-                    Playbook pricing
+                    Playbook access
                   </h2>
                 </div>
                 <PriceForm initialData={course} courseId={course.id} />

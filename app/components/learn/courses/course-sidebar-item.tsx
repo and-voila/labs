@@ -33,7 +33,7 @@ export const CourseSidebarItem = ({
         isCompleted && isActive && 'bg-alternate/20',
       )}
     >
-      <div className="flex px-1 py-2 text-sm">{label}</div>
+      <div className="flex truncate px-1 py-2 text-sm">{label}</div>
       <div
         className={cn(
           'ml-auto h-full border-2 border-primary opacity-0 transition-all',

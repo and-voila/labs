@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
-import { Icons } from '@/app/components/shared/icons';
 import { Button } from '@/app/components/ui/button';
 import { toast } from '@/app/components/ui/use-toast';
 
@@ -60,14 +59,14 @@ export const StartCourseButton = ({
 
   return (
     <Button
+      size="lg"
       onClick={onClick}
       disabled={isLoading}
       type="button"
       variant="default"
       className="mt-2 w-full flex-shrink-0 md:mt-0 md:w-auto"
     >
-      Start Playbook
-      <Icons.play className="ml-2 h-4 w-4" />
+      Start
     </Button>
   );
 };

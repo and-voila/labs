@@ -8,6 +8,7 @@ import { isTeacher } from '@/app/lib/teacher';
 import { MainNavItem } from '@/app/lib/types';
 import { cn } from '@/app/lib/utils';
 
+import { SessionInfo } from '../providers/session-info';
 import { MainNav } from './main-nav';
 import { UserAccountNav } from './user-account-nav';
 
@@ -54,6 +55,8 @@ export function NavBar({
 
         <div className="flex items-center space-x-3">
           {rightElements}
+
+          {user && <SessionInfo />}
 
           {!user ? (
             <Link

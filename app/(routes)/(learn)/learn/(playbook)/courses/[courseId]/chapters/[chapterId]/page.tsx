@@ -24,25 +24,18 @@ const ChapterIdPage = async ({
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  const {
-    chapter,
-    course,
-    muxData,
-    attachments,
-    nextChapter,
-    userProgress,
-    purchase,
-  } = await getChapter({
-    userId: session.user.id,
-    chapterId: params.chapterId,
-    courseId: params.courseId,
-  });
+  const { chapter, course, muxData, attachments, nextChapter, userProgress } =
+    await getChapter({
+      userId: session.user.id,
+      chapterId: params.chapterId,
+      courseId: params.courseId,
+    });
 
   if (!chapter || !course) {
     return redirect('/');
   }
 
-  const completeOnEnd = !!purchase && !userProgress?.isCompleted;
+  const completeOnEnd = !userProgress?.isCompleted;
 
   return (
     <div>

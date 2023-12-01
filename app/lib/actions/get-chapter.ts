@@ -17,15 +17,6 @@ export const getChapter = async ({
   chapterId,
 }: GetChapterProps) => {
   try {
-    const purchase = await db.purchase.findUnique({
-      where: {
-        userId_courseId: {
-          userId,
-          courseId,
-        },
-      },
-    });
-
     const course = await db.course.findUnique({
       where: {
         isPublished: true,
@@ -58,7 +49,7 @@ export const getChapter = async ({
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
-    if (course.price === 0 || purchase || isPaidMember) {
+    if (course.price === 0 || isPaidMember) {
       attachments = await db.attachment.findMany({
         where: {
           courseId: courseId,
@@ -70,7 +61,7 @@ export const getChapter = async ({
       });
     }
 
-    if (course.price === 0 || purchase || isPaidMember) {
+    if (course.price === 0 || isPaidMember) {
       muxData = await db.muxData.findUnique({
         where: {
           chapterId: chapterId,
@@ -106,10 +97,6 @@ export const getChapter = async ({
           chapterId,
         },
       },
-      cacheStrategy: {
-        ttl: 30,
-        swr: 10,
-      },
     });
 
     return {
@@ -119,7 +106,6 @@ export const getChapter = async ({
       attachments,
       nextChapter,
       userProgress,
-      purchase,
       isPaidMember,
     };
   } catch (error) {
@@ -130,7 +116,6 @@ export const getChapter = async ({
       attachments: [],
       nextChapter: null,
       userProgress: null,
-      purchase: null,
       isPaidMember: false,
     };
   }

@@ -41,7 +41,6 @@ export async function POST(req: Request) {
   }
 
   const userId = session?.metadata?.userId;
-  const courseId = session?.metadata?.courseId;
 
   if (event.type === 'checkout.session.completed') {
     if (session.subscription) {
@@ -67,19 +66,6 @@ export async function POST(req: Request) {
           stripeCurrentPeriodEnd: new Date(
             subscription.current_period_end * 1000,
           ),
-        },
-      });
-    } else {
-      if (!userId || !courseId) {
-        return new NextResponse('Webhook Error: Missing metadata', {
-          status: 400,
-        });
-      }
-
-      await db.purchase.create({
-        data: {
-          courseId: courseId,
-          userId: userId,
         },
       });
     }
