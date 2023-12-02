@@ -6,7 +6,10 @@ import { env } from '@/env.mjs';
 import { pricingData } from '@/app/config/subscriptions';
 import { PlanTitle, SubscriptionPlan } from '@/app/lib/types';
 
-export const SITE_URL: string = 'https://labs.andvoila.gg';
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

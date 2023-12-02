@@ -107,17 +107,17 @@ pnpm dev
 
 - [x] ~"Borrow" code from https://github.com/mickasmt/next-saas-stripe-starter/~
 - [x] ~Engage in a thrilling battle of wits with our local development environment~
-- [x] Attempt a daring migration from Turbo repo, armed only with a keyboard and a strong cup of coffee
-- [x] Embark on a quest to discover the ancient secrets of user authentication
-- [x] Delve into the arcane arts of user authorization
-- [x] Engage in a philosophical debate: To struggle with server actions, or not to struggle?
-- [x] Concoct a cunning plan to convince users to part with their hard-earned cash
-- [x] Invent some shiny new features that users didn't even know they needed
-- [x] Embrace the bleeding edge, migrating to Next JS 14, because who needs stability anyway?
-- [x] Attempt to decipher the cryptic riddles of the Next JS documentation
-- [x] Engage in a high-stakes game of "guess the dependency version"
-- [x] Wrestle with TypeScript, the programming language equivalent of a Rubik's cube
-- [x] Try to remember why we thought migrating to an open source template was a good idea in the first place
+- [x] ~Attempt a daring migration from Turbo repo, armed only with a keyboard and a strong cup of coffee~
+- [x] ~Embark on a quest to discover the ancient secrets of user authentication~
+- [x] ~Delve into the arcane arts of user authorization~
+- [x] ~Engage in a philosophical debate: To struggle with server actions, or not to struggle?~
+- [x] ~Concoct a cunning plan to convince users to part with their hard-earned cash~
+- [x] ~Invent some shiny new features that users didn't even know they needed~
+- [x] ~Embrace the bleeding edge, migrating to Next JS 14, because who needs stability anyway?~
+- [x] ~Attempt to decipher the cryptic riddles of the Next JS documentation~
+- [x] ~Engage in a high-stakes game of "guess the dependency version"~
+- [x] ~Wrestle with TypeScript, the programming language equivalent of a Rubik's cube~
+- [x] ~Try to remember why we thought migrating to an open source template was a good idea in the first place~
 - [ ] Create your team, invite members - because nothing says 'productivity' like a crowded digital workspace
 - [ ] Implement awesome SEO metadata features for your websites - because we all know the true path to enlightenment is through optimized meta tags
 - [ ] Develop a collaborative AI editor - for when you want to argue with a machine about your creative choices
