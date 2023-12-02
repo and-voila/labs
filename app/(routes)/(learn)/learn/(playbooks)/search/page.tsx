@@ -5,11 +5,11 @@ import { DashboardShell } from '@/app/components/dashboard/shell';
 import { CoursesList } from '@/app/components/learn/courses/courses-list';
 import { Categories } from '@/app/components/learn/dashboard/categories';
 import { SearchInput } from '@/app/components/search-input';
-import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { getCourses } from '@/app/lib/actions/get-courses';
 import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
 import { getSession } from '@/app/lib/session';
+import { getUserSubscriptionPlan } from '@/app/lib/subscription';
 
 interface PlaybooksSearchPageProps {
   searchParams: {
@@ -37,7 +37,8 @@ const PlaybooksSearchPage = async ({
     },
   });
 
-  const isPaidMember = await checkSubscription();
+  const userSubscriptionPlan = await getUserSubscriptionPlan(session.user.id);
+  const isPaidMember = userSubscriptionPlan.isPaid;
 
   const page = parseInt(searchParams.page as string) || 1;
   const take = 9;

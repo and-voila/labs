@@ -10,10 +10,10 @@ import { Preview } from '@/app/components/preview';
 import { buttonVariants } from '@/app/components/ui/button';
 import { Separator } from '@/app/components/ui/separator';
 import BlurImage from '@/app/components/write/blur-image';
-import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
 import { getSession } from '@/app/lib/session';
+import { getUserSubscriptionPlan } from '@/app/lib/subscription';
 import { cn, placeholderBlurhash } from '@/app/lib/utils';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
@@ -59,7 +59,8 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     return redirect('/learn/search');
   }
 
-  const isPaidMember = await checkSubscription();
+  const userSubscriptionPlan = await getUserSubscriptionPlan(session.user.id);
+  const isPaidMember = userSubscriptionPlan.isPaid;
 
   const isLocked = course.price !== 0 && !isPaidMember;
 
