@@ -2,8 +2,8 @@
 
 import { Attachment, Chapter } from '@prisma/client';
 
-import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { db } from '@/app/lib/db';
+import { getUserSubscriptionPlan } from '@/app/lib/subscription';
 
 interface GetChapterProps {
   userId: string;
@@ -43,7 +43,8 @@ export const getChapter = async ({
       throw new Error('Play or playbook not found');
     }
 
-    const isPaidMember = await checkSubscription();
+    const userSubscriptionPlan = await getUserSubscriptionPlan(userId);
+    const isPaidMember = userSubscriptionPlan.isPaid;
 
     let muxData = null;
     let attachments: Attachment[] = [];

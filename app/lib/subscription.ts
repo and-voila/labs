@@ -37,11 +37,10 @@ export async function getUserSubscriptionPlan(
     };
   }
 
-  // TODO: Fix null check
   const isPaid =
     userSubscription.stripePriceId &&
-    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-    userSubscription.stripeCurrentPeriodEnd?.getTime()! + DAY_IN_MS > Date.now()
+    userSubscription.stripeCurrentPeriodEnd &&
+    userSubscription.stripeCurrentPeriodEnd.getTime() + DAY_IN_MS > Date.now()
       ? true
       : false;
 
@@ -74,8 +73,9 @@ export async function getUserSubscriptionPlan(
   return {
     ...plan,
     ...userSubscription,
-    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-    stripeCurrentPeriodEnd: userSubscription.stripeCurrentPeriodEnd?.getTime()!,
+    stripeCurrentPeriodEnd: userSubscription.stripeCurrentPeriodEnd
+      ? userSubscription.stripeCurrentPeriodEnd.getTime()
+      : null,
     isPaid,
     interval,
     isCanceled,

@@ -2,9 +2,9 @@
 
 import { Category, Chapter, Course } from '@prisma/client';
 
-import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { getProgress } from '@/app/lib/actions/get-progress';
 import { db } from '@/app/lib/db';
+import { getUserSubscriptionPlan } from '@/app/lib/subscription';
 
 type DashboardCourseWithProgressWithCategory = Course & {
   category: Category;
@@ -81,7 +81,8 @@ export const getDashboardCourses = async ({
     const coursesWithProgress = await Promise.all(
       courses.map(async (course) => {
         const progress = await getProgress(userId, course.id);
-        const isPaidMember = await checkSubscription();
+        const userSubscriptionPlan = await getUserSubscriptionPlan(userId);
+        const isPaidMember = userSubscriptionPlan.isPaid;
         return {
           ...course,
           progress,

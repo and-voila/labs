@@ -1,12 +1,12 @@
 import { redirect } from 'next/navigation';
 
 import { CourseSidebar } from '@/app/components/learn/courses/course-sidebar';
-import { checkSubscription } from '@/app/lib/actions/check-subscription';
 import { getProgress } from '@/app/lib/actions/get-progress';
 import { getApiLimitCount } from '@/app/lib/api-limit';
 import { authOptions } from '@/app/lib/auth';
 import { db } from '@/app/lib/db';
 import { getSession } from '@/app/lib/session';
+import { getUserSubscriptionPlan } from '@/app/lib/subscription';
 
 const PlaybookLayout = async ({
   children,
@@ -16,11 +16,13 @@ const PlaybookLayout = async ({
   params: { courseId: string };
 }) => {
   const apiLimitCount = await getApiLimitCount();
-  const isPaidMember = await checkSubscription();
   const session = await getSession();
   if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
+
+  const userSubscriptionPlan = await getUserSubscriptionPlan(session.user.id);
+  const isPaidMember = userSubscriptionPlan.isPaid;
 
   const course = await db.course.findUnique({
     where: {
