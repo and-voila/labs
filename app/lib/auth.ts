@@ -3,14 +3,11 @@ import { NextAuthOptions } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 import EmailProvider from 'next-auth/providers/email';
 import GoogleProvider from 'next-auth/providers/google';
-import { Client } from 'postmark';
 
 import { env } from '@/env.mjs';
-import { siteConfig } from '@/app/config/site';
 import { db } from '@/app/lib/db';
+import { sendVerificationRequest } from '@/app/lib/resend/send-verification-request';
 import { getSession } from '@/app/lib/session';
-
-const postmarkClient = new Client(env.POSTMARK_API_TOKEN);
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
@@ -64,46 +61,7 @@ export const authOptions: NextAuthOptions = {
       allowDangerousEmailAccountLinking: true,
     }),
     EmailProvider({
-      from: process.env.SMTP_FROM as string,
-      sendVerificationRequest: async ({ identifier, url, provider }) => {
-        const user = await db.user.findUnique({
-          where: {
-            email: identifier,
-          },
-          select: {
-            emailVerified: true,
-          },
-        });
-
-        const templateId = user?.emailVerified
-          ? process.env.POSTMARK_SIGN_IN_TEMPLATE
-          : process.env.POSTMARK_ACTIVATION_TEMPLATE;
-        if (!templateId) {
-          throw new Error('Missing template id');
-        }
-
-        const result = await postmarkClient.sendEmailWithTemplate({
-          TemplateId: parseInt(templateId),
-          To: identifier,
-          From: provider.from as string,
-          TemplateModel: {
-            action_url: url,
-            product_name: siteConfig.name,
-          },
-          Headers: [
-            {
-              // Force new gmail conversations, not threads.
-              // See https://stackoverflow.com/questions/23434110/force-emails-not-to-be-grouped-into-conversations/25435722.
-              Name: 'X-Entity-Ref-ID',
-              Value: new Date().getTime() + '',
-            },
-          ],
-        });
-
-        if (result.ErrorCode) {
-          throw new Error(result.Message);
-        }
-      },
+      sendVerificationRequest,
     }),
   ],
   callbacks: {
