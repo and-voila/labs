@@ -24,7 +24,7 @@ export async function sendVerificationRequest({
   const userVerified = user?.emailVerified ? true : false;
   const authSubject = userVerified
     ? `Sign-in link for ${siteConfig.name}`
-    : 'Activate your account';
+    : `Activate your ${siteConfig.name} account`;
 
   const plainTextEmail = `🌺 Aloha,\n\nWe're excited to have you on board at And Voila. Just one more click and you're in. ${
     userVerified ? 'Log in' : 'Activate your account'
