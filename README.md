@@ -169,7 +169,7 @@ pnpm dev
 
 ## Author
 
-Labs x And Voila is a project developed by **[BRIL.LA](https://bril.la)**, crafted to serve the digital marketing community with cutting-edge tools and insights. Released under the MIT License.
+Labs x And Voila is a project developed by **[BRIL.LA](https://bril.la)**, crafted to serve the digital marketing community with cutting-edge tools and insights.
 
 ## Credits
 
