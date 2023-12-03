@@ -9,6 +9,8 @@ import { db } from '@/app/lib/db';
 import { sendVerificationRequest } from '@/app/lib/resend/send-verification-request';
 import { getSession } from '@/app/lib/session';
 
+import { sendWelcomeEmail } from './resend/send-welcome-email';
+
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
 export const authOptions: NextAuthOptions = {
@@ -94,6 +96,21 @@ export const authOptions: NextAuthOptions = {
         email: dbUser.email,
         picture: dbUser.image,
       };
+    },
+  },
+  events: {
+    async createUser(message) {
+      if (message.user?.email) {
+        const email = message.user.email;
+        if (typeof email === 'string') {
+          setTimeout(
+            () => {
+              sendWelcomeEmail({ email });
+            },
+            3 * 60 * 1000,
+          );
+        }
+      }
     },
   },
   // debug: process.env.NODE_ENV !== "production"
