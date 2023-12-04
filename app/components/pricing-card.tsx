@@ -21,10 +21,10 @@ const PricingCard = ({
 }: PricingCardProps) => {
   return (
     <div
-      className="relative flex flex-col overflow-hidden rounded-xl border bg-card shadow"
+      className="relative flex flex-col overflow-hidden rounded-xl border bg-card p-6 shadow"
       key={plan.title}
     >
-      <div className="min-h-[120px] items-start space-y-4 p-6">
+      <div className="min-h-[120px] items-start space-y-4 ">
         <p className="flex text-sm font-semibold uppercase tracking-widest text-primary">
           {plan.title}
         </p>
@@ -47,7 +47,7 @@ const PricingCard = ({
           )}
         </div>
       </div>
-      <div className="flex h-full flex-col justify-between gap-16 p-6">
+      <div className="flex h-full flex-col justify-between gap-16">
         <ul className="space-y-2 text-left text-sm font-medium leading-normal">
           {plan.benefits.map((feature) => (
             <li
@@ -58,17 +58,6 @@ const PricingCard = ({
               <p>{feature}</p>
             </li>
           ))}
-
-          {plan.limitations.length > 0 &&
-            plan.limitations.map((feature) => (
-              <li
-                className="flex items-start text-muted-foreground"
-                key={feature}
-              >
-                <Icons.crossLarge className="mr-3 h-5 w-5 shrink-0" />
-                <p>{feature}</p>
-              </li>
-            ))}
         </ul>
         {userId && subscriptionPlan ? (
           <BillingFormButton
