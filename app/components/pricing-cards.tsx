@@ -27,7 +27,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   const goodPlan = getPlanByTitle('Good');
 
   return (
-    <section className="container flex flex-col items-center px-6 py-16 text-center lg:px-8 lg:py-20">
+    <section className="container flex flex-col items-center py-16 text-center lg:px-8 lg:py-20">
       <div className="mx-auto mb-10 max-w-5xl">
         <p className="text-sm font-semibold uppercase tracking-widest text-primary">
           Membership Plans

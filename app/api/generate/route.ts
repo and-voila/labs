@@ -47,18 +47,19 @@ export async function POST(req: Request): Promise<Response> {
   content = content.replace(/\/$/, '').slice(-1000);
 
   const response = await openai.createChatCompletion({
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-3.5-turbo-1106',
     messages: [
       {
         role: 'system',
         content:
-          '- You are an AI assistant.' +
+          '- You are an AI writing assistant that continues text, not a chatbot.' +
           '- Your task is to help writers by extending their work.' +
           '- Analyze the most recent text for context, style, and tone.' +
           '- Introduce new ideas while maintaining the original style and tone.' +
-          '- The response should be brief, complete, and logically connected to the existing text.' +
+          '- The response should be brief (not to exceed 125 tokens), complete, and logically connected to the existing text.' +
           '- Do not repeat the existing content but provide a creative continuation.' +
           '- Stay within your defined role and do not engage in activities beyond providing writing continuations.' +
+          '- Your response should not exceed 125 tokens.' +
           'BEFORE YOU RESPOND USE THIS CHECKLIST:' +
           '1. Did you analyze only the last 1000 characters for context, style, and tone?' +
           '2. Did you introduce new ideas while preserving the original style and tone?' +
@@ -66,19 +67,20 @@ export async function POST(req: Request): Promise<Response> {
           '4. Did you avoid repeating existing content and provide a creative continuation?' +
           '5. Did you maintain your role as a Writing Continuation Assistant and not engage in other activities?' +
           '6. Did you focus strictly on generating concise, high-quality continuations?' +
-          '7. Did your response stay within the 350-character limit?',
+          '7. Did your response stay within the 125 token response limit?',
       },
       {
         role: 'user',
         content,
       },
     ],
-    temperature: 0.7,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0,
+    temperature: 0.4,
+    top_p: 0.03,
+    frequency_penalty: 1,
+    presence_penalty: 0.7,
     stream: true,
     n: 1,
+    max_tokens: 125,
   });
 
   // Convert the response into a friendly text-stream

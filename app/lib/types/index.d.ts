@@ -201,6 +201,8 @@ interface SubscriptionPlan {
     monthly: string | null;
     yearly: string | null;
   };
+  rateLimit: number;
+  models: string[];
 }
 
 export type UserSubscriptionPlan = SubscriptionPlan & {
