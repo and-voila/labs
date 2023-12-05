@@ -106,7 +106,7 @@ export default async function SitePostPage({
     <>
       {/* Background image */}
       {data.image && (
-        <div className="absolute inset-0 box-content h-128 pt-16">
+        <div className="absolute inset-0 box-content h-128 pt-96">
           <BlurImage
             className="absolute inset-0 h-full w-full object-cover opacity-25"
             src={data.image}
@@ -125,17 +125,16 @@ export default async function SitePostPage({
       )}
       <div className="relative z-10 flex flex-col items-center justify-center ">
         <div className="m-auto w-full text-center md:w-7/12">
-          <p className="m-auto my-5 w-10/12 text-sm text-primary md:text-base">
+          <p className="m-auto my-5 w-10/12 text-sm font-medium text-primary md:text-base">
             {toDateString(data.createdAt)}
           </p>
           <h1 className="mb-10 font-title text-3xl font-bold leading-snug md:text-7xl">
             {data.title}
           </h1>
-          <p className="text-md m-auto w-10/12 text-foreground/70 md:text-lg">
+          <p className="text-md m-auto w-10/12 text-foreground md:text-lg">
             {data.description}
           </p>
         </div>
-
         <div className="my-8">
           <div className="relative inline-block h-8 w-8 overflow-hidden rounded-full align-middle md:h-10 md:w-10">
             {data.site?.user?.image ? (
