@@ -43,7 +43,7 @@ const dashboardItems: DashboardItemProps[] = [
     linkHref: '/learn',
     linkText: 'Crush it',
     description:
-      'Unlock daily micro-courses that supercharge your marketing game. Boost your ROI in less than 5 minutes per playbook.',
+      'Unlock daily micro-courses that supercharge your marketing game. Boost your ROI in less than 5 minutes.',
   },
   {
     title: 'Tools',
