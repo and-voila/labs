@@ -233,6 +233,9 @@ dependencies:
   swr:
     specifier: ^2.2.4
     version: 2.2.4(react@18.2.0)
+  unique-names-generator:
+    specifier: ^4.7.1
+    version: 4.7.1
   uploadthing:
     specifier: ^6.0.3
     version: 6.0.3
@@ -13437,6 +13440,11 @@ packages:
       trough: 2.1.0
       vfile: 6.0.1
     dev: true
+
+  /unique-names-generator@4.7.1:
+    resolution: {integrity: sha512-lMx9dX+KRmG8sq6gulYYpKWZc9RlGsgBR6aoO8Qsm3qvkSJ+3rAymr+TnV8EDMrIrwuFJ4kruzMWM/OpYzPoow==}
+    engines: {node: '>=8'}
+    dev: false
 
   /unist-util-generated@2.0.1:
     resolution: {integrity: sha512-qF72kLmPxAw0oN2fwpWIqbXAVyEqUzDHMsbtPvOudIlUzXYFIeQIuxXQCRCFh22B7cixvU0MG7m3MW8FTq/S+A==}

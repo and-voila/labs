@@ -6,10 +6,10 @@ import GoogleProvider from 'next-auth/providers/google';
 
 import { env } from '@/env.mjs';
 import { db } from '@/app/lib/db';
+import { generateUniqueDisplayName } from '@/app/lib/generate-unique-display-name';
 import { sendVerificationRequest } from '@/app/lib/resend/send-verification-request';
+import { sendWelcomeEmail } from '@/app/lib/resend/send-welcome-email';
 import { getSession } from '@/app/lib/session';
-
-import { sendWelcomeEmail } from './resend/send-welcome-email';
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
@@ -73,6 +73,7 @@ export const authOptions: NextAuthOptions = {
         session.user.name = token.name;
         session.user.email = token.email;
         session.user.image = token.picture;
+        session.user.displayName = token.displayName as string;
       }
       return session;
     },
@@ -90,11 +91,23 @@ export const authOptions: NextAuthOptions = {
         return token;
       }
 
+      if (!dbUser.displayName) {
+        const uniqueUsername = await generateUniqueDisplayName();
+        await db.user.update({
+          where: { id: dbUser.id },
+          data: { displayName: uniqueUsername },
+        });
+        token.displayName = uniqueUsername;
+      } else {
+        token.displayName = dbUser.displayName;
+      }
+
       return {
         id: dbUser.id,
         name: dbUser.name,
         email: dbUser.email,
         picture: dbUser.image,
+        displayName: token.displayName,
       };
     },
   },
