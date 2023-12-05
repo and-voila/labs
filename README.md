@@ -185,7 +185,7 @@ This project was inspired by shadcn's [Taxonomy](https://github.com/shadcn-ui/ta
 
 ### Our Project License
 
-Our modifications and additional code are licensed under the **GNU Affero General Public License v3.0 (AGPL v3.0)**. This means that our project as a whole is governed by the AGPL v3.0 license. 
+Our modifications and additional code are licensed under the **GNU Affero General Public License v3.0 (AGPL v3.0)**. This means that our project as a whole is governed by the AGPL v3.0 license.
 
 ### External Code and Licenses
 
@@ -200,4 +200,3 @@ While the majority of our project is under the AGPL v3.0, it incorporates compon
 ### Comprehensive Licensing Details
 
 For a full understanding of how these licenses apply to our project and the interaction between the AGPL v3.0 and MIT Licenses, please see our [License](./LICENSE) file. This document provides a comprehensive overview of the licensing structure for our entire codebase.
-
