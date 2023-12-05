@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import { User } from '@prisma/client';
 import { AvatarProps } from '@radix-ui/react-avatar';
 
-import { Icons } from '@/app/components/shared/icons';
 import {
   Avatar,
   AvatarFallback,
@@ -9,7 +9,7 @@ import {
 } from '@/app/components/ui/avatar';
 
 interface UserAvatarProps extends AvatarProps {
-  user: Pick<User, 'image' | 'name'>;
+  user: Pick<User, 'image' | 'name' | 'displayName'>;
 }
 
 export function UserAvatar({ user, ...props }: UserAvatarProps) {
@@ -23,8 +23,13 @@ export function UserAvatar({ user, ...props }: UserAvatarProps) {
         />
       ) : (
         <AvatarFallback>
-          <span className="sr-only">{user.name}</span>
-          <Icons.user className="h-4 w-4" />
+          <span className="sr-only">{user.name || user.displayName}</span>
+          <Image
+            src={`https://avatar.vercel.sh/${user?.name || user?.displayName}`}
+            alt="Vercel Avatar"
+            width={120}
+            height={120}
+          />
         </AvatarFallback>
       )}
     </Avatar>

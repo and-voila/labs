@@ -17,6 +17,7 @@ export const SessionInfo = () => {
   }, []);
 
   const obfuscatedUserId = session?.user?.id?.substring(0, 12);
+  const displayName = session?.user?.displayName;
 
   if (process.env.NEXT_PUBLIC_VERCEL_ENV === 'production') return null;
 
@@ -33,6 +34,7 @@ export const SessionInfo = () => {
 
       {session ? (
         <>
+          <pre>{displayName}</pre>
           <pre>{obfuscatedUserId}</pre>
         </>
       ) : (

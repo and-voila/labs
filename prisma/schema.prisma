@@ -115,6 +115,7 @@ enum GlobalRole {
 model User {
   id            String    @id @default(cuid())
   name          String?
+  displayName   String?   @unique
   email         String?   @unique
   emailVerified DateTime?
   image         String?

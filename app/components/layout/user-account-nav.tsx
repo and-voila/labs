@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import type { User } from 'next-auth';
 import { signOut } from 'next-auth/react';
 
 import { Icons } from '@/app/components/shared/icons';
@@ -13,9 +12,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/app/components/ui/dropdown-menu';
+import type { User } from '@/app/lib/types/next-auth';
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
-  user: Pick<User, 'name' | 'image' | 'email'>;
+  user: Pick<User, 'name' | 'image' | 'email' | 'displayName'>;
 }
 
 export function UserAccountNav({ user }: UserAccountNavProps) {
@@ -23,16 +23,24 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
-          user={{ name: user?.name || null, image: user?.image || null }}
+          user={{
+            name: user?.name || user?.displayName || null,
+            image: user?.image || null,
+            displayName: user?.displayName || null,
+          }}
           className="h-8 w-8"
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col space-y-1 leading-none">
-            {user?.name && <p className="font-medium">{user?.name}</p>}
+            {(user?.name || user?.displayName) && (
+              <p className="text-sm font-medium">
+                {user?.name || user?.displayName}
+              </p>
+            )}
             {user?.email && (
-              <p className="w-[200px] truncate text-sm text-muted-foreground">
+              <p className="w-[200px] truncate text-xs text-muted-foreground">
                 {user?.email}
               </p>
             )}
