@@ -1,5 +1,6 @@
 import { DashboardHeader } from '@/app/components/dashboard/header';
 import { DashboardShell } from '@/app/components/dashboard/shell';
+import { Icons } from '@/app/components/shared/icons';
 
 export default function ChapterIdPageLoading() {
   return (
@@ -8,10 +9,8 @@ export default function ChapterIdPageLoading() {
         heading="Setup the play"
         text="Ugh, this might take a minute..."
       />
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-medium tracking-tight text-foreground">
-          Gathering Rose family wisdom for an experience worth tweeting about!
-        </h2>
+      <div className="flex h-96 items-center justify-center bg-background">
+        <Icons.spinner className="h-16 w-16 animate-spin text-primary" />
       </div>
     </DashboardShell>
   );
