@@ -32,14 +32,9 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
           isPublished: true,
         },
       },
-      purchases: {
-        where: {
-          userId: session.user.id,
-        },
-      },
     },
     cacheStrategy: {
-      ttl: 300,
+      ttl: 3600,
       swr: 60,
     },
   });
@@ -48,10 +43,6 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     where: {
       userId: session.user.id,
       chapterId: course?.chapters[0].id,
-    },
-    cacheStrategy: {
-      ttl: 30,
-      swr: 10,
     },
   });
 

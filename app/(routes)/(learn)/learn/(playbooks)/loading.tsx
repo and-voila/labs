@@ -16,6 +16,9 @@ export default function MyPlaybooksLoading() {
           <CourseCardSkeleton />
           <CourseCardSkeleton />
           <CourseCardSkeleton />
+          <CourseCardSkeleton />
+          <CourseCardSkeleton />
+          <CourseCardSkeleton />
         </div>
       </div>
     </DashboardShell>

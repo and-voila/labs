@@ -47,8 +47,8 @@ const PricingCard = ({
           )}
         </div>
       </div>
-      <div className="flex h-full flex-col justify-between gap-16">
-        <ul className="space-y-2 text-left text-sm font-medium leading-normal">
+      <div className="flex h-full flex-col justify-between gap-12">
+        <ul className="space-y-1 text-left text-sm font-medium leading-normal">
           {plan.benefits.map((feature) => (
             <li
               className="flex items-start text-muted-foreground"
