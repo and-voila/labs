@@ -25,15 +25,15 @@ export function Providers({ children }: { children: ReactNode }) {
       <SessionProvider>
         <ModalProvider>
           <NextTopLoader
-            color="#6032ec"
+            color="#2cb57c"
             initialPosition={0.08}
             crawlSpeed={30}
-            height={4}
+            height={6}
             crawl={true}
             showSpinner={false}
             easing="ease"
             speed={200}
-            shadow="0 0 10px #6032ec,0 0 5px #6032ec"
+            shadow="0 0 10px #2cb57c,0 0 5px #2cb57c"
             zIndex={1600}
             showAtBottom={false}
           />

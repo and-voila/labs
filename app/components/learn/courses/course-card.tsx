@@ -33,7 +33,8 @@ export const CourseCard = ({
       <div className="group h-full overflow-hidden rounded-xl border bg-card transition hover:shadow-sm">
         <div className="relative aspect-video w-full overflow-hidden md:grayscale md:group-hover:grayscale-0">
           <BlurImage
-            fill
+            width={1200}
+            height={630}
             className="object-cover"
             alt={title}
             src={imageUrl}
