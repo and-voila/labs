@@ -72,7 +72,7 @@ export const pricingData: SubscriptionPlan[] = [
       'The Best plan is the ultimate package. You get all-access to our Discord community, top-tier support, advanced learning, and 7,500 monthly AI-assist tokens.',
     benefits: [
       'Everything in Better',
-      'Join VIP evsnts',
+      'Join VIP events',
       'Early access to new features',
       'Unlimited websites',
       'And Voila Savings Club',
