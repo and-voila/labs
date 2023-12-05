@@ -181,12 +181,23 @@ This project was inspired by shadcn's [Taxonomy](https://github.com/shadcn-ui/ta
 - Steven Tey ([@steventey](https://twitter.com/steventey))
 - Antonio Erdeljac ([@YTCodeAntonio](https://twitter.com/AntonioErdeljac))
 
-## License
+## License Information
 
-This project uses code from:
+### Our Project License
 
-- **[Next SaaS Stripe Starter](https://github.com/mickasmt/next-saas-stripe-starter)**
-- **[Platforms by Vercel](https://github.com/vercel/platforms)**
-- **[Next13 LMS Platform](https://github.com/AntonioErdeljac/next13-lms-platform)**
+Our modifications and additional code are licensed under the **GNU Affero General Public License v3.0 (AGPL v3.0)**. This means that our project as a whole is governed by the AGPL v3.0 license. 
 
-These projects are licensed under the MIT License. Our modifications and additional code are under the **GNU Affero General Public License v3.0**. This means our project as a whole is AGPL v3.0 licensed, but parts retain the MIT License. See the [License](./LICENSE.md) file for full details.
+### External Code and Licenses
+
+While the majority of our project is under the AGPL v3.0, it incorporates components from several external sources, which retain their original licenses as detailed below:
+
+1. **Next SaaS Stripe Starter**: Portions of our project are based on [Next SaaS Stripe Starter](https://github.com/mickasmt/next-saas-stripe-starter), which is licensed under the MIT License.
+
+2. **Platforms by Vercel**: We also use code from [Platforms by Vercel](https://github.com/vercel/platforms), covered under the MIT License.
+
+3. **Next13 LMS Platform**: Code from the [Next13 LMS Platform](https://github.com/AntonioErdeljac/next13-lms-platform) is integrated into our project and is licensed under the MIT License.
+
+### Comprehensive Licensing Details
+
+For a full understanding of how these licenses apply to our project and the interaction between the AGPL v3.0 and MIT Licenses, please see our [License](./LICENSE) file. This document provides a comprehensive overview of the licensing structure for our entire codebase.
+
