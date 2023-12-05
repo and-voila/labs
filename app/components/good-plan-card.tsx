@@ -30,7 +30,7 @@ const GoodPlanCard = ({ plan, userId }: GoodPlanCardProps) => {
           <div className="ml-4 mt-4 w-full flex-shrink-0 sm:w-auto">
             {userId ? (
               <Link
-                href="/dashboard"
+                href="/dashboard/billing"
                 className={buttonVariants({
                   className: 'w-full sm:w-auto',
                   variant: 'secondary',

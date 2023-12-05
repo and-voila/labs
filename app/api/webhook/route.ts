@@ -57,7 +57,7 @@ export async function POST(req: Request) {
         return new NextResponse('User not found', { status: 400 });
       }
 
-      await db.userSubscription.create({
+      await db.stripeSubscription.create({
         data: {
           userId: userId,
           stripeSubscriptionId: subscription.id,
@@ -74,12 +74,12 @@ export async function POST(req: Request) {
       session.subscription as string,
     );
 
-    const userSubscription = await db.userSubscription.findUnique({
+    const stripeSubscription = await db.stripeSubscription.findUnique({
       where: { stripeSubscriptionId: subscription.id },
     });
 
-    if (!userSubscription) {
-      await db.userSubscription.create({
+    if (!stripeSubscription) {
+      await db.stripeSubscription.create({
         data: {
           userId: session?.metadata?.userId,
           stripeSubscriptionId: subscription.id,
@@ -91,7 +91,7 @@ export async function POST(req: Request) {
         },
       });
     } else {
-      await db.userSubscription.update({
+      await db.stripeSubscription.update({
         where: { stripeSubscriptionId: subscription.id },
         data: {
           stripePriceId: subscription.items.data[0].price.id,

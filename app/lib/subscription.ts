@@ -8,7 +8,7 @@ const DAY_IN_MS = 86_400_000;
 export async function getUserSubscriptionPlan(
   userId: string,
 ): Promise<UserSubscriptionPlan> {
-  const userSubscription = await db.userSubscription.findUnique({
+  const stripeSubscription = await db.stripeSubscription.findUnique({
     where: {
       userId: userId,
     },
@@ -20,7 +20,7 @@ export async function getUserSubscriptionPlan(
     },
   });
 
-  if (!userSubscription) {
+  if (!stripeSubscription) {
     const freePlan = pricingData.find((plan) => plan.title === 'Good');
     if (!freePlan) {
       throw new Error('Free plan not found in pricing data');
@@ -38,43 +38,43 @@ export async function getUserSubscriptionPlan(
   }
 
   const isPaid =
-    userSubscription.stripePriceId &&
-    userSubscription.stripeCurrentPeriodEnd &&
-    userSubscription.stripeCurrentPeriodEnd.getTime() + DAY_IN_MS > Date.now()
+    stripeSubscription.stripePriceId &&
+    stripeSubscription.stripeCurrentPeriodEnd &&
+    stripeSubscription.stripeCurrentPeriodEnd.getTime() + DAY_IN_MS > Date.now()
       ? true
       : false;
 
   const userPlan =
     pricingData.find(
-      (plan) => plan.stripeIds.monthly === userSubscription.stripePriceId,
+      (plan) => plan.stripeIds.monthly === stripeSubscription.stripePriceId,
     ) ||
     pricingData.find(
-      (plan) => plan.stripeIds.yearly === userSubscription.stripePriceId,
+      (plan) => plan.stripeIds.yearly === stripeSubscription.stripePriceId,
     );
 
   const plan = isPaid && userPlan ? userPlan : pricingData[0];
 
   const interval = isPaid
-    ? userPlan?.stripeIds.monthly === userSubscription.stripePriceId
+    ? userPlan?.stripeIds.monthly === stripeSubscription.stripePriceId
       ? 'month'
-      : userPlan?.stripeIds.yearly === userSubscription.stripePriceId
+      : userPlan?.stripeIds.yearly === stripeSubscription.stripePriceId
         ? 'year'
         : null
     : null;
 
   let isCanceled = false;
-  if (isPaid && userSubscription.stripeSubscriptionId) {
+  if (isPaid && stripeSubscription.stripeSubscriptionId) {
     const stripePlan = await stripe.subscriptions.retrieve(
-      userSubscription.stripeSubscriptionId,
+      stripeSubscription.stripeSubscriptionId,
     );
     isCanceled = stripePlan.cancel_at_period_end;
   }
 
   return {
     ...plan,
-    ...userSubscription,
-    stripeCurrentPeriodEnd: userSubscription.stripeCurrentPeriodEnd
-      ? userSubscription.stripeCurrentPeriodEnd.getTime()
+    ...stripeSubscription,
+    stripeCurrentPeriodEnd: stripeSubscription.stripeCurrentPeriodEnd
+      ? stripeSubscription.stripeCurrentPeriodEnd.getTime()
       : null,
     isPaid,
     interval,
