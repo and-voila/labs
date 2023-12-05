@@ -20,6 +20,7 @@ import {
 } from '@/app/components/ui/card';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
+import { ToastAction } from '@/app/components/ui/toast';
 import { toast } from '@/app/components/ui/use-toast';
 import { cn } from '@/app/lib/utils';
 import { userAuthSchema } from '@/app/lib/validations/auth';
@@ -50,6 +51,26 @@ export function UserAuthForm({
 
   async function onSubmit(data: FormData) {
     setIsLoading(true);
+
+    if (!isRegistration) {
+      const res = await fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: data.email.toLowerCase() }),
+      });
+      const { exists } = await res.json();
+
+      if (!exists) {
+        setIsLoading(false);
+        return toast({
+          title: 'No account found',
+          description:
+            "We couldn't find an account with that email. If you have one, please try again. Or, create a new account.",
+          variant: 'destructive',
+          action: <ToastAction altText="Try again">OK</ToastAction>,
+        });
+      }
+    }
 
     const signInResult = await signIn('email', {
       email: data.email.toLowerCase(),
