@@ -27,12 +27,12 @@ export function Providers({ children }: { children: ReactNode }) {
           <NextTopLoader
             color="#6032ec"
             initialPosition={0.08}
-            crawlSpeed={20}
-            height={3}
+            crawlSpeed={30}
+            height={4}
             crawl={true}
             showSpinner={false}
             easing="ease"
-            speed={20}
+            speed={200}
             shadow="0 0 10px #6032ec,0 0 5px #6032ec"
             zIndex={1600}
             showAtBottom={false}
