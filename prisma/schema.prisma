@@ -15,7 +15,6 @@ model Organization {
   slug String @unique
 
   organizationCode String @unique @default(cuid())
-  inviteCode       String @unique @default(cuid())
 
   primaryDomain String? @unique
   ownerId       String
@@ -29,11 +28,12 @@ model Organization {
   stripeCustomerId     String? @unique
 
   members            Membership[]
-  sites              Site[]              @relation(name: "OrganizationToSite")
-  courses            Course[]            @relation(name: "OrganizationToCourse")
-  owner              User                @relation(name: "UserOwnsOrganization", fields: [ownerId], references: [id])
-  stripeSubscription StripeSubscription? @relation(fields: [stripeSubscriptionId], references: [id])
-  stripeCustomer     StripeCustomer?     @relation(fields: [stripeCustomerId], references: [id])
+  invites            OrganizationInvite[]
+  sites              Site[]               @relation(name: "OrganizationToSite")
+  courses            Course[]             @relation(name: "OrganizationToCourse")
+  owner              User                 @relation(name: "UserOwnsOrganization", fields: [ownerId], references: [id])
+  stripeSubscription StripeSubscription?  @relation(fields: [stripeSubscriptionId], references: [id])
+  stripeCustomer     StripeCustomer?      @relation(fields: [stripeCustomerId], references: [id])
 
   @@index([ownerId], name: "idx_organization_owner")
   @@map(name: "organizations")
@@ -43,9 +43,15 @@ model Membership {
   id             String         @id @default(cuid())
   organizationId String
   userId         String
-  role           MembershipRole
+  role           MembershipRole @default(MEMBER)
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
+
+  invitedAt DateTime?
+  joinedAt  DateTime?
+  deletedAt DateTime?
+
+  status MembershipStatus?
 
   organization Organization @relation(fields: [organizationId], references: [id])
   user         User         @relation(fields: [userId], references: [id])
@@ -54,6 +60,42 @@ model Membership {
   @@index([organizationId], name: "idx_membership_organization")
   @@index([userId], name: "idx_membership_user")
   @@map(name: "memberships")
+}
+
+enum MembershipStatus {
+  INVITED
+  ACTIVE
+  INACTIVE
+}
+
+model OrganizationInvite {
+  id             String                   @id @default(cuid())
+  inviteCode     String                   @unique @default(cuid())
+  organizationId String
+  email          String
+  invitedUserId  String?                  @unique
+  inviterUserId  String
+  status         OrganizationInviteStatus @default(PENDING)
+  createdAt      DateTime                 @default(now())
+  updatedAt      DateTime                 @updatedAt
+  expires        DateTime
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  invitedUser  User?        @relation(name: "InvitedUser", fields: [invitedUserId], references: [id])
+  inviterUser  User         @relation(name: "InviterUser", fields: [inviterUserId], references: [id])
+
+  @@unique([organizationId, email])
+  @@unique([organizationId, invitedUserId])
+  @@index([organizationId], name: "idx_organization_invite_organization")
+  @@index([invitedUserId], name: "idx_organization_invite_invited_user")
+  @@index([inviterUserId], name: "idx_organization_invite_inviter_user")
+}
+
+enum OrganizationInviteStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  EXPIRED
 }
 
 enum MembershipRole {
@@ -92,7 +134,9 @@ model User {
   posts              Post[]
   userApiLimit       UserApiLimit?
   memberships        Membership[]
-  ownedOrganizations Organization[] @relation(name: "UserOwnsOrganization")
+  ownedOrganizations Organization[]       @relation(name: "UserOwnsOrganization")
+  invitedAsUser      OrganizationInvite?  @relation("InvitedUser")
+  inviterUser        OrganizationInvite[] @relation("InviterUser")
 
   @@index([email], name: "idx_user_email")
   @@index([id], name: "idx_user_id")
