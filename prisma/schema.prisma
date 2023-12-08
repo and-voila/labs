@@ -9,16 +9,41 @@ generator client {
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
-enum UserRole {
-  USER
-  ADMIN
-}
+// model YourModelName {
+// Standard fields (by usage frequency):
+// id (Int @id @default(autoincrement())), createdAt (DateTime @default(now())), updatedAt (DateTime @updatedAt)
+
+// Optional fields (as needed, by likelihood of inclusion):
+// e.g., deletedAt (DateTime?), expiresAt (DateTime?)
+
+// Model-specific fields (by relevance and query frequency):
+// fieldName (FieldType)
+
+// Simple relations (by relational importance):
+// relation (RelationType[])
+
+// Explicit relations (by frequency and complexity):
+// namedRelation (RelationType @relation(fields: [relationField], references: [id], onDelete: Cascade))
+
+// Unique constraints (by query relevance):
+// @@unique([field1, field2])
+
+// Indexes (by query performance impact):
+// @@index([field1, field2], name: "index_name_optional")
+
+// Table mapping (specific database table):
+// @@map("database_table_name")
+// }
 
 model Team {
-  id               String              @id @default(cuid())
-  isPrimary        Boolean             @default(false)
-  name             String
-  slug             String              @unique
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now()) @map(name: "created_at")
+  updatedAt DateTime? @updatedAt @map(name: "updated_at")
+
+  name      String  @unique
+  slug      String  @unique
+  isPrimary Boolean @default(false)
+
   memberships      TeamMembership[]
   subscription     StripeSubscription?
   stripeCustomerId StripeCustomer?
@@ -32,60 +57,84 @@ model Team {
 
 enum TeamMemberRole {
   MEMBER
+  ADMIN
   OWNER
 }
 
 model TeamMembership {
-  id         String         @id @default(cuid())
-  team       Team           @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  teamId     String
-  user       User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
   role       TeamMemberRole @default(MEMBER)
   is_creator Boolean        @default(false)
+  accepted   Boolean        @default(false)
+
+  team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  teamId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
 
   @@unique([teamId, userId])
+  @@index([teamId])
   @@index([userId])
   @@map("team_memberships")
 }
 
 model TeamInvitation {
-  id        String         @id @default(cuid())
-  team      Team           @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  teamId    String
-  email     String
-  role      TeamMemberRole @default(MEMBER)
-  createdAt DateTime       @default(now())
-  expiresAt DateTime       @updatedAt
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  expiresAt DateTime?
+
+  email       String
+  inviteeName String?
+  role        TeamMemberRole @default(MEMBER)
+  token       String         @unique
+
+  team        Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  teamId      String
+  invitedBy   User   @relation(fields: [invitedById], references: [id], name: "UserToTeamInvitation", onDelete: Cascade)
+  invitedById String
 
   @@unique([teamId, email])
+  @@index([teamId])
   @@index([email])
   @@map("team_invitations")
 }
 
+enum UserRole {
+  USER
+  ADMIN
+  SUPERADMIN
+}
+
 model User {
-  id            String    @id @default(cuid())
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
   name          String?
   displayName   String?   @unique
   email         String?   @unique
   emailVerified DateTime?
   role          UserRole  @default(USER)
   image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
 
   discordId           String?  @unique
   discordUsername     String?
   discordAvatar       String?
   discordServerMember Boolean? @default(false)
-  discordPremium      Boolean? @default(false)
 
-  memberships  TeamMembership[]
-  accounts     Account[]
-  sessions     Session[]
-  sites        Site[]
-  posts        Post[]
-  userApiLimit UserApiLimit?
+  subscription StripeSubscription?
+
+  memberships         TeamMembership[]
+  accounts            Account[]
+  sessions            Session[]
+  sites               Site[]
+  posts               Post[]
+  userApiLimit        UserApiLimit?
+  teamInvitationsSent TeamInvitation[] @relation("UserToTeamInvitation")
 
   @@index([email])
   @@index([displayName])
@@ -94,8 +143,10 @@ model User {
 }
 
 model Account {
-  id                String  @id @default(cuid())
-  userId            String
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+
   type              String
   provider          String
   providerAccountId String
@@ -107,10 +158,8 @@ model Account {
   id_token          String? @db.Text
   session_state     String?
 
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @default(now()) @map(name: "updated_at")
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
@@ -118,17 +167,22 @@ model Account {
 }
 
 model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id      String   @id @default(cuid())
+  expires DateTime
+
+  sessionToken String @unique
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@map(name: "sessions")
 }
 
 model VerificationToken {
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
   identifier String
   token      String   @unique
   expires    DateTime
@@ -138,23 +192,22 @@ model VerificationToken {
 }
 
 model Post {
-  id          String  @id @default(cuid())
-  title       String? @db.Text
-  description String? @db.Text
-  content     String? @db.Text
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
 
+  title         String? @db.Text
+  description   String? @db.Text
+  content       String? @db.Text
   slug          String  @default(cuid())
   image         String? @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/IoGBwOC-9CvtiYRSGCNZAuY0UAemMZ0UzFtuZ7.jpeg") @db.Text
   imageBlurhash String? @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC") @db.Text
+  published     Boolean @default(false)
+  userId        String?
+  siteId        String?
 
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @default(now()) @map(name: "updated_at")
-  published Boolean  @default(false)
-
-  site   Site?   @relation(fields: [siteId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  siteId String?
-  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId String?
+  site Site? @relation(fields: [siteId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@unique([slug, siteId])
   @@index([userId])
@@ -163,25 +216,24 @@ model Post {
 }
 
 model Site {
-  id              String   @id @default(cuid())
-  name            String?
-  description     String?  @db.Text
-  logo            String?  @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/SgQEI5B-KRu6KULIVq8OXj0eKRn7drD4RRCGf1.png") @db.Text
-  font            String   @default("font-cal")
-  image           String?  @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/qbRcbkW-GSx1IuBuKyVEbOJkFlkxBCVaCy5qfD.jpeg") @db.Text
-  imageBlurhash   String?  @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC") @db.Text
-  subdomain       String?  @unique
-  customDomain    String?  @unique
-  message404      String?  @default("Oops! You've found a page that doesn't exist.") @db.Text
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  userId          String?
-  twitterSiteOrId String?
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  user  User?  @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  posts Post[]
+  name          String?
+  description   String? @db.Text
+  logo          String? @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/SgQEI5B-KRu6KULIVq8OXj0eKRn7drD4RRCGf1.png") @db.Text
+  image         String? @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/qbRcbkW-GSx1IuBuKyVEbOJkFlkxBCVaCy5qfD.jpeg") @db.Text
+  imageBlurhash String? @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC") @db.Text
+  subdomain     String? @unique
+  customDomain  String? @unique
+  font          String  @default("font-cal")
+  message404    String? @default("Oops! You've found a page that doesn't exist.") @db.Text
+  teamId        String?
+  userId        String?
 
-  teamId   String?
+  user     User?     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  posts    Post[]
   team     Team?     @relation(fields: [teamId], references: [id], onDelete: SetNull)
   metaData SiteMeta?
 
@@ -191,27 +243,27 @@ model Site {
 }
 
 model SiteMeta {
-  id     String @id @default(cuid())
-  siteId String @unique
-  site   Site   @relation(fields: [siteId], references: [id], onDelete: Cascade)
-
-  title       String?
-  description String? @db.Text
-  author      String?
-  creator     String?
-  category    String?
-  keywords    String?
-
-  socialNetworkUrls Json
-
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  siteId            String  @unique
+  title             String?
+  description       String? @db.Text
+  author            String?
+  creator           String?
+  category          String?
+  keywords          String?
+  socialNetworkUrls Json
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
 
   @@map(name: "site_meta")
 }
 
 model Example {
-  id            Int     @id @default(autoincrement())
+  id Int @id @default(autoincrement())
+
   name          String?
   description   String? @db.Text
   domainCount   Int?
@@ -221,27 +273,25 @@ model Example {
 }
 
 model Course {
-  id          String  @id @default(cuid())
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   userId      String
+  teamId      String?
   title       String  @db.Text
   description String? @db.Text
   preview     String? @db.Text
   imageUrl    String? @db.Text
   price       Float?
   isPublished Boolean @default(false)
-
-  categoryId String?
-  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId  String?
 
   chapters    Chapter[]
   attachments Attachment[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  //@@fulltext([title])
-
-  teamId String?
-  team   Team?   @relation(fields: [teamId], references: [id], onDelete: SetNull)
+  category Category? @relation(fields: [categoryId], references: [id])
+  team     Team?     @relation(fields: [teamId], references: [id], onDelete: SetNull)
 
   @@index([userId])
   @@index([categoryId])
@@ -249,71 +299,79 @@ model Course {
 }
 
 model Category {
-  id      String   @id @default(cuid())
-  name    String   @unique
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  name String @unique
+
   courses Course[]
 
   @@map(name: "categories")
 }
 
 model Attachment {
-  id   String @id @default(cuid())
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   name String
   url  String @db.Text
 
-  courseId String
-  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  courseId String
 
   @@map(name: "attachments")
 }
 
 model Chapter {
-  id          String  @id @default(cuid())
-  title       String  @db.Text
-  description String? @db.Text
-  videoUrl    String? @db.Text
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title       String   @db.Text
+  description String?  @db.Text
+  videoUrl    String?  @db.Text
   position    Int
-  isPublished Boolean @default(false)
-
-  muxData MuxData?
-
-  courseId String
-  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  isPublished Boolean  @default(false)
+  muxData     MuxData?
 
   userProgress UserProgress[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  courseId String
 
   @@index([courseId])
   @@map(name: "chapters")
 }
 
 model MuxData {
-  id         String  @id @default(cuid())
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
   assetId    String
   playbackId String?
+  chapterId  String  @unique
 
-  chapterId String  @unique
-  chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 
   @@map(name: "mux-data")
 }
 
 model UserProgress {
-  id     String @id @default(cuid())
-  userId String
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  userId      String
   chapterId   String
-  chapter     Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
   isStarted   Boolean @default(false)
   isCompleted Boolean @default(false)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 
   @@unique([userId, chapterId])
   @@index([chapterId])
@@ -323,11 +381,13 @@ model UserProgress {
 
 model UserApiLimit {
   id        String   @id @default(cuid())
-  userId    String   @unique
-  count     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id])
+
+  userId String @unique
+  count  Int    @default(0)
+
+  user User @relation(fields: [userId], references: [id])
 
   @@map(name: "user_api_limits")
 }
@@ -344,15 +404,21 @@ enum SubscriptionStatus {
 }
 
 model StripeSubscription {
-  id                     String              @id @default(cuid())
-  userId                 String?             @unique
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String? @unique
+  teamId String? @unique
+
   stripeCustomerId       String?             @unique @map(name: "stripe_customer_id")
   stripeSubscriptionId   String?             @unique @map(name: "stripe_subscription_id")
   status                 SubscriptionStatus?
   stripePriceId          String?             @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime?           @map(name: "stripe_current_period_end")
-  team                   Team?               @relation(fields: [teamId], references: [id])
-  teamId                 String?             @unique
+
+  user User? @relation(fields: [userId], references: [id])
+  team Team? @relation(fields: [teamId], references: [id])
 
   @@index([userId])
   @@index([teamId])
@@ -360,14 +426,15 @@ model StripeSubscription {
 }
 
 model StripeCustomer {
-  id               String  @id @default(cuid())
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   userId           String? @unique
-  team             Team?   @relation(fields: [teamId], references: [id])
   teamId           String? @unique
   stripeCustomerId String  @unique
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  team Team? @relation(fields: [teamId], references: [id])
 
   @@index([userId])
   @@index([teamId])
