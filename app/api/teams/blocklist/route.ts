@@ -3,6 +3,8 @@ import { createClient } from '@vercel/kv';
 
 import { env } from '@/env.mjs';
 
+export const dynamic = 'force-dynamic';
+
 const kvClient = createClient({
   url: env.KV_REST_API_URL,
   token: env.KV_REST_API_TOKEN,
