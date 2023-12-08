@@ -16,6 +16,7 @@ enum UserRole {
 
 model Team {
   id               String              @id @default(cuid())
+  isPrimary        Boolean             @default(false)
   name             String
   slug             String              @unique
   memberships      TeamMembership[]
