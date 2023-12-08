@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 
 import { DashboardHeader } from '@/app/components/dashboard/header';
 import { DashboardShell } from '@/app/components/dashboard/shell';
+import { DisplayNameForm } from '@/app/components/forms/display-name-form';
 import { UserNameForm } from '@/app/components/forms/user-name-form';
 import { authOptions } from '@/app/lib/auth';
 import { getSession } from '@/app/lib/session';
@@ -23,6 +24,9 @@ export default async function SettingsPage() {
       />
       <div className="grid max-w-3xl gap-10">
         <UserNameForm user={{ id: user.id, name: user.name || '' }} />
+        <DisplayNameForm
+          user={{ id: user.id, displayName: user.displayName || '' }}
+        />
       </div>
     </DashboardShell>
   );

@@ -45,3 +45,4 @@ next-env.d.ts
 /cursor/
 
 disallowed-domains.txt
+block-list.js

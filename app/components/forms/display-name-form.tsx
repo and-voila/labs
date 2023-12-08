@@ -18,46 +18,55 @@ import {
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
 import { toast } from '@/app/components/ui/use-toast';
-import { updateUserName, type FormData } from '@/app/lib/actions/update-user';
+import {
+  DisplayNameFormData,
+  updateDisplayName,
+} from '@/app/lib/actions/update-user';
 import { cn } from '@/app/lib/utils';
-import { userNameSchema } from '@/app/lib/validations/user';
+import { displayNameSchema } from '@/app/lib/validations/display-name';
 
-interface UserNameFormProps {
-  user: Pick<User, 'id' | 'name'>;
+interface DisplayNameFormProps {
+  user: Pick<User, 'id' | 'displayName'>;
 }
 
-export function UserNameForm({ user }: UserNameFormProps) {
+export function DisplayNameForm({ user }: DisplayNameFormProps) {
   const [isPending, startTransition] = useTransition();
-  const updateUserNameWithId = updateUserName.bind(null, user.id);
+  const updateDisplayNameWithId = updateDisplayName.bind(null, user.id);
 
   const {
     handleSubmit,
     register,
     formState: { errors, isValid, isDirty },
-  } = useForm<FormData>({
+    watch,
+  } = useForm<DisplayNameFormData>({
     mode: 'onChange',
-    resolver: zodResolver(userNameSchema),
+    resolver: zodResolver(displayNameSchema),
     defaultValues: {
-      name: user?.name || '',
+      displayName: user?.displayName || '',
     },
   });
 
+  const displayName = watch('displayName');
+  const transformedDisplayName = displayName
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+
   const onSubmit = handleSubmit((data) => {
     startTransition(async () => {
-      const { status } = await updateUserNameWithId(data);
+      const { status } = await updateDisplayNameWithId(data);
 
       if (status !== 'success') {
         toast({
-          title: 'Your name was not updated',
+          title: 'Your display name was not updated',
           description:
-            "Something broke and we couldn't update your name. Apologies! Please try again.",
+            "Something broke and we couldn't update your display name. Please try again.",
           variant: 'destructive',
         });
       } else {
         toast({
-          title: 'Your name was updated',
-          description:
-            "Thanks for making And Voila yours. Your name has been updated and you're all set.",
+          title: 'Your display name was updated',
+          description: "Your display name has been updated and you're all set.",
           variant: 'success',
         });
       }
@@ -68,25 +77,33 @@ export function UserNameForm({ user }: UserNameFormProps) {
     <form onSubmit={onSubmit}>
       <Card>
         <CardHeader>
-          <CardTitle>Your name</CardTitle>
+          <CardTitle>Your display name</CardTitle>
           <CardDescription>
-            Please use your real name here. It&apos;s private and will not be
-            visible to others.
+            This name will be visible in the app to your team collaborators and
+            on app leaderboards.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="name">
-              Name
+            <Label className="sr-only" htmlFor="displayName">
+              Display Name
             </Label>
             <Input
-              id="name"
+              id="displayName"
               className="w-full bg-background sm:w-[400px]"
               size={32}
-              {...register('name')}
+              {...register('displayName')}
             />
-            {errors?.name && (
-              <p className="px-1 text-xs text-red-600">{errors.name.message}</p>
+            <p className="my-2 text-sm text-muted-foreground">
+              Your display name will appear as:{' '}
+              <span className="font-medium text-primary">
+                @{transformedDisplayName}
+              </span>
+            </p>
+            {errors?.displayName && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.displayName.message}
+              </p>
             )}
           </div>
         </CardContent>

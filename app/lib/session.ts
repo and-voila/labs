@@ -10,6 +10,7 @@ export function getSession() {
       username: string;
       email: string;
       image: string;
+      displayName: string;
     };
   } | null>;
 }
