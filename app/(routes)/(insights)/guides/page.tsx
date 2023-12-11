@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { allGuides } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 
-import { InsightsPageHeader } from '@/app/components/insights/page-header';
-import { formatDate } from '@/app/lib/utils';
+import { formatDate } from '#/lib/utils';
+import { InsightsPageHeader } from '#/components/insights/page-header';
 
 export default function GuidesPage() {
   const guides = allGuides

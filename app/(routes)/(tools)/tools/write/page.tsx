@@ -1,12 +1,12 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 
-import { DashboardHeader } from '@/app/components/dashboard/header';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import OverviewSitesCTA from '@/app/components/write/overview-sites-cta';
-import PlaceholderCard from '@/app/components/write/placeholder-card';
-import Posts from '@/app/components/write/posts';
-import Sites from '@/app/components/write/sites';
+import { DashboardHeader } from '#/components/dashboard/header';
+import { DashboardShell } from '#/components/dashboard/shell';
+import OverviewSitesCTA from '#/components/write/overview-sites-cta';
+import PlaceholderCard from '#/components/write/placeholder-card';
+import Posts from '#/components/write/posts';
+import Sites from '#/components/write/sites';
 
 export default function Overview() {
   return (

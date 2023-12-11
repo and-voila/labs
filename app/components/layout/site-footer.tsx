@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { ModeToggle } from '@/app/components/layout/mode-toggle';
-import { Icons } from '@/app/components/shared/icons';
-import { siteConfig } from '@/app/config/site';
-import { cn } from '@/app/lib/utils';
+import { siteConfig } from '#/config/site';
+import { cn } from '#/lib/utils';
+import { ModeToggle } from '#/components/layout/mode-toggle';
+import { Icons } from '#/components/shared/icons';
 
 interface FooterLinkData {
   href: string;

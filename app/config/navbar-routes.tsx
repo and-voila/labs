@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { ModeToggle } from '@/app/components/layout/mode-toggle';
-import { SearchInput } from '@/app/components/search-input';
-import { Icons } from '@/app/components/shared/icons';
-import { Button } from '@/app/components/ui/button';
-import { isTeacher } from '@/app/lib/teacher';
+import { isTeacher } from '#/lib/teacher';
+import { ModeToggle } from '#/components/layout/mode-toggle';
+import { SearchInput } from '#/components/search-input';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
 
 export const NavbarRoutes = ({ userId }: { userId: string }) => {
   const pathname = usePathname();

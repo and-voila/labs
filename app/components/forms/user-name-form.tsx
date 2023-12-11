@@ -5,8 +5,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { User } from '@prisma/client';
 import { useForm } from 'react-hook-form';
 
-import { Icons } from '@/app/components/shared/icons';
-import { buttonVariants } from '@/app/components/ui/button';
+import { updateUserName, type FormData } from '#/lib/actions/update-user';
+import { cn } from '#/lib/utils';
+import { userNameSchema } from '#/lib/validations/user';
+import { Icons } from '#/components/shared/icons';
+import { buttonVariants } from '#/components/ui/button';
 import {
   Card,
   CardContent,
@@ -14,13 +17,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/app/components/ui/card';
-import { Input } from '@/app/components/ui/input';
-import { Label } from '@/app/components/ui/label';
-import { toast } from '@/app/components/ui/use-toast';
-import { updateUserName, type FormData } from '@/app/lib/actions/update-user';
-import { cn } from '@/app/lib/utils';
-import { userNameSchema } from '@/app/lib/validations/user';
+} from '#/components/ui/card';
+import { Input } from '#/components/ui/input';
+import { Label } from '#/components/ui/label';
+import { toast } from '#/components/ui/use-toast';
 
 interface UserNameFormProps {
   user: Pick<User, 'id' | 'name'>;

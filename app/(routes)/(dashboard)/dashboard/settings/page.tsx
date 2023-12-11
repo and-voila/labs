@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
-import { DashboardHeader } from '@/app/components/dashboard/header';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { DisplayNameForm } from '@/app/components/forms/display-name-form';
-import { UserNameForm } from '@/app/components/forms/user-name-form';
-import { authOptions } from '@/app/lib/auth';
-import { getSession } from '@/app/lib/session';
+import { authOptions } from '#/lib/auth';
+import { getSession } from '#/lib/session';
+import { DashboardHeader } from '#/components/dashboard/header';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { DisplayNameForm } from '#/components/forms/display-name-form';
+import { UserNameForm } from '#/components/forms/user-name-form';
 
 export default async function SettingsPage() {
   const session = await getSession();

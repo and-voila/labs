@@ -3,16 +3,16 @@
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 
-import { Icons } from '@/app/components/shared/icons';
-import { UserAvatar } from '@/app/components/shared/user-avatar';
+import type { User } from '#/lib/types/next-auth';
+import { Icons } from '#/components/shared/icons';
+import { UserAvatar } from '#/components/shared/user-avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/app/components/ui/dropdown-menu';
-import type { User } from '@/app/lib/types/next-auth';
+} from '#/components/ui/dropdown-menu';
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, 'name' | 'image' | 'email' | 'displayName'>;

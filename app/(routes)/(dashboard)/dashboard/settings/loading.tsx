@@ -1,6 +1,6 @@
-import { DashboardHeader } from '@/app/components/dashboard/header';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { CardSkeleton } from '@/app/components/shared/card-skeleton';
+import { DashboardHeader } from '#/components/dashboard/header';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { CardSkeleton } from '#/components/shared/card-skeleton';
 
 export default function DashboardSettingsLoading() {
   return (

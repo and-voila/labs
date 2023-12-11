@@ -1,4 +1,4 @@
-import { TeacherConfig } from '@/app/lib/types';
+import { TeacherConfig } from '#/lib/types';
 
 export const teacherConfig: TeacherConfig = {
   mainNav: [

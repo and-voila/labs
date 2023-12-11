@@ -1,12 +1,12 @@
 import { redirect } from 'next/navigation';
 
-import { DashboardNav } from '@/app/components/layout/nav';
-import { NavBar } from '@/app/components/layout/navbar';
-import { SiteFooter } from '@/app/components/layout/site-footer';
-import { teacherConfig } from '@/app/config/teacher';
-import { authOptions } from '@/app/lib/auth';
-import { getSession } from '@/app/lib/session';
-import { isTeacher } from '@/app/lib/teacher';
+import { teacherConfig } from '#/config/teacher';
+import { authOptions } from '#/lib/auth';
+import { getSession } from '#/lib/session';
+import { isTeacher } from '#/lib/teacher';
+import { DashboardNav } from '#/components/layout/nav';
+import { NavBar } from '#/components/layout/navbar';
+import { SiteFooter } from '#/components/layout/site-footer';
 
 interface TeacherLayoutProps {
   children?: React.ReactNode;

@@ -1,4 +1,4 @@
-import { AdminConfig } from '@/app/lib/types';
+import { AdminConfig } from '#/lib/types';
 
 export const adminConfig: AdminConfig = {
   mainNav: [

@@ -3,8 +3,8 @@
 import * as React from 'react';
 import * as ContextMenuPrimitive from '@radix-ui/react-context-menu';
 
-import { Icons } from '@/app/components/shared/icons';
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
 
 const ContextMenu = ContextMenuPrimitive.Root;
 

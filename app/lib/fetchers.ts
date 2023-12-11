@@ -3,8 +3,8 @@ import { unstable_cache } from 'next/cache';
 import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
 
-import { db } from '@/app/lib/db';
-import { replaceExamples, replaceTweets } from '@/app/lib/remark-plugins';
+import { db } from '#/lib/db';
+import { replaceExamples, replaceTweets } from '#/lib/remark-plugins';
 
 export async function getSiteData(domain: string) {
   const subdomain = domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`)

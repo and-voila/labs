@@ -6,9 +6,9 @@ import NextTopLoader from 'nextjs-toploader';
 import nProgress from 'nprogress';
 import { Provider as BalancerProvider } from 'react-wrap-balancer';
 
-import { ThemeProvider } from '@/app/components/providers/theme-provider';
-import { Toaster } from '@/app/components/ui/toaster';
-import { ModalProvider } from '@/app/components/write/modal/provider';
+import { ThemeProvider } from '#/components/providers/theme-provider';
+import { Toaster } from '#/components/ui/toaster';
+import { ModalProvider } from '#/components/write/modal/provider';
 
 export function DomainProviders({ children }: { children: ReactNode }) {
   // TODO: Remove this upon next Next JS package update see: https://github.com/TheSGJ/nextjs-toploader/issues/56#issuecomment-1833133639

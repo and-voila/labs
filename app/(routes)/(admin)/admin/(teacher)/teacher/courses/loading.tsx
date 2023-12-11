@@ -1,6 +1,6 @@
-import { DashboardHeader } from '@/app/components/dashboard/header';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { Icons } from '@/app/components/shared/icons';
+import { DashboardHeader } from '#/components/dashboard/header';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { Icons } from '#/components/shared/icons';
 
 export default function PlaybooksAdminLoading() {
   return (

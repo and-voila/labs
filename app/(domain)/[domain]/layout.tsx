@@ -2,12 +2,12 @@ import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
-import { fontMapper } from '@/public/fonts';
+import { fontMapper } from ':/public/fonts';
 
-import { DomainsFooter } from '@/app/components/layout/domains-footer';
-import BlurImage from '@/app/components/write/blur-image';
-import { getSiteData } from '@/app/lib/fetchers';
-import { cn, placeholderBlurhash } from '@/app/lib/utils';
+import { getSiteData } from '#/lib/fetchers';
+import { cn, placeholderBlurhash } from '#/lib/utils';
+import { DomainsFooter } from '#/components/layout/domains-footer';
+import BlurImage from '#/components/write/blur-image';
 
 export async function generateMetadata({
   params,

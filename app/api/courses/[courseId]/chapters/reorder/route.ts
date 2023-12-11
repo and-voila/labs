@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 
-import { db } from '@/app/lib/db';
-import { getSession } from '@/app/lib/session';
-import { isTeacher } from '@/app/lib/teacher';
+import { db } from '#/lib/db';
+import { getSession } from '#/lib/session';
+import { isTeacher } from '#/lib/teacher';
 
 export async function PUT(
   req: Request,

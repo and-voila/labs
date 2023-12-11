@@ -4,11 +4,11 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { Icons } from '@/app/components/shared/icons';
-import { siteConfig } from '@/app/config/site';
-import { useLockBody } from '@/app/hooks/use-lock-body';
-import { MainNavItem } from '@/app/lib/types';
-import { cn } from '@/app/lib/utils';
+import { siteConfig } from '#/config/site';
+import { MainNavItem } from '#/lib/types';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
+import { useLockBody } from '#/hooks/use-lock-body';
 
 interface MobileNavProps {
   items: MainNavItem[];

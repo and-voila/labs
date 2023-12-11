@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
-import { Button } from '@/app/components/ui/button';
-import CreateSiteButton from '@/app/components/write/create-site-button';
-import CreateSiteModal from '@/app/components/write/modal/create-site';
-import { db } from '@/app/lib/db';
-import { getSession } from '@/app/lib/session';
+import { db } from '#/lib/db';
+import { getSession } from '#/lib/session';
+import { Button } from '#/components/ui/button';
+import CreateSiteButton from '#/components/write/create-site-button';
+import CreateSiteModal from '#/components/write/modal/create-site';
 
 export default async function OverviewSitesCTA() {
   const session = await getSession();

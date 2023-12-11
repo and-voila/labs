@@ -1,4 +1,4 @@
-import { InsightsConfig } from '@/app/lib/types';
+import { InsightsConfig } from '#/lib/types';
 
 export const insightsConfig: InsightsConfig = {
   mainNav: [

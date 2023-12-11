@@ -5,12 +5,12 @@ import { useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
 
-import { env } from '@/env.mjs';
-import { Icons } from '@/app/components/shared/icons';
-import { toast } from '@/app/components/ui/use-toast';
-import { useModal } from '@/app/components/write/modal/provider';
-import { createSite } from '@/app/lib/actions';
-import { cn } from '@/app/lib/utils';
+import { env } from ':/env.mjs';
+import { createSite } from '#/lib/actions';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
+import { toast } from '#/components/ui/use-toast';
+import { useModal } from '#/components/write/modal/provider';
 
 export default function CreateSiteModal() {
   const router = useRouter();

@@ -1,7 +1,7 @@
-import { MAX_FREE_TOKENS } from '@/constants';
+import { MAX_FREE_TOKENS } from ':/constants';
 
-import { db } from '@/app/lib/db';
-import { getSession } from '@/app/lib/session';
+import { db } from '#/lib/db';
+import { getSession } from '#/lib/session';
 
 export const increaseApiLimit = async () => {
   const session = await getSession();

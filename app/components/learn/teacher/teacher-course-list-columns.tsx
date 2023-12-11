@@ -4,16 +4,16 @@ import Link from 'next/link';
 import { Course } from '@prisma/client';
 import { ColumnDef } from '@tanstack/react-table';
 
-import { Icons } from '@/app/components/shared/icons';
-import { Badge } from '@/app/components/ui/badge';
-import { Button } from '@/app/components/ui/button';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
+import { Badge } from '#/components/ui/badge';
+import { Button } from '#/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/app/components/ui/dropdown-menu';
-import { cn } from '@/app/lib/utils';
+} from '#/components/ui/dropdown-menu';
 
 export const teacherCourseListColumns: ColumnDef<Course>[] = [
   {

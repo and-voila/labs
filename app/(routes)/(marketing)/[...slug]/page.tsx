@@ -1,13 +1,13 @@
 import { notFound } from 'next/navigation';
 import { allPages } from 'contentlayer/generated';
 
-import { Mdx } from '@/app/components/content/mdx-components';
+import { Mdx } from '#/components/content/mdx-components';
 
-import '@/app/styles/mdx.css';
+import '#/styles/mdx.css';
 
 import { Metadata } from 'next';
 
-import { absoluteUrl } from '@/app/lib/utils';
+import { absoluteUrl } from '#/lib/utils';
 
 interface PageProps {
   params: {

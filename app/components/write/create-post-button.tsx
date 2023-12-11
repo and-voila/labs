@@ -4,10 +4,10 @@ import { useTransition } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 
-import { buttonVariants } from '@/app/components/ui/button';
-import LoadingDots from '@/app/components/write/icons/loading-dots';
-import { createPost } from '@/app/lib/actions';
-import { cn } from '@/app/lib/utils';
+import { createPost } from '#/lib/actions';
+import { cn } from '#/lib/utils';
+import { buttonVariants } from '#/components/ui/button';
+import LoadingDots from '#/components/write/icons/loading-dots';
 
 export default function CreatePostButton() {
   const router = useRouter();

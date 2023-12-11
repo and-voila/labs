@@ -2,8 +2,8 @@ import * as React from 'react';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { cva } from 'class-variance-authority';
 
-import { Icons } from '@/app/components/shared/icons';
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,

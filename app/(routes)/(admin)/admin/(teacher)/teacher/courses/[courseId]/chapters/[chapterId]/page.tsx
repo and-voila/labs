@@ -2,16 +2,16 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import { Banner } from '@/app/components/banner';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { IconBadge } from '@/app/components/icon-badge';
-import { ChapterActions } from '@/app/components/learn/teacher/chapters/chapter-actions';
-import { ChapterDescriptionForm } from '@/app/components/learn/teacher/chapters/chapter-description-form';
-import { ChapterTitleForm } from '@/app/components/learn/teacher/chapters/chapter-title-form';
-import { ChapterVideoForm } from '@/app/components/learn/teacher/chapters/chapter-video-form';
-import { Icons } from '@/app/components/shared/icons';
-import { Button } from '@/app/components/ui/button';
-import { db } from '@/app/lib/db';
+import { db } from '#/lib/db';
+import { Banner } from '#/components/banner';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { IconBadge } from '#/components/icon-badge';
+import { ChapterActions } from '#/components/learn/teacher/chapters/chapter-actions';
+import { ChapterDescriptionForm } from '#/components/learn/teacher/chapters/chapter-description-form';
+import { ChapterTitleForm } from '#/components/learn/teacher/chapters/chapter-title-form';
+import { ChapterVideoForm } from '#/components/learn/teacher/chapters/chapter-video-form';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Create Play',

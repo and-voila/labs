@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 
-import { PricingCards } from '@/app/components/pricing-cards';
-import { PricingFaq } from '@/app/components/pricing-faq';
-import { getSession } from '@/app/lib/session';
-import { getUserSubscriptionPlan } from '@/app/lib/subscription';
+import { getSession } from '#/lib/session';
+import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { PricingCards } from '#/components/pricing-cards';
+import { PricingFaq } from '#/components/pricing-faq';
 
 export default async function PricingPage() {
   const session = await getSession();

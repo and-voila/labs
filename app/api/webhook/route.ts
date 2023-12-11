@@ -2,9 +2,9 @@ import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-import { env } from '@/env.mjs';
-import { db } from '@/app/lib/db';
-import { stripe } from '@/app/lib/stripe';
+import { env } from ':/env.mjs';
+import { db } from '#/lib/db';
+import { stripe } from '#/lib/stripe';
 
 export async function POST(req: Request) {
   const body = await req.text();

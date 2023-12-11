@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
-import { Button } from '@/app/components/ui/button';
-import { toast } from '@/app/components/ui/use-toast';
+import { Button } from '#/components/ui/button';
+import { toast } from '#/components/ui/use-toast';
 
 interface StartCourseButtonProps {
   chapterId: string;

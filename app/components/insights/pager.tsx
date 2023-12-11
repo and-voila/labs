@@ -4,10 +4,10 @@
 import Link from 'next/link';
 import { Insight } from 'contentlayer/generated';
 
-import { Icons } from '@/app/components/shared/icons';
-import { buttonVariants } from '@/app/components/ui/button';
-import { insightsConfig } from '@/app/config/insights';
-import { cn } from '@/app/lib/utils';
+import { insightsConfig } from '#/config/insights';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
+import { buttonVariants } from '#/components/ui/button';
 
 interface InsightsPagerProps {
   insight: Insight;

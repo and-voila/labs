@@ -1,14 +1,14 @@
 import { Dispatch, TransitionStartFunction } from 'react';
 
-import { Icons } from '@/app/components/shared/icons';
+import { Icons } from '#/components/shared/icons';
 import {
   EditorAction,
   EditorState,
   PostWithSite,
-} from '@/app/components/write/editor/editor';
-import EditorIpStatusIndicator from '@/app/components/write/editor/editor-ip-status-indicator';
-import EditorPublishButton from '@/app/components/write/editor/editor-publish-button';
-import { EditorStatusIndicator } from '@/app/components/write/editor/editor-status-indicator';
+} from '#/components/write/editor/editor';
+import EditorIpStatusIndicator from '#/components/write/editor/editor-ip-status-indicator';
+import EditorPublishButton from '#/components/write/editor/editor-publish-button';
+import { EditorStatusIndicator } from '#/components/write/editor/editor-status-indicator';
 
 interface EditorHeaderProps {
   isPendingSaving: boolean;

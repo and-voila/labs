@@ -1,11 +1,10 @@
 import Link from 'next/link';
 
-import { buttonVariants } from '@/app/components/ui/button';
-import { pricingData } from '@/app/config/subscriptions';
-import { SubscriptionPlan } from '@/app/lib/types';
-import { cn } from '@/app/lib/utils';
-
-import { Icons } from './shared/icons';
+import { pricingData } from '#/config/subscriptions';
+import { SubscriptionPlan } from '#/lib/types';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
+import { buttonVariants } from '#/components/ui/button';
 
 interface GoodPlanCardProps {
   plan: SubscriptionPlan;

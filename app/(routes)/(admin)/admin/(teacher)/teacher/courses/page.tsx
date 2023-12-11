@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
-import { DashboardHeader } from '@/app/components/dashboard/header';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { teacherCourseListColumns } from '@/app/components/learn/teacher/teacher-course-list-columns';
-import { TeacherCourseListDataTable } from '@/app/components/learn/teacher/teacher-course-list-data-table';
-import { db } from '@/app/lib/db';
+import { db } from '#/lib/db';
+import { DashboardHeader } from '#/components/dashboard/header';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { teacherCourseListColumns } from '#/components/learn/teacher/teacher-course-list-columns';
+import { TeacherCourseListDataTable } from '#/components/learn/teacher/teacher-course-list-data-table';
 
 export const metadata: Metadata = {
   title: 'Playbooks Admin',

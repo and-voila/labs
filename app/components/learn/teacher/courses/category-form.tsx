@@ -8,9 +8,10 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { Icons } from '@/app/components/shared/icons';
-import { Button } from '@/app/components/ui/button';
-import { Combobox } from '@/app/components/ui/combobox';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
+import { Combobox } from '#/components/ui/combobox';
 import {
   Form,
   FormControl,
@@ -18,9 +19,8 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from '@/app/components/ui/form';
-import { toast } from '@/app/components/ui/use-toast';
-import { cn } from '@/app/lib/utils';
+} from '#/components/ui/form';
+import { toast } from '#/components/ui/use-toast';
 
 interface CategoryFormProps {
   initialData: Course;

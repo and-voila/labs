@@ -2,22 +2,17 @@
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
-import { DashboardHeader } from '@/app/components/dashboard/header';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { Icons } from '@/app/components/shared/icons';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/app/components/ui/tabs';
-import CreatePostButton from '@/app/components/write/create-post-button';
-import Form from '@/app/components/write/form';
-import DeleteSiteForm from '@/app/components/write/form/delete-site-form';
-import Posts from '@/app/components/write/posts';
-import { updateSite } from '@/app/lib/actions';
-import { db } from '@/app/lib/db';
-import { getSession } from '@/app/lib/session';
+import { updateSite } from '#/lib/actions';
+import { db } from '#/lib/db';
+import { getSession } from '#/lib/session';
+import { DashboardHeader } from '#/components/dashboard/header';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { Icons } from '#/components/shared/icons';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '#/components/ui/tabs';
+import CreatePostButton from '#/components/write/create-post-button';
+import Form from '#/components/write/form';
+import DeleteSiteForm from '#/components/write/form/delete-site-form';
+import Posts from '#/components/write/posts';
 
 export default async function SitePosts({
   params,

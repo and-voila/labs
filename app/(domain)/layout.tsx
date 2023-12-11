@@ -1,10 +1,10 @@
-import '@/app/styles/globals.css';
+import '#/styles/globals.css';
 
 import { Viewport } from 'next';
-import { fontBricolage } from '@/public/fonts';
+import { fontBricolage } from ':/public/fonts';
 
-import { DomainProviders } from '@/app/components/providers/domain-providers';
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
+import { DomainProviders } from '#/components/providers/domain-providers';
 
 interface DomainRootLayoutProps {
   children: React.ReactNode;

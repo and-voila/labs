@@ -8,10 +8,11 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { Preview } from '@/app/components/preview';
-import { QuillEditor } from '@/app/components/quill-editor';
-import { Icons } from '@/app/components/shared/icons';
-import { Button } from '@/app/components/ui/button';
+import { cn } from '#/lib/utils';
+import { Preview } from '#/components/preview';
+import { QuillEditor } from '#/components/quill-editor';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
 import {
   Form,
   FormControl,
@@ -19,9 +20,8 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from '@/app/components/ui/form';
-import { toast } from '@/app/components/ui/use-toast';
-import { cn } from '@/app/lib/utils';
+} from '#/components/ui/form';
+import { toast } from '#/components/ui/use-toast';
 
 interface DescriptionFormProps {
   initialData: Course;

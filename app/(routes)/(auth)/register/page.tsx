@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-import { Logo } from '@/app/components/logo-square';
-import { Icons } from '@/app/components/shared/icons';
-import { buttonVariants } from '@/app/components/ui/button';
-import UserAuthForm from '@/app/components/user-auth-form';
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
+import { Logo } from '#/components/logo-square';
+import { Icons } from '#/components/shared/icons';
+import { buttonVariants } from '#/components/ui/button';
+import UserAuthForm from '#/components/user-auth-form';
 
 export function generateMetadata(): Metadata {
   const title = 'Register';

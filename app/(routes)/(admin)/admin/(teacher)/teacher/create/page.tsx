@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { COURSE_DEFAULT_PRICE } from '@/constants';
+import { COURSE_DEFAULT_PRICE } from ':/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { Button } from '@/app/components/ui/button';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { Button } from '#/components/ui/button';
 import {
   Form,
   FormControl,
@@ -18,9 +18,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/app/components/ui/form';
-import { Input } from '@/app/components/ui/input';
-import { toast } from '@/app/components/ui/use-toast';
+} from '#/components/ui/form';
+import { Input } from '#/components/ui/input';
+import { toast } from '#/components/ui/use-toast';
 
 const formSchema = z.object({
   title: z

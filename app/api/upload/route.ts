@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { put } from '@vercel/blob';
 import { nanoid } from 'nanoid';
 
-import { env } from '@/env.mjs';
+import { env } from ':/env.mjs';
 
 export const runtime = 'edge';
 

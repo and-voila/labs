@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 
-import MarketingIndexBenefits from '@/app/components/marketing/marketing-index-benefits';
-import MarketingIndexHero from '@/app/components/marketing/marketing-index-hero';
-import MarketingIndexOpenSource from '@/app/components/marketing/marketing-index-open-source';
-import { siteConfig } from '@/app/config/site';
+import { siteConfig } from '#/config/site';
+import MarketingIndexBenefits from '#/components/marketing/marketing-index-benefits';
+import MarketingIndexHero from '#/components/marketing/marketing-index-hero';
+import MarketingIndexOpenSource from '#/components/marketing/marketing-index-open-source';
 
 export default async function IndexPage() {
   return (

@@ -4,12 +4,12 @@ import DiscordProvider from 'next-auth/providers/discord';
 import EmailProvider from 'next-auth/providers/email';
 import GoogleProvider from 'next-auth/providers/google';
 
-import { env } from '@/env.mjs';
-import { db } from '@/app/lib/db';
-import { generateUniqueDisplayName } from '@/app/lib/generate-unique-display-name';
-import { sendVerificationRequest } from '@/app/lib/resend/send-verification-request';
-import { sendWelcomeEmail } from '@/app/lib/resend/send-welcome-email';
-import { getSession } from '@/app/lib/session';
+import { env } from ':/env.mjs';
+import { db } from '#/lib/db';
+import { generateUniqueDisplayName } from '#/lib/generate-unique-display-name';
+import { sendVerificationRequest } from '#/lib/resend/send-verification-request';
+import { sendWelcomeEmail } from '#/lib/resend/send-welcome-email';
+import { getSession } from '#/lib/session';
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 

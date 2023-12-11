@@ -5,10 +5,10 @@ import { useParams } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
 
-import { Icons } from '@/app/components/shared/icons';
-import { toast } from '@/app/components/ui/use-toast';
-import LoadingDots from '@/app/components/write/icons/loading-dots';
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
+import { toast } from '#/components/ui/use-toast';
+import LoadingDots from '#/components/write/icons/loading-dots';
 
 export default function ReportAbuse() {
   const [open, setOpen] = useState(false);

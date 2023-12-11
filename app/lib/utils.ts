@@ -2,9 +2,9 @@ import { ClassValue, clsx } from 'clsx';
 import ms from 'ms';
 import { twMerge } from 'tailwind-merge';
 
-import { env } from '@/env.mjs';
-import { pricingData } from '@/app/config/subscriptions';
-import { PlanTitle, SubscriptionPlan } from '@/app/lib/types';
+import { env } from ':/env.mjs';
+import { pricingData } from '#/config/subscriptions';
+import { PlanTitle, SubscriptionPlan } from '#/lib/types';
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'

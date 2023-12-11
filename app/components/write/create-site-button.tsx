@@ -2,8 +2,8 @@
 
 import { ReactNode } from 'react';
 
-import { Button } from '@/app/components/ui/button';
-import { useModal } from '@/app/components/write/modal/provider';
+import { Button } from '#/components/ui/button';
+import { useModal } from '#/components/write/modal/provider';
 
 export default function CreateSiteButton({
   children,

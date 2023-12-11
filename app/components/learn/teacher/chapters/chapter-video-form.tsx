@@ -7,10 +7,10 @@ import { Chapter, MuxData } from '@prisma/client';
 import axios from 'axios';
 import * as z from 'zod';
 
-import { FileUpload } from '@/app/components/learn/teacher/file-upload';
-import { Icons } from '@/app/components/shared/icons';
-import { Button } from '@/app/components/ui/button';
-import { toast } from '@/app/components/ui/use-toast';
+import { FileUpload } from '#/components/learn/teacher/file-upload';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
+import { toast } from '#/components/ui/use-toast';
 
 interface ChapterVideoFormProps {
   initialData: Chapter & { muxData?: MuxData | null };

@@ -1,8 +1,8 @@
-import MagicLinkEmail from '@/emails/magic-link-email';
+import MagicLinkEmail from ':/emails/magic-link-email';
 
-import { siteConfig } from '@/app/config/site';
-import { db } from '@/app/lib/db';
-import { resend } from '@/app/lib/resend/resend';
+import { siteConfig } from '#/config/site';
+import { db } from '#/lib/db';
+import { resend } from '#/lib/resend/resend';
 
 export async function sendVerificationRequest({
   identifier,

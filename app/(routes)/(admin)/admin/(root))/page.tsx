@@ -2,17 +2,12 @@ import { SVGProps } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-import { DashboardHeader } from '@/app/components/dashboard/header';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { Icons } from '@/app/components/shared/icons';
-import { buttonVariants } from '@/app/components/ui/button';
-import {
-  Card,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/app/components/ui/card';
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
+import { DashboardHeader } from '#/components/dashboard/header';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { Icons } from '#/components/shared/icons';
+import { buttonVariants } from '#/components/ui/button';
+import { Card, CardFooter, CardHeader, CardTitle } from '#/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Admin Center',

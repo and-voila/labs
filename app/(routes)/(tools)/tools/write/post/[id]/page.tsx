@@ -2,20 +2,15 @@
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
-import { DashboardHeader } from '@/app/components/dashboard/header';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/app/components/ui/tabs';
-import Editor from '@/app/components/write/editor/editor';
-import Form from '@/app/components/write/form';
-import DeletePostForm from '@/app/components/write/form/delete-post-form';
-import { updatePostMetadata } from '@/app/lib/actions';
-import { db } from '@/app/lib/db';
-import { getSession } from '@/app/lib/session';
+import { updatePostMetadata } from '#/lib/actions';
+import { db } from '#/lib/db';
+import { getSession } from '#/lib/session';
+import { DashboardHeader } from '#/components/dashboard/header';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '#/components/ui/tabs';
+import Editor from '#/components/write/editor/editor';
+import Form from '#/components/write/form';
+import DeletePostForm from '#/components/write/form/delete-post-form';
 
 export default async function PostPage({ params }: { params: { id: string } }) {
   const session = await getSession();

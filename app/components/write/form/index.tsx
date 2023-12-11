@@ -6,13 +6,13 @@ import va from '@vercel/analytics';
 import { useSession } from 'next-auth/react';
 import { useFormStatus } from 'react-dom';
 
-import { buttonVariants } from '@/app/components/ui/button';
-import { toast } from '@/app/components/ui/use-toast';
-import DomainConfiguration from '@/app/components/write/form/domain-configuration';
-import DomainStatus from '@/app/components/write/form/domain-status';
-import Uploader from '@/app/components/write/form/uploader';
-import LoadingDots from '@/app/components/write/icons/loading-dots';
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
+import { buttonVariants } from '#/components/ui/button';
+import { toast } from '#/components/ui/use-toast';
+import DomainConfiguration from '#/components/write/form/domain-configuration';
+import DomainStatus from '#/components/write/form/domain-status';
+import Uploader from '#/components/write/form/uploader';
+import LoadingDots from '#/components/write/icons/loading-dots';
 
 export default function Form({
   title,

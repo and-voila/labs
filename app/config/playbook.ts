@@ -1,4 +1,4 @@
-import { PlaybookConfig } from '@/app/lib/types';
+import { PlaybookConfig } from '#/lib/types';
 
 export const playbookConfig: PlaybookConfig = {
   mainNav: [

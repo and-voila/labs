@@ -1,7 +1,7 @@
 'use client';
 
 import 'react-quill/dist/quill.bubble.css';
-import '@/app/components/quill.css';
+import '#/components/quill.css';
 
 import { useMemo } from 'react';
 import dynamic from 'next/dynamic';

@@ -1,4 +1,4 @@
-import { ToolsConfig } from '@/app/lib/types';
+import { ToolsConfig } from '#/lib/types';
 
 export const toolsConfig: ToolsConfig = {
   mainNav: [

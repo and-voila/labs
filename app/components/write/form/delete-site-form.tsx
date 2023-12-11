@@ -4,11 +4,11 @@ import { useParams, useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
 
-import { buttonVariants } from '@/app/components/ui/button';
-import { toast } from '@/app/components/ui/use-toast';
-import LoadingDots from '@/app/components/write/icons/loading-dots';
-import { deleteSite } from '@/app/lib/actions';
-import { cn } from '@/app/lib/utils';
+import { deleteSite } from '#/lib/actions';
+import { cn } from '#/lib/utils';
+import { buttonVariants } from '#/components/ui/button';
+import { toast } from '#/components/ui/use-toast';
+import LoadingDots from '#/components/write/icons/loading-dots';
 
 export default function DeleteSiteForm({ siteName }: { siteName: string }) {
   const { id } = useParams() as { id: string };

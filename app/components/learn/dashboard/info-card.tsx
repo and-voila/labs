@@ -1,5 +1,5 @@
-import { IconBadge } from '@/app/components/icon-badge';
-import { IconName } from '@/app/components/shared/icons';
+import { IconBadge } from '#/components/icon-badge';
+import { IconName } from '#/components/shared/icons';
 
 interface InfoCardProps {
   numberOfItems: number;

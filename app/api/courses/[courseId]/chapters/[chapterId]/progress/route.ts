@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
-import { db } from '@/app/lib/db';
-import { getSession } from '@/app/lib/session';
+import { db } from '#/lib/db';
+import { getSession } from '#/lib/session';
 
 export async function PUT(
   req: Request,

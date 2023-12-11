@@ -1,9 +1,9 @@
 import { useTransition } from 'react';
 
-import { Icons } from '@/app/components/shared/icons';
-import { Button } from '@/app/components/ui/button';
-import { generateUserStripe } from '@/app/lib/actions/generate-user-stripe';
-import { SubscriptionPlan, UserSubscriptionPlan } from '@/app/lib/types';
+import { generateUserStripe } from '#/lib/actions/generate-user-stripe';
+import { SubscriptionPlan, UserSubscriptionPlan } from '#/lib/types';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
 
 interface BillingFormButtonProps {
   offer: SubscriptionPlan;

@@ -2,9 +2,9 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 
-import { Icons } from '@/app/components/shared/icons';
-import { SidebarItemProps } from '@/app/lib/types';
-import { cn } from '@/app/lib/utils';
+import { SidebarItemProps } from '#/lib/types';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
 
 export const SidebarItem = ({ icon, label, href }: SidebarItemProps) => {
   const pathname = usePathname();

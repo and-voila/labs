@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 
-import { Input } from '@/app/components/ui/input';
-import { toast } from '@/app/components/ui/use-toast';
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
+import { Input } from '#/components/ui/input';
+import { toast } from '#/components/ui/use-toast';
 
 interface InsightsSearchProps extends React.HTMLAttributes<HTMLFormElement> {}
 

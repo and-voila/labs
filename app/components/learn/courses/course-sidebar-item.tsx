@@ -2,8 +2,8 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 
-import { CourseSidebarItemProps } from '@/app/lib/types';
-import { cn } from '@/app/lib/utils';
+import { CourseSidebarItemProps } from '#/lib/types';
+import { cn } from '#/lib/utils';
 
 export const CourseSidebarItem = ({
   label,

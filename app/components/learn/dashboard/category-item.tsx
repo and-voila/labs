@@ -3,7 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string';
 
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
 
 interface CategoryItemProps {
   label: string;

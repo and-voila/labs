@@ -2,9 +2,9 @@
 import { ReactNode } from 'react';
 import { redirect } from 'next/navigation';
 
-import Form from '@/app/components/write/form';
-import { editUser } from '@/app/lib/actions';
-import { getSession } from '@/app/lib/session';
+import { editUser } from '#/lib/actions';
+import { getSession } from '#/lib/session';
+import Form from '#/components/write/form';
 
 export default async function SettingsPage() {
   const session = await getSession();

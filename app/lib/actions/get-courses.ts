@@ -2,9 +2,9 @@
 
 import { Category, Course } from '@prisma/client';
 
-import { getProgress } from '@/app/lib/actions/get-progress';
-import { db } from '@/app/lib/db';
-import { getUserSubscriptionPlan } from '@/app/lib/subscription';
+import { getProgress } from '#/lib/actions/get-progress';
+import { db } from '#/lib/db';
+import { getUserSubscriptionPlan } from '#/lib/subscription';
 
 type CourseWithProgressWithCategory = Course & {
   category: Category | null;

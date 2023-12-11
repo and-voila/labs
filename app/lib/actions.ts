@@ -6,19 +6,19 @@ import { Post, Site } from '@prisma/client';
 import { put } from '@vercel/blob';
 import { customAlphabet } from 'nanoid';
 
-import { env } from '@/env.mjs';
-import { withPostAuth, withSiteAuth } from '@/app/lib/auth';
-import { db } from '@/app/lib/db';
+import { env } from ':/env.mjs';
+import { withPostAuth, withSiteAuth } from '#/lib/auth';
+import { db } from '#/lib/db';
 import {
   addDomainToVercel,
   // getApexDomain,
   removeDomainFromVercelProject,
   // removeDomainFromVercelTeam,
   validDomainRegex,
-} from '@/app/lib/domains';
-import { getSession } from '@/app/lib/session';
-import { isTeacher } from '@/app/lib/teacher';
-import { getBlurDataURL } from '@/app/lib/utils';
+} from '#/lib/domains';
+import { getSession } from '#/lib/session';
+import { isTeacher } from '#/lib/teacher';
+import { getBlurDataURL } from '#/lib/utils';
 
 const nanoid = customAlphabet(
   '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',

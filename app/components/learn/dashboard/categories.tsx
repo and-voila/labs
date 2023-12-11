@@ -3,8 +3,8 @@
 import { Suspense } from 'react';
 import { Category } from '@prisma/client';
 
-import { CategoryItem } from '@/app/components/learn/dashboard/category-item';
-import { CategoryItemSkeleton } from '@/app/components/skeletons';
+import { CategoryItem } from '#/components/learn/dashboard/category-item';
+import { CategoryItemSkeleton } from '#/components/skeletons';
 
 interface CategoriesProps {
   items: Category[];

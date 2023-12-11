@@ -4,8 +4,8 @@ import {
   getConfigResponse,
   getDomainResponse,
   verifyDomain,
-} from '@/app/lib/domains';
-import { DomainVerificationStatusProps } from '@/app/lib/types';
+} from '#/lib/domains';
+import { DomainVerificationStatusProps } from '#/lib/types';
 
 export async function GET(
   _req: Request,

@@ -9,9 +9,9 @@ import {
 } from '@hello-pangea/dnd';
 import { Chapter } from '@prisma/client';
 
-import { Icons } from '@/app/components/shared/icons';
-import { Badge } from '@/app/components/ui/badge';
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
+import { Badge } from '#/components/ui/badge';
 
 interface ChaptersListProps {
   items: Chapter[];

@@ -1,12 +1,12 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 
-import { DashboardHeader } from '@/app/components/dashboard/header';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import CreateSiteButton from '@/app/components/write/create-site-button';
-import CreateSiteModal from '@/app/components/write/modal/create-site';
-import PlaceholderCard from '@/app/components/write/placeholder-card';
-import Sites from '@/app/components/write/sites';
+import { DashboardHeader } from '#/components/dashboard/header';
+import { DashboardShell } from '#/components/dashboard/shell';
+import CreateSiteButton from '#/components/write/create-site-button';
+import CreateSiteModal from '#/components/write/modal/create-site';
+import PlaceholderCard from '#/components/write/placeholder-card';
+import Sites from '#/components/write/sites';
 
 export default function AllSites({ params }: { params: { id: string } }) {
   return (

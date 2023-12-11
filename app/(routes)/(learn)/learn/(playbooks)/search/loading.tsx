@@ -1,9 +1,9 @@
-import { DashboardShell } from '@/app/components/dashboard/shell';
+import { DashboardShell } from '#/components/dashboard/shell';
 import {
   CategoryItemSkeleton,
   CourseCardSkeleton,
   SearchInputSkeleton,
-} from '@/app/components/skeletons';
+} from '#/components/skeletons';
 
 export default function PlaybooksSearchLoading() {
   return (

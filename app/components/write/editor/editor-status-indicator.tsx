@@ -1,10 +1,7 @@
 import { Dispatch } from 'react';
 
-import {
-  EditorAction,
-  EditorState,
-} from '@/app/components/write/editor/editor';
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
+import { EditorAction, EditorState } from '#/components/write/editor/editor';
 
 interface EditorStatusIndicatorProps {
   isPendingSaving: boolean;

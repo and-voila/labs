@@ -1,7 +1,7 @@
 'use client';
 
-import { Icons } from '@/app/components/shared/icons';
-import { useDomainStatus } from '@/app/components/write/form/use-domain-status';
+import { Icons } from '#/components/shared/icons';
+import { useDomainStatus } from '#/components/write/form/use-domain-status';
 
 export default function DomainStatus({ domain }: { domain: string }) {
   const { status, loading } = useDomainStatus({ domain });

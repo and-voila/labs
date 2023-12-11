@@ -1,18 +1,18 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
-import { env } from '@/env.mjs';
-import { Banner } from '@/app/components/banner';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { CourseProgressButton } from '@/app/components/learn/courses/course-progress-button';
-import { VideoPlayer } from '@/app/components/learn/courses/video-player';
-import { Preview } from '@/app/components/preview';
-import { Icons } from '@/app/components/shared/icons';
-import { Separator } from '@/app/components/ui/separator';
-import { getChapter } from '@/app/lib/actions/get-chapter';
-import { authOptions } from '@/app/lib/auth';
-import { db } from '@/app/lib/db';
-import { getSession } from '@/app/lib/session';
+import { env } from ':/env.mjs';
+import { getChapter } from '#/lib/actions/get-chapter';
+import { authOptions } from '#/lib/auth';
+import { db } from '#/lib/db';
+import { getSession } from '#/lib/session';
+import { Banner } from '#/components/banner';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { CourseProgressButton } from '#/components/learn/courses/course-progress-button';
+import { VideoPlayer } from '#/components/learn/courses/video-player';
+import { Preview } from '#/components/preview';
+import { Icons } from '#/components/shared/icons';
+import { Separator } from '#/components/ui/separator';
 
 const ChapterIdPage = async ({
   params,

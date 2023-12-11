@@ -1,11 +1,11 @@
 import { redirect } from 'next/navigation';
 
-import { DashboardNav } from '@/app/components/layout/nav';
-import { NavBar } from '@/app/components/layout/navbar';
-import { SiteFooter } from '@/app/components/layout/site-footer';
-import { toolsConfig } from '@/app/config/tools';
-import { authOptions } from '@/app/lib/auth';
-import { getSession } from '@/app/lib/session';
+import { toolsConfig } from '#/config/tools';
+import { authOptions } from '#/lib/auth';
+import { getSession } from '#/lib/session';
+import { DashboardNav } from '#/components/layout/nav';
+import { NavBar } from '#/components/layout/navbar';
+import { SiteFooter } from '#/components/layout/site-footer';
 
 interface ToolsLayoutProps {
   children?: React.ReactNode;

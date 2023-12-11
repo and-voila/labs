@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { ModeToggle } from '@/app/components/layout/mode-toggle';
-import { Icons } from '@/app/components/shared/icons';
-import BlurImage from '@/app/components/write/blur-image';
-import ReportAbuse from '@/app/components/write/report-abuse';
-import { cn, placeholderBlurhash } from '@/app/lib/utils';
+import { cn, placeholderBlurhash } from '#/lib/utils';
+import { ModeToggle } from '#/components/layout/mode-toggle';
+import { Icons } from '#/components/shared/icons';
+import BlurImage from '#/components/write/blur-image';
+import ReportAbuse from '#/components/write/report-abuse';
 
 interface DomainsFooterLinkData {
   href: string;

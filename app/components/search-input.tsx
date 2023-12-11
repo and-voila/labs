@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string';
 
-import { Icons } from '@/app/components/shared/icons';
-import { Input } from '@/app/components/ui/input';
-import { useDebounce } from '@/app/hooks/use-debounce';
+import { Icons } from '#/components/shared/icons';
+import { Input } from '#/components/ui/input';
+import { useDebounce } from '#/hooks/use-debounce';
 
 export const SearchInput = () => {
   const [value, setValue] = useState('');

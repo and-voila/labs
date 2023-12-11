@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import type { Post } from '@prisma/client';
 
-import BlurImage from '@/app/components/write/blur-image';
-import { placeholderBlurhash, toDateString } from '@/app/lib/utils';
+import { placeholderBlurhash, toDateString } from '#/lib/utils';
+import BlurImage from '#/components/write/blur-image';
 
 interface BlogCardProps {
   data: Pick<

@@ -1,7 +1,7 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 
-import { getSession } from '@/app/lib/session';
-import { isTeacher } from '@/app/lib/teacher';
+import { getSession } from '#/lib/session';
+import { isTeacher } from '#/lib/teacher';
 
 const f = createUploadthing();
 

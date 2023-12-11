@@ -1,6 +1,6 @@
-import { DashboardHeader } from '@/app/components/dashboard/header';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { ToolsDashboardCardSkeleton } from '@/app/components/skeletons';
+import { DashboardHeader } from '#/components/dashboard/header';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { ToolsDashboardCardSkeleton } from '#/components/skeletons';
 
 export default function ToolsDashboardLoading() {
   return (

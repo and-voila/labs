@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { CoursesList } from '@/app/components/learn/courses/courses-list';
-import { InfoCard } from '@/app/components/learn/dashboard/info-card';
-import { getDashboardCourses } from '@/app/lib/actions/get-dashboard-courses';
-import { authOptions } from '@/app/lib/auth';
-import { getSession } from '@/app/lib/session';
+import { getDashboardCourses } from '#/lib/actions/get-dashboard-courses';
+import { authOptions } from '#/lib/auth';
+import { getSession } from '#/lib/session';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { CoursesList } from '#/components/learn/courses/courses-list';
+import { InfoCard } from '#/components/learn/dashboard/info-card';
 
 interface MyPlaybooksPageProps {
   searchParams: {

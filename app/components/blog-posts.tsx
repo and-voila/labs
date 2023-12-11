@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
-import BlurImage from '@/app/components/write/blur-image';
-import { formatDate, placeholderBlurhash } from '@/app/lib/utils';
+import { formatDate, placeholderBlurhash } from '#/lib/utils';
+import BlurImage from '#/components/write/blur-image';
 
 interface Post {
   _id: string;

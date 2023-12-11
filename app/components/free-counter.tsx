@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import Link from 'next/link';
-import { MAX_FREE_TOKENS } from '@/constants';
+import { MAX_FREE_TOKENS } from ':/constants';
 
-import { buttonVariants } from '@/app/components/ui/button';
-import { Card, CardContent } from '@/app/components/ui/card';
-import { isTeacher } from '@/app/lib/teacher';
-import { cn } from '@/app/lib/utils';
+import { isTeacher } from '#/lib/teacher';
+import { cn } from '#/lib/utils';
+import { buttonVariants } from '#/components/ui/button';
+import { Card, CardContent } from '#/components/ui/card';
 
 interface FreeCounterProps {
   apiLimitCount: number;

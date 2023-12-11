@@ -5,9 +5,9 @@ import dynamic from 'next/dynamic';
 import { Post } from '@prisma/client';
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote';
 
-import BlurImage from '@/app/components/write/blur-image';
-import styles from '@/app/components/write/mdx.module.css';
-import { replaceLinks } from '@/app/lib/remark-plugins';
+import { replaceLinks } from '#/lib/remark-plugins';
+import BlurImage from '#/components/write/blur-image';
+import styles from '#/components/write/mdx.module.css';
 
 const Tweet = dynamic(() => import('react-tweet').then((mod) => mod.Tweet), {
   ssr: false,

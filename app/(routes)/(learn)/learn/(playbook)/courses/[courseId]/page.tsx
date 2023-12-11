@@ -2,19 +2,19 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import { env } from '@/env.mjs';
-import { Banner } from '@/app/components/banner';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { StartCourseButton } from '@/app/components/learn/courses/start-course-button';
-import { Preview } from '@/app/components/preview';
-import { buttonVariants } from '@/app/components/ui/button';
-import { Separator } from '@/app/components/ui/separator';
-import BlurImage from '@/app/components/write/blur-image';
-import { authOptions } from '@/app/lib/auth';
-import { db } from '@/app/lib/db';
-import { getSession } from '@/app/lib/session';
-import { getUserSubscriptionPlan } from '@/app/lib/subscription';
-import { cn, placeholderBlurhash } from '@/app/lib/utils';
+import { env } from ':/env.mjs';
+import { authOptions } from '#/lib/auth';
+import { db } from '#/lib/db';
+import { getSession } from '#/lib/session';
+import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { cn, placeholderBlurhash } from '#/lib/utils';
+import { Banner } from '#/components/banner';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { StartCourseButton } from '#/components/learn/courses/start-course-button';
+import { Preview } from '#/components/preview';
+import { buttonVariants } from '#/components/ui/button';
+import { Separator } from '#/components/ui/separator';
+import BlurImage from '#/components/write/blur-image';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const session = await getSession();

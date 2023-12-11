@@ -2,24 +2,24 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { COURSE_DEFAULT_PRICE } from '@/constants';
+import { COURSE_DEFAULT_PRICE } from ':/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Course } from '@prisma/client';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { Icons } from '@/app/components/shared/icons';
-import { Button } from '@/app/components/ui/button';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
 import {
   Form,
   FormControl,
   FormDescription,
   FormField,
   FormItem,
-} from '@/app/components/ui/form';
-import { Switch } from '@/app/components/ui/switch';
-import { toast } from '@/app/components/ui/use-toast';
+} from '#/components/ui/form';
+import { Switch } from '#/components/ui/switch';
+import { toast } from '#/components/ui/use-toast';
 
 interface PriceFormProps {
   initialData: Course;

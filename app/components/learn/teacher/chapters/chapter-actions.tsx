@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
-import { ConfirmModal } from '@/app/components/modals/confirm-modal';
-import { Icons } from '@/app/components/shared/icons';
-import { Button } from '@/app/components/ui/button';
-import { toast } from '@/app/components/ui/use-toast';
+import { ConfirmModal } from '#/components/modals/confirm-modal';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
+import { toast } from '#/components/ui/use-toast';
 
 interface ChapterActionsProps {
   disabled: boolean;

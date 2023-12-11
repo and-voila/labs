@@ -1,24 +1,19 @@
 import { notFound } from 'next/navigation';
 import { allAuthors, allPosts } from 'contentlayer/generated';
 
-import { Mdx } from '@/app/components/content/mdx-components';
+import { Mdx } from '#/components/content/mdx-components';
 
-import '@/app/styles/mdx.css';
+import '#/styles/mdx.css';
 
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
-import { env } from '@/env.mjs';
-import { Icons } from '@/app/components/shared/icons';
-import { buttonVariants } from '@/app/components/ui/button';
-import BlurImage from '@/app/components/write/blur-image';
-import {
-  absoluteUrl,
-  cn,
-  formatDate,
-  placeholderBlurhash,
-} from '@/app/lib/utils';
+import { env } from ':/env.mjs';
+import { absoluteUrl, cn, formatDate, placeholderBlurhash } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
+import { buttonVariants } from '#/components/ui/button';
+import BlurImage from '#/components/write/blur-image';
 
 interface PostPageProps {
   params: {

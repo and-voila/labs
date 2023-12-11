@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import { DashboardNav } from '@/app/components/layout/nav';
-import { NavBar } from '@/app/components/layout/navbar';
-import { SiteFooter } from '@/app/components/layout/site-footer';
-import { Icons } from '@/app/components/shared/icons';
-import { Button } from '@/app/components/ui/button';
-import { playbookConfig } from '@/app/config/playbook';
-import { playbooksConfig } from '@/app/config/playbooks';
-import { authOptions } from '@/app/lib/auth';
-import { getSession } from '@/app/lib/session';
+import { playbookConfig } from '#/config/playbook';
+import { playbooksConfig } from '#/config/playbooks';
+import { authOptions } from '#/lib/auth';
+import { getSession } from '#/lib/session';
+import { DashboardNav } from '#/components/layout/nav';
+import { NavBar } from '#/components/layout/navbar';
+import { SiteFooter } from '#/components/layout/site-footer';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
 
 interface PlaybookRootLayoutProps {
   children: React.ReactNode;

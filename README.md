@@ -175,11 +175,14 @@ Labs x And Voila is a project developed by **[BRIL.LA](https://bril.la)**, craft
 
 Special thanks to **[@mickasmt](https://github.com/mickasmt/)** for creating the Next SaaS Starter Stripe, which served as a foundation for this project. Our project also draws inspiration from other great works in the open-source community, which we've adapted and expanded upon to create a unique experience for digital marketers.
 
-This project was inspired by shadcn's [Taxonomy](https://github.com/shadcn-ui/taxonomy), Steven Tey’s [Precedent](https://github.com/steven-tey/precedent) and [Platforms Starter Kit](https://github.com/vercel/platforms) , as well as Antonio Erdeljac's amazing OSS projects.
+This project was inspired by shadcn's [Taxonomy](https://github.com/shadcn-ui/taxonomy), Steven Tey’s [Precedent](https://github.com/steven-tey/precedent) and [Platforms Starter Kit](https://github.com/vercel/platforms), as well as Antonio Erdeljac's amazing OSS projects.
+
+Oh, **[@juliankoehn's nextjs-saas-starter](https://github.com/juliankoehn/nextjs-saas-starter)** saved us boat loads of time integrating Teams, the right way.
 
 - Shadcn ([@shadcn](https://twitter.com/shadcn))
 - Steven Tey ([@steventey](https://twitter.com/steventey))
 - Antonio Erdeljac ([@YTCodeAntonio](https://twitter.com/AntonioErdeljac))
+- Julian Koehn ([@JulianPRO](https://julian.pro/))
 
 ## License Information
 
@@ -196,6 +199,8 @@ While the majority of our project is under the AGPL v3.0, it incorporates compon
 2. **Platforms by Vercel**: We also use code from [Platforms by Vercel](https://github.com/vercel/platforms), covered under the MIT License.
 
 3. **Next13 LMS Platform**: Code from the [Next13 LMS Platform](https://github.com/AntonioErdeljac/next13-lms-platform) is integrated into our project and is licensed under the MIT License.
+
+4. **NextJS SaaS Starter**: Code from the [NextJS SaaS Starter](https://github.com/juliankoehn/nextjs-saas-starter) is integrated into our project and is licensed under the MIT License.
 
 ### Comprehensive Licensing Details
 

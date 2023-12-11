@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { allPosts } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 
-import { BlogPosts } from '@/app/components/blog-posts';
+import { BlogPosts } from '#/components/blog-posts';
 
 export default async function BlogPage() {
   const posts = allPosts

@@ -3,12 +3,12 @@
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 
-import { env } from '@/env.mjs';
-import { authOptions } from '@/app/lib/auth';
-import { db } from '@/app/lib/db';
-import { stripe } from '@/app/lib/stripe';
-import { getUserSubscriptionPlan } from '@/app/lib/subscription';
-import { absoluteUrl } from '@/app/lib/utils';
+import { env } from ':/env.mjs';
+import { authOptions } from '#/lib/auth';
+import { db } from '#/lib/db';
+import { stripe } from '#/lib/stripe';
+import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { absoluteUrl } from '#/lib/utils';
 
 export type responseAction = {
   status: 'success' | 'error';

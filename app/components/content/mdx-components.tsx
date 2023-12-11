@@ -2,9 +2,9 @@ import * as React from 'react';
 import NextImage, { ImageProps } from 'next/image';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
-import { MdxCard } from '@/app/components/content/mdx-card';
-import { Callout } from '@/app/components/shared/callout';
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
+import { MdxCard } from '#/components/content/mdx-card';
+import { Callout } from '#/components/shared/callout';
 
 type MDXComponentProps = React.HTMLAttributes<HTMLElement> & {
   className?: string | null;

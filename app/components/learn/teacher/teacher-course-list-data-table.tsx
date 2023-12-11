@@ -14,9 +14,9 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { Icons } from '@/app/components/shared/icons';
-import { Button } from '@/app/components/ui/button';
-import { Input } from '@/app/components/ui/input';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
+import { Input } from '#/components/ui/input';
 import {
   Table,
   TableBody,
@@ -24,7 +24,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/app/components/ui/table';
+} from '#/components/ui/table';
 
 interface TeacherCourseListDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

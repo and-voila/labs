@@ -1,19 +1,19 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
-import { Banner } from '@/app/components/banner';
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import { IconBadge } from '@/app/components/icon-badge';
-import { Actions } from '@/app/components/learn/teacher/courses/actions';
-import { AttachmentForm } from '@/app/components/learn/teacher/courses/attachment-form';
-import { CategoryForm } from '@/app/components/learn/teacher/courses/category-form';
-import { ChaptersForm } from '@/app/components/learn/teacher/courses/chapters-form';
-import { DescriptionForm } from '@/app/components/learn/teacher/courses/description-form';
-import { ImageForm } from '@/app/components/learn/teacher/courses/image-form';
-import { PreviewForm } from '@/app/components/learn/teacher/courses/preview-form';
-import { PriceForm } from '@/app/components/learn/teacher/courses/price-form';
-import { TitleForm } from '@/app/components/learn/teacher/courses/title-form';
-import { db } from '@/app/lib/db';
+import { db } from '#/lib/db';
+import { Banner } from '#/components/banner';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { IconBadge } from '#/components/icon-badge';
+import { Actions } from '#/components/learn/teacher/courses/actions';
+import { AttachmentForm } from '#/components/learn/teacher/courses/attachment-form';
+import { CategoryForm } from '#/components/learn/teacher/courses/category-form';
+import { ChaptersForm } from '#/components/learn/teacher/courses/chapters-form';
+import { DescriptionForm } from '#/components/learn/teacher/courses/description-form';
+import { ImageForm } from '#/components/learn/teacher/courses/image-form';
+import { PreviewForm } from '#/components/learn/teacher/courses/preview-form';
+import { PriceForm } from '#/components/learn/teacher/courses/price-form';
+import { TitleForm } from '#/components/learn/teacher/courses/title-form';
 
 export const metadata: Metadata = {
   title: 'Create Playbook',

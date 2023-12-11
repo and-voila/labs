@@ -1,7 +1,7 @@
 import { Category, Course } from '@prisma/client';
 
-import { CourseCard } from '@/app/components/learn/courses/course-card';
-import Pagination from '@/app/components/shared/pagination';
+import { CourseCard } from '#/components/learn/courses/course-card';
+import Pagination from '#/components/shared/pagination';
 
 type FilteredCoursesWithProgressAndAccess = Course & {
   category: Category | null;

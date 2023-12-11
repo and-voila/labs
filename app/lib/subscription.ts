@@ -1,7 +1,7 @@
-import { pricingData } from '@/app/config/subscriptions';
-import { db } from '@/app/lib/db';
-import { stripe } from '@/app/lib/stripe';
-import { UserSubscriptionPlan } from '@/app/lib/types';
+import { pricingData } from '#/config/subscriptions';
+import { db } from '#/lib/db';
+import { stripe } from '#/lib/stripe';
+import { UserSubscriptionPlan } from '#/lib/types';
 
 const DAY_IN_MS = 86_400_000;
 

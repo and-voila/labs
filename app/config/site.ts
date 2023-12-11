@@ -1,5 +1,5 @@
-import { env } from '@/env.mjs';
-import { SiteConfig } from '@/app/lib/types';
+import { env } from ':/env.mjs';
+import { SiteConfig } from '#/lib/types';
 
 const siteUrl = env.NEXT_PUBLIC_APP_URL;
 

@@ -5,10 +5,10 @@ import { useRouter } from 'next/navigation';
 import MuxPlayer from '@mux/mux-player-react/lazy';
 import axios from 'axios';
 
-import { Icons } from '@/app/components/shared/icons';
-import { toast } from '@/app/components/ui/use-toast';
-import { useConfettiStore } from '@/app/hooks/use-confetti-store';
-import { cn } from '@/app/lib/utils';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
+import { toast } from '#/components/ui/use-toast';
+import { useConfettiStore } from '#/hooks/use-confetti-store';
 
 interface VideoPlayerProps {
   playbackId: string;

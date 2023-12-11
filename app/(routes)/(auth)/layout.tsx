@@ -1,4 +1,4 @@
-import { SiteFooter } from '@/app/components/layout/site-footer';
+import { SiteFooter } from '#/components/layout/site-footer';
 
 interface AuthLayoutProps {
   children: React.ReactNode;

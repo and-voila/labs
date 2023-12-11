@@ -10,7 +10,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/app/components/ui/alert-dialog';
+} from '#/components/ui/alert-dialog';
 
 interface ConfirmModalProps {
   children: React.ReactNode;

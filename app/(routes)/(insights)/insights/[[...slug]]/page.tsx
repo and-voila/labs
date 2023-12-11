@@ -1,18 +1,18 @@
 import { notFound } from 'next/navigation';
 import { allInsights } from 'contentlayer/generated';
 
-import { Mdx } from '@/app/components/content/mdx-components';
-import { InsightsPageHeader } from '@/app/components/insights/page-header';
-import { InsightsPager } from '@/app/components/insights/pager';
-import { DashboardTableOfContents } from '@/app/components/shared/toc';
-import { getTableOfContents } from '@/app/lib/toc';
+import { getTableOfContents } from '#/lib/toc';
+import { Mdx } from '#/components/content/mdx-components';
+import { InsightsPageHeader } from '#/components/insights/page-header';
+import { InsightsPager } from '#/components/insights/pager';
+import { DashboardTableOfContents } from '#/components/shared/toc';
 
-import '@/app/styles/mdx.css';
+import '#/styles/mdx.css';
 
 import { Metadata } from 'next';
 
-import { env } from '@/env.mjs';
-import { absoluteUrl } from '@/app/lib/utils';
+import { env } from ':/env.mjs';
+import { absoluteUrl } from '#/lib/utils';
 
 interface InsightPageProps {
   params: {

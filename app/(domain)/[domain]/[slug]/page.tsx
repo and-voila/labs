@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation';
 
-import BlogCard from '@/app/components/write/blog-card';
-import BlurImage from '@/app/components/write/blur-image';
-import WriteCta from '@/app/components/write/cta';
-import NovelMDX from '@/app/components/write/novel-mdx';
-import { db } from '@/app/lib/db';
-import { getPostData, getSiteData } from '@/app/lib/fetchers';
-import { placeholderBlurhash, toDateString } from '@/app/lib/utils';
+import { db } from '#/lib/db';
+import { getPostData, getSiteData } from '#/lib/fetchers';
+import { placeholderBlurhash, toDateString } from '#/lib/utils';
+import BlogCard from '#/components/write/blog-card';
+import BlurImage from '#/components/write/blur-image';
+import WriteCta from '#/components/write/cta';
+import NovelMDX from '#/components/write/novel-mdx';
 
 export async function generateMetadata({
   params,

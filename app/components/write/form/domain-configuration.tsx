@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-import { useDomainStatus } from '@/app/components/write/form/use-domain-status';
-import { getSubdomain } from '@/app/lib/domains';
-import { cn } from '@/app/lib/utils';
+import { getSubdomain } from '#/lib/domains';
+import { cn } from '#/lib/utils';
+import { useDomainStatus } from '#/components/write/form/use-domain-status';
 
 import { Icons } from '../../shared/icons';
 

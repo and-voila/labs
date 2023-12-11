@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-import { Icons } from '@/app/components/shared/icons';
-import { buttonVariants } from '@/app/components/ui/button';
-import BlurImage from '@/app/components/write/blur-image';
-import { cn, placeholderBlurhash } from '@/app/lib/utils';
+import { cn, placeholderBlurhash } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
+import { buttonVariants } from '#/components/ui/button';
+import BlurImage from '#/components/write/blur-image';
 
 const NotAuthorizedPage = () => {
   return (

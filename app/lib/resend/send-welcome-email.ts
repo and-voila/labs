@@ -1,7 +1,7 @@
-import WelcomeEmail from '@/emails/welcome-email';
+import WelcomeEmail from ':/emails/welcome-email';
 
-import { siteConfig } from '@/app/config/site';
-import { resend } from '@/app/lib/resend/resend';
+import { siteConfig } from '#/config/site';
+import { resend } from '#/lib/resend/resend';
 
 import { SITE_URL } from '../utils';
 

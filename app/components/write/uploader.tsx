@@ -3,8 +3,8 @@
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { PutBlobResult } from '@vercel/blob';
 
-import { toast } from '@/app/components/ui/use-toast';
-import LoadingDots from '@/app/components/write/icons/loading-dots';
+import { toast } from '#/components/ui/use-toast';
+import LoadingDots from '#/components/write/icons/loading-dots';
 
 export default function Uploader() {
   const [data, setData] = useState<{

@@ -2,10 +2,10 @@ import { headers } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Icons } from '@/app/components/shared/icons';
-import { buttonVariants } from '@/app/components/ui/button';
-import { getSiteData } from '@/app/lib/fetchers';
-import { cn } from '@/app/lib/utils';
+import { getSiteData } from '#/lib/fetchers';
+import { cn } from '#/lib/utils';
+import { Icons } from '#/components/shared/icons';
+import { buttonVariants } from '#/components/ui/button';
 
 export default async function NotFound() {
   const headersList = headers();

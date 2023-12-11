@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-import { ogImageSchema } from '@/app/lib/validations/og';
+import { ogImageSchema } from '#/lib/validations/og';
 
 export const runtime = 'edge';
 

@@ -7,8 +7,8 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { Icons } from '@/app/components/shared/icons';
-import { Button } from '@/app/components/ui/button';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
 import {
   Form,
   FormControl,
@@ -16,9 +16,9 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from '@/app/components/ui/form';
-import { Input } from '@/app/components/ui/input';
-import { toast } from '@/app/components/ui/use-toast';
+} from '#/components/ui/form';
+import { Input } from '#/components/ui/input';
+import { toast } from '#/components/ui/use-toast';
 
 interface TitleFormProps {
   initialData: {

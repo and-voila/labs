@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { EmptyPlaceholder } from '@/app/components/shared/empty-placeholder';
-import BlogCard from '@/app/components/write/blog-card';
-import BlurImage from '@/app/components/write/blur-image';
-import { db } from '@/app/lib/db';
-import { getPostsForSite, getSiteData } from '@/app/lib/fetchers';
-import { placeholderBlurhash, toDateString } from '@/app/lib/utils';
+import { db } from '#/lib/db';
+import { getPostsForSite, getSiteData } from '#/lib/fetchers';
+import { placeholderBlurhash, toDateString } from '#/lib/utils';
+import { EmptyPlaceholder } from '#/components/shared/empty-placeholder';
+import BlogCard from '#/components/write/blog-card';
+import BlurImage from '#/components/write/blur-image';
 
 export async function generateStaticParams() {
   const allSites = await db.site.findMany({

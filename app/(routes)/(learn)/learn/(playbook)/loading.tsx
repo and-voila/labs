@@ -1,4 +1,4 @@
-import { Icons } from '@/app/components/shared/icons';
+import { Icons } from '#/components/shared/icons';
 
 export default function PlaybookLoading() {
   return (

@@ -1,8 +1,5 @@
-import { DashboardShell } from '@/app/components/dashboard/shell';
-import {
-  CourseCardSkeleton,
-  InfoCardSkeleton,
-} from '@/app/components/skeletons';
+import { DashboardShell } from '#/components/dashboard/shell';
+import { CourseCardSkeleton, InfoCardSkeleton } from '#/components/skeletons';
 
 export default function MyPlaybooksLoading() {
   return (

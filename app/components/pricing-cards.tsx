@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import Balancer from 'react-wrap-balancer';
 
-import GoodPlanCard from '@/app/components/good-plan-card';
-import PricingCard from '@/app/components/pricing-card';
-import { Switch } from '@/app/components/ui/switch';
-import { pricingData } from '@/app/config/subscriptions';
-import { UserSubscriptionPlan } from '@/app/lib/types';
-import { getPlanByTitle } from '@/app/lib/utils';
+import { pricingData } from '#/config/subscriptions';
+import { UserSubscriptionPlan } from '#/lib/types';
+import { getPlanByTitle } from '#/lib/utils';
+import GoodPlanCard from '#/components/good-plan-card';
+import PricingCard from '#/components/pricing-card';
+import { Switch } from '#/components/ui/switch';
 
 interface PricingCardsProps {
   userId?: string;
