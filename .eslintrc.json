@@ -48,7 +48,7 @@
     "jsx-quotes": ["error", "prefer-double"],
     "no-console": "warn",
     "prefer-const": "error",
-    "prettier/prettier": "off",
+    "prettier/prettier": "error",
     "quotes": ["error", "single", { "avoidEscape": true }],
     "react-hooks/exhaustive-deps": "error",
     "react/jsx-key": "error",
@@ -64,7 +64,7 @@
   },
   "settings": {
     "tailwindcss": {
-      "callees": ["cn"],
+      "callees": ["cn", "clsx"],
       "config": "tailwind.config.js"
     },
     "next": {

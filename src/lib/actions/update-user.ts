@@ -1,12 +1,13 @@
 'use server';
 
-import { authOptions } from '#/lib/auth';
 import { db } from '#/lib/db';
 import { userNameSchema } from '#/lib/validations/user';
-import { getServerSession } from 'next-auth';
+
 import { revalidatePath } from 'next/cache';
 
-import { displayNameSchema } from '../validations/display-name';
+import { InternalServerError, UnauthorizedError } from '#/lib/error-code';
+import { getSession } from '#/lib/session';
+import { displayNameSchema } from '#/lib/validations/display-name';
 
 export type FormData = {
   name: string;
@@ -14,7 +15,7 @@ export type FormData = {
 
 export async function updateUserName(userId: string, data: FormData) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getSession();
 
     if (!session?.user || session?.user.id !== userId) {
       throw new Error('Unauthorized');
@@ -47,7 +48,7 @@ export async function updateDisplayName(
   data: DisplayNameFormData,
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getSession();
 
     if (!session?.user || session?.user.id !== userId) {
       throw new Error('Unauthorized');
@@ -77,7 +78,7 @@ export type UserImageFormData = {
 
 export async function updateUserImage(userId: string, data: UserImageFormData) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getSession();
 
     if (!session?.user || session?.user.id !== userId) {
       throw new Error('Unauthorized');
@@ -100,3 +101,65 @@ export async function updateUserImage(userId: string, data: UserImageFormData) {
     return { status: 'error' };
   }
 }
+
+export const updateLocalizations = async (locale: string, timeZone: string) => {
+  const session = await getSession();
+  if (!session) {
+    throw new UnauthorizedError();
+  }
+
+  try {
+    await db.user.update({
+      where: {
+        id: session.user.id,
+      },
+      data: {
+        timeZone,
+        locale,
+      },
+    });
+
+    revalidatePath('/');
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log(e);
+    throw new InternalServerError('Something went wrong');
+  }
+};
+
+export const deletePersonalAccount = async () => {
+  const session = await getSession();
+  if (!session) {
+    throw new UnauthorizedError();
+  }
+
+  try {
+    await db.user.delete({
+      where: {
+        id: session.user.id,
+      },
+    });
+  } catch {
+    throw new InternalServerError('Something went wrong');
+  }
+};
+
+export const updateTheme = async (theme: string) => {
+  const session = await getSession();
+  if (!session) {
+    throw new UnauthorizedError();
+  }
+
+  await db.user.update({
+    where: {
+      id: session.user.id,
+    },
+    data: {
+      theme,
+    },
+  });
+
+  revalidatePath('/');
+
+  return;
+};

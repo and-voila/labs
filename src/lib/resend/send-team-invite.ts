@@ -29,9 +29,11 @@ export async function sendTeamInviteEmail(
       text: plainTextEmail,
     });
 
+    // eslint-disable-next-line no-console
     console.log(`Your team invite link for ${email}: ${url}`);
 
     if (process.env.NODE_ENV !== 'production') {
+      // eslint-disable-next-line no-console
       console.log(result);
     }
   } catch (error) {

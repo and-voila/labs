@@ -20,7 +20,7 @@ export async function generateMetadata({
     getSiteData(domain),
   ]);
   if (!data || !siteData) {
-    return null;
+    return {};
   }
   const { title, description } = data;
 

@@ -105,6 +105,7 @@
     "slugify": "^1.6.6",
     "stripe": "^14.7.0",
     "swr": "^2.2.4",
+    "tzdata": "^1.0.38",
     "unique-names-generator": "^4.7.1",
     "uploadthing": "^6.0.3",
     "use-debounce": "^10.0.0",
