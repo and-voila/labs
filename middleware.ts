@@ -114,7 +114,7 @@ async function handleAuthLogic(req: NextRequest): Promise<NextResponse> {
       from += req.nextUrl.search;
     }
     return NextResponse.redirect(
-      new URL(`/login?from=${encodeURIComponent(from)}`, req.url),
+      new URL(`/register?from=${encodeURIComponent(from)}`, req.url),
     );
   }
 
