@@ -18,7 +18,7 @@
     "baseUrl": ".",
     "paths": {
       ":/*": ["./*"],
-      "#/*": ["./app/*"],
+      "#/*": ["./src/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "plugins": [

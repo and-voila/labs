@@ -42,29 +42,32 @@ This project follows the recommendations of the the Next JS team for v14 and rem
 
 ```
 /and-voila/labs
-├── /app
-│   ├── /(routes)                       # Route group for routes ¯\_(ツ)_/¯
-│   │   ├── /(auth)                     # Authentication pages
-│   │   ├── /(dashboard)                # Dashboard pages
-│   │   ├── /(insights)                 # Insights pages
-│   │   ├── /(learn)                    # Learn pages
-│   │   ├── /(marketing)                # Marketing pages
-│   │   └── /(tools)                    # Tools pages
-│   ├── /api                            # API routes
-│   ├── /lib                            # Reusable libraries and utility functions
-│   │   ├── /actions                    # Server actions
-│   │   ├── /types                      # Types
-│   │   ├── /validations                # Zod stuff
-│   │   └── /...                        # Other lib stuff
-│   ├── /components                     # All UI components
-│   │   ├── /layout                     # Shared stuff organized into sub-folders
-│   │   ├── /...
-│   │   └── /ui                         # Shadcn UI components
-│   ├── /config                         # Configuration files for different parts of the app
-│   └── /styles                         # Global styles
+├── /src
+│   ├── /app
+│   │   ├── /(routes)                   # Route group for routes ¯\_(ツ)_/¯
+│   │   │   ├── /(auth)                 # Authentication pages
+│   │   │   ├── /(dashboard)            # Dashboard pages
+│   │   │   ├── /(insights)             # Insights pages
+│   │   │   ├── /(learn)                # Learn pages
+│   │   │   ├── /(marketing)            # Marketing pages
+│   │   │   ├── /(tools)                # Tools pages
+│   │   │   │   ├── /[team_slug]        # Fancy collaboration features
+│   │   ├── /api                        # API routes
+│   │   ├── /lib                        # Reusable libraries and utility functions
+│   │   │   ├── /actions                # Server actions
+│   │   │   ├── /types                  # Types
+│   │   │   ├── /validations            # Zod stuff
+│   │   │   └── /...                    # Other lib stuff
+│   │   ├── /components                 # All UI components
+│   │   │   ├── /layout                 # Shared stuff organized into sub-folders
+│   │   │   ├── /...
+│   │   │   └── /ui                     # Shadcn UI components
+│   │   ├── /config                     # Configuration files for different parts of the app
+│   │   └── /styles                     # Global styles
+│   ├── /prisma                         # Prisma schema and migrations
+│   └── /scripts                        # Scripts like seeding scripts
 ├── /content                            # Contentlayer blogs, docs, etc.
 ├── /public                             # Static files like fonts, images, etc.
-├── /scripts                            # Scripts like seeding scripts
 ├── next.config.js
 ├── .env.example
 ├── .eslintrc.json
