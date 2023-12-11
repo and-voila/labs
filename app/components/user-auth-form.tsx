@@ -52,24 +52,35 @@ export function UserAuthForm({
   async function onSubmit(data: FormData) {
     setIsLoading(true);
 
-    if (!isRegistration) {
-      const res = await fetch('/api/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: data.email.toLowerCase() }),
-      });
-      const { exists } = await res.json();
+    // TODO: Checks for existing user only work for email provider
 
-      if (!exists) {
-        setIsLoading(false);
-        return toast({
-          title: 'No account found',
-          description:
-            "We couldn't find an account with that email. If you have one, please try again. Or, create a new account.",
-          variant: 'destructive',
-          action: <ToastAction altText="Try again">OK</ToastAction>,
-        });
-      }
+    const res = await fetch('/api/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: data.email.toLowerCase() }),
+    });
+    const { exists } = await res.json();
+
+    if (!isRegistration && !exists) {
+      setIsLoading(false);
+      return toast({
+        title: 'No account found',
+        description:
+          "We couldn't find an account with that email. If you have one, please try again. Or, create a new account using the register page.",
+        variant: 'destructive',
+        action: <ToastAction altText="Try again">OK</ToastAction>,
+      });
+    }
+
+    if (isRegistration && exists) {
+      setIsLoading(false);
+      return toast({
+        title: 'Account already exists',
+        description:
+          'An account with this email already exists. Did you mean to log in instead? If so, please use the Login form.',
+        variant: 'destructive',
+        action: <ToastAction altText="Log in">Log in</ToastAction>,
+      });
     }
 
     const signInResult = await signIn('email', {
@@ -82,14 +93,14 @@ export function UserAuthForm({
 
     if (!signInResult?.ok) {
       return toast({
-        title: 'Unable to process Sign In request',
-        description: 'Your sign in request failed. Please try again.',
+        title: 'Unable to process log in request',
+        description: 'Your log in  request failed. Please try again.',
         variant: 'destructive',
       });
     }
 
     return toast({
-      title: 'Sign in pending, please check your email',
+      title: 'Log in pending, please check your email',
       description:
         "We sent you a magic link. Click it to get instant access. Be sure to check your spam folder if you can't find it.",
       variant: 'success',
