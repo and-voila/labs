@@ -1,8 +1,10 @@
+import React from 'react';
+import { Team } from '@prisma/client';
+
+import { cn } from '#/lib/utils';
+
 import { NewTeamButton } from '#/components/teams/new-team-button';
 import { TeamCard } from '#/components/teams/team-card';
-import { cn } from '#/lib/utils';
-import { Team } from '@prisma/client';
-import React from 'react';
 
 export interface TeamGalleryProps {
   teams: Team[];

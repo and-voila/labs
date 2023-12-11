@@ -1,4 +1,3 @@
-import { SITE_URL } from '#/lib/utils';
 import {
   Body,
   Button,
@@ -14,6 +13,8 @@ import {
   Tailwind,
   Text,
 } from '@react-email/components';
+
+import { SITE_URL } from '#/lib/utils';
 
 const textClass = 'text-[18px] leading-[26px] text-[#61636b]';
 const linkClass = 'font-semibold text-[#6032ec] underline underline-offset-4';

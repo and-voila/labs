@@ -1,8 +1,10 @@
-import { PricingCards } from '#/components/pricing-cards';
-import { PricingFaq } from '#/components/pricing-faq';
+import { Metadata } from 'next';
+
 import { getSession } from '#/lib/session';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
-import { Metadata } from 'next';
+
+import { PricingCards } from '#/components/pricing-cards';
+import { PricingFaq } from '#/components/pricing-faq';
 
 export default async function PricingPage() {
   const session = await getSession();

@@ -1,5 +1,14 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+import { updateLocalizations } from '#/lib/actions/update-user';
+import { cn } from '#/lib/utils';
+
+import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import {
   Card,
@@ -31,14 +40,6 @@ import {
 } from '#/components/ui/popover';
 import { TimezoneSelect } from '#/components/ui/timezone-select';
 import { toast } from '#/components/ui/use-toast';
-import { cn } from '#/lib/utils';
-import { zodResolver } from '@hookform/resolvers/zod';
-
-import { Icons } from '#/components/shared/icons';
-import { updateLocalizations } from '#/lib/actions/update-user';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 const languages = [
   { label: 'English', value: 'en' },

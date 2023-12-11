@@ -1,7 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import * as React from 'react';
+import Link from 'next/link';
+
+import { UserSubscriptionPlan } from '#/lib/types';
+import { cn, formatDate } from '#/lib/utils';
 
 import { buttonVariants } from '#/components/ui/button';
 import {
@@ -12,8 +15,6 @@ import {
   CardHeader,
   CardTitle,
 } from '#/components/ui/card';
-import { UserSubscriptionPlan } from '#/lib/types';
-import { cn, formatDate } from '#/lib/utils';
 
 interface BillingInfoProps extends React.HTMLAttributes<HTMLFormElement> {
   subscriptionPlan: UserSubscriptionPlan;

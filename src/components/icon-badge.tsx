@@ -1,7 +1,8 @@
 import { cva, VariantProps } from 'class-variance-authority';
 
-import { IconName, Icons } from '#/components/shared/icons';
 import { cn } from '#/lib/utils';
+
+import { IconName, Icons } from '#/components/shared/icons';
 
 const backgroundVariants = cva('rounded-xl flex items-center justify-center', {
   variants: {

@@ -1,7 +1,9 @@
 import { siteConfig } from '#/config/site';
-import MagicLinkEmail from '#/emails/magic-link-email';
+
 import { db } from '#/lib/db';
 import { resend } from '#/lib/resend/resend';
+
+import MagicLinkEmail from '#/emails/magic-link-email';
 
 export async function sendVerificationRequest({
   identifier,

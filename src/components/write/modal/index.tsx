@@ -1,7 +1,5 @@
 'use client';
 
-import FocusTrap from 'focus-trap-react';
-import { AnimatePresence, motion } from 'framer-motion';
 import {
   Dispatch,
   SetStateAction,
@@ -9,9 +7,12 @@ import {
   useEffect,
   useRef,
 } from 'react';
+import FocusTrap from 'focus-trap-react';
+import { AnimatePresence, motion } from 'framer-motion';
+
+import useWindowSize from '#/lib/hooks/use-window-size';
 
 import Leaflet from '#/components/write/modal/leaflet';
-import useWindowSize from '#/lib/hooks/use-window-size';
 
 export default function Modal({
   children,

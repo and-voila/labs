@@ -1,5 +1,6 @@
-import { UserAccountNav } from '#/components/teams/user-nav';
 import { getSession } from '#/lib/session';
+
+import { UserAccountNav } from '#/components/teams/user-nav';
 
 export default async function UserNavSSR() {
   const session = await getSession();

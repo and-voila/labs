@@ -1,8 +1,10 @@
 // src/lib/resend/send-team-invite-email.ts
 import { siteConfig } from '#/config/site';
-import { Template } from '#/emails/team-invite-email';
+
 import { resend } from '#/lib/resend/resend';
 import { SITE_URL } from '#/lib/utils';
+
+import { Template } from '#/emails/team-invite-email';
 
 export async function sendTeamInviteEmail(
   teamName: string,

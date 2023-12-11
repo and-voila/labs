@@ -1,6 +1,7 @@
+import { MembershipRole } from '@prisma/client';
+
 import { db } from '#/lib/db';
 import { generateId } from '#/lib/id-helper';
-import { MembershipRole } from '@prisma/client';
 
 /**
  * Creates a new team invitation.

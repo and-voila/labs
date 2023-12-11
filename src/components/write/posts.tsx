@@ -1,9 +1,10 @@
 import { redirect } from 'next/navigation';
 
-import { EmptyPlaceholder } from '#/components/shared/empty-placeholder';
-import PostCard from '#/components/write/post-card';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
+
+import { EmptyPlaceholder } from '#/components/shared/empty-placeholder';
+import PostCard from '#/components/write/post-card';
 
 export default async function Posts({
   siteId,

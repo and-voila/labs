@@ -1,9 +1,10 @@
+import { notFound, redirect } from 'next/navigation';
+import { NextRequest } from 'next/server';
+
 import { CP_PREFIX } from '#/lib/const';
 import { getSession } from '#/lib/session';
 import { acceptInvitationByToken } from '#/lib/team/members/accept-invitation';
 import { getInvitationByToken } from '#/lib/team/members/get-invitation';
-import { notFound, redirect } from 'next/navigation';
-import { NextRequest } from 'next/server';
 
 export const GET = async (
   request: NextRequest,

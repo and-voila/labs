@@ -1,12 +1,14 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Course } from '@prisma/client';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+
+import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
@@ -20,7 +22,6 @@ import {
 } from '#/components/ui/form';
 import { Textarea } from '#/components/ui/textarea';
 import { toast } from '#/components/ui/use-toast';
-import { cn } from '#/lib/utils';
 
 interface PreviewFormProps {
   initialData: Course;

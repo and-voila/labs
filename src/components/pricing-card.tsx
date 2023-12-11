@@ -1,10 +1,11 @@
 import Link from 'next/link';
 
+import { SubscriptionPlan, UserSubscriptionPlan } from '#/lib/types';
+import { cn } from '#/lib/utils';
+
 import { BillingFormButton } from '#/components/forms/billing-form-button';
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
-import { SubscriptionPlan, UserSubscriptionPlan } from '#/lib/types';
-import { cn } from '#/lib/utils';
 
 interface PricingCardProps {
   plan: SubscriptionPlan;

@@ -2,8 +2,9 @@
 
 import { useRef, useState } from 'react';
 
-import { toast } from '#/components/ui/use-toast';
 import { cn } from '#/lib/utils';
+
+import { toast } from '#/components/ui/use-toast';
 
 export default function Uploader({
   defaultValue,

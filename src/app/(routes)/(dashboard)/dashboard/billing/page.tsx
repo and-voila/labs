@@ -1,13 +1,15 @@
+import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
+
+import { authOptions } from '#/lib/auth';
+import { getSession } from '#/lib/session';
+import { getUserSubscriptionPlan } from '#/lib/subscription';
+
 import { BillingInfo } from '#/components/billing-info';
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { Icons } from '#/components/shared/icons';
 import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
-import { authOptions } from '#/lib/auth';
-import { getSession } from '#/lib/session';
-import { getUserSubscriptionPlan } from '#/lib/subscription';
-import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
 
 export default async function BillingPage() {
   const session = await getSession();

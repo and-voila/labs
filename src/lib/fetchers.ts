@@ -1,7 +1,8 @@
 // eslint-disable-next-line camelcase
-import { serialize } from 'next-mdx-remote/serialize';
+
 // eslint-disable-next-line camelcase
 import { unstable_cache } from 'next/cache';
+import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
 
 import { db } from '#/lib/db';

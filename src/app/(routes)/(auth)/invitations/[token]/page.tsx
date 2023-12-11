@@ -1,3 +1,10 @@
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
+import { getSession } from '#/lib/session';
+import { getInvitationByToken } from '#/lib/team/members/get-invitation';
+import { cn } from '#/lib/utils';
+
 import { Icons } from '#/components/shared/icons';
 import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
 import { buttonVariants } from '#/components/ui/button';
@@ -8,11 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from '#/components/ui/card';
-import { getSession } from '#/lib/session';
-import { getInvitationByToken } from '#/lib/team/members/get-invitation';
-import { cn } from '#/lib/utils';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
+
 import SignOutButton from './button';
 
 type Props = {

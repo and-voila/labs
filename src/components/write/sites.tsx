@@ -1,9 +1,10 @@
 import { redirect } from 'next/navigation';
 
-import { EmptyPlaceholder } from '#/components/shared/empty-placeholder';
-import SiteCard from '#/components/write/site-card';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
+
+import { EmptyPlaceholder } from '#/components/shared/empty-placeholder';
+import SiteCard from '#/components/write/site-card';
 
 export default async function Sites({ limit }: { limit?: number }) {
   const session = await getSession();

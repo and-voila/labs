@@ -1,9 +1,11 @@
+import * as React from 'react';
+
+import { cn, placeholderBlurhash } from '#/lib/utils';
+
 import { ModeToggle } from '#/components/layout/mode-toggle';
 import { Icons } from '#/components/shared/icons';
 import BlurImage from '#/components/write/blur-image';
 import ReportAbuse from '#/components/write/report-abuse';
-import { cn, placeholderBlurhash } from '#/lib/utils';
-import * as React from 'react';
 
 interface DomainsFooterLinkData {
   href: string;

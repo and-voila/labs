@@ -1,7 +1,8 @@
 import { cva, VariantProps } from 'class-variance-authority';
 
-import { Icons } from '#/components/shared/icons';
 import { cn } from '#/lib/utils';
+
+import { Icons } from '#/components/shared/icons';
 
 const bannerVariants = cva(
   'border-2 text-center p-4 text-base flex items-center w-full mt-0.5',

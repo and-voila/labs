@@ -1,9 +1,10 @@
 'use server';
 
+import { Category, Course } from '@prisma/client';
+
 import { getProgress } from '#/lib/actions/get-progress';
 import { db } from '#/lib/db';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
-import { Category, Course } from '@prisma/client';
 
 type CourseWithProgressWithCategory = Course & {
   category: Category | null;

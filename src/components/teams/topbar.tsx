@@ -1,11 +1,12 @@
-import { Separator } from '#/components/ui/separator';
+import Link from 'next/link';
+
 import { getTeams } from '#/lib/team/get-teams';
+import { cn } from '#/lib/utils';
 
 import { Logo } from '#/components/logo-square';
 import { TeamSwitcher } from '#/components/teams/team-switcher';
 import UserNavSSR from '#/components/teams/user-nav-ssr';
-import { cn } from '#/lib/utils';
-import Link from 'next/link';
+import { Separator } from '#/components/ui/separator';
 
 export interface TopbarProps {
   activeTeamSlug?: string;

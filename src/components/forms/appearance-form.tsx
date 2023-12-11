@@ -1,5 +1,12 @@
 'use client';
 
+import React from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+import { updateTheme } from '#/lib/actions/update-user';
+
 import { Button } from '#/components/ui/button';
 import {
   Card,
@@ -19,11 +26,6 @@ import {
 } from '#/components/ui/form';
 import { RadioGroup, RadioGroupItem } from '#/components/ui/radio-group';
 import { toast } from '#/components/ui/use-toast';
-import { updateTheme } from '#/lib/actions/update-user';
-import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 const schema = z.object({
   theme: z.enum(['system', 'light', 'dark'], {

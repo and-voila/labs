@@ -1,7 +1,9 @@
 import { siteConfig } from '#/config/site';
-import WelcomeEmail from '#/emails/welcome-email';
+
 import { resend } from '#/lib/resend/resend';
 import { SITE_URL } from '#/lib/utils';
+
+import WelcomeEmail from '#/emails/welcome-email';
 
 const plainTextWelcomeEmail = `🎉 Welcome!\n
 Our team has been brewing up decades of marketing expertise into something special just for you. Ready to unlock your marketing superpowers?\n

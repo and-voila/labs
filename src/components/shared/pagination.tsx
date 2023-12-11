@@ -1,8 +1,9 @@
 import Link from 'next/link';
 
+import { cn } from '#/lib/utils';
+
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
-import { cn } from '#/lib/utils';
 
 interface PaginationProps {
   currentPage: number;

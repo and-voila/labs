@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { Dispatch, ReactNode, SetStateAction, useEffect, useRef } from 'react';
+import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 
 export default function Leaflet({
   setShow,

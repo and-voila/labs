@@ -1,12 +1,14 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
+
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
+
 import { useConfettiStore } from '#/hooks/use-confetti-store';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 interface CourseProgressButtonProps {
   chapterId: string;

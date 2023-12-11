@@ -1,8 +1,9 @@
 'use server';
 
+import { Attachment, Chapter } from '@prisma/client';
+
 import { db } from '#/lib/db';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
-import { Attachment, Chapter } from '@prisma/client';
 
 interface GetChapterProps {
   userId: string;

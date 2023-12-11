@@ -1,4 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+import { Metadata } from 'next';
+import { notFound, redirect } from 'next/navigation';
+
+import { updateSite } from '#/lib/actions';
+import { db } from '#/lib/db';
+import { getSession } from '#/lib/session';
+
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { Icons } from '#/components/shared/icons';
@@ -7,11 +14,6 @@ import CreatePostButton from '#/components/write/create-post-button';
 import Form from '#/components/write/form';
 import DeleteSiteForm from '#/components/write/form/delete-site-form';
 import Posts from '#/components/write/posts';
-import { updateSite } from '#/lib/actions';
-import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
-import { Metadata } from 'next';
-import { notFound, redirect } from 'next/navigation';
 
 export default async function SitePosts({
   params,

@@ -1,3 +1,8 @@
+import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
+
+import { db } from '#/lib/db';
+
 import { Banner } from '#/components/banner';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { IconBadge } from '#/components/icon-badge';
@@ -10,9 +15,6 @@ import { ImageForm } from '#/components/learn/teacher/courses/image-form';
 import { PreviewForm } from '#/components/learn/teacher/courses/preview-form';
 import { PriceForm } from '#/components/learn/teacher/courses/price-form';
 import { TitleForm } from '#/components/learn/teacher/courses/title-form';
-import { db } from '#/lib/db';
-import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'Create Playbook',

@@ -1,7 +1,7 @@
 'use client';
 
-import { Category } from '@prisma/client';
 import { Suspense } from 'react';
+import { Category } from '@prisma/client';
 
 import { CategoryItem } from '#/components/learn/dashboard/category-item';
 import { CategoryItemSkeleton } from '#/components/skeletons';

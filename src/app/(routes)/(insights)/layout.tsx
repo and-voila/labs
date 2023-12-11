@@ -1,13 +1,16 @@
+import { redirect } from 'next/navigation';
+
+import { insightsConfig } from '#/config/insights';
+
+import { authOptions } from '#/lib/auth';
+import { getSession } from '#/lib/session';
+import { isTeacher } from '#/lib/teacher';
+
 import { InsightsSearch } from '#/components/insights/search';
 import { InsightsSidebarNav } from '#/components/insights/sidebar-nav';
 import { NavBar } from '#/components/layout/navbar';
 import { SiteFooter } from '#/components/layout/site-footer';
 import { Icons } from '#/components/shared/icons';
-import { insightsConfig } from '#/config/insights';
-import { authOptions } from '#/lib/auth';
-import { getSession } from '#/lib/session';
-import { isTeacher } from '#/lib/teacher';
-import { redirect } from 'next/navigation';
 
 interface InsightsLayoutProps {
   children: React.ReactNode;

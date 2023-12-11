@@ -1,5 +1,13 @@
 'use client';
 
+import React, { startTransition, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
+import { Team } from '@prisma/client';
+
+import { CP_PREFIX } from '#/lib/const';
+import { cn } from '#/lib/utils';
+
+import { Icons } from '#/components/shared/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '#/components/ui/avatar';
 import { Button } from '#/components/ui/button';
 import {
@@ -16,13 +24,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '#/components/ui/popover';
-import { CP_PREFIX } from '#/lib/const';
-import { cn } from '#/lib/utils';
-import { Team } from '@prisma/client';
-
-import { Icons } from '#/components/shared/icons';
-import { useRouter } from 'next/navigation';
-import React, { startTransition, useMemo } from 'react';
 
 export interface TeamSwitcherProps {
   activeTeamSlug?: string;

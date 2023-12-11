@@ -1,11 +1,12 @@
+import { Suspense } from 'react';
+import { Metadata } from 'next';
+
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
 import OverviewSitesCTA from '#/components/write/overview-sites-cta';
 import PlaceholderCard from '#/components/write/placeholder-card';
 import Posts from '#/components/write/posts';
 import Sites from '#/components/write/sites';
-import { Metadata } from 'next';
-import { Suspense } from 'react';
 
 export default function Overview() {
   return (

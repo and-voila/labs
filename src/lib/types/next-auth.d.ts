@@ -1,6 +1,7 @@
 // :: Authentication Module Types ::
 
 import { User as NextAuthUser } from 'next-auth';
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import 'next-auth/jwt';
 

@@ -1,10 +1,13 @@
+import { redirect } from 'next/navigation';
+
+import { toolsConfig } from '#/config/tools';
+
+import { authOptions } from '#/lib/auth';
+import { getSession } from '#/lib/session';
+
 import { DashboardNav } from '#/components/layout/nav';
 import { NavBar } from '#/components/layout/navbar';
 import { SiteFooter } from '#/components/layout/site-footer';
-import { toolsConfig } from '#/config/tools';
-import { authOptions } from '#/lib/auth';
-import { getSession } from '#/lib/session';
-import { redirect } from 'next/navigation';
 
 interface ToolsLayoutProps {
   children?: React.ReactNode;

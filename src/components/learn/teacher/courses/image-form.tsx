@@ -1,17 +1,18 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Course } from '@prisma/client';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import * as z from 'zod';
+
+import { placeholderBlurhash } from '#/lib/utils';
 
 import { FileUpload } from '#/components/learn/teacher/file-upload';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
 import BlurImage from '#/components/write/blur-image';
-import { placeholderBlurhash } from '#/lib/utils';
 
 interface ImageFormProps {
   initialData: Course;

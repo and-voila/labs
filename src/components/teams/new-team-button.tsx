@@ -1,6 +1,8 @@
-import { Icons } from '#/components/shared/icons';
-import { CP_PREFIX } from '#/lib/const';
 import Link from 'next/link';
+
+import { CP_PREFIX } from '#/lib/const';
+
+import { Icons } from '#/components/shared/icons';
 
 export const NewTeamButton: React.FC = () => {
   return (

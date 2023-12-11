@@ -1,13 +1,12 @@
 'use server';
 
-import { db } from '#/lib/db';
-import { userNameSchema } from '#/lib/validations/user';
-
 import { revalidatePath } from 'next/cache';
 
+import { db } from '#/lib/db';
 import { InternalServerError, UnauthorizedError } from '#/lib/error-code';
 import { getSession } from '#/lib/session';
 import { displayNameSchema } from '#/lib/validations/display-name';
+import { userNameSchema } from '#/lib/validations/user';
 
 export type FormData = {
   name: string;

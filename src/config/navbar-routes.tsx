@@ -3,11 +3,12 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { isTeacher } from '#/lib/teacher';
+
 import { ModeToggle } from '#/components/layout/mode-toggle';
 import { SearchInput } from '#/components/search-input';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
-import { isTeacher } from '#/lib/teacher';
 
 export const NavbarRoutes = ({ userId }: { userId: string }) => {
   const pathname = usePathname();

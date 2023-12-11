@@ -1,11 +1,13 @@
-import { CourseSidebar } from '#/components/learn/courses/course-sidebar';
+import { redirect } from 'next/navigation';
+
 import { getProgress } from '#/lib/actions/get-progress';
 import { getApiLimitCount } from '#/lib/api-limit';
 import { authOptions } from '#/lib/auth';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
-import { redirect } from 'next/navigation';
+
+import { CourseSidebar } from '#/components/learn/courses/course-sidebar';
 
 const PlaybookLayout = async ({
   children,

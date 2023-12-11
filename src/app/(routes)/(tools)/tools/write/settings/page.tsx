@@ -1,8 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import Form from '#/components/write/form';
+import { redirect } from 'next/navigation';
+
 import { editUser } from '#/lib/actions';
 import { getSession } from '#/lib/session';
-import { redirect } from 'next/navigation';
+
+import Form from '#/components/write/form';
 
 export default async function SettingsPage() {
   const session = await getSession();

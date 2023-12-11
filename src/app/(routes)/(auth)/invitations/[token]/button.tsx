@@ -1,7 +1,8 @@
 'use client';
 
-import { buttonVariants } from '#/components/ui/button';
 import { signOut } from 'next-auth/react';
+
+import { buttonVariants } from '#/components/ui/button';
 
 const SignOutButton = () => {
   return (

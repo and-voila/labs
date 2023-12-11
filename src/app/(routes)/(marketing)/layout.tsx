@@ -1,8 +1,11 @@
+import { Suspense } from 'react';
+
+import { marketingConfig } from '#/config/marketing';
+
+import { getSession } from '#/lib/session';
+
 import { NavBar } from '#/components/layout/navbar';
 import { SiteFooter } from '#/components/layout/site-footer';
-import { marketingConfig } from '#/config/marketing';
-import { getSession } from '#/lib/session';
-import { Suspense } from 'react';
 
 interface MarketingLayoutProps {
   children: React.ReactNode;

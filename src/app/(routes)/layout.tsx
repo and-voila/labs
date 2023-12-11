@@ -1,11 +1,15 @@
 import '#/styles/globals.css';
 
-import { Providers } from '#/components/providers/providers';
-import { siteConfig } from '#/config/site';
-import { cn, ensureStartsWith } from '#/lib/utils';
-import { env } from ':/env.mjs';
-import { fontBricolage } from ':/public/fonts';
 import { Viewport } from 'next';
+import { fontBricolage } from ':/public/fonts';
+
+import { env } from ':/env.mjs';
+
+import { siteConfig } from '#/config/site';
+
+import { cn, ensureStartsWith } from '#/lib/utils';
+
+import { Providers } from '#/components/providers/providers';
 
 interface RootLayoutProps {
   children: React.ReactNode;

@@ -1,9 +1,12 @@
 'use client';
-import { buttonVariants } from '#/components/ui/button';
-import { cn } from '#/lib/utils';
+
+import { cloneElement, isValidElement } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { cloneElement, isValidElement } from 'react';
+
+import { cn } from '#/lib/utils';
+
+import { buttonVariants } from '#/components/ui/button';
 
 export interface NavbarLink {
   href: string;

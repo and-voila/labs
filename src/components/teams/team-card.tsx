@@ -1,8 +1,10 @@
-import { Card, CardContent } from '#/components/ui/card';
-import { CP_PREFIX } from '#/lib/const';
-import { Team } from '@prisma/client';
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
+import { Team } from '@prisma/client';
+
+import { CP_PREFIX } from '#/lib/const';
+
+import { Card, CardContent } from '#/components/ui/card';
 
 export interface TeamCardProps {
   team: Team;

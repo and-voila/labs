@@ -1,4 +1,13 @@
 'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { deletePersonalAccount } from ':/src/lib/actions/update-user';
+import { Team } from '@prisma/client';
+
+import { APP_NAME, CP_PREFIX } from '#/lib/const';
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,12 +27,6 @@ import {
   CardHeader,
   CardTitle,
 } from '#/components/ui/card';
-import { APP_NAME, CP_PREFIX } from '#/lib/const';
-import { deletePersonalAccount } from ':/src/lib/actions/update-user';
-import { Team } from '@prisma/client';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import React from 'react';
 
 export interface DeleteAccountFormProps {
   teams: Team[];

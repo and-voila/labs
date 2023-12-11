@@ -1,5 +1,13 @@
 'use client';
 
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { COURSE_DEFAULT_PRICE } from ':/src/lib/constants';
+import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
 import { DashboardShell } from '#/components/dashboard/shell';
 import { Button } from '#/components/ui/button';
 import {
@@ -13,13 +21,6 @@ import {
 } from '#/components/ui/form';
 import { Input } from '#/components/ui/input';
 import { toast } from '#/components/ui/use-toast';
-import { COURSE_DEFAULT_PRICE } from ':/src/lib/constants';
-import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
 
 const formSchema = z.object({
   title: z
