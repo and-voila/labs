@@ -16,7 +16,7 @@ export const SessionInfo = () => {
     fetchSession();
   }, []);
 
-  const obfuscatedUserId = session?.user?.id?.substring(0, 12);
+  const obfuscatedUserId = session?.user?.id?.substring(0, 6);
   const displayName = session?.user?.displayName;
 
   if (process.env.NEXT_PUBLIC_VERCEL_ENV === 'production') return null;
