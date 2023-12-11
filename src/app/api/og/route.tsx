@@ -5,7 +5,7 @@ export const runtime = 'edge';
 
 export async function GET(request: Request) {
   const bricolageBold = fetch(
-    new URL('../../../public/fonts/bricolage-bold.ttf', import.meta.url),
+    new URL('../../../../public/fonts/bricolage-bold.ttf', import.meta.url),
   ).then((res) => res.arrayBuffer());
 
   try {
