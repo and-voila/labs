@@ -1,4 +1,5 @@
 import { pricingData } from '#/config/subscriptions';
+
 import { db } from '#/lib/db';
 import { stripe } from '#/lib/stripe';
 import { UserSubscriptionPlan } from '#/lib/types';

@@ -1,9 +1,11 @@
+import { Metadata } from 'next';
+
+import { db } from '#/lib/db';
+
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { teacherCourseListColumns } from '#/components/learn/teacher/teacher-course-list-columns';
 import { TeacherCourseListDataTable } from '#/components/learn/teacher/teacher-course-list-data-table';
-import { db } from '#/lib/db';
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Playbooks Admin',

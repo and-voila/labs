@@ -1,12 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
+import Link from 'next/link';
+import { Insight } from 'contentlayer/generated';
+
+import { insightsConfig } from '#/config/insights';
+
+import { cn } from '#/lib/utils';
+
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
-import { insightsConfig } from '#/config/insights';
-import { cn } from '#/lib/utils';
-import { Insight } from 'contentlayer/generated';
-import Link from 'next/link';
 
 interface InsightsPagerProps {
   insight: Insight;

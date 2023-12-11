@@ -3,9 +3,9 @@
 // @ts-nocheck
 // TODO: Fix types
 
-import type { Example, PrismaClient } from '@prisma/client';
-import Link from 'next/link';
 import { ReactNode } from 'react';
+import Link from 'next/link';
+import type { Example, PrismaClient } from '@prisma/client';
 import { visit } from 'unist-util-visit';
 
 export function replaceLinks({

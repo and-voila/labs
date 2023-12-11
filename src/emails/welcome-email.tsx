@@ -14,10 +14,7 @@ import {
   Text,
 } from '@react-email/components';
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
+import { SITE_URL } from '#/lib/utils';
 
 const textClass = 'text-[18px] leading-[26px] text-[#61636b]';
 const linkClass = 'font-semibold text-[#6032ec] underline underline-offset-4';

@@ -1,8 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { Course } from '@prisma/client';
 import { ColumnDef } from '@tanstack/react-table';
-import Link from 'next/link';
+
+import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
 import { Badge } from '#/components/ui/badge';
@@ -13,7 +15,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '#/components/ui/dropdown-menu';
-import { cn } from '#/lib/utils';
 
 export const teacherCourseListColumns: ColumnDef<Course>[] = [
   {

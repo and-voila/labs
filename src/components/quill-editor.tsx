@@ -2,8 +2,8 @@
 
 import 'react-quill/dist/quill.snow.css';
 
-import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
+import dynamic from 'next/dynamic';
 
 interface EditorProps {
   onChange: (value: string) => void;

@@ -1,8 +1,9 @@
 import Link from 'next/link';
 
+import { cn } from '#/lib/utils';
+
 import { Logo } from '#/components/logo-square';
 import { buttonVariants } from '#/components/ui/button';
-import { cn } from '#/lib/utils';
 
 interface WriteCtaProps {
   domain: string;

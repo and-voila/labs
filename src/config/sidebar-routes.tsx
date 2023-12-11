@@ -2,8 +2,9 @@
 
 import { usePathname } from 'next/navigation';
 
-import { SidebarItem } from '#/components/sidebar-item';
 import { Route } from '#/lib/types';
+
+import { SidebarItem } from '#/components/sidebar-item';
 
 const dashboardRoutes: Route[] = [
   {

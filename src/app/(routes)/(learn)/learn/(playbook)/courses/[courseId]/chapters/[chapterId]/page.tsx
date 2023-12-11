@@ -1,3 +1,13 @@
+import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
+
+import { env } from ':/env.mjs';
+
+import { getChapter } from '#/lib/actions/get-chapter';
+import { authOptions } from '#/lib/auth';
+import { db } from '#/lib/db';
+import { getSession } from '#/lib/session';
+
 import { Banner } from '#/components/banner';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { CourseProgressButton } from '#/components/learn/courses/course-progress-button';
@@ -5,13 +15,6 @@ import { VideoPlayer } from '#/components/learn/courses/video-player';
 import { Preview } from '#/components/preview';
 import { Icons } from '#/components/shared/icons';
 import { Separator } from '#/components/ui/separator';
-import { getChapter } from '#/lib/actions/get-chapter';
-import { authOptions } from '#/lib/auth';
-import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
-import { env } from ':/env.mjs';
-import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
 
 const ChapterIdPage = async ({
   params,

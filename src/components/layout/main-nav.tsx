@@ -1,13 +1,16 @@
 'use client';
 
-import { MobileNav } from '#/components/layout/mobile-nav';
-import { Icons } from '#/components/shared/icons';
-import { siteConfig } from '#/config/site';
-import { MainNavItem } from '#/lib/types';
-import { cn } from '#/lib/utils';
+import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import * as React from 'react';
+
+import { siteConfig } from '#/config/site';
+
+import { MainNavItem } from '#/lib/types';
+import { cn } from '#/lib/utils';
+
+import { MobileNav } from '#/components/layout/mobile-nav';
+import { Icons } from '#/components/shared/icons';
 
 interface MainNavProps {
   items?: MainNavItem[];

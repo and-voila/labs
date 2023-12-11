@@ -1,12 +1,14 @@
+import { SVGProps } from 'react';
+import { Metadata } from 'next';
+import Link from 'next/link';
+
+import { cn } from '#/lib/utils';
+
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
 import { Card, CardFooter, CardHeader, CardTitle } from '#/components/ui/card';
-import { cn } from '#/lib/utils';
-import { Metadata } from 'next';
-import Link from 'next/link';
-import { SVGProps } from 'react';
 
 export const metadata: Metadata = {
   title: 'Admin Center',

@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+import { Metadata } from 'next';
+import { notFound, redirect } from 'next/navigation';
+
+import { updatePostMetadata } from '#/lib/actions';
+import { db } from '#/lib/db';
+import { getSession } from '#/lib/session';
+
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
 import Form from '#/components/write/form';
 import DeletePostForm from '#/components/write/form/delete-post-form';
-import { updatePostMetadata } from '#/lib/actions';
-import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
-import { Metadata } from 'next';
-import { notFound, redirect } from 'next/navigation';
 
 export default async function PostSettings({
   params,

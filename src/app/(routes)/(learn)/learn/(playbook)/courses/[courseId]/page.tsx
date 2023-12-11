@@ -1,3 +1,15 @@
+import { Metadata } from 'next';
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
+
+import { env } from ':/env.mjs';
+
+import { authOptions } from '#/lib/auth';
+import { db } from '#/lib/db';
+import { getSession } from '#/lib/session';
+import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { cn, placeholderBlurhash } from '#/lib/utils';
+
 import { Banner } from '#/components/banner';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { StartCourseButton } from '#/components/learn/courses/start-course-button';
@@ -5,15 +17,6 @@ import { Preview } from '#/components/preview';
 import { buttonVariants } from '#/components/ui/button';
 import { Separator } from '#/components/ui/separator';
 import BlurImage from '#/components/write/blur-image';
-import { authOptions } from '#/lib/auth';
-import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
-import { getUserSubscriptionPlan } from '#/lib/subscription';
-import { cn, placeholderBlurhash } from '#/lib/utils';
-import { env } from ':/env.mjs';
-import { Metadata } from 'next';
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const session = await getSession();

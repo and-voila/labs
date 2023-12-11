@@ -1,3 +1,9 @@
+import { Metadata } from 'next';
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
+
+import { db } from '#/lib/db';
+
 import { Banner } from '#/components/banner';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { IconBadge } from '#/components/icon-badge';
@@ -7,10 +13,6 @@ import { ChapterTitleForm } from '#/components/learn/teacher/chapters/chapter-ti
 import { ChapterVideoForm } from '#/components/learn/teacher/chapters/chapter-video-form';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
-import { db } from '#/lib/db';
-import { Metadata } from 'next';
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'Create Play',

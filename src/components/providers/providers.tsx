@@ -1,10 +1,10 @@
 'use client';
 
-import { SessionProvider } from 'next-auth/react';
+import { ReactNode, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import { SessionProvider } from 'next-auth/react';
 import NextTopLoader from 'nextjs-toploader';
 import nProgress from 'nprogress';
-import { ReactNode, useEffect } from 'react';
 import { Provider as BalancerProvider } from 'react-wrap-balancer';
 
 import { ConfettiProvider } from '#/components/providers/confetti-provider';

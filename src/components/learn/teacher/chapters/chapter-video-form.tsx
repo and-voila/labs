@@ -1,10 +1,10 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import MuxPlayer from '@mux/mux-player-react';
 import { Chapter, MuxData } from '@prisma/client';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import * as z from 'zod';
 
 import { FileUpload } from '#/components/learn/teacher/file-upload';

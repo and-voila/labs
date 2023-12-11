@@ -1,12 +1,14 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Chapter, Course } from '@prisma/client';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+
+import { cn } from '#/lib/utils';
 
 import { ChaptersList } from '#/components/learn/teacher/courses/chapters-list';
 import { Icons } from '#/components/shared/icons';
@@ -21,7 +23,6 @@ import {
 } from '#/components/ui/form';
 import { Input } from '#/components/ui/input';
 import { toast } from '#/components/ui/use-toast';
-import { cn } from '#/lib/utils';
 
 interface ChaptersFormProps {
   initialData: Course & { chapters: Chapter[] };

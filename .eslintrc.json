@@ -64,7 +64,7 @@
   },
   "settings": {
     "tailwindcss": {
-      "callees": ["cn"],
+      "callees": ["cn", "clsx"],
       "config": "tailwind.config.js"
     },
     "next": {

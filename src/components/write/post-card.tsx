@@ -1,8 +1,9 @@
-import { Post, Site } from '@prisma/client';
 import Link from 'next/link';
+import { Post, Site } from '@prisma/client';
+
+import { placeholderBlurhash } from '#/lib/utils';
 
 import BlurImage from '#/components/write/blur-image';
-import { placeholderBlurhash } from '#/lib/utils';
 
 export default function PostCard({
   data,

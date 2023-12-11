@@ -1,14 +1,17 @@
 'use client';
 
+import Link from 'next/link';
+
+import { isTeacher } from '#/lib/teacher';
+import { MainNavItem } from '#/lib/types';
+import { cn } from '#/lib/utils';
+
 import { MainNav } from '#/components/layout/main-nav';
 import { UserAccountNav } from '#/components/layout/user-account-nav';
 import { SessionInfo } from '#/components/providers/session-info';
 import { buttonVariants } from '#/components/ui/button';
+
 import useScroll from '#/hooks/use-scroll';
-import { isTeacher } from '#/lib/teacher';
-import { MainNavItem } from '#/lib/types';
-import { cn } from '#/lib/utils';
-import Link from 'next/link';
 
 interface NavBarProps {
   user: {

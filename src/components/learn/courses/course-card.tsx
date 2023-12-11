@@ -1,9 +1,11 @@
-import { Skeleton } from '#/components/ui/skeleton';
-import BlurImage from '#/components/write/blur-image';
+import { Suspense } from 'react';
+import Link from 'next/link';
+
 import { getCoursePrice } from '#/lib/course-pricing';
 import { placeholderBlurhash } from '#/lib/utils';
-import Link from 'next/link';
-import { Suspense } from 'react';
+
+import { Skeleton } from '#/components/ui/skeleton';
+import BlurImage from '#/components/write/blur-image';
 
 interface CourseCardProps {
   id: string;

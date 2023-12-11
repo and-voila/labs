@@ -2,9 +2,11 @@ import { ClassValue, clsx } from 'clsx';
 import ms from 'ms';
 import { twMerge } from 'tailwind-merge';
 
-import { pricingData } from '#/config/subscriptions';
-import { PlanTitle, SubscriptionPlan } from '#/lib/types';
 import { env } from ':/env.mjs';
+
+import { pricingData } from '#/config/subscriptions';
+
+import { PlanTitle, SubscriptionPlan } from '#/lib/types';
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
@@ -148,3 +150,12 @@ export const getPlanByTitle = (
 ): SubscriptionPlan | undefined => {
   return pricingData.find((plan) => plan.title === title);
 };
+
+export function initials(name: string) {
+  const names = name.split(' ');
+  const firstName = names[0] ?? '';
+  const lastName = names.length > 1 ? names[names.length - 1] : '';
+  return firstName && lastName
+    ? `${firstName.charAt(0)}${lastName.charAt(0)}`
+    : firstName.charAt(0);
+}

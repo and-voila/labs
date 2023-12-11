@@ -2,9 +2,11 @@
 
 import { Drawer } from 'vaul';
 
-import { Dialog, DialogContent } from '#/components/ui/dialog';
-import useMediaQuery from '#/hooks/use-media-query';
 import { cn } from '#/lib/utils';
+
+import { Dialog, DialogContent } from '#/components/ui/dialog';
+
+import useMediaQuery from '#/hooks/use-media-query';
 
 interface ModalProps {
   children: React.ReactNode;

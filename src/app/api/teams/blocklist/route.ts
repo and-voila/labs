@@ -1,6 +1,7 @@
-import { env } from ':/env.mjs';
-import { createClient } from '@vercel/kv';
 import { NextResponse } from 'next/server';
+import { createClient } from '@vercel/kv';
+
+import { env } from ':/env.mjs';
 
 export const dynamic = 'force-dynamic';
 

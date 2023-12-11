@@ -1,8 +1,10 @@
 import Link from 'next/link';
 
-import { Icons } from '#/components/shared/icons';
-import { siteConfig } from '#/config/site';
 import { env } from ':/env.mjs';
+
+import { siteConfig } from '#/config/site';
+
+import { Icons } from '#/components/shared/icons';
 
 async function getGitHubStars(): Promise<string | null> {
   try {

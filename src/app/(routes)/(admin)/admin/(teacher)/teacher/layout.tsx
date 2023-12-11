@@ -1,11 +1,14 @@
-import { DashboardNav } from '#/components/layout/nav';
-import { NavBar } from '#/components/layout/navbar';
-import { SiteFooter } from '#/components/layout/site-footer';
+import { redirect } from 'next/navigation';
+
 import { teacherConfig } from '#/config/teacher';
+
 import { authOptions } from '#/lib/auth';
 import { getSession } from '#/lib/session';
 import { isTeacher } from '#/lib/teacher';
-import { redirect } from 'next/navigation';
+
+import { DashboardNav } from '#/components/layout/nav';
+import { NavBar } from '#/components/layout/navbar';
+import { SiteFooter } from '#/components/layout/site-footer';
 
 interface TeacherLayoutProps {
   children?: React.ReactNode;

@@ -1,14 +1,15 @@
 'use client';
 
-import va from '@vercel/analytics';
 import { useParams, useRouter } from 'next/navigation';
+import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
+
+import { deleteSite } from '#/lib/actions';
+import { cn } from '#/lib/utils';
 
 import { buttonVariants } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
 import LoadingDots from '#/components/write/icons/loading-dots';
-import { deleteSite } from '#/lib/actions';
-import { cn } from '#/lib/utils';
 
 export default function DeleteSiteForm({ siteName }: { siteName: string }) {
   const { id } = useParams() as { id: string };

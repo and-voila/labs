@@ -1,9 +1,9 @@
 'use client';
 
+import { ReactNode, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import NextTopLoader from 'nextjs-toploader';
 import nProgress from 'nprogress';
-import { ReactNode, useEffect } from 'react';
 import { Provider as BalancerProvider } from 'react-wrap-balancer';
 
 import { ThemeProvider } from '#/components/providers/theme-provider';

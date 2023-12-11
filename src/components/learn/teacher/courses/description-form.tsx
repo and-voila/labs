@@ -1,12 +1,14 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Course } from '@prisma/client';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+
+import { cn } from '#/lib/utils';
 
 import { Preview } from '#/components/preview';
 import { QuillEditor } from '#/components/quill-editor';
@@ -21,7 +23,6 @@ import {
   FormMessage,
 } from '#/components/ui/form';
 import { toast } from '#/components/ui/use-toast';
-import { cn } from '#/lib/utils';
 
 interface DescriptionFormProps {
   initialData: Course;

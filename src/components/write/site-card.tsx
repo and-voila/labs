@@ -1,9 +1,10 @@
-import { Site } from '@prisma/client';
 import Link from 'next/link';
+import { Site } from '@prisma/client';
+
+import { placeholderBlurhash } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
 import BlurImage from '#/components/write/blur-image';
-import { placeholderBlurhash } from '#/lib/utils';
 
 export default function SiteCard({ data }: { data: Site }) {
   const url = `${data.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`;

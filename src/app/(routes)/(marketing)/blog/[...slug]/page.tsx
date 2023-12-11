@@ -1,17 +1,21 @@
-import { Mdx } from '#/components/content/mdx-components';
-import { allAuthors, allPosts } from 'contentlayer/generated';
 import { notFound } from 'next/navigation';
+import { allAuthors, allPosts } from 'contentlayer/generated';
+
+import { Mdx } from '#/components/content/mdx-components';
 
 import '#/styles/mdx.css';
+
+import { Metadata } from 'next';
+import Link from 'next/link';
+import Balancer from 'react-wrap-balancer';
+
+import { env } from ':/env.mjs';
+
+import { absoluteUrl, cn, formatDate, placeholderBlurhash } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
 import BlurImage from '#/components/write/blur-image';
-import { absoluteUrl, cn, formatDate, placeholderBlurhash } from '#/lib/utils';
-import { env } from ':/env.mjs';
-import { Metadata } from 'next';
-import Link from 'next/link';
-import Balancer from 'react-wrap-balancer';
 
 interface PostPageProps {
   params: {

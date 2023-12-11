@@ -1,7 +1,8 @@
+import { NextResponse } from 'next/server';
+
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 import { isTeacher } from '#/lib/teacher';
-import { NextResponse } from 'next/server';
 
 export async function DELETE(
   req: Request,

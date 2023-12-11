@@ -1,15 +1,17 @@
 'use client';
 
+import { useEffect, useReducer, useState, useTransition } from 'react';
 import { Post } from '@prisma/client';
 import { Editor as NovelEditor } from 'novel';
-import { useEffect, useReducer, useState, useTransition } from 'react';
+
+import { updatePost } from '#/lib/actions';
 
 import { EditorHeader } from '#/components/write/editor/editor-header';
 import PostDescriptionInput from '#/components/write/editor/post-description-input';
 import PostTitleInput from '#/components/write/editor/post-title-input';
+
 import { useAiContentPercentage } from '#/hooks/use-ai-content-percentage';
 import { useKeyboardSave } from '#/hooks/use-keyboard-save';
-import { updatePost } from '#/lib/actions';
 
 export type PostWithSite = Post & { site: { subdomain: string | null } | null };
 

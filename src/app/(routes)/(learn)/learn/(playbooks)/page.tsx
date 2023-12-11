@@ -1,11 +1,13 @@
-import { DashboardShell } from '#/components/dashboard/shell';
-import { CoursesList } from '#/components/learn/courses/courses-list';
-import { InfoCard } from '#/components/learn/dashboard/info-card';
+import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
+
 import { getDashboardCourses } from '#/lib/actions/get-dashboard-courses';
 import { authOptions } from '#/lib/auth';
 import { getSession } from '#/lib/session';
-import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+
+import { DashboardShell } from '#/components/dashboard/shell';
+import { CoursesList } from '#/components/learn/courses/courses-list';
+import { InfoCard } from '#/components/learn/dashboard/info-card';
 
 interface MyPlaybooksPageProps {
   searchParams: {

@@ -1,8 +1,8 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { Session } from 'next-auth';
 import { getSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
 
 export const SessionInfo = () => {
   const [session, setSession] = useState<Session | null>(null);

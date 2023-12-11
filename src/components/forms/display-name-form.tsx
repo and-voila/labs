@@ -1,5 +1,17 @@
 'use client';
 
+import { useTransition } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { User } from '@prisma/client';
+import { useForm } from 'react-hook-form';
+
+import {
+  DisplayNameFormData,
+  updateDisplayName,
+} from '#/lib/actions/update-user';
+import { cn } from '#/lib/utils';
+import { displayNameSchema } from '#/lib/validations/display-name';
+
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
 import {
@@ -13,16 +25,6 @@ import {
 import { Input } from '#/components/ui/input';
 import { Label } from '#/components/ui/label';
 import { toast } from '#/components/ui/use-toast';
-import {
-  DisplayNameFormData,
-  updateDisplayName,
-} from '#/lib/actions/update-user';
-import { cn } from '#/lib/utils';
-import { displayNameSchema } from '#/lib/validations/display-name';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { User } from '@prisma/client';
-import { useTransition } from 'react';
-import { useForm } from 'react-hook-form';
 
 interface DisplayNameFormProps {
   user: Pick<User, 'id' | 'displayName'>;

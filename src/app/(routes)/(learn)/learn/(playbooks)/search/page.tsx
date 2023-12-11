@@ -1,14 +1,16 @@
-import { DashboardShell } from '#/components/dashboard/shell';
-import { CoursesList } from '#/components/learn/courses/courses-list';
-import { Categories } from '#/components/learn/dashboard/categories';
-import { SearchInput } from '#/components/search-input';
+import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
+
 import { getCourses } from '#/lib/actions/get-courses';
 import { authOptions } from '#/lib/auth';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
-import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+
+import { DashboardShell } from '#/components/dashboard/shell';
+import { CoursesList } from '#/components/learn/courses/courses-list';
+import { Categories } from '#/components/learn/dashboard/categories';
+import { SearchInput } from '#/components/search-input';
 
 interface PlaybooksSearchPageProps {
   searchParams: {

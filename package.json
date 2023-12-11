@@ -105,6 +105,7 @@
     "slugify": "^1.6.6",
     "stripe": "^14.7.0",
     "swr": "^2.2.4",
+    "tzdata": "^1.0.38",
     "unique-names-generator": "^4.7.1",
     "uploadthing": "^6.0.3",
     "use-debounce": "^10.0.0",
@@ -115,6 +116,7 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@react-email/components": "^0.0.12",
     "@react-email/render": "^0.0.10",
     "@tailwindcss/forms": "^0.5.7",
@@ -147,7 +149,6 @@
     "postcss": "^8.4.32",
     "postcss-nesting": "^12.0.1",
     "prettier": "^3.1.0",
-    "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.5.6",
     "prisma": "^5.6.0",
     "react-email": "^1.10.0",

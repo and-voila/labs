@@ -1,14 +1,17 @@
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
+
+import { playbookConfig } from '#/config/playbook';
+import { playbooksConfig } from '#/config/playbooks';
+
+import { authOptions } from '#/lib/auth';
+import { getSession } from '#/lib/session';
+
 import { DashboardNav } from '#/components/layout/nav';
 import { NavBar } from '#/components/layout/navbar';
 import { SiteFooter } from '#/components/layout/site-footer';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
-import { playbookConfig } from '#/config/playbook';
-import { playbooksConfig } from '#/config/playbooks';
-import { authOptions } from '#/lib/auth';
-import { getSession } from '#/lib/session';
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 interface PlaybookRootLayoutProps {
   children: React.ReactNode;

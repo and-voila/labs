@@ -1,5 +1,6 @@
-import { InsightsSidebarNav } from '#/components/insights/sidebar-nav';
 import { insightsConfig } from '#/config/insights';
+
+import { InsightsSidebarNav } from '#/components/insights/sidebar-nav';
 
 interface InsightsLayoutProps {
   children: React.ReactNode;

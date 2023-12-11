@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 
-import { buttonVariants } from '#/components/ui/button';
-import { Card, CardContent } from '#/components/ui/card';
 import { isTeacher } from '#/lib/teacher';
 import { cn } from '#/lib/utils';
+
+import { buttonVariants } from '#/components/ui/button';
+import { Card, CardContent } from '#/components/ui/card';
 
 interface FreeCounterProps {
   apiLimitCount: number;

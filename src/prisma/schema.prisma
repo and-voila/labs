@@ -74,7 +74,7 @@ model Membership {
   team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([teamId, userId])
+  @@unique([userId, teamId])
   @@index([teamId])
   @@index([userId])
   @@map("memberships")

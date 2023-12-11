@@ -1,12 +1,15 @@
 'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { signIn } from 'next-auth/react';
+import * as React from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import * as React from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+
+import { cn } from '#/lib/utils';
+import { userAuthSchema } from '#/lib/validations/auth';
 
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
@@ -22,11 +25,10 @@ import { Input } from '#/components/ui/input';
 import { Label } from '#/components/ui/label';
 import { ToastAction } from '#/components/ui/toast';
 import { toast } from '#/components/ui/use-toast';
-import { cn } from '#/lib/utils';
-import { userAuthSchema } from '#/lib/validations/auth';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   isRegistration?: boolean;
+  token?: string;
 }
 
 type FormData = z.infer<typeof userAuthSchema>;
@@ -34,6 +36,7 @@ type FormData = z.infer<typeof userAuthSchema>;
 export function UserAuthForm({
   className,
   isRegistration,
+  token,
   ...props
 }: UserAuthFormProps) {
   const {
@@ -83,10 +86,15 @@ export function UserAuthForm({
       });
     }
 
+    let callbackUrl = searchParams.get('from') || '/';
+    if (token) {
+      callbackUrl = `/invitations/${token}`;
+    }
+
     const signInResult = await signIn('email', {
       email: data.email.toLowerCase(),
       redirect: false,
-      callbackUrl: searchParams?.get('from') || '/',
+      callbackUrl,
     });
 
     setIsLoading(false);
@@ -110,6 +118,7 @@ export function UserAuthForm({
   return (
     <div className={cn('max-w-sm', className)} {...props}>
       <form onSubmit={handleSubmit(onSubmit)}>
+        {token && <input type="hidden" value={token} {...register('token')} />}
         <Card className="py-6">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold">

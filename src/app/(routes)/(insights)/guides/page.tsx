@@ -1,9 +1,11 @@
-import { InsightsPageHeader } from '#/components/insights/page-header';
-import { formatDate } from '#/lib/utils';
-import { allGuides } from 'contentlayer/generated';
-import { compareDesc } from 'date-fns';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { allGuides } from 'contentlayer/generated';
+import { compareDesc } from 'date-fns';
+
+import { formatDate } from '#/lib/utils';
+
+import { InsightsPageHeader } from '#/components/insights/page-header';
 
 export default function GuidesPage() {
   const guides = allGuides
