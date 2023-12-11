@@ -40,66 +40,66 @@ model Team {
   createdAt DateTime  @default(now()) @map(name: "created_at")
   updatedAt DateTime? @updatedAt @map(name: "updated_at")
 
-  name      String  @unique
-  slug      String  @unique
-  isPrimary Boolean @default(false)
+  name String @unique
+  slug String @unique
 
-  memberships      TeamMembership[]
+  members          Membership[]
   subscription     StripeSubscription?
   stripeCustomerId StripeCustomer?
   invitations      TeamInvitation[]
   sites            Site[]
-  courses          Course[]
 
-  @@index([name])
+  @@index([name, slug])
+  @@index([slug])
   @@map(name: "teams")
 }
 
-enum TeamMemberRole {
+enum MembershipRole {
   MEMBER
   ADMIN
   OWNER
 }
 
-model TeamMembership {
+model Membership {
   id        String    @id @default(cuid())
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 
-  role       TeamMemberRole @default(MEMBER)
-  is_creator Boolean        @default(false)
-  accepted   Boolean        @default(false)
+  role     MembershipRole @default(MEMBER)
+  accepted Boolean        @default(false)
 
-  team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
   teamId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
+
+  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([teamId, userId])
   @@index([teamId])
   @@index([userId])
-  @@map("team_memberships")
+  @@map("memberships")
 }
 
 model TeamInvitation {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
-
-  expiresAt DateTime?
+  updatedAt DateTime @updatedAt
 
   email       String
-  inviteeName String?
-  role        TeamMemberRole @default(MEMBER)
-  token       String         @unique
-
-  team        Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  name        String?
   teamId      String
-  invitedBy   User   @relation(fields: [invitedById], references: [id], name: "UserToTeamInvitation", onDelete: Cascade)
+  teamSlug    String
   invitedById String
+  token       String   @unique
+  expires     DateTime
+
+  role MembershipRole @default(MEMBER)
+
+  team      Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  invitedBy User @relation(fields: [invitedById], references: [id], onDelete: Cascade)
 
   @@unique([teamId, email])
   @@index([teamId])
-  @@index([email])
   @@map("team_invitations")
 }
 
@@ -116,10 +116,13 @@ model User {
 
   name          String?
   displayName   String?   @unique
+  username      String?
   email         String?   @unique
   emailVerified DateTime?
-  role          UserRole  @default(USER)
   image         String?
+  timeZone      String    @default("Europe/Berlin") /// https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  locale        String? /// Prefered Locale of the user
+  theme         String    @default("system") /// Light, Dark or System prefered 
 
   discordId           String?  @unique
   discordUsername     String?
@@ -128,17 +131,16 @@ model User {
 
   subscription StripeSubscription?
 
-  memberships         TeamMembership[]
-  accounts            Account[]
-  sessions            Session[]
-  sites               Site[]
-  posts               Post[]
-  userApiLimit        UserApiLimit?
-  teamInvitationsSent TeamInvitation[] @relation("UserToTeamInvitation")
+  teams        Membership[]
+  accounts     Account[]
+  sessions     Session[]
+  sites        Site[]
+  posts        Post[]
+  userApiLimit UserApiLimit?
+  invitations  TeamInvitation[]
 
   @@index([email])
   @@index([displayName])
-  @@index([role])
   @@map(name: "users")
 }
 
@@ -291,7 +293,6 @@ model Course {
   attachments Attachment[]
 
   category Category? @relation(fields: [categoryId], references: [id])
-  team     Team?     @relation(fields: [teamId], references: [id], onDelete: SetNull)
 
   @@index([userId])
   @@index([categoryId])
