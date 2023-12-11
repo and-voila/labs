@@ -395,8 +395,8 @@ devDependencies:
     specifier: ^0.33.0
     version: 0.33.0
   shiki:
-    specifier: ^0.14.5
-    version: 0.14.5
+    specifier: ^0.14.6
+    version: 0.14.6
   tailwind-merge:
     specifier: ^2.1.0
     version: 2.1.0
@@ -12441,8 +12441,8 @@ packages:
       rechoir: 0.6.2
     dev: true
 
-  /shiki@0.14.5:
-    resolution: {integrity: sha512-1gCAYOcmCFONmErGTrS1fjzJLA7MGZmKzrBNX7apqSwhyITJg2O102uFzXUeBxNnEkDA9vHIKLyeKq0V083vIw==}
+  /shiki@0.14.6:
+    resolution: {integrity: sha512-R4koBBlQP33cC8cpzX0hAoOURBHJILp4Aaduh2eYi+Vj8ZBqtK/5SWNEHBS3qwUMu8dqOtI/ftno3ESfNeVW9g==}
     dependencies:
       ansi-sequence-parser: 1.1.1
       jsonc-parser: 3.2.0
