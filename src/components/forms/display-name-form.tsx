@@ -108,7 +108,7 @@ export function DisplayNameForm({ user }: DisplayNameFormProps) {
             )}
           </div>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex justify-end">
           <button
             type="submit"
             className={cn(buttonVariants({ size: 'sm' }))}
