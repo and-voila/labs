@@ -47,7 +47,7 @@ const resources: {
     title: 'Blog',
     href: '/blog',
     description:
-      'Get the latest in digital marketing, fresh and easy to grasp.',
+      'Get the latest in digital marketing, served up hot and fresh.',
     disabled: true,
   },
 ];
@@ -62,7 +62,7 @@ const shortcuts: {
     title: 'Dashboard',
     href: '/dashboard',
     description:
-      'Your marketing command center. All your tools and data at a glance.',
+      'Your marketing operations HQ. All your tools and data at a glance.',
   },
   {
     title: 'Teams',
@@ -73,7 +73,8 @@ const shortcuts: {
   {
     title: 'Learn',
     href: '/learn',
-    description: 'Master marketing fast. Lessons, tips, and tricks await.',
+    description:
+      'Crush your marketing goals. Lessons, tips, and insider tips await.',
   },
   {
     title: 'Tools',
@@ -87,6 +88,11 @@ const shortcuts: {
     description:
       "Get the support you need from real people, we're here for you.",
     isExternal: true,
+  },
+  {
+    title: 'Pricing',
+    href: '/pricing',
+    description: 'Need an upgrade? We offer transparent and flexible pricing.',
   },
 ];
 
@@ -117,8 +123,7 @@ const tools: {
   {
     title: 'AI Experts',
     href: '/tools/chat',
-    description:
-      'Engage with specialized marketing AI for that just works, the first time.',
+    description: 'Engage with purpose-trained marketing AI that just works.',
     disabled: true,
   },
 ];
@@ -131,52 +136,47 @@ export function MainNavigationMenu() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="bg-background/60 backdrop-blur-xl">
-            Get started
-          </NavigationMenuTrigger>
+          <NavigationMenuTrigger>Get started</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-primary/20 p-6 no-underline outline-none focus:shadow-md"
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-primary p-6 no-underline outline-none focus:shadow-md"
                     href="https://discord.com/channels/1151749282806910976/1164902538731069542"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Join our Discord community in a new window"
                   >
                     <Icons.discord
-                      className="h-6 w-6 text-primary"
+                      className="h-8 w-8 text-primary-foreground"
                       aria-hidden
                     />
-                    <div className="font- mb-2 mt-4 text-lg text-foreground">
+                    <div className="mb-2 mt-4 text-lg font-semibold text-primary-foreground">
                       Community
                     </div>
-                    <p className="text-sm leading-tight text-foreground">
-                      Jump into our Discord server for real-time marketing magic
-                      and communinty.
+                    <p className="text-sm leading-tight text-primary-foreground">
+                      Hop into our Discord server for real-time marketing magic
+                      and community.
                     </p>
                   </a>
                 </NavigationMenuLink>
               </li>
               <ListItem href="/learn" title="Playbooks">
-                Stuck? Score quick wins with Playbooks—your learning shortcut.
+                Stuck? Score quick wins with Playbooks, just 5 mins to wisdom.
               </ListItem>
               <ListItem href="/insights" title="Insights">
-                Tackling bigger challenges? Our Insights and Guides have you
-                covered.
+                Got bigger challenges? Our Insights and Guides have you covered.
               </ListItem>
               <ListItem href="/tools" title="Tools">
-                Engage your audience with our full-suite marketing tools,
+                Engage your audience with our full-stack marketing suite,
                 AI-enhanced.
               </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="bg-background/60 backdrop-blur-xl">
-            Shortcuts
-          </NavigationMenuTrigger>
+          <NavigationMenuTrigger>Shortcuts</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
               {shortcuts.map((shorcut) => (
@@ -195,10 +195,7 @@ export function MainNavigationMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger
-            className={cn(
-              'bg-background/60 backdrop-blur-xl',
-              isActive('/learn') && 'text-primary',
-            )}
+            className={isActive('/learn') ? 'text-primary' : ''}
           >
             <Link href="/learn">Learn</Link>
           </NavigationMenuTrigger>
@@ -219,10 +216,7 @@ export function MainNavigationMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger
-            className={cn(
-              'bg-background/60 backdrop-blur-xl',
-              isActive('/tools') && 'text-primary',
-            )}
+            className={isActive('/tools') ? 'text-primary' : ''}
           >
             <Link href="/tools">Tools</Link>
           </NavigationMenuTrigger>

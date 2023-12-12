@@ -8,7 +8,6 @@ import { cn } from '#/lib/utils';
 
 import { MainNav } from '#/components/layout/main-nav';
 import { UserAccountNav } from '#/components/layout/user-account-nav';
-import { SessionInfo } from '#/components/providers/session-info';
 import { buttonVariants } from '#/components/ui/button';
 
 import useScroll from '#/hooks/use-scroll';
@@ -56,8 +55,6 @@ export function NavBar({
 
         <div className="flex items-center space-x-3">
           {rightElements}
-
-          {user && <SessionInfo />}
 
           {!user ? (
             <Link
