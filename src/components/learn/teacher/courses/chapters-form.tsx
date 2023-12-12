@@ -155,14 +155,16 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
                 </FormItem>
               )}
             />
-            <Button
-              size="sm"
-              variant="default"
-              disabled={!isValid || isSubmitting}
-              type="submit"
-            >
-              Create
-            </Button>
+            <div className="flex items-center justify-end gap-x-2">
+              <Button
+                size="sm"
+                variant="default"
+                disabled={!isValid || isSubmitting}
+                type="submit"
+              >
+                Create
+              </Button>
+            </div>
           </form>
         </Form>
       )}

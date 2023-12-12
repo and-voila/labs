@@ -135,7 +135,7 @@ export const ChapterDescriptionForm = ({
                 </FormItem>
               )}
             />
-            <div className="flex items-center gap-x-2">
+            <div className="flex items-center justify-end gap-x-2">
               <Button
                 size="sm"
                 variant="default"
