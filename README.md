@@ -121,13 +121,12 @@ pnpm dev
 - [x] ~Engage in a high-stakes game of "guess the dependency version"~
 - [x] ~Wrestle with TypeScript, the programming language equivalent of a Rubik's cube~
 - [x] ~Try to remember why we thought migrating to an open source template was a good idea in the first place~
-- [ ] Create your team, invite members - because nothing says 'productivity' like a crowded digital workspace
+- [x] Create your team, invite members - because nothing says 'productivity' like a crowded digital workspace
+- [x] Introduce IP protection indicators - it's like a guard dog for your content, only less furry and more algorithmic
 - [ ] Implement awesome SEO metadata features for your websites - because we all know the true path to enlightenment is through optimized meta tags
 - [ ] Develop a collaborative AI editor - for when you want to argue with a machine about your creative choices
-- [ ] Introduce IP protection indicators - it's like a guard dog for your content, only less furry and more algorithmic
 - [ ] Roll out collaborative AI chat tools - because who needs human interaction when you have AI to chat with?
 - [ ] Master a super easy workflow to create, optimize, distribute, analyze - or, as we like to call it, 'the magical mystery tour of digital marketing'
-- [ ] Celebrate our inevitable success with a well-deserved nap
 - [ ] Celebrate our inevitable success with a well-deserved nap
 
 ### Frameworks
