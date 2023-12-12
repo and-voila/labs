@@ -165,7 +165,7 @@ export function MainNavigationMenu() {
               <ListItem href="/learn" title="Playbooks">
                 Stuck? Score quick wins with Playbooks, just 5 mins to wisdom.
               </ListItem>
-              <ListItem href="/insights" title="Insights">
+              <ListItem href="/insights" title="Insights" disabled>
                 Got bigger challenges? Our Insights and Guides have you covered.
               </ListItem>
               <ListItem href="/tools" title="Tools">

@@ -36,9 +36,10 @@ export function NavBar({
 
   const filteredItems = items?.filter((item) => {
     if (item.isLoggedIn && !user) return false;
-    if (item.isTeacher && !isTeacher(user?.id)) return false;
     return true;
   });
+
+  const showAdminLink = isTeacher(user?.id);
 
   return (
     <header
@@ -55,6 +56,17 @@ export function NavBar({
 
         <div className="flex items-center space-x-3">
           {rightElements}
+
+          {showAdminLink && (
+            <Link
+              href="/admin"
+              className={cn(
+                buttonVariants({ variant: 'secondary', size: 'sm' }),
+              )}
+            >
+              Admin
+            </Link>
+          )}
 
           {!user ? (
             <Link

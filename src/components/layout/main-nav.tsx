@@ -8,6 +8,7 @@ import { MainNavItem } from '#/lib/types';
 import { MobileNav } from '#/components/layout/mobile-nav';
 import { Icons } from '#/components/shared/icons';
 
+import { Logo } from '../logo-square';
 import { Separator } from '../ui/separator';
 import { MainNavigationMenu } from './nav-menu';
 
@@ -42,10 +43,7 @@ export function MainNav({ items, children }: MainNavProps) {
     <div className="left-0 flex w-screen items-center justify-between gap-5">
       <div className="hidden grid-flow-col items-center gap-4 space-x-2 md:flex">
         <Link href="/dashboard">
-          <Icons.logo
-            className="h-8 w-8 text-primary transition-colors hover:text-primary/80"
-            aria-hidden
-          />
+          <Logo fillOnHover className="h-8" />
         </Link>
         <Separator orientation="vertical" />
       </div>
