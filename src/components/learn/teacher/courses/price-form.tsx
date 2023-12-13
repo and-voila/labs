@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { COURSE_DEFAULT_PRICE } from ':/src/lib/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Course } from '@prisma/client';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+
+import { COURSE_DEFAULT_PRICE } from '#/lib/constants';
 
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';

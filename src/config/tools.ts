@@ -1,62 +1,33 @@
+import { CP_PREFIX } from '#/lib/const';
 import { ToolsConfig } from '#/lib/types';
 
 export const toolsConfig: ToolsConfig = {
-  mainNav: [
-    {
-      title: 'Dashboard',
-      href: '/dashboard',
-      isLoggedIn: true,
-    },
-    {
-      title: 'Admin',
-      href: '/admin',
-      isTeacher: true,
-    },
-    {
-      title: 'Playbooks',
-      href: '/learn',
-    },
-    {
-      title: 'Tools',
-      href: '/tools',
-    },
-    {
-      title: 'Insights',
-      href: '/insights',
-      disabled: true,
-    },
-    {
-      title: 'Guides',
-      href: '/guides',
-      disabled: true,
-    },
-  ],
   sidebarNav: [
     {
       title: 'Home',
-      href: '/tools',
+      href: `${CP_PREFIX}/tools`,
       icon: 'toolbox',
     },
     {
       title: 'Chat',
-      href: '/tools/chat',
+      href: `${CP_PREFIX}/tools/chat`,
       icon: 'chat',
       disabled: true,
     },
     {
       title: 'Write',
-      href: '/tools/write',
+      href: `${CP_PREFIX}/tools/write`,
       icon: 'pen',
     },
     {
       title: 'Optimize',
-      href: '/tools/chat',
+      href: `${CP_PREFIX}/tools/chat`,
       icon: 'toolbox',
       disabled: true,
     },
     {
       title: 'Distribute',
-      href: '/dashboard/support',
+      href: `${CP_PREFIX}/tools/distribute`,
       icon: 'paperPlane',
       disabled: true,
     },

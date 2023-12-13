@@ -57,7 +57,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
 
   const handlePersonalSelect = () => {
     startTransition(() => {
-      router.push('/app');
+      router.push(`${CP_PREFIX}`);
     });
   };
 

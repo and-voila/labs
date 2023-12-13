@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { pricingData } from '#/config/subscriptions';
 
+import { CP_PREFIX } from '#/lib/const';
 import { SubscriptionPlan } from '#/lib/types';
 import { cn } from '#/lib/utils';
 
@@ -31,7 +32,7 @@ const GoodPlanCard = ({ plan, userId }: GoodPlanCardProps) => {
           <div className="ml-4 mt-4 w-full flex-shrink-0 sm:w-auto">
             {userId ? (
               <Link
-                href="/dashboard/billing"
+                href={`${CP_PREFIX}/billing`}
                 className={buttonVariants({
                   className: 'w-full sm:w-auto',
                   variant: 'secondary',
@@ -57,7 +58,7 @@ const GoodPlanCard = ({ plan, userId }: GoodPlanCardProps) => {
         </div>
         <div className="mt-10 flex items-center gap-x-4">
           <h4 className="flex-none text-sm font-semibold uppercase tracking-widest text-primary">
-            What’s included
+            What&apos;s included
           </h4>
           <div className="h-px flex-auto bg-border" />
         </div>

@@ -14,6 +14,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
+import { CP_PREFIX } from '#/lib/const';
+
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import { Input } from '#/components/ui/input';
@@ -66,7 +68,7 @@ export function TeacherCourseListDataTable<TData, TValue>({
           }
           className=" max-w-[300px] bg-card md:max-w-sm"
         />
-        <Link href="/admin/teacher/create">
+        <Link href={`${CP_PREFIX}/admin/teacher/create`}>
           <Button variant="default" size="sm" className="mx-2">
             <Icons.plusCircled className="mr-2 h-4 w-4 shrink-0" />
             New

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
+import { CP_PREFIX } from '#/lib/const';
+
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
@@ -43,7 +45,9 @@ export const CourseProgressButton = ({
       }
 
       if (!isCompleted && nextChapterId) {
-        router.push(`/learn/courses/${courseId}/chapters/${nextChapterId}`);
+        router.push(
+          `${CP_PREFIX}/learn/courses/${courseId}/chapters/${nextChapterId}`,
+        );
       }
 
       toast({

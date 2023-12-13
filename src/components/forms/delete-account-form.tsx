@@ -3,9 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { deletePersonalAccount } from ':/src/lib/actions/update-user';
 import { Team } from '@prisma/client';
 
+import { deletePersonalAccount } from '#/lib/actions/update-user';
 import { APP_NAME, CP_PREFIX } from '#/lib/const';
 
 import {

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { CP_PREFIX } from '#/lib/const';
 import { getTeams } from '#/lib/team/get-teams';
 import { cn } from '#/lib/utils';
 
@@ -24,7 +25,7 @@ export const Topbar = async (props: TopbarProps) => {
       )}
     >
       <div className="grid grid-flow-col items-center gap-4">
-        <Link href="/app">
+        <Link href={`${CP_PREFIX}`}>
           <Logo />
         </Link>
         <Separator orientation="vertical" />

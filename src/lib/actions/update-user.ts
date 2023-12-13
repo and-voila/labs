@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 
+import { CP_PREFIX } from '#/lib/const';
 import { db } from '#/lib/db';
 import { InternalServerError, UnauthorizedError } from '#/lib/error-code';
 import { getSession } from '#/lib/session';
@@ -31,7 +32,7 @@ export async function updateUserName(userId: string, data: FormData) {
       },
     });
 
-    revalidatePath('/dashboard/settings');
+    revalidatePath(`${CP_PREFIX}/settings`);
     return { status: 'success' };
   } catch (error) {
     return { status: 'error' };
@@ -64,7 +65,7 @@ export async function updateDisplayName(
       },
     });
 
-    revalidatePath('/dashboard/settings');
+    revalidatePath(`${CP_PREFIX}/settings`);
     return { status: 'success' };
   } catch (error) {
     return { status: 'error' };
@@ -94,7 +95,7 @@ export async function updateUserImage(userId: string, data: UserImageFormData) {
       },
     });
 
-    revalidatePath('/dashboard/settings');
+    revalidatePath(`${CP_PREFIX}/settings`);
     return { status: 'success' };
   } catch (error) {
     return { status: 'error' };

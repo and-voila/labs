@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import MuxPlayer from '@mux/mux-player-react/lazy';
 import axios from 'axios';
 
+import { CP_PREFIX } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
@@ -56,7 +57,9 @@ export const VideoPlayer = ({
         router.refresh();
 
         if (nextChapterId) {
-          router.push(`/learn/courses/${courseId}/chapters/${nextChapterId}`);
+          router.push(
+            `${CP_PREFIX}/learn/courses/${courseId}/chapters/${nextChapterId}`,
+          );
         }
       }
     } catch {
