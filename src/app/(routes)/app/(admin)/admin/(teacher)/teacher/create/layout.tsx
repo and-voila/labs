@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import { CP_PREFIX } from ':/src/lib/const';
+
+import { CP_PREFIX } from '#/lib/const';
 
 import CreatePage from './page';
 

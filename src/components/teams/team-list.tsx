@@ -3,10 +3,9 @@ import { Membership, Team } from '@prisma/client';
 
 import { cn } from '#/lib/utils';
 
+import { EmptyPlaceholder } from '#/components/shared/empty-placeholder';
 import { NewTeamButton } from '#/components/teams/new-team-button';
 import { TeamCard } from '#/components/teams/team-card';
-
-import { EmptyPlaceholder } from '../shared/empty-placeholder';
 
 export interface TeamGalleryProps {
   teams: Team[];
@@ -38,7 +37,12 @@ export const TeamGallery: React.FC<TeamGalleryProps> = (props) => {
       )}
     >
       {teams.map((team, index) => (
-        <TeamCard key={team.slug} team={team} membership={memberships[index]} />
+        <TeamCard
+          key={team.slug}
+          team={team}
+          membership={memberships[index]}
+          isPersonal={team.isPersonal}
+        />
       ))}
 
       <NewTeamButton />

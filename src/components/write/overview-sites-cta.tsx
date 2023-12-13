@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { CP_PREFIX } from ':/src/lib/const';
 
+import { CP_PREFIX } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 

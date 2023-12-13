@@ -12,6 +12,8 @@ import { sendVerificationRequest } from '#/lib/resend/send-verification-request'
 import { sendWelcomeEmail } from '#/lib/resend/send-welcome-email';
 import { getSession } from '#/lib/session';
 
+import { createPersonalTeam } from '#/app/(routes)/app/(dashboard)/team/new/actions';
+
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
 export const authOptions: NextAuthOptions = {
@@ -79,6 +81,7 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async jwt({ token, user }) {
+      // console.log('JWT token issued for user:', token.email);
       const dbUser = await db.user.findFirst({
         where: {
           email: token.email,
@@ -101,6 +104,12 @@ export const authOptions: NextAuthOptions = {
         token.displayName = uniqueUsername;
       } else {
         token.displayName = dbUser.displayName;
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { team, isNew } = await createPersonalTeam(dbUser.id);
+      if (isNew) {
+        //console.log('Created personal team:', team);
       }
 
       return {
