@@ -1,56 +1,27 @@
+import { CP_PREFIX } from '#/lib/const';
 import { AdminConfig } from '#/lib/types';
 
 export const adminConfig: AdminConfig = {
-  mainNav: [
-    {
-      title: 'Dashboard',
-      href: '/dashboard',
-      isLoggedIn: true,
-    },
-    {
-      title: 'Admin',
-      href: '/admin',
-      isTeacher: true,
-    },
-    {
-      title: 'Playbooks',
-      href: '/learn',
-    },
-    {
-      title: 'Tools',
-      href: '/tools',
-    },
-    {
-      title: 'Insights',
-      href: '/insights',
-      disabled: true,
-    },
-    {
-      title: 'Guides',
-      href: '/guides',
-      disabled: true,
-    },
-  ],
   sidebarNav: [
     {
       title: 'Admin home',
-      href: '/admin',
+      href: `${CP_PREFIX}/admin`,
       icon: 'home',
     },
     {
       title: 'AI center',
-      href: '/dashboard/settings',
+      href: `${CP_PREFIX}/settings`,
       icon: 'robot',
       disabled: true,
     },
     {
       title: 'Playbooks admin',
-      href: '/admin/teacher/courses',
+      href: `${CP_PREFIX}/admin/teacher/courses`,
       icon: 'chalkboardTeacher',
     },
     {
       title: 'Support center',
-      href: '/admin/support',
+      href: `${CP_PREFIX}/admin/support`,
       icon: 'help',
       disabled: true,
     },

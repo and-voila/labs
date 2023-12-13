@@ -14,6 +14,7 @@ import {
   Text,
 } from '@react-email/components';
 
+import { CP_PREFIX } from '#/lib/const';
 import { SITE_URL } from '#/lib/utils';
 
 const textClass = 'text-[18px] leading-[26px] text-[#61636b]';
@@ -48,7 +49,7 @@ export const WelcomeEmail = () => (
           <Section className="mt-[48px] text-center">
             <Button
               className="inline-block w-[75%] rounded-md bg-[#6032ec] px-[32px] py-[16px] text-[18px] leading-[26px] text-[#ffffff] no-underline"
-              href={`${SITE_URL}/dashboard`}
+              href={`${SITE_URL}${CP_PREFIX}`}
             >
               Dive Right In
             </Button>
@@ -65,14 +66,17 @@ export const WelcomeEmail = () => (
             </Link>
             . It&apos;s buzzing with ideas, insights, and fellow marketing
             adventurers. Find your stride with a{' '}
-            <Link className={linkClass} href={`${SITE_URL}/learn`}>
+            <Link className={linkClass} href={`${SITE_URL}${CP_PREFIX}/learn`}>
               Playbook
             </Link>
             . They&apos;re your go-to guides for upping your marketing game.
           </Text>
           <Text className={textClass}>
             Eager to share your voice?{' '}
-            <Link className={linkClass} href={`${SITE_URL}/tools/write`}>
+            <Link
+              className={linkClass}
+              href={`${SITE_URL}${CP_PREFIX}/tools/write`}
+            >
               Create your site
             </Link>{' '}
             and let your ideas take flight. Our AI-assisted editor is here to

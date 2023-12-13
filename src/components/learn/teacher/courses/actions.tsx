@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
+import { CP_PREFIX } from '#/lib/const';
+
 import { ConfirmModal } from '#/components/modals/confirm-modal';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
@@ -71,7 +73,7 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
         variant: 'success',
       });
       router.refresh();
-      router.push('/admin/teacher/courses');
+      router.push(`${CP_PREFIX}/admin/teacher/courses`);
     } catch {
       toast({
         title: 'Unable to delete Playbook',

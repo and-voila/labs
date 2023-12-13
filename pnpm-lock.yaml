@@ -182,9 +182,6 @@ dependencies:
   novel:
     specifier: ^0.1.22
     version: 0.1.22(@babel/core@7.23.6)(@opentelemetry/api@1.7.0)(react@18.2.0)(solid-js@1.8.7)(svelte@4.2.8)(vue@3.3.11)
-  nprogress:
-    specifier: ^0.2.0
-    version: 0.2.0
   openai-edge:
     specifier: ^1.2.2
     version: 1.2.2
@@ -236,9 +233,6 @@ dependencies:
   swr:
     specifier: ^2.2.4
     version: 2.2.4(react@18.2.0)
-  tzdata:
-    specifier: ^1.0.38
-    version: 1.0.38
   unique-names-generator:
     specifier: ^4.7.1
     version: 4.7.1
@@ -13453,10 +13447,6 @@ packages:
     resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
     engines: {node: '>=14.17'}
     hasBin: true
-
-  /tzdata@1.0.38:
-    resolution: {integrity: sha512-KIgVvZTLt+DWzr3MOENNLCLdsNB+usedRYYHCVfVbA7TDewj8mfjlWmj3Mv6FfdrvfeE6Oprt+qE47YiL90duQ==}
-    dev: false
 
   /uc.micro@1.0.6:
     resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==}

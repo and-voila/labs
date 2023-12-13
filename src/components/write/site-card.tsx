@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Site } from '@prisma/client';
 
+import { CP_PREFIX } from '#/lib/const';
 import { placeholderBlurhash } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
@@ -11,7 +12,7 @@ export default function SiteCard({ data }: { data: Site }) {
   return (
     <div className="relative rounded-lg border border-border bg-card pb-10 shadow-md transition-all hover:shadow-xl">
       <Link
-        href={`/tools/write/site/${data.id}`}
+        href={`${CP_PREFIX}/tools/write/site/${data.id}`}
         className="flex flex-col overflow-hidden rounded-lg"
       >
         <BlurImage

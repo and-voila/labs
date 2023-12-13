@@ -3,9 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { deletePersonalAccount } from ':/src/lib/actions/update-user';
 import { Team } from '@prisma/client';
 
+import { deletePersonalAccount } from '#/lib/actions/update-user';
 import { APP_NAME, CP_PREFIX } from '#/lib/const';
 
 import {
@@ -51,8 +51,8 @@ export const DeleteAccountForm: React.FC<DeleteAccountFormProps> = (props) => {
         <CardContent>
           <p className="text-sm font-normal leading-6">
             Permanently remove your Personal Account and all of its contents
-            from the <strong>{APP_NAME}</strong> platform. This action is not
-            reversible, so please continue with caution.
+            from <strong>{APP_NAME}</strong>. This action is not reversible, so
+            please continue with caution.
           </p>
         </CardContent>
         <CardFooter className="py-3">

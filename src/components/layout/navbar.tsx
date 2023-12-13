@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 
+import { CP_PREFIX } from '#/lib/const';
 import { isTeacher } from '#/lib/teacher';
 import { MainNavItem } from '#/lib/types';
 import { cn } from '#/lib/utils';
@@ -59,7 +60,7 @@ export function NavBar({
 
           {showAdminLink && (
             <Link
-              href="/admin"
+              href={`${CP_PREFIX}/admin`}
               className={cn(
                 buttonVariants({ variant: 'secondary', size: 'sm' }),
               )}

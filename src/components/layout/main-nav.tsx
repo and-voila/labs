@@ -3,14 +3,14 @@
 import * as React from 'react';
 import Link from 'next/link';
 
+import { CP_PREFIX } from '#/lib/const';
 import { MainNavItem } from '#/lib/types';
 
 import { MobileNav } from '#/components/layout/mobile-nav';
+import { MainNavigationMenu } from '#/components/layout/nav-menu';
+import { Logo } from '#/components/logo-square';
 import { Icons } from '#/components/shared/icons';
-
-import { Logo } from '../logo-square';
-import { Separator } from '../ui/separator';
-import { MainNavigationMenu } from './nav-menu';
+import { Separator } from '#/components/ui/separator';
 
 interface MainNavProps {
   items?: MainNavItem[];
@@ -42,7 +42,7 @@ export function MainNav({ items, children }: MainNavProps) {
   return (
     <div className="left-0 flex w-screen items-center justify-between gap-5">
       <div className="hidden grid-flow-col items-center gap-4 space-x-2 md:flex">
-        <Link href="/dashboard">
+        <Link href={`${CP_PREFIX}`}>
           <Logo fillOnHover className="h-8" />
         </Link>
         <Separator orientation="vertical" />
