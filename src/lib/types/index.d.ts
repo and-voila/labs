@@ -161,6 +161,10 @@ export type TeacherConfig = {
   sidebarNav: SidebarNavItem[];
 };
 
+export type TeamsConfig = {
+  sidebarNav: SidebarNavItem[];
+};
+
 export type ToolsConfig = {
   sidebarNav: SidebarNavItem[];
 };

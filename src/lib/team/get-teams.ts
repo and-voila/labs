@@ -1,7 +1,7 @@
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
-interface Team {
+export interface Team {
   id: string;
   name: string;
   slug: string;
@@ -9,7 +9,7 @@ interface Team {
   updatedAt: Date | null;
 }
 
-interface GetTeamsResult {
+export interface GetTeamsResult {
   teams: Team[];
   userName: string | null;
 }

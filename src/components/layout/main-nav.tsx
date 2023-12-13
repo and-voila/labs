@@ -8,7 +8,6 @@ import { MainNavItem } from '#/lib/types';
 
 import { MobileNav } from '#/components/layout/mobile-nav';
 import { MainNavigationMenu } from '#/components/layout/nav-menu';
-import { Logo } from '#/components/logo-square';
 import { Icons } from '#/components/shared/icons';
 import { Separator } from '#/components/ui/separator';
 
@@ -43,7 +42,7 @@ export function MainNav({ items, children }: MainNavProps) {
     <div className="left-0 flex w-screen items-center justify-between gap-5">
       <div className="hidden grid-flow-col items-center gap-4 space-x-2 md:flex">
         <Link href={`${CP_PREFIX}`}>
-          <Logo fillOnHover className="h-8" />
+          <Icons.logo className="h-8 w-8 text-primary" />
         </Link>
         <Separator orientation="vertical" />
       </div>

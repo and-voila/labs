@@ -6,6 +6,8 @@ import { siteConfig } from '#/config/site';
 
 import { CP_PREFIX } from '#/lib/const';
 
+import { Icons } from '#/components/shared/icons';
+import { RoleBadge } from '#/components/teams/role-badge';
 import {
   Card,
   CardContent,
@@ -13,9 +15,6 @@ import {
   CardHeader,
   CardTitle,
 } from '#/components/ui/card';
-
-import { Icons } from '../shared/icons';
-import { RoleBadge } from './role-badge';
 
 export interface TeamCardProps {
   team: Team;

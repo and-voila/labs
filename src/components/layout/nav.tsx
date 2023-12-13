@@ -10,6 +10,7 @@ import { Icons } from '#/components/shared/icons';
 
 interface DashboardNavProps {
   items: SidebarNavItem[];
+  teamSlug?: string;
 }
 
 export function DashboardNav({ items }: DashboardNavProps) {

@@ -24,6 +24,7 @@ interface NavBarProps {
   children?: React.ReactNode;
   rightElements?: React.ReactNode;
   scroll?: boolean;
+  activeTeamSlug?: string;
 }
 
 export function NavBar({

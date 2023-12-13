@@ -27,7 +27,7 @@ import {
 
 export interface TeamSwitcherProps {
   activeTeamSlug?: string;
-  teams: Team[];
+  teams?: Team[];
   userName: string | null;
 }
 

@@ -5,9 +5,8 @@ import { useState } from 'react';
 import { getSubdomain } from '#/lib/domains';
 import { cn } from '#/lib/utils';
 
+import { Icons } from '#/components/shared/icons';
 import { useDomainStatus } from '#/components/write/form/use-domain-status';
-
-import { Icons } from '../../shared/icons';
 
 export const InlineSnippet = ({
   className,
