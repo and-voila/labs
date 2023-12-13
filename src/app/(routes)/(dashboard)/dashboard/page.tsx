@@ -54,6 +54,14 @@ const dashboardItems: DashboardItemProps[] = [
     description:
       'Launch your own website in under 3 minutes with a custom domain and smash writer’s block with an AI-assist.',
   },
+  {
+    title: 'Teams',
+    icon: Icons.team,
+    linkHref: '/team',
+    linkText: 'Sync it',
+    description:
+      'Join forces in "multiplayer" mode for a real-time collaboration experience. Invite colleagues and work together.',
+  },
 ];
 
 export default async function DashboardPage() {
@@ -63,7 +71,7 @@ export default async function DashboardPage() {
         heading="Dashboard"
         text="Head over to Discord, check out a playbook, or start publishing."
       />
-      <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
         {dashboardItems.map((item, index) => (
           <Card key={index} className="flex flex-col" aria-label={item.title}>
             <CardHeader>

@@ -33,7 +33,9 @@ export function BillingInfo({ subscriptionPlan }: BillingInfoProps) {
           plan.
         </CardDescription>
       </CardHeader>
-      <CardContent>{subscriptionPlan.description}</CardContent>
+      <CardContent className="text-muted-foreground">
+        {subscriptionPlan.description}
+      </CardContent>
       <CardFooter className="flex flex-col items-start space-y-2 md:flex-row md:justify-between md:space-x-0">
         <Link
           href="/pricing"
