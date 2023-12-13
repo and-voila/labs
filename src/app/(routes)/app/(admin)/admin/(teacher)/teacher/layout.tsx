@@ -26,7 +26,7 @@ export default async function TeacherLayout({ children }: TeacherLayoutProps) {
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">
-      <NavBar user={user} items={teacherConfig.mainNav} scroll={false}>
+      <NavBar user={user} scroll={false}>
         <DashboardNav items={teacherConfig.sidebarNav} />
       </NavBar>
 

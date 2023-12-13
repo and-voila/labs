@@ -26,7 +26,7 @@ export const CourseSidebarItem = ({
       onClick={onClick}
       type="button"
       className={cn(
-        'flex text-left text-xs text-muted-foreground transition-all hover:bg-foreground/20 hover:text-foreground',
+        'flex rounded-md pl-1 text-left text-xs text-muted-foreground transition-all hover:bg-foreground/20 hover:text-foreground',
         isActive &&
           'bg-primary/20 font-medium text-foreground hover:bg-foreground/20 hover:text-foreground',
         isCompleted && 'line-through',

@@ -1,7 +1,5 @@
 import { Suspense } from 'react';
 
-import { marketingConfig } from '#/config/marketing';
-
 import { getSession } from '#/lib/session';
 
 import { NavBar } from '#/components/layout/navbar';
@@ -20,7 +18,7 @@ export default async function MarketingLayout({
   return (
     <div className="flex min-h-screen flex-col">
       <Suspense fallback="...">
-        <NavBar user={user} items={marketingConfig.mainNav} scroll={true} />
+        <NavBar user={user} scroll={true} />
       </Suspense>
       <main className="flex-1">{children}</main>
       <SiteFooter />

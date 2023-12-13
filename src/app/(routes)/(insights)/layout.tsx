@@ -41,11 +41,7 @@ export default async function InsightsLayout({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <NavBar
-        user={user}
-        items={insightsConfig.mainNav}
-        rightElements={rightHeader()}
-      >
+      <NavBar user={user} rightElements={rightHeader()}>
         <InsightsSidebarNav items={insightsConfig.sidebarNav} />
       </NavBar>
       <div className="container flex-1">{children}</div>

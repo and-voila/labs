@@ -25,7 +25,7 @@ export default async function PlaybooksLayout({
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">
-      <NavBar user={user} items={playbooksConfig.mainNav} scroll={false}>
+      <NavBar user={user} scroll={false}>
         <DashboardNav items={playbooksConfig.sidebarNav} />
       </NavBar>
 

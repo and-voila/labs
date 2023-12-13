@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import { playbookConfig } from '#/config/playbook';
 import { playbooksConfig } from '#/config/playbooks';
 
 import { authOptions } from '#/lib/auth';
@@ -41,11 +40,7 @@ export default async function PlaybookRootLayout({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <NavBar
-        user={user}
-        items={playbookConfig.mainNav}
-        rightElements={rightHeader()}
-      >
+      <NavBar user={user} rightElements={rightHeader()}>
         <DashboardNav items={playbooksConfig.sidebarNav} />
       </NavBar>
       <div className="container flex-1">{children}</div>

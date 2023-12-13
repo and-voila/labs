@@ -138,17 +138,14 @@ export type SiteConfig = {
 };
 
 export type AdminConfig = {
-  mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
 };
 
 export type DashboardConfig = {
-  mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
 };
 
 export type InsightsConfig = {
-  mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
 };
 
@@ -156,31 +153,15 @@ export type FooterConfig = {
   footerNav: MainNavItem[];
 };
 
-export type MarketingConfig = {
-  mainNav: MainNavItem[];
-};
-
 export type PlaybooksConfig = {
-  mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
 };
 
-export type PlaybookConfig = {
-  mainNav: MainNavItem[];
-};
-
 export type TeacherConfig = {
-  mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
 };
 
 export type ToolsConfig = {
-  mainNav: MainNavItem[];
-  sidebarNav: SidebarNavItem[];
-};
-
-export type WriteConfig = {
-  mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
 };
 

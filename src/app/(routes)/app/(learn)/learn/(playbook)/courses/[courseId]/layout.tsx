@@ -47,10 +47,6 @@ const PlaybookLayout = async ({
         },
       },
     },
-    cacheStrategy: {
-      ttl: 1800,
-      swr: 300,
-    },
   });
 
   if (!course) {

@@ -24,7 +24,7 @@ export default async function ToolsLayout({ children }: ToolsLayoutProps) {
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">
-      <NavBar user={user} items={toolsConfig.mainNav} scroll={false}>
+      <NavBar user={user} scroll={false}>
         <DashboardNav items={toolsConfig.sidebarNav} />
       </NavBar>
 
