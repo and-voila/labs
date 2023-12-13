@@ -1,24 +1,25 @@
+import { CP_PREFIX } from '#/lib/const';
 import { TeacherConfig } from '#/lib/types';
 
 export const teacherConfig: TeacherConfig = {
   mainNav: [
     {
       title: 'Dashboard',
-      href: '/dashboard',
+      href: `${CP_PREFIX}`,
       isLoggedIn: true,
     },
     {
       title: 'Admin',
-      href: '/admin',
+      href: `${CP_PREFIX}/admin`,
       isTeacher: true,
     },
     {
       title: 'Playbooks',
-      href: '/learn',
+      href: `${CP_PREFIX}/learn`,
     },
     {
       title: 'Tools',
-      href: '/tools',
+      href: `${CP_PREFIX}/tools`,
     },
     {
       title: 'Insights',
@@ -34,12 +35,12 @@ export const teacherConfig: TeacherConfig = {
   sidebarNav: [
     {
       title: 'Admin home',
-      href: '/admin',
+      href: `${CP_PREFIX}/admin`,
       icon: 'home',
     },
     {
       title: 'Playbooks admin',
-      href: '/admin/teacher/courses',
+      href: `${CP_PREFIX}/admin/teacher/courses`,
       icon: 'chalkboardTeacher',
     },
   ],

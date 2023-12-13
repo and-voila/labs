@@ -102,7 +102,7 @@ async function handleAuthLogic(req: NextRequest): Promise<NextResponse> {
 
   if (isAuthPage) {
     if (isAuth) {
-      const from = req.nextUrl.searchParams.get('from') || '/dashboard';
+      const from = req.nextUrl.searchParams.get('from') || '/app';
       return NextResponse.redirect(new URL(from, req.url));
     }
     return NextResponse.next();

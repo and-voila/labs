@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CP_PREFIX } from ':/src/lib/const';
 
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
@@ -23,7 +24,7 @@ export default async function OverviewSitesCTA() {
   });
 
   return sites > 0 ? (
-    <Link href="/tools/write/sites">
+    <Link href={`${CP_PREFIX}/tools/write/sites`}>
       <Button variant="outline" size="sm" className="mx-2">
         All sites
       </Button>

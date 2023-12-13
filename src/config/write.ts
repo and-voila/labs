@@ -1,5 +1,7 @@
 import { Icons } from '#/components/shared/icons';
 
+import { CP_PREFIX } from '../lib/const';
+
 type Tab = {
   name: string;
   href: string;
@@ -11,51 +13,53 @@ export const writeConfig = {
   defaultTabs: [
     {
       name: 'Tools',
-      href: '/tools',
+      href: `${CP_PREFIX}/tools`,
       icon: 'home',
     },
     {
       name: 'Write',
-      href: '/tools/write',
+      href: `${CP_PREFIX}/tools/write`,
       icon: 'pen',
     },
     {
       name: 'Sites',
-      href: '/tools/write/sites',
+      href: `${CP_PREFIX}/tools/write/sites`,
       icon: 'browsers',
     },
   ] as Tab[],
   siteTabs: (id: string): Tab[] => [
     {
       name: 'Write',
-      href: '/tools/write',
+      href: `${CP_PREFIX}/tools/write`,
       icon: 'pen',
     },
     {
       name: 'Sites',
-      href: '/tools/write/sites',
+      href: `${CP_PREFIX}/tools/write/sites`,
       icon: 'browsers',
     },
     {
       name: 'Manage site',
-      href: `/tools/write/site/${id}`,
+      href: `${CP_PREFIX}/tools/write/site/${id}`,
       icon: 'browser',
     },
   ],
   postTabs: (id: string, siteId: string): Tab[] => [
     {
       name: 'Sites',
-      href: '/tools/write/sites',
+      href: `${CP_PREFIX}/tools/write/sites`,
       icon: 'browsers',
     },
     {
       name: 'Posts',
-      href: siteId ? `/tools/write/site/${siteId}` : '/tools/write/sites',
+      href: siteId
+        ? `${CP_PREFIX}/tools/write/site/${siteId}`
+        : `${CP_PREFIX}/tools/write/sites`,
       icon: 'files',
     },
     {
       name: 'Editor',
-      href: `/tools/write/post/${id}`,
+      href: `${CP_PREFIX}/tools/write/post/${id}`,
       icon: 'pen',
     },
   ],

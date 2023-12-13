@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { CP_PREFIX } from '#/lib/const';
 import { isTeacher } from '#/lib/teacher';
 
 import { ModeToggle } from '#/components/layout/mode-toggle';
@@ -13,9 +14,9 @@ import { Button } from '#/components/ui/button';
 export const NavbarRoutes = ({ userId }: { userId: string }) => {
   const pathname = usePathname();
 
-  const isTeacherPage = pathname?.startsWith('/admin/teacher');
-  const isCoursePage = pathname?.includes('/learn/courses');
-  const isSearchPage = pathname === '/learn/search';
+  const isTeacherPage = pathname?.startsWith(`${CP_PREFIX}/admin/teacher`);
+  const isCoursePage = pathname?.includes(`${CP_PREFIX}/learn/courses`);
+  const isSearchPage = pathname === `${CP_PREFIX}/learn/search`;
 
   return (
     <>
@@ -26,14 +27,14 @@ export const NavbarRoutes = ({ userId }: { userId: string }) => {
       )}
       <div className="ml-auto flex pr-6">
         {isTeacherPage || isCoursePage ? (
-          <Link href="/learn">
+          <Link href={`${CP_PREFIX}/learn`}>
             <Button size="sm" variant="outline">
               <Icons.signOut className="mr-2 h-4 w-4" />
-              {isTeacherPage ? 'Exit teacher mode' : 'Exit playbook'}
+              Exit
             </Button>
           </Link>
         ) : isTeacher(userId) ? (
-          <Link href="/admin/teacher/courses">
+          <Link href={`${CP_PREFIX}/admin/teacher/courses`}>
             <Button size="sm" variant="outline">
               Teacher mode
             </Button>

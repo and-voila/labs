@@ -1,24 +1,25 @@
+import { CP_PREFIX } from '#/lib/const';
 import { DashboardConfig } from '#/lib/types';
 
 export const dashboardConfig: DashboardConfig = {
   mainNav: [
     {
       title: 'Dashboard',
-      href: '/dashboard',
+      href: `${CP_PREFIX}`,
       isLoggedIn: true,
     },
     {
       title: 'Admin',
-      href: '/admin',
+      href: `${CP_PREFIX}/admin`,
       isTeacher: true,
     },
     {
       title: 'Playbooks',
-      href: '/learn',
+      href: `${CP_PREFIX}/learn`,
     },
     {
       title: 'Tools',
-      href: '/tools',
+      href: `${CP_PREFIX}/tools`,
     },
     {
       title: 'Insights',
@@ -34,27 +35,27 @@ export const dashboardConfig: DashboardConfig = {
   sidebarNav: [
     {
       title: 'Home',
-      href: '/dashboard',
+      href: `${CP_PREFIX}`,
       icon: 'home',
     },
     {
       title: 'Teams',
-      href: '/dashboard/team',
+      href: `${CP_PREFIX}/team`,
       icon: 'team',
     },
     {
       title: 'Billing',
-      href: '/dashboard/billing',
+      href: `${CP_PREFIX}/billing`,
       icon: 'creditCard',
     },
     {
       title: 'Settings',
-      href: '/dashboard/settings',
+      href: `${CP_PREFIX}/settings`,
       icon: 'settings',
     },
     {
       title: 'Support',
-      href: '/dashboard/support',
+      href: `${CP_PREFIX}/support`,
       icon: 'help',
       disabled: true,
     },

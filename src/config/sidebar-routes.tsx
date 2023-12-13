@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 
+import { CP_PREFIX } from '#/lib/const';
 import { Route } from '#/lib/types';
 
 import { SidebarItem } from '#/components/sidebar-item';
@@ -11,25 +12,25 @@ const dashboardRoutes: Route[] = [
     id: 'dashboard',
     icon: 'home',
     label: 'Dashboard',
-    href: '/',
+    href: `${CP_PREFIX}`,
   },
   {
     id: 'learn',
     icon: 'courses',
     label: 'Learn',
-    href: '/learn',
+    href: `${CP_PREFIX}/learn`,
   },
   {
     id: 'ai-tools',
     icon: 'robot',
     label: 'AI Tools',
-    href: '/tools',
+    href: `${CP_PREFIX}/tools`,
   },
   {
     id: 'settings',
     icon: 'settings',
     label: 'Settings',
-    href: '/settings',
+    href: `${CP_PREFIX}/settings`,
   },
   {
     id: 'documentation',
@@ -41,7 +42,7 @@ const dashboardRoutes: Route[] = [
     id: 'support',
     icon: 'help',
     label: 'Support',
-    href: '/support',
+    href: `${CP_PREFIX}/support`,
   },
 ];
 
@@ -50,19 +51,19 @@ const learnRoutes: Route[] = [
     id: 'dashboard',
     icon: 'home',
     label: 'Dashboard',
-    href: '/',
+    href: `${CP_PREFIX}`,
   },
   {
     id: 'learn',
     icon: 'bookmarks',
     label: 'My Playbooks',
-    href: '/learn',
+    href: `${CP_PREFIX}/learn`,
   },
   {
     id: 'browse',
     icon: 'courses',
     label: 'Browse',
-    href: '/learn/search',
+    href: `${CP_PREFIX}/learn/search`,
   },
 ];
 
@@ -71,13 +72,13 @@ const teacherRoutes: Route[] = [
     id: 'courses',
     icon: 'courses',
     label: 'Courses',
-    href: '/admin/teacher/courses',
+    href: `${CP_PREFIX}/admin/teacher/courses`,
   },
   {
     id: 'analytics',
     icon: 'barchart',
     label: 'Analytics',
-    href: '/admin/teacher/analytics',
+    href: `${CP_PREFIX}/admin/teacher/analytics`,
   },
 ];
 
@@ -86,19 +87,19 @@ const toolsRoutes: Route[] = [
     id: 'dashboard',
     icon: 'home',
     label: 'Dashboard',
-    href: '/',
+    href: `${CP_PREFIX}`,
   },
   {
     id: 'overview',
     icon: 'gauge',
     label: 'Overview',
-    href: '/tools',
+    href: `${CP_PREFIX}/tools`,
   },
   {
     id: 'sites',
     icon: 'browsers',
     label: 'Sites',
-    href: '/tools/sites',
+    href: `${CP_PREFIX}/tools/sites`,
   },
 ];
 
@@ -107,11 +108,11 @@ export const SidebarRoutes = () => {
 
   let routes: Route[] = [];
 
-  if (pathname?.startsWith('/admin/teacher')) {
+  if (pathname?.startsWith(`${CP_PREFIX}/admin/teacher`)) {
     routes = teacherRoutes;
-  } else if (pathname?.startsWith('/learn')) {
+  } else if (pathname?.startsWith(`${CP_PREFIX}/learn`)) {
     routes = learnRoutes;
-  } else if (pathname?.startsWith('/tools')) {
+  } else if (pathname?.startsWith(`${CP_PREFIX}/tools`)) {
     routes = toolsRoutes;
   } else {
     routes = dashboardRoutes;

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
+import { CP_PREFIX } from '#/lib/const';
 import { cn, placeholderBlurhash } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
@@ -33,7 +34,7 @@ const NotAuthorizedPage = () => {
           assistance. Just don&apos;t ask her for a wake-up call.
         </p>
         <div className="mt-10 flex justify-center">
-          <Link href="/dashboard" className={cn(buttonVariants())}>
+          <Link href={`${CP_PREFIX}`} className={cn(buttonVariants())}>
             <Icons.caretLeft className="mr-2 h-4 w-4" />
             Get me out of here!
           </Link>

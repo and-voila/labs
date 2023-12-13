@@ -1,24 +1,25 @@
+import { CP_PREFIX } from '#/lib/const';
 import { ToolsConfig } from '#/lib/types';
 
 export const toolsConfig: ToolsConfig = {
   mainNav: [
     {
       title: 'Dashboard',
-      href: '/dashboard',
+      href: `${CP_PREFIX}`,
       isLoggedIn: true,
     },
     {
       title: 'Admin',
-      href: '/admin',
+      href: `${CP_PREFIX}/admin`,
       isTeacher: true,
     },
     {
       title: 'Playbooks',
-      href: '/learn',
+      href: `${CP_PREFIX}/learn`,
     },
     {
       title: 'Tools',
-      href: '/tools',
+      href: `${CP_PREFIX}/tools`,
     },
     {
       title: 'Insights',
@@ -34,29 +35,29 @@ export const toolsConfig: ToolsConfig = {
   sidebarNav: [
     {
       title: 'Home',
-      href: '/tools',
+      href: `${CP_PREFIX}/tools`,
       icon: 'toolbox',
     },
     {
       title: 'Chat',
-      href: '/tools/chat',
+      href: `${CP_PREFIX}/tools/chat`,
       icon: 'chat',
       disabled: true,
     },
     {
       title: 'Write',
-      href: '/tools/write',
+      href: `${CP_PREFIX}/tools/write`,
       icon: 'pen',
     },
     {
       title: 'Optimize',
-      href: '/tools/chat',
+      href: `${CP_PREFIX}/tools/chat`,
       icon: 'toolbox',
       disabled: true,
     },
     {
       title: 'Distribute',
-      href: '/dashboard/support',
+      href: `${CP_PREFIX}/tools/distribute`,
       icon: 'paperPlane',
       disabled: true,
     },

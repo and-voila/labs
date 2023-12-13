@@ -8,6 +8,7 @@ import { useFormStatus } from 'react-dom';
 import { env } from ':/env.mjs';
 
 import { createSite } from '#/lib/actions';
+import { CP_PREFIX } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
@@ -49,7 +50,7 @@ export default function CreateSiteModal() {
             va.track('Created Site');
             const { id } = res;
             router.refresh();
-            router.push(`/tools/write/site/${id}`);
+            router.push(`${CP_PREFIX}/tools/write/site/${id}`);
             modal?.hide();
 
             toast({

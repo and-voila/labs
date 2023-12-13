@@ -4,7 +4,7 @@ const VERCEL_URL = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   : '';
 
-/** https://app.your-saas.com */
+/** https://labs.andvoila.gg */
 export const WEBAPP_URL =
   process.env.NEXT_PUBLIC_WEBAPP_URL || VERCEL_URL || 'http://localhost:3001';
 

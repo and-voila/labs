@@ -1,15 +1,16 @@
+import { CP_PREFIX } from '#/lib/const';
 import { MarketingConfig } from '#/lib/types';
 
 export const marketingConfig: MarketingConfig = {
   mainNav: [
     {
       title: 'Dashboard',
-      href: '/dashboard',
+      href: `${CP_PREFIX}`,
       isLoggedIn: true,
     },
     {
       title: 'Admin',
-      href: '/admin',
+      href: `${CP_PREFIX}/admin`,
       isTeacher: true,
     },
     {
@@ -19,11 +20,11 @@ export const marketingConfig: MarketingConfig = {
     },
     {
       title: 'Playbooks',
-      href: '/learn',
+      href: `${CP_PREFIX}/learn`,
     },
     {
       title: 'Tools',
-      href: '/tools',
+      href: `${CP_PREFIX}/tools`,
     },
     {
       title: 'Insights',

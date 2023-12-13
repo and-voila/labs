@@ -4,9 +4,11 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { CP_PREFIX } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
+import { Badge } from '#/components/ui/badge';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,8 +17,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '#/components/ui/navigation-menu';
-
-import { Badge } from '../ui/badge';
 
 // TODO: Create config file(s) for these
 const resources: {
@@ -27,7 +27,7 @@ const resources: {
 }[] = [
   {
     title: 'Playbooks',
-    href: '/learn',
+    href: `${CP_PREFIX}/learn`,
     description:
       'Snappy lessons for quick marketing skills. Think TikTok, but for learning.',
   },
@@ -60,24 +60,24 @@ const shortcuts: {
 }[] = [
   {
     title: 'Dashboard',
-    href: '/dashboard',
+    href: `${CP_PREFIX}`,
     description:
       'Your marketing operations HQ. All your tools and data at a glance.',
   },
   {
     title: 'Teams',
-    href: '/dashboard/team',
+    href: `${CP_PREFIX}/team`,
     description: 'Collaborate in real-time with multiplayer convenience.',
   },
   {
     title: 'Learn',
-    href: '/learn',
+    href: `${CP_PREFIX}/learn`,
     description:
       'Crush your marketing goals. Lessons, tips, and insider tips await.',
   },
   {
     title: 'Tools',
-    href: '/tools',
+    href: `${CP_PREFIX}/tools`,
     description:
       'Supercharge your marketing. AI tools and resources at your fingertips.',
   },
@@ -103,25 +103,24 @@ const tools: {
 }[] = [
   {
     title: 'Publish',
-    href: '/tools/write',
+    href: `${CP_PREFIX}/tools/write`,
     description:
       'Create your website in under 3 mins. Fast, easy, and looks great.',
   },
   {
     title: 'Manage Sites',
-    href: '/tools/write/sites',
+    href: `${CP_PREFIX}/tools/write/sites`,
     description:
       'Keep an eye on your sites and draft posts with an AI-assisted editor that helps you protect your IP.',
   },
   {
     title: 'Collaborate',
-    href: '/tools/',
+    href: `${CP_PREFIX}/team`,
     description: 'Invite your team for next-level multiplayer collaboration.',
-    disabled: true,
   },
   {
     title: 'AI Experts',
-    href: '/tools/chat',
+    href: `${CP_PREFIX}/tools/chat`,
     description: 'Engage with purpose-trained marketing AI that just works.',
     disabled: true,
   },
@@ -161,13 +160,13 @@ export function MainNavigationMenu() {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/learn" title="Playbooks">
+              <ListItem href={`${CP_PREFIX}/learn`} title="Playbooks">
                 Stuck? Score quick wins with Playbooks, just 5 mins to wisdom.
               </ListItem>
               <ListItem href="/insights" title="Insights" disabled>
                 Got bigger challenges? Our Insights and Guides have you covered.
               </ListItem>
-              <ListItem href="/tools" title="Tools">
+              <ListItem href={`${CP_PREFIX}/tools`} title="Tools">
                 Engage your audience with our full-stack marketing suite,
                 AI-enhanced.
               </ListItem>
@@ -194,9 +193,9 @@ export function MainNavigationMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger
-            className={isActive('/learn') ? 'text-primary' : ''}
+            className={isActive(`${CP_PREFIX}/learn`) ? 'text-primary' : ''}
           >
-            <Link href="/learn">Learn</Link>
+            <Link href={`${CP_PREFIX}/learn`}>Learn</Link>
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
@@ -215,9 +214,9 @@ export function MainNavigationMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger
-            className={isActive('/tools') ? 'text-primary' : ''}
+            className={isActive(`${CP_PREFIX}/tools`) ? 'text-primary' : ''}
           >
-            <Link href="/tools">Tools</Link>
+            <Link href={`${CP_PREFIX}/tools`}>Tools</Link>
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">

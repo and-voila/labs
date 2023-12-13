@@ -1,24 +1,25 @@
+import { CP_PREFIX } from '#/lib/const';
 import { PlaybooksConfig } from '#/lib/types';
 
 export const playbooksConfig: PlaybooksConfig = {
   mainNav: [
     {
       title: 'Dashboard',
-      href: '/dashboard',
+      href: `${CP_PREFIX}`,
       isLoggedIn: true,
     },
     {
       title: 'Admin',
-      href: '/admin',
+      href: `${CP_PREFIX}/admin`,
       isTeacher: true,
     },
     {
       title: 'Playbooks',
-      href: '/learn',
+      href: `${CP_PREFIX}/learn`,
     },
     {
       title: 'Tools',
-      href: '/tools',
+      href: `${CP_PREFIX}/tools`,
     },
     {
       title: 'Insights',
@@ -34,12 +35,12 @@ export const playbooksConfig: PlaybooksConfig = {
   sidebarNav: [
     {
       title: 'My playbooks',
-      href: '/learn',
+      href: `${CP_PREFIX}/learn`,
       icon: 'bookmarks',
     },
     {
       title: 'Browse',
-      href: '/learn/search',
+      href: `${CP_PREFIX}/learn/search`,
       icon: 'courses',
     },
   ],
