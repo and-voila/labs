@@ -40,14 +40,16 @@ model Team {
   createdAt DateTime  @default(now()) @map(name: "created_at")
   updatedAt DateTime? @updatedAt @map(name: "updated_at")
 
-  name String @unique
-  slug String @unique
+  name       String  @unique
+  slug       String  @unique
+  isPersonal Boolean @default(false)
 
   members          Membership[]
   subscription     StripeSubscription?
   stripeCustomerId StripeCustomer?
   invitations      TeamInvitation[]
   sites            Site[]
+  userProgresses   UserProgress[]
 
   @@index([name, slug])
   @@index([slug])
@@ -120,9 +122,6 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  timeZone      String    @default("Europe/Berlin") /// https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  locale        String? /// Prefered Locale of the user
-  theme         String    @default("system") /// Light, Dark or System prefered 
 
   discordId           String?  @unique
   discordUsername     String?
@@ -368,15 +367,19 @@ model UserProgress {
   updatedAt DateTime @updatedAt
 
   userId      String
+  teamId      String?
   chapterId   String
   isStarted   Boolean @default(false)
   isCompleted Boolean @default(false)
 
   chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  team    Team?   @relation(fields: [teamId], references: [id])
 
   @@unique([userId, chapterId])
+  @@unique([teamId, chapterId])
   @@index([chapterId])
   @@index([userId])
+  @@index([teamId])
   @@map(name: "user_progress")
 }
 

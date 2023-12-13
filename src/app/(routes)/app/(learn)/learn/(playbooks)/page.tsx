@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { CP_PREFIX } from ':/src/lib/const';
 
 import { getDashboardCourses } from '#/lib/actions/get-dashboard-courses';
 import { authOptions } from '#/lib/auth';
+import { CP_PREFIX } from '#/lib/const';
 import { getSession } from '#/lib/session';
 
 import { DashboardShell } from '#/components/dashboard/shell';

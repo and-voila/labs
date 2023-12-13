@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { BillingInfo } from ':/src/components/forms/billing-info';
 
 import { authOptions } from '#/lib/auth';
 import { getSession } from '#/lib/session';
@@ -8,6 +7,7 @@ import { getUserSubscriptionPlan } from '#/lib/subscription';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
+import { BillingInfo } from '#/components/forms/billing-info';
 import { Icons } from '#/components/shared/icons';
 import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
 

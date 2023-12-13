@@ -102,31 +102,6 @@ export async function updateUserImage(userId: string, data: UserImageFormData) {
   }
 }
 
-export const updateLocalizations = async (locale: string, timeZone: string) => {
-  const session = await getSession();
-  if (!session) {
-    throw new UnauthorizedError();
-  }
-
-  try {
-    await db.user.update({
-      where: {
-        id: session.user.id,
-      },
-      data: {
-        timeZone,
-        locale,
-      },
-    });
-
-    revalidatePath('/');
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log(e);
-    throw new InternalServerError('Something went wrong');
-  }
-};
-
 export const deletePersonalAccount = async () => {
   const session = await getSession();
   if (!session) {
@@ -142,24 +117,4 @@ export const deletePersonalAccount = async () => {
   } catch {
     throw new InternalServerError('Something went wrong');
   }
-};
-
-export const updateTheme = async (theme: string) => {
-  const session = await getSession();
-  if (!session) {
-    throw new UnauthorizedError();
-  }
-
-  await db.user.update({
-    where: {
-      id: session.user.id,
-    },
-    data: {
-      theme,
-    },
-  });
-
-  revalidatePath('/');
-
-  return;
 };
