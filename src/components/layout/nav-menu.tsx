@@ -66,9 +66,8 @@ const shortcuts: {
   },
   {
     title: 'Teams',
-    href: '/teams',
-    description: 'Collaborate and conquer. Teamwork made easy and effective.',
-    disabled: true,
+    href: '/dashboard/team',
+    description: 'Collaborate in real-time with multiplayer convenience.',
   },
   {
     title: 'Learn',

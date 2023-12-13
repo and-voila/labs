@@ -51,8 +51,8 @@ export const DeleteAccountForm: React.FC<DeleteAccountFormProps> = (props) => {
         <CardContent>
           <p className="text-sm font-normal leading-6">
             Permanently remove your Personal Account and all of its contents
-            from the <strong>{APP_NAME}</strong> platform. This action is not
-            reversible, so please continue with caution.
+            from <strong>{APP_NAME}</strong>. This action is not reversible, so
+            please continue with caution.
           </p>
         </CardContent>
         <CardFooter className="py-3">

@@ -19,7 +19,7 @@ export function EmptyPlaceholder({
       )}
       {...props}
     >
-      <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
+      <div className="mx-auto flex max-w-[400px] flex-col items-center justify-center text-center md:max-w-full">
         {children}
       </div>
     </div>

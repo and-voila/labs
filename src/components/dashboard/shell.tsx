@@ -12,7 +12,10 @@ export function DashboardShell({
   ...props
 }: DashboardShellProps) {
   return (
-    <div className={cn('grid items-start gap-8 px-2', className)} {...props}>
+    <div
+      className={cn('mb-12 grid items-start gap-8 px-2 md:mb-24', className)}
+      {...props}
+    >
       {children}
     </div>
   );
