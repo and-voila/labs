@@ -63,7 +63,11 @@ export function NavBar({
         </div>
 
         <div className="flex flex-1 justify-center">
-          <MainNavigationMenu />
+          <MainNavigationMenu
+            teams={teams}
+            user={user}
+            activeTeamSlug={activeTeamSlug}
+          />
         </div>
 
         <div className="flex flex-1 items-center justify-end space-x-3">

@@ -14,8 +14,8 @@ export async function GET(request: Request) {
 
     let titleParam =
       searchParams.get('title') || 'Delightfully good digital marketing';
-    // eslint-disable-next-line no-console
-    console.log('Received title:', titleParam);
+
+    // console.log('Received title:', titleParam);
 
     const validationResult = ogImageSchema.safeParse({ title: titleParam });
 
@@ -85,8 +85,7 @@ export async function GET(request: Request) {
     );
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
-    // eslint-disable-next-line no-console
-    console.log(`${e.message}`);
+    // console.log(`${e.message}`);
     return new Response('Oops, image could not be generated.', {
       status: 500,
     });

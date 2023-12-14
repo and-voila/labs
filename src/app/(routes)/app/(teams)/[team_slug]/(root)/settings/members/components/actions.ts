@@ -130,7 +130,7 @@ export const changeRoleAction = async (
       role === MembershipRole.OWNER);
 
   if (!userCanChangeRole && !userIsChangingOwnRole) {
-    console.log('why', userIsAdmin, userIsChangingOwnRole, userCanChangeRole);
+    // console.log('why', userIsAdmin, userIsChangingOwnRole, userCanChangeRole);
     return {
       status: 'KO',
       message: 'Unauthorized',

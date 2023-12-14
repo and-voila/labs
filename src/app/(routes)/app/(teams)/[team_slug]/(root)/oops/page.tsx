@@ -15,14 +15,20 @@ const OopsPage: NextPage<Props> = (props) => {
   return (
     <DashboardShell>
       <DashboardHeader
-        heading="Switch to personal team to Learn"
-        text="Sorry about that, Learn features are tied to your personal workspace. Just switch to your personal team to access Learn features."
+        heading="Hop over to your personal workspace"
+        text="Whoops, looks like Learn features are playing hide and seek in your personal workspace. Switch to your personal account to find them."
       />
       <p className="max-w-lg text-lg text-muted-foreground">
-        Right now, you&apos;re using team{' '}
-        <span className="font-semibold text-primary">{params.team_slug}</span>.
-        You can use the team switcher at the top left of the page to switch to
-        your personal team.
+        Hey there, you&apos;re in team mode under{' '}
+        <span className="font-semibold text-primary">{params.team_slug}</span>{' '}
+        right now. Just a quick leap to the top left team switcher, and you can
+        jump into your personal playground.
+      </p>
+      <p className="max-w-lg text-lg text-muted-foreground">
+        <span className="font-semibold text-primary">
+          Thanks for sticking around
+        </span>
+        {''} while our developer, the king of soon, is leveling up.
       </p>
     </DashboardShell>
   );

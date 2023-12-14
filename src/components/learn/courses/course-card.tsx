@@ -30,7 +30,6 @@ export const CourseCard = ({
   isPaidMember,
   teamSlug,
 }: CourseCardProps) => {
-  console.log(teamSlug);
   const displayPrice = getCoursePrice(price, isPaidMember);
 
   return (

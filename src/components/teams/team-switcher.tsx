@@ -104,7 +104,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
           <CommandList>
             <CommandInput placeholder="Search team..." />
             <CommandEmpty>No team found.</CommandEmpty>
-            <CommandGroup heading="Personal account">
+            <CommandGroup heading="Personal workspace">
               <CommandItem
                 key="personal"
                 className="cursor-pointer text-sm"
@@ -122,7 +122,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                 {user?.name ?? 'Personal account'}
               </CommandItem>
             </CommandGroup>
-            <CommandGroup heading="Teams">
+            <CommandGroup heading="Team workspaces">
               {teams
                 ?.filter((team) => !team.isPersonal)
                 .map((team) => (
