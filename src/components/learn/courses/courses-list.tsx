@@ -15,6 +15,7 @@ interface CoursesListProps {
   currentPage: number;
   totalPages: number;
   hasNextPage: boolean;
+  teamSlug: string;
 }
 
 export const CoursesList = ({
@@ -22,6 +23,7 @@ export const CoursesList = ({
   currentPage,
   totalPages,
   hasNextPage,
+  teamSlug,
 }: CoursesListProps) => {
   return (
     <div>
@@ -37,6 +39,7 @@ export const CoursesList = ({
             progress={item.progress}
             category={item.category ? item.category.name : 'Uncategorized'}
             isPaidMember={item.isPaidMember}
+            teamSlug={teamSlug}
           />
         ))}
       </div>

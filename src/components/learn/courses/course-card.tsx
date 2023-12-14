@@ -17,6 +17,7 @@ interface CourseCardProps {
   progress: number | null;
   category: string;
   isPaidMember: boolean;
+  teamSlug: string;
 }
 export const CourseCard = ({
   id,
@@ -27,11 +28,16 @@ export const CourseCard = ({
   progress,
   category,
   isPaidMember,
+  teamSlug,
 }: CourseCardProps) => {
+  console.log(teamSlug);
   const displayPrice = getCoursePrice(price, isPaidMember);
 
   return (
-    <Link href={`${CP_PREFIX}/learn/courses/${id}`}>
+    <Link
+      href={`${CP_PREFIX}/${teamSlug}/learn/courses/${id}`}
+      prefetch={false}
+    >
       <div className="group h-full overflow-hidden rounded-xl border bg-card transition hover:shadow-sm">
         <div className="relative aspect-video w-full overflow-hidden md:grayscale md:group-hover:grayscale-0">
           <BlurImage

@@ -56,7 +56,7 @@ const PlaybookLayout = async ({
   });
 
   if (!course) {
-    return redirect(`${CP_PREFIX}/admin/teacher/courses`);
+    return redirect(`${CP_PREFIX}/${personalTeam.slug}/learn/search`);
   }
 
   const progressCount = await getProgress(personalTeam.id, course.id);

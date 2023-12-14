@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { Button } from ':/src/components/ui/button';
 
 import { env } from ':/env.mjs';
 
@@ -41,7 +43,7 @@ const ChapterIdPage = async ({
     });
 
   if (!chapter || !course) {
-    return redirect('/');
+    return redirect(`${CP_PREFIX}/${personalTeam.slug}/learn/search`);
   }
 
   const completeOnEnd = !userProgress?.isCompleted;
@@ -64,22 +66,32 @@ const ChapterIdPage = async ({
           />
         </div>
         <div className="rounded-xl bg-card p-6 lg:p-8">
-          <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between space-y-4 p-4 sm:flex-nowrap">
-            <div className="ml-4 mt-2">
-              <h2 className="mb-2 text-2xl font-bold leading-tight">
-                {chapter.title}
+          <div className="md:flex md:items-center md:justify-between">
+            <div className="min-w-0 flex-1">
+              <h2 className="text-2xl font-bold leading-7 sm:truncate sm:tracking-tight">
+                {course.title}
               </h2>
             </div>
-            <div className="ml-4 mt-2 w-full sm:w-auto md:flex-shrink-0">
-              <CourseProgressButton
-                chapterId={params.chapterId}
-                courseId={params.courseId}
-                nextChapterId={nextChapter?.id}
-                isCompleted={!!userProgress?.isCompleted}
-              />
+            <div className="mt-4 flex md:ml-4 md:mt-0">
+              <div className="inline-flex items-center">
+                <Link href={`${CP_PREFIX}/${personalTeam?.slug}/learn/search`}>
+                  <Button variant="secondary">
+                    <Icons.signOut className="mr-2 h-4 w-4 text-primary" />
+                    Exit
+                  </Button>
+                </Link>
+              </div>
+              <div className="ml-3 inline-flex items-center">
+                <CourseProgressButton
+                  chapterId={params.chapterId}
+                  courseId={params.courseId}
+                  nextChapterId={nextChapter?.id}
+                  isCompleted={!!userProgress?.isCompleted}
+                />
+              </div>
             </div>
           </div>
-          <Separator />
+          <Separator className="my-4" />
           <div>
             <Preview value={chapter.description!} />
           </div>

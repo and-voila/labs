@@ -69,6 +69,7 @@ export default async function MyPlaybooksPage({
           currentPage={page}
           totalPages={totalPages}
           hasNextPage={hasNextPage}
+          teamSlug={personalTeam.slug}
         />
       </div>
     </DashboardShell>

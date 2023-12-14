@@ -48,7 +48,7 @@ const PlaybooksSearchPage = async ({
   const isPaidMember = userSubscriptionPlan.isPaid;
 
   const page = parseInt(searchParams.page as string) || 1;
-  const take = 9;
+  const take = 6;
   const skip = (page - 1) * take;
 
   const { courses, count } = await getCourses({
@@ -72,6 +72,7 @@ const PlaybooksSearchPage = async ({
           currentPage={page}
           totalPages={totalPages}
           hasNextPage={hasNextPage}
+          teamSlug={personalTeam.slug}
         />
       </div>
     </DashboardShell>

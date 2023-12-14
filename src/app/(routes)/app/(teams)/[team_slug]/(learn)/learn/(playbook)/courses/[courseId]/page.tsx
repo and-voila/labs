@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { Icons } from ':/src/components/shared/icons';
 
 import { env } from ':/env.mjs';
 
@@ -15,7 +16,7 @@ import { Banner } from '#/components/banner';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { StartCourseButton } from '#/components/learn/courses/start-course-button';
 import { Preview } from '#/components/preview';
-import { buttonVariants } from '#/components/ui/button';
+import { Button, buttonVariants } from '#/components/ui/button';
 import { Separator } from '#/components/ui/separator';
 import BlurImage from '#/components/write/blur-image';
 
@@ -42,10 +43,6 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
         },
       },
     },
-    cacheStrategy: {
-      ttl: 3600,
-      swr: 60,
-    },
   });
 
   const userProgress = await db.userProgress.findFirst({
@@ -56,7 +53,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   });
 
   if (!course) {
-    return redirect(`${CP_PREFIX}/learn/search`);
+    return redirect(`${CP_PREFIX}/${personalTeam.slug}/learn/search`);
   }
 
   const userSubscriptionPlan = await getUserSubscriptionPlan(personalTeam.id);
@@ -89,20 +86,31 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             blurDataURL={placeholderBlurhash}
           />
           <div className="rounded-xl bg-card p-6 lg:p-8">
-            <div className="flex flex-col items-center justify-between p-4 lg:flex-row">
-              <h2 className="mb-2 text-2xl font-bold tracking-tight">
-                {course.title}
-              </h2>
-              <div className="flex w-full flex-col items-center gap-x-4 space-y-6 py-4 sm:py-0 lg:w-auto lg:flex-row lg:space-y-0 lg:p-6">
-                <Link
-                  href="/pricing"
-                  className={cn(
-                    buttonVariants({ size: 'lg' }),
-                    'w-full lg:w-auto',
-                  )}
-                >
-                  Upgrade
-                </Link>
+            <div className="md:flex md:items-center md:justify-between">
+              <div className="min-w-0 flex-1">
+                <h2 className="text-2xl font-bold leading-7 sm:truncate sm:tracking-tight">
+                  {course.title}
+                </h2>
+              </div>
+              <div className="mt-4 flex md:ml-4 md:mt-0">
+                <div className="inline-flex items-center">
+                  <Link
+                    href={`${CP_PREFIX}/${personalTeam?.slug}/learn/search`}
+                  >
+                    <Button variant="secondary">
+                      <Icons.signOut className="mr-2 h-4 w-4 text-primary" />
+                      Exit
+                    </Button>
+                  </Link>
+                </div>
+                <div className="ml-3 inline-flex items-center">
+                  <Link
+                    href="/pricing"
+                    className={cn(buttonVariants(), 'w-full lg:w-auto')}
+                  >
+                    Upgrade
+                  </Link>
+                </div>
               </div>
             </div>
             <Separator />
@@ -129,19 +137,31 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             blurDataURL={placeholderBlurhash}
           />
           <div className="rounded-xl bg-card p-6 lg:p-8">
-            <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
-              <div className="ml-4 mt-2">
-                <h2 className="text-2xl font-bold tracking-tight text-foreground">
+            <div className="md:flex md:items-center md:justify-between">
+              <div className="min-w-0 flex-1">
+                <h2 className="text-2xl font-bold leading-7 sm:truncate sm:tracking-tight">
                   {course.title}
                 </h2>
               </div>
-              <div className="ml-4 mt-2 w-full flex-shrink-0 sm:w-auto">
-                <StartCourseButton
-                  chapterId={course.chapters[0].id}
-                  courseId={course.id}
-                  isStarted={isStarted}
-                  firstChapterId={course.chapters[0].id}
-                />
+              <div className="mt-4 flex md:ml-4 md:mt-0">
+                <div className="inline-flex items-center">
+                  <Link
+                    href={`${CP_PREFIX}/${personalTeam?.slug}/learn/search`}
+                  >
+                    <Button variant="secondary">
+                      <Icons.signOut className="mr-2 h-4 w-4 text-primary" />
+                      Exit
+                    </Button>
+                  </Link>
+                </div>
+                <div className="ml-3 inline-flex items-center">
+                  <StartCourseButton
+                    chapterId={course.chapters[0].id}
+                    courseId={course.id}
+                    isStarted={isStarted}
+                    firstChapterId={course.chapters[0].id}
+                  />
+                </div>
               </div>
             </div>
             <Separator className="my-6" />
@@ -154,7 +174,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     );
   } else {
     return redirect(
-      `${CP_PREFIX}/learn/courses/${course.id}/chapters/${course.chapters[0].id}`,
+      `${CP_PREFIX}/${personalTeam.slug}/learn/courses/${course.id}/chapters/${course.chapters[0].id}`,
     );
   }
 };
