@@ -29,7 +29,7 @@ const PlaybookLayout = async ({
     throw new Error('No personal team found');
   }
 
-  const userSubscriptionPlan = await getUserSubscriptionPlan(user.id);
+  const userSubscriptionPlan = await getUserSubscriptionPlan(personalTeam.id);
   const isPaidMember = userSubscriptionPlan.isPaid;
 
   const course = await db.course.findUnique({
