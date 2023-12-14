@@ -5,8 +5,8 @@ import { getCourses } from '#/lib/actions/get-courses';
 import { authOptions } from '#/lib/auth';
 import { CP_PREFIX } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { getTeams } from '#/lib/team/get-teams';
 
 import { DashboardShell } from '#/components/dashboard/shell';
 import { CoursesList } from '#/components/learn/courses/courses-list';
@@ -24,9 +24,14 @@ interface PlaybooksSearchPageProps {
 const PlaybooksSearchPage = async ({
   searchParams,
 }: PlaybooksSearchPageProps) => {
-  const session = await getSession();
-  if (!session) {
+  const { user, teams } = await getTeams();
+  if (!user) {
     redirect(authOptions?.pages?.signIn || '/login');
+  }
+
+  const personalTeam = teams.find((team) => team.isPersonal);
+  if (!personalTeam) {
+    throw new Error('No personal team found');
   }
 
   const categories = await db.category.findMany({
@@ -39,7 +44,7 @@ const PlaybooksSearchPage = async ({
     },
   });
 
-  const userSubscriptionPlan = await getUserSubscriptionPlan(session.user.id);
+  const userSubscriptionPlan = await getUserSubscriptionPlan(personalTeam.id);
   const isPaidMember = userSubscriptionPlan.isPaid;
 
   const page = parseInt(searchParams.page as string) || 1;
@@ -47,7 +52,7 @@ const PlaybooksSearchPage = async ({
   const skip = (page - 1) * take;
 
   const { courses, count } = await getCourses({
-    userId: session.user.id,
+    teamId: personalTeam.id,
     ...searchParams,
     isPaidMember,
     skip,

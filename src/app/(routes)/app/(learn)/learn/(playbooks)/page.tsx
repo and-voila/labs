@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { getTeams } from ':/src/lib/team/get-teams';
 
 import { getDashboardCourses } from '#/lib/actions/get-dashboard-courses';
 import { authOptions } from '#/lib/auth';
 import { CP_PREFIX } from '#/lib/const';
+import { getTeams } from '#/lib/team/get-teams';
 
 import { DashboardShell } from '#/components/dashboard/shell';
 import { CoursesList } from '#/components/learn/courses/courses-list';
