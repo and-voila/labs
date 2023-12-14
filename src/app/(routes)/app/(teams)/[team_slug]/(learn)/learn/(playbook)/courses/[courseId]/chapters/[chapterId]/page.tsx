@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { Button } from ':/src/components/ui/button';
 
 import { env } from ':/env.mjs';
 
@@ -17,6 +16,7 @@ import { CourseProgressButton } from '#/components/learn/courses/course-progress
 import { VideoPlayer } from '#/components/learn/courses/video-player';
 import { Preview } from '#/components/preview';
 import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
 import { Separator } from '#/components/ui/separator';
 
 const ChapterIdPage = async ({

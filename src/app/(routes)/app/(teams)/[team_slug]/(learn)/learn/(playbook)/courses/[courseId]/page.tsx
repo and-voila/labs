@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { Icons } from ':/src/components/shared/icons';
 
 import { env } from ':/env.mjs';
 
@@ -16,6 +15,7 @@ import { Banner } from '#/components/banner';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { StartCourseButton } from '#/components/learn/courses/start-course-button';
 import { Preview } from '#/components/preview';
+import { Icons } from '#/components/shared/icons';
 import { Button, buttonVariants } from '#/components/ui/button';
 import { Separator } from '#/components/ui/separator';
 import BlurImage from '#/components/write/blur-image';

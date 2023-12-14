@@ -1,15 +1,15 @@
 import { redirect } from 'next/navigation';
-import { toast } from ':/src/components/ui/use-toast';
-import { CP_PREFIX } from ':/src/lib/const';
 
 import { playbooksConfig } from '#/config/playbooks';
 
 import { authOptions } from '#/lib/auth';
+import { CP_PREFIX } from '#/lib/const';
 import { getTeams } from '#/lib/team/get-teams';
 
 import { DashboardNav } from '#/components/layout/nav';
 import { NavBar } from '#/components/layout/navbar';
 import { SiteFooter } from '#/components/layout/site-footer';
+import { toast } from '#/components/ui/use-toast';
 
 interface PlaybooksLayoutProps {
   children?: React.ReactNode;
