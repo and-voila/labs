@@ -1,13 +1,10 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { getTeams } from ':/src/lib/team/get-teams';
-
-import { playbooksConfig } from '#/config/playbooks';
 
 import { authOptions } from '#/lib/auth';
 import { CP_PREFIX } from '#/lib/const';
+import { getTeams } from '#/lib/team/get-teams';
 
-import { DashboardNav } from '#/components/layout/nav';
 import { NavBar } from '#/components/layout/navbar';
 import { SiteFooter } from '#/components/layout/site-footer';
 import { Icons } from '#/components/shared/icons';
@@ -21,7 +18,7 @@ interface PlaybookRootLayoutProps {
 }
 
 const rightHeader = () => (
-  <div className="mr-8 flex flex-1 items-center space-x-4 sm:justify-end">
+  <div className="mr-8 hidden flex-1 items-center space-x-4 sm:justify-end md:flex">
     <Link href={`${CP_PREFIX}/learn/search`}>
       <Button size="sm" variant="secondary">
         <Icons.signOut className="mr-2 h-4 w-4 text-primary" />
@@ -48,9 +45,7 @@ export default async function PlaybookRootLayout({
         rightElements={rightHeader()}
         teams={teams}
         activeTeamSlug={params.team_slug}
-      >
-        <DashboardNav items={playbooksConfig.sidebarNav} />
-      </NavBar>
+      />
       <div className="container flex-1">{children}</div>
       <SiteFooter />
     </div>

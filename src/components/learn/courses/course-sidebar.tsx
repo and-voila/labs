@@ -26,7 +26,7 @@ export const CourseSidebar = async ({
 
   return (
     <div className="flex h-full w-full flex-col overflow-y-auto">
-      <div className="flex flex-col py-4">
+      <div className="flex flex-col py-4 lg:py-8">
         <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">
           Playbook
         </p>

@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
-import { getTeams } from ':/src/lib/team/get-teams';
+
+import { getTeams } from '#/lib/team/get-teams';
 
 import { NavBar } from '#/components/layout/navbar';
 import { SiteFooter } from '#/components/layout/site-footer';
@@ -27,7 +28,9 @@ export default async function MarketingLayout({
           activeTeamSlug={params.team_slug}
         />
       </Suspense>
-      <main className="mx-auto max-w-7xl flex-1 px-6 lg:px-12">{children}</main>
+      <main className="mx-auto max-w-7xl flex-1 px-6 py-8 lg:px-12">
+        {children}
+      </main>
       <SiteFooter />
     </div>
   );

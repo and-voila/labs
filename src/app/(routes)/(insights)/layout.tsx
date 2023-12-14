@@ -1,13 +1,10 @@
 import { redirect } from 'next/navigation';
 
-import { insightsConfig } from '#/config/insights';
-
 import { authOptions } from '#/lib/auth';
 import { isTeacher } from '#/lib/teacher';
 import { getTeams } from '#/lib/team/get-teams';
 
 import { InsightsSearch } from '#/components/insights/search';
-import { InsightsSidebarNav } from '#/components/insights/sidebar-nav';
 import { NavBar } from '#/components/layout/navbar';
 import { SiteFooter } from '#/components/layout/site-footer';
 import { Icons } from '#/components/shared/icons';
@@ -48,10 +45,8 @@ export default async function InsightsLayout({
         rightElements={rightHeader()}
         teams={teams}
         activeTeamSlug={params.team_slug}
-      >
-        <InsightsSidebarNav items={insightsConfig.sidebarNav} />
-      </NavBar>
-      <div className="container flex-1">{children}</div>
+      />
+      <div className="container flex-1 py-8">{children}</div>
       <SiteFooter />
     </div>
   );

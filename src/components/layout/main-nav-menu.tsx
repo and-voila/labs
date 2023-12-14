@@ -132,7 +132,7 @@ export function MainNavigationMenu() {
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-primary p-6 no-underline outline-none focus:shadow-md"
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-violet-950 via-primary to-violet-950 p-6 no-underline outline-none focus:shadow-md"
                     href="https://discord.com/channels/1151749282806910976/1164902538731069542"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -185,7 +185,11 @@ export function MainNavigationMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger
-            className={isActive(`${CP_PREFIX}/learn`) ? 'text-primary' : ''}
+            className={
+              isActive(`${CP_PREFIX}/learn`) || isActive(`${CP_PREFIX}/tools`)
+                ? 'text-primary'
+                : ''
+            }
           >
             <Link href={`${CP_PREFIX}/learn`}>Resources</Link>
           </NavigationMenuTrigger>

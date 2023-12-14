@@ -45,7 +45,7 @@ export default async function MyPlaybooksPage({
 
   return (
     <DashboardShell>
-      <div className="space-y-8 p-6">
+      <div className="space-y-8 px-6">
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2">
           <InfoCard
             icon="clock"

@@ -33,15 +33,10 @@ export default async function DashboardLayout({
         teams={teams}
         activeTeamSlug={params.team_slug}
         scroll={false}
-      >
-        <DashboardNav
-          items={dashboardConfig.sidebarNav}
-          teamSlug={params.team_slug}
-        />
-      </NavBar>
+      />
 
       <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
-        <aside className="hidden w-[200px] flex-col md:flex">
+        <aside className="hidden w-[200px] flex-col py-8 md:flex">
           <DashboardNav
             items={dashboardConfig.sidebarNav}
             teamSlug={params.team_slug}
