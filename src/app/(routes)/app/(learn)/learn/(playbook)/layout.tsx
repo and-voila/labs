@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { getTeams } from ':/src/lib/team/get-teams';
 
 import { playbooksConfig } from '#/config/playbooks';
 
 import { authOptions } from '#/lib/auth';
 import { CP_PREFIX } from '#/lib/const';
-import { getSession } from '#/lib/session';
 
 import { DashboardNav } from '#/components/layout/nav';
 import { NavBar } from '#/components/layout/navbar';
@@ -15,6 +15,9 @@ import { Button } from '#/components/ui/button';
 
 interface PlaybookRootLayoutProps {
   children: React.ReactNode;
+  params: {
+    team_slug: string;
+  };
 }
 
 const rightHeader = () => (
@@ -30,17 +33,22 @@ const rightHeader = () => (
 
 export default async function PlaybookRootLayout({
   children,
+  params,
 }: PlaybookRootLayoutProps) {
-  const session = await getSession();
-  if (!session) {
+  const { user, teams } = await getTeams();
+
+  if (!user) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  const user = session.user;
-
   return (
     <div className="flex min-h-screen flex-col">
-      <NavBar user={user} rightElements={rightHeader()}>
+      <NavBar
+        user={user}
+        rightElements={rightHeader()}
+        teams={teams}
+        activeTeamSlug={params.team_slug}
+      >
         <DashboardNav items={playbooksConfig.sidebarNav} />
       </NavBar>
       <div className="container flex-1">{children}</div>
