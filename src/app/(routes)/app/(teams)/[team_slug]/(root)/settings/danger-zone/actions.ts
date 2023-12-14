@@ -6,12 +6,7 @@ import { MembershipRole } from '@prisma/client';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
-import { UpdateTeamNameFormSchema } from './schema';
-
-export const updateTeam = async (
-  teamSlug: string,
-  data: UpdateTeamNameFormSchema,
-) => {
+export const deleteTeam = async (teamSlug: string) => {
   const session = await getSession();
   if (!session)
     return {
@@ -32,7 +27,7 @@ export const updateTeam = async (
     };
   }
 
-  await db.team.update({
+  await db.team.delete({
     where: {
       id: team.id,
       members: {
@@ -44,10 +39,6 @@ export const updateTeam = async (
           },
         },
       },
-    },
-
-    data: {
-      name: data.name,
     },
   });
 

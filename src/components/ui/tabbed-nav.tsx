@@ -37,7 +37,7 @@ export const TabbedNav: React.FC<{
                   ? pathname === link.href
                   : pathname.startsWith(link.href)
               )
-                ? 'border-foreground bg-background text-foreground shadow-sm'
+                ? 'border-primary bg-background text-foreground shadow-sm'
                 : 'border-transparent',
             )}
           >
