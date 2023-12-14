@@ -22,23 +22,19 @@ type DashboardCourses = {
 };
 
 export const getDashboardCourses = async ({
-  userId,
+  teamId,
   skip = 0,
   take = 9,
 }: {
-  userId: string;
+  teamId: string;
   skip?: number;
   take?: number;
 }): Promise<DashboardCourses> => {
   try {
     const userProgress = await db.userProgress.findMany({
-      where: { userId },
+      where: { teamId },
       select: { chapterId: true, isCompleted: true, isStarted: true },
     });
-
-    const totalCoursesInProgress = userProgress.filter(
-      (p) => p.isStarted && !p.isCompleted,
-    ).length;
 
     const chapterIdsWithProgress = userProgress.map(
       (progress) => progress.chapterId,
@@ -80,8 +76,8 @@ export const getDashboardCourses = async ({
 
     const coursesWithProgress = await Promise.all(
       courses.map(async (course) => {
-        const progress = await getProgress(userId, course.id);
-        const userSubscriptionPlan = await getUserSubscriptionPlan(userId);
+        const progress = await getProgress(teamId, course.id);
+        const userSubscriptionPlan = await getUserSubscriptionPlan(teamId);
         const isPaidMember = userSubscriptionPlan.isPaid;
         return {
           ...course,
@@ -98,7 +94,13 @@ export const getDashboardCourses = async ({
       (course) => (course.progress ?? 0) < 100,
     );
 
-    const totalCompletedCourses = completedCourses.length;
+    const totalCompletedCourses = await db.userProgress.count({
+      where: { teamId, isCompleted: true },
+    });
+
+    const totalCoursesInProgress = await db.userProgress.count({
+      where: { teamId, isStarted: true, isCompleted: false },
+    });
 
     return {
       completedCourses,

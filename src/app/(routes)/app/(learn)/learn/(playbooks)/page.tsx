@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+import { getTeams } from ':/src/lib/team/get-teams';
 
 import { getDashboardCourses } from '#/lib/actions/get-dashboard-courses';
 import { authOptions } from '#/lib/auth';
 import { CP_PREFIX } from '#/lib/const';
-import { getSession } from '#/lib/session';
 
 import { DashboardShell } from '#/components/dashboard/shell';
 import { CoursesList } from '#/components/learn/courses/courses-list';
@@ -19,9 +19,14 @@ interface MyPlaybooksPageProps {
 export default async function MyPlaybooksPage({
   searchParams,
 }: MyPlaybooksPageProps) {
-  const session = await getSession();
-  if (!session) {
+  const { user, teams } = await getTeams();
+  if (!user) {
     redirect(authOptions?.pages?.signIn || '/login');
+  }
+
+  const personalTeam = teams.find((team) => team.isPersonal);
+  if (!personalTeam) {
+    throw new Error('No personal team found');
   }
 
   const page = parseInt(searchParams.page as string) || 1;
@@ -35,7 +40,7 @@ export default async function MyPlaybooksPage({
     totalCompletedCourses,
     totalCoursesInProgress,
   } = await getDashboardCourses({
-    userId: session.user.id,
+    teamId: personalTeam.id,
     skip,
     take,
   });
