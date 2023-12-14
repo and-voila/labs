@@ -1,68 +1,84 @@
-'use client';
-
 import Link from 'next/link';
 
 import { CP_PREFIX } from '#/lib/const';
 import { isTeacher } from '#/lib/teacher';
+import { Team } from '#/lib/team/get-teams';
 import { MainNavItem } from '#/lib/types';
 import { cn } from '#/lib/utils';
 
-import { MainNav } from '#/components/layout/main-nav';
-import { UserAccountNav } from '#/components/layout/user-account-nav';
 import { buttonVariants } from '#/components/ui/button';
 
-import useScroll from '#/hooks/use-scroll';
+import { Icons } from '../shared/icons';
+import { TeamSwitcher } from '../teams/team-switcher';
+import UserNavSSR from '../teams/user-nav-ssr';
+import { MainNavigationMenu } from './main-nav-menu';
 
 interface NavBarProps {
-  user: {
+  teams?: Team[];
+  user?: {
     id: string;
     name: string;
+    username: string;
     email: string;
     image: string;
+    displayName: string;
   } | null;
   items?: MainNavItem[];
   children?: React.ReactNode;
   rightElements?: React.ReactNode;
   scroll?: boolean;
+  activeTeamSlug?: string;
 }
 
 export function NavBar({
   user,
-  items,
-  children,
+  teams,
+  activeTeamSlug,
   rightElements,
-  scroll = false,
 }: NavBarProps) {
-  const scrolled = useScroll(50);
-
-  const filteredItems = items?.filter((item) => {
-    if (item.isLoggedIn && !user) return false;
-    return true;
-  });
-
   const showAdminLink = isTeacher(user?.id);
 
   return (
-    <header
-      className={`sticky top-0 z-40 flex w-full justify-center bg-background/60 backdrop-blur-xl transition-all ${
-        scroll
-          ? scrolled
-            ? 'border-b border-border'
-            : 'bg-background/0'
-          : 'border-b border-border'
-      }`}
-    >
+    <header className="sticky top-0 z-40 flex w-full justify-center bg-background/60 backdrop-blur-xl transition-all">
       <div className="container flex h-16 items-center justify-between py-4">
-        <MainNav items={filteredItems}>{children}</MainNav>
+        <div className="flex flex-1 items-center space-x-3">
+          {user ? (
+            <Link href={`${CP_PREFIX}`}>
+              <Icons.logo className="h-8 w-8 text-primary" />
+            </Link>
+          ) : (
+            <Link href="/">
+              <Icons.logo className="h-8 w-8 text-primary" />
+            </Link>
+          )}
+          {user && (
+            <div className="hidden md:flex">
+              <TeamSwitcher
+                user={user}
+                teams={teams}
+                activeTeamSlug={activeTeamSlug}
+              />
+            </div>
+          )}
+        </div>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-1 justify-center">
+          <MainNavigationMenu
+            teams={teams}
+            user={user}
+            activeTeamSlug={activeTeamSlug}
+          />
+        </div>
+
+        <div className="flex flex-1 items-center justify-end space-x-3">
           {rightElements}
 
           {showAdminLink && (
             <Link
               href={`${CP_PREFIX}/admin`}
               className={cn(
-                buttonVariants({ variant: 'secondary', size: 'sm' }),
+                buttonVariants({ variant: 'ghost', size: 'sm' }),
+                'hidden md:flex',
               )}
             >
               Admin
@@ -76,11 +92,11 @@ export function NavBar({
             >
               Login
             </Link>
-          ) : null}
-
-          {user ? (
-            <UserAccountNav user={user} />
           ) : (
+            <UserNavSSR />
+          )}
+
+          {!user && (
             <Link
               href="/register"
               className={cn(buttonVariants({ size: 'sm' }))}

@@ -37,11 +37,11 @@ export async function POST(req: Request) {
 
   const session = event.data.object as Stripe.Checkout.Session;
 
-  if (!session?.metadata?.userId) {
-    return new NextResponse('User id is required', { status: 400 });
+  if (!session?.metadata?.teamId) {
+    return new NextResponse('Team id is required', { status: 400 });
   }
 
-  const userId = session?.metadata?.userId;
+  const teamId = session?.metadata?.teamId;
 
   if (event.type === 'checkout.session.completed') {
     if (session.subscription) {
@@ -49,18 +49,18 @@ export async function POST(req: Request) {
         session.subscription as string,
       );
 
-      if (!userId) {
-        return new NextResponse('User id is required', { status: 400 });
+      if (!teamId) {
+        return new NextResponse('Team id is required', { status: 400 });
       }
 
-      const user = await db.user.findUnique({ where: { id: userId } });
-      if (!user) {
-        return new NextResponse('User not found', { status: 400 });
+      const team = await db.team.findUnique({ where: { id: teamId } });
+      if (!team) {
+        return new NextResponse('Team not found', { status: 400 });
       }
 
       await db.stripeSubscription.create({
         data: {
-          userId: userId,
+          teamId: teamId,
           stripeSubscriptionId: subscription.id,
           stripeCustomerId: subscription.customer as string,
           stripePriceId: subscription.items.data[0].price.id,
@@ -82,7 +82,7 @@ export async function POST(req: Request) {
     if (!stripeSubscription) {
       await db.stripeSubscription.create({
         data: {
-          userId: session?.metadata?.userId,
+          teamId: session?.metadata?.teamId,
           stripeSubscriptionId: subscription.id,
           stripeCustomerId: subscription.customer as string,
           stripePriceId: subscription.items.data[0].price.id,

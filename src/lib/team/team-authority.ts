@@ -24,6 +24,10 @@ export const hasTeamAccess = async (userId: string, teamSlug: string) => {
     },
   });
 
+  if (team.isPersonal) {
+    return true;
+  }
+
   if (membership) {
     return true;
   }

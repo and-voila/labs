@@ -6,6 +6,8 @@ import { siteConfig } from '#/config/site';
 
 import { CP_PREFIX } from '#/lib/const';
 
+import { Icons } from '#/components/shared/icons';
+import { RoleBadge } from '#/components/teams/role-badge';
 import {
   Card,
   CardContent,
@@ -13,9 +15,6 @@ import {
   CardHeader,
   CardTitle,
 } from '#/components/ui/card';
-
-import { Icons } from '../shared/icons';
-import { RoleBadge } from './role-badge';
 
 export interface TeamCardProps {
   team: Team;
@@ -30,17 +29,10 @@ export const TeamCard: React.FC<TeamCardProps> = (props) => {
     <>
       <Card className="relative box-border cursor-pointer overflow-visible hover:shadow-sm">
         <div className="pointer-events-none grid outline-none">
-          {!isPersonal ? (
-            <Link
-              href={`${CP_PREFIX}/${team.slug}`}
-              className="pointer-events-auto absolute inset-0"
-            />
-          ) : (
-            <Link
-              href={`${CP_PREFIX}/settings`}
-              className="pointer-events-auto absolute inset-0"
-            />
-          )}
+          <Link
+            href={`${CP_PREFIX}/${team.slug}`}
+            className="pointer-events-auto absolute inset-0"
+          />
           <CardHeader className="grid grid-cols-[1fr_110px] items-start gap-4 space-y-0">
             <div className="space-y-1">
               <CardTitle>{team.name}</CardTitle>

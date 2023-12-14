@@ -63,14 +63,13 @@ export const StartCourseButton = ({
 
   return (
     <Button
-      size="lg"
       onClick={onClick}
       disabled={isLoading}
       type="button"
       variant="default"
-      className="mt-2 w-full flex-shrink-0 md:mt-0 md:w-auto"
+      className="w-full flex-shrink-0 md:mt-0 md:w-auto"
     >
-      Start now
+      Start
     </Button>
   );
 };

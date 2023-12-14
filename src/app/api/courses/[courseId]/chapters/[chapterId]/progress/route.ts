@@ -1,24 +1,27 @@
 import { NextResponse } from 'next/server';
 
 import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
+import { getTeams } from '#/lib/team/get-teams';
 
 export async function PUT(
   req: Request,
   { params }: { params: { courseId: string; chapterId: string } },
 ) {
   try {
-    const session = await getSession();
-
-    if (!session) {
+    const { user, teams } = await getTeams();
+    if (!user) {
       return new NextResponse('Unauthorized', { status: 401 });
+    }
+    const personalTeam = teams.find((team) => team.isPersonal);
+    if (!personalTeam) {
+      return new NextResponse('No personal team found', { status: 404 });
     }
     const { isCompleted } = await req.json();
 
     const userProgress = await db.userProgress.upsert({
       where: {
-        userId_chapterId: {
-          userId: session.user.id,
+        teamId_chapterId: {
+          teamId: personalTeam.id,
           chapterId: params.chapterId,
         },
       },
@@ -26,7 +29,7 @@ export async function PUT(
         isCompleted,
       },
       create: {
-        userId: session.user.id,
+        teamId: personalTeam.id,
         chapterId: params.chapterId,
         isCompleted,
       },

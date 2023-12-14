@@ -1,22 +1,32 @@
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
-interface Team {
+export interface Team {
   id: string;
   name: string;
   slug: string;
   createdAt: Date;
   updatedAt: Date | null;
+  isPersonal: boolean;
 }
 
 interface GetTeamsResult {
   teams: Team[];
-  userName: string | null;
+  user: {
+    id: string;
+    name: string;
+    username: string;
+    email: string;
+    image: string;
+    displayName: string;
+  } | null;
 }
 
-export const getTeams = async (): Promise<GetTeamsResult> => {
+export const getTeams = async (): Promise<
+  GetTeamsResult & { activeTeamSlug: string | null }
+> => {
   const session = await getSession();
-  if (!session) return { teams: [], userName: null };
+  if (!session) return { teams: [], user: null, activeTeamSlug: null };
 
   const teams = await db.team.findMany({
     where: {
@@ -28,5 +38,11 @@ export const getTeams = async (): Promise<GetTeamsResult> => {
     },
   });
 
-  return { teams: teams ?? [], userName: session.user.name ?? null };
+  const personalTeamSlug = teams.find((team) => team.isPersonal)?.slug || null;
+
+  return {
+    teams: teams ?? [],
+    user: session.user,
+    activeTeamSlug: personalTeamSlug,
+  };
 };

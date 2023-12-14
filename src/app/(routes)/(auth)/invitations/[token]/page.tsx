@@ -16,7 +16,7 @@ import {
   CardTitle,
 } from '#/components/ui/card';
 
-import SignOutButton from './button';
+import SignOutButton from './sign-out-button';
 
 type Props = {
   params: {

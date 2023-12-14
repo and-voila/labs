@@ -27,18 +27,25 @@ import {
 
 export interface TeamSwitcherProps {
   activeTeamSlug?: string;
-  teams: Team[];
-  userName: string | null;
+  teams?: Team[];
+  user: {
+    id: string;
+    name: string;
+    username: string;
+    email: string;
+    image: string;
+    displayName: string;
+  } | null;
 }
 
 export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
-  const { teams, activeTeamSlug, userName } = props;
+  const { teams, activeTeamSlug, user } = props;
 
   const router = useRouter();
   const [isOpen, setOpen] = React.useState(false);
 
   const activeTeam = useMemo(() => {
-    return teams.find((team) => team.slug === activeTeamSlug);
+    return teams?.find((team) => team.slug === activeTeamSlug);
   }, [teams, activeTeamSlug]);
 
   const onTeamSelect = (team: Team) => {
@@ -77,13 +84,13 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
               src={`https://avatar.vercel.sh/${
                 activeTeam?.slug ?? 'personal'
               }.png`}
-              alt={activeTeam?.name ?? userName ?? 'Personal account'}
+              alt={activeTeam?.name ?? user?.name ?? 'Personal account'}
             />
             <AvatarFallback>
-              {(activeTeam?.name ?? userName ?? 'P')[0]}
+              {(activeTeam?.name ?? user?.name ?? 'P')[0]}
             </AvatarFallback>
           </Avatar>
-          {activeTeam?.name ?? userName ?? 'Personal account'}
+          {activeTeam?.name ?? user?.name ?? 'Personal account'}
           <Icons.radixChevronDown
             className={cn(
               'ml-auto h-4 w-4 shrink-0 transition-transform',
@@ -97,7 +104,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
           <CommandList>
             <CommandInput placeholder="Search team..." />
             <CommandEmpty>No team found.</CommandEmpty>
-            <CommandGroup heading="Personal account">
+            <CommandGroup heading="Personal workspace">
               <CommandItem
                 key="personal"
                 className="cursor-pointer text-sm"
@@ -105,42 +112,46 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
               >
                 <Avatar className="mr-2 h-5 w-5">
                   <AvatarImage
-                    src={`https://avatar.vercel.sh/${userName}.png`}
-                    alt={`Profile avatar of ${userName || 'the current user'}`}
+                    src={`https://avatar.vercel.sh/${user?.name}.png`}
+                    alt={`Profile avatar of ${
+                      user?.name || 'the current user'
+                    }`}
                   />
-                  <AvatarFallback>{userName?.[0]}</AvatarFallback>
+                  <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
                 </Avatar>
-                {userName ?? 'Personal account'}
+                {user?.name ?? 'Personal account'}
               </CommandItem>
             </CommandGroup>
-            <CommandGroup heading="Teams">
-              {teams.map((team) => (
-                <CommandItem
-                  key={team.id}
-                  className={cn(
-                    'cursor-pointer text-sm',
-                    activeTeam?.slug === team.slug ? 'bg-primary/20' : '',
-                  )}
-                  onSelect={() => onTeamSelect(team)}
-                >
-                  <Avatar className="mr-2 h-5 w-5">
-                    <AvatarImage
-                      src={`https://avatar.vercel.sh/${team.slug}.png`}
-                      alt={team.name}
-                    />
-                    <AvatarFallback>{team.name?.[0]}</AvatarFallback>
-                  </Avatar>
-                  <p className="truncate">{team.name}</p>
-                  <Icons.radixCheck
+            <CommandGroup heading="Team workspaces">
+              {teams
+                ?.filter((team) => !team.isPersonal)
+                .map((team) => (
+                  <CommandItem
+                    key={team.id}
                     className={cn(
-                      'ml-auto h-4 w-4 text-primary',
-                      activeTeam?.slug === team.slug
-                        ? 'opacity-100'
-                        : 'opacity-0',
+                      'cursor-pointer text-sm',
+                      activeTeam?.slug === team.slug ? 'bg-primary/20' : '',
                     )}
-                  />
-                </CommandItem>
-              ))}
+                    onSelect={() => onTeamSelect(team)}
+                  >
+                    <Avatar className="mr-2 h-5 w-5">
+                      <AvatarImage
+                        src={`https://avatar.vercel.sh/${team.slug}.png`}
+                        alt={team.name}
+                      />
+                      <AvatarFallback>{team.name?.[0]}</AvatarFallback>
+                    </Avatar>
+                    <p className="truncate">{team.name}</p>
+                    <Icons.radixCheck
+                      className={cn(
+                        'ml-auto h-4 w-4 text-primary',
+                        activeTeam?.slug === team.slug
+                          ? 'opacity-100'
+                          : 'opacity-0',
+                      )}
+                    />
+                  </CommandItem>
+                ))}
             </CommandGroup>
           </CommandList>
           <CommandSeparator />

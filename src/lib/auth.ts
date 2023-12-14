@@ -81,7 +81,6 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async jwt({ token, user }) {
-      // console.log('JWT token issued for user:', token.email);
       const dbUser = await db.user.findFirst({
         where: {
           email: token.email,
@@ -109,7 +108,6 @@ export const authOptions: NextAuthOptions = {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { team, isNew } = await createPersonalTeam(dbUser.id);
       if (isNew) {
-        //console.log('Created personal team:', team);
       }
 
       return {

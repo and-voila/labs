@@ -15,7 +15,7 @@ type CourseWithProgressWithCategory = Course & {
 };
 
 type GetCourses = {
-  userId: string;
+  teamId: string;
   title?: string;
   categoryId?: string;
   isPaidMember: boolean;
@@ -24,11 +24,11 @@ type GetCourses = {
 };
 
 export const getCourses = async ({
-  userId,
+  teamId,
   title,
   categoryId,
   skip = 0,
-  take = 9,
+  take = 6,
 }: GetCourses): Promise<{
   courses: CourseWithProgressWithCategory[];
   count: number;
@@ -80,14 +80,14 @@ export const getCourses = async ({
       },
     });
 
-    const userSubscriptionPlan = await getUserSubscriptionPlan(userId);
+    const userSubscriptionPlan = await getUserSubscriptionPlan(teamId);
     const isPaidMember = userSubscriptionPlan.isPaid;
 
     const coursesWithProgress: CourseWithProgressWithCategory[] =
       await Promise.all(
         courses.map(async (course) => {
           if (isPaidMember || course.price === 0) {
-            const progressPercentage = await getProgress(userId, course.id);
+            const progressPercentage = await getProgress(teamId, course.id);
 
             return {
               ...course,

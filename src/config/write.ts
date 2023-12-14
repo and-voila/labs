@@ -1,6 +1,6 @@
-import { Icons } from '#/components/shared/icons';
+import { CP_PREFIX } from '#/lib/const';
 
-import { CP_PREFIX } from '../lib/const';
+import { Icons } from '#/components/shared/icons';
 
 type Tab = {
   name: string;

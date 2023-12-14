@@ -7,11 +7,11 @@ import { UserSubscriptionPlan } from '#/lib/types';
 const DAY_IN_MS = 86_400_000;
 
 export async function getUserSubscriptionPlan(
-  userId: string,
+  teamId: string,
 ): Promise<UserSubscriptionPlan> {
   const stripeSubscription = await db.stripeSubscription.findUnique({
     where: {
-      userId: userId,
+      teamId: teamId,
     },
     select: {
       stripeCustomerId: true,

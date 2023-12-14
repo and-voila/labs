@@ -75,7 +75,6 @@ export const CourseProgressButton = ({
 
   return (
     <Button
-      size="lg"
       onClick={onClick}
       disabled={isLoading}
       type="button"

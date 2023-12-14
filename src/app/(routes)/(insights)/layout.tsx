@@ -1,19 +1,19 @@
 import { redirect } from 'next/navigation';
 
-import { insightsConfig } from '#/config/insights';
-
 import { authOptions } from '#/lib/auth';
-import { getSession } from '#/lib/session';
 import { isTeacher } from '#/lib/teacher';
+import { getTeams } from '#/lib/team/get-teams';
 
 import { InsightsSearch } from '#/components/insights/search';
-import { InsightsSidebarNav } from '#/components/insights/sidebar-nav';
 import { NavBar } from '#/components/layout/navbar';
 import { SiteFooter } from '#/components/layout/site-footer';
 import { Icons } from '#/components/shared/icons';
 
 interface InsightsLayoutProps {
   children: React.ReactNode;
+  params: {
+    team_slug: string;
+  };
 }
 
 const rightHeader = () => (
@@ -29,22 +29,24 @@ const rightHeader = () => (
 
 export default async function InsightsLayout({
   children,
+  params,
 }: InsightsLayoutProps) {
-  const session = await getSession();
-  if (!session) {
+  const { user, teams } = await getTeams();
+  if (!user) {
     redirect(authOptions?.pages?.signIn || '/login');
-  } else if (!isTeacher(session.user.id)) {
+  } else if (!isTeacher(user.id)) {
     redirect('/not-authorized');
   }
 
-  const user = session.user;
-
   return (
     <div className="flex min-h-screen flex-col">
-      <NavBar user={user} rightElements={rightHeader()}>
-        <InsightsSidebarNav items={insightsConfig.sidebarNav} />
-      </NavBar>
-      <div className="container flex-1">{children}</div>
+      <NavBar
+        user={user}
+        rightElements={rightHeader()}
+        teams={teams}
+        activeTeamSlug={params.team_slug}
+      />
+      <div className="container flex-1 py-8">{children}</div>
       <SiteFooter />
     </div>
   );
