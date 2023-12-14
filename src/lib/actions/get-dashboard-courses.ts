@@ -24,7 +24,7 @@ type DashboardCourses = {
 export const getDashboardCourses = async ({
   teamId,
   skip = 0,
-  take = 9,
+  take = 6,
 }: {
   teamId: string;
   skip?: number;

@@ -28,7 +28,7 @@ export const getCourses = async ({
   title,
   categoryId,
   skip = 0,
-  take = 9,
+  take = 6,
 }: GetCourses): Promise<{
   courses: CourseWithProgressWithCategory[];
   count: number;
