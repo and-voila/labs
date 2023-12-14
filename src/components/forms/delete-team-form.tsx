@@ -24,7 +24,7 @@ import {
 } from '#/components/ui/card';
 import { toast } from '#/components/ui/use-toast';
 
-import { deleteTeam } from '../actions';
+import { deleteTeam } from '#/app/(routes)/app/(teams)/[team_slug]/(root)/settings/danger-zone/actions';
 
 export interface DeleteFormProps {
   teamSlug: string;
@@ -42,9 +42,12 @@ export const DeleteForm: React.FC<DeleteFormProps> = (props) => {
     try {
       await deleteTeam(teamSlug);
       toast({
-        title: 'Success',
-        description: 'Team deleted successfully.',
+        title: 'Your team was deleted',
+        description:
+          'Your request was processed and your team has been permanently deleted.',
+        variant: 'success',
       });
+
       router.push('/app');
     } finally {
       setIsSubmitting(false);
@@ -59,15 +62,16 @@ export const DeleteForm: React.FC<DeleteFormProps> = (props) => {
         </CardHeader>
         <CardContent>
           <p>
-            You can delete your team at any time. This will permanently delete
-            your team and <strong>all its related data</strong>.
+            You can delete your team at any time. This will permanently remove
+            your team, its members, and <strong>all its related data</strong>.
+            This process cannot be undone.
           </p>
         </CardContent>
 
         <CardFooter className="py-3">
           <div className="ml-auto flex items-center justify-end">
             <AlertDialogTrigger asChild>
-              <Button variant="outline">Delete Team</Button>
+              <Button variant="destructive">Delete Team</Button>
             </AlertDialogTrigger>
           </div>
         </CardFooter>

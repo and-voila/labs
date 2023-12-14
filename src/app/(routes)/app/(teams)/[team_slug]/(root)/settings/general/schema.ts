@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-export const generalFormSchema = z.object({
+export const updateTeamNameFormSchema = z.object({
   name: z.string().min(3).max(50),
 });
 
-export type GeneralFormSchema = z.infer<typeof generalFormSchema>;
+export type UpdateTeamNameFormSchema = z.infer<typeof updateTeamNameFormSchema>;

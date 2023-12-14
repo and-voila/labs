@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { getTeam } from '#/lib/team/get-current-team';
 
-import { UpdateTeamNameForm } from '#/components/forms/update-team-name-form';
+import { DeleteForm } from '#/components/forms/delete-team-form';
 
 interface Props {
   params: {
@@ -11,7 +11,7 @@ interface Props {
   };
 }
 
-const SettingsPage: NextPage<Props> = async ({ params }) => {
+const TeamDangerZonePage: NextPage<Props> = async ({ params }) => {
   const team = await getTeam(params.team_slug);
   if (!team) {
     notFound();
@@ -19,22 +19,17 @@ const SettingsPage: NextPage<Props> = async ({ params }) => {
 
   return (
     <div className="flex flex-col gap-8">
-      <UpdateTeamNameForm
-        teamSlug={params.team_slug}
-        defaultValues={{
-          name: team.name,
-        }}
-      />
+      <DeleteForm teamSlug={params.team_slug} />
     </div>
   );
 };
 
-export default SettingsPage;
+export default TeamDangerZonePage;
 
 export function generateMetadata(): Metadata {
-  const title = 'Team Settings';
+  const title = 'Delete Team';
   const description =
-    'And Voila makes it easy to invite or manage team members, update your team information, or if you need to, delete your team permanently.';
+    'Manage your team and data on your terms. Permanently delete your team, removing all members and data from our systems.';
 
   const baseUrl =
     process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'

@@ -14,7 +14,7 @@ const SettingsLayout: React.FC<SettingsLayoutProps> = ({
   params,
 }) => {
   return (
-    <div className="mx-auto w-full max-w-7xl p-8">
+    <div className="p4 grid max-w-3xl gap-10 lg:p-8">
       <div>
         <TabbedNav
           links={[
@@ -25,6 +25,10 @@ const SettingsLayout: React.FC<SettingsLayoutProps> = ({
             {
               label: 'Members',
               href: `${CP_PREFIX}/${params.team_slug}/settings/members`,
+            },
+            {
+              label: 'Danger Zone',
+              href: `${CP_PREFIX}/${params.team_slug}/settings/danger-zone`,
             },
           ]}
         />

@@ -23,43 +23,51 @@ import {
 import { Input } from '#/components/ui/input';
 import { toast } from '#/components/ui/use-toast';
 
-import { updateTeam } from '../actions';
-import { GeneralFormSchema, generalFormSchema } from '../schema';
+import { updateTeam } from '#/app/(routes)/app/(teams)/[team_slug]/(root)/settings/general/actions';
+import {
+  UpdateTeamNameFormSchema,
+  updateTeamNameFormSchema,
+} from '#/app/(routes)/app/(teams)/[team_slug]/(root)/settings/general/schema';
 
-export interface GeneralFormProps {
+export interface UpdateTeamNameFormProps {
   teamSlug: string;
-  defaultValues: Partial<GeneralFormSchema>;
+  defaultValues: Partial<UpdateTeamNameFormSchema>;
 }
 
-export const GeneralForm: React.FC<GeneralFormProps> = (props) => {
+export const UpdateTeamNameForm: React.FC<UpdateTeamNameFormProps> = (
+  props,
+) => {
   const { defaultValues, teamSlug } = props;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-  const form = useForm<GeneralFormSchema>({
-    resolver: zodResolver(generalFormSchema),
+  const form = useForm<UpdateTeamNameFormSchema>({
+    resolver: zodResolver(updateTeamNameFormSchema),
     defaultValues: {
       name: '',
       ...defaultValues,
     },
   });
 
-  const onSubmit = async (data: GeneralFormSchema) => {
+  const onSubmit = async (data: UpdateTeamNameFormSchema) => {
     setIsSubmitting(true);
     try {
       const result = await updateTeam(teamSlug, data);
       if (result.status === 'OK') {
         return toast({
-          title: 'Success',
-          description: 'Team updated successfully.',
+          title: 'Team name updated',
+          description:
+            "Thanks for making And Voila yours. Your team's name has been updated and you're all set.",
+          variant: 'success',
         });
       }
 
       toast({
+        title: 'Your team name was not updated',
+        description:
+          "We're sorry we couldn't process your team name update. Please try again. If the problem persists, please contact support",
         variant: 'destructive',
-        title: 'Error',
-        description: result.error,
       });
     } catch (e) {
       // error5t

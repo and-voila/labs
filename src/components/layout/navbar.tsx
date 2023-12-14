@@ -6,12 +6,11 @@ import { Team } from '#/lib/team/get-teams';
 import { MainNavItem } from '#/lib/types';
 import { cn } from '#/lib/utils';
 
+import { MainNavigationMenu } from '#/components/layout/main-nav-menu';
+import { Icons } from '#/components/shared/icons';
+import { TeamSwitcher } from '#/components/teams/team-switcher';
+import UserNavSSR from '#/components/teams/user-nav-ssr';
 import { buttonVariants } from '#/components/ui/button';
-
-import { Icons } from '../shared/icons';
-import { TeamSwitcher } from '../teams/team-switcher';
-import UserNavSSR from '../teams/user-nav-ssr';
-import { MainNavigationMenu } from './main-nav-menu';
 
 interface NavBarProps {
   teams?: Team[];
@@ -77,7 +76,7 @@ export function NavBar({
             <Link
               href={`${CP_PREFIX}/admin`}
               className={cn(
-                buttonVariants({ variant: 'ghost', size: 'sm' }),
+                buttonVariants({ variant: 'outline', size: 'sm' }),
                 'hidden md:flex',
               )}
             >

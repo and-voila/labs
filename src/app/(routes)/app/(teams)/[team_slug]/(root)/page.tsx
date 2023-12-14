@@ -1,8 +1,9 @@
 import { SVGProps } from 'react';
-import { Metadata } from 'next';
+import { Metadata, NextPage } from 'next';
 import Link from 'next/link';
 
 import { CP_PREFIX } from '#/lib/const';
+import { getTeams } from '#/lib/team/get-teams';
 import { cn } from '#/lib/utils';
 
 import { DashboardHeader } from '#/components/dashboard/header';
@@ -18,63 +19,75 @@ import {
   CardTitle,
 } from '#/components/ui/card';
 
-interface DashboardItemProps {
-  icon: React.ComponentType<SVGProps<SVGSVGElement>>;
-  title: string;
-  description: string;
-  linkText: string;
-  linkHref: string;
-  isExternal?: boolean;
-  disabled?: boolean;
+interface Props {
+  params: {
+    team_slug: string;
+  };
 }
 
-const dashboardItems: DashboardItemProps[] = [
-  {
-    title: 'Community',
-    icon: Icons.discord,
-    linkHref:
-      'https://discord.com/channels/1151749282806910976/1164902538731069542',
-    linkText: 'Work it',
-    description:
-      'Dive into a buzzing hub of marketing savants. Get real-time insights, priceless tips, and direct access to industry pros.',
-    isExternal: true,
-  },
-  {
-    title: 'Learn',
-    icon: Icons.courses,
-    linkHref: `${CP_PREFIX}/learn`,
-    linkText: 'Crush it',
-    description:
-      "Head on over to your shiny new personal workspace to access Learn features. We'll fix this soon.",
-    disabled: true,
-  },
-  {
-    title: 'Tools',
-    icon: Icons.robot,
-    linkHref: `${CP_PREFIX}/tools`,
-    linkText: 'Hack it',
-    description:
-      'Launch your own website in under 3 minutes with a custom domain and smash writer’s block with an AI-assist.',
-  },
-  {
-    title: 'Teams',
-    icon: Icons.team,
-    linkHref: `${CP_PREFIX}/team`,
-    linkText: 'Sync it',
-    description:
-      'Join forces in "multiplayer" mode for a real-time collaboration experience. Invite colleagues and work together.',
-  },
-];
+const TeamIndex: NextPage<Props> = async (props) => {
+  const { params } = props;
 
-export default async function DashboardPage() {
+  interface TeamIndexItemProps {
+    icon: React.ComponentType<SVGProps<SVGSVGElement>>;
+    title: string;
+    description: string;
+    linkText: string;
+    linkHref: string;
+    isExternal?: boolean;
+    isDisabled?: boolean;
+  }
+
+  const teamIndexItems: TeamIndexItemProps[] = [
+    {
+      title: 'Community',
+      icon: Icons.discord,
+      linkHref:
+        'https://discord.com/channels/1151749282806910976/1164902538731069542',
+      linkText: 'Work it',
+      description:
+        'Dive into a buzzing hub of marketing savants. Get real-time insights, priceless tips, and direct access to industry pros.',
+      isExternal: true,
+    },
+    {
+      title: 'Learn',
+      icon: Icons.courses,
+      linkHref: `${CP_PREFIX}/${params.team_slug}/learn`,
+      linkText: 'Crush it',
+      description:
+        'Unlock daily micro-courses that supercharge your marketing game. Boost your ROI in less than 5 minutes.',
+    },
+    {
+      title: 'Tools',
+      icon: Icons.robot,
+      linkHref: `${CP_PREFIX}/tools`,
+      linkText: 'Hack it',
+      description:
+        'Launch your own website in under 3 minutes with a custom domain and smash writer’s block with an AI-assist.',
+    },
+  ];
+
+  const { teams } = await getTeams();
+
+  const activeTeam = teams.find((team) => team.slug === params.team_slug);
+  const teamName = activeTeam ? activeTeam.name : '';
+
   return (
     <DashboardShell>
       <DashboardHeader
-        heading="Dashboard"
-        text="Head over to Discord, check out a playbook, or start publishing."
+        heading={`Team ${teamName} in action`}
+        text={
+          'Build, boost, and bloom. Launch sites, tap into AI, and amplify your reach, right here while protecting your IP. Stand out from the generative noise.'
+        }
       />
-      <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
-        {dashboardItems.map((item, index) => (
+
+      <div
+        className={cn(
+          'grid w-full gap-6',
+          'grid-cols-[repeat(auto-fill,minmax(300px,1fr))]',
+        )}
+      >
+        {teamIndexItems.map((item, index) => (
           <Card key={index} className="flex flex-col" aria-label={item.title}>
             <CardHeader>
               <CardTitle className="flex items-center gap-3">
@@ -88,12 +101,10 @@ export default async function DashboardPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="flex-grow text-sm text-muted-foreground lg:text-base">
-              <CardDescription className="lg:text-base">
-                {item.description}
-              </CardDescription>
+              <CardDescription>{item.description}</CardDescription>
             </CardContent>
             <CardFooter className="mt-auto justify-end">
-              {item.disabled ? (
+              {item.isDisabled ? (
                 <button
                   className={cn(
                     buttonVariants({
@@ -137,12 +148,14 @@ export default async function DashboardPage() {
       </div>
     </DashboardShell>
   );
-}
+};
+
+export default TeamIndex;
 
 export function generateMetadata(): Metadata {
-  const title = 'Dashboard';
+  const title = 'Team Dashboard';
   const description =
-    'Access the And Voila Dashboard for advanced marketing playbooks, effective AI tools, and to mingle in the best digital marketing Discord.';
+    "For teams that thrive together, And Voila's collaborative team workspaces are your hub for marketing playbooks and full-stack multiplayer AI tools.";
 
   const baseUrl =
     process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
@@ -152,7 +165,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/app`;
+  const pageUrl = `${baseUrl}/${CP_PREFIX}`;
 
   const metadata = {
     title,
