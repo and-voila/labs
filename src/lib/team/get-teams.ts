@@ -7,16 +7,24 @@ export interface Team {
   slug: string;
   createdAt: Date;
   updatedAt: Date | null;
+  isPersonal: boolean;
 }
 
-export interface GetTeamsResult {
+interface GetTeamsResult {
   teams: Team[];
-  userName: string | null;
+  user: {
+    id: string;
+    name: string;
+    username: string;
+    email: string;
+    image: string;
+    displayName: string;
+  } | null;
 }
 
 export const getTeams = async (): Promise<GetTeamsResult> => {
   const session = await getSession();
-  if (!session) return { teams: [], userName: null };
+  if (!session) return { teams: [], user: null };
 
   const teams = await db.team.findMany({
     where: {
@@ -28,5 +36,5 @@ export const getTeams = async (): Promise<GetTeamsResult> => {
     },
   });
 
-  return { teams: teams ?? [], userName: session.user.name ?? null };
+  return { teams: teams ?? [], user: session.user };
 };

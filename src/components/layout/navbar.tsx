@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { CP_PREFIX } from '#/lib/const';
 import { isTeacher } from '#/lib/teacher';
+import { Team } from '#/lib/team/get-teams';
 import { MainNavItem } from '#/lib/types';
 import { cn } from '#/lib/utils';
 
@@ -14,11 +15,14 @@ import { buttonVariants } from '#/components/ui/button';
 import useScroll from '#/hooks/use-scroll';
 
 interface NavBarProps {
+  teams: Team[];
   user: {
     id: string;
     name: string;
+    username: string;
     email: string;
     image: string;
+    displayName: string;
   } | null;
   items?: MainNavItem[];
   children?: React.ReactNode;
@@ -29,6 +33,8 @@ interface NavBarProps {
 
 export function NavBar({
   user,
+  teams,
+  activeTeamSlug,
   items,
   children,
   rightElements,
@@ -54,7 +60,14 @@ export function NavBar({
       }`}
     >
       <div className="container flex h-16 items-center justify-between py-4">
-        <MainNav items={filteredItems}>{children}</MainNav>
+        <MainNav
+          user={user}
+          teams={teams}
+          activeTeamSlug={activeTeamSlug}
+          items={filteredItems}
+        >
+          {children}
+        </MainNav>
 
         <div className="flex items-center space-x-3">
           {rightElements}

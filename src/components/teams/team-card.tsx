@@ -29,17 +29,10 @@ export const TeamCard: React.FC<TeamCardProps> = (props) => {
     <>
       <Card className="relative box-border cursor-pointer overflow-visible hover:shadow-sm">
         <div className="pointer-events-none grid outline-none">
-          {!isPersonal ? (
-            <Link
-              href={`${CP_PREFIX}/${team.slug}`}
-              className="pointer-events-auto absolute inset-0"
-            />
-          ) : (
-            <Link
-              href={`${CP_PREFIX}/settings`}
-              className="pointer-events-auto absolute inset-0"
-            />
-          )}
+          <Link
+            href={`${CP_PREFIX}/${team.slug}`}
+            className="pointer-events-auto absolute inset-0"
+          />
           <CardHeader className="grid grid-cols-[1fr_110px] items-start gap-4 space-y-0">
             <div className="space-y-1">
               <CardTitle>{team.name}</CardTitle>

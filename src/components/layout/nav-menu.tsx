@@ -32,6 +32,23 @@ const resources: {
       'Snappy lessons for quick marketing skills. Think TikTok, but for learning.',
   },
   {
+    title: 'Publish',
+    href: `${CP_PREFIX}/tools/write`,
+    description:
+      'Create your website in under 3 mins. Fast, easy, and looks great.',
+  },
+  {
+    title: 'Manage Sites',
+    href: `${CP_PREFIX}/tools/write/sites`,
+    description:
+      'Keep an eye on your sites and draft posts with an AI-assisted editor that helps you protect your IP.',
+  },
+  {
+    title: 'Collaborate',
+    href: `${CP_PREFIX}/team`,
+    description: 'Invite your team for next-level multiplayer collaboration.',
+  },
+  {
     title: 'Insights',
     href: '/insights',
     description: 'Explore marketing ideas in detail for smarter strategies.',
@@ -48,6 +65,12 @@ const resources: {
     href: '/blog',
     description:
       'Get the latest in digital marketing, served up hot and fresh.',
+    disabled: true,
+  },
+  {
+    title: 'AI Experts',
+    href: `${CP_PREFIX}/tools/chat`,
+    description: 'Engage with purpose-trained marketing AI that just works.',
     disabled: true,
   },
 ];
@@ -92,37 +115,6 @@ const shortcuts: {
     title: 'Pricing',
     href: '/pricing',
     description: 'Need an upgrade? We offer transparent and flexible pricing.',
-  },
-];
-
-const tools: {
-  title: string;
-  href: string;
-  description: string;
-  disabled?: boolean;
-}[] = [
-  {
-    title: 'Publish',
-    href: `${CP_PREFIX}/tools/write`,
-    description:
-      'Create your website in under 3 mins. Fast, easy, and looks great.',
-  },
-  {
-    title: 'Manage Sites',
-    href: `${CP_PREFIX}/tools/write/sites`,
-    description:
-      'Keep an eye on your sites and draft posts with an AI-assisted editor that helps you protect your IP.',
-  },
-  {
-    title: 'Collaborate',
-    href: `${CP_PREFIX}/team`,
-    description: 'Invite your team for next-level multiplayer collaboration.',
-  },
-  {
-    title: 'AI Experts',
-    href: `${CP_PREFIX}/tools/chat`,
-    description: 'Engage with purpose-trained marketing AI that just works.',
-    disabled: true,
   },
 ];
 
@@ -195,7 +187,7 @@ export function MainNavigationMenu() {
           <NavigationMenuTrigger
             className={isActive(`${CP_PREFIX}/learn`) ? 'text-primary' : ''}
           >
-            <Link href={`${CP_PREFIX}/learn`}>Learn</Link>
+            <Link href={`${CP_PREFIX}/learn`}>Resources</Link>
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
@@ -212,41 +204,6 @@ export function MainNavigationMenu() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger
-            className={isActive(`${CP_PREFIX}/tools`) ? 'text-primary' : ''}
-          >
-            <Link href={`${CP_PREFIX}/tools`}>Tools</Link>
-          </NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {tools.map((tool) => (
-                <ListItem
-                  key={tool.title}
-                  title={tool.title}
-                  href={tool.href}
-                  disabled={tool.disabled}
-                >
-                  {tool.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-
-        {/* TODO: Add link for Admin
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <a
-              className={navigationMenuTriggerStyle()}
-              href="https://discord.com/channels/1151749282806910976/1151825811427561623"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Support
-            </a>
-          </NavigationMenuLink>
-              </NavigationMenuItem>*/}
       </NavigationMenuList>
     </NavigationMenu>
   );

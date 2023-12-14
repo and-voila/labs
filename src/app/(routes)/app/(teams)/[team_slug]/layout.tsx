@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { getTeamsConfig } from '#/config/teams';
 
 import { authOptions } from '#/lib/auth';
-import { getSession } from '#/lib/session';
+import { getTeams } from '#/lib/team/get-teams';
 import { hasTeamAccess } from '#/lib/team/team-authority';
 
 import { DashboardNav } from '#/components/layout/nav';
@@ -21,22 +21,26 @@ export default async function TeamsLayout({
   children,
   params,
 }: TeamsLayoutProps) {
-  const session = await getSession();
-  if (!session) {
+  const { user, teams } = await getTeams();
+
+  if (!user) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  if (!(await hasTeamAccess(session.user.id, params.team_slug))) {
+  if (!(await hasTeamAccess(user.id, params.team_slug))) {
     redirect('/app');
   }
-
-  const user = session.user;
 
   const teamsConfig = getTeamsConfig(params.team_slug);
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">
-      <NavBar user={user} scroll={false} activeTeamSlug={params.team_slug}>
+      <NavBar
+        user={user}
+        teams={teams}
+        activeTeamSlug={params.team_slug}
+        scroll={false}
+      >
         <DashboardNav
           items={teamsConfig.sidebarNav}
           teamSlug={params.team_slug}
