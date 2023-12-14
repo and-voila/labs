@@ -14,7 +14,7 @@ import { TeamSwitcher } from '#/components/teams/team-switcher';
 import { Separator } from '#/components/ui/separator';
 
 interface MainNavProps {
-  user: {
+  user?: {
     id: string;
     name: string;
     username: string;

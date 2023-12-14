@@ -15,8 +15,8 @@ import { buttonVariants } from '#/components/ui/button';
 import useScroll from '#/hooks/use-scroll';
 
 interface NavBarProps {
-  teams: Team[];
-  user: {
+  teams?: Team[];
+  user?: {
     id: string;
     name: string;
     username: string;
