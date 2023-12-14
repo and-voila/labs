@@ -5,8 +5,8 @@ import { getApiLimitCount } from '#/lib/api-limit';
 import { authOptions } from '#/lib/auth';
 import { CP_PREFIX } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { getTeams } from '#/lib/team/get-teams';
 
 import { CourseSidebar } from '#/components/learn/courses/course-sidebar';
 
@@ -18,12 +18,18 @@ const PlaybookLayout = async ({
   params: { courseId: string };
 }) => {
   const apiLimitCount = await getApiLimitCount();
-  const session = await getSession();
-  if (!session) {
+  const { user, teams } = await getTeams();
+  if (!user) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  const userSubscriptionPlan = await getUserSubscriptionPlan(session.user.id);
+  const personalTeam = teams.find((team) => team.isPersonal);
+
+  if (!personalTeam) {
+    throw new Error('No personal team found');
+  }
+
+  const userSubscriptionPlan = await getUserSubscriptionPlan(user.id);
   const isPaidMember = userSubscriptionPlan.isPaid;
 
   const course = await db.course.findUnique({
@@ -38,7 +44,7 @@ const PlaybookLayout = async ({
         include: {
           userProgress: {
             where: {
-              userId: session.user.id,
+              teamId: personalTeam.id,
             },
           },
         },
@@ -53,7 +59,7 @@ const PlaybookLayout = async ({
     return redirect(`${CP_PREFIX}/admin/teacher/courses`);
   }
 
-  const progressCount = await getProgress(session.user.id, course.id);
+  const progressCount = await getProgress(personalTeam.id, course.id);
 
   return (
     <div className="flex-1 md:grid md:grid-cols-[220px_1fr] md:gap-6 lg:grid-cols-[240px_1fr] lg:gap-10">

@@ -7,8 +7,8 @@ import { env } from ':/env.mjs';
 import { authOptions } from '#/lib/auth';
 import { CP_PREFIX } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { getTeams } from '#/lib/team/get-teams';
 import { cn, placeholderBlurhash } from '#/lib/utils';
 
 import { Banner } from '#/components/banner';
@@ -20,9 +20,15 @@ import { Separator } from '#/components/ui/separator';
 import BlurImage from '#/components/write/blur-image';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
-  const session = await getSession();
-  if (!session) {
+  const { user, teams } = await getTeams();
+  if (!user) {
     redirect(authOptions?.pages?.signIn || '/login');
+  }
+
+  const personalTeam = teams.find((team) => team.isPersonal);
+
+  if (!personalTeam) {
+    throw new Error('No personal team found');
   }
 
   const course = await db.course.findUnique({
@@ -44,7 +50,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
   const userProgress = await db.userProgress.findFirst({
     where: {
-      userId: session.user.id,
+      teamId: personalTeam.id,
       chapterId: course?.chapters[0].id,
     },
   });
@@ -53,7 +59,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     return redirect(`${CP_PREFIX}/learn/search`);
   }
 
-  const userSubscriptionPlan = await getUserSubscriptionPlan(session.user.id);
+  const userSubscriptionPlan = await getUserSubscriptionPlan(personalTeam.id);
   const isPaidMember = userSubscriptionPlan.isPaid;
 
   const isLocked = course.price !== 0 && !isPaidMember;

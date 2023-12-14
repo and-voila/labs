@@ -366,7 +366,7 @@ model UserProgress {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  userId      String
+  userId      String?
   teamId      String?
   chapterId   String
   isStarted   Boolean @default(false)

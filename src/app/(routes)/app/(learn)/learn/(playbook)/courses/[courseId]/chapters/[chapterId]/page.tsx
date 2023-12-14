@@ -7,7 +7,7 @@ import { getChapter } from '#/lib/actions/get-chapter';
 import { authOptions } from '#/lib/auth';
 import { CP_PREFIX } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
+import { getTeams } from '#/lib/team/get-teams';
 
 import { Banner } from '#/components/banner';
 import { DashboardShell } from '#/components/dashboard/shell';
@@ -22,14 +22,20 @@ const ChapterIdPage = async ({
 }: {
   params: { courseId: string; chapterId: string };
 }) => {
-  const session = await getSession();
-  if (!session) {
+  const { user, teams } = await getTeams();
+  if (!user) {
     redirect(authOptions?.pages?.signIn || '/login');
+  }
+
+  const personalTeam = teams.find((team) => team.isPersonal);
+
+  if (!personalTeam) {
+    throw new Error('No personal team found');
   }
 
   const { chapter, course, muxData, attachments, nextChapter, userProgress } =
     await getChapter({
-      userId: session.user.id,
+      teamId: personalTeam.id,
       chapterId: params.chapterId,
       courseId: params.courseId,
     });

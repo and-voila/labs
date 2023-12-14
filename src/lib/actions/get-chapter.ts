@@ -6,13 +6,13 @@ import { db } from '#/lib/db';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
 
 interface GetChapterProps {
-  userId: string;
+  teamId: string;
   courseId: string;
   chapterId: string;
 }
 
 export const getChapter = async ({
-  userId,
+  teamId,
   courseId,
   chapterId,
 }: GetChapterProps) => {
@@ -35,7 +35,7 @@ export const getChapter = async ({
       throw new Error('Play or playbook not found');
     }
 
-    const userSubscriptionPlan = await getUserSubscriptionPlan(userId);
+    const userSubscriptionPlan = await getUserSubscriptionPlan(teamId);
     const isPaidMember = userSubscriptionPlan.isPaid;
 
     let muxData = null;
@@ -73,8 +73,8 @@ export const getChapter = async ({
 
     const userProgress = await db.userProgress.findUnique({
       where: {
-        userId_chapterId: {
-          userId,
+        teamId_chapterId: {
+          teamId,
           chapterId,
         },
       },
