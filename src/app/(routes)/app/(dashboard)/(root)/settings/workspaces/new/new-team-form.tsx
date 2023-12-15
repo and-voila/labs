@@ -28,13 +28,14 @@ const defaultValues: NewTeamFormValues = {
 export const NewTeamForm: React.FC = () => {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+
   const form = useForm<NewTeamFormValues>({
     resolver: zodResolver(newTeamFormSchema),
     defaultValues,
     mode: 'onChange',
   });
 
-  const { watch } = form;
+  const { watch, formState } = form;
   const name = watch('name');
 
   const slugPreview = name
@@ -102,7 +103,7 @@ export const NewTeamForm: React.FC = () => {
             size="sm"
             type="submit"
             isLoading={isSubmitting}
-            disabled={!form.formState.isValid}
+            disabled={!formState.isValid || !formState.isDirty || isSubmitting}
           >
             Create
           </Button>
