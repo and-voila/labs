@@ -53,6 +53,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
 
   const router = useRouter();
   const [isOpen, setOpen] = React.useState(false);
+  const [personalTeam, setPersonalTeam] = React.useState<Team | undefined>();
 
   const activeTeam = useMemo(() => {
     return teams?.find((team) => team.slug === activeTeamSlug);
@@ -65,9 +66,20 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
     });
   };
 
+  React.useEffect(() => {
+    if (teams) {
+      const personal = teams.find((team) => team.isPersonal);
+      setPersonalTeam(personal);
+    }
+  }, [teams]);
+
   const handlePersonalSelect = () => {
     startTransition(() => {
-      router.push(`${CP_PREFIX}`);
+      if (personalTeam) {
+        router.push(`${CP_PREFIX}/${personalTeam.slug}/settings/workspace`);
+      } else {
+        router.push(`${CP_PREFIX}/settings/workspaces`);
+      }
     });
   };
 

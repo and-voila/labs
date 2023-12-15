@@ -10,7 +10,7 @@ export const adminConfig: AdminConfig = {
     },
     {
       title: 'AI center',
-      href: `${CP_PREFIX}/settings`,
+      href: `${CP_PREFIX}/admin/settings`,
       icon: 'robot',
       disabled: true,
     },

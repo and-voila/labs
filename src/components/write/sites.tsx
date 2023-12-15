@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
 
+import { authOptions } from '#/lib/auth';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
@@ -9,8 +10,9 @@ import SiteCard from '#/components/write/site-card';
 export default async function Sites({ limit }: { limit?: number }) {
   const session = await getSession();
   if (!session) {
-    redirect('/login');
+    redirect(authOptions?.pages?.signIn || '/login');
   }
+
   const sites = await db.site.findMany({
     where: {
       user: {

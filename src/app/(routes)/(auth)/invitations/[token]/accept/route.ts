@@ -19,7 +19,7 @@ export const GET = async (
   ]);
 
   if (!session) {
-    redirect(`/login${urlParams}`);
+    redirect(`/register${urlParams}`);
   }
 
   if (!invitation) {
@@ -39,5 +39,5 @@ export const GET = async (
     redirect(`/invitations/${params.token}`);
   }
 
-  redirect(`${CP_PREFIX}/${invitation.teamSlug}`);
+  redirect(`${CP_PREFIX}/${invitation.teamSlug}/settings/workspace`);
 };

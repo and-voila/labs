@@ -7,6 +7,7 @@ import { CP_PREFIX } from '#/lib/const';
 import type { User } from '#/lib/types/next-auth';
 
 import { Icons } from '#/components/shared/icons';
+import { AvatarFallback } from '#/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,8 +16,6 @@ import {
   DropdownMenuTrigger,
 } from '#/components/ui/dropdown-menu';
 import { UserAvatar } from '#/components/ui/user-avatar';
-
-import { AvatarFallback } from '../ui/avatar';
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, 'name' | 'image' | 'email' | 'displayName'>;
@@ -56,14 +55,17 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href={`${CP_PREFIX}`} className="flex items-center space-x-2.5">
+          <Link
+            href={`${CP_PREFIX}/settings/workspaces`}
+            className="flex items-center space-x-2.5"
+          >
             <Icons.dashboard className="h-4 w-4 text-primary" />
             <p className="text-sm">Dashboard</p>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link
-            href={`${CP_PREFIX}/billing`}
+            href={`${CP_PREFIX}/settings/billing`}
             className="flex items-center space-x-2.5"
           >
             <Icons.creditCard className="h-4 w-4 text-primary" />
@@ -72,7 +74,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link
-            href={`${CP_PREFIX}/settings`}
+            href={`${CP_PREFIX}/settings/general`}
             className="flex items-center space-x-2.5"
           >
             <Icons.settings className="h-4 w-4 text-primary" />

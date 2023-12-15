@@ -59,7 +59,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/${CP_PREFIX}/settings/billing`;
+  const pageUrl = `${baseUrl}${CP_PREFIX}/settings/billing`;
 
   const metadata = {
     title,

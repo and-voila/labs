@@ -49,7 +49,7 @@ export const WelcomeEmail = () => (
           <Section className="mt-[48px] text-center">
             <Button
               className="inline-block w-[75%] rounded-md bg-[#6032ec] px-[32px] py-[16px] text-[18px] leading-[26px] text-[#ffffff] no-underline"
-              href={`${SITE_URL}${CP_PREFIX}`}
+              href={`${SITE_URL}${CP_PREFIX}/settings/workspaces`}
             >
               Dive Right In
             </Button>
@@ -66,7 +66,10 @@ export const WelcomeEmail = () => (
             </Link>
             . It&apos;s buzzing with ideas, insights, and fellow marketing
             adventurers. Find your stride with a{' '}
-            <Link className={linkClass} href={`${SITE_URL}${CP_PREFIX}/learn`}>
+            <Link
+              className={linkClass}
+              href={`${SITE_URL}${CP_PREFIX}/settings/workspaces`}
+            >
               Playbook
             </Link>
             . They&apos;re your go-to guides for upping your marketing game.

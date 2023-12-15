@@ -32,7 +32,8 @@ export default async function PlaybooksLayout({
   if (!team?.isPersonal) {
     toast({
       title: 'Access Denied',
-      description: "You do not have access to this team's playbooks.",
+      description:
+        'Playbooks and Learn features can only be accessed from your personal workspace. Please switch to it and try again. Thanks for your patience.',
       variant: 'destructive',
     });
     redirect(`${CP_PREFIX}/${team?.slug}/oops`);
