@@ -7,7 +7,6 @@ import { getTeams } from '#/lib/team/get-teams';
 import { cn } from '#/lib/utils';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { DashboardShell } from '#/components/dashboard/shell';
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
 import {
@@ -25,7 +24,7 @@ interface Props {
   };
 }
 
-const TeamIndex: NextPage<Props> = async (props) => {
+const TeamWorkspaceIndex: NextPage<Props> = async (props) => {
   const { params } = props;
 
   interface TeamIndexItemProps {
@@ -71,16 +70,22 @@ const TeamIndex: NextPage<Props> = async (props) => {
 
   const activeTeam = teams.find((team) => team.slug === params.team_slug);
   const teamName = activeTeam ? activeTeam.name : '';
+  const isPersonalTeam = activeTeam ? activeTeam.isPersonal : true;
 
   return (
-    <DashboardShell>
+    <div className="flex flex-col gap-8">
       <DashboardHeader
-        heading={`Team ${teamName} in action`}
+        heading={
+          isPersonalTeam
+            ? 'Your personal workspace'
+            : `Team ${teamName}'s workspace`
+        }
         text={
-          'Build, boost, and bloom. Launch sites, tap into AI, and amplify your reach, right here while protecting your IP. Stand out from the generative noise.'
+          isPersonalTeam
+            ? 'Your own creative nook. Ideal for solo pursuits. Got an eye on a collab? Create a team workspace for multiplayer mode.'
+            : `Welcome to ${teamName}'s domain. Drive even better results with multiplayer mode. Collaboration meets innovation in real time.`
         }
       />
-
       <div
         className={cn(
           'grid w-full gap-6',
@@ -146,14 +151,14 @@ const TeamIndex: NextPage<Props> = async (props) => {
           </Card>
         ))}
       </div>
-    </DashboardShell>
+    </div>
   );
 };
 
-export default TeamIndex;
+export default TeamWorkspaceIndex;
 
 export function generateMetadata(): Metadata {
-  const title = 'Team Dashboard';
+  const title = 'Team Workspace';
   const description =
     "For teams that thrive together, And Voila's collaborative team workspaces are your hub for marketing playbooks and full-stack multiplayer AI tools.";
 
@@ -165,7 +170,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/${CP_PREFIX}`;
+  const pageUrl = `${baseUrl}/${CP_PREFIX}/settings/workspaces`;
 
   const metadata = {
     title,

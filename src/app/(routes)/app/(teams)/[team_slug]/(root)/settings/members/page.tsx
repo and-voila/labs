@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { MembershipRole } from '@prisma/client';
 
 import { authOptions } from '#/lib/auth';
+import { CP_PREFIX } from '#/lib/const';
 import { getSession } from '#/lib/session';
 import { getTeamInvites } from '#/lib/team/get-team-invites';
 import { getTeamMembers } from '#/lib/team/get-team-members';
@@ -35,8 +36,8 @@ const MembersPage: React.FC<Props> = async ({ params }) => {
   return (
     <div className="flex flex-col gap-8">
       <SubPageHeader
-        title="Members"
-        description="Teammates that have access to this team."
+        title="Team members"
+        description="Roll call! Bring in your squad, assign roles, and manage your team. Multiplayer's always better with friends."
       >
         <MembershipActions
           teamSlug={params.team_slug}
@@ -74,7 +75,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/app`;
+  const pageUrl = `${baseUrl}/${CP_PREFIX}/settings/workspaces`;
 
   const metadata = {
     title,

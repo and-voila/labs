@@ -3,13 +3,14 @@ import { redirect } from 'next/navigation';
 import { MembershipRole } from '@prisma/client';
 
 import { authOptions } from '#/lib/auth';
+import { CP_PREFIX } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DeleteAccountForm } from '#/components/forms/delete-account-form';
 
-export default async function AdvancedSettingsPage() {
+export default async function PersonalAdvancedSettingsPage() {
   const session = await getSession();
   if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
@@ -39,9 +40,9 @@ export default async function AdvancedSettingsPage() {
 }
 
 export function generateMetadata(): Metadata {
-  const title = 'Account Settings';
+  const title = 'Delete Personal Account';
   const description =
-    "Wow, the And Voila Settings page was created just so you could...update your name? LOL, we're working on it, promise.";
+    'Safely delete your personal account on And Voila. Manage your data and privacy with full control.';
 
   const baseUrl =
     process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
@@ -51,7 +52,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/app/settings`;
+  const pageUrl = `${baseUrl}/${CP_PREFIX}/settings/advanced`;
 
   const metadata = {
     title,

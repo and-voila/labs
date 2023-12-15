@@ -24,7 +24,7 @@ import {
 } from '#/components/ui/card';
 import { toast } from '#/components/ui/use-toast';
 
-import { deleteTeam } from '#/app/(routes)/app/(teams)/[team_slug]/(root)/settings/danger-zone/actions';
+import { deleteTeam } from '#/app/(routes)/app/(teams)/[team_slug]/(root)/settings/advanced/actions';
 
 export interface DeleteFormProps {
   teamSlug: string;
@@ -56,7 +56,7 @@ export const DeleteForm: React.FC<DeleteFormProps> = (props) => {
 
   return (
     <AlertDialog>
-      <Card>
+      <Card className="border border-destructive">
         <CardHeader>
           <CardTitle>Danger Zone</CardTitle>
         </CardHeader>

@@ -16,6 +16,8 @@ import {
 } from '#/components/ui/dropdown-menu';
 import { UserAvatar } from '#/components/ui/user-avatar';
 
+import { AvatarFallback } from '../ui/avatar';
+
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, 'name' | 'image' | 'email' | 'displayName'>;
 }
@@ -27,11 +29,15 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         <UserAvatar
           user={{
             name: user?.name || user?.displayName || null,
-            image: user?.image || null,
+            image:
+              user?.image ||
+              `https://avatar.vercel.sh/${user?.name || user?.displayName}`,
             displayName: user?.displayName || null,
           }}
           className="h-8 w-8"
-        />
+        >
+          <AvatarFallback />
+        </UserAvatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <div className="flex items-center justify-start gap-2 p-2">

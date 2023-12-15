@@ -1,7 +1,7 @@
 import LogoLoader from '#/components/dashboard/logo-loader';
 
-const DashboardLoader = () => {
+const WorkspaceLoader = () => {
   return <LogoLoader />;
 };
 
-export default DashboardLoader;
+export default WorkspaceLoader;

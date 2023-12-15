@@ -1,8 +1,10 @@
 import { Metadata, NextPage } from 'next';
 import { notFound } from 'next/navigation';
 
+import { CP_PREFIX } from '#/lib/const';
 import { getTeam } from '#/lib/team/get-current-team';
 
+import { DashboardHeader } from '#/components/dashboard/header';
 import { UpdateTeamNameForm } from '#/components/forms/update-team-name-form';
 
 interface Props {
@@ -19,12 +21,19 @@ const SettingsPage: NextPage<Props> = async ({ params }) => {
 
   return (
     <div className="flex flex-col gap-8">
-      <UpdateTeamNameForm
-        teamSlug={params.team_slug}
-        defaultValues={{
-          name: team.name,
-        }}
+      <DashboardHeader
+        heading="Team general settings"
+        text="Right now, it's all about the name game. Change your team's name to something epic. More cool settings coming soon."
       />
+
+      <div className="grid max-w-3xl gap-10">
+        <UpdateTeamNameForm
+          teamSlug={params.team_slug}
+          defaultValues={{
+            name: team.name,
+          }}
+        />
+      </div>
     </div>
   );
 };
@@ -44,7 +53,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/app`;
+  const pageUrl = `${baseUrl}/${CP_PREFIX}/settings/workspaces`;
 
   const metadata = {
     title,

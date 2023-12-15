@@ -61,7 +61,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
   const onTeamSelect = (team: Team) => {
     startTransition(() => {
       setOpen(false);
-      router.push(`${CP_PREFIX}/${team.slug}`);
+      router.push(`${CP_PREFIX}/${team.slug}/settings/workspace`);
     });
   };
 
@@ -83,7 +83,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
             role="combobox"
             aria-expanded={isOpen}
             aria-label="Select a Team"
-            className={cn('w-52 justify-between truncate')}
+            className={cn('w-52 justify-between')}
           >
             <Avatar className="mr-2 h-5 w-5">
               <AvatarImage

@@ -10,7 +10,7 @@ import BlurImage from '#/components/write/blur-image';
 
 const NotAuthorizedPage = () => {
   return (
-    <main className="relative isolate h-screen">
+    <main className="relative isolate h-screen max-w-none">
       <BlurImage
         src="/images/bus-nowhere.jpg"
         alt="A photo of a bus in the middle of nowhere."

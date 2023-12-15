@@ -1,5 +1,6 @@
 import { CP_PREFIX } from '#/lib/const';
 
+import { DashboardShell } from '#/components/dashboard/shell';
 import { TabbedNav } from '#/components/ui/tabbed-nav';
 
 interface SettingsLayoutProps {
@@ -14,27 +15,39 @@ const SettingsLayout: React.FC<SettingsLayoutProps> = ({
   params,
 }) => {
   return (
-    <div className="p4 grid max-w-3xl gap-10 lg:p-8">
+    <DashboardShell>
       <div>
         <TabbedNav
           links={[
+            {
+              href: `${CP_PREFIX}/${params.team_slug}/settings/workspace`,
+              label: 'Workspace',
+            },
             {
               href: `${CP_PREFIX}/${params.team_slug}/settings/general`,
               label: 'General',
             },
             {
-              label: 'Members',
-              href: `${CP_PREFIX}/${params.team_slug}/settings/members`,
+              href: `${CP_PREFIX}/${params.team_slug}/settings/billing`,
+              label: 'Billing',
             },
             {
-              label: 'Danger Zone',
-              href: `${CP_PREFIX}/${params.team_slug}/settings/danger-zone`,
+              href: `${CP_PREFIX}/${params.team_slug}/settings/members`,
+              label: 'Members',
+            },
+            {
+              label: 'Support',
+              href: `${CP_PREFIX}/${params.team_slug}/settings/support`,
+            },
+            {
+              label: 'Advanced',
+              href: `${CP_PREFIX}/${params.team_slug}/settings/advanced`,
             },
           ]}
         />
       </div>
-      <div className="py-8">{children}</div>
-    </div>
+      <div>{children}</div>
+    </DashboardShell>
   );
 };
 
