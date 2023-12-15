@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
 import { updatePostMetadata } from '#/lib/actions';
+import { authOptions } from '#/lib/auth';
 import { CP_PREFIX } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
@@ -17,8 +18,9 @@ import DeletePostForm from '#/components/write/form/delete-post-form';
 export default async function PostPage({ params }: { params: { id: string } }) {
   const session = await getSession();
   if (!session) {
-    redirect('/login');
+    redirect(authOptions?.pages?.signIn || '/login');
   }
+
   const data = await db.post.findUnique({
     where: {
       id: decodeURIComponent(params.id),

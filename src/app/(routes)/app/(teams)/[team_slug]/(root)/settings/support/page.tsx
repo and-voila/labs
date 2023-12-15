@@ -52,8 +52,8 @@ export default async function SupportPage() {
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        heading="Support"
-        text="Need help with something? Quick question? No problem, we're here to help and look forward to hearing from you."
+        heading="Team Support Central"
+        text="Got questions or need a hand? We're all ears and ready to assist. Your team's success is our mission."
       />
       <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
         {supportItems.map((item, index) => (
@@ -101,9 +101,9 @@ export default async function SupportPage() {
 }
 
 export function generateMetadata(): Metadata {
-  const title = 'Support';
+  const title = 'Team Support';
   const description =
-    "Find all the support you need on And Voila's Support page. From live Discord help to email assistance and extensive guides. We're here and waiting.";
+    "Explore And Voila's Team Support: Live Discord help, email assistance, and detailed guides at your fingertips. We're dedicated to your team's needs.";
 
   const baseUrl =
     process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
@@ -113,7 +113,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${CP_PREFIX}/settings/support`;
+  const pageUrl = `${baseUrl}${CP_PREFIX}/settings/workspaces`;
 
   const metadata = {
     title,

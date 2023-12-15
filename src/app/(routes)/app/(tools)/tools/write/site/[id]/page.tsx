@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
 import { updateSite } from '#/lib/actions';
+import { authOptions } from '#/lib/auth';
 import { CP_PREFIX } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
@@ -23,7 +24,7 @@ export default async function SitePosts({
 }) {
   const session = await getSession();
   if (!session) {
-    redirect('/login');
+    redirect(authOptions?.pages?.signIn || '/login');
   }
   const data = await db.site.findUnique({
     where: {

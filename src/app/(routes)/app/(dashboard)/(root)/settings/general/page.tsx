@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { authOptions } from '#/lib/auth';
+import { CP_PREFIX } from '#/lib/const';
 import { getSession } from '#/lib/session';
 
 import { DashboardHeader } from '#/components/dashboard/header';
@@ -38,7 +39,7 @@ export default async function SettingsPage() {
 export function generateMetadata(): Metadata {
   const title = 'Account Settings';
   const description =
-    "Wow, the And Voila Settings page was created just so you could...update your name? LOL, we're working on it, promise.";
+    'Customize your And Voila account settings. Update your username, display name, choose themes, and more.';
 
   const baseUrl =
     process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
@@ -48,7 +49,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/app/settings/general`;
+  const pageUrl = `${baseUrl}${CP_PREFIX}/settings/general`;
 
   const metadata = {
     title,

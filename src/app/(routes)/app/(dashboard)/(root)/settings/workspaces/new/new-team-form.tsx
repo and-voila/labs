@@ -52,10 +52,10 @@ export const NewTeamForm: React.FC = () => {
         toast({
           title: 'Team created',
           description:
-            "Your new team workspace has been created successfully. We'll send you there momentarily.",
+            "Your new team workspace has been created successfully. We'll send you there in just a sec.",
           variant: 'success',
         });
-        router.push(`${CP_PREFIX}/${result.data.slug}`);
+        router.push(`${CP_PREFIX}/${result.data.slug}/settings/workspace`);
       } else if (result.error) {
         toast({
           title: 'Team not created',
@@ -67,7 +67,7 @@ export const NewTeamForm: React.FC = () => {
       toast({
         title: 'Could not create team',
         description:
-          "An unexpected error occurred and we couldn't create your team. Please try again.",
+          'An unexpected error occurred and we were not able to create your team. Please try again. If the problem persists, please contact support. Thank you.',
         variant: 'destructive',
       });
     } finally {

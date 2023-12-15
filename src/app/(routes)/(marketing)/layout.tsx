@@ -19,7 +19,7 @@ export default async function MarketingLayout({
   const { user, teams } = await getTeams();
 
   return (
-    <div className=" flex min-h-screen flex-col ">
+    <div className=" flex min-h-screen flex-col">
       <Suspense fallback="...">
         <NavBar
           user={user}

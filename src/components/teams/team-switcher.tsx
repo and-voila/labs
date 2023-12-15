@@ -53,6 +53,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
 
   const router = useRouter();
   const [isOpen, setOpen] = React.useState(false);
+  const [personalTeam, setPersonalTeam] = React.useState<Team | undefined>();
 
   const activeTeam = useMemo(() => {
     return teams?.find((team) => team.slug === activeTeamSlug);
@@ -61,13 +62,24 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
   const onTeamSelect = (team: Team) => {
     startTransition(() => {
       setOpen(false);
-      router.push(`${CP_PREFIX}/${team.slug}`);
+      router.push(`${CP_PREFIX}/${team.slug}/settings/workspace`);
     });
   };
 
+  React.useEffect(() => {
+    if (teams) {
+      const personal = teams.find((team) => team.isPersonal);
+      setPersonalTeam(personal);
+    }
+  }, [teams]);
+
   const handlePersonalSelect = () => {
     startTransition(() => {
-      router.push(`${CP_PREFIX}`);
+      if (personalTeam) {
+        router.push(`${CP_PREFIX}/${personalTeam.slug}/settings/workspace`);
+      } else {
+        router.push(`${CP_PREFIX}/settings/workspaces`);
+      }
     });
   };
 
@@ -83,7 +95,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
             role="combobox"
             aria-expanded={isOpen}
             aria-label="Select a Team"
-            className={cn('w-52 justify-between truncate')}
+            className={cn('w-52 justify-between')}
           >
             <Avatar className="mr-2 h-5 w-5">
               <AvatarImage

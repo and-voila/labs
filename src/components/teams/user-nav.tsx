@@ -7,6 +7,7 @@ import { CP_PREFIX } from '#/lib/const';
 import type { User } from '#/lib/types/next-auth';
 
 import { Icons } from '#/components/shared/icons';
+import { AvatarFallback } from '#/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,11 +28,15 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         <UserAvatar
           user={{
             name: user?.name || user?.displayName || null,
-            image: user?.image || null,
+            image:
+              user?.image ||
+              `https://avatar.vercel.sh/${user?.name || user?.displayName}`,
             displayName: user?.displayName || null,
           }}
           className="h-8 w-8"
-        />
+        >
+          <AvatarFallback />
+        </UserAvatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <div className="flex items-center justify-start gap-2 p-2">
@@ -50,14 +55,17 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href={`${CP_PREFIX}`} className="flex items-center space-x-2.5">
+          <Link
+            href={`${CP_PREFIX}/settings/workspaces`}
+            className="flex items-center space-x-2.5"
+          >
             <Icons.dashboard className="h-4 w-4 text-primary" />
             <p className="text-sm">Dashboard</p>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link
-            href={`${CP_PREFIX}/billing`}
+            href={`${CP_PREFIX}/settings/billing`}
             className="flex items-center space-x-2.5"
           >
             <Icons.creditCard className="h-4 w-4 text-primary" />
@@ -66,7 +74,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link
-            href={`${CP_PREFIX}/settings`}
+            href={`${CP_PREFIX}/settings/general`}
             className="flex items-center space-x-2.5"
           >
             <Icons.settings className="h-4 w-4 text-primary" />

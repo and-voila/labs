@@ -24,10 +24,9 @@ export default async function PersonalBillingPage() {
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        heading="Billing"
-        text="Keep things sorted and handle your personal subscription, membership, and bills. Psst, team billing? That's over in the team workspace."
+        heading="Team workspace billing"
+        text="Manage your team's subscriptions with ease. Upgrade, downgrade, or cancel at anytime. Secure as it gets thanks to our friends at Stripe."
       />
-
       <div className="grid max-w-3xl gap-8">
         {!subscriptionPlan.isPaid && (
           <Alert className="border-2 border-dotted border-primary/80 !pl-14">
@@ -47,9 +46,9 @@ export default async function PersonalBillingPage() {
 }
 
 export function generateMetadata(): Metadata {
-  const title = 'Billing';
+  const title = 'Team Billing';
   const description =
-    "Subscribe, upgrade, downgrade, or even cancel with And Voila's easy-to-manage, secure billing portal. Powered by our friends at Stripe.";
+    "Subscribe, upgrade, downgrade, or even cancel your team's plan on And Voila. Secure billing portal powered by our friends at Stripe.";
 
   const baseUrl =
     process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
@@ -59,7 +58,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${CP_PREFIX}/settings/billing`;
+  const pageUrl = `${baseUrl}${CP_PREFIX}/settings/workspaces`;
 
   const metadata = {
     title,

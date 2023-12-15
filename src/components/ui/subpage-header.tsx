@@ -1,5 +1,3 @@
-import { Skeleton } from '#/components/ui/skeleton';
-
 export interface SubPageHeaderProps {
   title: string;
   description?: string;
@@ -10,26 +8,18 @@ export const SubPageHeader: React.FC<SubPageHeaderProps> = (props) => {
   const { children, title, description } = props;
 
   return (
-    <div className="flex justify-between space-y-0.5">
-      <div className="flex flex-col">
-        <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
-        {description && <p className="text-muted-foreground">{description}</p>}
+    <div className="flex items-center justify-between">
+      <div className="grid gap-1">
+        <h2 className="max-w-4xl truncate text-2xl font-bold md:text-3xl">
+          {title}
+        </h2>
+        {description && (
+          <p className="max-w-2xl text-base text-muted-foreground lg:text-lg">
+            {description}
+          </p>
+        )}
       </div>
       {children && <div className="flex flex-row gap-2">{children}</div>}
-    </div>
-  );
-};
-
-export const SubPageHeaderSkeleton: React.FC = () => {
-  return (
-    <div className="flex justify-between space-y-0.5">
-      <div className="flex flex-col gap-y-1">
-        <Skeleton className="h-[32px] w-[150px]" />
-        <Skeleton className="h-[24px] w-[330px]" />
-      </div>
-      <div>
-        <Skeleton className="h-[40px] w-[150px]" />
-      </div>
     </div>
   );
 };

@@ -113,13 +113,13 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
   }[] = [
     {
       title: 'Dashboard',
-      href: `${CP_PREFIX}`,
+      href: `${CP_PREFIX}/settings/workspaces`,
       description:
         'Your marketing operations HQ. All your tools and data at a glance.',
     },
     {
       title: 'Teams',
-      href: `${CP_PREFIX}/team`,
+      href: `${CP_PREFIX}/settings/workspaces`,
       description: 'Collaborate in real-time with multiplayer convenience.',
     },
     {

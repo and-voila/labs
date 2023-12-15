@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
 
+import { authOptions } from '#/lib/auth';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
@@ -15,8 +16,9 @@ export default async function Posts({
 }) {
   const session = await getSession();
   if (!session?.user) {
-    redirect('/login');
+    redirect(authOptions?.pages?.signIn || '/login');
   }
+
   const posts = await db.post.findMany({
     where: {
       userId: session.user.id as string,

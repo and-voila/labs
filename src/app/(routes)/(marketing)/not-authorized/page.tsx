@@ -10,7 +10,7 @@ import BlurImage from '#/components/write/blur-image';
 
 const NotAuthorizedPage = () => {
   return (
-    <main className="relative isolate h-screen">
+    <main className="relative isolate h-screen max-w-none">
       <BlurImage
         src="/images/bus-nowhere.jpg"
         alt="A photo of a bus in the middle of nowhere."
@@ -34,7 +34,10 @@ const NotAuthorizedPage = () => {
           assistance. Just don&apos;t ask her for a wake-up call.
         </p>
         <div className="mt-10 flex justify-center">
-          <Link href={`${CP_PREFIX}`} className={cn(buttonVariants())}>
+          <Link
+            href={`${CP_PREFIX}/settings/workspaces`}
+            className={cn(buttonVariants())}
+          >
             <Icons.caretLeft className="mr-2 h-4 w-4" />
             Get me out of here!
           </Link>

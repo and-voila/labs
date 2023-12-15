@@ -9,14 +9,14 @@ import { authOptions } from '#/lib/auth';
 import { db } from '#/lib/db';
 import { stripe } from '#/lib/stripe';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
-import { absoluteUrl } from '#/lib/utils';
+import { SITE_URL } from '#/lib/utils';
 
 export type responseAction = {
   status: 'success' | 'error';
   stripeUrl?: string;
 };
 
-const billingUrl = absoluteUrl('/pricing');
+const billingUrl = `${SITE_URL}/pricing`;
 
 export async function generateUserStripe(
   priceId: string,
