@@ -6,12 +6,11 @@ import { getSession } from '#/lib/session';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { DashboardShell } from '#/components/dashboard/shell';
 import { BillingInfo } from '#/components/forms/billing-info';
 import { Icons } from '#/components/shared/icons';
 import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
 
-export default async function BillingPage() {
+export default async function PersonalBillingPage() {
   const session = await getSession();
   if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
@@ -22,26 +21,27 @@ export default async function BillingPage() {
   const subscriptionPlan = await getUserSubscriptionPlan(user.id);
 
   return (
-    <DashboardShell>
+    <div className="flex flex-col gap-8">
       <DashboardHeader
         heading="Billing"
-        text="Manage billing and your membership plan."
+        text="Keep things sorted and handle your personal subscription, membership, and bills. Psst, team billing? That's over in the team workspace."
       />
+
       <div className="grid max-w-3xl gap-8">
-        {!subscriptionPlan && (
-          <Alert className="!pl-14">
+        {!subscriptionPlan.isPaid && (
+          <Alert className="border-2 border-dotted border-primary/80 !pl-14">
             <Icons.rocket className="fill-primary" />
             <AlertTitle>Welcome to early access</AlertTitle>
             <AlertDescription className="text-muted-foreground">
               Get ready to watch your marketing ROI soar! Scoop up early access
               membership now to guarantee a year of top-tier digital marketing
-              results at half the investment.
+              results at a fraction of the investment.
             </AlertDescription>
           </Alert>
         )}
         <BillingInfo subscriptionPlan={subscriptionPlan} />
       </div>
-    </DashboardShell>
+    </div>
   );
 }
 
@@ -58,7 +58,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/app/billing`;
+  const pageUrl = `${baseUrl}/app/settings/billing`;
 
   const metadata = {
     title,

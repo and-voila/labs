@@ -18,10 +18,10 @@ export const TabbedNav: React.FC<{
   const pathname = usePathname();
 
   return (
-    <div className="border-b">
+    <div className="overflow-auto border-b">
       <nav
         className={cn(
-          'inline-flex items-center justify-center gap-8 text-muted-foreground',
+          'inline-flex items-center justify-center gap-6 text-muted-foreground md:gap-8',
         )}
       >
         {links.map((link) => (
@@ -30,7 +30,7 @@ export const TabbedNav: React.FC<{
             href={link.href}
             className={cn(
               'border-b-2 px-1 py-1.5',
-              'text-sm font-medium hover:border-foreground hover:text-foreground',
+              'text-sm font-medium hover:border-primary hover:text-foreground',
               'inline-flex items-center justify-center whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
               (
                 link.exact

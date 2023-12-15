@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 
+import { CP_PREFIX } from '#/lib/const';
+
 import NewTeamPage from './page';
 
 export function generateMetadata(): Metadata {
@@ -15,7 +17,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/app/team/new`;
+  const pageUrl = `${baseUrl}/${CP_PREFIX}/settings/workspaces/new`;
 
   const metadata = {
     title,

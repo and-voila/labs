@@ -33,7 +33,7 @@ export const TeamGallery: React.FC<TeamGalleryProps> = (props) => {
     <div
       className={cn(
         'grid w-full gap-6',
-        'grid-cols-[repeat(auto-fill,minmax(300px,1fr))]',
+        'grid-cols-[repeat(auto-fill,minmax(350px,1fr))]',
       )}
     >
       {teams.map((team, index) => (

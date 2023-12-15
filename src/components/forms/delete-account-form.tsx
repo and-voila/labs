@@ -44,15 +44,21 @@ export const DeleteAccountForm: React.FC<DeleteAccountFormProps> = (props) => {
 
   return (
     <AlertDialog>
-      <Card>
+      <Card className="border border-destructive">
         <CardHeader>
           <CardTitle>Delete Account</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm font-normal leading-6">
-            Permanently remove your Personal Account and all of its contents
-            from <strong>{APP_NAME}</strong>. This action is not reversible, so
-            please continue with caution.
+          <p className="text-sm font-normal leading-6 text-muted-foreground">
+            Permanently remove your{' '}
+            <strong className="font-semibold text-foreground">
+              Personal Account
+            </strong>{' '}
+            and all of its contents from{' '}
+            <strong className="font-semibold text-foreground">
+              {APP_NAME}
+            </strong>
+            . This action is not reversible, so please continue with caution.
           </p>
         </CardContent>
         <CardFooter className="py-3">
@@ -84,7 +90,7 @@ export const DeleteAccountForm: React.FC<DeleteAccountFormProps> = (props) => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         {teams.length > 0 && (
-          <div className="-mx-6 border-t bg-muted p-6">
+          <div className="-mx-6 max-h-[50vh] max-w-lg space-y-4 overflow-auto border-t bg-muted p-6">
             {teams.map((team) => (
               <Card key={team.id}>
                 <CardContent className="flex items-center justify-between p-4">

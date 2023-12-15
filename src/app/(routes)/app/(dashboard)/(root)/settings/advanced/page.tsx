@@ -7,19 +7,13 @@ import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { DashboardShell } from '#/components/dashboard/shell';
-import { AppearanceForm } from '#/components/forms/appearance-form';
 import { DeleteAccountForm } from '#/components/forms/delete-account-form';
-import { DisplayNameForm } from '#/components/forms/display-name-form';
-import { UserNameForm } from '#/components/forms/user-name-form';
 
-export default async function SettingsPage() {
+export default async function AdvancedSettingsPage() {
   const session = await getSession();
   if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
-
-  const user = session.user;
 
   const teams = await db.team.findMany({
     where: {
@@ -32,20 +26,15 @@ export default async function SettingsPage() {
   });
 
   return (
-    <DashboardShell>
+    <div className="flex flex-col gap-8">
       <DashboardHeader
-        heading="Settings"
-        text="Manage your profile and account."
+        heading="Danger Zone"
+        text="The point of no return. Delete your account here and say goodbye. We'll definitely miss you, so be careful."
       />
       <div className="grid max-w-3xl gap-10">
-        <UserNameForm user={{ id: user.id, name: user.name || '' }} />
-        <DisplayNameForm
-          user={{ id: user.id, displayName: user.displayName || '' }}
-        />
-        <AppearanceForm />
         <DeleteAccountForm teams={teams} />
       </div>
-    </DashboardShell>
+    </div>
   );
 }
 

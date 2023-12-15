@@ -1,7 +1,6 @@
 'use client';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { DashboardShell } from '#/components/dashboard/shell';
 import {
   Card,
   CardContent,
@@ -14,10 +13,10 @@ import { NewTeamForm } from './new-team-form';
 
 const NewTeamPage = () => {
   return (
-    <DashboardShell>
+    <div className="flex flex-col gap-8">
       <DashboardHeader
         heading="Create a new team"
-        text="You're just a few clicks away from collaborating in multiplayer mode."
+        text="Nice! You're just a few clicks away from collaborating in multiplayer mode."
       />
       <div className="grid max-w-3xl gap-10">
         <Card>
@@ -30,7 +29,7 @@ const NewTeamPage = () => {
           </CardContent>
         </Card>
       </div>
-    </DashboardShell>
+    </div>
   );
 };
 
