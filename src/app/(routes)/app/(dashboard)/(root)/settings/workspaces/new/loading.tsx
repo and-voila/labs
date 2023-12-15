@@ -1,5 +1,5 @@
 import DashboardLogoLoader from '#/components/dashboard/logo-loader';
 
-export default function DashboardLoading() {
+export default function NewWorkspaceLoading() {
   return <DashboardLogoLoader />;
 }

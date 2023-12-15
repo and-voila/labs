@@ -75,7 +75,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
     },
     {
       title: 'Collaborate',
-      href: `${CP_PREFIX}/team`,
+      href: `${CP_PREFIX}/settings/workspaces`,
       description: 'Invite your team for next-level multiplayer collaboration.',
     },
     {

@@ -82,7 +82,7 @@ export const NewTeamForm: React.FC = () => {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Team name</FormLabel>
+              <FormLabel>New team name</FormLabel>
               <FormControl>
                 <Input placeholder="Acme Inc." {...field} />
               </FormControl>

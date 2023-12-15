@@ -15,10 +15,10 @@ export const RoleBadge: React.FC<RoleBadgeProps> = ({ isPersonal, role }) => {
   let badgeText = '';
 
   const badgeClass = cn(baseClass, {
-    'border-primary/80 text-primary/80': isPersonal,
-    'border-alternate/80 text-alternate/80':
+    'border-primary text-primary': isPersonal,
+    'border-alternate text-alternate':
       !isPersonal && role === MembershipRole.OWNER,
-    'border-muted-foreground/80 text-muted-foreground/80':
+    'border-muted-foreground text-muted-foreground':
       !isPersonal && role === MembershipRole.MEMBER,
   });
 

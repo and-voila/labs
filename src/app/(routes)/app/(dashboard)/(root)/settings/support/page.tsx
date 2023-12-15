@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { cn } from '#/lib/utils';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { DashboardShell } from '#/components/dashboard/shell';
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
 import {
@@ -41,27 +40,19 @@ const supportItems: SupportItemProps[] = [
     icon: Icons.atSymbol,
     title: 'Email us',
     description:
-      "Not so much into chatting? No worries, drop us a line and we'll get back to you in one business day.",
+      "Not into chatting? No worries, drop us a line and we'll get back to you in a business day.",
     linkText: 'Contact email support',
-    linkHref: 'mailto:yo@andvoila.gg',
+    linkHref: 'mailto:hi@bril.la?subject=And%20Voila%20Support%20Request',
     isExternal: true,
-  },
-  {
-    icon: Icons.file,
-    title: 'Review guides',
-    description:
-      "Looking for something right here, right now? We're putting together a growing list of briefs, guides, and blogs.",
-    linkText: 'Review guides',
-    linkHref: '/insights',
   },
 ];
 
 export default async function SupportPage() {
   return (
-    <DashboardShell>
+    <div className="flex flex-col gap-8">
       <DashboardHeader
         heading="Support"
-        text="Need help with something? No problem, hit us up and we'll give you a hand, or two."
+        text="Need help with something? Quick question? No problem, we're here to help and look forward to hearing from you."
       />
       <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
         {supportItems.map((item, index) => (
@@ -104,12 +95,12 @@ export default async function SupportPage() {
           </Card>
         ))}
       </div>
-    </DashboardShell>
+    </div>
   );
 }
 
 export function generateMetadata(): Metadata {
-  const title = 'Get Supoort';
+  const title = 'Support';
   const description =
     "Find all the support you need on And Voila's Support page. From live Discord support to email assistance and extensive guides, we're here to help.";
 
@@ -121,7 +112,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/app/support`;
+  const pageUrl = `${baseUrl}/app/settings/support`;
 
   const metadata = {
     title,

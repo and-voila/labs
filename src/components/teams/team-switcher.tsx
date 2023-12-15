@@ -58,7 +58,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
   const onTeamCreate = () => {
     startTransition(() => {
       setOpen(false);
-      router.push(`${CP_PREFIX}/team/new`);
+      router.push(`${CP_PREFIX}/settings/workspaces/new`);
     });
   };
 
