@@ -82,29 +82,33 @@ This project follows the recommendations of the the Next JS team for v14 and rem
 
 ## Installation
 
-Get started with Labs x And Voila by cloning the repo and setting up your environment:
+1. Clone the Labs x And Voila repository and create your own project:
 
-```bash
-npx create-next-app my-marketing-lab --example "https://github.com/and-voila/labs"
-```
+   ```bash
+   npx create-next-app my-marketing-lab --example "https://github.com/and-voila/labs"
+   ```
 
-1. Install dependencies using pnpm:
+2. Install dependencies using pnpm:
 
-```sh
-pnpm install
-```
+   ```sh
+   pnpm install
+   ```
 
-2. Copy `.env.example` to `.env.local` and fill in the necessary details:
+3. Copy the `.env.example` file to a new file named `.env.local`:
 
-```sh
-cp .env.example .env.local
-```
+   ```sh
+   cp .env.example .env.local
+   ```
 
-3. Fire up the development server:
+4. Open the `.env.local` file and fill in the necessary details. Each variable is explained in the `.env.example` file. Make sure to provide values for all the variables to ensure the application functions correctly.
 
-```sh
-pnpm dev
-```
+5. Start the development server:
+
+   ```sh
+   pnpm dev
+   ```
+
+Now, you should be able to see the application running on `http://localhost:3001` or http://localhost:3000 assuming you changed the port.
 
 ## Roadmap
 
