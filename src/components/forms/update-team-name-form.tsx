@@ -25,11 +25,11 @@ import {
 import { Input } from '#/components/ui/input';
 import { toast } from '#/components/ui/use-toast';
 
-import { updateTeam } from '#/app/(routes)/studio/(teams)/[team_slug]/(root)/workspace/settings/actions';
+import { updateTeam } from '#/app/(routes)/studio/(teams)/[team_slug]/(workspace)/workspace/(home)/settings/actions';
 import {
   UpdateTeamNameFormSchema,
   updateTeamNameFormSchema,
-} from '#/app/(routes)/studio/(teams)/[team_slug]/(root)/workspace/settings/schema';
+} from '#/app/(routes)/studio/(teams)/[team_slug]/(workspace)/workspace/(home)/settings/schema';
 
 export interface UpdateTeamNameFormProps {
   teamSlug: string;

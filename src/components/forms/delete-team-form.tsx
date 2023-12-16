@@ -26,7 +26,7 @@ import {
 } from '#/components/ui/card';
 import { toast } from '#/components/ui/use-toast';
 
-import { deleteTeam } from '#/app/(routes)/studio/(teams)/[team_slug]/(root)/workspace/advanced/actions';
+import { deleteTeam } from '#/app/(routes)/studio/(teams)/[team_slug]/(workspace)/workspace/(home)/advanced/actions';
 
 export interface DeleteFormProps {
   teamSlug: string;

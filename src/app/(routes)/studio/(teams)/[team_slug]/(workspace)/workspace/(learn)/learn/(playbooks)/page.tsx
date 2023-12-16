@@ -3,29 +3,24 @@ import { redirect } from 'next/navigation';
 
 import { siteConfig } from '#/config/site';
 
-import { getCourses } from '#/lib/actions/get-courses';
+import { getDashboardCourses } from '#/lib/actions/get-dashboard-courses';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
-import { db } from '#/lib/db';
-import { getUserSubscriptionPlan } from '#/lib/subscription';
 import { getTeams } from '#/lib/team/get-teams';
 
 import { DashboardShell } from '#/components/dashboard/shell';
 import { CoursesList } from '#/components/learn/courses/courses-list';
-import { Categories } from '#/components/learn/dashboard/categories';
-import { SearchInput } from '#/components/search-input';
+import { InfoCard } from '#/components/learn/dashboard/info-card';
 
-interface PlaybooksSearchPageProps {
+interface MyPlaybooksPageProps {
   searchParams: {
-    page: string;
-    title: string;
-    categoryId: string;
+    page?: string;
   };
 }
 
-const PlaybooksSearchPage = async ({
+export default async function MyPlaybooksPage({
   searchParams,
-}: PlaybooksSearchPageProps) => {
+}: MyPlaybooksPageProps) {
   const { user, teams } = await getTeams();
   if (!user) {
     redirect(authOptions?.pages?.signIn || '/login');
@@ -36,27 +31,18 @@ const PlaybooksSearchPage = async ({
     throw new Error('No personal team found');
   }
 
-  const categories = await db.category.findMany({
-    orderBy: {
-      name: 'asc',
-    },
-    cacheStrategy: {
-      ttl: 86400,
-      swr: 300,
-    },
-  });
-
-  const userSubscriptionPlan = await getUserSubscriptionPlan(personalTeam.id);
-  const isPaidMember = userSubscriptionPlan.isPaid;
-
   const page = parseInt(searchParams.page as string) || 1;
   const take = 6;
   const skip = (page - 1) * take;
 
-  const { courses, count } = await getCourses({
+  const {
+    completedCourses,
+    coursesInProgress,
+    count,
+    totalCompletedCourses,
+    totalCoursesInProgress,
+  } = await getDashboardCourses({
     teamId: personalTeam.id,
-    ...searchParams,
-    isPaidMember,
     skip,
     take,
   });
@@ -66,11 +52,22 @@ const PlaybooksSearchPage = async ({
 
   return (
     <DashboardShell>
-      <div className="grid space-y-8">
-        <SearchInput />
-        <Categories items={categories} />
+      <div className="space-y-8 px-6">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2">
+          <InfoCard
+            icon="clock"
+            label="In progress"
+            numberOfItems={totalCoursesInProgress}
+          />
+          <InfoCard
+            icon="circleChecked"
+            label="Completed"
+            numberOfItems={totalCompletedCourses}
+            variant="success"
+          />
+        </div>
         <CoursesList
-          items={courses}
+          items={[...completedCourses, ...coursesInProgress]}
           currentPage={page}
           totalPages={totalPages}
           hasNextPage={hasNextPage}
@@ -79,18 +76,16 @@ const PlaybooksSearchPage = async ({
       </div>
     </DashboardShell>
   );
-};
-
-export default PlaybooksSearchPage;
+}
 
 export function generateMetadata(): Metadata {
-  const title = 'Browse Playbooks';
-  const description = `Dive into a growing collection of proven marketing Playbooks on ${siteConfig.name}. Tailored for digital marketing pros who need the gist in 3 minutes or less.`;
+  const title = 'My Playbooks';
+  const description = `Access your Playbooks library on ${siteConfig.name}. Explore, track, and revisit your marketing guide collection, tailored for dynamic digital marketing success.`;
 
   const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${SITE_URL}${APP_BP}/learn/search`;
+  const pageUrl = `${SITE_URL}${APP_BP}/workspace/learn`;
 
   const metadata = {
     title,

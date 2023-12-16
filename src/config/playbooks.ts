@@ -6,12 +6,12 @@ export const playbooksConfig = (team_slug: string): PlaybooksConfig => ({
   sidebarNav: [
     {
       title: 'My playbooks',
-      href: `${APP_BP}/${team_slug}/learn`,
+      href: `${APP_BP}/${team_slug}/workspace/learn`,
       icon: 'bookmarks',
     },
     {
       title: 'Browse',
-      href: `${APP_BP}/${team_slug}/learn/search`,
+      href: `${APP_BP}/${team_slug}/workspace/learn/search`,
       icon: 'courses',
     },
   ],
