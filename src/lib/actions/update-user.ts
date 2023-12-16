@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { db } from '#/lib/db';
 import { InternalServerError, UnauthorizedError } from '#/lib/error-code';
 import { getSession } from '#/lib/session';
@@ -32,7 +32,7 @@ export async function updateUserName(userId: string, data: FormData) {
       },
     });
 
-    revalidatePath(`${CP_PREFIX}/settings`);
+    revalidatePath(`${APP_BP}/settings`);
     return { status: 'success' };
   } catch (error) {
     return { status: 'error' };
@@ -65,7 +65,7 @@ export async function updateDisplayName(
       },
     });
 
-    revalidatePath(`${CP_PREFIX}/settings`);
+    revalidatePath(`${APP_BP}/settings`);
     return { status: 'success' };
   } catch (error) {
     return { status: 'error' };
@@ -95,7 +95,7 @@ export async function updateUserImage(userId: string, data: UserImageFormData) {
       },
     });
 
-    revalidatePath(`${CP_PREFIX}/settings`);
+    revalidatePath(`${APP_BP}/settings`);
     return { status: 'success' };
   } catch (error) {
     return { status: 'error' };

@@ -1,17 +1,17 @@
 /* eslint-disable camelcase */
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { PlaybooksConfig } from '#/lib/types';
 
 export const playbooksConfig = (team_slug: string): PlaybooksConfig => ({
   sidebarNav: [
     {
       title: 'My playbooks',
-      href: `${CP_PREFIX}/${team_slug}/learn`,
+      href: `${APP_BP}/${team_slug}/learn`,
       icon: 'bookmarks',
     },
     {
       title: 'Browse',
-      href: `${CP_PREFIX}/${team_slug}/learn/search`,
+      href: `${APP_BP}/${team_slug}/learn/search`,
       icon: 'courses',
     },
   ],

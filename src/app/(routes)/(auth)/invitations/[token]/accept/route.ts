@@ -1,7 +1,7 @@
 import { notFound, redirect } from 'next/navigation';
 import { NextRequest } from 'next/server';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { getSession } from '#/lib/session';
 import { acceptInvitationByToken } from '#/lib/team/members/accept-invitation';
 import { getInvitationByToken } from '#/lib/team/members/get-invitation';
@@ -39,5 +39,5 @@ export const GET = async (
     redirect(`/invitations/${params.token}`);
   }
 
-  redirect(`${CP_PREFIX}/${invitation.teamSlug}/settings/workspace`);
+  redirect(`${APP_BP}/${invitation.teamSlug}/settings/workspace`);
 };

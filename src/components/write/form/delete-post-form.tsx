@@ -5,7 +5,7 @@ import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
 
 import { deletePost } from '#/lib/actions';
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { buttonVariants } from '#/components/ui/button';
@@ -29,7 +29,7 @@ export default function DeletePostForm({ postName }: { postName: string }) {
           } else {
             va.track('Deleted Post');
             router.refresh();
-            router.push(`${CP_PREFIX}/tools/write/site/${res.siteId}`);
+            router.push(`${APP_BP}/tools/write/site/${res.siteId}`);
             toast({
               title: 'Post deleted',
               description:

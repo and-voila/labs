@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { getCoursePrice } from '#/lib/course-pricing';
 import { placeholderBlurhash } from '#/lib/utils';
 
@@ -33,10 +33,7 @@ export const CourseCard = ({
   const displayPrice = getCoursePrice(price, isPaidMember);
 
   return (
-    <Link
-      href={`${CP_PREFIX}/${teamSlug}/learn/courses/${id}`}
-      prefetch={false}
-    >
+    <Link href={`${APP_BP}/${teamSlug}/learn/courses/${id}`} prefetch={false}>
       <div className="group h-full overflow-hidden rounded-xl border bg-card transition hover:shadow-sm">
         <div className="relative aspect-video w-full overflow-hidden md:grayscale md:group-hover:grayscale-0">
           <BlurImage

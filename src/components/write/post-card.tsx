@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Post, Site } from '@prisma/client';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { placeholderBlurhash } from '#/lib/utils';
 
 import BlurImage from '#/components/write/blur-image';
@@ -16,7 +16,7 @@ export default function PostCard({
   return (
     <div className="relative rounded-lg border border-border bg-card pb-10 shadow-md transition-all hover:shadow-xl">
       <Link
-        href={`${CP_PREFIX}/tools/write/post/${data.id}`}
+        href={`${APP_BP}/tools/write/post/${data.id}`}
         className="flex flex-col overflow-hidden rounded-lg"
       >
         <div className="relative h-44 overflow-hidden">

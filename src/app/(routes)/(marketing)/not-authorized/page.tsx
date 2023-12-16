@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
@@ -28,7 +28,7 @@ const NotAuthorizedPage = () => {
 
         <div className="mt-10 flex justify-center">
           <Link
-            href={`${CP_PREFIX}/settings/workspaces`}
+            href={`${APP_BP}/settings/workspaces`}
             className={cn(buttonVariants())}
           >
             <Icons.caretLeft className="mr-2 h-4 w-4" />

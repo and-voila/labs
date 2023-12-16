@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { CourseSidebarItemProps } from '#/lib/types';
 import { cn } from '#/lib/utils';
 
@@ -18,7 +18,7 @@ export const CourseSidebarItem = ({
   const isActive = pathname?.includes(id);
 
   const onClick = () => {
-    router.push(`${CP_PREFIX}/learn/courses/${courseId}/chapters/${id}`);
+    router.push(`${APP_BP}/learn/courses/${courseId}/chapters/${id}`);
   };
 
   return (

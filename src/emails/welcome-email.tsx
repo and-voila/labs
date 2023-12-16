@@ -14,7 +14,7 @@ import {
   Text,
 } from '@react-email/components';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { SITE_URL } from '#/lib/utils';
 
 const textClass = 'text-[18px] leading-[26px] text-[#61636b]';
@@ -49,7 +49,7 @@ export const WelcomeEmail = () => (
           <Section className="mt-[48px] text-center">
             <Button
               className="inline-block w-[75%] rounded-md bg-[#6032ec] px-[32px] py-[16px] text-[18px] leading-[26px] text-[#ffffff] no-underline"
-              href={`${SITE_URL}${CP_PREFIX}/settings/workspaces`}
+              href={`${SITE_URL}${APP_BP}/settings/workspaces`}
             >
               Dive Right In
             </Button>
@@ -68,7 +68,7 @@ export const WelcomeEmail = () => (
             adventurers. Find your stride with a{' '}
             <Link
               className={linkClass}
-              href={`${SITE_URL}${CP_PREFIX}/settings/workspaces`}
+              href={`${SITE_URL}${APP_BP}/settings/workspaces`}
             >
               Playbook
             </Link>
@@ -78,7 +78,7 @@ export const WelcomeEmail = () => (
             Eager to share your voice?{' '}
             <Link
               className={linkClass}
-              href={`${SITE_URL}${CP_PREFIX}/tools/write`}
+              href={`${SITE_URL}${APP_BP}/tools/write`}
             >
               Create your site
             </Link>{' '}

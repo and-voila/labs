@@ -5,7 +5,7 @@ import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
 
 import { deleteSite } from '#/lib/actions';
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { buttonVariants } from '#/components/ui/button';
@@ -30,7 +30,7 @@ export default function DeleteSiteForm({ siteName }: { siteName: string }) {
             } else {
               va.track('Deleted Site');
               router.refresh();
-              router.push(`${CP_PREFIX}/tools/write/sites`);
+              router.push(`${APP_BP}/tools/write/sites`);
               toast({
                 title: 'Your site was deleted',
                 description:

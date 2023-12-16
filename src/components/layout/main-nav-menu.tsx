@@ -4,7 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { Team } from '#/lib/team/get-teams';
 import { cn } from '#/lib/utils';
 
@@ -57,25 +57,25 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
   }[] = [
     {
       title: 'Playbooks',
-      href: `${CP_PREFIX}/${activeSlug}/learn`,
+      href: `${APP_BP}/${activeSlug}/learn`,
       description:
         'Snappy lessons for quick marketing skills. Think TikTok, but for learning.',
     },
     {
       title: 'Publish',
-      href: `${CP_PREFIX}/tools/write`,
+      href: `${APP_BP}/tools/write`,
       description:
         'Create your website in under 3 mins. Fast, easy, and looks great.',
     },
     {
       title: 'Manage Sites',
-      href: `${CP_PREFIX}/tools/write/sites`,
+      href: `${APP_BP}/tools/write/sites`,
       description:
         'Keep an eye on your sites and draft posts with an AI-assisted editor that helps you protect your IP.',
     },
     {
       title: 'Collaborate',
-      href: `${CP_PREFIX}/settings/workspaces`,
+      href: `${APP_BP}/settings/workspaces`,
       description: 'Invite your team for next-level multiplayer collaboration.',
     },
     {
@@ -99,7 +99,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
     },
     {
       title: 'AI Experts',
-      href: `${CP_PREFIX}/tools/chat`,
+      href: `${APP_BP}/tools/chat`,
       description: 'Engage with purpose-trained marketing AI that just works.',
       disabled: true,
     },
@@ -113,24 +113,24 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
   }[] = [
     {
       title: 'Dashboard',
-      href: `${CP_PREFIX}/settings/workspaces`,
+      href: `${APP_BP}/settings/workspaces`,
       description:
         'Your marketing operations HQ. All your tools and data at a glance.',
     },
     {
       title: 'Teams',
-      href: `${CP_PREFIX}/settings/workspaces`,
+      href: `${APP_BP}/settings/workspaces`,
       description: 'Collaborate in real-time with multiplayer convenience.',
     },
     {
       title: 'Learn',
-      href: `${CP_PREFIX}/${activeSlug}/learn`,
+      href: `${APP_BP}/${activeSlug}/learn`,
       description:
         'Crush your marketing goals. Lessons, tips, and insider tips await.',
     },
     {
       title: 'Tools',
-      href: `${CP_PREFIX}/tools`,
+      href: `${APP_BP}/tools`,
       description:
         'Supercharge your marketing. AI tools and resources at your fingertips.',
     },
@@ -184,7 +184,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
                 </NavigationMenuLink>
               </li>
               <ListItem
-                href={`${CP_PREFIX}/${activeSlug}/learn`}
+                href={`${APP_BP}/${activeSlug}/learn`}
                 title="Playbooks"
               >
                 Stuck? Score quick wins with Playbooks, just 5 mins to wisdom.
@@ -192,7 +192,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
               <ListItem href="/insights" title="Insights" disabled>
                 Got bigger challenges? Our Insights and Guides have you covered.
               </ListItem>
-              <ListItem href={`${CP_PREFIX}/tools`} title="Tools">
+              <ListItem href={`${APP_BP}/tools`} title="Tools">
                 Engage your audience with our full-stack marketing suite,
                 AI-enhanced.
               </ListItem>
@@ -220,13 +220,13 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
         <NavigationMenuItem>
           <NavigationMenuTrigger
             className={
-              isActive(`${CP_PREFIX}/${activeSlug}/learn`) ||
-              isActive(`${CP_PREFIX}/tools`)
+              isActive(`${APP_BP}/${activeSlug}/learn`) ||
+              isActive(`${APP_BP}/tools`)
                 ? 'text-primary'
                 : ''
             }
           >
-            <Link href={`${CP_PREFIX}/${activeSlug}/learn`}>Resources</Link>
+            <Link href={`${APP_BP}/${activeSlug}/learn`}>Resources</Link>
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">

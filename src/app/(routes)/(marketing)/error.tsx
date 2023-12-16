@@ -1,6 +1,6 @@
 'use client';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { IconKey } from '#/lib/types';
 
 import { Icons } from '#/components/shared/icons';
@@ -14,14 +14,14 @@ const links: Array<{
 }> = [
   {
     name: 'Dashboard',
-    href: `${CP_PREFIX}/settings/workspaces`,
+    href: `${APP_BP}/settings/workspaces`,
     description:
       'Your command center for everything And Voila. Navigate like a pro.',
     icon: 'dashboard',
   },
   {
     name: 'Live support',
-    href: `${CP_PREFIX}/settings/support`,
+    href: `${APP_BP}/settings/support`,
     description:
       'Stuck? Chat with our support folks live and get unstuck in a jiffy.',
     icon: 'discord',

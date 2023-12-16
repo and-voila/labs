@@ -12,7 +12,7 @@ import { sendVerificationRequest } from '#/lib/resend/send-verification-request'
 import { sendWelcomeEmail } from '#/lib/resend/send-welcome-email';
 import { getSession } from '#/lib/session';
 
-import { createPersonalTeam } from '#/app/(routes)/app/(dashboard)/(root)/settings/workspaces/new/actions';
+import { createPersonalTeam } from '#/app/(routes)/studio/(dashboard)/(root)/settings/workspaces/new/actions';
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 

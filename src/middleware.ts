@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { withAuth } from 'next-auth/middleware';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 
 const ROOT_DOMAIN = process.env.NEXT_PUBLIC_ROOT_DOMAIN;
 const VERCEL_DEPLOYMENT_SUFFIX =
@@ -105,8 +105,7 @@ async function handleAuthLogic(req: NextRequest): Promise<NextResponse> {
   if (isAuthPage) {
     if (isAuth) {
       const from =
-        req.nextUrl.searchParams.get('from') ||
-        `${CP_PREFIX}/settings/workspaces`;
+        req.nextUrl.searchParams.get('from') || `${APP_BP}/settings/workspaces`;
       return NextResponse.redirect(new URL(from, req.url));
     }
     return NextResponse.next();

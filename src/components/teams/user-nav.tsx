@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import type { User } from '#/lib/types/next-auth';
 
 import { Icons } from '#/components/shared/icons';
@@ -56,7 +56,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link
-            href={`${CP_PREFIX}/settings/workspaces`}
+            href={`${APP_BP}/settings/workspaces`}
             className="flex items-center space-x-2.5"
           >
             <Icons.dashboard className="h-4 w-4 text-primary" />
@@ -65,7 +65,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link
-            href={`${CP_PREFIX}/settings/billing`}
+            href={`${APP_BP}/settings/billing`}
             className="flex items-center space-x-2.5"
           >
             <Icons.creditCard className="h-4 w-4 text-primary" />
@@ -74,7 +74,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link
-            href={`${CP_PREFIX}/settings/general`}
+            href={`${APP_BP}/settings/general`}
             className="flex items-center space-x-2.5"
           >
             <Icons.settings className="h-4 w-4 text-primary" />

@@ -4,7 +4,7 @@ import React, { startTransition, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { Team } from '@prisma/client';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
@@ -33,7 +33,7 @@ import {
   PopoverTrigger,
 } from '#/components/ui/popover';
 
-import { NewTeamForm } from '#/app/(routes)/app/(dashboard)/(root)/settings/workspaces/new/new-team-form';
+import { NewTeamForm } from '#/app/(routes)/studio/(dashboard)/(root)/settings/workspaces/new/new-team-form';
 
 export interface TeamSwitcherProps {
   activeTeamSlug?: string;
@@ -62,7 +62,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
   const onTeamSelect = (team: Team) => {
     startTransition(() => {
       setOpen(false);
-      router.push(`${CP_PREFIX}/${team.slug}/settings/workspace`);
+      router.push(`${APP_BP}/${team.slug}/settings/workspace`);
     });
   };
 
@@ -76,9 +76,9 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
   const handlePersonalSelect = () => {
     startTransition(() => {
       if (personalTeam) {
-        router.push(`${CP_PREFIX}/${personalTeam.slug}/settings/workspace`);
+        router.push(`${APP_BP}/${personalTeam.slug}/settings/workspace`);
       } else {
-        router.push(`${CP_PREFIX}/settings/workspaces`);
+        router.push(`${APP_BP}/settings/workspaces`);
       }
     });
   };

@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { ChaptersList } from '#/components/learn/teacher/courses/chapters-list';
@@ -108,9 +108,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   };
 
   const onEdit = (id: string) => {
-    router.push(
-      `${CP_PREFIX}/admin/teacher/courses/${courseId}/chapters/${id}`,
-    );
+    router.push(`${APP_BP}/admin/teacher/courses/${courseId}/chapters/${id}`);
   };
 
   return (

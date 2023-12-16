@@ -3,7 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 
 import {
   AlertDialog,
@@ -26,7 +26,7 @@ import {
 } from '#/components/ui/card';
 import { toast } from '#/components/ui/use-toast';
 
-import { deleteTeam } from '#/app/(routes)/app/(teams)/[team_slug]/(root)/settings/advanced/actions';
+import { deleteTeam } from '#/app/(routes)/studio/(teams)/[team_slug]/(root)/settings/advanced/actions';
 
 export interface DeleteFormProps {
   teamSlug: string;
@@ -50,7 +50,7 @@ export const DeleteForm: React.FC<DeleteFormProps> = (props) => {
         variant: 'success',
       });
 
-      router.push(`${CP_PREFIX}/settings/workspaces`);
+      router.push(`${APP_BP}/settings/workspaces`);
     } finally {
       setIsSubmitting(false);
     }
