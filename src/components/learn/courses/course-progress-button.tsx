@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
@@ -46,7 +46,7 @@ export const CourseProgressButton = ({
 
       if (!isCompleted && nextChapterId) {
         router.push(
-          `${CP_PREFIX}/learn/courses/${courseId}/chapters/${nextChapterId}`,
+          `${APP_BP}/learn/courses/${courseId}/chapters/${nextChapterId}`,
         );
       }
 

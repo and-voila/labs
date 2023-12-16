@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Course } from '@prisma/client';
 import { ColumnDef } from '@tanstack/react-table';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
@@ -101,7 +101,7 @@ export const teacherCourseListColumns: ColumnDef<Course>[] = [
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <Link
-                href={`${CP_PREFIX}/admin/teacher/courses/${id}`}
+                href={`${APP_BP}/admin/teacher/courses/${id}`}
                 prefetch={false}
               >
                 <DropdownMenuItem>

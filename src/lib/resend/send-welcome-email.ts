@@ -1,6 +1,6 @@
 import { siteConfig } from '#/config/site';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { resend } from '#/lib/resend/resend';
 import { SITE_URL } from '#/lib/utils';
 
@@ -8,11 +8,11 @@ import WelcomeEmail from '#/emails/welcome-email';
 
 const plainTextWelcomeEmail = `🎉 Welcome!\n
 Our team has been brewing up decades of marketing expertise into something special just for you. Ready to unlock your marketing superpowers?\n
-Dive Right In: ${SITE_URL}${CP_PREFIX}/settings/workspaces\n\n
+Dive Right In: ${SITE_URL}${APP_BP}/settings/workspaces\n\n
 Quick Start Tips:\n
 Start your journey in our Discord Community: https://discord.com/channels/1151749282806910976/1154115151407091862\n
-Find your stride with a Playbook: ${SITE_URL}${CP_PREFIX}/settings/workspaces\n
-Eager to share your voice? Create your site: ${SITE_URL}${CP_PREFIX}/tools/write\n
+Find your stride with a Playbook: ${SITE_URL}${APP_BP}/settings/workspaces\n
+Eager to share your voice? Create your site: ${SITE_URL}${APP_BP}/tools/write\n
 Need a hand? Our Discord Support team is always ready to help: https://discord.com/channels/1151749282806910976/1151825811427561623\n
 Our Good plan is free-for-life and includes generous limits. If you find yourself needing more, you can upgrade at any time at ${SITE_URL}/pricing and enjoy 50% off as an early-access member. Your membership is covered by our 100% delight guarantee.\n
 — 🫶🏽 The And Voila Team\n

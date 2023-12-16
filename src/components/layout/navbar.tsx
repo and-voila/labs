@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { isTeacher } from '#/lib/teacher';
 import { Team } from '#/lib/team/get-teams';
 import { MainNavItem } from '#/lib/types';
@@ -42,7 +42,7 @@ export function NavBar({
       <div className="container flex h-16 items-center justify-between py-4">
         <div className="flex flex-1 items-center space-x-3">
           {user ? (
-            <Link href={`${CP_PREFIX}/settings/workspaces`}>
+            <Link href={`${APP_BP}/settings/workspaces`}>
               <Icons.logo className="h-8 w-8 text-primary" />
             </Link>
           ) : (
@@ -74,7 +74,7 @@ export function NavBar({
 
           {showAdminLink && (
             <Link
-              href={`${CP_PREFIX}/admin`}
+              href={`${APP_BP}/admin`}
               className={cn(
                 buttonVariants({ variant: 'outline', size: 'sm' }),
                 'hidden md:flex',

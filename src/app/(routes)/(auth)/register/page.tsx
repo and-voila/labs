@@ -97,7 +97,7 @@ export default function RegisterPage() {
             <Link
               href="https://andvoila.gg/privacy"
               target="_blank"
-              aria-label="Naivgate to And Voila's Privacy Policy on their website in a new window"
+              aria-label="Navigate to And Voila's Privacy Policy on their website in a new window"
               className="text-primary hover:underline"
             >
               {' '}
@@ -107,7 +107,7 @@ export default function RegisterPage() {
             <Link
               href="https://andvoila.gg/terms"
               target="_blank"
-              aria-label="Naivgate to And Voila's Terms of Service on their website in a new window"
+              aria-label="Navigate to And Voila's Terms of Service on their website in a new window"
               className="text-primary hover:underline"
             >
               Terms of Service

@@ -4,7 +4,7 @@ import { Membership, MembershipRole, Team } from '@prisma/client';
 
 import { siteConfig } from '#/config/site';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 
 import { Icons } from '#/components/shared/icons';
 import { RoleBadge } from '#/components/teams/role-badge';
@@ -30,7 +30,7 @@ export const TeamCard: React.FC<TeamCardProps> = (props) => {
       <Card className="relative box-border cursor-pointer overflow-visible hover:shadow-sm">
         <div className="pointer-events-none grid outline-none">
           <Link
-            href={`${CP_PREFIX}/${team.slug}/settings/workspace`}
+            href={`${APP_BP}/${team.slug}/settings/workspace`}
             className="pointer-events-auto absolute inset-0"
           />
           <CardHeader className="grid grid-cols-[1fr_110px] items-start gap-4 space-y-0">

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 
 import { ConfirmModal } from '#/components/modals/confirm-modal';
 import { Icons } from '#/components/shared/icons';
@@ -79,7 +79,7 @@ export const ChapterActions = ({
         variant: 'success',
       });
       router.refresh();
-      router.push(`${CP_PREFIX}/admin/teacher/courses/${courseId}`);
+      router.push(`${APP_BP}/admin/teacher/courses/${courseId}`);
     } catch {
       toast({
         title: 'We could not delete your Play',

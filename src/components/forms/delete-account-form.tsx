@@ -5,8 +5,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Team } from '@prisma/client';
 
+import { siteConfig } from '#/config/site';
+
 import { deletePersonalAccount } from '#/lib/actions/update-user';
-import { APP_NAME, CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 
 import {
   AlertDialog,
@@ -56,7 +58,7 @@ export const DeleteAccountForm: React.FC<DeleteAccountFormProps> = (props) => {
             </strong>{' '}
             and all of its contents from{' '}
             <strong className="font-semibold text-foreground">
-              {APP_NAME}
+              {siteConfig.name}
             </strong>
             . This action is not reversible, so please continue with caution.
           </p>
@@ -98,7 +100,7 @@ export const DeleteAccountForm: React.FC<DeleteAccountFormProps> = (props) => {
                     {team.name}
                   </div>
                   <Link
-                    href={`${CP_PREFIX}/${team.slug}/settings/general`}
+                    href={`${APP_BP}/${team.slug}/settings/general`}
                     className={buttonVariants({
                       variant: 'secondary',
                       size: 'sm',

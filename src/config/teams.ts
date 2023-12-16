@@ -1,4 +1,4 @@
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { TeamsConfig } from '#/lib/types';
 
 export function getTeamsConfig(teamSlug: string): TeamsConfig {
@@ -6,12 +6,12 @@ export function getTeamsConfig(teamSlug: string): TeamsConfig {
     sidebarNav: [
       {
         title: 'Dashboard',
-        href: `${CP_PREFIX}/${teamSlug}/settings/workspace`,
+        href: `${APP_BP}/${teamSlug}/settings/workspace`,
         icon: 'home',
       },
       {
         title: 'Settings',
-        href: `${CP_PREFIX}/${teamSlug}/settings/general`,
+        href: `${APP_BP}/${teamSlug}/settings/general`,
         icon: 'settings',
       },
     ],

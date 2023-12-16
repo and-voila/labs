@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 
 import { createPost } from '#/lib/actions';
-import { CP_PREFIX } from '#/lib/const';
+import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { buttonVariants } from '#/components/ui/button';
@@ -23,7 +23,7 @@ export default function CreatePostButton() {
           const post = await createPost(null, id, null);
           va.track('Created Post');
           router.refresh();
-          router.push(`${CP_PREFIX}/tools/write/post/${post.id}`);
+          router.push(`${APP_BP}/tools/write/post/${post.id}`);
         })
       }
       className={cn(buttonVariants({ size: 'sm' }), {

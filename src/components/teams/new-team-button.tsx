@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from '#/components/ui/dialog';
 
-import { NewTeamForm } from '#/app/(routes)/app/(dashboard)/(root)/settings/workspaces/new/new-team-form';
+import { NewTeamForm } from '#/app/(routes)/studio/(dashboard)/(root)/settings/workspaces/new/new-team-form';
 
 export const NewTeamButton: React.FC = () => {
   return (
