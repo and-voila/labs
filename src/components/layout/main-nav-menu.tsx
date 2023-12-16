@@ -217,7 +217,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        <NavigationMenuItem className="hidden md:block">
           <NavigationMenuTrigger
             className={
               isActive(`${APP_BP}/${activeSlug}/workspace/learn`) ||
