@@ -16,13 +16,13 @@ const links: Array<{
 }> = [
   {
     name: 'Dashboard',
-    href: `${APP_BP}/settings/workspaces`,
+    href: `${APP_BP}/my/workspaces`,
     description: `Your command center for everything ${siteConfig.name}. Navigate like a pro.`,
     icon: 'dashboard',
   },
   {
     name: 'Live support',
-    href: `${APP_BP}/settings/support`,
+    href: `${APP_BP}/my/support`,
     description:
       'Stuck? Chat with our support folks live and get unstuck in a jiffy.',
     icon: 'discord',

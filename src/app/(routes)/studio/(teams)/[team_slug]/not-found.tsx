@@ -27,13 +27,13 @@ const TeamNotFound = () => {
 
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
-              href={`${APP_BP}/settings/workspaces`}
+              href={`${APP_BP}/my/workspaces`}
               className={cn(buttonVariants())}
             >
               Dashboard
             </Link>
             <Link
-              href={`${APP_BP}/settings/support`}
+              href={`${APP_BP}/my/support`}
               className="text-sm font-semibold text-muted-foreground hover:text-muted-foreground/80"
             >
               Contact support <span aria-hidden="true">&rarr;</span>
@@ -54,7 +54,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${SITE_URL}${APP_BP}/settings/advanced`;
+  const pageUrl = `${SITE_URL}${APP_BP}/my/advanced`;
 
   const metadata = {
     title,

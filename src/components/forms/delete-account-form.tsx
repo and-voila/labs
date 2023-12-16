@@ -100,7 +100,7 @@ export const DeleteAccountForm: React.FC<DeleteAccountFormProps> = (props) => {
                     {team.name}
                   </div>
                   <Link
-                    href={`${APP_BP}/${team.slug}/settings/general`}
+                    href={`${APP_BP}/${team.slug}/workspace/settings`}
                     className={buttonVariants({
                       variant: 'secondary',
                       size: 'sm',

@@ -17,7 +17,7 @@ import { SITE_URL } from '#/lib/const';
 
 export const TemplateName = 'team-invite-email';
 
-const subject = "You've been invited to a team";
+const subject = "You've been invited to a team workspace";
 
 export type EmailVerificationLinkEmailProps = {
   appName: string;
@@ -48,14 +48,15 @@ export const Template = ({
           <Text className="text-[14px] leading-[24px] text-black">👋🏾 Hey,</Text>
           <Text className="text-[14px] leading-[24px] text-black">
             <strong>{invitedBy}</strong> has invited you to the{' '}
-            <strong>{teamName}</strong> team on <strong>{appName}</strong>.
+            <strong>{teamName}</strong> team workspace on{' '}
+            <strong>{appName}</strong>.
           </Text>
           <Section className="mb-[32px] mt-[32px] text-center">
             <Button
               className="inline-block w-[85%] rounded-md bg-[#6032ec] px-[32px] py-[16px] text-[22px] leading-[28px] text-[#ffffff] no-underline"
               href={link}
             >
-              Join the team
+              Join team workspace
             </Button>
           </Section>
           <Text className="!text-[14px] leading-[24px] text-black">

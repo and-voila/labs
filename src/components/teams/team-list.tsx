@@ -19,10 +19,10 @@ export const TeamGallery: React.FC<TeamGalleryProps> = (props) => {
     return (
       <EmptyPlaceholder>
         <EmptyPlaceholder.Icon name="team" />
-        <EmptyPlaceholder.Title>No Teams Found</EmptyPlaceholder.Title>
+        <EmptyPlaceholder.Title>No workspaces found</EmptyPlaceholder.Title>
         <EmptyPlaceholder.Description>
-          You currently have no teams. Click the button below to create a new
-          team.
+          You currently have team workspaces. Click the button below to create
+          one and rally your crew.
         </EmptyPlaceholder.Description>
         <NewTeamButton />
       </EmptyPlaceholder>
