@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { authOptions } from '#/lib/auth';
-import { APP_BP } from '#/lib/const';
+import { APP_BP, BASE_URL } from '#/lib/const';
 import { getSession } from '#/lib/session';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
 
@@ -50,15 +50,10 @@ export function generateMetadata(): Metadata {
   const description =
     "Subscribe, upgrade, downgrade, or even cancel your team's plan on And Voila. Secure billing portal powered by our friends at Stripe.";
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/settings/workspaces`;
+  const pageUrl = `${BASE_URL}${APP_BP}/settings/workspaces`;
 
   const metadata = {
     title,

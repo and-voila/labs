@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { allPosts } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 
+import { BASE_URL } from '#/lib/const';
+
 import { BlogPosts } from '#/components/blog-posts';
 
 export default async function BlogPage() {
@@ -27,15 +29,10 @@ export function generateMetadata(): Metadata {
   const description =
     "Dive into And Voila's Blog for fresh, snackable posts, and videos that help digital marketers thrive. Want more insights? Create a free account now.";
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/blog`;
+  const pageUrl = `${BASE_URL}/blog`;
 
   const metadata = {
     title,

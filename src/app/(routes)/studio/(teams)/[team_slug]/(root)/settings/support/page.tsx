@@ -2,7 +2,7 @@ import { SVGProps } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-import { APP_BP } from '#/lib/const';
+import { APP_BP, BASE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { DashboardHeader } from '#/components/dashboard/header';
@@ -105,15 +105,10 @@ export function generateMetadata(): Metadata {
   const description =
     "Explore And Voila's Team Support: Live Discord help, email assistance, and detailed guides at your fingertips. We're dedicated to your team's needs.";
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/settings/workspaces`;
+  const pageUrl = `${BASE_URL}${APP_BP}/settings/workspaces`;
 
   const metadata = {
     title,

@@ -1,7 +1,7 @@
 import { Metadata, NextPage } from 'next';
 import { notFound } from 'next/navigation';
 
-import { APP_BP } from '#/lib/const';
+import { APP_BP, BASE_URL } from '#/lib/const';
 import { getTeam } from '#/lib/team/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
@@ -39,15 +39,10 @@ export function generateMetadata(): Metadata {
   const description =
     'Permanently delete your team on And Voila, ensuring all member data is completely removed from our systems for full privacy control.';
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/settings/workspaces`;
+  const pageUrl = `${BASE_URL}${APP_BP}/settings/workspaces`;
 
   const metadata = {
     title,

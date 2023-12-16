@@ -2,7 +2,7 @@ import { SVGProps } from 'react';
 import { Metadata, NextPage } from 'next';
 import Link from 'next/link';
 
-import { APP_BP } from '#/lib/const';
+import { APP_BP, BASE_URL } from '#/lib/const';
 import { getTeams } from '#/lib/team/get-teams';
 import { cn } from '#/lib/utils';
 
@@ -162,15 +162,10 @@ export function generateMetadata(): Metadata {
   const description =
     "For teams that thrive together, And Voila's collaborative team workspaces are your hub for marketing playbooks and full-stack multiplayer AI tools.";
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/settings/workspaces`;
+  const pageUrl = `${BASE_URL}${APP_BP}/settings/workspaces`;
 
   const metadata = {
     title,

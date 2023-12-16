@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+import { BASE_URL } from '#/lib/const';
 import { getSession } from '#/lib/session';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
 
@@ -30,15 +31,10 @@ export function generateMetadata(): Metadata {
   const description =
     "Get started free, no credit card required. Access our playbooks, check out our AI tools, and browse the community. When you're ready, upgrade your membership.";
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/pricing`;
+  const pageUrl = `${BASE_URL}/pricing`;
 
   const metadata = {
     title,

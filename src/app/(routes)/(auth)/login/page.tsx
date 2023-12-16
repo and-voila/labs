@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { siteConfig } from ':/src/config/site';
 
+import { siteConfig } from '#/config/site';
+
+import { BASE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import UserAuthForm from '#/components/forms/user-auth-form';
@@ -13,15 +15,10 @@ export function generateMetadata(): Metadata {
   const title = 'Login';
   const description = `Log in to ${siteConfig.name} Labs. Check out marketing playbooks, innovative AI tools, and join our community of digital marketing experts. Light your metrics up.`;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/login`;
+  const pageUrl = `${BASE_URL}/login`;
 
   const metadata = {
     title,

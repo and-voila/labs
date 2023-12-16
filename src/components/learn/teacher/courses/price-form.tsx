@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { COURSE_DEFAULT_PRICE } from '#/lib/constants';
+import { COURSE_DEFAULT_PRICE } from '#/lib/const';
 
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';

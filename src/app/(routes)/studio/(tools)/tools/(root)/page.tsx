@@ -2,7 +2,7 @@ import { SVGProps } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-import { APP_BP } from '#/lib/const';
+import { APP_BP, BASE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { DashboardHeader } from '#/components/dashboard/header';
@@ -144,15 +144,10 @@ export function generateMetadata(): Metadata {
   const description =
     'Discover AI-powered tools for marketers on And Voila. Enhance your workflow, protect IP, and watch your digital marketing ROI soar.';
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/tools`;
+  const pageUrl = `${BASE_URL}${APP_BP}/tools`;
 
   const metadata = {
     title,

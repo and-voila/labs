@@ -4,7 +4,7 @@ import { notFound, redirect } from 'next/navigation';
 
 import { updatePostMetadata } from '#/lib/actions';
 import { authOptions } from '#/lib/auth';
-import { APP_BP } from '#/lib/const';
+import { APP_BP, BASE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
@@ -78,15 +78,10 @@ export function generateMetadata(): Metadata {
   const description =
     'Tailor your posts to perfection with And Voila Post Settings. Set friendly slugs for SEO and add compelling featured images for greater impact.';
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/tools/write`;
+  const pageUrl = `${BASE_URL}${APP_BP}/tools/write`;
 
   const metadata = {
     title,
