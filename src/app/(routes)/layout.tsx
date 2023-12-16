@@ -7,6 +7,7 @@ import { env } from ':/env.mjs';
 
 import { siteConfig } from '#/config/site';
 
+import { SITE_URL } from '#/lib/const';
 import { cn, ensureStartsWith } from '#/lib/utils';
 
 import { Providers } from '#/components/providers/providers';
@@ -16,9 +17,6 @@ interface RootLayoutProps {
 }
 
 const { TWITTER_CREATOR, TWITTER_SITE } = env;
-const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
-  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-  : 'http://localhost:3001';
 const twitterCreator = TWITTER_CREATOR
   ? ensureStartsWith(TWITTER_CREATOR, '@')
   : undefined;
@@ -27,7 +25,7 @@ const twitterSite = TWITTER_SITE
   : undefined;
 
 export const metadata = {
-  metadataBase: new URL(baseUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,

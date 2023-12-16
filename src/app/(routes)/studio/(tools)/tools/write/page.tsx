@@ -1,7 +1,9 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 
-import { APP_BP } from '#/lib/const';
+import { siteConfig } from '#/config/site';
+
+import { APP_BP, SITE_URL } from '#/lib/const';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
@@ -62,18 +64,12 @@ export default function Overview() {
 
 export function generateMetadata(): Metadata {
   const title = 'Write';
-  const description =
-    'Experience the magic of AI-assisted blogging with And Voila. Create, publish, and manage engaging content with simplicity and speed. Get started today, free.';
+  const description = `Experience the magic of AI-assisted blogging with ${siteConfig.name}. Create, publish, and manage engaging content with simplicity and speed. Get started today, free.`;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/tools/write`;
+  const pageUrl = `${SITE_URL}${APP_BP}/tools/write`;
 
   const metadata = {
     title,

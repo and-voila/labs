@@ -2,9 +2,11 @@
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
+import { siteConfig } from '#/config/site';
+
 import { updatePostMetadata } from '#/lib/actions';
 import { authOptions } from '#/lib/auth';
-import { APP_BP } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
@@ -75,18 +77,12 @@ export default async function PostSettings({
 
 export function generateMetadata(): Metadata {
   const title = 'Post Settings';
-  const description =
-    'Tailor your posts to perfection with And Voila Post Settings. Set friendly slugs for SEO and add compelling featured images for greater impact.';
+  const description = `Tailor your posts to perfection with ${siteConfig.name} Post Settings. Set friendly slugs for SEO and add compelling featured images for greater impact.`;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/tools/write`;
+  const pageUrl = `${SITE_URL}${APP_BP}/tools/write`;
 
   const metadata = {
     title,

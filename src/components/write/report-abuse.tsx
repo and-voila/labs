@@ -5,6 +5,8 @@ import { useParams } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
 
+import { siteConfig } from '#/config/site';
+
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
@@ -36,8 +38,7 @@ export default function ReportAbuse() {
               setOpen(false);
               toast({
                 title: 'Your report has been submitted',
-                description:
-                  "Thanks for helping make the And Voila a safer place. We'll review your report and take action as per our Terms of Service.",
+                description: `Thanks for helping make the ${siteConfig.name} a safer place. We'll review your report and take action as per our Terms of Service.`,
                 variant: 'success',
               });
             }}

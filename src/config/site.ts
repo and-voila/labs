@@ -1,8 +1,7 @@
-import { env } from ':/env.mjs';
-
+import { SITE_URL } from '#/lib/const';
 import { SiteConfig } from '#/lib/types';
 
-const siteUrl = env.NEXT_PUBLIC_APP_URL;
+const siteUrl = SITE_URL;
 
 export const siteConfig: SiteConfig = {
   company: 'BRIL.LA, LLC.',

@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-import { APP_BP } from '#/lib/const';
+import { siteConfig } from '#/config/site';
+
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { DashboardShell } from '#/components/dashboard/shell';
@@ -47,18 +49,12 @@ export default TeamNotFound;
 
 export function generateMetadata(): Metadata {
   const title = '404 Not Found';
-  const description =
-    "Oops! Even our links get lost sometimes. This And Voila page has vanished, but your digital marketing journey hasn't.";
+  const description = `Oops! Even our links get lost sometimes. This ${siteConfig.name} page has vanished, but your digital marketing journey hasn't.`;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/settings/advanced`;
+  const pageUrl = `${SITE_URL}${APP_BP}/settings/advanced`;
 
   const metadata = {
     title,

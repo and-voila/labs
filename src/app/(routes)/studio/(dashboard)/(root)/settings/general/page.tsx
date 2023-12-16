@@ -1,8 +1,10 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
+import { siteConfig } from '#/config/site';
+
 import { authOptions } from '#/lib/auth';
-import { APP_BP } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { getSession } from '#/lib/session';
 
 import { DashboardHeader } from '#/components/dashboard/header';
@@ -38,18 +40,12 @@ export default async function SettingsPage() {
 
 export function generateMetadata(): Metadata {
   const title = 'Account Settings';
-  const description =
-    'Customize your And Voila account settings. Update your username, display name, choose themes, and more.';
+  const description = `Customize your ${siteConfig.name} account settings. Update your username, display name, choose themes, and more.`;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/settings/general`;
+  const pageUrl = `${SITE_URL}${APP_BP}/settings/general`;
 
   const metadata = {
     title,

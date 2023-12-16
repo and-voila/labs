@@ -2,9 +2,11 @@
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
+import { siteConfig } from '#/config/site';
+
 import { updatePostMetadata } from '#/lib/actions';
 import { authOptions } from '#/lib/auth';
-import { APP_BP } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
@@ -41,7 +43,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
     <DashboardShell>
       <DashboardHeader
         heading={`Editing: ${data.title || 'Untitled post'}`}
-        text="Use And Voila's AI assist to crush writer's block. Activate it with ++. Keep tabs on your IP protection with the indicator to safeguard your work."
+        text={`Use ${siteConfig.name}'s AI assist to crush writer's block. Activate it with ++. Keep tabs on your IP protection with the indicator to safeguard your work.`}
       />
       <Tabs defaultValue="editor">
         <TabsList>
@@ -101,18 +103,12 @@ export default async function PostPage({ params }: { params: { id: string } }) {
 
 export function generateMetadata(): Metadata {
   const title = 'AI Editor';
-  const description =
-    'Draft content with And Voila Edit Post. Embrace a Notion-inspired, AI-powered editor built on Novel.sh for seamless creation and editing that feels like magic.';
+  const description = `Draft content with ${siteConfig.name} Edit Post. Embrace a Notion-inspired, AI-powered editor built on Novel.sh for seamless creation and editing that feels like magic.`;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/tools/write`;
+  const pageUrl = `${SITE_URL}${APP_BP}/tools/write`;
 
   const metadata = {
     title,

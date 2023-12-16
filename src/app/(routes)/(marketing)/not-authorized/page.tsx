@@ -2,7 +2,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
-import { APP_BP } from '#/lib/const';
+import { siteConfig } from '#/config/site';
+
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
@@ -44,18 +46,12 @@ export default NotAuthorizedPage;
 
 export function generateMetadata(): Metadata {
   const title = 'Not Authorized';
-  const description =
-    "Looks like you've taken a wrong turn into the Rose family's exclusive space. This area is for And Voila admins and mods. Please return to more familiar grounds.";
+  const description = `Looks like you've taken a wrong turn into the Rose family's exclusive space. This area is for ${siteConfig.name} admins and mods. Please return to more familiar grounds.`;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/not-authorized`;
+  const pageUrl = `${SITE_URL}/not-authorized`;
 
   const metadata = {
     title,

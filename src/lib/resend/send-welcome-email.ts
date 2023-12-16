@@ -1,8 +1,7 @@
 import { siteConfig } from '#/config/site';
 
-import { APP_BP } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { resend } from '#/lib/resend/resend';
-import { SITE_URL } from '#/lib/utils';
 
 import WelcomeEmail from '#/emails/welcome-email';
 
@@ -15,7 +14,7 @@ Find your stride with a Playbook: ${SITE_URL}${APP_BP}/settings/workspaces\n
 Eager to share your voice? Create your site: ${SITE_URL}${APP_BP}/tools/write\n
 Need a hand? Our Discord Support team is always ready to help: https://discord.com/channels/1151749282806910976/1151825811427561623\n
 Our Good plan is free-for-life and includes generous limits. If you find yourself needing more, you can upgrade at any time at ${SITE_URL}/pricing and enjoy 50% off as an early-access member. Your membership is covered by our 100% delight guarantee.\n
-— 🫶🏽 The And Voila Team\n
+— 🫶🏽 The ${siteConfig.name} Team\n
 BRIL.LA, LLC. 1370 N. St. Andrews Place, Los Angeles, CA 90028`;
 
 export async function sendWelcomeEmail({ email }: { email: string }) {

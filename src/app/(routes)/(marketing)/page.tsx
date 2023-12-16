@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 
 import { siteConfig } from '#/config/site';
 
+import { SITE_URL } from '#/lib/const';
+
 import MarketingIndexBenefits from '#/components/marketing/marketing-index-benefits';
 import MarketingIndexHero from '#/components/marketing/marketing-index-hero';
 import MarketingIndexOpenSource from '#/components/marketing/marketing-index-open-source';
@@ -20,15 +22,10 @@ export function generateMetadata(): Metadata {
   const title = 'Gain Marketing Superpowers';
   const description = siteConfig.description;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}`;
+  const pageUrl = `${SITE_URL}`;
 
   const metadata = {
     title,

@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { allGuides } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 
+import { siteConfig } from '#/config/site';
+
+import { SITE_URL } from '#/lib/const';
 import { formatDate } from '#/lib/utils';
 
 import { InsightsPageHeader } from '#/components/insights/page-header';
@@ -62,18 +65,12 @@ export default function GuidesPage() {
 
 export function generateMetadata(): Metadata {
   const title = 'Guides';
-  const description =
-    'Explore Guides by And Voila: Comprehensive digital marketing insights and best practices, passing on our legos for your success journey.';
+  const description = `Explore Guides by ${siteConfig.name}: Comprehensive digital marketing insights and best practices, passing on our legos for your success journey.`;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/guides`;
+  const pageUrl = `${SITE_URL}/guides`;
 
   const metadata = {
     title,

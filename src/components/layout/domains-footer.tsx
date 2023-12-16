@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { siteConfig } from '#/config/site';
+
 import { cn, placeholderBlurhash } from '#/lib/utils';
 
 import { ModeToggle } from '#/components/layout/mode-toggle';
@@ -55,28 +57,25 @@ const DomainsFooterLink: React.FC<DomainsFooterLinkData> = ({
 
 const links: DomainsFooterLinkData[] = [
   {
-    href: 'https://labs.andvoila.gg',
-    label: 'And Voila',
-    ariaLabel: "Navigate to And Voila's registration page in a new window",
+    href: `${siteConfig.url}`,
+    label: `${siteConfig.name}`,
+    ariaLabel: `Navigate to ${siteConfig.name}'s registration page in a new window`,
     preText: 'Create your own free site on ',
   },
   {
     href: 'https://andvoila.gg/privacy',
     label: 'Privacy Policy',
-    ariaLabel:
-      "Navigate to And Voila's Privacy Policy page on their main website in a new window.",
+    ariaLabel: `Navigate to ${siteConfig.name}'s Privacy Policy page on their main website in a new window.`,
   },
   {
     href: 'https://andvoila.gg/terms',
     label: 'Terms of Service',
-    ariaLabel:
-      "Navigate to And Voila's Terms of Service page on their main website in a new window.",
+    ariaLabel: `Navigate to ${siteConfig.name}'s Terms of Service page on their main website in a new window.`,
   },
   {
     href: 'https://andvoila.gg/accessibility',
     label: 'Accessibility',
-    ariaLabel:
-      "Navigate to And Voila's Accessibility statement page on their main website in a new window.",
+    ariaLabel: `Navigate to ${siteConfig.name}'s Accessibility statement page on their main website in a new window.`,
   },
 ];
 

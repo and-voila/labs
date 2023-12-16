@@ -1,7 +1,9 @@
 import { Metadata, NextPage } from 'next';
 import Link from 'next/link';
 
-import { APP_BP } from '#/lib/const';
+import { siteConfig } from '#/config/site';
+
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { DashboardShell } from '#/components/dashboard/shell';
@@ -61,18 +63,12 @@ export default OopsPage;
 
 export function generateMetadata(): Metadata {
   const title = 'Oops! Not Authorized';
-  const description =
-    'Certain features of And Voila are tied to your personal workspace. Check them out. We made learning fast, fun, and fabulous.';
+  const description = `Certain features of ${siteConfig.name} are tied to your personal workspace. Check them out. We made learning fast, fun, and fabulous.`;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/settings/workspaces`;
+  const pageUrl = `${SITE_URL}${APP_BP}/settings/workspaces`;
 
   const metadata = {
     title,

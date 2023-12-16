@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
+import { siteConfig } from '#/config/site';
+
+import { SITE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import UserAuthForm from '#/components/forms/user-auth-form';
@@ -10,18 +13,12 @@ import { buttonVariants } from '#/components/ui/button';
 
 export function generateMetadata(): Metadata {
   const title = 'Register';
-  const description =
-    'Create your free account on Labs by And Voila for instant access to killer digital marketing playbooks, AI tools, and a community of experts. Thank us later.';
+  const description = `Create your free account on Labs by ${siteConfig.name} for instant access to killer digital marketing playbooks, AI tools, and a community of experts. Thank us later.`;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}/register`;
+  const pageUrl = `${SITE_URL}/register`;
 
   const metadata = {
     title,
@@ -97,7 +94,7 @@ export default function RegisterPage() {
             <Link
               href="https://andvoila.gg/privacy"
               target="_blank"
-              aria-label="Navigate to And Voila's Privacy Policy on their website in a new window"
+              aria-label={`Navigate to ${siteConfig.name}'s Privacy Policy page on their website in a new window`}
               className="text-primary hover:underline"
             >
               {' '}
@@ -107,7 +104,7 @@ export default function RegisterPage() {
             <Link
               href="https://andvoila.gg/terms"
               target="_blank"
-              aria-label="Navigate to And Voila's Terms of Service on their website in a new window"
+              aria-label={`Navigate to ${siteConfig.name}'s Terms of Service page on their website in a new window`}
               className="text-primary hover:underline"
             >
               Terms of Service

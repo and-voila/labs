@@ -7,8 +7,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { APP_BP } from '#/lib/const';
-import { COURSE_DEFAULT_PRICE } from '#/lib/constants';
+import { APP_BP, COURSE_DEFAULT_PRICE } from '#/lib/const';
 
 import { DashboardShell } from '#/components/dashboard/shell';
 import { Button } from '#/components/ui/button';

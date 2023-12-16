@@ -13,8 +13,7 @@ import '#/styles/mdx.css';
 
 import { Metadata } from 'next';
 
-import { env } from ':/env.mjs';
-
+import { SITE_URL } from '#/lib/const';
 import { absoluteUrl, cn } from '#/lib/utils';
 
 import { buttonVariants } from '#/components/ui/button';
@@ -45,12 +44,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', guide.title);
 
   return {

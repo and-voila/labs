@@ -6,10 +6,10 @@ import { getServerSession } from 'next-auth';
 import { env } from ':/env.mjs';
 
 import { authOptions } from '#/lib/auth';
+import { SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { stripe } from '#/lib/stripe';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
-import { SITE_URL } from '#/lib/utils';
 
 export type responseAction = {
   status: 'success' | 'error';

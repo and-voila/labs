@@ -1,7 +1,9 @@
 import { Metadata, NextPage } from 'next';
 import { notFound } from 'next/navigation';
 
-import { APP_BP } from '#/lib/const';
+import { siteConfig } from '#/config/site';
+
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { getTeam } from '#/lib/team/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
@@ -36,18 +38,12 @@ export default TeamDangerZonePage;
 
 export function generateMetadata(): Metadata {
   const title = 'Delete Team';
-  const description =
-    'Permanently delete your team on And Voila, ensuring all member data is completely removed from our systems for full privacy control.';
+  const description = `Permanently delete your team on ${siteConfig.name}, ensuring all member data is completely removed from our systems for full privacy control.`;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/settings/workspaces`;
+  const pageUrl = `${SITE_URL}${APP_BP}/settings/workspaces`;
 
   const metadata = {
     title,

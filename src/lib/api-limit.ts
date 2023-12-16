@@ -1,4 +1,4 @@
-import { MAX_FREE_TOKENS } from '#/lib/constants';
+import { MAX_FREE_TOKENS } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 

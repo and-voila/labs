@@ -1,8 +1,10 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
+import { siteConfig } from '#/config/site';
+
 import { authOptions } from '#/lib/auth';
-import { APP_BP } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { getSession } from '#/lib/session';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
 
@@ -48,18 +50,12 @@ export default async function PersonalBillingPage() {
 
 export function generateMetadata(): Metadata {
   const title = 'Billing';
-  const description =
-    "Subscribe, upgrade, downgrade, or even cancel with And Voila's easy-to-manage, secure billing portal. Powered by our friends at Stripe.";
+  const description = `Subscribe, upgrade, downgrade, or even cancel with ${siteConfig.name}'s easy-to-manage, secure billing portal. Powered by our friends at Stripe.`;
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-
-  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${baseUrl}${APP_BP}/settings/billing`;
+  const pageUrl = `${SITE_URL}${APP_BP}/settings/billing`;
 
   const metadata = {
     title,

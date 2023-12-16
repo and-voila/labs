@@ -1,5 +1,7 @@
 'use client';
 
+import { siteConfig } from '#/config/site';
+
 import { APP_BP } from '#/lib/const';
 import { IconKey } from '#/lib/types';
 
@@ -15,8 +17,7 @@ const links: Array<{
   {
     name: 'Dashboard',
     href: `${APP_BP}/settings/workspaces`,
-    description:
-      'Your command center for everything And Voila. Navigate like a pro.',
+    description: `Your command center for everything ${siteConfig.name}. Navigate like a pro.`,
     icon: 'dashboard',
   },
   {
