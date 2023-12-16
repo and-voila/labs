@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 import { siteConfig } from '#/config/site';
 
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
@@ -66,10 +66,10 @@ export function generateMetadata(): Metadata {
   const title = 'Write';
   const description = `Experience the magic of AI-assisted blogging with ${siteConfig.name}. Create, publish, and manage engaging content with simplicity and speed. Get started today, free.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}${APP_BP}/tools/write`;
+  const pageUrl = `${SITE_URL}${APP_BP}/tools/write`;
 
   const metadata = {
     title,

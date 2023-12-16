@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { siteConfig } from '#/config/site';
 
-import { BASE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import UserAuthForm from '#/components/forms/user-auth-form';
@@ -15,10 +15,10 @@ export function generateMetadata(): Metadata {
   const title = 'Login';
   const description = `Log in to ${siteConfig.name} Labs. Check out marketing playbooks, innovative AI tools, and join our community of digital marketing experts. Light your metrics up.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}/login`;
+  const pageUrl = `${SITE_URL}/login`;
 
   const metadata = {
     title,

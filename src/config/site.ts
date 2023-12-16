@@ -1,7 +1,7 @@
-import { BASE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { SiteConfig } from '#/lib/types';
 
-const siteUrl = BASE_URL;
+const siteUrl = SITE_URL;
 
 export const siteConfig: SiteConfig = {
   company: 'BRIL.LA, LLC.',

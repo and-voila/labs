@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { siteConfig } from '#/config/site';
 
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { getTeam } from '#/lib/team/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
@@ -46,10 +46,10 @@ export function generateMetadata(): Metadata {
   const title = 'Team Settings';
   const description = `${siteConfig.name} makes it easy to invite or manage team members, update your team information, or if you need to, delete your team permanently.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}${APP_BP}/settings/workspaces`;
+  const pageUrl = `${SITE_URL}${APP_BP}/settings/workspaces`;
 
   const metadata = {
     title,

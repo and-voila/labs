@@ -7,7 +7,7 @@ import { env } from ':/env.mjs';
 
 import { siteConfig } from '#/config/site';
 
-import { BASE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { cn, ensureStartsWith } from '#/lib/utils';
 
 import { Providers } from '#/components/providers/providers';
@@ -25,7 +25,7 @@ const twitterSite = TWITTER_SITE
   : undefined;
 
 export const metadata = {
-  metadataBase: new URL(BASE_URL),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,

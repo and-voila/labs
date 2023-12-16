@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import { siteConfig } from '#/config/site';
 
 import { authOptions } from '#/lib/auth';
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
 import { getTeams } from '#/lib/team/get-teams';
@@ -199,10 +199,10 @@ export async function generateMetadata({
     course.preview ??
     `Access the ${siteConfig.name} Dashboard for advanced marketing playbooks, effective AI tools, and to mingle in the best digital marketing Discord.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const courseUrl = `${BASE_URL}${APP_BP}/learn/courses/${params.courseId}`;
+  const courseUrl = `${SITE_URL}${APP_BP}/learn/courses/${params.courseId}`;
 
   const metadata = {
     title,

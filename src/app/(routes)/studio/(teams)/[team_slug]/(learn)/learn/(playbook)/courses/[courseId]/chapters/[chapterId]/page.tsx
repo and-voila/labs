@@ -6,7 +6,7 @@ import { siteConfig } from '#/config/site';
 
 import { getChapter } from '#/lib/actions/get-chapter';
 import { authOptions } from '#/lib/auth';
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getTeams } from '#/lib/team/get-teams';
 
@@ -154,10 +154,10 @@ export async function generateMetadata({
     description = description.substring(0, 157) + '...';
   }
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const chapterUrl = `${BASE_URL}${APP_BP}/learn/courses/${params.courseId}/chapters/${params.chapterId}`;
+  const chapterUrl = `${SITE_URL}${APP_BP}/learn/courses/${params.courseId}/chapters/${params.chapterId}`;
 
   const metadata = {
     title,

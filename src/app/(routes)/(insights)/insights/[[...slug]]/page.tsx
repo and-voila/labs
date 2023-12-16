@@ -12,7 +12,7 @@ import '#/styles/mdx.css';
 
 import { Metadata } from 'next';
 
-import { BASE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { absoluteUrl } from '#/lib/utils';
 
 interface InsightPageProps {
@@ -41,7 +41,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', insight.title);
 
   return {

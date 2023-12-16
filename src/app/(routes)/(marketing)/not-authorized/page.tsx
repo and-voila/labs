@@ -4,7 +4,7 @@ import Balancer from 'react-wrap-balancer';
 
 import { siteConfig } from '#/config/site';
 
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
@@ -48,10 +48,10 @@ export function generateMetadata(): Metadata {
   const title = 'Not Authorized';
   const description = `Looks like you've taken a wrong turn into the Rose family's exclusive space. This area is for ${siteConfig.name} admins and mods. Please return to more familiar grounds.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}/not-authorized`;
+  const pageUrl = `${SITE_URL}/not-authorized`;
 
   const metadata = {
     title,

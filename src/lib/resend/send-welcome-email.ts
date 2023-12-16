@@ -1,8 +1,7 @@
 import { siteConfig } from '#/config/site';
 
-import { APP_BP } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { resend } from '#/lib/resend/resend';
-import { SITE_URL } from '#/lib/utils';
 
 import WelcomeEmail from '#/emails/welcome-email';
 

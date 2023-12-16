@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { siteConfig } from '#/config/site';
 
 import { authOptions } from '#/lib/auth';
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { getSession } from '#/lib/session';
 import { getUserSubscriptionPlan } from '#/lib/subscription';
 
@@ -52,10 +52,10 @@ export function generateMetadata(): Metadata {
   const title = 'Billing';
   const description = `Subscribe, upgrade, downgrade, or even cancel with ${siteConfig.name}'s easy-to-manage, secure billing portal. Powered by our friends at Stripe.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}${APP_BP}/settings/billing`;
+  const pageUrl = `${SITE_URL}${APP_BP}/settings/billing`;
 
   const metadata = {
     title,

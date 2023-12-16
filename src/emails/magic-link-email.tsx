@@ -12,16 +12,13 @@ import {
   Text,
 } from '@react-email/components';
 
+import { SITE_URL } from '#/lib/const';
+
 type MagicLinkEmailProps = {
   actionUrl: string;
   mailType: 'login' | 'register';
   siteName: string;
 };
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
 
 export const MagicLinkEmail = ({
   actionUrl,

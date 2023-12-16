@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { siteConfig } from '#/config/site';
 
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { getTeams } from '#/lib/team/get-teams';
 import { cn } from '#/lib/utils';
 
@@ -163,10 +163,10 @@ export function generateMetadata(): Metadata {
   const title = 'Team Workspace';
   const description = `For teams that thrive together, ${siteConfig.name}'s collaborative team workspaces are your hub for marketing playbooks and full-stack multiplayer AI tools.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}${APP_BP}/settings/workspaces`;
+  const pageUrl = `${SITE_URL}${APP_BP}/settings/workspaces`;
 
   const metadata = {
     title,

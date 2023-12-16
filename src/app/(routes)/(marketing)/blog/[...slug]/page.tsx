@@ -9,7 +9,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
-import { BASE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { absoluteUrl, cn, formatDate, placeholderBlurhash } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
@@ -42,7 +42,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', post.title);
 
   return {

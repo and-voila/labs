@@ -5,7 +5,7 @@ import { MembershipRole } from '@prisma/client';
 import { siteConfig } from '#/config/site';
 
 import { authOptions } from '#/lib/auth';
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
@@ -45,10 +45,10 @@ export function generateMetadata(): Metadata {
   const title = 'Delete Personal Account';
   const description = `Safely delete your personal account on ${siteConfig.name}. Manage your data and privacy with full control.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}${APP_BP}/settings/advanced`;
+  const pageUrl = `${SITE_URL}${APP_BP}/settings/advanced`;
 
   const metadata = {
     title,

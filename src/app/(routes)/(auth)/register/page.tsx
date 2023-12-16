@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { siteConfig } from '#/config/site';
 
-import { BASE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import UserAuthForm from '#/components/forms/user-auth-form';
@@ -15,10 +15,10 @@ export function generateMetadata(): Metadata {
   const title = 'Register';
   const description = `Create your free account on Labs by ${siteConfig.name} for instant access to killer digital marketing playbooks, AI tools, and a community of experts. Thank us later.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}/register`;
+  const pageUrl = `${SITE_URL}/register`;
 
   const metadata = {
     title,

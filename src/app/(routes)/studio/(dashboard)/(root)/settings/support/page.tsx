@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { siteConfig } from '#/config/site';
 
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { DashboardHeader } from '#/components/dashboard/header';
@@ -106,10 +106,10 @@ export function generateMetadata(): Metadata {
   const title = 'Support';
   const description = `Find all the support you need on ${siteConfig.name}'s Support page. From live Discord help to email assistance and extensive guides. We're here and waiting.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}${APP_BP}/settings/support`;
+  const pageUrl = `${SITE_URL}${APP_BP}/settings/support`;
 
   const metadata = {
     title,

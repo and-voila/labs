@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import { siteConfig } from '#/config/site';
 
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 
 import CreatePage from './page';
 
@@ -10,7 +10,7 @@ export function generateMetadata(): Metadata {
   const title = 'New Playbook';
   const description = `Look at you, the brilliant ${siteConfig.name} Admin creating a new Playbook so our members can thrive. Hat's off to you. You're helping make digital marketing awesome.`;
 
-  const pageUrl = `${BASE_URL}${APP_BP}/admin/create`;
+  const pageUrl = `${SITE_URL}${APP_BP}/admin/create`;
 
   const metadata = {
     title,

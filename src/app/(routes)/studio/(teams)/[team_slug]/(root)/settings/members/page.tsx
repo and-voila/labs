@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { MembershipRole } from '@prisma/client';
 
 import { authOptions } from '#/lib/auth';
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { getSession } from '#/lib/session';
 import { getTeamInvites } from '#/lib/team/get-team-invites';
 import { getTeamMembers } from '#/lib/team/get-team-members';
@@ -67,10 +67,10 @@ export function generateMetadata(): Metadata {
   const description =
     "Manage your team members like a boss. Add, remove, or update their roles. Transfer ownership if that's your thing. It's all here";
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}${APP_BP}settings/workspaces`;
+  const pageUrl = `${SITE_URL}${APP_BP}settings/workspaces`;
 
   const metadata = {
     title,

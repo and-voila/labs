@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { siteConfig } from '#/config/site';
 
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import { DashboardShell } from '#/components/dashboard/shell';
@@ -51,10 +51,10 @@ export function generateMetadata(): Metadata {
   const title = '404 Not Found';
   const description = `Oops! Even our links get lost sometimes. This ${siteConfig.name} page has vanished, but your digital marketing journey hasn't.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}${APP_BP}/settings/advanced`;
+  const pageUrl = `${SITE_URL}${APP_BP}/settings/advanced`;
 
   const metadata = {
     title,

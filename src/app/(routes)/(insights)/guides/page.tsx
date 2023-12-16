@@ -5,7 +5,7 @@ import { compareDesc } from 'date-fns';
 
 import { siteConfig } from '#/config/site';
 
-import { BASE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { formatDate } from '#/lib/utils';
 
 import { InsightsPageHeader } from '#/components/insights/page-header';
@@ -67,10 +67,10 @@ export function generateMetadata(): Metadata {
   const title = 'Guides';
   const description = `Explore Guides by ${siteConfig.name}: Comprehensive digital marketing insights and best practices, passing on our legos for your success journey.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}/guides`;
+  const pageUrl = `${SITE_URL}/guides`;
 
   const metadata = {
     title,

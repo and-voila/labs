@@ -13,7 +13,7 @@ import '#/styles/mdx.css';
 
 import { Metadata } from 'next';
 
-import { BASE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { absoluteUrl, cn } from '#/lib/utils';
 
 import { buttonVariants } from '#/components/ui/button';
@@ -44,7 +44,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', guide.title);
 
   return {

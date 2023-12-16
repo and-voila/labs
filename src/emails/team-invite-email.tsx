@@ -13,7 +13,7 @@ import {
   Text,
 } from '@react-email/components';
 
-import { SITE_URL } from '#/lib/utils';
+import { SITE_URL } from '#/lib/const';
 
 export const TemplateName = 'team-invite-email';
 

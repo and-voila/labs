@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 import { siteConfig } from '#/config/site';
 
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
@@ -44,10 +44,10 @@ export function generateMetadata(): Metadata {
   const title = 'My Sites';
   const description = `Launch your digital presence with ${siteConfig.name}. Build and customize your site, add a domain, and go live in under 3 minutes. Your platform, your rules.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}${APP_BP}/tools/write/sites`;
+  const pageUrl = `${SITE_URL}${APP_BP}/tools/write/sites`;
 
   const metadata = {
     title,

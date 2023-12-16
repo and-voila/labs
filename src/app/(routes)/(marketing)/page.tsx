@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import { siteConfig } from '#/config/site';
 
-import { BASE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 
 import MarketingIndexBenefits from '#/components/marketing/marketing-index-benefits';
 import MarketingIndexHero from '#/components/marketing/marketing-index-hero';
@@ -22,10 +22,10 @@ export function generateMetadata(): Metadata {
   const title = 'Gain Marketing Superpowers';
   const description = siteConfig.description;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}`;
+  const pageUrl = `${SITE_URL}`;
 
   const metadata = {
     title,

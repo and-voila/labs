@@ -5,7 +5,7 @@ import { siteConfig } from '#/config/site';
 
 import { getDashboardCourses } from '#/lib/actions/get-dashboard-courses';
 import { authOptions } from '#/lib/auth';
-import { APP_BP, BASE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { getTeams } from '#/lib/team/get-teams';
 
 import { DashboardShell } from '#/components/dashboard/shell';
@@ -82,10 +82,10 @@ export function generateMetadata(): Metadata {
   const title = 'My Playbooks';
   const description = `Access your Playbooks library on ${siteConfig.name}. Explore, track, and revisit your marketing guide collection, tailored for dynamic digital marketing success.`;
 
-  const ogImageUrl = new URL(`${BASE_URL}/api/og`);
+  const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${BASE_URL}${APP_BP}/learn`;
+  const pageUrl = `${SITE_URL}${APP_BP}/learn`;
 
   const metadata = {
     title,
