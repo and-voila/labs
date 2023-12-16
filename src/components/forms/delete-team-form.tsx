@@ -3,6 +3,8 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
+import { CP_PREFIX } from '#/lib/const';
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -48,7 +50,7 @@ export const DeleteForm: React.FC<DeleteFormProps> = (props) => {
         variant: 'success',
       });
 
-      router.push('/app');
+      router.push(`${CP_PREFIX}/settings/workspaces`);
     } finally {
       setIsSubmitting(false);
     }

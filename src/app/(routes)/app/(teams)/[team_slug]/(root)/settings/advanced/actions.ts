@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { MembershipRole } from '@prisma/client';
 
+import { CP_PREFIX } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
@@ -42,7 +43,7 @@ export const deleteTeam = async (teamSlug: string) => {
     },
   });
 
-  revalidatePath('/app');
+  revalidatePath(CP_PREFIX);
 
   return {
     status: 'OK',
