@@ -8,7 +8,7 @@ import WelcomeEmail from '#/emails/welcome-email';
 
 const plainTextWelcomeEmail = `🎉 Welcome!\n
 Our team has been brewing up decades of marketing expertise into something special just for you. Ready to unlock your marketing superpowers?\n
-Dive Right In: ${SITE_URL}/app\n\n
+Dive Right In: ${SITE_URL}${CP_PREFIX}/settings/workspaces\n\n
 Quick Start Tips:\n
 Start your journey in our Discord Community: https://discord.com/channels/1151749282806910976/1154115151407091862\n
 Find your stride with a Playbook: ${SITE_URL}${CP_PREFIX}/settings/workspaces\n

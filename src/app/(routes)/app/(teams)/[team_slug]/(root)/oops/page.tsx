@@ -1,7 +1,11 @@
-import { NextPage } from 'next';
+import { Metadata, NextPage } from 'next';
+import Link from 'next/link';
+import { cn } from ':/src/lib/utils';
 
-import { DashboardHeader } from '#/components/dashboard/header';
+import { CP_PREFIX } from '#/lib/const';
+
 import { DashboardShell } from '#/components/dashboard/shell';
+import { buttonVariants } from '#/components/ui/button';
 
 interface Props {
   params: {
@@ -14,24 +18,92 @@ const OopsPage: NextPage<Props> = (props) => {
 
   return (
     <DashboardShell>
-      <DashboardHeader
-        heading="Hop over to your personal workspace"
-        text="Whoops, looks like Learn features are playing hide and seek in your personal workspace. Switch to your personal account to find them."
-      />
-      <p className="max-w-lg text-lg text-muted-foreground">
-        Hey there, you&apos;re in team mode under{' '}
-        <span className="font-semibold text-primary">{params.team_slug}</span>{' '}
-        right now. Just a quick leap to the top left team switcher, and you can
-        jump into your personal playground.
-      </p>
-      <p className="max-w-lg text-lg text-muted-foreground">
-        <span className="font-semibold text-primary">
-          Thanks for sticking around
-        </span>
-        {''} while our developer, the king of soon, is leveling up.
-      </p>
+      <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
+        <div className="text-center">
+          <p className="text-base font-medium uppercase tracking-widest text-primary">
+            Oops
+          </p>
+          <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-5xl">
+            Use personal workspace
+          </h1>
+          <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">
+            You&apos;re currently using the{' '}
+            <span className="font-semibold text-primary">
+              {params.team_slug}
+            </span>{' '}
+            team. Ready to explore Learn features? Just hop over to{' '}
+            <span className="font-semibold">your personal workspace</span>. A
+            quick click on the top left team switcher, and you&apos;re in your
+            personal zone. Thanks for your patience.
+          </p>
+
+          <div className="mt-10 flex items-center justify-center gap-x-6">
+            <Link
+              href={`${CP_PREFIX}/settings/workspaces`}
+              className={cn(buttonVariants())}
+            >
+              My workspaces
+            </Link>
+            <Link
+              href={`${CP_PREFIX}/settings/support`}
+              className="text-sm font-semibold text-muted-foreground hover:text-muted-foreground/80"
+            >
+              Contact support <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
+        </div>
+      </main>
     </DashboardShell>
   );
 };
 
 export default OopsPage;
+
+export function generateMetadata(): Metadata {
+  const title = 'Oops! Not Authorized';
+  const description =
+    'Certain features of And Voila are tied to your personal workspace. Check them out. We made learning fast, fun, and fabulous.';
+
+  const baseUrl =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
+
+  const ogImageUrl = new URL(`${baseUrl}/api/og`);
+  ogImageUrl.searchParams.set('title', title);
+
+  const pageUrl = `${baseUrl}${CP_PREFIX}/settings/workspaces`;
+
+  const metadata = {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      images: [
+        {
+          url: ogImageUrl.toString(),
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      url: pageUrl,
+    },
+    twitter: {
+      title,
+      description,
+      images: [
+        {
+          url: ogImageUrl.toString(),
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+  };
+
+  return metadata;
+}
