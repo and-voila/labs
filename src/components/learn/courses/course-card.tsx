@@ -33,7 +33,10 @@ export const CourseCard = ({
   const displayPrice = getCoursePrice(price, isPaidMember);
 
   return (
-    <Link href={`${APP_BP}/${teamSlug}/learn/courses/${id}`} prefetch={false}>
+    <Link
+      href={`${APP_BP}/${teamSlug}/workspace/learn/courses/${id}`}
+      prefetch={false}
+    >
       <div className="group h-full overflow-hidden rounded-xl border bg-card transition hover:shadow-sm">
         <div className="relative aspect-video w-full overflow-hidden md:grayscale md:group-hover:grayscale-0">
           <BlurImage

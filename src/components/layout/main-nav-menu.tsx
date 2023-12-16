@@ -57,7 +57,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
   }[] = [
     {
       title: 'Playbooks',
-      href: `${APP_BP}/${activeSlug}/learn`,
+      href: `${APP_BP}/${activeSlug}/workspace/learn`,
       description:
         'Snappy lessons for quick marketing skills. Think TikTok, but for learning.',
     },
@@ -113,7 +113,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
   }[] = [
     {
       title: 'Dashboard',
-      href: `${APP_BP}/my/workspaces`,
+      href: `${APP_BP}/${activeSlug}/workspace/home`,
       description:
         'Your marketing operations HQ. All your tools and data at a glance.',
     },
@@ -124,7 +124,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
     },
     {
       title: 'Learn',
-      href: `${APP_BP}/${activeSlug}/learn`,
+      href: `${APP_BP}/${activeSlug}/workspace/learn`,
       description:
         'Crush your marketing goals. Lessons, tips, and insider tips await.',
     },
@@ -184,7 +184,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
                 </NavigationMenuLink>
               </li>
               <ListItem
-                href={`${APP_BP}/${activeSlug}/learn`}
+                href={`${APP_BP}/${activeSlug}/workspace/learn`}
                 title="Playbooks"
               >
                 Stuck? Score quick wins with Playbooks, just 5 mins to wisdom.
@@ -217,16 +217,18 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        <NavigationMenuItem className="hidden md:block">
           <NavigationMenuTrigger
             className={
-              isActive(`${APP_BP}/${activeSlug}/learn`) ||
+              isActive(`${APP_BP}/${activeSlug}/workspace/learn`) ||
               isActive(`${APP_BP}/tools`)
                 ? 'text-primary'
                 : ''
             }
           >
-            <Link href={`${APP_BP}/${activeSlug}/learn`}>Resources</Link>
+            <Link href={`${APP_BP}/${activeSlug}/workspace/learn`}>
+              Resources
+            </Link>
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">

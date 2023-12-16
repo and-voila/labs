@@ -38,7 +38,7 @@ export const StartCourseButton = ({
 
       if (!isStarted) {
         router.push(
-          `${APP_BP}/learn/courses/${courseId}/chapters/${firstChapterId}`,
+          `${APP_BP}/workspace/learn/courses/${courseId}/chapters/${firstChapterId}`,
         );
       }
 

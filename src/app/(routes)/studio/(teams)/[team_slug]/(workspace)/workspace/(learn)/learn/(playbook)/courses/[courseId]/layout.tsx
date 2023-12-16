@@ -56,14 +56,14 @@ const PlaybookLayout = async ({
   });
 
   if (!course) {
-    return redirect(`${APP_BP}/${personalTeam.slug}/learn/search`);
+    return redirect(`${APP_BP}/${personalTeam.slug}/workspace/learn/search`);
   }
 
   const progressCount = await getProgress(personalTeam.id, course.id);
 
   return (
     <div className="flex-1 md:grid md:grid-cols-[220px_1fr] md:gap-6 lg:grid-cols-[240px_1fr] lg:gap-10">
-      <aside className="fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto py-6 md:sticky md:block lg:py-10">
+      <aside className="fixed top-8 z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto py-6 md:sticky md:block lg:py-10">
         <CourseSidebar
           course={course}
           progressCount={progressCount}

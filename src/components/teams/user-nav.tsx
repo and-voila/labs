@@ -60,7 +60,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             className="flex items-center space-x-2.5"
           >
             <Icons.dashboard className="h-4 w-4 text-primary" />
-            <p className="text-sm">Dashboard</p>
+            <p className="text-sm">My dashboard</p>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>

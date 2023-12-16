@@ -53,7 +53,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   });
 
   if (!course) {
-    return redirect(`${APP_BP}/${personalTeam.slug}/learn/search`);
+    return redirect(`${APP_BP}/${personalTeam.slug}/workspace/learn/search`);
   }
 
   const userSubscriptionPlan = await getUserSubscriptionPlan(personalTeam.id);
@@ -94,7 +94,9 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               </div>
               <div className="mt-4 flex md:ml-4 md:mt-0">
                 <div className="inline-flex items-center">
-                  <Link href={`${APP_BP}/${personalTeam?.slug}/learn/search`}>
+                  <Link
+                    href={`${APP_BP}/${personalTeam?.slug}/workspace/learn/search`}
+                  >
                     <Button variant="secondary">
                       <Icons.signOut className="mr-2 h-4 w-4 text-primary" />
                       Exit
@@ -143,7 +145,9 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               </div>
               <div className="mt-4 flex md:ml-4 md:mt-0">
                 <div className="inline-flex items-center">
-                  <Link href={`${APP_BP}/${personalTeam?.slug}/learn/search`}>
+                  <Link
+                    href={`${APP_BP}/${personalTeam?.slug}/workspace/learn/search`}
+                  >
                     <Button variant="secondary">
                       <Icons.signOut className="mr-2 h-4 w-4 text-primary" />
                       Exit
@@ -170,7 +174,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     );
   } else {
     return redirect(
-      `${APP_BP}/${personalTeam.slug}/learn/courses/${course.id}/chapters/${course.chapters[0].id}`,
+      `${APP_BP}/${personalTeam.slug}/workspace/learn/courses/${course.id}/chapters/${course.chapters[0].id}`,
     );
   }
 };
@@ -202,7 +206,7 @@ export async function generateMetadata({
   const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const courseUrl = `${SITE_URL}${APP_BP}/learn/courses/${params.courseId}`;
+  const courseUrl = `${SITE_URL}${APP_BP}/workspace/learn/courses/${params.courseId}`;
 
   const metadata = {
     title,

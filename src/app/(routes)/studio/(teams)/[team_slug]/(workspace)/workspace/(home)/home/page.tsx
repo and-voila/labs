@@ -53,7 +53,7 @@ const TeamWorkspaceIndex: NextPage<Props> = async (props) => {
     {
       title: 'Learn',
       icon: Icons.courses,
-      linkHref: `${APP_BP}/${params.team_slug}/learn`,
+      linkHref: `${APP_BP}/${params.team_slug}/workspace/learn`,
       linkText: 'Crush it',
       description:
         'Unlock daily micro-courses that supercharge your marketing game. Boost your ROI in less than 5 minutes.',
