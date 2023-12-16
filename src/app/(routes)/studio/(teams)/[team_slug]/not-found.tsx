@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
+import { siteConfig } from '#/config/site';
+
 import { APP_BP, BASE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
@@ -47,8 +49,7 @@ export default TeamNotFound;
 
 export function generateMetadata(): Metadata {
   const title = '404 Not Found';
-  const description =
-    "Oops! Even our links get lost sometimes. This And Voila page has vanished, but your digital marketing journey hasn't.";
+  const description = `Oops! Even our links get lost sometimes. This ${siteConfig.name} page has vanished, but your digital marketing journey hasn't.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

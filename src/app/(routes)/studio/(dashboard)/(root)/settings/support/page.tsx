@@ -2,6 +2,8 @@ import { SVGProps } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
+import { siteConfig } from '#/config/site';
+
 import { APP_BP, BASE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
@@ -102,8 +104,7 @@ export default async function SupportPage() {
 
 export function generateMetadata(): Metadata {
   const title = 'Support';
-  const description =
-    "Find all the support you need on And Voila's Support page. From live Discord help to email assistance and extensive guides. We're here and waiting.";
+  const description = `Find all the support you need on ${siteConfig.name}'s Support page. From live Discord help to email assistance and extensive guides. We're here and waiting.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

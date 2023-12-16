@@ -58,20 +58,17 @@ const links: FooterLinkData[] = [
   {
     href: 'https://andvoila.gg/privacy',
     label: 'Privacy Policy',
-    ariaLabel:
-      "Navigate to And Voila's Privacy Policy page on their main website in a new window.",
+    ariaLabel: `Navigate to ${siteConfig.name}'s Privacy Policy page on their main website in a new window.`,
   },
   {
     href: 'https://andvoila.gg/terms',
     label: 'Terms of Service',
-    ariaLabel:
-      "Navigate to And Voila's Terms of Service page on their main website in a new window.",
+    ariaLabel: `Navigate to ${siteConfig.name}'s Terms of Service page on their main website in a new window.`,
   },
   {
     href: 'https://andvoila.gg/accessibility',
     label: 'Accessibility',
-    ariaLabel:
-      "Navigate to And Voila's Accessibility statement page on their main website in a new window.",
+    ariaLabel: `Navigate to ${siteConfig.name}'s Accessibility statement page on their main website in a new window.`,
   },
 ];
 

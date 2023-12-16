@@ -2,6 +2,8 @@ import { SVGProps } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
+import { siteConfig } from '#/config/site';
+
 import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
@@ -13,8 +15,7 @@ import { Card, CardFooter, CardHeader, CardTitle } from '#/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Admin Center',
-  description:
-    "Exclusive admin access to And Voila's nerve center. Manage tools, oversee playbooks, and steer the community's digital marketing journey effectively.",
+  description: `Exclusive admin access to ${siteConfig.name}'s nerve center. Manage tools, oversee playbooks, and steer the community's digital marketing journey effectively.`,
 };
 
 interface AdminItemProps {

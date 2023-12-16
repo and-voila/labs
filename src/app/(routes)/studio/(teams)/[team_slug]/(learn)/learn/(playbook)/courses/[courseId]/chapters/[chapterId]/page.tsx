@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
+import { siteConfig } from '#/config/site';
+
 import { getChapter } from '#/lib/actions/get-chapter';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, BASE_URL } from '#/lib/const';
@@ -147,7 +149,7 @@ export async function generateMetadata({
   const title = chapter.title;
   let description =
     chapter.description ??
-    'Access the And Voila Dashboard for advanced marketing playbooks, effective AI tools, and to mingle in the best digital marketing Discord.';
+    `Access the ${siteConfig.name} Dashboard for advanced marketing playbooks, effective AI tools, and to mingle in the best digital marketing Discord.`;
   if (description.length > 160) {
     description = description.substring(0, 157) + '...';
   }

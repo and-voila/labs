@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
+import { siteConfig } from '#/config/site';
+
 import { authOptions } from '#/lib/auth';
 import { APP_BP, BASE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
@@ -195,7 +197,7 @@ export async function generateMetadata({
   const title = course.title;
   const description =
     course.preview ??
-    'Access the And Voila Dashboard for advanced marketing playbooks, effective AI tools, and to mingle in the best digital marketing Discord.';
+    `Access the ${siteConfig.name} Dashboard for advanced marketing playbooks, effective AI tools, and to mingle in the best digital marketing Discord.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

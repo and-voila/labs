@@ -4,6 +4,8 @@ import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
+import { siteConfig } from '#/config/site';
+
 import { Button } from '#/components/ui/button';
 import {
   Card,
@@ -57,8 +59,7 @@ export const UpdateTeamNameForm: React.FC<UpdateTeamNameFormProps> = (
       if (result.status === 'OK') {
         return toast({
           title: 'Team name updated',
-          description:
-            "Thanks for making And Voila yours. Your team's name has been updated and you're all set.",
+          description: `Thanks for making ${siteConfig.name} yours. Your team's name has been updated and you're all set.`,
           variant: 'success',
         });
       }

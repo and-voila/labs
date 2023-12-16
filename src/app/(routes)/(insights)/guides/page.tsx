@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { allGuides } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 
+import { siteConfig } from '#/config/site';
+
 import { BASE_URL } from '#/lib/const';
 import { formatDate } from '#/lib/utils';
 
@@ -63,8 +65,7 @@ export default function GuidesPage() {
 
 export function generateMetadata(): Metadata {
   const title = 'Guides';
-  const description =
-    'Explore Guides by And Voila: Comprehensive digital marketing insights and best practices, passing on our legos for your success journey.';
+  const description = `Explore Guides by ${siteConfig.name}: Comprehensive digital marketing insights and best practices, passing on our legos for your success journey.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

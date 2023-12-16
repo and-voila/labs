@@ -1,6 +1,8 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 
+import { siteConfig } from '#/config/site';
+
 import { APP_BP, BASE_URL } from '#/lib/const';
 
 import { DashboardHeader } from '#/components/dashboard/header';
@@ -40,8 +42,7 @@ export default function AllSites({ params }: { params: { id: string } }) {
 
 export function generateMetadata(): Metadata {
   const title = 'My Sites';
-  const description =
-    'Launch your digital presence with And Voila. Build and customize your site, add a domain, and go live in under 3 minutes. Your platform, your rules.';
+  const description = `Launch your digital presence with ${siteConfig.name}. Build and customize your site, add a domain, and go live in under 3 minutes. Your platform, your rules.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
+import { siteConfig } from '#/config/site';
+
 import { getCourses } from '#/lib/actions/get-courses';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, BASE_URL } from '#/lib/const';
@@ -83,8 +85,7 @@ export default PlaybooksSearchPage;
 
 export function generateMetadata(): Metadata {
   const title = 'Browse Playbooks';
-  const description =
-    'Dive into a growing collection of proven marketing Playbooks on And Voila. Tailored for digital marketing pros who need the gist in 3 minutes or less.';
+  const description = `Dive into a growing collection of proven marketing Playbooks on ${siteConfig.name}. Tailored for digital marketing pros who need the gist in 3 minutes or less.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

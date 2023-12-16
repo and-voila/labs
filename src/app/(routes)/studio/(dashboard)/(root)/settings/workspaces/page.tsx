@@ -2,6 +2,8 @@ import { Metadata, NextPage } from 'next';
 import { redirect } from 'next/navigation';
 import { Membership } from '@prisma/client';
 
+import { siteConfig } from '#/config/site';
+
 import { authOptions } from '#/lib/auth';
 import { APP_BP, BASE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
@@ -50,8 +52,7 @@ export default WorkspacesPage;
 
 export function generateMetadata(): Metadata {
   const title = 'Workspaces';
-  const description =
-    'Get a glimpse of your Workspaces on And Voila. Your hub for real-time collaboration, expert marketing strategies, and innovative AI tools.';
+  const description = `Get a glimpse of your Workspaces on ${siteConfig.name}. Your hub for real-time collaboration, expert marketing strategies, and innovative AI tools.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

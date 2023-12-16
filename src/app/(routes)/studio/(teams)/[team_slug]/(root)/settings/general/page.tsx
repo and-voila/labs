@@ -1,6 +1,8 @@
 import { Metadata, NextPage } from 'next';
 import { notFound } from 'next/navigation';
 
+import { siteConfig } from '#/config/site';
+
 import { APP_BP, BASE_URL } from '#/lib/const';
 import { getTeam } from '#/lib/team/get-current-team';
 
@@ -42,8 +44,7 @@ export default SettingsPage;
 
 export function generateMetadata(): Metadata {
   const title = 'Team Settings';
-  const description =
-    'And Voila makes it easy to invite or manage team members, update your team information, or if you need to, delete your team permanently.';
+  const description = `${siteConfig.name} makes it easy to invite or manage team members, update your team information, or if you need to, delete your team permanently.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { allPosts } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 
+import { siteConfig } from '#/config/site';
+
 import { BASE_URL } from '#/lib/const';
 
 import { BlogPosts } from '#/components/blog-posts';
@@ -26,8 +28,7 @@ export default async function BlogPage() {
 
 export function generateMetadata(): Metadata {
   const title = 'Blog';
-  const description =
-    "Dive into And Voila's Blog for fresh, snackable posts, and videos that help digital marketers thrive. Want more insights? Create a free account now.";
+  const description = `Dive into ${siteConfig.name}'s Blog for fresh, snackable posts, and videos that help digital marketers thrive. Want more insights? Create a free account now.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

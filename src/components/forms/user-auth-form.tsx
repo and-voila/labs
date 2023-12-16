@@ -8,6 +8,8 @@ import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { siteConfig } from '#/config/site';
+
 import { cn } from '#/lib/utils';
 import { userAuthSchema } from '#/lib/validations/auth';
 
@@ -209,7 +211,7 @@ export function UserAuthForm({
                 Don&apos;t have an account? No sweat,{' '}
                 <Link
                   href="/register"
-                  aria-label="Navigate to And Voila's Registration page to create an account."
+                  aria-label={`Navigate to ${siteConfig.name}'s Registration page to create an account.`}
                   className="font-semibold text-primary hover:underline"
                 >
                   create one
@@ -221,7 +223,7 @@ export function UserAuthForm({
                 Already have an account? Awesome,{' '}
                 <Link
                   href="/login"
-                  aria-label="Navigate to And Voila's Login page to log in to your account."
+                  aria-label={`Navigate to ${siteConfig.name}'s Login page to create an account.`}
                   className="font-semibold text-primary hover:underline"
                 >
                   log in now

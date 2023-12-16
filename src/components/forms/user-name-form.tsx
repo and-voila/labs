@@ -5,6 +5,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { User } from '@prisma/client';
 import { useForm } from 'react-hook-form';
 
+import { siteConfig } from '#/config/site';
+
 import { updateUserName, type FormData } from '#/lib/actions/update-user';
 import { cn } from '#/lib/utils';
 import { userNameSchema } from '#/lib/validations/user';
@@ -57,8 +59,7 @@ export function UserNameForm({ user }: UserNameFormProps) {
       } else {
         toast({
           title: 'Your name was updated',
-          description:
-            "Thanks for making And Voila yours. Your name has been updated and you're all set.",
+          description: `Thanks for making ${siteConfig.name} yours. Your name has been updated and you're all set.`,
           variant: 'success',
         });
       }

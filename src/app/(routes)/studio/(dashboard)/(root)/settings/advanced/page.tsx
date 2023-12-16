@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { MembershipRole } from '@prisma/client';
 
+import { siteConfig } from '#/config/site';
+
 import { authOptions } from '#/lib/auth';
 import { APP_BP, BASE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
@@ -41,8 +43,7 @@ export default async function PersonalAdvancedSettingsPage() {
 
 export function generateMetadata(): Metadata {
   const title = 'Delete Personal Account';
-  const description =
-    'Safely delete your personal account on And Voila. Manage your data and privacy with full control.';
+  const description = `Safely delete your personal account on ${siteConfig.name}. Manage your data and privacy with full control.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

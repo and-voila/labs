@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
+import { siteConfig } from '#/config/site';
+
 import { authOptions } from '#/lib/auth';
 import { APP_BP, BASE_URL } from '#/lib/const';
 import { getSession } from '#/lib/session';
@@ -47,8 +49,7 @@ export default async function PersonalBillingPage() {
 
 export function generateMetadata(): Metadata {
   const title = 'Team Billing';
-  const description =
-    "Subscribe, upgrade, downgrade, or even cancel your team's plan on And Voila. Secure billing portal powered by our friends at Stripe.";
+  const description = `Subscribe, upgrade, downgrade, or even cancel your team's plan on ${siteConfig.name}. Secure billing portal powered by our friends at Stripe.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

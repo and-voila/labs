@@ -1,6 +1,8 @@
 import { Metadata, NextPage } from 'next';
 import Link from 'next/link';
 
+import { siteConfig } from '#/config/site';
+
 import { APP_BP, BASE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
@@ -61,8 +63,7 @@ export default OopsPage;
 
 export function generateMetadata(): Metadata {
   const title = 'Oops! Not Authorized';
-  const description =
-    'Certain features of And Voila are tied to your personal workspace. Check them out. We made learning fast, fun, and fabulous.';
+  const description = `Certain features of ${siteConfig.name} are tied to your personal workspace. Check them out. We made learning fast, fun, and fabulous.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { siteConfig } from '#/config/site';
+
 import { getSession } from '#/lib/session';
 import { getInvitationByToken } from '#/lib/team/members/get-invitation';
 import { cn } from '#/lib/utils';
@@ -49,7 +51,7 @@ const AcceptInvitation = async ({ params }: Props) => {
         <p className="text-base text-muted-foreground lg:text-lg">
           You&apos;re invited to join the{' '}
           <span className="font-bold text-primary">{invitation.team.name}</span>{' '}
-          team on And Voila by{' '}
+          team on {siteConfig.name} by{' '}
           <span className="font-bold text-primary">
             {invitation.invitedBy.name ?? invitation.invitedBy.email}
           </span>

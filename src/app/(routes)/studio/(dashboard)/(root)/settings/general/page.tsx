@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
+import { siteConfig } from '#/config/site';
+
 import { authOptions } from '#/lib/auth';
 import { APP_BP, BASE_URL } from '#/lib/const';
 import { getSession } from '#/lib/session';
@@ -38,8 +40,7 @@ export default async function SettingsPage() {
 
 export function generateMetadata(): Metadata {
   const title = 'Account Settings';
-  const description =
-    'Customize your And Voila account settings. Update your username, display name, choose themes, and more.';
+  const description = `Customize your ${siteConfig.name} account settings. Update your username, display name, choose themes, and more.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

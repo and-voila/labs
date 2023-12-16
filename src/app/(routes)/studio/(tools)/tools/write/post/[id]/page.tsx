@@ -2,6 +2,8 @@
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
+import { siteConfig } from '#/config/site';
+
 import { updatePostMetadata } from '#/lib/actions';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, BASE_URL } from '#/lib/const';
@@ -41,7 +43,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
     <DashboardShell>
       <DashboardHeader
         heading={`Editing: ${data.title || 'Untitled post'}`}
-        text="Use And Voila's AI assist to crush writer's block. Activate it with ++. Keep tabs on your IP protection with the indicator to safeguard your work."
+        text={`Use ${siteConfig.name}'s AI assist to crush writer's block. Activate it with ++. Keep tabs on your IP protection with the indicator to safeguard your work.`}
       />
       <Tabs defaultValue="editor">
         <TabsList>
@@ -101,8 +103,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
 
 export function generateMetadata(): Metadata {
   const title = 'AI Editor';
-  const description =
-    'Draft content with And Voila Edit Post. Embrace a Notion-inspired, AI-powered editor built on Novel.sh for seamless creation and editing that feels like magic.';
+  const description = `Draft content with ${siteConfig.name} Edit Post. Embrace a Notion-inspired, AI-powered editor built on Novel.sh for seamless creation and editing that feels like magic.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

@@ -2,6 +2,8 @@ import { SVGProps } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
+import { siteConfig } from '#/config/site';
+
 import { APP_BP, BASE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
@@ -141,8 +143,7 @@ export default async function ToolsDashboardPage() {
 
 export function generateMetadata(): Metadata {
   const title = 'AI Tools';
-  const description =
-    'Discover AI-powered tools for marketers on And Voila. Enhance your workflow, protect IP, and watch your digital marketing ROI soar.';
+  const description = `Discover AI-powered tools for marketers on ${siteConfig.name}. Enhance your workflow, protect IP, and watch your digital marketing ROI soar.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

@@ -2,6 +2,8 @@ import { SVGProps } from 'react';
 import { Metadata, NextPage } from 'next';
 import Link from 'next/link';
 
+import { siteConfig } from '#/config/site';
+
 import { APP_BP, BASE_URL } from '#/lib/const';
 import { getTeams } from '#/lib/team/get-teams';
 import { cn } from '#/lib/utils';
@@ -159,8 +161,7 @@ export default TeamWorkspaceIndex;
 
 export function generateMetadata(): Metadata {
   const title = 'Team Workspace';
-  const description =
-    "For teams that thrive together, And Voila's collaborative team workspaces are your hub for marketing playbooks and full-stack multiplayer AI tools.";
+  const description = `For teams that thrive together, ${siteConfig.name}'s collaborative team workspaces are your hub for marketing playbooks and full-stack multiplayer AI tools.`;
 
   const ogImageUrl = new URL(`${BASE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
