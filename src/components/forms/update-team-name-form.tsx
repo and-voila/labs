@@ -25,11 +25,11 @@ import {
 import { Input } from '#/components/ui/input';
 import { toast } from '#/components/ui/use-toast';
 
-import { updateTeam } from '#/app/(routes)/studio/(teams)/[team_slug]/(root)/settings/general/actions';
+import { updateTeam } from '#/app/(routes)/studio/(teams)/[team_slug]/(root)/workspace/settings/actions';
 import {
   UpdateTeamNameFormSchema,
   updateTeamNameFormSchema,
-} from '#/app/(routes)/studio/(teams)/[team_slug]/(root)/settings/general/schema';
+} from '#/app/(routes)/studio/(teams)/[team_slug]/(root)/workspace/settings/schema';
 
 export interface UpdateTeamNameFormProps {
   teamSlug: string;
@@ -83,7 +83,9 @@ export const UpdateTeamNameForm: React.FC<UpdateTeamNameFormProps> = (
         <Card>
           <CardHeader>
             <CardTitle>Name</CardTitle>
-            <CardDescription>Name of the team.</CardDescription>
+            <CardDescription>
+              Name of the current workspace and team.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <FormField
@@ -92,7 +94,7 @@ export const UpdateTeamNameForm: React.FC<UpdateTeamNameFormProps> = (
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Team name" {...field} />
+                    <Input placeholder="Workspace name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

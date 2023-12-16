@@ -42,7 +42,7 @@ export function NavBar({
       <div className="container flex h-16 items-center justify-between py-4">
         <div className="flex flex-1 items-center space-x-3">
           {user ? (
-            <Link href={`${APP_BP}/settings/workspaces`}>
+            <Link href={`${APP_BP}/my/workspaces`}>
               <Icons.logo className="h-8 w-8 text-primary" />
             </Link>
           ) : (

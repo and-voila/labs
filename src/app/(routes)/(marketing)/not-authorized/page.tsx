@@ -30,7 +30,7 @@ const NotAuthorizedPage = () => {
 
         <div className="mt-10 flex justify-center">
           <Link
-            href={`${APP_BP}/settings/workspaces`}
+            href={`${APP_BP}/my/workspaces`}
             className={cn(buttonVariants())}
           >
             <Icons.caretLeft className="mr-2 h-4 w-4" />

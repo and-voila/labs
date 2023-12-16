@@ -75,7 +75,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
     },
     {
       title: 'Collaborate',
-      href: `${APP_BP}/settings/workspaces`,
+      href: `${APP_BP}/my/workspaces`,
       description: 'Invite your team for next-level multiplayer collaboration.',
     },
     {
@@ -113,13 +113,13 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
   }[] = [
     {
       title: 'Dashboard',
-      href: `${APP_BP}/settings/workspaces`,
+      href: `${APP_BP}/my/workspaces`,
       description:
         'Your marketing operations HQ. All your tools and data at a glance.',
     },
     {
       title: 'Teams',
-      href: `${APP_BP}/settings/workspaces`,
+      href: `${APP_BP}/my/workspaces`,
       description: 'Collaborate in real-time with multiplayer convenience.',
     },
     {

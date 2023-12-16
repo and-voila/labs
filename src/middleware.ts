@@ -105,7 +105,7 @@ async function handleAuthLogic(req: NextRequest): Promise<NextResponse> {
   if (isAuthPage) {
     if (isAuth) {
       const from =
-        req.nextUrl.searchParams.get('from') || `${APP_BP}/settings/workspaces`;
+        req.nextUrl.searchParams.get('from') || `${APP_BP}/my/workspaces`;
       return NextResponse.redirect(new URL(from, req.url));
     }
     return NextResponse.next();

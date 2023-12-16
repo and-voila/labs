@@ -6,12 +6,12 @@ export function getTeamsConfig(teamSlug: string): TeamsConfig {
     sidebarNav: [
       {
         title: 'Dashboard',
-        href: `${APP_BP}/${teamSlug}/settings/workspace`,
+        href: `${APP_BP}/${teamSlug}/workspace/home`,
         icon: 'home',
       },
       {
         title: 'Settings',
-        href: `${APP_BP}/${teamSlug}/settings/general`,
+        href: `${APP_BP}/${teamSlug}/workspace/settings`,
         icon: 'settings',
       },
     ],

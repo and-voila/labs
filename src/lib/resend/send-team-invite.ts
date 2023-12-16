@@ -14,7 +14,7 @@ export async function sendTeamInviteEmail(
 ) {
   const subject = `You've been invited to join ${teamName} on ${siteConfig.name}`;
   const url = `${SITE_URL}/invitations/${token}`;
-  const plainTextEmail = `You have been invited to join the team "${teamName}" on ${siteConfig.name}.\n\nPlease use the following link to accept the invitation: ${url}\n\nIf you did not request this, please ignore this email.`;
+  const plainTextEmail = `You have been invited to join the team workspace of "${teamName}" on ${siteConfig.name}.\n\nPlease use the following link to accept the invitation: ${url}\n\nIf you did not request this, please ignore this email.`;
 
   try {
     const result = await resend.emails.send({

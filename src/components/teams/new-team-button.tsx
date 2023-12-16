@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from '#/components/ui/dialog';
 
-import { NewTeamForm } from '#/app/(routes)/studio/(dashboard)/(root)/settings/workspaces/new/new-team-form';
+import { NewTeamForm } from '#/app/(routes)/studio/(personal)/(root)/my/workspaces/new/new-team-form';
 
 export const NewTeamButton: React.FC = () => {
   return (
@@ -21,18 +21,18 @@ export const NewTeamButton: React.FC = () => {
           <span className="grid grid-flow-col items-center justify-center gap-x-2">
             <Icons.plusCircled className="text-primary" />
             <span className="font-semibold leading-7 text-foreground">
-              New Team
+              New workspace
             </span>
           </span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle>Create New Team</DialogTitle>
+          <DialogTitle>Create a team workspace</DialogTitle>
           <DialogDescription>
-            Ready to rally your crew or dazzle clients? Name your team, set the
-            slug, and dive into multiplayer mode. You&apos;ll be able to invite
-            people to your team once it&apos;s created.
+            Ready to rally your crew or dazzle clients? Name your workspace, set
+            the slug, and dive into multiplayer mode. You&apos;ll be able to
+            invite your team once it&apos;s created.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">

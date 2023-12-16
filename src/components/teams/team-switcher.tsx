@@ -33,7 +33,7 @@ import {
   PopoverTrigger,
 } from '#/components/ui/popover';
 
-import { NewTeamForm } from '#/app/(routes)/studio/(dashboard)/(root)/settings/workspaces/new/new-team-form';
+import { NewTeamForm } from '#/app/(routes)/studio/(personal)/(root)/my/workspaces/new/new-team-form';
 
 export interface TeamSwitcherProps {
   activeTeamSlug?: string;
@@ -62,7 +62,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
   const onTeamSelect = (team: Team) => {
     startTransition(() => {
       setOpen(false);
-      router.push(`${APP_BP}/${team.slug}/settings/workspace`);
+      router.push(`${APP_BP}/${team.slug}/workspace/home`);
     });
   };
 
@@ -76,9 +76,9 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
   const handlePersonalSelect = () => {
     startTransition(() => {
       if (personalTeam) {
-        router.push(`${APP_BP}/${personalTeam.slug}/settings/workspace`);
+        router.push(`${APP_BP}/${personalTeam.slug}/workspace/home`);
       } else {
-        router.push(`${APP_BP}/settings/workspaces`);
+        router.push(`${APP_BP}/my/workspaces`);
       }
     });
   };
@@ -94,7 +94,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
             size="sm"
             role="combobox"
             aria-expanded={isOpen}
-            aria-label="Select a Team"
+            aria-label="Select workspace"
             className={cn('w-52 justify-between')}
           >
             <Avatar className="mr-2 h-5 w-5">
@@ -120,8 +120,8 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
         <PopoverContent className="w-52 p-0">
           <Command>
             <CommandList>
-              <CommandInput placeholder="Search team..." />
-              <CommandEmpty>No team found.</CommandEmpty>
+              <CommandInput placeholder="Search workspaces..." />
+              <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup heading="Personal workspace">
                 <CommandItem
                   key="personal"
@@ -174,14 +174,14 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
             </CommandList>
             <CommandSeparator />
             <CommandList>
-              <CommandGroup>
+              <CommandGroup className="font-semibold">
                 <DialogTrigger asChild>
                   <CommandItem
                     className="cursor-pointer text-sm"
                     onSelect={() => setDialogOpen(true)}
                   >
-                    <Icons.plusCircled className="mr-2 h-5 w-5" />
-                    Create Team
+                    <Icons.plusCircled className="mr-2 h-5 w-5 text-primary" />
+                    Create workspace
                   </CommandItem>
                 </DialogTrigger>
               </CommandGroup>
@@ -191,11 +191,11 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
       </Popover>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle>Create New Team</DialogTitle>
+          <DialogTitle>Create team workspace</DialogTitle>
           <DialogDescription>
-            Ready to rally your crew or dazzle clients? Name your team, set the
-            slug, and dive into multiplayer mode. You&apos;ll be able to invite
-            people to your team once it&apos;s created.
+            Ready to rally your crew or dazzle clients? Name your new workspace,
+            set the slug, and dive into multiplayer mode. You&apos;ll be able to
+            invite your team once it&apos;s created.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">

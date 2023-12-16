@@ -26,7 +26,7 @@ import {
 } from '#/components/ui/card';
 import { toast } from '#/components/ui/use-toast';
 
-import { deleteTeam } from '#/app/(routes)/studio/(teams)/[team_slug]/(root)/settings/advanced/actions';
+import { deleteTeam } from '#/app/(routes)/studio/(teams)/[team_slug]/(root)/workspace/advanced/actions';
 
 export interface DeleteFormProps {
   teamSlug: string;
@@ -50,7 +50,7 @@ export const DeleteForm: React.FC<DeleteFormProps> = (props) => {
         variant: 'success',
       });
 
-      router.push(`${APP_BP}/settings/workspaces`);
+      router.push(`${APP_BP}/my/workspaces`);
     } finally {
       setIsSubmitting(false);
     }
@@ -64,16 +64,17 @@ export const DeleteForm: React.FC<DeleteFormProps> = (props) => {
         </CardHeader>
         <CardContent>
           <p>
-            You can delete your team at any time. This will permanently remove
-            your team, its members, and <strong>all its related data</strong>.
-            This process cannot be undone.
+            You can delete your workspace at any time. This will permanently
+            remove your team, its members, and{' '}
+            <strong>all its related data</strong>. This process cannot be
+            undone.
           </p>
         </CardContent>
 
         <CardFooter className="py-3">
           <div className="ml-auto flex items-center justify-end">
             <AlertDialogTrigger asChild>
-              <Button variant="destructive">Delete Team</Button>
+              <Button variant="destructive">Delete workspace</Button>
             </AlertDialogTrigger>
           </div>
         </CardFooter>
@@ -81,12 +82,12 @@ export const DeleteForm: React.FC<DeleteFormProps> = (props) => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Yikes! Sure you want to delete your team?
+            Yikes! Sure you want to delete your team workspace?
           </AlertDialogTitle>
           <AlertDialogDescription>
-            You&apos;re about to delete your team. That means it will vanish
-            into thin air along with its data. This trick is permanent and
-            cannot be undone.
+            You&apos;re about to delete your team workspace. That means it will
+            vanish into thin air along with its data. This trick is permanent
+            and cannot be undone.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

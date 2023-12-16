@@ -30,7 +30,7 @@ export const TeamCard: React.FC<TeamCardProps> = (props) => {
       <Card className="relative box-border cursor-pointer overflow-visible hover:shadow-sm">
         <div className="pointer-events-none grid outline-none">
           <Link
-            href={`${APP_BP}/${team.slug}/settings/workspace`}
+            href={`${APP_BP}/${team.slug}/workspace/home`}
             className="pointer-events-auto absolute inset-0"
           />
           <CardHeader className="grid grid-cols-[1fr_110px] items-start gap-4 space-y-0">
