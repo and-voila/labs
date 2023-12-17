@@ -1,5 +1,7 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
@@ -12,7 +14,17 @@ import PlaceholderCard from '#/components/write/placeholder-card';
 import Posts from '#/components/write/posts';
 import Sites from '#/components/write/sites';
 
-export default function Overview() {
+interface OverviewPageProps {
+  params: {
+    team_slug: string;
+  };
+}
+
+export default async function Overview({ params }: OverviewPageProps) {
+  const team = await getTeam(params.team_slug);
+  if (!team) {
+    notFound();
+  }
   return (
     <DashboardShell>
       <div className="flex flex-col items-center justify-between space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 md:items-start">
@@ -21,7 +33,7 @@ export default function Overview() {
           text="Launch your blog in under 3 minutes with a custom domain. Overcome writer's block with our AI-assisted editor."
         />
         <Suspense fallback={null}>
-          <OverviewSitesCTA />
+          <OverviewSitesCTA teamSlug={params.team_slug} />
         </Suspense>
       </div>
 
@@ -38,7 +50,7 @@ export default function Overview() {
             </div>
           }
         >
-          <Sites limit={4} />
+          <Sites teamSlug={params.team_slug} limit={4} />
         </Suspense>
       </div>
 
@@ -55,7 +67,7 @@ export default function Overview() {
             </div>
           }
         >
-          <Posts limit={8} />
+          <Posts teamSlug={params.team_slug} limit={8} />
         </Suspense>
       </div>
     </DashboardShell>
@@ -69,7 +81,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${SITE_URL}${APP_BP}/tools/write`;
+  const pageUrl = `${SITE_URL}${APP_BP}/workspace/write`;
 
   const metadata = {
     title,

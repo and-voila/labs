@@ -21,6 +21,8 @@ import { getSession } from '#/lib/session';
 import { isTeacher } from '#/lib/teacher';
 import { getBlurDataURL } from '#/lib/utils';
 
+import { getTeam } from './team/get-current-team';
+
 const nanoid = customAlphabet(
   '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
   7,
@@ -28,7 +30,9 @@ const nanoid = customAlphabet(
 
 export const createSite = async (formData: FormData) => {
   const session = await getSession();
-  if (!session?.user.id) {
+  const teamSlug = formData.get('teamSlug') as string;
+  const team = await getTeam(teamSlug);
+  if (!team || !session?.user.id) {
     return {
       error: 'Not authenticated',
     };
@@ -55,9 +59,9 @@ export const createSite = async (formData: FormData) => {
         name,
         description,
         subdomain,
-        user: {
+        team: {
           connect: {
-            id: session.user.id,
+            id: team.id,
           },
         },
       },

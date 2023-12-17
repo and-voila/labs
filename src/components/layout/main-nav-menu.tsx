@@ -63,13 +63,13 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
     },
     {
       title: 'Publish',
-      href: `${APP_BP}/tools/write`,
+      href: `${APP_BP}/${activeSlug}/workspace/write`,
       description:
         'Create your website in under 3 mins. Fast, easy, and looks great.',
     },
     {
       title: 'Manage Sites',
-      href: `${APP_BP}/tools/write/sites`,
+      href: `${APP_BP}/${activeSlug}/workspace/write/sites`,
       description:
         'Keep an eye on your sites and draft posts with an AI-assisted editor that helps you protect your IP.',
     },
@@ -99,7 +99,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
     },
     {
       title: 'AI Experts',
-      href: `${APP_BP}/tools/chat`,
+      href: `${APP_BP}/${activeSlug}/workspace/chat`,
       description: 'Engage with purpose-trained marketing AI that just works.',
       disabled: true,
     },

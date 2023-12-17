@@ -15,7 +15,11 @@ import { Icons } from '#/components/shared/icons';
 import { toast } from '#/components/ui/use-toast';
 import { useModal } from '#/components/write/modal/provider';
 
-export default function CreateSiteModal() {
+interface CreateSiteModalProps {
+  teamSlug: string;
+}
+
+export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
   const router = useRouter();
   const modal = useModal();
 
@@ -37,7 +41,8 @@ export default function CreateSiteModal() {
 
   return (
     <form
-      action={async (data: FormData) =>
+      action={async (data: FormData) => {
+        data.append('teamSlug', teamSlug);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         createSite(data).then((res: any) => {
           if (res.error) {
@@ -50,7 +55,7 @@ export default function CreateSiteModal() {
             va.track('Created Site');
             const { id } = res;
             router.refresh();
-            router.push(`${APP_BP}/tools/write/site/${id}`);
+            router.push(`${APP_BP}/${teamSlug}/workspace/write/site/${id}`);
             modal?.hide();
 
             toast({
@@ -60,8 +65,8 @@ export default function CreateSiteModal() {
               variant: 'success',
             });
           }
-        })
-      }
+        });
+      }}
       className="w-full rounded-md bg-card md:max-w-md md:border md:shadow "
     >
       <div className="relative flex flex-col space-y-4 p-5 md:p-10">

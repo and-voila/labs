@@ -29,7 +29,9 @@ export default function DeletePostForm({ postName }: { postName: string }) {
           } else {
             va.track('Deleted Post');
             router.refresh();
-            router.push(`${APP_BP}/tools/write/site/${res.siteId}`);
+            router.push(
+              `${APP_BP}/${teamSlug}/workspace/write/site/${res.siteId}`,
+            );
             toast({
               title: 'Post deleted',
               description:

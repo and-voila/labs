@@ -30,7 +30,7 @@ export default function DeleteSiteForm({ siteName }: { siteName: string }) {
             } else {
               va.track('Deleted Site');
               router.refresh();
-              router.push(`${APP_BP}/tools/write/sites`);
+              router.push(`${APP_BP}/${teamSlug}/workspace/write/sites`);
               toast({
                 title: 'Your site was deleted',
                 description:

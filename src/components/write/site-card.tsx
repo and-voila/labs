@@ -7,12 +7,17 @@ import { placeholderBlurhash } from '#/lib/utils';
 import { Icons } from '#/components/shared/icons';
 import BlurImage from '#/components/write/blur-image';
 
-export default function SiteCard({ data }: { data: Site }) {
+interface SiteCardProps {
+  data: Site;
+  teamSlug: string;
+}
+
+export default function SiteCard({ data, teamSlug }: SiteCardProps) {
   const url = `${data.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`;
   return (
     <div className="relative rounded-lg border border-border bg-card pb-10 shadow-md transition-all hover:shadow-xl">
       <Link
-        href={`${APP_BP}/tools/write/site/${data.id}`}
+        href={`${APP_BP}/${teamSlug}/workspace/write/site/${data.id}`}
         className="flex flex-col overflow-hidden rounded-lg"
       >
         <BlurImage

@@ -82,7 +82,7 @@ export function generateMetadata(): Metadata {
   const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${SITE_URL}${APP_BP}/tools/write`;
+  const pageUrl = `${SITE_URL}${APP_BP}/workspace/write`;
 
   const metadata = {
     title,

@@ -23,7 +23,7 @@ export default function CreatePostButton() {
           const post = await createPost(null, id, null);
           va.track('Created Post');
           router.refresh();
-          router.push(`${APP_BP}/tools/write/post/${post.id}`);
+          router.push(`${APP_BP}/${teamSlug}/workspace/write/post/${post.id}`);
         })
       }
       className={cn(buttonVariants({ size: 'sm' }), {

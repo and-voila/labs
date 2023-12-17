@@ -6,17 +6,18 @@ import { placeholderBlurhash } from '#/lib/utils';
 
 import BlurImage from '#/components/write/blur-image';
 
-export default function PostCard({
-  data,
-}: {
+interface PostCardProps {
   data: Post & { site: Site | null };
-}) {
+  teamSlug: string;
+}
+
+export default function PostCard({ data, teamSlug }: PostCardProps) {
   const url = `${data.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${data.slug}`;
 
   return (
     <div className="relative rounded-lg border border-border bg-card pb-10 shadow-md transition-all hover:shadow-xl">
       <Link
-        href={`${APP_BP}/tools/write/post/${data.id}`}
+        href={`${APP_BP}/${teamSlug}/workspace/write/post/${data.id}`}
         className="flex flex-col overflow-hidden rounded-lg"
       >
         <div className="relative h-44 overflow-hidden">
