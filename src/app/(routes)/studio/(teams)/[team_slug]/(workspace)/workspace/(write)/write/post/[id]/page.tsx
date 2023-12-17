@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
+import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
@@ -8,7 +9,6 @@ import { updatePostMetadata } from '#/lib/actions';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
@@ -17,9 +17,13 @@ import Editor from '#/components/write/editor/editor';
 import Form from '#/components/write/form';
 import DeletePostForm from '#/components/write/form/delete-post-form';
 
-export default async function PostPage({ params }: { params: { id: string } }) {
-  const session = await getSession();
-  if (!session) {
+export default async function PostPage({
+  params,
+}: {
+  params: { id: string; team_slug: string };
+}) {
+  const team = await getTeam(params.team_slug);
+  if (!team) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
@@ -35,7 +39,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
       },
     },
   });
-  if (!data || data.userId !== session.user.id) {
+  if (!data || data.teamId !== team.id) {
     notFound();
   }
 
@@ -53,7 +57,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
         </TabsList>
         <TabsContent value="editor">
           <div className="my-8 flex flex-col space-y-6">
-            <Editor post={data} />
+            <Editor post={data} teamSlug={params.team_slug} />
           </div>
         </TabsContent>
         <TabsContent value="post-meta">

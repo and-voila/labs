@@ -65,6 +65,11 @@ export const createSite = async (formData: FormData) => {
             id: team.id,
           },
         },
+        user: {
+          connect: {
+            id: session.user.id,
+          },
+        },
       },
     });
     await revalidateTag(
@@ -261,16 +266,25 @@ export const getSiteFromPostId = async (postId: string) => {
 export const createPost = withSiteAuth(
   // eslint-disable-next-line camelcase
   async (_: FormData, site: Site, team_slug: string) => {
+    const session = await getSession();
+    if (!session?.user.id) {
+      return {
+        error: 'Not authenticated',
+      };
+    }
+
     const team = await getTeam(team_slug);
     if (!team) {
       return {
         error: 'Not authenticated',
       };
     }
+
     const response = await db.post.create({
       data: {
         siteId: site.id,
         teamId: team.id,
+        userId: session.user.id,
       },
     });
 
@@ -284,11 +298,32 @@ export const createPost = withSiteAuth(
 );
 
 // creating a separate function for this because we're not using FormData
-export const updatePost = async (data: Post) => {
+export const updatePost = async (data: Post, teamSlug: string) => {
   const session = await getSession();
   if (!session?.user.id) {
     return {
       error: 'Not authenticated',
+    };
+  }
+
+  const team = await getTeam(teamSlug);
+  if (!team) {
+    return {
+      error: 'Team not found',
+    };
+  }
+
+  const membership = await db.membership.findUnique({
+    where: {
+      userId_teamId: {
+        userId: session.user.id,
+        teamId: team.id,
+      },
+    },
+  });
+  if (!membership) {
+    return {
+      error: 'Not authorized',
     };
   }
   const post = await db.post.findUnique({
@@ -299,7 +334,7 @@ export const updatePost = async (data: Post) => {
       site: true,
     },
   });
-  if (!post || post.userId !== session.user.id) {
+  if (!post || post.teamId !== team.id) {
     return {
       error: 'Post not found',
     };

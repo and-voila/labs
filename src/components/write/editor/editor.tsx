@@ -61,7 +61,13 @@ function validateContent(content: string): string {
     : '👇🏽 Please create some content below before the auto-save.';
 }
 
-export default function Editor({ post }: { post: PostWithSite }) {
+export default function Editor({
+  post,
+  teamSlug,
+}: {
+  post: PostWithSite;
+  teamSlug: string;
+}) {
   const [isPendingSaving, startTransitionSaving] = useTransition();
   const [isPendingPublishing, startTransitionPublishing] = useTransition();
   const [isPublishable, setIsPublishable] = useState(false);
@@ -113,7 +119,7 @@ export default function Editor({ post }: { post: PostWithSite }) {
     if (!state.data.content) return;
 
     startTransitionSaving(async () => {
-      await updatePost(state.data);
+      await updatePost(state.data, teamSlug);
     });
   });
 
@@ -202,7 +208,7 @@ export default function Editor({ post }: { post: PostWithSite }) {
 
             if (state.data.title && state.data.description) {
               startTransitionSaving(async () => {
-                await updatePost(state.data);
+                await updatePost(state.data, teamSlug);
               });
             }
           }}
