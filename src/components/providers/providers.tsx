@@ -7,8 +7,8 @@ import { Provider as BalancerProvider } from 'react-wrap-balancer';
 import { ConfettiProvider } from '#/components/providers/confetti-provider';
 import { ThemeProvider } from '#/components/providers/theme-provider';
 import TopLoader from '#/components/providers/top-loader';
+import { ModalProvider } from '#/components/publish/modal/provider';
 import { Toaster } from '#/components/ui/toaster';
-import { ModalProvider } from '#/components/write/modal/provider';
 
 export function Providers({ children }: { children: ReactNode }) {
   return (

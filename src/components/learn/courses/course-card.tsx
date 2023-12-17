@@ -5,8 +5,8 @@ import { APP_BP } from '#/lib/const';
 import { getCoursePrice } from '#/lib/course-pricing';
 import { placeholderBlurhash } from '#/lib/utils';
 
+import BlurImage from '#/components/publish/blur-image';
 import { Skeleton } from '#/components/ui/skeleton';
-import BlurImage from '#/components/write/blur-image';
 
 interface CourseCardProps {
   id: string;

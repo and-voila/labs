@@ -12,9 +12,9 @@ import Balancer from 'react-wrap-balancer';
 import { SITE_URL } from '#/lib/const';
 import { absoluteUrl, cn, formatDate, placeholderBlurhash } from '#/lib/utils';
 
+import BlurImage from '#/components/publish/blur-image';
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
-import BlurImage from '#/components/write/blur-image';
 
 interface PostPageProps {
   params: {

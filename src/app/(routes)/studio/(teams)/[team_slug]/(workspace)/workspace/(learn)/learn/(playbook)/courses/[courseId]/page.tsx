@@ -15,10 +15,10 @@ import { Banner } from '#/components/banner';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { StartCourseButton } from '#/components/learn/courses/start-course-button';
 import { Preview } from '#/components/preview';
+import BlurImage from '#/components/publish/blur-image';
 import { Icons } from '#/components/shared/icons';
 import { Button, buttonVariants } from '#/components/ui/button';
 import { Separator } from '#/components/ui/separator';
-import BlurImage from '#/components/write/blur-image';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const { user, teams } = await getTeams();

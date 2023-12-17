@@ -77,7 +77,7 @@ export const WelcomeEmail = () => (
             Eager to share your voice?{' '}
             <Link
               className={linkClass}
-              href={`${SITE_URL}${APP_BP}/tools/write`}
+              href={`${SITE_URL}${APP_BP}/my/workspaces`}
             >
               Create your site
             </Link>{' '}

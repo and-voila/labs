@@ -5,9 +5,9 @@ import { db } from '#/lib/db';
 import { getPostsForSite, getSiteData } from '#/lib/fetchers';
 import { placeholderBlurhash, toDateString } from '#/lib/utils';
 
+import BlogCard from '#/components/publish/blog-card';
+import BlurImage from '#/components/publish/blur-image';
 import { EmptyPlaceholder } from '#/components/shared/empty-placeholder';
-import BlogCard from '#/components/write/blog-card';
-import BlurImage from '#/components/write/blur-image';
 
 export async function generateStaticParams() {
   const allSites = await db.site.findMany({

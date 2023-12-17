@@ -21,6 +21,8 @@ import { getSession } from '#/lib/session';
 import { isTeacher } from '#/lib/teacher';
 import { getBlurDataURL } from '#/lib/utils';
 
+import { getTeam } from './team/get-current-team';
+
 const nanoid = customAlphabet(
   '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
   7,
@@ -28,11 +30,14 @@ const nanoid = customAlphabet(
 
 export const createSite = async (formData: FormData) => {
   const session = await getSession();
-  if (!session?.user.id) {
+  const teamSlug = formData.get('teamSlug') as string;
+  const team = await getTeam(teamSlug);
+  if (!team || !session?.user.id) {
     return {
       error: 'Not authenticated',
     };
   }
+
   const name = formData.get('name') as string;
   const description = formData.get('description') as string;
   const subdomain = formData.get('subdomain') as string;
@@ -55,6 +60,11 @@ export const createSite = async (formData: FormData) => {
         name,
         description,
         subdomain,
+        team: {
+          connect: {
+            id: team.id,
+          },
+        },
         user: {
           connect: {
             id: session.user.id,
@@ -253,34 +263,67 @@ export const getSiteFromPostId = async (postId: string) => {
   return post?.siteId;
 };
 
-export const createPost = withSiteAuth(async (_: FormData, site: Site) => {
+export const createPost = withSiteAuth(
+  // eslint-disable-next-line camelcase
+  async (_: FormData, site: Site, team_slug: string) => {
+    const session = await getSession();
+    if (!session?.user.id) {
+      return {
+        error: 'Not authenticated',
+      };
+    }
+
+    const team = await getTeam(team_slug);
+    if (!team) {
+      return {
+        error: 'Not authenticated',
+      };
+    }
+
+    const response = await db.post.create({
+      data: {
+        siteId: site.id,
+        teamId: team.id,
+        userId: session.user.id,
+      },
+    });
+
+    await revalidateTag(
+      `${site.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
+    );
+    site.customDomain && (await revalidateTag(`${site.customDomain}-posts`));
+
+    return response;
+  },
+);
+
+// creating a separate function for this because we're not using FormData
+export const updatePost = async (data: Post, teamSlug: string) => {
   const session = await getSession();
   if (!session?.user.id) {
     return {
       error: 'Not authenticated',
     };
   }
-  const response = await db.post.create({
-    data: {
-      siteId: site.id,
-      userId: session.user.id,
+
+  const team = await getTeam(teamSlug);
+  if (!team) {
+    return {
+      error: 'Team not found',
+    };
+  }
+
+  const membership = await db.membership.findUnique({
+    where: {
+      userId_teamId: {
+        userId: session.user.id,
+        teamId: team.id,
+      },
     },
   });
-
-  await revalidateTag(
-    `${site.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
-  );
-  site.customDomain && (await revalidateTag(`${site.customDomain}-posts`));
-
-  return response;
-});
-
-// creating a separate function for this because we're not using FormData
-export const updatePost = async (data: Post) => {
-  const session = await getSession();
-  if (!session?.user.id) {
+  if (!membership) {
     return {
-      error: 'Not authenticated',
+      error: 'Not authorized',
     };
   }
   const post = await db.post.findUnique({
@@ -291,7 +334,7 @@ export const updatePost = async (data: Post) => {
       site: true,
     },
   });
-  if (!post || post.userId !== session.user.id) {
+  if (!post || post.teamId !== team.id) {
     return {
       error: 'Post not found',
     };

@@ -63,13 +63,13 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
     },
     {
       title: 'Publish',
-      href: `${APP_BP}/tools/write`,
+      href: `${APP_BP}/${activeSlug}/workspace/publish`,
       description:
         'Create your website in under 3 mins. Fast, easy, and looks great.',
     },
     {
       title: 'Manage Sites',
-      href: `${APP_BP}/tools/write/sites`,
+      href: `${APP_BP}/${activeSlug}/workspace/publish/sites`,
       description:
         'Keep an eye on your sites and draft posts with an AI-assisted editor that helps you protect your IP.',
     },
@@ -99,7 +99,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
     },
     {
       title: 'AI Experts',
-      href: `${APP_BP}/tools/chat`,
+      href: `${APP_BP}/${activeSlug}/workspace/chat`,
       description: 'Engage with purpose-trained marketing AI that just works.',
       disabled: true,
     },
@@ -129,10 +129,10 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
         'Crush your marketing goals. Lessons, tips, and insider tips await.',
     },
     {
-      title: 'Tools',
-      href: `${APP_BP}/tools`,
+      title: 'Publish',
+      href: `${APP_BP}/${activeSlug}/workspace/publish`,
       description:
-        'Supercharge your marketing. AI tools and resources at your fingertips.',
+        'Create your own website, or two, and share some love with your audience.',
     },
     {
       title: 'Support',
@@ -192,9 +192,12 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
               <ListItem href="/insights" title="Insights" disabled>
                 Got bigger challenges? Our Insights and Guides have you covered.
               </ListItem>
-              <ListItem href={`${APP_BP}/tools`} title="Tools">
-                Engage your audience with our full-stack marketing suite,
-                AI-enhanced.
+              <ListItem
+                href={`${APP_BP}/${activeSlug}/workspace/publish`}
+                title="Publish"
+              >
+                Engage your audience with our full-stack marketing suite, with
+                an AI boost.
               </ListItem>
             </ul>
           </NavigationMenuContent>
@@ -221,7 +224,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
           <NavigationMenuTrigger
             className={
               isActive(`${APP_BP}/${activeSlug}/workspace/learn`) ||
-              isActive(`${APP_BP}/tools`)
+              isActive(`${APP_BP}/${activeSlug}/workspace/publish`)
                 ? 'text-primary'
                 : ''
             }
