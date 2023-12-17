@@ -17,7 +17,11 @@ export type Tab = {
   icon: keyof typeof Icons;
 };
 
-export default function WriteNav() {
+export interface WriteNavProps {
+  teamSlug: string;
+}
+
+export default function WriteNav({ teamSlug }: WriteNavProps) {
   const pathname = usePathname();
   const { id } = useParams() as { id?: string };
 
@@ -32,13 +36,14 @@ export default function WriteNav() {
   }, [pathname, id]);
 
   const tabs = useMemo<Tab[]>(() => {
+    const config = writeConfig({ teamSlug });
     if (pathname.includes('site') && id) {
-      return writeConfig.siteTabs(id);
+      return config.siteTabs(id);
     } else if (pathname.includes('post') && id && siteId) {
-      return writeConfig.postTabs(id, siteId);
+      return config.postTabs(id, siteId);
     }
-    return writeConfig.defaultTabs;
-  }, [pathname, id, siteId]);
+    return config.defaultTabs;
+  }, [pathname, id, siteId, teamSlug]);
 
   return (
     <>

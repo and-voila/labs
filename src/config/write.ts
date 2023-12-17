@@ -9,58 +9,62 @@ type Tab = {
   isActive?: boolean;
 };
 
-export const writeConfig = {
+export interface WriteConfigProps {
+  teamSlug: string;
+}
+
+export const writeConfig = ({ teamSlug }: WriteConfigProps) => ({
   defaultTabs: [
     {
       name: 'Tools',
-      href: `${APP_BP}/tools`,
+      href: `${APP_BP}/${teamSlug}/tools`,
       icon: 'home',
     },
     {
       name: 'Write',
-      href: `${APP_BP}/tools/write`,
+      href: `${APP_BP}/${teamSlug}/tools/write`,
       icon: 'pen',
     },
     {
       name: 'Sites',
-      href: `${APP_BP}/tools/write/sites`,
+      href: `${APP_BP}/${teamSlug}/tools/write/sites`,
       icon: 'browsers',
     },
   ] as Tab[],
   siteTabs: (id: string): Tab[] => [
     {
       name: 'Write',
-      href: `${APP_BP}/tools/write`,
+      href: `${APP_BP}/${teamSlug}/tools/write`,
       icon: 'pen',
     },
     {
       name: 'Sites',
-      href: `${APP_BP}/tools/write/sites`,
+      href: `${APP_BP}/${teamSlug}/tools/write/sites`,
       icon: 'browsers',
     },
     {
       name: 'Manage site',
-      href: `${APP_BP}/tools/write/site/${id}`,
+      href: `${APP_BP}/${teamSlug}/tools/write/site/${id}`,
       icon: 'browser',
     },
   ],
   postTabs: (id: string, siteId: string): Tab[] => [
     {
       name: 'Sites',
-      href: `${APP_BP}/tools/write/sites`,
+      href: `${APP_BP}/${teamSlug}/tools/write/sites`,
       icon: 'browsers',
     },
     {
       name: 'Posts',
       href: siteId
-        ? `${APP_BP}/tools/write/site/${siteId}`
-        : `${APP_BP}/tools/write/sites`,
+        ? `${APP_BP}/${teamSlug}/tools/write/site/${siteId}`
+        : `${APP_BP}/${teamSlug}/tools/write/sites`,
       icon: 'files',
     },
     {
       name: 'Editor',
-      href: `${APP_BP}/tools/write/post/${id}`,
+      href: `${APP_BP}/${teamSlug}/tools/write/post/${id}`,
       icon: 'pen',
     },
   ],
-};
+});
