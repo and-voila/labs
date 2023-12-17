@@ -9,10 +9,10 @@ import * as z from 'zod';
 import { placeholderBlurhash } from '#/lib/utils';
 
 import { FileUpload } from '#/components/learn/teacher/file-upload';
+import BlurImage from '#/components/publish/blur-image';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
-import BlurImage from '#/components/write/blur-image';
 
 interface ImageFormProps {
   initialData: Course;

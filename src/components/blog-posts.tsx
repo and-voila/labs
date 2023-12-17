@@ -3,7 +3,7 @@ import Balancer from 'react-wrap-balancer';
 
 import { formatDate, placeholderBlurhash } from '#/lib/utils';
 
-import BlurImage from '#/components/write/blur-image';
+import BlurImage from '#/components/publish/blur-image';
 
 interface Post {
   _id: string;

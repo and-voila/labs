@@ -59,9 +59,9 @@ const TeamWorkspaceIndex: NextPage<Props> = async (props) => {
         'Unlock daily micro-courses that supercharge your marketing game. Boost your ROI in less than 5 minutes.',
     },
     {
-      title: 'Tools',
-      icon: Icons.robot,
-      linkHref: `${APP_BP}/tools`,
+      title: 'Publish',
+      icon: Icons.browsers,
+      linkHref: `${APP_BP}/${params.team_slug}/workspace/publish`,
       linkText: 'Hack it',
       description:
         'Launch your own website in under 3 minutes with a custom domain and smash writer’s block with an AI-assist.',

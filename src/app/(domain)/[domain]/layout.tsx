@@ -8,7 +8,7 @@ import { getSiteData } from '#/lib/fetchers';
 import { cn, placeholderBlurhash } from '#/lib/utils';
 
 import { DomainsFooter } from '#/components/layout/domains-footer';
-import BlurImage from '#/components/write/blur-image';
+import BlurImage from '#/components/publish/blur-image';
 
 export async function generateMetadata({
   params,
