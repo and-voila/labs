@@ -17,6 +17,7 @@ import Sites from '#/components/write/sites';
 interface OverviewPageProps {
   params: {
     team_slug: string;
+    id: string;
   };
 }
 
@@ -50,7 +51,7 @@ export default async function Overview({ params }: OverviewPageProps) {
             </div>
           }
         >
-          <Sites teamSlug={params.team_slug} limit={4} />
+          <Sites teamSlug={params.team_slug} />
         </Suspense>
       </div>
 

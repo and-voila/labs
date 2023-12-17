@@ -1,5 +1,7 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
@@ -12,7 +14,15 @@ import CreateSiteModal from '#/components/write/modal/create-site';
 import PlaceholderCard from '#/components/write/placeholder-card';
 import Sites from '#/components/write/sites';
 
-export default function AllSites({ params }: { params: { id: string } }) {
+export default async function AllSites({
+  params,
+}: {
+  params: { id: string; team_slug: string };
+}) {
+  const team = await getTeam(params.team_slug);
+  if (!team) {
+    notFound();
+  }
   return (
     <DashboardShell>
       <div className="flex flex-col items-center justify-between space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 md:items-start">
@@ -21,7 +31,7 @@ export default function AllSites({ params }: { params: { id: string } }) {
           text="Express, connect, and grow your brand. Set up your blog quickly with custom domains and AI-driven writing support."
         />
         <CreateSiteButton>
-          <CreateSiteModal />
+          <CreateSiteModal teamSlug={params.team_slug} />
         </CreateSiteButton>
       </div>
       <Suspense
@@ -33,8 +43,7 @@ export default function AllSites({ params }: { params: { id: string } }) {
           </div>
         }
       >
-        {/* @ts-expect-error Server Component */}
-        <Sites siteId={decodeURIComponent(params.id)} />
+        <Sites teamSlug={params.team_slug} />
       </Suspense>
     </DashboardShell>
   );

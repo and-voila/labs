@@ -8,7 +8,7 @@ import { updateSite } from '#/lib/actions';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
+import { getTeam } from '#/lib/team/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
@@ -22,10 +22,10 @@ import Posts from '#/components/write/posts';
 export default async function SitePosts({
   params,
 }: {
-  params: { id: string };
+  params: { id: string; team_slug: string };
 }) {
-  const session = await getSession();
-  if (!session) {
+  const team = await getTeam(params.team_slug);
+  if (!team) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
   const data = await db.site.findUnique({
@@ -38,7 +38,7 @@ export default async function SitePosts({
     },
   });
 
-  if (!data || data.userId !== session.user.id) {
+  if (!data || data.teamId !== team.id) {
     notFound();
   }
 
@@ -82,7 +82,10 @@ export default async function SitePosts({
                 <CreatePostButton />
               </div>
             </div>
-            <Posts siteId={decodeURIComponent(params.id)} />
+            <Posts
+              siteId={decodeURIComponent(params.id)}
+              teamSlug={params.team_slug}
+            />
           </div>
         </TabsContent>
         <TabsContent value="general">

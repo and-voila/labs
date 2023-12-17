@@ -155,7 +155,20 @@ export function withSiteAuth(action: any) {
         id: siteId,
       },
     });
-    if (!site || site.userId !== session.user.id) {
+    if (!site || !site.teamId) {
+      return {
+        error: 'Site not found',
+      };
+    }
+    const membership = await db.membership.findUnique({
+      where: {
+        userId_teamId: {
+          userId: session.user.id,
+          teamId: site.teamId,
+        },
+      },
+    });
+    if (!membership || !['ADMIN', 'OWNER'].includes(membership.role)) {
       return {
         error: 'Not authorized',
       };
@@ -173,7 +186,7 @@ export function withPostAuth(action: any) {
     key: string | null,
   ) => {
     const session = await getSession();
-    if (!session?.user.id) {
+    if (!session?.user?.id) {
       return {
         error: 'Not authenticated',
       };
@@ -186,9 +199,20 @@ export function withPostAuth(action: any) {
         site: true,
       },
     });
-    if (!post || post.userId !== session.user.id) {
+    if (!post || !post.site || !post.site.teamId) {
       return {
-        error: 'Post not found',
+        error: 'Post or site not found',
+      };
+    }
+    const membership = await db.membership.findFirst({
+      where: {
+        userId: session.user.id,
+        teamId: post.site.teamId,
+      },
+    });
+    if (!membership) {
+      return {
+        error: 'Not authorized',
       };
     }
 

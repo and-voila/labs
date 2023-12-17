@@ -13,17 +13,18 @@ import LoadingDots from '#/components/write/icons/loading-dots';
 
 export default function CreatePostButton() {
   const router = useRouter();
-  const { id } = useParams() as { id: string };
+  const { id, team_slug } = useParams() as { id: string; team_slug: string };
   const [isPending, startTransition] = useTransition();
 
   return (
     <button
       onClick={() =>
         startTransition(async () => {
-          const post = await createPost(null, id, null);
+          const post = await createPost(null, id, team_slug);
           va.track('Created Post');
           router.refresh();
-          router.push(`${APP_BP}/${teamSlug}/workspace/write/post/${post.id}`);
+          // eslint-disable-next-line camelcase
+          router.push(`${APP_BP}/${team_slug}/workspace/write/post/${post.id}`);
         })
       }
       className={cn(buttonVariants({ size: 'sm' }), {
