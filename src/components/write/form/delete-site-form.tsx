@@ -12,7 +12,13 @@ import { buttonVariants } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
 import LoadingDots from '#/components/write/icons/loading-dots';
 
-export default function DeleteSiteForm({ siteName }: { siteName: string }) {
+export default function DeleteSiteForm({
+  siteName,
+  teamSlug,
+}: {
+  siteName: string;
+  teamSlug: string;
+}) {
   const { id } = useParams() as { id: string };
   const router = useRouter();
   return (

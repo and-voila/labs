@@ -12,7 +12,13 @@ import { buttonVariants } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
 import LoadingDots from '#/components/write/icons/loading-dots';
 
-export default function DeletePostForm({ postName }: { postName: string }) {
+export default function DeletePostForm({
+  postName,
+  teamSlug,
+}: {
+  postName: string;
+  teamSlug: string;
+}) {
   const { id } = useParams() as { id: string };
   const router = useRouter();
   return (

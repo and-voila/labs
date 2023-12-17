@@ -218,7 +218,10 @@ export default async function SitePosts({
             <div className="mt-10 border-b border-primary/70 pb-5">
               <h3 className="text-2xl font-semibold leading-6">Danger zone</h3>
             </div>
-            <DeleteSiteForm siteName={data?.name!} />
+            <DeleteSiteForm
+              siteName={data?.name!}
+              teamSlug={params.team_slug}
+            />
           </div>
         </TabsContent>
       </Tabs>

@@ -97,7 +97,10 @@ export default async function PostPage({
             <div className="mt-10 border-b border-primary/70 pb-5">
               <h3 className="text-2xl font-semibold leading-6">Danger zone</h3>
             </div>
-            <DeletePostForm postName={data?.title!} />
+            <DeletePostForm
+              postName={data?.title!}
+              teamSlug={params.team_slug}
+            />
           </div>
         </TabsContent>
       </Tabs>
