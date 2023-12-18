@@ -9,8 +9,7 @@ import { getSession } from '#/lib/session';
 import { getTeamSubscriptionPlan } from '#/lib/subscription';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { Icons } from '#/components/shared/icons';
-import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
+import { PricingCards } from '#/components/pricing-cards';
 
 export default async function WorkspaceBillingPage() {
   const session = await getSession();
@@ -23,25 +22,12 @@ export default async function WorkspaceBillingPage() {
   const subscriptionPlan = await getTeamSubscriptionPlan(user.id);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-12">
       <DashboardHeader
         heading="Team workspace billing"
         text="Manage your team's subscriptions with ease. Upgrade, downgrade, or cancel at anytime. Secure as it gets thanks to our friends at Stripe."
       />
-      <div className="grid max-w-3xl gap-8">
-        {!subscriptionPlan.isPaid && (
-          <Alert className="border-2 border-dotted border-primary/80 !pl-14">
-            <Icons.rocket className="fill-primary" />
-            <AlertTitle>Welcome to early access</AlertTitle>
-            <AlertDescription className="text-muted-foreground">
-              Get ready to watch your marketing ROI soar! Scoop up early access
-              membership now for your team to guarantee a year of top-tier
-              digital marketing results at a fraction of the investment.
-            </AlertDescription>
-          </Alert>
-        )}
-        {/*<BillingInfo team={teams} subscriptionPlan={subscriptionPlan} />*/}
-      </div>
+      <PricingCards userId={user?.id} subscriptionPlan={subscriptionPlan} />
     </div>
   );
 }
