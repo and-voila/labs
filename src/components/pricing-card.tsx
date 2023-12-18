@@ -14,7 +14,7 @@ interface PricingCardProps {
   isYearly: boolean;
   teamId?: string;
   subscriptionPlan?: TeamSubscriptionPlan;
-  teamSlug: string;
+  teamSlug?: string;
 }
 
 const PricingCard = ({
@@ -64,7 +64,7 @@ const PricingCard = ({
             </li>
           ))}
         </ul>
-        {teamId && subscriptionPlan ? (
+        {teamId && teamSlug && subscriptionPlan ? (
           plan.title === 'Good' ? (
             <Link
               href={`${APP_BP}/${teamSlug}/workspace/home`}
