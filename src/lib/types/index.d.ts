@@ -171,7 +171,7 @@ export type ToolsConfig = {
 
 // :: Stripe and Subscription Types ::
 
-type PlanTitle = 'Good' | 'Better' | 'Best' | 'Teams';
+type PlanTitle = 'Good' | 'Better' | 'Best';
 
 interface SubscriptionPlan {
   title: PlanTitle;

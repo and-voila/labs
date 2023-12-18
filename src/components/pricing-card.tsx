@@ -42,8 +42,8 @@ const PricingCard = ({
             )}
           </span>
           {plan.prices.monthly > 0 && (
-            <span className="text-sm leading-6 text-muted-foreground">
-              /month{isYearly ? ', billed yearly' : ''}
+            <span className="text-xs leading-6 text-muted-foreground">
+              /month, per user{isYearly ? ', billed yearly' : ''}
             </span>
           )}
         </div>

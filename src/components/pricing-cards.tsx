@@ -6,9 +6,7 @@ import Balancer from 'react-wrap-balancer';
 import { pricingData } from '#/config/subscriptions';
 
 import { UserSubscriptionPlan } from '#/lib/types';
-import { getPlanByTitle } from '#/lib/utils';
 
-import GoodPlanCard from '#/components/good-plan-card';
 import PricingCard from '#/components/pricing-card';
 import { Switch } from '#/components/ui/switch';
 
@@ -25,8 +23,6 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   const toggleBilling = () => {
     setIsYearly(!isYearly);
   };
-
-  const goodPlan = getPlanByTitle('Good');
 
   return (
     <section className="container flex flex-col items-center py-16 text-center lg:px-8 lg:py-20">
@@ -55,20 +51,17 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
         <span>Annual Billing</span>
       </div>
 
-      <div className="mx-auto grid max-w-screen-lg gap-5 bg-inherit py-5 md:grid-cols-3 lg:grid-cols-3">
-        {pricingData
-          .filter((offer) => offer.title !== 'Good')
-          .map((offer) => (
-            <PricingCard
-              key={offer.title}
-              plan={offer}
-              isYearly={isYearly}
-              userId={userId}
-              subscriptionPlan={subscriptionPlan}
-            />
-          ))}
+      <div className="isolate mx-auto mt-10 grid max-w-lg grid-cols-1 gap-6 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        {pricingData.map((offer) => (
+          <PricingCard
+            key={offer.title}
+            plan={offer}
+            isYearly={isYearly}
+            userId={userId}
+            subscriptionPlan={subscriptionPlan}
+          />
+        ))}
       </div>
-      {goodPlan && <GoodPlanCard plan={goodPlan} userId={userId} />}
 
       <p className="mt-6 text-center text-base text-muted-foreground">
         <Balancer>

@@ -4,10 +4,6 @@ import { twMerge } from 'tailwind-merge';
 
 import { env } from ':/env.mjs';
 
-import { pricingData } from '#/config/subscriptions';
-
-import { PlanTitle, SubscriptionPlan } from '#/lib/types';
-
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -138,12 +134,6 @@ export const calculatePrice = (
   } else {
     return prices.monthly > 0 ? `$${prices.monthly}` : 'Free';
   }
-};
-
-export const getPlanByTitle = (
-  title: PlanTitle,
-): SubscriptionPlan | undefined => {
-  return pricingData.find((plan) => plan.title === title);
 };
 
 export function initials(name: string) {
