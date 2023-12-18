@@ -10,17 +10,23 @@ interface BillingFormButtonProps {
   offer: SubscriptionPlan;
   subscriptionPlan: TeamSubscriptionPlan;
   year: boolean;
+  teamId: string;
+  teamSlug: string;
 }
 
 export function BillingFormButton({
   year,
   offer,
   subscriptionPlan,
+  teamId,
+  teamSlug,
 }: BillingFormButtonProps) {
   const [isPending, startTransition] = useTransition();
   const generateUserStripeSession = generateUserStripe.bind(
     null,
     offer.stripeIds[year ? 'yearly' : 'monthly'] || '',
+    teamId,
+    teamSlug,
   );
 
   const stripeSessionAction = () =>

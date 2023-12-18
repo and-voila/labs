@@ -6,7 +6,7 @@ import { getServerSession } from 'next-auth';
 import { env } from ':/env.mjs';
 
 import { authOptions } from '#/lib/auth';
-import { SITE_URL } from '#/lib/const';
+import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { stripe } from '#/lib/stripe';
 import { getTeamSubscriptionPlan } from '#/lib/subscription';
@@ -16,10 +16,10 @@ export type responseAction = {
   stripeUrl?: string;
 };
 
-const billingUrl = `${SITE_URL}/pricing`;
-
 export async function generateUserStripe(
   priceId: string,
+  teamId: string,
+  teamSlug: string,
 ): Promise<responseAction> {
   let redirectUrl: string = '';
 
@@ -32,7 +32,7 @@ export async function generateUserStripe(
 
     let stripeCustomer = await db.stripeCustomer.findUnique({
       where: {
-        userId: session.user.id,
+        teamId: teamId,
       },
     });
 
@@ -40,19 +40,21 @@ export async function generateUserStripe(
       const customer = await stripe.customers.create({
         email: session.user.email,
         metadata: {
-          userId: session.user.id,
+          teamId: teamId,
         },
       });
 
       stripeCustomer = await db.stripeCustomer.create({
         data: {
-          userId: session.user.id,
+          teamId: teamId,
           stripeCustomerId: customer.id,
         },
       });
     }
 
-    const subscriptionPlan = await getTeamSubscriptionPlan(session.user.id);
+    const subscriptionPlan = await getTeamSubscriptionPlan(teamId);
+
+    const billingUrl = `${SITE_URL}${APP_BP}/${teamSlug}/workspace/billing`;
 
     if (subscriptionPlan.isPaid && subscriptionPlan.stripeCustomerId) {
       const stripeSession = await stripe.billingPortal.sessions.create({
@@ -81,7 +83,7 @@ export async function generateUserStripe(
           },
         ],
         metadata: {
-          userId: session.user.id,
+          teamId: teamId,
         },
       });
 

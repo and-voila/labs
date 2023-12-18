@@ -11,16 +11,20 @@ import { cn } from '#/lib/utils';
 import PricingCard from '#/components/pricing-card';
 import { Switch } from '#/components/ui/switch';
 
+import { toast } from './ui/use-toast';
+
 interface PricingCardsProps {
-  userId?: string;
+  teamId?: string;
   subscriptionPlan?: TeamSubscriptionPlan;
   isPublic?: boolean;
+  teamSlug?: string;
 }
 
 export function PricingCards({
-  userId,
+  teamId,
   subscriptionPlan,
   isPublic,
+  teamSlug,
 }: PricingCardsProps) {
   const [isYearly, setIsYearly] = useState(
     subscriptionPlan?.interval === 'year',
@@ -70,15 +74,28 @@ export function PricingCards({
           { 'mt-10': isPublic },
         )}
       >
-        {pricingData.map((offer) => (
-          <PricingCard
-            key={offer.title}
-            plan={offer}
-            isYearly={isYearly}
-            userId={userId}
-            subscriptionPlan={subscriptionPlan}
-          />
-        ))}
+        {pricingData.map((offer) => {
+          if (!teamSlug) {
+            toast({
+              title: 'Unexpected error',
+              description:
+                'Sorry about that, an unexpected error occured. Please try again. If the problem persists, please contact support. Thanks!',
+              variant: 'destructive',
+            });
+            return null;
+          }
+
+          return (
+            <PricingCard
+              key={offer.title}
+              plan={offer}
+              isYearly={isYearly}
+              teamId={teamId}
+              subscriptionPlan={subscriptionPlan}
+              teamSlug={teamSlug}
+            />
+          );
+        })}
       </div>
 
       <p className="mt-6 text-center text-base text-muted-foreground">
