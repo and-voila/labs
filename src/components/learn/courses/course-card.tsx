@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import Link from 'next/link';
 
 import { APP_BP } from '#/lib/const';
@@ -6,7 +5,6 @@ import { getCoursePrice } from '#/lib/course-pricing';
 import { placeholderBlurhash } from '#/lib/utils';
 
 import BlurImage from '#/components/publish/blur-image';
-import { Skeleton } from '#/components/ui/skeleton';
 
 interface CourseCardProps {
   id: string;
@@ -52,33 +50,25 @@ export const CourseCard = ({
         </div>
         <div className="mt-1 flex flex-col p-4">
           <div className="mb-2 flex items-center justify-between">
-            <Suspense fallback={<Skeleton className="h-4 w-12" />}>
-              <p className="text-sm text-muted-foreground">{category}</p>
-            </Suspense>
-            <Suspense fallback={<Skeleton className="h-4 w-12" />}>
-              {progress !== null ? (
-                progress === 0 ? (
-                  <p className="text-sm text-primary">Not started</p>
-                ) : progress === 100 ? (
-                  <p className="text-sm text-alternate">Complete</p>
-                ) : (
-                  <p className="text-sm text-primary">In progress</p>
-                )
+            <p className="text-sm text-muted-foreground">{category}</p>
+            {progress !== null ? (
+              progress === 0 ? (
+                <p className="text-sm text-primary">Not started</p>
+              ) : progress === 100 ? (
+                <p className="text-sm text-alternate">Complete</p>
               ) : (
-                <p className="text-sm text-alternate">{displayPrice}</p>
-              )}
-            </Suspense>
+                <p className="text-sm text-primary">In progress</p>
+              )
+            ) : (
+              <p className="text-sm text-alternate">{displayPrice}</p>
+            )}
           </div>
-          <Suspense fallback={<Skeleton className="h-8 w-3/4" />}>
-            <div className="line-clamp-2 text-lg font-bold leading-tight transition group-hover:text-primary">
-              {title}
-            </div>
-          </Suspense>
-          <Suspense fallback={<Skeleton className="h-24 w-3/5" />}>
-            <p className="my-2 line-clamp-2 text-sm text-muted-foreground">
-              {preview}
-            </p>
-          </Suspense>
+          <div className="line-clamp-2 text-lg font-bold leading-tight transition group-hover:text-primary">
+            {title}
+          </div>
+          <p className="my-2 line-clamp-2 text-sm text-muted-foreground">
+            {preview}
+          </p>
         </div>
       </div>
     </Link>

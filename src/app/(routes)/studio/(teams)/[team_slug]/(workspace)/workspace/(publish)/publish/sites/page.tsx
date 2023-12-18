@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -11,7 +10,6 @@ import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';
 import CreateSiteButton from '#/components/publish/create-site-button';
 import CreateSiteModal from '#/components/publish/modal/create-site';
-import PlaceholderCard from '#/components/publish/placeholder-card';
 import Sites from '#/components/publish/sites';
 
 export default async function AllSites({
@@ -34,17 +32,7 @@ export default async function AllSites({
           <CreateSiteModal teamSlug={params.team_slug} />
         </CreateSiteButton>
       </div>
-      <Suspense
-        fallback={
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <PlaceholderCard key={i} />
-            ))}
-          </div>
-        }
-      >
-        <Sites teamSlug={params.team_slug} />
-      </Suspense>
+      <Sites teamSlug={params.team_slug} />
     </DashboardShell>
   );
 }
