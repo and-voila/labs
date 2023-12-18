@@ -19,7 +19,7 @@ export default async function PricingPage() {
 
   return (
     <div className="flex w-full flex-col gap-16 py-8">
-      <PricingCards subscriptionPlan={subscriptionPlan} />
+      <PricingCards subscriptionPlan={subscriptionPlan} isPublic />
       <hr className="container" />
       <PricingFaq />
     </div>

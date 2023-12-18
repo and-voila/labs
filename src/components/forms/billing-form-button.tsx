@@ -1,4 +1,5 @@
 import { useTransition } from 'react';
+import Link from 'next/link';
 
 import { generateUserStripe } from '#/lib/actions/generate-user-stripe';
 import { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
@@ -10,8 +11,8 @@ interface BillingFormButtonProps {
   offer: SubscriptionPlan;
   subscriptionPlan: TeamSubscriptionPlan;
   year: boolean;
-  teamId: string;
-  teamSlug: string;
+  teamId?: string;
+  teamSlug?: string;
 }
 
 export function BillingFormButton({
@@ -22,43 +23,57 @@ export function BillingFormButton({
   teamSlug,
 }: BillingFormButtonProps) {
   const [isPending, startTransition] = useTransition();
-  const generateUserStripeSession = generateUserStripe.bind(
-    null,
-    offer.stripeIds[year ? 'yearly' : 'monthly'] || '',
-    teamId,
-    teamSlug,
-  );
 
   const stripeSessionAction = () =>
     startTransition(async () => {
-      await generateUserStripeSession();
-      return;
+      if (!teamId || !teamSlug) {
+        return;
+      }
+
+      await generateUserStripe(
+        offer.stripeIds[year ? 'yearly' : 'monthly'] || '',
+        teamId,
+        teamSlug,
+      );
     });
 
   return (
-    <Button
-      variant={
-        subscriptionPlan.stripePriceId ===
-        offer.stripeIds[year ? 'yearly' : 'monthly']
-          ? 'secondary'
-          : 'default'
-      }
-      className="w-full"
-      disabled={isPending}
-      onClick={stripeSessionAction}
-    >
-      {isPending ? (
-        <>
-          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> Loading...
-        </>
+    <div>
+      {teamId && teamSlug ? (
+        <Button
+          variant={
+            subscriptionPlan.stripePriceId ===
+            offer.stripeIds[year ? 'yearly' : 'monthly']
+              ? 'secondary'
+              : 'default'
+          }
+          className="w-full"
+          disabled={isPending}
+          onClick={stripeSessionAction}
+        >
+          {isPending ? (
+            <>
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> Loading...
+            </>
+          ) : (
+            <>
+              {subscriptionPlan.stripePriceId ===
+              offer.stripeIds[year ? 'yearly' : 'monthly']
+                ? 'Manage Subscription'
+                : 'Upgrade'}
+            </>
+          )}
+        </Button>
       ) : (
-        <>
-          {subscriptionPlan.stripePriceId ===
-          offer.stripeIds[year ? 'yearly' : 'monthly']
-            ? 'Manage Subscription'
-            : 'Upgrade'}
-        </>
+        <Link
+          href={`/register?from=${encodeURIComponent('/pricing')}`}
+          passHref
+        >
+          <Button variant="default" className="w-full">
+            Create an Account
+          </Button>
+        </Link>
       )}
-    </Button>
+    </div>
   );
 }
