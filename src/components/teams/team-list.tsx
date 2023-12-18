@@ -7,12 +7,12 @@ import { EmptyPlaceholder } from '#/components/shared/empty-placeholder';
 import { NewTeamButton } from '#/components/teams/new-team-button';
 import { TeamCard } from '#/components/teams/team-card';
 
-export interface TeamGalleryProps {
+export interface TeamListProps {
   teams: Team[];
   memberships: Membership[];
 }
 
-export const TeamGallery: React.FC<TeamGalleryProps> = (props) => {
+export const TeamList: React.FC<TeamListProps> = (props) => {
   const { teams, memberships } = props;
 
   if (teams.length === 0) {
@@ -21,8 +21,8 @@ export const TeamGallery: React.FC<TeamGalleryProps> = (props) => {
         <EmptyPlaceholder.Icon name="team" />
         <EmptyPlaceholder.Title>No workspaces found</EmptyPlaceholder.Title>
         <EmptyPlaceholder.Description>
-          You currently have team workspaces. Click the button below to create
-          one and rally your crew.
+          You don&apos;t currently have any team workspaces. Click the button
+          below to create one and rally your crew.
         </EmptyPlaceholder.Description>
         <NewTeamButton />
       </EmptyPlaceholder>
@@ -44,7 +44,6 @@ export const TeamGallery: React.FC<TeamGalleryProps> = (props) => {
           isPersonal={team.isPersonal}
         />
       ))}
-
       <NewTeamButton />
     </div>
   );

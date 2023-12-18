@@ -190,7 +190,7 @@ interface SubscriptionPlan {
   models: string[];
 }
 
-export type UserSubscriptionPlan = SubscriptionPlan & {
+export type TeamSubscriptionPlan = SubscriptionPlan & {
   stripeCustomerId: string | null;
   stripeSubscriptionId: string | null;
   stripePriceId: string | null;

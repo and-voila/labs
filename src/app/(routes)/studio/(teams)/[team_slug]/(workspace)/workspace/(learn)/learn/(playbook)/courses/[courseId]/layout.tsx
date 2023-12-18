@@ -5,7 +5,7 @@ import { getApiLimitCount } from '#/lib/api-limit';
 import { authOptions } from '#/lib/auth';
 import { APP_BP } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/subscription';
 import { getTeams } from '#/lib/team/get-teams';
 
 import { CourseSidebar } from '#/components/learn/courses/course-sidebar';
@@ -29,7 +29,7 @@ const PlaybookLayout = async ({
     throw new Error('No personal team found');
   }
 
-  const userSubscriptionPlan = await getUserSubscriptionPlan(personalTeam.id);
+  const userSubscriptionPlan = await getTeamSubscriptionPlan(personalTeam.id);
   const isPaidMember = userSubscriptionPlan.isPaid;
 
   const course = await db.course.findUnique({

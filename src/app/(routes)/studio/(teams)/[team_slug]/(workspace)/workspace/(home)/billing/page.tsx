@@ -6,10 +6,9 @@ import { siteConfig } from '#/config/site';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { getSession } from '#/lib/session';
-import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/subscription';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { BillingInfo } from '#/components/forms/billing-info';
 import { Icons } from '#/components/shared/icons';
 import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
 
@@ -21,7 +20,7 @@ export default async function PersonalBillingPage() {
 
   const user = session.user;
 
-  const subscriptionPlan = await getUserSubscriptionPlan(user.id);
+  const subscriptionPlan = await getTeamSubscriptionPlan(user.id);
 
   return (
     <div className="flex flex-col gap-8">
@@ -41,7 +40,7 @@ export default async function PersonalBillingPage() {
             </AlertDescription>
           </Alert>
         )}
-        <BillingInfo subscriptionPlan={subscriptionPlan} />
+        {/*<BillingInfo team={teams} subscriptionPlan={subscriptionPlan} />*/}
       </div>
     </div>
   );

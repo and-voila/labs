@@ -7,7 +7,7 @@ import { getCourses } from '#/lib/actions/get-courses';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/subscription';
 import { getTeams } from '#/lib/team/get-teams';
 
 import { DashboardShell } from '#/components/dashboard/shell';
@@ -46,7 +46,7 @@ const PlaybooksSearchPage = async ({
     },
   });
 
-  const userSubscriptionPlan = await getUserSubscriptionPlan(personalTeam.id);
+  const userSubscriptionPlan = await getTeamSubscriptionPlan(personalTeam.id);
   const isPaidMember = userSubscriptionPlan.isPaid;
 
   const page = parseInt(searchParams.page as string) || 1;

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 
-import { UserSubscriptionPlan } from '#/lib/types';
+import { TeamSubscriptionPlan } from '#/lib/types';
 import { cn, formatDate } from '#/lib/utils';
 
 import { buttonVariants } from '#/components/ui/button';
@@ -17,7 +17,7 @@ import {
 } from '#/components/ui/card';
 
 interface BillingInfoProps extends React.HTMLAttributes<HTMLFormElement> {
-  subscriptionPlan: UserSubscriptionPlan;
+  subscriptionPlan: TeamSubscriptionPlan;
 }
 
 export function BillingInfo({ subscriptionPlan }: BillingInfoProps) {

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { SubscriptionPlan, UserSubscriptionPlan } from '#/lib/types';
+import { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
 import { cn } from '#/lib/utils';
 
 import { BillingFormButton } from '#/components/forms/billing-form-button';
@@ -11,7 +11,7 @@ interface PricingCardProps {
   plan: SubscriptionPlan;
   isYearly: boolean;
   userId?: string;
-  subscriptionPlan?: UserSubscriptionPlan;
+  subscriptionPlan?: TeamSubscriptionPlan;
 }
 
 const PricingCard = ({

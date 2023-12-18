@@ -2,13 +2,13 @@ import { pricingData } from '#/config/subscriptions';
 
 import { db } from '#/lib/db';
 import { stripe } from '#/lib/stripe';
-import { UserSubscriptionPlan } from '#/lib/types';
+import { TeamSubscriptionPlan } from '#/lib/types';
 
 const DAY_IN_MS = 86_400_000;
 
-export async function getUserSubscriptionPlan(
+export async function getTeamSubscriptionPlan(
   teamId: string,
-): Promise<UserSubscriptionPlan> {
+): Promise<TeamSubscriptionPlan> {
   const stripeSubscription = await db.stripeSubscription.findUnique({
     where: {
       teamId: teamId,

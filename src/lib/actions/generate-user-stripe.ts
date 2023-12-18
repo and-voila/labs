@@ -9,7 +9,7 @@ import { authOptions } from '#/lib/auth';
 import { SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { stripe } from '#/lib/stripe';
-import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/subscription';
 
 export type responseAction = {
   status: 'success' | 'error';
@@ -52,7 +52,7 @@ export async function generateUserStripe(
       });
     }
 
-    const subscriptionPlan = await getUserSubscriptionPlan(session.user.id);
+    const subscriptionPlan = await getTeamSubscriptionPlan(session.user.id);
 
     if (subscriptionPlan.isPaid && subscriptionPlan.stripeCustomerId) {
       const stripeSession = await stripe.billingPortal.sessions.create({

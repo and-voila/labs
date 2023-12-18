@@ -4,7 +4,7 @@ import { Category, Course } from '@prisma/client';
 
 import { getProgress } from '#/lib/actions/get-progress';
 import { db } from '#/lib/db';
-import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/subscription';
 
 type CourseWithProgressWithCategory = Course & {
   category: Category | null;
@@ -80,7 +80,7 @@ export const getCourses = async ({
       },
     });
 
-    const userSubscriptionPlan = await getUserSubscriptionPlan(teamId);
+    const userSubscriptionPlan = await getTeamSubscriptionPlan(teamId);
     const isPaidMember = userSubscriptionPlan.isPaid;
 
     const coursesWithProgress: CourseWithProgressWithCategory[] =

@@ -5,14 +5,14 @@ import Balancer from 'react-wrap-balancer';
 
 import { pricingData } from '#/config/subscriptions';
 
-import { UserSubscriptionPlan } from '#/lib/types';
+import { TeamSubscriptionPlan } from '#/lib/types';
 
 import PricingCard from '#/components/pricing-card';
 import { Switch } from '#/components/ui/switch';
 
 interface PricingCardsProps {
   userId?: string;
-  subscriptionPlan?: UserSubscriptionPlan;
+  subscriptionPlan?: TeamSubscriptionPlan;
 }
 
 export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
