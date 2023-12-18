@@ -1,12 +1,7 @@
-import LoadingDots from '#/components/publish/icons/loading-dots';
+import LogoLoader from '#/components/dashboard/logo-loader';
 
-export default function Loading() {
-  return (
-    <>
-      <div className="h-10 w-48 animate-pulse rounded-md bg-primary/20" />
-      <div className="flex h-full w-full items-center justify-center">
-        <LoadingDots />
-      </div>
-    </>
-  );
-}
+const PublishLoading = () => {
+  return <LogoLoader className="min-h-screen" />;
+};
+
+export default PublishLoading;

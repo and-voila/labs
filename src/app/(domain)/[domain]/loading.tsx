@@ -1,7 +1,7 @@
 import LogoLoader from '#/components/dashboard/logo-loader';
 
-const Playbooks = () => {
+const DomainsLoader = () => {
   return <LogoLoader className="min-h-screen" />;
 };
 
-export default Playbooks;
+export default DomainsLoader;

@@ -3,11 +3,13 @@ import { APP_BP } from '#/lib/const';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { TabbedNav } from '#/components/ui/tabbed-nav';
 
-interface AppRootLayoutProps {
+interface MyWorkspaceRootLayoutProps {
   children: React.ReactNode;
 }
 
-const AppRootLayout: React.FC<AppRootLayoutProps> = ({ children }) => {
+const MyWorkspaceRootLayout: React.FC<MyWorkspaceRootLayoutProps> = ({
+  children,
+}) => {
   return (
     <DashboardShell>
       <TabbedNav
@@ -39,4 +41,4 @@ const AppRootLayout: React.FC<AppRootLayoutProps> = ({ children }) => {
   );
 };
 
-export default AppRootLayout;
+export default MyWorkspaceRootLayout;

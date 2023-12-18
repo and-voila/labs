@@ -1,5 +1,3 @@
-import { Suspense } from 'react';
-
 import { getTeams } from '#/lib/team/get-teams';
 
 import { NavBar } from '#/components/layout/navbar';
@@ -20,14 +18,12 @@ export default async function MarketingLayout({
 
   return (
     <div className=" flex min-h-screen flex-col">
-      <Suspense fallback="...">
-        <NavBar
-          user={user}
-          scroll={true}
-          teams={teams}
-          activeTeamSlug={params.team_slug}
-        />
-      </Suspense>
+      <NavBar
+        user={user}
+        scroll={true}
+        teams={teams}
+        activeTeamSlug={params.team_slug}
+      />
       <main className="mx-auto max-w-7xl flex-1 px-6 py-8 lg:px-12">
         {children}
       </main>
