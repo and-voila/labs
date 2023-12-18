@@ -1,24 +1,28 @@
 import Link from 'next/link';
 
-import { SubscriptionPlan, UserSubscriptionPlan } from '#/lib/types';
+import { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
 import { cn } from '#/lib/utils';
 
 import { BillingFormButton } from '#/components/forms/billing-form-button';
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
 
+import { APP_BP } from '../lib/const';
+
 interface PricingCardProps {
   plan: SubscriptionPlan;
   isYearly: boolean;
-  userId?: string;
-  subscriptionPlan?: UserSubscriptionPlan;
+  teamId?: string;
+  subscriptionPlan?: TeamSubscriptionPlan;
+  teamSlug: string;
 }
 
 const PricingCard = ({
   plan,
   isYearly,
-  userId,
+  teamId,
   subscriptionPlan,
+  teamSlug,
 }: PricingCardProps) => {
   return (
     <div
@@ -60,12 +64,26 @@ const PricingCard = ({
             </li>
           ))}
         </ul>
-        {userId && subscriptionPlan ? (
-          <BillingFormButton
-            year={isYearly}
-            offer={plan}
-            subscriptionPlan={subscriptionPlan}
-          />
+        {teamId && subscriptionPlan ? (
+          plan.title === 'Good' ? (
+            <Link
+              href={`${APP_BP}/${teamSlug}/workspace/home`}
+              className={buttonVariants({
+                className: 'w-full',
+                variant: 'secondary',
+              })}
+            >
+              Go to dashboard
+            </Link>
+          ) : (
+            <BillingFormButton
+              year={isYearly}
+              offer={plan}
+              subscriptionPlan={subscriptionPlan}
+              teamId={teamId}
+              teamSlug={teamSlug}
+            />
+          )
         ) : (
           <Link
             href={`/register?from=${encodeURIComponent('/pricing')}`}

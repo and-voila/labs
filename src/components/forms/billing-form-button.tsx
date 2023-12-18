@@ -1,26 +1,32 @@
 import { useTransition } from 'react';
 
 import { generateUserStripe } from '#/lib/actions/generate-user-stripe';
-import { SubscriptionPlan, UserSubscriptionPlan } from '#/lib/types';
+import { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
 
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 
 interface BillingFormButtonProps {
   offer: SubscriptionPlan;
-  subscriptionPlan: UserSubscriptionPlan;
+  subscriptionPlan: TeamSubscriptionPlan;
   year: boolean;
+  teamId: string;
+  teamSlug: string;
 }
 
 export function BillingFormButton({
   year,
   offer,
   subscriptionPlan,
+  teamId,
+  teamSlug,
 }: BillingFormButtonProps) {
   const [isPending, startTransition] = useTransition();
   const generateUserStripeSession = generateUserStripe.bind(
     null,
     offer.stripeIds[year ? 'yearly' : 'monthly'] || '',
+    teamId,
+    teamSlug,
   );
 
   const stripeSessionAction = () =>

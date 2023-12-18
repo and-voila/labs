@@ -3,7 +3,7 @@
 import { Attachment, Chapter } from '@prisma/client';
 
 import { db } from '#/lib/db';
-import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/subscription';
 
 interface GetChapterProps {
   teamId: string;
@@ -35,7 +35,7 @@ export const getChapter = async ({
       throw new Error('Play or playbook not found');
     }
 
-    const userSubscriptionPlan = await getUserSubscriptionPlan(teamId);
+    const userSubscriptionPlan = await getTeamSubscriptionPlan(teamId);
     const isPaidMember = userSubscriptionPlan.isPaid;
 
     let muxData = null;

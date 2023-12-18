@@ -10,7 +10,7 @@ import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { TeamGallery } from '#/components/teams/team-list';
+import { TeamList } from '#/components/teams/team-list';
 
 const WorkspacesPage: NextPage = async () => {
   const session = await getSession();
@@ -43,7 +43,7 @@ const WorkspacesPage: NextPage = async () => {
         heading="Your workspaces"
         text="Kick things off in your personal zone. Create client workspaces or start a collab and invite your crew. Thrive in multiplayer mode, and voila! Let the magic begin."
       />
-      <TeamGallery teams={teams} memberships={memberships} />
+      <TeamList teams={teams} memberships={memberships} />
     </div>
   );
 };

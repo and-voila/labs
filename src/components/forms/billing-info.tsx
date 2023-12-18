@@ -3,7 +3,8 @@
 import * as React from 'react';
 import Link from 'next/link';
 
-import { UserSubscriptionPlan } from '#/lib/types';
+import { APP_BP } from '#/lib/const';
+import { TeamSubscriptionPlan } from '#/lib/types';
 import { cn, formatDate } from '#/lib/utils';
 
 import { buttonVariants } from '#/components/ui/button';
@@ -17,16 +18,24 @@ import {
 } from '#/components/ui/card';
 
 interface BillingInfoProps extends React.HTMLAttributes<HTMLFormElement> {
-  subscriptionPlan: UserSubscriptionPlan;
+  subscriptionPlan: TeamSubscriptionPlan;
+  teamName: string;
+  teamSlug: string;
 }
 
-export function BillingInfo({ subscriptionPlan }: BillingInfoProps) {
+export function BillingInfo({
+  subscriptionPlan,
+  teamName,
+  teamSlug,
+}: BillingInfoProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Membership Plan</CardTitle>
+        <CardTitle>{teamName} billing plan</CardTitle>
         <CardDescription>
-          You are currently on the{' '}
+          Your workspace for{' '}
+          <span className="font-semibold text-alternate">{teamName}</span> is on
+          the{' '}
           <span className="text-primary">
             <strong>{subscriptionPlan.title}</strong>
           </span>{' '}
@@ -38,7 +47,7 @@ export function BillingInfo({ subscriptionPlan }: BillingInfoProps) {
       </CardContent>
       <CardFooter className="flex flex-col items-start space-y-2 md:flex-row md:justify-between md:space-x-0">
         <Link
-          href="/pricing"
+          href={`${APP_BP}/${teamSlug}/workspace/billing`}
           className={cn(
             buttonVariants({
               size: 'sm',

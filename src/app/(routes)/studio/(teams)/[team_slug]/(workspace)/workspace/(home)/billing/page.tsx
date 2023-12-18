@@ -1,51 +1,45 @@
-import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+import { Metadata, NextPage } from 'next';
+import { notFound } from 'next/navigation';
+import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
-import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
-import { getSession } from '#/lib/session';
-import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/subscription';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { BillingInfo } from '#/components/forms/billing-info';
-import { Icons } from '#/components/shared/icons';
-import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
+import { PricingCards } from '#/components/pricing-cards';
 
-export default async function PersonalBillingPage() {
-  const session = await getSession();
-  if (!session) {
-    redirect(authOptions?.pages?.signIn || '/login');
+interface Props {
+  params: {
+    team_slug: string;
+  };
+}
+
+const WorkspaceBillingPage: NextPage<Props> = async ({ params }) => {
+  const team = await getTeam(params.team_slug);
+  if (!team) {
+    notFound();
   }
 
-  const user = session.user;
-
-  const subscriptionPlan = await getUserSubscriptionPlan(user.id);
+  const subscriptionPlan = await getTeamSubscriptionPlan(team.id);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-12">
       <DashboardHeader
         heading="Team workspace billing"
         text="Manage your team's subscriptions with ease. Upgrade, downgrade, or cancel at anytime. Secure as it gets thanks to our friends at Stripe."
       />
-      <div className="grid max-w-3xl gap-8">
-        {!subscriptionPlan.isPaid && (
-          <Alert className="border-2 border-dotted border-primary/80 !pl-14">
-            <Icons.rocket className="fill-primary" />
-            <AlertTitle>Welcome to early access</AlertTitle>
-            <AlertDescription className="text-muted-foreground">
-              Get ready to watch your marketing ROI soar! Scoop up early access
-              membership now to guarantee a year of top-tier digital marketing
-              results at a fraction of the investment.
-            </AlertDescription>
-          </Alert>
-        )}
-        <BillingInfo subscriptionPlan={subscriptionPlan} />
-      </div>
+      <PricingCards
+        teamId={team.id}
+        subscriptionPlan={subscriptionPlan}
+        teamSlug={params.team_slug}
+      />
     </div>
   );
-}
+};
+
+export default WorkspaceBillingPage;
 
 export function generateMetadata(): Metadata {
   const title = 'Team Billing';

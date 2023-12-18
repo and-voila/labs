@@ -5,17 +5,27 @@ import Balancer from 'react-wrap-balancer';
 
 import { pricingData } from '#/config/subscriptions';
 
-import { UserSubscriptionPlan } from '#/lib/types';
+import { TeamSubscriptionPlan } from '#/lib/types';
+import { cn } from '#/lib/utils';
 
 import PricingCard from '#/components/pricing-card';
 import { Switch } from '#/components/ui/switch';
 
+import { toast } from './ui/use-toast';
+
 interface PricingCardsProps {
-  userId?: string;
-  subscriptionPlan?: UserSubscriptionPlan;
+  teamId?: string;
+  subscriptionPlan?: TeamSubscriptionPlan;
+  isPublic?: boolean;
+  teamSlug?: string;
 }
 
-export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
+export function PricingCards({
+  teamId,
+  subscriptionPlan,
+  isPublic,
+  teamSlug,
+}: PricingCardsProps) {
   const [isYearly, setIsYearly] = useState(
     subscriptionPlan?.interval === 'year',
   );
@@ -25,20 +35,27 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   };
 
   return (
-    <section className="container flex flex-col items-center py-16 text-center lg:px-8 lg:py-20">
-      <div className="mx-auto mb-10 max-w-5xl">
-        <p className="text-sm font-semibold uppercase tracking-widest text-primary">
-          Membership Plans
-        </p>
-        <h2 className="mt-2 text-7xl font-bold tracking-tight">
-          Crush your marketing goals
-        </h2>
-        <p className="mx-auto mt-2 max-w-2xl text-center text-lg leading-8 text-muted-foreground">
-          Propel your digital marketing journey with Early Access. Dive into a
-          world of cutting-edge Playbooks, AI-enhanced tools, and a vibrant
-          community that’s always one step ahead.
-        </p>
-      </div>
+    <section
+      className={cn(
+        'container flex flex-col items-center text-center lg:px-8',
+        { 'py-16 lg:py-20': isPublic },
+      )}
+    >
+      {isPublic && (
+        <div className="mx-auto mb-10 max-w-5xl">
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary">
+            Membership Plans
+          </p>
+          <h2 className="mt-2 text-7xl font-bold tracking-tight">
+            Crush your marketing goals
+          </h2>
+          <p className="mx-auto mt-2 max-w-2xl text-center text-lg leading-8 text-muted-foreground">
+            Propel your digital marketing journey with Early Access. Dive into a
+            world of cutting-edge Playbooks, AI-enhanced tools, and a vibrant
+            community that’s always one step ahead.
+          </p>
+        </div>
+      )}
 
       <div className="mb-4 flex items-center gap-5">
         <span>Monthly Billing</span>
@@ -51,16 +68,34 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
         <span>Annual Billing</span>
       </div>
 
-      <div className="isolate mx-auto mt-10 grid max-w-lg grid-cols-1 gap-6 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-        {pricingData.map((offer) => (
-          <PricingCard
-            key={offer.title}
-            plan={offer}
-            isYearly={isYearly}
-            userId={userId}
-            subscriptionPlan={subscriptionPlan}
-          />
-        ))}
+      <div
+        className={cn(
+          'isolate mx-auto grid max-w-lg grid-cols-1 gap-6 lg:mx-0 lg:max-w-none lg:grid-cols-3',
+          { 'mt-10': isPublic },
+        )}
+      >
+        {pricingData.map((offer) => {
+          if (!teamSlug) {
+            toast({
+              title: 'Unexpected error',
+              description:
+                'Sorry about that, an unexpected error occured. Please try again. If the problem persists, please contact support. Thanks!',
+              variant: 'destructive',
+            });
+            return null;
+          }
+
+          return (
+            <PricingCard
+              key={offer.title}
+              plan={offer}
+              isYearly={isYearly}
+              teamId={teamId}
+              subscriptionPlan={subscriptionPlan}
+              teamSlug={teamSlug}
+            />
+          );
+        })}
       </div>
 
       <p className="mt-6 text-center text-base text-muted-foreground">

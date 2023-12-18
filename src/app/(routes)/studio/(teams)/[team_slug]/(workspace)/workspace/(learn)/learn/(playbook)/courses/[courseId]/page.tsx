@@ -7,7 +7,7 @@ import { siteConfig } from '#/config/site';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/subscription';
 import { getTeams } from '#/lib/team/get-teams';
 import { cn, placeholderBlurhash } from '#/lib/utils';
 
@@ -56,7 +56,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     return redirect(`${APP_BP}/${personalTeam.slug}/workspace/learn/search`);
   }
 
-  const userSubscriptionPlan = await getUserSubscriptionPlan(personalTeam.id);
+  const userSubscriptionPlan = await getTeamSubscriptionPlan(personalTeam.id);
   const isPaidMember = userSubscriptionPlan.isPaid;
 
   const isLocked = course.price !== 0 && !isPaidMember;

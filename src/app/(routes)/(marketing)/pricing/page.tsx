@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import { SITE_URL } from '#/lib/const';
 import { getSession } from '#/lib/session';
-import { getUserSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/subscription';
 
 import { PricingCards } from '#/components/pricing-cards';
 import { PricingFaq } from '#/components/pricing-faq';
@@ -14,12 +14,12 @@ export default async function PricingPage() {
   let subscriptionPlan;
 
   if (user) {
-    subscriptionPlan = await getUserSubscriptionPlan(user.id);
+    subscriptionPlan = await getTeamSubscriptionPlan(user.id);
   }
 
   return (
     <div className="flex w-full flex-col gap-16 py-8">
-      <PricingCards userId={user?.id} subscriptionPlan={subscriptionPlan} />
+      <PricingCards subscriptionPlan={subscriptionPlan} />
       <hr className="container" />
       <PricingFaq />
     </div>
