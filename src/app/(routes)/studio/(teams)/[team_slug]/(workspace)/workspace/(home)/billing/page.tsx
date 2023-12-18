@@ -12,7 +12,7 @@ import { DashboardHeader } from '#/components/dashboard/header';
 import { Icons } from '#/components/shared/icons';
 import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
 
-export default async function PersonalBillingPage() {
+export default async function WorkspaceBillingPage() {
   const session = await getSession();
   if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
@@ -35,8 +35,8 @@ export default async function PersonalBillingPage() {
             <AlertTitle>Welcome to early access</AlertTitle>
             <AlertDescription className="text-muted-foreground">
               Get ready to watch your marketing ROI soar! Scoop up early access
-              membership now to guarantee a year of top-tier digital marketing
-              results at a fraction of the investment.
+              membership now for your team to guarantee a year of top-tier
+              digital marketing results at a fraction of the investment.
             </AlertDescription>
           </Alert>
         )}

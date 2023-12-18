@@ -1,10 +1,12 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+import { MembershipRole } from '@prisma/client';
 
 import { siteConfig } from '#/config/site';
 
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
+import { db } from '#/lib/db';
 import { getSession } from '#/lib/session';
 import { getTeamSubscriptionPlan } from '#/lib/subscription';
 
@@ -21,28 +23,53 @@ export default async function PersonalBillingPage() {
 
   const user = session.user;
 
-  const subscriptionPlan = await getTeamSubscriptionPlan(user.id);
+  const teams = await db.team.findMany({
+    where: {
+      members: {
+        some: {
+          userId: user.id,
+          role: MembershipRole.OWNER,
+        },
+      },
+    },
+  });
+
+  const subscriptionPlans = await Promise.all(
+    teams.map((team) => getTeamSubscriptionPlan(team.id)),
+  );
+
+  const anyUnpaid = subscriptionPlans.some((plan) => !plan.isPaid);
 
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        heading="Billing"
-        text="Keep things sorted and handle your personal subscription, membership, and bills. Psst, team billing? That's over in the team workspace."
+        heading="Billing overview"
+        text="See your subscriptions at a glance. Don't sweat it though, we won't bill you for inactive users. Head over to the workspace to manage billing."
       />
 
-      <div className="grid max-w-3xl gap-8">
-        {!subscriptionPlan.isPaid && (
-          <Alert className="border-2 border-dotted border-primary/80 !pl-14">
+      <div className="grid max-w-5xl gap-8">
+        {anyUnpaid && (
+          <Alert className="max-w-xl border-2 border-dotted border-primary/80 !pl-14">
             <Icons.rocket className="fill-primary" />
             <AlertTitle>Welcome to early access</AlertTitle>
             <AlertDescription className="text-muted-foreground">
               Get ready to watch your marketing ROI soar! Scoop up early access
-              membership now to guarantee a year of top-tier digital marketing
-              results at a fraction of the investment.
+              membership now for your team to guarantee a year of top-tier
+              digital marketing results at a fraction of the investment.
             </AlertDescription>
           </Alert>
         )}
-        <BillingInfo subscriptionPlan={subscriptionPlan} />
+        <div className="grid grid-cols-2 gap-8">
+          {subscriptionPlans.map((subscriptionPlan, index) => (
+            <div key={teams[index].id}>
+              <BillingInfo
+                subscriptionPlan={subscriptionPlan}
+                teamName={teams[index].name}
+                teamSlug={teams[index].slug}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
