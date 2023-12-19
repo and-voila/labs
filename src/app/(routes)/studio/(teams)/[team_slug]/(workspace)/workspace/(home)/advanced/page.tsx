@@ -1,5 +1,8 @@
 import { Metadata, NextPage } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { Icons } from ':/src/components/shared/icons';
+import { Alert, AlertDescription, AlertTitle } from ':/src/components/ui/alert';
 
 import { siteConfig } from '#/config/site';
 
@@ -23,13 +26,37 @@ const TeamDangerZonePage: NextPage<Props> = async ({ params }) => {
 
   return (
     <div className="flex flex-col gap-8">
-      <DashboardHeader
-        heading="Danger Zone"
-        text="The point of no return. Delete your team and its workspace here. We'll definitely miss you all, so be careful."
-      />
-      <div className="grid max-w-3xl gap-10">
-        <DeleteForm teamSlug={params.team_slug} />
-      </div>
+      {team.isPersonal ? (
+        <>
+          <DashboardHeader
+            heading="Danger zone"
+            text="Ready to say goodbye? Your personal workspace can't be removed. To delete your account, head over to Account Settings."
+          />
+          <Alert className="max-w-xl border-2 border-dotted border-primary/80 !pl-14">
+            <Icons.warning className="fill-warning" />
+            <AlertTitle>Friendship with And Voila ended</AlertTitle>
+            <AlertDescription className="text-muted-foreground">
+              To delete all your data, including your personal workspace, please{' '}
+              <Link href={`${APP_BP}/delete-account`}>
+                <span className="font-semibold text-primary">
+                  delete your account
+                </span>
+              </Link>
+              . Heads up, this action is irreversible.
+            </AlertDescription>
+          </Alert>
+        </>
+      ) : (
+        <>
+          <DashboardHeader
+            heading="Danger zone"
+            text="The point of no return. Delete your team and its workspace here. We'll definitely miss you all, so be careful."
+          />
+          <div className="grid max-w-3xl gap-10">
+            <DeleteForm teamSlug={params.team_slug} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

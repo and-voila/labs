@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+import { getTeam } from ':/src/lib/team/get-current-team';
 import { MembershipRole } from '@prisma/client';
 
 import { authOptions } from '#/lib/auth';
@@ -22,6 +23,11 @@ interface Props {
 }
 
 const MembersPage: React.FC<Props> = async ({ params }) => {
+  const team = await getTeam(params.team_slug);
+  if (!team || team.isPersonal) {
+    redirect(`${APP_BP}/${params.team_slug}/workspace/home`);
+  }
+
   const session = await getSession();
   if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
