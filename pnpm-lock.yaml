@@ -126,8 +126,8 @@ dependencies:
     specifier: ^1.1.1
     version: 1.1.1
   '@vercel/blob':
-    specifier: ^0.15.1
-    version: 0.15.1
+    specifier: ^0.16.1
+    version: 0.16.1
   '@vercel/kv':
     specifier: ^1.0.1
     version: 1.0.1
@@ -5597,17 +5597,11 @@ packages:
       server-only: 0.0.1
     dev: false
 
-  /@vercel/blob@0.15.1:
-    resolution: {integrity: sha512-Wo7VU9/tM8kkv7krvxGoDeu/Li0h7PYR/TB1TEiyJZzACruA0jWqj44OGokJQCYN3ZvV5tXHpTAN6pImIBCrUw==}
+  /@vercel/blob@0.16.1:
+    resolution: {integrity: sha512-GKslL5l/Jx8OBHRunBYsiWmbMxjvy7LRtOcN7czw7vV4c1Z4vGy8NYTd6RdJt08OKC2wHC28LDssdfVNLrzp+w==}
     engines: {node: '>=16.14'}
     dependencies:
-      jest-environment-jsdom: 29.7.0
-      undici: 5.27.0
-    transitivePeerDependencies:
-      - bufferutil
-      - canvas
-      - supports-color
-      - utf-8-validate
+      undici: 5.28.2
     dev: false
 
   /@vercel/blob@0.9.3:
@@ -9054,29 +9048,6 @@ packages:
 
   /jest-environment-jsdom@29.6.1:
     resolution: {integrity: sha512-PoY+yLaHzVRhVEjcVKSfJ7wXmJW4UqPYNhR05h7u/TK0ouf6DmRNZFBL/Z00zgQMyWGMBXn69/FmOvhEJu8cIw==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    peerDependencies:
-      canvas: ^2.5.0
-    peerDependenciesMeta:
-      canvas:
-        optional: true
-    dependencies:
-      '@jest/environment': 29.7.0
-      '@jest/fake-timers': 29.7.0
-      '@jest/types': 29.6.3
-      '@types/jsdom': 20.0.1
-      '@types/node': 20.10.5
-      jest-mock: 29.7.0
-      jest-util: 29.7.0
-      jsdom: 20.0.3
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-    dev: false
-
-  /jest-environment-jsdom@29.7.0:
-    resolution: {integrity: sha512-k9iQbsf9OyOfdzWH8HDmrRT0gSIcX+FLNW7IQq94tFX0gynPwqDTW0Ho6iMVNjGz/nb+l/vW3dWM2bbLLpkbXA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     peerDependencies:
       canvas: ^2.5.0
@@ -13465,8 +13436,8 @@ packages:
       busboy: 1.6.0
     dev: false
 
-  /undici@5.27.0:
-    resolution: {integrity: sha512-l3ydWhlhOJzMVOYkymLykcRRXqbUaQriERtR70B9LzNkZ4bX52Fc8wbTDneMiwo8T+AemZXvXaTx+9o5ROxrXg==}
+  /undici@5.28.2:
+    resolution: {integrity: sha512-wh1pHJHnUeQV5Xa8/kyQhO7WFa8M34l026L5P/+2TYiakvGy5Rdc8jWZVyG7ieht/0WgJLEd3kcU5gKx+6GC8w==}
     engines: {node: '>=14.0'}
     dependencies:
       '@fastify/busboy': 2.1.0
