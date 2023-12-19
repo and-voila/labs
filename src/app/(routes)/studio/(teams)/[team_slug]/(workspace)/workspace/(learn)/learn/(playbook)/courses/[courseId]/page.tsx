@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
@@ -8,7 +9,6 @@ import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getTeamSubscriptionPlan } from '#/lib/subscription';
-import { getTeams } from '#/lib/team/get-teams';
 import { cn, placeholderBlurhash } from '#/lib/utils';
 
 import { Banner } from '#/components/banner';
@@ -20,16 +20,19 @@ import { Icons } from '#/components/shared/icons';
 import { Button, buttonVariants } from '#/components/ui/button';
 import { Separator } from '#/components/ui/separator';
 
-const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
-  const { user, teams } = await getTeams();
-  if (!user) {
+interface CourseIdPageProps {
+  params: { courseId: string; team_slug: string };
+}
+
+const CourseIdPage = async ({ params }: CourseIdPageProps) => {
+  const team = await getTeam(params.team_slug);
+
+  if (!team) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  const personalTeam = teams.find((team) => team.isPersonal);
-
-  if (!personalTeam) {
-    throw new Error('No personal team found');
+  if (!team.isPersonal) {
+    redirect(`${APP_BP}/${team.slug}/oops`);
   }
 
   const course = await db.course.findUnique({
@@ -47,16 +50,16 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
   const userProgress = await db.userProgress.findFirst({
     where: {
-      teamId: personalTeam.id,
+      teamId: team.id,
       chapterId: course?.chapters[0].id,
     },
   });
 
   if (!course) {
-    return redirect(`${APP_BP}/${personalTeam.slug}/workspace/learn/search`);
+    return redirect(`${APP_BP}/${team.slug}/workspace/learn/search`);
   }
 
-  const userSubscriptionPlan = await getTeamSubscriptionPlan(personalTeam.id);
+  const userSubscriptionPlan = await getTeamSubscriptionPlan(team.id);
   const isPaidMember = userSubscriptionPlan.isPaid;
 
   const isLocked = course.price !== 0 && !isPaidMember;
@@ -94,9 +97,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               </div>
               <div className="mt-4 flex md:ml-4 md:mt-0">
                 <div className="inline-flex items-center">
-                  <Link
-                    href={`${APP_BP}/${personalTeam?.slug}/workspace/learn/search`}
-                  >
+                  <Link href={`${APP_BP}/${team?.slug}/workspace/learn/search`}>
                     <Button variant="secondary">
                       <Icons.signOut className="mr-2 h-4 w-4 text-primary" />
                       Exit
@@ -145,9 +146,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               </div>
               <div className="mt-4 flex md:ml-4 md:mt-0">
                 <div className="inline-flex items-center">
-                  <Link
-                    href={`${APP_BP}/${personalTeam?.slug}/workspace/learn/search`}
-                  >
+                  <Link href={`${APP_BP}/${team?.slug}/workspace/learn/search`}>
                     <Button variant="secondary">
                       <Icons.signOut className="mr-2 h-4 w-4 text-primary" />
                       Exit
@@ -174,10 +173,12 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     );
   } else {
     return redirect(
-      `${APP_BP}/${personalTeam.slug}/workspace/learn/courses/${course.id}/chapters/${course.chapters[0].id}`,
+      `${APP_BP}/${team.slug}/workspace/learn/courses/${course.id}/chapters/${course.chapters[0].id}`,
     );
   }
 };
+
+export default CourseIdPage;
 
 export async function generateMetadata({
   params,
@@ -241,5 +242,3 @@ export async function generateMetadata({
 
   return metadata;
 }
-
-export default CourseIdPage;

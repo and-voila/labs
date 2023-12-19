@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
@@ -8,7 +9,6 @@ import { getChapter } from '#/lib/actions/get-chapter';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getTeams } from '#/lib/team/get-teams';
 
 import { Banner } from '#/components/banner';
 import { CourseProgressButton } from '#/components/learn/courses/course-progress-button';
@@ -18,31 +18,30 @@ import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import { Separator } from '#/components/ui/separator';
 
-const ChapterIdPage = async ({
-  params,
-}: {
-  params: { courseId: string; chapterId: string };
-}) => {
-  const { user, teams } = await getTeams();
-  if (!user) {
+interface ChapterIdPageProps {
+  params: { courseId: string; chapterId: string; team_slug: string };
+}
+
+const ChapterIdPage = async ({ params }: ChapterIdPageProps) => {
+  const team = await getTeam(params.team_slug);
+
+  if (!team) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  const personalTeam = teams.find((team) => team.isPersonal);
-
-  if (!personalTeam) {
-    throw new Error('No personal team found');
+  if (!team.isPersonal) {
+    redirect(`${APP_BP}/${team.slug}/oops`);
   }
 
   const { chapter, course, muxData, attachments, nextChapter, userProgress } =
     await getChapter({
-      teamId: personalTeam.id,
+      teamId: team.id,
       chapterId: params.chapterId,
       courseId: params.courseId,
     });
 
   if (!chapter || !course) {
-    return redirect(`${APP_BP}/${personalTeam.slug}/workspace/learn/search`);
+    return redirect(`${APP_BP}/${team.slug}/workspace/learn/search`);
   }
 
   const completeOnEnd = !userProgress?.isCompleted;
@@ -72,9 +71,7 @@ const ChapterIdPage = async ({
           </div>
           <div className="mt-4 flex md:ml-4 md:mt-0">
             <div className="inline-flex items-center">
-              <Link
-                href={`${APP_BP}/${personalTeam?.slug}/workspace/learn/search`}
-              >
+              <Link href={`${APP_BP}/${team?.slug}/workspace/learn/search`}>
                 <Button variant="secondary">
                   <Icons.signOut className="mr-2 h-4 w-4 text-primary" />
                   Exit
@@ -87,6 +84,7 @@ const ChapterIdPage = async ({
                 courseId={params.courseId}
                 nextChapterId={nextChapter?.id}
                 isCompleted={!!userProgress?.isCompleted}
+                teamSlug={params.team_slug}
               />
             </div>
           </div>

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
@@ -8,7 +9,6 @@ import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getTeamSubscriptionPlan } from '#/lib/subscription';
-import { getTeams } from '#/lib/team/get-teams';
 
 import { DashboardShell } from '#/components/dashboard/shell';
 import { CoursesList } from '#/components/learn/courses/courses-list';
@@ -21,19 +21,23 @@ interface PlaybooksSearchPageProps {
     title: string;
     categoryId: string;
   };
+  params: {
+    team_slug: string;
+  };
 }
 
 const PlaybooksSearchPage = async ({
   searchParams,
+  params: { team_slug },
 }: PlaybooksSearchPageProps) => {
-  const { user, teams } = await getTeams();
-  if (!user) {
+  const team = await getTeam(team_slug);
+
+  if (!team) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  const personalTeam = teams.find((team) => team.isPersonal);
-  if (!personalTeam) {
-    throw new Error('No personal team found');
+  if (!team.isPersonal) {
+    redirect(`${APP_BP}/${team.slug}/oops`);
   }
 
   const categories = await db.category.findMany({
@@ -46,7 +50,7 @@ const PlaybooksSearchPage = async ({
     },
   });
 
-  const userSubscriptionPlan = await getTeamSubscriptionPlan(personalTeam.id);
+  const userSubscriptionPlan = await getTeamSubscriptionPlan(team.id);
   const isPaidMember = userSubscriptionPlan.isPaid;
 
   const page = parseInt(searchParams.page as string) || 1;
@@ -54,7 +58,7 @@ const PlaybooksSearchPage = async ({
   const skip = (page - 1) * take;
 
   const { courses, count } = await getCourses({
-    teamId: personalTeam.id,
+    teamId: team.id,
     ...searchParams,
     isPaidMember,
     skip,
@@ -74,7 +78,7 @@ const PlaybooksSearchPage = async ({
           currentPage={page}
           totalPages={totalPages}
           hasNextPage={hasNextPage}
-          teamSlug={personalTeam.slug}
+          teamSlug={team.slug}
         />
       </div>
     </DashboardShell>

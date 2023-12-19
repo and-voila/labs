@@ -1,10 +1,9 @@
 import { redirect } from 'next/navigation';
+import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { playbooksConfig } from '#/config/playbooks';
 
-import { authOptions } from '#/lib/auth';
 import { APP_BP } from '#/lib/const';
-import { getTeams } from '#/lib/team/get-teams';
 
 import { DashboardNav } from '#/components/layout/nav';
 import { toast } from '#/components/ui/use-toast';
@@ -20,12 +19,7 @@ export default async function PlaybooksLayout({
   children,
   params,
 }: PlaybooksLayoutProps) {
-  const { user, teams } = await getTeams();
-  const team = teams.find((team) => team.slug === params.team_slug);
-
-  if (!user) {
-    redirect(authOptions?.pages?.signIn || '/login');
-  }
+  const team = await getTeam(params.team_slug);
 
   if (!team?.isPersonal) {
     toast({
