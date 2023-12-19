@@ -190,6 +190,7 @@ interface SubscriptionPlan {
   };
   rateLimit: number;
   models: string[];
+  featured?: bollean;
 }
 
 export type TeamSubscriptionPlan = SubscriptionPlan & {
