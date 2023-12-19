@@ -51,6 +51,7 @@ model Team {
   sites            Site[]
   posts            Post[]
   userProgresses   UserProgress[]
+  teamApiLimit     TeamApiLimit?
 
   @@index([name, slug])
   @@index([slug])
@@ -129,13 +130,12 @@ model User {
   discordAvatar       String?
   discordServerMember Boolean? @default(false)
 
-  teams        Membership[]
-  accounts     Account[]
-  sessions     Session[]
-  sites        Site[]
-  posts        Post[]
-  userApiLimit UserApiLimit?
-  invitations  TeamInvitation[]
+  teams       Membership[]
+  accounts    Account[]
+  sessions    Session[]
+  sites       Site[]
+  posts       Post[]
+  invitations TeamInvitation[]
 
   @@index([email])
   @@index([displayName])
@@ -384,17 +384,17 @@ model UserProgress {
   @@map(name: "user_progress")
 }
 
-model UserApiLimit {
+model TeamApiLimit {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  userId String @unique
+  teamId String @unique
   count  Int    @default(0)
 
-  user User @relation(fields: [userId], references: [id])
+  team Team @relation(fields: [teamId], references: [id])
 
-  @@map(name: "user_api_limits")
+  @@map(name: "team_api_limits")
 }
 
 enum SubscriptionStatus {

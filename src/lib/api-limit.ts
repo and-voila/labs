@@ -1,71 +1,78 @@
 import { MAX_FREE_TOKENS } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
 
-export const increaseApiLimit = async () => {
-  const session = await getSession();
+import { getTeam } from './team/get-current-team';
 
-  if (!session?.user?.id) {
+interface ApiLimitProps {
+  params: {
+    team_slug: string;
+  };
+}
+
+export const increaseApiLimit = async (props: ApiLimitProps) => {
+  const team = await getTeam(props.params.team_slug);
+
+  if (!team) {
     return;
   }
 
-  const userApiLimit = await db.userApiLimit.findUnique({
+  const teamApiLimit = await db.teamApiLimit.findUnique({
     where: {
-      userId: session.user.id,
+      teamId: team.id,
     },
   });
 
-  if (userApiLimit) {
-    await db.userApiLimit.update({
-      where: { userId: session.user.id },
-      data: { count: userApiLimit.count + 1 },
+  if (teamApiLimit) {
+    await db.teamApiLimit.update({
+      where: { teamId: team.id },
+      data: { count: teamApiLimit.count + 1 },
     });
   } else {
-    await db.userApiLimit.create({
+    await db.teamApiLimit.create({
       data: {
-        userId: session.user.id,
+        teamId: team.id,
         count: 1,
       },
     });
   }
 };
 
-export const checkApiLimit = async () => {
-  const session = await getSession();
+export const checkApiLimit = async (props: ApiLimitProps) => {
+  const team = await getTeam(props.params.team_slug);
 
-  if (!session?.user?.id) {
+  if (!team) {
     return false;
   }
 
-  const userApiLimit = await db.userApiLimit.findUnique({
+  const teamApiLimit = await db.teamApiLimit.findUnique({
     where: {
-      userId: session.user.id,
+      teamId: team.id,
     },
   });
 
-  if (!userApiLimit || userApiLimit.count < MAX_FREE_TOKENS) {
+  if (!teamApiLimit || teamApiLimit.count < MAX_FREE_TOKENS) {
     return true;
   } else {
     return false;
   }
 };
 
-export const getApiLimitCount = async () => {
-  const session = await getSession();
+export const getApiLimitCount = async (props: ApiLimitProps) => {
+  const team = await getTeam(props.params.team_slug);
 
-  if (!session?.user?.id) {
+  if (!team) {
     return 0;
   }
 
-  const userApiLimit = await db.userApiLimit.findUnique({
+  const teamApiLimit = await db.teamApiLimit.findUnique({
     where: {
-      userId: session.user.id,
+      teamId: team.id,
     },
   });
 
-  if (!userApiLimit) {
+  if (!teamApiLimit) {
     return 0;
   }
 
-  return userApiLimit.count;
+  return teamApiLimit.count;
 };

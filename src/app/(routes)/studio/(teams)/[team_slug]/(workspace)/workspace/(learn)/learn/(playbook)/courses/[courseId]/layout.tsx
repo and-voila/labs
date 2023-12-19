@@ -2,7 +2,6 @@ import { redirect } from 'next/navigation';
 import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { getProgress } from '#/lib/actions/get-progress';
-import { getApiLimitCount } from '#/lib/api-limit';
 import { authOptions } from '#/lib/auth';
 import { APP_BP } from '#/lib/const';
 import { db } from '#/lib/db';
@@ -16,7 +15,6 @@ interface PlaybookLayoutProps {
 }
 
 const PlaybookLayout = async ({ children, params }: PlaybookLayoutProps) => {
-  const apiLimitCount = await getApiLimitCount();
   const team = await getTeam(params.team_slug);
 
   if (!team) {
@@ -66,7 +64,6 @@ const PlaybookLayout = async ({ children, params }: PlaybookLayoutProps) => {
           course={course}
           progressCount={progressCount}
           isPaidMember={isPaidMember}
-          apiLimitCount={apiLimitCount}
           teamSlug={params.team_slug}
         />
       </aside>

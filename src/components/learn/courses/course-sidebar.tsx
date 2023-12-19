@@ -1,13 +1,11 @@
 import { ChapterType, CourseSidebarProps } from '#/lib/types';
 
-import { FreeCounter } from '#/components/free-counter';
 import { CourseProgress } from '#/components/learn/courses/course-progress';
 import { CourseSidebarItem } from '#/components/learn/courses/course-sidebar-item';
 
 export const CourseSidebar = async ({
   course,
   progressCount,
-  apiLimitCount,
   isPaidMember = false,
   teamSlug,
 }: CourseSidebarProps) => {
@@ -46,13 +44,6 @@ export const CourseSidebar = async ({
             teamSlug={teamSlug}
           />
         ))}
-        <div className="h-36" />
-        <div className="absolute bottom-6">
-          <FreeCounter
-            isPaidMember={isPaidMember}
-            apiLimitCount={apiLimitCount}
-          />
-        </div>
       </div>
     </div>
   );

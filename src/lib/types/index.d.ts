@@ -86,7 +86,7 @@ export interface CourseSidebarProps {
     })[];
   };
   progressCount: number;
-  apiLimitCount: number;
+  apiLimitCount?: number;
   isPaidMember: boolean;
   teamSlug: string;
 }
