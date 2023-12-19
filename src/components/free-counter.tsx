@@ -9,7 +9,7 @@ import { buttonVariants } from '#/components/ui/button';
 import { Card, CardContent } from '#/components/ui/card';
 
 interface FreeCounterProps {
-  apiLimitCount: number;
+  apiLimitCount?: number;
   isPaidMember: boolean;
   userId: string;
 }

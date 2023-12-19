@@ -14,6 +14,8 @@ interface StartCourseButtonProps {
   courseId: string;
   isStarted?: boolean;
   firstChapterId: string;
+  teamId: string;
+  teamSlug: string;
 }
 
 export const StartCourseButton = ({
@@ -21,6 +23,8 @@ export const StartCourseButton = ({
   courseId,
   isStarted,
   firstChapterId,
+  teamId,
+  teamSlug,
 }: StartCourseButtonProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -33,12 +37,13 @@ export const StartCourseButton = ({
         `/api/courses/${courseId}/chapters/${chapterId}/started`,
         {
           isStarted: true,
+          teamId: teamId,
         },
       );
 
       if (!isStarted) {
         router.push(
-          `${APP_BP}/workspace/learn/courses/${courseId}/chapters/${firstChapterId}`,
+          `${APP_BP}/${teamSlug}/workspace/learn/courses/${courseId}/chapters/${firstChapterId}`,
         );
       }
 

@@ -1,27 +1,14 @@
-import { redirect } from 'next/navigation';
-
-import { authOptions } from '#/lib/auth';
-import { getSession } from '#/lib/session';
 import { ChapterType, CourseSidebarProps } from '#/lib/types';
 
-import { FreeCounter } from '#/components/free-counter';
 import { CourseProgress } from '#/components/learn/courses/course-progress';
 import { CourseSidebarItem } from '#/components/learn/courses/course-sidebar-item';
 
 export const CourseSidebar = async ({
   course,
   progressCount,
-  apiLimitCount,
   isPaidMember = false,
+  teamSlug,
 }: CourseSidebarProps) => {
-  const session = await getSession();
-
-  if (!session) {
-    redirect(authOptions?.pages?.signIn || '/login');
-  }
-
-  const userId = session.user.id;
-
   const isComplete = progressCount === 100;
 
   return (
@@ -54,16 +41,9 @@ export const CourseSidebar = async ({
             isCompleted={!!chapter.userProgress?.[0]?.isCompleted}
             courseId={course.id}
             isLocked={course.price !== 0 && !isPaidMember}
+            teamSlug={teamSlug}
           />
         ))}
-        <div className="h-36" />
-        <div className="absolute bottom-6">
-          <FreeCounter
-            isPaidMember={isPaidMember}
-            apiLimitCount={apiLimitCount}
-            userId={userId}
-          />
-        </div>
       </div>
     </div>
   );

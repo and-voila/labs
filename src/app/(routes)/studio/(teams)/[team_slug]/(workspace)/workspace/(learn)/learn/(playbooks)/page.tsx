@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
 import { getDashboardCourses } from '#/lib/actions/get-dashboard-courses';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
-import { getTeams } from '#/lib/team/get-teams';
 
 import { DashboardShell } from '#/components/dashboard/shell';
 import { CoursesList } from '#/components/learn/courses/courses-list';
@@ -16,19 +16,23 @@ interface MyPlaybooksPageProps {
   searchParams: {
     page?: string;
   };
+  params: {
+    team_slug: string;
+  };
 }
 
 export default async function MyPlaybooksPage({
   searchParams,
+  params: { team_slug },
 }: MyPlaybooksPageProps) {
-  const { user, teams } = await getTeams();
-  if (!user) {
+  const team = await getTeam(team_slug);
+
+  if (!team) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  const personalTeam = teams.find((team) => team.isPersonal);
-  if (!personalTeam) {
-    throw new Error('No personal team found');
+  if (!team.isPersonal) {
+    redirect(`${APP_BP}/${team.slug}/oops`);
   }
 
   const page = parseInt(searchParams.page as string) || 1;
@@ -42,7 +46,7 @@ export default async function MyPlaybooksPage({
     totalCompletedCourses,
     totalCoursesInProgress,
   } = await getDashboardCourses({
-    teamId: personalTeam.id,
+    teamId: team.id,
     skip,
     take,
   });
@@ -71,7 +75,7 @@ export default async function MyPlaybooksPage({
           currentPage={page}
           totalPages={totalPages}
           hasNextPage={hasNextPage}
-          teamSlug={personalTeam.slug}
+          teamSlug={team.slug}
         />
       </div>
     </DashboardShell>

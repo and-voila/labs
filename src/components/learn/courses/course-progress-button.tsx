@@ -17,6 +17,7 @@ interface CourseProgressButtonProps {
   courseId: string;
   isCompleted?: boolean;
   nextChapterId?: string;
+  teamSlug: string;
 }
 
 export const CourseProgressButton = ({
@@ -24,6 +25,7 @@ export const CourseProgressButton = ({
   courseId,
   isCompleted,
   nextChapterId,
+  teamSlug,
 }: CourseProgressButtonProps) => {
   const router = useRouter();
   const confetti = useConfettiStore();
@@ -46,7 +48,7 @@ export const CourseProgressButton = ({
 
       if (!isCompleted && nextChapterId) {
         router.push(
-          `${APP_BP}/workspace/learn/courses/${courseId}/chapters/${nextChapterId}`,
+          `${APP_BP}/${teamSlug}/workspace/learn/courses/${courseId}/chapters/${nextChapterId}`,
         );
       }
 

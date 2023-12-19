@@ -76,6 +76,7 @@ export interface CourseSidebarItemProps {
   isCompleted: boolean;
   courseId: string;
   isLocked: boolean;
+  teamSlug: string;
 }
 
 export interface CourseSidebarProps {
@@ -85,8 +86,9 @@ export interface CourseSidebarProps {
     })[];
   };
   progressCount: number;
-  apiLimitCount: number;
+  apiLimitCount?: number;
   isPaidMember: boolean;
+  teamSlug: string;
 }
 
 export interface CourseMobileSidebarProps {
