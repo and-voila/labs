@@ -60,7 +60,9 @@ export function BillingFormButton({
               {subscriptionPlan.stripePriceId ===
               offer.stripeIds[year ? 'yearly' : 'monthly']
                 ? 'Manage Subscription'
-                : 'Upgrade'}
+                : subscriptionPlan.stripePriceId
+                  ? 'Switch Plan'
+                  : 'Upgrade'}
             </>
           )}
         </Button>
