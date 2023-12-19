@@ -13,12 +13,12 @@ export async function PUT(
     if (!session) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
-    const { isStarted } = await req.json();
+    const { isStarted, teamId } = await req.json();
 
     const userProgress = await db.userProgress.upsert({
       where: {
-        userId_chapterId: {
-          userId: session.user.id,
+        teamId_chapterId: {
+          teamId: teamId,
           chapterId: params.chapterId,
         },
       },
@@ -26,7 +26,7 @@ export async function PUT(
         isStarted,
       },
       create: {
-        userId: session.user.id,
+        teamId: teamId,
         chapterId: params.chapterId,
         isStarted,
       },

@@ -159,6 +159,8 @@ const CourseIdPage = async ({ params }: CourseIdPageProps) => {
                     courseId={course.id}
                     isStarted={isStarted}
                     firstChapterId={course.chapters[0].id}
+                    teamId={team.id}
+                    teamSlug={team.slug}
                   />
                 </div>
               </div>
