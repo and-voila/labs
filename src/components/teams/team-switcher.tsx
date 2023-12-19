@@ -1,7 +1,7 @@
 'use client';
 
 import React, { startTransition, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Team } from '@prisma/client';
 
 import { APP_BP } from '#/lib/const';
@@ -53,33 +53,19 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
 
   const router = useRouter();
   const [isOpen, setOpen] = React.useState(false);
-  const [personalTeam, setPersonalTeam] = React.useState<Team | undefined>();
 
   const activeTeam = useMemo(() => {
     return teams?.find((team) => team.slug === activeTeamSlug);
   }, [teams, activeTeamSlug]);
 
+  const personalTeam = teams?.find((team) => team.isPersonal);
+
+  const currentPath = usePathname().split('/').slice(4).join('/');
+
   const onTeamSelect = (team: Team) => {
     startTransition(() => {
       setOpen(false);
-      router.push(`${APP_BP}/${team.slug}/workspace/home`);
-    });
-  };
-
-  React.useEffect(() => {
-    if (teams) {
-      const personal = teams.find((team) => team.isPersonal);
-      setPersonalTeam(personal);
-    }
-  }, [teams]);
-
-  const handlePersonalSelect = () => {
-    startTransition(() => {
-      if (personalTeam) {
-        router.push(`${APP_BP}/${personalTeam.slug}/workspace/home`);
-      } else {
-        router.push(`${APP_BP}/my/workspaces`);
-      }
+      router.replace(`${APP_BP}/${team.slug}/workspace/${currentPath}`);
     });
   };
 
@@ -126,7 +112,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                 <CommandItem
                   key="personal"
                   className="cursor-pointer text-sm"
-                  onSelect={handlePersonalSelect}
+                  onSelect={() => personalTeam && onTeamSelect(personalTeam)}
                 >
                   <Avatar className="mr-2 h-5 w-5">
                     <AvatarImage

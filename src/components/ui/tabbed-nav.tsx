@@ -21,7 +21,7 @@ export const TabbedNav: React.FC<{
     <div className="overflow-auto border-b">
       <nav
         className={cn(
-          'inline-flex items-center justify-center gap-6 text-muted-foreground md:gap-8',
+          'inline-flex flex-wrap items-center justify-center gap-6 text-muted-foreground md:gap-8',
         )}
       >
         {links.map((link) => (
