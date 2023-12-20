@@ -10,7 +10,7 @@ import { getTeamMembers } from '#/lib/operations/teams/get-team-members';
 import { hasTeamAuthority } from '#/lib/operations/teams/team-authority';
 import { getSession } from '#/lib/operations/user/session';
 
-import { SubPageHeader } from '#/components/dashboard/subpage-header';
+import { DashboardHeader } from '#/components/dashboard/header';
 import { MemberList } from '#/components/teams/member-list';
 import { MembershipActions } from '#/components/teams/member-list-actions';
 import { Separator } from '#/components/ui/separator';
@@ -40,7 +40,7 @@ const MembersPage: React.FC<Props> = async ({ params }) => {
 
   return (
     <div className="flex flex-col gap-8">
-      <SubPageHeader
+      <DashboardHeader
         title="Team members"
         description="Roll call! Bring in your squad, assign roles, and manage your team. Multiplayer's always better with friends."
       >
@@ -52,7 +52,7 @@ const MembersPage: React.FC<Props> = async ({ params }) => {
               ?.role ?? MembershipRole.MEMBER
           }
         />
-      </SubPageHeader>
+      </DashboardHeader>
       <Separator />
       <MemberList
         currentUserId={session.user.id}

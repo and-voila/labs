@@ -23,8 +23,8 @@ const CoursesPage = async () => {
   return (
     <DashboardShell>
       <DashboardHeader
-        heading="Playbooks admin"
-        text="The place to make digital marketing awesome again."
+        title="Playbooks admin"
+        description="The place to make digital marketing awesome again."
       />
       <TeacherCourseListDataTable
         columns={teacherCourseListColumns}

@@ -18,7 +18,7 @@ export const TabbedNav: React.FC<{
   const pathname = usePathname();
 
   return (
-    <div className="overflow-auto border-b">
+    <div className="mt-8 overflow-auto border-b border-border md:mt-12">
       <nav
         className={cn(
           'inline-flex flex-wrap items-center justify-center gap-6 text-muted-foreground md:gap-8',

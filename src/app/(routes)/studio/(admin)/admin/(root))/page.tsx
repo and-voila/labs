@@ -63,8 +63,8 @@ export default async function AdminPage() {
   return (
     <DashboardShell>
       <DashboardHeader
-        heading="Admin center"
-        text="This is the future home of our super duper admin dashboard."
+        title="Admin center"
+        description="This is the future home of our super duper admin dashboard."
       />
       <div className="grid gap-2 sm:grid-cols-1 lg:grid-cols-2">
         {adminItems.map((item, index) => (

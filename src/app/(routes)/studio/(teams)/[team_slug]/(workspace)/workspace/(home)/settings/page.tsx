@@ -24,8 +24,8 @@ const SettingsPage: NextPage<Props> = async ({ params }) => {
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        heading="Workspace settings"
-        text="Right now, it's all about the name game. Change your team's name to something epic. More cool settings coming soon, promise."
+        title="Workspace settings"
+        description="Right now, it's all about the name game. Change your team's name to something epic. More cool settings coming soon, promise."
       />
 
       <div className="grid max-w-3xl gap-10">

@@ -1,54 +1,54 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
-import { MembershipRole } from '@prisma/client';
+import { notFound } from 'next/navigation';
+import DeletePostForm from ':/src/components/publish/form/delete-post-form';
 
-import { siteConfig } from '#/config/site';
-
-import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getSession } from '#/lib/operations/user/session';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { DeleteAccountForm } from '#/components/forms/delete-account-form';
 
-export default async function PersonalAdvancedSettingsPage() {
-  const session = await getSession();
-  if (!session) {
-    redirect(authOptions?.pages?.signIn || '/login');
-  }
-
-  const teams = await db.team.findMany({
+export default async function SiteIdAdvanced({
+  params,
+}: {
+  params: { id: string; team_slug: string };
+}) {
+  const post = await db.post.findUnique({
     where: {
-      members: {
-        some: {
-          role: MembershipRole.OWNER,
-        },
-      },
+      id: decodeURIComponent(params.id),
+    },
+    cacheStrategy: {
+      ttl: 20,
+      swr: 10,
     },
   });
+
+  if (!post) {
+    notFound();
+  }
 
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
         title="Danger zone"
-        description="The point of no return. Delete your account here and say goodbye. We'll definitely miss you, so be careful."
+        description="Welcome to the Oops, didn't mean to write that zone. Here lies the delete button, your ticket to a clean slate or a let's pretend that never happened, moment."
       />
       <div className="grid max-w-3xl gap-10">
-        <DeleteAccountForm teams={teams} />
+        <DeletePostForm postName={post?.title!} teamSlug={params.team_slug} />
       </div>
     </div>
   );
 }
 
 export function generateMetadata(): Metadata {
-  const title = 'Delete Personal Account';
-  const description = `Safely delete your personal account on ${siteConfig.name}. Manage your data and privacy with full control.`;
+  const title = 'Delete my Post';
+  const description =
+    'Experience convenience and control while creating content. Easily delete posts and maintain a clean, organized content space.';
 
   const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
 
-  const pageUrl = `${SITE_URL}${APP_BP}/my/advanced`;
+  const pageUrl = `${SITE_URL}${APP_BP}/workspace/publish/sites`;
 
   const metadata = {
     title,

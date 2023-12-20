@@ -54,8 +54,8 @@ export default async function SupportPage() {
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        heading="Support"
-        text="Need help with something? Quick question? No problem, we're here to help and look forward to hearing from you."
+        title="Support"
+        description="Need help with something? Quick question? No problem, we're here to help and look forward to hearing from you."
       />
       <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
         {supportItems.map((item, index) => (

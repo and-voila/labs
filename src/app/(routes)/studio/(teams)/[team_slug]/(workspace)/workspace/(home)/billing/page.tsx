@@ -27,8 +27,8 @@ const WorkspaceBillingPage: NextPage<Props> = async ({ params }) => {
   return (
     <div className="flex flex-col gap-12">
       <DashboardHeader
-        heading="Team workspace billing"
-        text="Manage your team's subscriptions with ease. Upgrade, downgrade, or cancel at anytime. Secure as it gets thanks to our friends at Stripe."
+        title="Team workspace billing"
+        description="Manage your team's subscriptions with ease. Upgrade, downgrade, or cancel at anytime. Secure as it gets thanks to our friends at Stripe."
       />
       <PricingCards
         teamId={team.id}

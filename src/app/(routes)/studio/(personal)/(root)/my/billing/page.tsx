@@ -43,8 +43,8 @@ export default async function PersonalBillingPage() {
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        heading="Billing overview"
-        text="See your subscriptions at a glance. Don't sweat it though, we won't bill you for inactive users. Head over to the workspace to manage billing."
+        title="Billing overview"
+        description="See your subscriptions at a glance. Don't sweat it though, we won't bill you for inactive users. Head over to the workspace to manage billing."
       />
 
       <div className="grid max-w-5xl gap-8">

@@ -8,7 +8,7 @@ import { createPost } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
-import LoadingDots from '#/components/publish/icons/loading-dots';
+import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
 
 export default function CreatePostButton() {
@@ -30,12 +30,24 @@ export default function CreatePostButton() {
           );
         })
       }
-      className={cn(buttonVariants({ size: 'sm' }), {
-        'cursor-not-allowed opacity-50': isPending,
-      })}
+      className={cn(
+        buttonVariants({ size: 'lg' }),
+        'mt-6 w-full md:mt-0 md:w-auto',
+        {
+          'cursor-not-allowed opacity-50': isPending,
+        },
+      )}
       disabled={isPending}
     >
-      {isPending ? <LoadingDots color="#808080" /> : <p>New post</p>}
+      {isPending ? (
+        <>
+          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> Just a sec
+        </>
+      ) : (
+        <>
+          <Icons.plusCircled className="mr-2 h-4 w-4" /> New post
+        </>
+      )}
     </button>
   );
 }

@@ -15,7 +15,7 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
   const url = `${data.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${data.slug}`;
 
   return (
-    <div className="relative rounded-lg border border-border bg-card pb-10 shadow-md transition-all hover:shadow-xl">
+    <div className="group relative rounded-lg border border-border bg-card pb-10">
       <Link
         href={`${APP_BP}/${teamSlug}/workspace/publish/post/${data.id}`}
         className="flex flex-col overflow-hidden rounded-lg"
@@ -25,7 +25,7 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
             alt={data.title ?? 'Card thumbnail'}
             width={500}
             height={400}
-            className="h-44 object-cover grayscale hover:grayscale-0"
+            className="h-44 object-cover grayscale group-hover:grayscale-0"
             src={data.image ?? '/post-placeholder.jpg'}
             placeholder="blur"
             blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
@@ -37,7 +37,9 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
           )}
         </div>
         <div className="border-t p-4">
-          <h3 className="my-0 truncate text-lg font-semibold">{data.title}</h3>
+          <h3 className="my-0 text-lg font-semibold group-hover:text-primary">
+            {data.title}
+          </h3>
           <p className="mt-2 line-clamp-1 text-sm leading-snug text-muted-foreground">
             {data.description}
           </p>
@@ -52,9 +54,9 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
           }
           target="_blank"
           rel="noreferrer"
-          className="truncate rounded-md bg-muted-foreground/20 px-2 py-1 font-mono text-xs text-foreground transition-colors hover:opacity-70"
+          className="truncate rounded-md bg-muted-foreground/20 px-2 py-1 text-xs text-foreground transition-colors group-hover:opacity-70"
         >
-          {url}
+          <span>{url}</span>
         </a>
       </div>
     </div>

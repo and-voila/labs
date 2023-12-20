@@ -77,12 +77,12 @@ const TeamWorkspaceIndex: NextPage<Props> = async (props) => {
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        heading={
+        title={
           isPersonalTeam
             ? 'Your personal workspace'
             : `Team ${teamName}'s workspace`
         }
-        text={
+        description={
           isPersonalTeam
             ? 'Your own creative nook. Ideal for solo pursuits. Got an eye on a collab? Create a team workspace for multiplayer mode.'
             : `Welcome to ${teamName}'s domain. Drive even better results with multiplayer mode. Collaboration meets innovation in real time.`

@@ -29,8 +29,8 @@ const TeamDangerZonePage: NextPage<Props> = async ({ params }) => {
       {team.isPersonal ? (
         <>
           <DashboardHeader
-            heading="Danger zone"
-            text="Ready to say goodbye? Your personal workspace can't be removed. To delete your account, head over to Account Settings."
+            title="Danger zone"
+            description="Ready to say goodbye? Your personal workspace can't be removed. To delete your account, head over to Account Settings."
           />
           <Alert className="max-w-xl border-2 border-dotted border-primary/80 !pl-14">
             <Icons.warning className="fill-warning" />
@@ -49,8 +49,8 @@ const TeamDangerZonePage: NextPage<Props> = async ({ params }) => {
       ) : (
         <>
           <DashboardHeader
-            heading="Danger zone"
-            text="The point of no return. Delete your team and its workspace here. We'll definitely miss you all, so be careful."
+            title="Danger zone"
+            description="The point of no return. Delete your team and its workspace here. We'll definitely miss you all, so be careful."
           />
           <div className="grid max-w-3xl gap-10">
             <DeleteForm teamSlug={params.team_slug} />
