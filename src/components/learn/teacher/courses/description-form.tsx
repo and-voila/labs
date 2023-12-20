@@ -10,8 +10,8 @@ import * as z from 'zod';
 
 import { cn } from '#/lib/utils';
 
-import { Preview } from '#/components/preview';
-import { QuillEditor } from '#/components/quill-editor';
+import { QuillEditor } from '#/components/learn/teacher/courses/quill-editor';
+import { QuillPreview } from '#/components/learn/teacher/courses/quill-preview';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import {
@@ -106,7 +106,7 @@ export const DescriptionForm = ({
         >
           {!initialData.description && 'No description set'}
           {initialData.description && (
-            <Preview value={initialData.description} />
+            <QuillPreview value={initialData.description} />
           )}
         </div>
       )}

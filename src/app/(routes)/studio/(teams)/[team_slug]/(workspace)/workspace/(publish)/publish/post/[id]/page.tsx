@@ -4,11 +4,11 @@ import { notFound, redirect } from 'next/navigation';
 
 import { siteConfig } from '#/config/site';
 
-import { updatePostMetadata } from '#/lib/actions';
+import { updatePostMetadata } from '#/lib/actions/publish/publish-actions';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getTeam } from '#/lib/team/get-current-team';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DashboardShell } from '#/components/dashboard/shell';

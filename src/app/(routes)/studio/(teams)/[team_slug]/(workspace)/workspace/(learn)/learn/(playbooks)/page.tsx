@@ -1,15 +1,15 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
-import { getDashboardCourses } from '#/lib/actions/get-dashboard-courses';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
+import { getDashboardCourses } from '#/lib/operations/learn/get-dashboard-courses';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardShell } from '#/components/dashboard/shell';
-import { CoursesList } from '#/components/learn/courses/courses-list';
+import { CoursesList } from '#/components/learn/dashboard/courses-list';
 import { InfoCard } from '#/components/learn/dashboard/info-card';
 
 interface MyPlaybooksPageProps {

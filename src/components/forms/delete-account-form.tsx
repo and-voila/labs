@@ -7,7 +7,7 @@ import { Team } from '@prisma/client';
 
 import { siteConfig } from '#/config/site';
 
-import { deletePersonalAccount } from '#/lib/actions/update-user';
+import { deletePersonalAccount } from '#/lib/actions/user/update-user';
 import { APP_BP } from '#/lib/const';
 
 import {

@@ -6,7 +6,7 @@ import { siteConfig } from '#/config/site';
 
 import { SITE_URL } from '#/lib/const';
 
-import { BlogPosts } from '#/components/blog-posts';
+import { BlogPosts } from '#/components/content/blog-posts';
 
 export default async function BlogPage() {
   const posts = allPosts

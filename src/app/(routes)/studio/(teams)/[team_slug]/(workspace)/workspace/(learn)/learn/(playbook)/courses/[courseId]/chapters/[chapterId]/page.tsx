@@ -1,19 +1,19 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
-import { getChapter } from '#/lib/actions/get-chapter';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
+import { getChapter } from '#/lib/operations/learn/get-chapter';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
-import { Banner } from '#/components/banner';
-import { CourseProgressButton } from '#/components/learn/courses/course-progress-button';
-import { VideoPlayer } from '#/components/learn/courses/video-player';
-import { Preview } from '#/components/preview';
+import { Banner } from '#/components/learn/dashboard/banner';
+import { CourseProgressButton } from '#/components/learn/dashboard/course-progress-button';
+import { VideoPlayer } from '#/components/learn/dashboard/video-player';
+import { QuillPreview } from '#/components/learn/teacher/courses/quill-preview';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import { Separator } from '#/components/ui/separator';
@@ -91,7 +91,7 @@ const ChapterIdPage = async ({ params }: ChapterIdPageProps) => {
         </div>
         <Separator className="my-4" />
         <div>
-          <Preview value={chapter.description!} />
+          <QuillPreview value={chapter.description!} />
         </div>
         {!!attachments.length && (
           <>

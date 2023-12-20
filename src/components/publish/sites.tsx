@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 
 import { authOptions } from '#/lib/auth';
 import { db } from '#/lib/db';
-import { getTeam } from '#/lib/team/get-current-team';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import SiteCard from '#/components/publish/site-card';
 import { EmptyPlaceholder } from '#/components/shared/empty-placeholder';

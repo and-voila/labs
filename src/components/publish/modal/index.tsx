@@ -10,9 +10,9 @@ import {
 import FocusTrap from 'focus-trap-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import useWindowSize from '#/lib/hooks/use-window-size';
-
 import Leaflet from '#/components/publish/modal/leaflet';
+
+import useWindowSize from '#/hooks/use-window-size';
 
 export default function Modal({
   children,

@@ -1,7 +1,7 @@
 import { useTransition } from 'react';
 import Link from 'next/link';
 
-import { generateUserStripe } from '#/lib/actions/generate-user-stripe';
+import { generateUserStripe } from '#/lib/actions/stripe/generate-user-stripe';
 import { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
 
 import { Icons } from '#/components/shared/icons';

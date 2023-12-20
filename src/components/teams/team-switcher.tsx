@@ -7,6 +7,7 @@ import { Team } from '@prisma/client';
 import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
+import { NewTeamForm } from '#/components/forms/new-team-form';
 import { Icons } from '#/components/shared/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '#/components/ui/avatar';
 import { Button } from '#/components/ui/button';
@@ -32,8 +33,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '#/components/ui/popover';
-
-import { NewTeamForm } from '#/app/(routes)/studio/(personal)/(root)/my/workspaces/new/new-team-form';
 
 export interface TeamSwitcherProps {
   activeTeamSlug?: string;

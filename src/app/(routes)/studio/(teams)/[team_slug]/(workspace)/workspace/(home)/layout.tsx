@@ -1,9 +1,8 @@
-import { getTeam } from ':/src/lib/team/get-current-team';
-
 import { APP_BP } from '#/lib/const';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardShell } from '#/components/dashboard/shell';
-import { TabbedNav } from '#/components/ui/tabbed-nav';
+import { TabbedNav } from '#/components/layout/tabbed-nav';
 
 interface SettingsLayoutProps {
   children: React.ReactNode;

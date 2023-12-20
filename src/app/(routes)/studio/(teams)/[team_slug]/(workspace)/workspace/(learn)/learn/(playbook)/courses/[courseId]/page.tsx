@@ -1,20 +1,20 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getTeamSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/operations/subsctiptions/subscription';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 import { cn, placeholderBlurhash } from '#/lib/utils';
 
-import { Banner } from '#/components/banner';
 import { DashboardShell } from '#/components/dashboard/shell';
-import { StartCourseButton } from '#/components/learn/courses/start-course-button';
-import { Preview } from '#/components/preview';
+import { Banner } from '#/components/learn/dashboard/banner';
+import { StartCourseButton } from '#/components/learn/dashboard/start-course-button';
+import { QuillPreview } from '#/components/learn/teacher/courses/quill-preview';
 import BlurImage from '#/components/publish/blur-image';
 import { Icons } from '#/components/shared/icons';
 import { Button, buttonVariants } from '#/components/ui/button';
@@ -116,7 +116,7 @@ const CourseIdPage = async ({ params }: CourseIdPageProps) => {
             </div>
             <Separator />
             <div>
-              <Preview value={course.description!} />
+              <QuillPreview value={course.description!} />
             </div>
           </div>
         </div>
@@ -167,7 +167,7 @@ const CourseIdPage = async ({ params }: CourseIdPageProps) => {
             </div>
             <Separator className="my-6" />
             <div>
-              <Preview value={course.description!} />
+              <QuillPreview value={course.description!} />
             </div>
           </div>
         </div>

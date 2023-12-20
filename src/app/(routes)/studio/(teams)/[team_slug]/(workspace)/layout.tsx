@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 
 import { authOptions } from '#/lib/auth';
-import { getTeams } from '#/lib/team/get-teams';
-import { hasTeamAccess } from '#/lib/team/team-authority';
+import { getTeams } from '#/lib/operations/teams/get-teams';
+import { hasTeamAccess } from '#/lib/operations/teams/team-authority';
 
 import { NavBar } from '#/components/layout/navbar';
 import { SiteFooter } from '#/components/layout/site-footer';

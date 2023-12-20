@@ -7,8 +7,8 @@ import { siteConfig } from '#/config/site';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getSession } from '#/lib/session';
-import { getTeamSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/operations/subsctiptions/subscription';
+import { getSession } from '#/lib/operations/user/session';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { BillingInfo } from '#/components/forms/billing-info';

@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 
-import { updatePostMetadata } from '#/lib/actions';
+import { updatePostMetadata } from '#/lib/actions/publish/publish-actions';
 import { cn } from '#/lib/utils';
 
 import { EditorAction, EditorState } from '#/components/publish/editor/editor';

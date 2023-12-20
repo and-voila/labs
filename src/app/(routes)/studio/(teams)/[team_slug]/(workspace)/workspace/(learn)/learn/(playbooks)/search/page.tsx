@@ -1,19 +1,19 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
-import { getCourses } from '#/lib/actions/get-courses';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getTeamSubscriptionPlan } from '#/lib/subscription';
+import { getCourses } from '#/lib/operations/learn/get-courses';
+import { getTeamSubscriptionPlan } from '#/lib/operations/subsctiptions/subscription';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardShell } from '#/components/dashboard/shell';
-import { CoursesList } from '#/components/learn/courses/courses-list';
 import { Categories } from '#/components/learn/dashboard/categories';
-import { SearchInput } from '#/components/search-input';
+import { CoursesList } from '#/components/learn/dashboard/courses-list';
+import { SearchInput } from '#/components/learn/dashboard/search-input';
 
 interface PlaybooksSearchPageProps {
   searchParams: {

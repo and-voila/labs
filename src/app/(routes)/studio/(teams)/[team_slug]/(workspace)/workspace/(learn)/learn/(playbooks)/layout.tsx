@@ -1,9 +1,9 @@
 import { redirect } from 'next/navigation';
-import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { playbooksConfig } from '#/config/playbooks';
 
 import { APP_BP } from '#/lib/const';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardNav } from '#/components/layout/nav';
 import { toast } from '#/components/ui/use-toast';

@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
 import { authOptions } from '#/lib/auth';
-import { getTeam } from '#/lib/team/get-current-team';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import PublishNav from '#/components/publish/publish-nav';
 

@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 
 import { SITE_URL } from '#/lib/const';
-import { getSession } from '#/lib/session';
-import { getTeamSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/operations/subsctiptions/subscription';
+import { getSession } from '#/lib/operations/user/session';
 
-import { PricingCards } from '#/components/pricing-cards';
-import { PricingFaq } from '#/components/pricing-faq';
+import { PricingCards } from '#/components/marketing/pricing-cards';
+import { PricingFaq } from '#/components/marketing/pricing-faq';
 
 export default async function PricingPage() {
   const session = await getSession();

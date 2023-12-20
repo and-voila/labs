@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation';
 import { allInsights } from 'contentlayer/generated';
 
-import { getTableOfContents } from '#/lib/toc';
+import { getTableOfContents } from '#/lib/helpers/toc';
 
 import { Mdx } from '#/components/content/mdx-components';
+import { DashboardTableOfContents } from '#/components/content/toc';
 import { InsightsPageHeader } from '#/components/insights/page-header';
 import { InsightsPager } from '#/components/insights/pager';
-import { DashboardTableOfContents } from '#/components/shared/toc';
 
 import '#/styles/mdx.css';
 

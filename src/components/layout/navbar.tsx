@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 import { APP_BP } from '#/lib/const';
+import { Team } from '#/lib/operations/teams/get-teams';
 import { isTeacher } from '#/lib/teacher';
-import { Team } from '#/lib/team/get-teams';
 import { MainNavItem } from '#/lib/types';
 import { cn } from '#/lib/utils';
 

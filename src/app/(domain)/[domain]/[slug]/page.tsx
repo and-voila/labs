@@ -1,7 +1,10 @@
 import { notFound } from 'next/navigation';
 
 import { db } from '#/lib/db';
-import { getPostData, getSiteData } from '#/lib/fetchers';
+import {
+  getPostData,
+  getSiteData,
+} from '#/lib/operations/publish/publish-fetchers';
 import { placeholderBlurhash, toDateString } from '#/lib/utils';
 
 import BlogCard from '#/components/publish/blog-card';

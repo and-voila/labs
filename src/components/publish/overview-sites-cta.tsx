@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { APP_BP } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getTeam } from '#/lib/team/get-current-team';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import CreateSiteButton from '#/components/publish/create-site-button';
 import CreateSiteModal from '#/components/publish/modal/create-site';

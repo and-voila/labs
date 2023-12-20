@@ -1,13 +1,13 @@
 import { redirect } from 'next/navigation';
-import { getTeam } from ':/src/lib/team/get-current-team';
 
-import { getProgress } from '#/lib/actions/get-progress';
 import { authOptions } from '#/lib/auth';
 import { APP_BP } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getTeamSubscriptionPlan } from '#/lib/subscription';
+import { getProgress } from '#/lib/operations/learn/get-progress';
+import { getTeamSubscriptionPlan } from '#/lib/operations/subsctiptions/subscription';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
-import { CourseSidebar } from '#/components/learn/courses/course-sidebar';
+import { CourseSidebar } from '#/components/learn/dashboard/course-sidebar';
 
 interface PlaybookLayoutProps {
   children: React.ReactNode;

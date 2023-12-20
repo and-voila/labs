@@ -7,12 +7,11 @@ import GoogleProvider from 'next-auth/providers/google';
 import { env } from ':/env.mjs';
 
 import { db } from '#/lib/db';
-import { generateUniqueDisplayName } from '#/lib/generate-unique-display-name';
+import { createPersonalTeam } from '#/lib/operations/user/create-personal-team';
+import { generateUniqueDisplayName } from '#/lib/operations/user/generate-unique-display-name';
+import { getSession } from '#/lib/operations/user/session';
 import { sendVerificationRequest } from '#/lib/resend/send-verification-request';
 import { sendWelcomeEmail } from '#/lib/resend/send-welcome-email';
-import { getSession } from '#/lib/session';
-
-import { createPersonalTeam } from '#/app/(routes)/studio/(personal)/(root)/my/workspaces/new/actions';
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 

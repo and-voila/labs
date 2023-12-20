@@ -1,14 +1,14 @@
 import { Metadata, NextPage } from 'next';
 import { notFound } from 'next/navigation';
-import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { siteConfig } from '#/config/site';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
-import { getTeamSubscriptionPlan } from '#/lib/subscription';
+import { getTeamSubscriptionPlan } from '#/lib/operations/subsctiptions/subscription';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { PricingCards } from '#/components/pricing-cards';
+import { PricingCards } from '#/components/marketing/pricing-cards';
 
 interface Props {
   params: {

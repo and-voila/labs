@@ -5,9 +5,9 @@ import { redirect } from 'next/navigation';
 import { APP_BP } from '#/lib/const';
 import { db } from '#/lib/db';
 
-import { Banner } from '#/components/banner';
 import { DashboardShell } from '#/components/dashboard/shell';
-import { IconBadge } from '#/components/icon-badge';
+import { Banner } from '#/components/learn/dashboard/banner';
+import { IconBadge } from '#/components/learn/dashboard/icon-badge';
 import { ChapterActions } from '#/components/learn/teacher/chapters/chapter-actions';
 import { ChapterDescriptionForm } from '#/components/learn/teacher/chapters/chapter-description-form';
 import { ChapterTitleForm } from '#/components/learn/teacher/chapters/chapter-title-form';

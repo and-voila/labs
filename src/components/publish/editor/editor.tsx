@@ -4,7 +4,7 @@ import { useEffect, useReducer, useState, useTransition } from 'react';
 import { Post } from '@prisma/client';
 import { Editor as NovelEditor } from 'novel';
 
-import { updatePost } from '#/lib/actions';
+import { updatePost } from '#/lib/actions/publish/publish-actions';
 
 import { EditorHeader } from '#/components/publish/editor/editor-header';
 import PostDescriptionInput from '#/components/publish/editor/post-description-input';

@@ -4,7 +4,7 @@ import {
   getConfigResponse,
   getDomainResponse,
   verifyDomain,
-} from '#/lib/domains';
+} from '#/lib/actions/publish/domains';
 import { DomainVerificationStatusProps } from '#/lib/types';
 
 export async function GET(

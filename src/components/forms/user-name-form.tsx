@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 
 import { siteConfig } from '#/config/site';
 
-import { updateUserName, type FormData } from '#/lib/actions/update-user';
+import { updateUserName, type FormData } from '#/lib/actions/user/update-user';
 import { cn } from '#/lib/utils';
 import { userNameSchema } from '#/lib/validations/user';
 
