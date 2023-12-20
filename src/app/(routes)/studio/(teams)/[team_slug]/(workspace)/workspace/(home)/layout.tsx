@@ -4,22 +4,22 @@ import { getTeam } from '#/lib/operations/teams/get-current-team';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { TabbedNav } from '#/components/layout/tabbed-nav';
 
-interface SettingsLayoutProps {
+interface WorkspaceLayoutProps {
   children: React.ReactNode;
   params: {
     team_slug: string;
   };
 }
 
-export default async function SettingsLayout({
+export default async function WorkspaceLayout({
   children,
   params,
-}: SettingsLayoutProps) {
+}: WorkspaceLayoutProps) {
   const team = await getTeam(params.team_slug);
 
   const links = [
     {
-      href: `${APP_BP}/${params.team_slug}/workspace/home`,
+      href: `${APP_BP}/${params.team_slug}/workspace`,
       label: 'Workspace',
     },
     {

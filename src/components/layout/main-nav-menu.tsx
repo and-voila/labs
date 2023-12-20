@@ -113,7 +113,7 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
   }[] = [
     {
       title: 'Dashboard',
-      href: `${APP_BP}/${activeSlug}/workspace/home`,
+      href: `${APP_BP}/${activeSlug}/workspace`,
       description:
         'Your marketing operations HQ. All your tools and data at a glance.',
     },

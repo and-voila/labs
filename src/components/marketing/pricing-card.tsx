@@ -66,7 +66,7 @@ const PricingCard = ({
         {teamId && teamSlug && subscriptionPlan ? (
           plan.title === 'Good' ? (
             <Link
-              href={`${APP_BP}/${teamSlug}/workspace/home`}
+              href={`${APP_BP}/${teamSlug}/workspace`}
               className={buttonVariants({
                 className: 'w-full',
                 variant: 'secondary',

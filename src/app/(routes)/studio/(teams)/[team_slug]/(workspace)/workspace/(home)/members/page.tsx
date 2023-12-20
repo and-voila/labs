@@ -24,7 +24,7 @@ interface Props {
 const MembersPage: React.FC<Props> = async ({ params }) => {
   const team = await getTeam(params.team_slug);
   if (!team || team.isPersonal) {
-    redirect(`${APP_BP}/${params.team_slug}/workspace/home`);
+    redirect(`${APP_BP}/${params.team_slug}/workspace`);
   }
 
   const session = await getSession();
