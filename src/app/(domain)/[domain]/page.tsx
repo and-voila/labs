@@ -2,7 +2,10 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { db } from '#/lib/db';
-import { getPostsForSite, getSiteData } from '#/lib/fetchers';
+import {
+  getPostsForSite,
+  getSiteData,
+} from '#/lib/operations/publish/publish-fetchers';
 import { placeholderBlurhash, toDateString } from '#/lib/utils';
 
 import BlogCard from '#/components/publish/blog-card';

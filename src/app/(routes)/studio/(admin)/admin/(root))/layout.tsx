@@ -3,8 +3,8 @@ import { redirect } from 'next/navigation';
 import { adminConfig } from '#/config/admin';
 
 import { authOptions } from '#/lib/auth';
+import { getTeams } from '#/lib/operations/teams/get-teams';
 import { isTeacher } from '#/lib/teacher';
-import { getTeams } from '#/lib/team/get-teams';
 
 import { DashboardNav } from '#/components/layout/nav';
 import { NavBar } from '#/components/layout/navbar';

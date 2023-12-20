@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
-import { APP_BP } from ':/src/lib/const';
-import { getTeam } from ':/src/lib/team/get-current-team';
 
 import { authOptions } from '#/lib/auth';
+import { APP_BP } from '#/lib/const';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 interface PlaybookRootLayoutProps {
   children: React.ReactNode;

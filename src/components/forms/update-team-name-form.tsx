@@ -6,6 +6,12 @@ import { useForm } from 'react-hook-form';
 
 import { siteConfig } from '#/config/site';
 
+import { updateTeam } from '#/lib/actions/teams/team-settings';
+import {
+  UpdateTeamNameFormSchema,
+  updateTeamNameFormSchema,
+} from '#/lib/validations/update-team';
+
 import { Button } from '#/components/ui/button';
 import {
   Card,
@@ -24,12 +30,6 @@ import {
 } from '#/components/ui/form';
 import { Input } from '#/components/ui/input';
 import { toast } from '#/components/ui/use-toast';
-
-import { updateTeam } from '#/app/(routes)/studio/(teams)/[team_slug]/(workspace)/workspace/(home)/settings/actions';
-import {
-  UpdateTeamNameFormSchema,
-  updateTeamNameFormSchema,
-} from '#/app/(routes)/studio/(teams)/[team_slug]/(workspace)/workspace/(home)/settings/schema';
 
 export interface UpdateTeamNameFormProps {
   teamSlug: string;

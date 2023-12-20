@@ -1,5 +1,6 @@
 'use client';
 
+import { NewTeamForm } from '#/components/forms/new-team-form';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import {
@@ -10,8 +11,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '#/components/ui/dialog';
-
-import { NewTeamForm } from '#/app/(routes)/studio/(personal)/(root)/my/workspaces/new/new-team-form';
 
 export const NewTeamButton: React.FC = () => {
   return (

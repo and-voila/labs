@@ -5,7 +5,7 @@ import { siteConfig } from '#/config/site';
 
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
-import { getSession } from '#/lib/session';
+import { getSession } from '#/lib/operations/user/session';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { AppearanceForm } from '#/components/forms/appearance-form';

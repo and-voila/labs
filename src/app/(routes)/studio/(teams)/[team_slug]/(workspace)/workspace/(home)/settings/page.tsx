@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { siteConfig } from '#/config/site';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
-import { getTeam } from '#/lib/team/get-current-team';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { UpdateTeamNameForm } from '#/components/forms/update-team-name-form';

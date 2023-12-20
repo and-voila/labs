@@ -30,7 +30,7 @@ Our technology stack was chosen for its reliability and effectiveness in deliver
 - **Vercel KV** powered by Upstash: For efficient key-value data storage.
 - **Vercel Blob** powered by Cloudflare: Optimized large file handling.
 - **Vercel AI SDK**: Integrating AI capabilities into the core of our tools.
-- **TipTap**: A flexible, extensible text editor.
+- **TipTap**: A flexible, extensible text editor. You'll need an **[Entry license](https://tiptap.dev/pricing)** to use it in production.
 - **Resend**: Streamlining email workflows.
 - **Posthog**: For in-depth analytics and user insights.
 
@@ -38,7 +38,7 @@ Each component of our stack is selected to ensure that your experience is not ju
 
 ## Project structure
 
-This project follows the recommendations of the the Next JS team for v14 and remains a work in progress.
+This project follows the recommendations of the the Next JS team for v14 and remains a work in progress. We chose sub-directories to better organize across a growing codebase.
 
 ```
 /and-voila/labs
@@ -55,11 +55,15 @@ This project follows the recommendations of the the Next JS team for v14 and rem
 │   │   ├── /api                        # API routes
 │   │   ├── /lib                        # Reusable libraries and utility functions
 │   │   │   ├── /actions                # Server actions
+│   │   │   ├── /helpers                # Operations
+│   │   │   ├── /operations             # Operations
 │   │   │   ├── /types                  # Types
 │   │   │   ├── /validations            # Zod stuff
 │   │   │   └── /...                    # Other lib stuff
 │   │   ├── /components                 # All UI components
+│   │   │   ├── /learn                  # Learn feature components organized into sub-folders
 │   │   │   ├── /layout                 # Shared stuff organized into sub-folders
+│   │   │   ├── /publish                # Publish feature components organized into sub-folders
 │   │   │   ├── /...
 │   │   │   └── /ui                     # Shadcn UI components
 │   │   ├── /config                     # Configuration files for different parts of the app

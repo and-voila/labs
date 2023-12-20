@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 
 import { authOptions } from '#/lib/auth';
+import { getTeams } from '#/lib/operations/teams/get-teams';
 import { isTeacher } from '#/lib/teacher';
-import { getTeams } from '#/lib/team/get-teams';
 
 import { InsightsSearch } from '#/components/insights/search';
 import { NavBar } from '#/components/layout/navbar';

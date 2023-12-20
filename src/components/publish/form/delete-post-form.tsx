@@ -4,7 +4,7 @@ import { useParams, useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
 
-import { deletePost } from '#/lib/actions';
+import { deletePost } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 

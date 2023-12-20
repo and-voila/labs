@@ -1,20 +1,19 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { getTeam } from ':/src/lib/team/get-current-team';
 import { MembershipRole } from '@prisma/client';
 
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
-import { getSession } from '#/lib/session';
-import { getTeamInvites } from '#/lib/team/get-team-invites';
-import { getTeamMembers } from '#/lib/team/get-team-members';
-import { hasTeamAuthority } from '#/lib/team/team-authority';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
+import { getTeamInvites } from '#/lib/operations/teams/get-team-invites';
+import { getTeamMembers } from '#/lib/operations/teams/get-team-members';
+import { hasTeamAuthority } from '#/lib/operations/teams/team-authority';
+import { getSession } from '#/lib/operations/user/session';
 
+import { SubPageHeader } from '#/components/dashboard/subpage-header';
+import { MemberList } from '#/components/teams/member-list';
+import { MembershipActions } from '#/components/teams/member-list-actions';
 import { Separator } from '#/components/ui/separator';
-import { SubPageHeader } from '#/components/ui/subpage-header';
-
-import { MemberList } from './components/member-list/member-list';
-import { MembershipActions } from './components/member-ship-actions';
 
 interface Props {
   params: {

@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation';
 
 import { siteConfig } from '#/config/site';
 
-import { getSession } from '#/lib/session';
-import { getInvitationByToken } from '#/lib/team/members/get-invitation';
+import { getInvitationByToken } from '#/lib/operations/teams/members/get-invitation';
+import { getSession } from '#/lib/operations/user/session';
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';

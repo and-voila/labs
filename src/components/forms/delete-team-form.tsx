@@ -3,6 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
+import { deleteTeam } from '#/lib/actions/teams/delete-team';
 import { APP_BP } from '#/lib/const';
 
 import {
@@ -25,8 +26,6 @@ import {
   CardTitle,
 } from '#/components/ui/card';
 import { toast } from '#/components/ui/use-toast';
-
-import { deleteTeam } from '#/app/(routes)/studio/(teams)/[team_slug]/(workspace)/workspace/(home)/advanced/actions';
 
 export interface DeleteFormProps {
   teamSlug: string;

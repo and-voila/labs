@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { siteConfig } from '#/config/site';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
-import { getTeams } from '#/lib/team/get-teams';
+import { getTeams } from '#/lib/operations/teams/get-teams';
 import { cn } from '#/lib/utils';
 
 import { DashboardHeader } from '#/components/dashboard/header';

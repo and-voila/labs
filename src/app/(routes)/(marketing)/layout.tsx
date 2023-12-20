@@ -1,4 +1,4 @@
-import { getTeams } from '#/lib/team/get-teams';
+import { getTeams } from '#/lib/operations/teams/get-teams';
 
 import { NavBar } from '#/components/layout/navbar';
 import { SiteFooter } from '#/components/layout/site-footer';

@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import {
   DisplayNameFormData,
   updateDisplayName,
-} from '#/lib/actions/update-user';
+} from '#/lib/actions/user/update-user';
 import { cn } from '#/lib/utils';
 import { displayNameSchema } from '#/lib/validations/display-name';
 

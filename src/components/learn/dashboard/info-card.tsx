@@ -1,4 +1,4 @@
-import { IconBadge } from '#/components/icon-badge';
+import { IconBadge } from '#/components/learn/dashboard/icon-badge';
 import { IconName } from '#/components/shared/icons';
 
 interface InfoCardProps {

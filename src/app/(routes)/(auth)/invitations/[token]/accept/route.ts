@@ -2,9 +2,9 @@ import { notFound, redirect } from 'next/navigation';
 import { NextRequest } from 'next/server';
 
 import { APP_BP } from '#/lib/const';
-import { getSession } from '#/lib/session';
-import { acceptInvitationByToken } from '#/lib/team/members/accept-invitation';
-import { getInvitationByToken } from '#/lib/team/members/get-invitation';
+import { acceptInvitationByToken } from '#/lib/operations/teams/members/accept-invitation';
+import { getInvitationByToken } from '#/lib/operations/teams/members/get-invitation';
+import { getSession } from '#/lib/operations/user/session';
 
 export const GET = async (
   request: NextRequest,

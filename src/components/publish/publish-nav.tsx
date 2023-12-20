@@ -6,7 +6,7 @@ import { useParams, usePathname } from 'next/navigation';
 
 import { publishConfig } from '#/config/publish';
 
-import { getSiteFromPostId } from '#/lib/actions';
+import { getSiteFromPostId } from '#/lib/actions/publish/publish-actions';
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';

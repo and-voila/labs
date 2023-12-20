@@ -7,7 +7,7 @@ import { useFormStatus } from 'react-dom';
 
 import { env } from ':/env.mjs';
 
-import { createSite } from '#/lib/actions';
+import { createSite } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 

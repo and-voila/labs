@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { allGuides } from 'contentlayer/generated';
 
-import { getTableOfContents } from '#/lib/toc';
+import { getTableOfContents } from '#/lib/helpers/toc';
 
 import { Mdx } from '#/components/content/mdx-components';
+import { DashboardTableOfContents } from '#/components/content/toc';
 import { InsightsPageHeader } from '#/components/insights/page-header';
 import { Icons } from '#/components/shared/icons';
-import { DashboardTableOfContents } from '#/components/shared/toc';
 
 import '#/styles/mdx.css';
 

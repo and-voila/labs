@@ -1,4 +1,4 @@
-import { getSession } from '#/lib/session';
+import { getSession } from '#/lib/operations/user/session';
 
 import { UserAccountNav } from '#/components/teams/user-nav';
 

@@ -7,8 +7,8 @@ import { SITE_URL } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 import UserAuthForm from '#/components/forms/user-auth-form';
-import { Logo } from '#/components/logo-square';
 import { Icons } from '#/components/shared/icons';
+import { Logo } from '#/components/shared/logo-square';
 import { buttonVariants } from '#/components/ui/button';
 
 export function generateMetadata(): Metadata {

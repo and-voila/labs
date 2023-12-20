@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { cn } from '#/lib/utils';
 
-import { Logo } from '#/components/logo-square';
+import { Logo } from '#/components/shared/logo-square';
 import { buttonVariants } from '#/components/ui/button';
 
 interface WriteCtaProps {

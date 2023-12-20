@@ -1,16 +1,16 @@
 import { Metadata, NextPage } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Icons } from ':/src/components/shared/icons';
-import { Alert, AlertDescription, AlertTitle } from ':/src/components/ui/alert';
 
 import { siteConfig } from '#/config/site';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
-import { getTeam } from '#/lib/team/get-current-team';
+import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DeleteForm } from '#/components/forms/delete-team-form';
+import { Icons } from '#/components/shared/icons';
+import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
 
 interface Props {
   params: {
