@@ -1,6 +1,6 @@
 'use client';
 
-import '#/components/quill.css';
+import '#/components/learn/teacher/courses/quill.css';
 import 'react-quill/dist/quill.bubble.css';
 
 import { useMemo } from 'react';
