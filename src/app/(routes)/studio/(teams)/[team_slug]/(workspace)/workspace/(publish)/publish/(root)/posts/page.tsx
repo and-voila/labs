@@ -1,18 +1,14 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { siteConfig } from '#/config/site';
-
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { DashboardShell } from '#/components/dashboard/shell';
-import CreateSiteButton from '#/components/publish/create-site-button';
-import CreateSiteModal from '#/components/publish/modal/create-site';
-import Sites from '#/components/publish/sites';
+import Posts from '#/components/publish/posts';
+import { Separator } from '#/components/ui/separator';
 
-export default async function AllSites({
+export default async function WorkspacePostsPage({
   params,
 }: {
   params: { id: string; team_slug: string };
@@ -22,24 +18,26 @@ export default async function AllSites({
     notFound();
   }
   return (
-    <DashboardShell>
-      <div className="flex flex-col items-center justify-between space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 md:items-start">
-        <DashboardHeader
-          heading="My sites"
-          text="Express, connect, and grow your brand. Set up your blog quickly with custom domains and AI-driven writing support."
-        />
-        <CreateSiteButton>
-          <CreateSiteModal teamSlug={params.team_slug} />
-        </CreateSiteButton>
+    <div className="flex flex-col gap-8">
+      <DashboardHeader
+        title="Workspace Posts"
+        description="It's content central for you and your crew. Convenient access to your recent posts in one place."
+      />
+      <div className="my-8 flex flex-col md:my-12">
+        <h3 className="text-lg font-semibold leading-6">
+          Recent posts from your workspace
+        </h3>
+        <Separator className="mb-6 mt-2 bg-primary/80" />
+        <Posts teamSlug={params.team_slug} limit={8} />
       </div>
-      <Sites teamSlug={params.team_slug} />
-    </DashboardShell>
+    </div>
   );
 }
 
 export function generateMetadata(): Metadata {
-  const title = 'My Sites';
-  const description = `Launch your digital presence with ${siteConfig.name}. Build and customize your site, add a domain, and go live in under 3 minutes. Your platform, your rules.`;
+  const title = 'Workspace Posts';
+  const description =
+    'Browse your Workspace Posts with ease. Manage, edit, and track all your content in one convenient location. Content creation made simple.';
 
   const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

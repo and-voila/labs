@@ -9,7 +9,6 @@ import { siteConfig } from '#/config/site';
 
 import { cn } from '#/lib/utils';
 
-import LoadingDots from '#/components/publish/icons/loading-dots';
 import { Icons } from '#/components/shared/icons';
 import { toast } from '#/components/ui/use-toast';
 
@@ -92,7 +91,13 @@ function SubmitButton() {
       )}
       disabled={pending}
     >
-      {pending ? <LoadingDots color="#808080" /> : <p>Report Abuse</p>}
+      {pending ? (
+        <>
+          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> Just a sec
+        </>
+      ) : (
+        <p>Report Abuse</p>
+      )}
     </button>
   );
 }

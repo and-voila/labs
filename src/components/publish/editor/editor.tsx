@@ -124,7 +124,7 @@ export default function Editor({
   });
 
   return (
-    <>
+    <div className="relative min-h-[500px] w-full max-w-screen-lg gap-8 rounded-lg bg-card py-12 sm:mb-[calc(20vh)] sm:px-8 sm:shadow-lg">
       <EditorHeader
         isPendingSaving={isPendingSaving}
         isPendingPublishing={isPendingPublishing}
@@ -136,84 +136,82 @@ export default function Editor({
         startTransitionPublishing={startTransitionPublishing}
         aiContentPercentage={aiContentPercentage}
       />
-      <div className="relative min-h-[500px] w-full max-w-screen-lg rounded-lg bg-card py-12 sm:mb-[calc(20vh)] sm:px-8 sm:shadow-lg">
-        <div className="mb-5 flex flex-col space-y-3 px-4">
-          <PostTitleInput
-            value={state.data.title || ''}
-            onChange={(newTitle) =>
-              dispatch({
-                type: 'setData',
-                payload: { ...state.data, title: newTitle },
-              })
-            }
-          />
-          {state.titleError && (
-            <p className="text-xs text-red-500">{state.titleError}</p>
-          )}
-          <PostDescriptionInput
-            value={state.data.description || ''}
-            onChange={(newDescription) =>
-              dispatch({
-                type: 'setData',
-                payload: { ...state.data, description: newDescription },
-              })
-            }
-          />
-          {state.descriptionError && (
-            <p className="text-xs text-red-500">{state.descriptionError}</p>
-          )}
-          {state.contentError && (
-            <p className="text-xs text-red-500">{state.contentError}</p>
-          )}
-          <div className="border-b border-border py-4" />
-        </div>
-        <NovelEditor
-          key={post.id}
-          storageKey={`novel__content_${post.id}`}
-          className="relative block"
-          defaultValue={post?.content || ''}
-          onUpdate={(editor) => {
-            const currentContent = editor?.storage.markdown.getMarkdown();
+      <div className="my-5 flex flex-col space-y-3 px-4">
+        <PostTitleInput
+          value={state.data.title || ''}
+          onChange={(newTitle) =>
             dispatch({
               type: 'setData',
-              payload: {
-                ...state.data,
-                content: currentContent,
-              },
-            });
-            handleContentChange(currentContent);
-          }}
-          debounceDuration={3000}
-          onDebouncedUpdate={() => {
-            dispatch({
-              type: 'setTitleError',
-              payload: validateTitle(state.data.title || ''),
-            });
-            dispatch({
-              type: 'setDescriptionError',
-              payload: validateDescription(state.data.description || ''),
-            });
-            dispatch({
-              type: 'setContentError',
-              payload: validateContent(state.data.content || ''),
-            });
-
-            if (
-              state.data.title === post.title &&
-              state.data.description === post.description &&
-              state.data.content === post.content
-            ) {
-              return;
-            }
-
-            if (state.data.title && state.data.description) {
-              startTransitionSaving(async () => {
-                await updatePost(state.data, teamSlug);
-              });
-            }
-          }}
+              payload: { ...state.data, title: newTitle },
+            })
+          }
         />
+        {state.titleError && (
+          <p className="text-xs text-red-500">{state.titleError}</p>
+        )}
+        <PostDescriptionInput
+          value={state.data.description || ''}
+          onChange={(newDescription) =>
+            dispatch({
+              type: 'setData',
+              payload: { ...state.data, description: newDescription },
+            })
+          }
+        />
+        {state.descriptionError && (
+          <p className="text-xs text-red-500">{state.descriptionError}</p>
+        )}
+        {state.contentError && (
+          <p className="text-xs text-red-500">{state.contentError}</p>
+        )}
+        <div className="border-b border-border py-4" />
       </div>
-    </>
+      <NovelEditor
+        key={post.id}
+        storageKey={`novel__content_${post.id}`}
+        className="relative block"
+        defaultValue={post?.content || ''}
+        onUpdate={(editor) => {
+          const currentContent = editor?.storage.markdown.getMarkdown();
+          dispatch({
+            type: 'setData',
+            payload: {
+              ...state.data,
+              content: currentContent,
+            },
+          });
+          handleContentChange(currentContent);
+        }}
+        debounceDuration={3000}
+        onDebouncedUpdate={() => {
+          dispatch({
+            type: 'setTitleError',
+            payload: validateTitle(state.data.title || ''),
+          });
+          dispatch({
+            type: 'setDescriptionError',
+            payload: validateDescription(state.data.description || ''),
+          });
+          dispatch({
+            type: 'setContentError',
+            payload: validateContent(state.data.content || ''),
+          });
+
+          if (
+            state.data.title === post.title &&
+            state.data.description === post.description &&
+            state.data.content === post.content
+          ) {
+            return;
+          }
+
+          if (state.data.title && state.data.description) {
+            startTransitionSaving(async () => {
+              await updatePost(state.data, teamSlug);
+            });
+          }
+        }}
+      />
+    </div>
   );
 }

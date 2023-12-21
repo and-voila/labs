@@ -12,5 +12,5 @@ interface Props {
 export async function GET(request: NextRequest, props: Props) {
   const { params } = props;
 
-  redirect(`${APP_BP}/${params.team_slug}/workspace/home`);
+  redirect(`${APP_BP}/${params.team_slug}/workspace`);
 }

@@ -23,11 +23,11 @@ export default async function SettingsPage() {
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        heading="Personal settings"
-        text="Make it yours. Personalize to your heart's content. Tweak your profile, account details, and set the vibe just right."
+        title="Personal settings"
+        description="Make it yours. Personalize to your heart's content. Tweak your profile, account details, and set the vibe just right."
       />
 
-      <div className="grid max-w-3xl gap-10">
+      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
         <UserNameForm user={{ id: user.id, name: user.name || '' }} />
         <DisplayNameForm
           user={{ id: user.id, displayName: user.displayName || '' }}

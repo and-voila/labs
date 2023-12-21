@@ -6,7 +6,7 @@ export function getTeamsConfig(teamSlug: string): TeamsConfig {
     sidebarNav: [
       {
         title: 'Dashboard',
-        href: `${APP_BP}/${teamSlug}/workspace/home`,
+        href: `${APP_BP}/${teamSlug}/workspace`,
         icon: 'home',
       },
       {

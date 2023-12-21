@@ -36,7 +36,7 @@ export const EditorHeader = ({
   return (
     <div className="mt-6 flex flex-col space-y-6">
       <div className="pb-5 sm:flex sm:items-center sm:justify-between">
-        <div className="justify-start">
+        <div className="mx-2 justify-start">
           <EditorIpStatusIndicator aiContentPercentage={aiContentPercentage} />
         </div>
         <div className="mt-3 flex items-center sm:ml-4 sm:mt-0">

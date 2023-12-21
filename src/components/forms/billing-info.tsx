@@ -33,9 +33,8 @@ export function BillingInfo({
       <CardHeader>
         <CardTitle>{teamName} billing plan</CardTitle>
         <CardDescription>
-          Your workspace for{' '}
-          <span className="font-semibold text-alternate">{teamName}</span> is on
-          the{' '}
+          Your workspace for <span className="font-semibold">{teamName}</span>{' '}
+          is on the{' '}
           <span className="text-primary">
             <strong>{subscriptionPlan.title}</strong>
           </span>{' '}

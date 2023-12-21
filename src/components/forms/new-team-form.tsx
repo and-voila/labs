@@ -57,7 +57,7 @@ export const NewTeamForm: React.FC = () => {
             "Your new team workspace has been created successfully. We'll send you there in just a sec.",
           variant: 'success',
         });
-        router.push(`${APP_BP}/${result.data.slug}/workspace/home`);
+        router.push(`${APP_BP}/${result.data.slug}/workspace`);
       } else if (result.error) {
         toast({
           title: 'Team not created',

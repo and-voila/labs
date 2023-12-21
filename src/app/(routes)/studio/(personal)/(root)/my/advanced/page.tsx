@@ -31,10 +31,10 @@ export default async function PersonalAdvancedSettingsPage() {
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        heading="Danger zone"
-        text="The point of no return. Delete your account here and say goodbye. We'll definitely miss you, so be careful."
+        title="Danger zone"
+        description="The point of no return. Delete your account here and say goodbye. We'll definitely miss you, so be careful."
       />
-      <div className="grid max-w-3xl gap-10">
+      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
         <DeleteAccountForm teams={teams} />
       </div>
     </div>

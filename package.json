@@ -12,7 +12,7 @@
     "turbo": "prisma generate --no-engine && next dev --port 3001 --turbo",
     "start": "next start",
     "lint": "next lint --no-cache",
-    "type-check": "tsc --noEmit",
+    "type-check": "tsc --noEmit --strict",
     "prettier": "prettier --write .",
     "test": "pnpm run lint && pnpm run prettier && pnpm run type-check",
     "preview": "next build && next start",

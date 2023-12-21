@@ -39,5 +39,5 @@ export const GET = async (
     redirect(`/invitations/${params.token}`);
   }
 
-  redirect(`${APP_BP}/${invitation.teamSlug}/workspace/home`);
+  redirect(`${APP_BP}/${invitation.teamSlug}/workspace`);
 };
