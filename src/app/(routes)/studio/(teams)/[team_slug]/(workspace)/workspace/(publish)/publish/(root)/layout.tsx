@@ -8,7 +8,6 @@ interface PublishLayoutProps {
   params: {
     team_slug: string;
   };
-  exact?: boolean;
 }
 
 export default async function PublishLayout({

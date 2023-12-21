@@ -12,8 +12,6 @@ interface PublishLayoutProps {
     team_slug: string;
     id: string;
   };
-
-  exact?: boolean;
 }
 
 export default async function SiteIdLayout({
