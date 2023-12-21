@@ -27,7 +27,7 @@ export default async function SettingsPage() {
         description="Make it yours. Personalize to your heart's content. Tweak your profile, account details, and set the vibe just right."
       />
 
-      <div className="grid max-w-3xl gap-10">
+      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
         <UserNameForm user={{ id: user.id, name: user.name || '' }} />
         <DisplayNameForm
           user={{ id: user.id, displayName: user.displayName || '' }}

@@ -38,7 +38,7 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
           )}
         </div>
         <div className="border-t p-4">
-          <h3 className="my-0 text-lg font-semibold group-hover:text-primary">
+          <h3 className="my-0 line-clamp-2 text-lg font-semibold group-hover:text-primary">
             {data.title || 'Draft post without a title'}
           </h3>
           <p className="mt-2 line-clamp-2 text-sm leading-snug text-muted-foreground">

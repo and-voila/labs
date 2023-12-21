@@ -47,7 +47,6 @@ export default async function PostIdLayout({
     {
       href: `${APP_BP}/${params.team_slug}/workspace/publish/post/${params.id}/advanced`,
       label: 'Advanced',
-      exact: true,
     },
   ];
 

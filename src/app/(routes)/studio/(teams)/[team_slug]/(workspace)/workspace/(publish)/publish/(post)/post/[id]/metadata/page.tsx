@@ -34,7 +34,7 @@ export default async function PostIdMetadata({
         title="Post metadata"
         description="Let AI be your co-pilot in crafting the perfect metadata. From drafting SEO-friendly slugs to generating OpenGraph images, we got you covered."
       />
-      <div className="grid max-w-3xl gap-10">
+      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
         <Form
           title="Post Slug"
           description="The slug is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."

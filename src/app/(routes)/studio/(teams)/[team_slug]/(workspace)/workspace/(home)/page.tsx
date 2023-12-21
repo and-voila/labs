@@ -90,7 +90,7 @@ const TeamWorkspaceIndex: NextPage<Props> = async (props) => {
       />
       <div
         className={cn(
-          'grid w-full gap-6',
+          'my-8 grid w-full gap-6 md:my-12',
           'grid-cols-[repeat(auto-fill,minmax(300px,1fr))]',
         )}
       >

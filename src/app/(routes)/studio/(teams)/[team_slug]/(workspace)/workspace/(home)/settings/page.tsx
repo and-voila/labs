@@ -28,7 +28,7 @@ const SettingsPage: NextPage<Props> = async ({ params }) => {
         description="Right now, it's all about the name game. Change your team's name to something epic. More cool settings coming soon, promise."
       />
 
-      <div className="grid max-w-3xl gap-10">
+      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
         <UpdateTeamNameForm
           teamSlug={params.team_slug}
           defaultValues={{

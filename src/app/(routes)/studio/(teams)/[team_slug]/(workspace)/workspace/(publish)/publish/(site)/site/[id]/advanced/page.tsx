@@ -33,7 +33,7 @@ export default async function SiteIdAdvanced({
         title={`Danger Zone for ${site?.name}`}
         description="Here be dragons... and the delete button. Tread carefully, for this is where sites come to an end, or get a fresh start."
       />
-      <div className="grid max-w-3xl gap-10">
+      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
         <DeleteSiteForm siteName={site?.name!} teamSlug={params.team_slug} />
       </div>
     </div>

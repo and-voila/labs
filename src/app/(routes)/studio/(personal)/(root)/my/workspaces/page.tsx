@@ -43,7 +43,7 @@ const WorkspacesPage: NextPage = async () => {
         title="Your workspaces"
         description="Kick things off in your personal zone. Create client workspaces or start a collab and invite your crew. Thrive in multiplayer mode, and voila! Let the magic begin."
       />
-      <div className="grid">
+      <div className="my-8 grid md:my-12">
         <TeamList teams={teams} memberships={memberships} />
       </div>
     </div>

@@ -33,7 +33,7 @@ export default async function SiteIdAdvanced({
         title="Danger zone"
         description="Welcome to the Oops, didn't mean to write that zone. Here lies the delete button, your ticket to a clean slate or a let's pretend that never happened, moment."
       />
-      <div className="grid max-w-3xl gap-10">
+      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
         <DeletePostForm postName={post?.title!} teamSlug={params.team_slug} />
       </div>
     </div>

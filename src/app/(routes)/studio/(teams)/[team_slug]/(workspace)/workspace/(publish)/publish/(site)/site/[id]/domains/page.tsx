@@ -34,7 +34,7 @@ export default async function SiteIdDomains({
         title={`Manage domains for ${site?.name}`}
         description="Navigate domain setup with ease. Choose our ready-to-go domain or park your own. Verification's a breeze."
       />
-      <div className="grid max-w-3xl gap-10">
+      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
         <Form
           title="Subdomain"
           description="Update the subdomain for your site."

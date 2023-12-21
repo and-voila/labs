@@ -24,22 +24,18 @@ export default async function PublishLayout({
     {
       href: `${APP_BP}/${params.team_slug}/workspace/publish/sites`,
       label: 'Sites',
-      exact: true,
     },
     {
       href: `${APP_BP}/${params.team_slug}/workspace/publish/posts`,
       label: 'Posts',
-      exact: true,
     },
     {
       href: `${APP_BP}/${params.team_slug}/workspace/publish/plan`,
       label: 'Plan',
-      exact: true,
     },
     {
       href: `${APP_BP}/${params.team_slug}/workspace/publish/improve`,
       label: 'Improve',
-      exact: true,
     },
   ];
 

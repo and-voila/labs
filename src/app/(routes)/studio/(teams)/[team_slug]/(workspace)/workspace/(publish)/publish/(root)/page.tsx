@@ -34,15 +34,17 @@ export default async function WorkspacePublishPage({
       >
         <OverviewSitesCTA teamSlug={params.team_slug} />
       </DashboardHeader>
-      <div className="my-8 flex flex-col">
-        <h3 className="text-lg font-semibold leading-6">Workspace sites</h3>
-        <Separator className="mb-6 mt-2 bg-primary/80" />
-        <Sites teamSlug={params.team_slug} />
-      </div>
-      <div className="flex flex-col">
-        <h3 className="text-lg font-semibold leading-6">Recent posts</h3>
-        <Separator className="mb-6 mt-2 bg-primary/80" />
-        <Posts teamSlug={params.team_slug} limit={8} />
+      <div className="my-8 flex flex-col gap-8 md:my-12 md:gap-12">
+        <div>
+          <h3 className="text-lg font-semibold leading-6">Workspace sites</h3>
+          <Separator className="mb-6 mt-2 bg-primary/80" />
+          <Sites teamSlug={params.team_slug} />
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold leading-6">Recent posts</h3>
+          <Separator className="mb-6 mt-2 bg-primary/80" />
+          <Posts teamSlug={params.team_slug} limit={8} />
+        </div>
       </div>
     </div>
   );

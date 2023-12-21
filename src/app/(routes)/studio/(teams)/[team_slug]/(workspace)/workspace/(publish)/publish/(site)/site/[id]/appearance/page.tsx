@@ -34,7 +34,7 @@ export default async function SiteIdAppearance({
         title={`Appearance settings of ${site?.name}`}
         description="Dress up your site. Play with logos, colors, fonts, and even craft a cheeky 404 message. It's your site's wardrobe, have fun."
       />
-      <div className="grid max-w-3xl gap-10">
+      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
         <Form
           title="Featured image"
           description="Add or replace the featured image for your site. Accepted formats: .png, .jpg, .jpeg"

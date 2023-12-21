@@ -9,6 +9,7 @@ interface WorkspaceLayoutProps {
   params: {
     team_slug: string;
   };
+  exact?: boolean;
 }
 
 export default async function WorkspaceLayout({
@@ -21,6 +22,7 @@ export default async function WorkspaceLayout({
     {
       href: `${APP_BP}/${params.team_slug}/workspace`,
       label: 'Workspace',
+      exact: true,
     },
     {
       href: `${APP_BP}/${params.team_slug}/workspace/settings`,

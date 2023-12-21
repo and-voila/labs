@@ -46,7 +46,7 @@ export default async function PostIdPage({
           'Let AI handle the nitty-gritty, so you can focus on what you do best, creating. Collaborate in real-time, manage graphics, and keep your precious IP protected.'
         }
       />
-      <div className="my-8 flex flex-col">
+      <div className="my-8 flex flex-col md:my-12">
         <Editor post={data} teamSlug={params.team_slug} />
       </div>
     </div>

@@ -47,7 +47,7 @@ export default async function PersonalBillingPage() {
         description="See your subscriptions at a glance. Don't sweat it though, we won't bill you for inactive users. Head over to the workspace to manage billing."
       />
 
-      <div className="grid max-w-5xl gap-8">
+      <div className="my-8 grid max-w-5xl gap-8 md:my-12">
         {anyUnpaid && (
           <Alert className="max-w-xl border-2 border-dotted border-primary/80 !pl-14">
             <Icons.rocket className="fill-primary" />
@@ -59,7 +59,7 @@ export default async function PersonalBillingPage() {
             </AlertDescription>
           </Alert>
         )}
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid max-w-3xl grid-cols-1 gap-8">
           {subscriptionPlans.map((subscriptionPlan, index) => (
             <div key={teams[index].id}>
               <BillingInfo

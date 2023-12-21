@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
+import { Separator } from ':/src/components/ui/separator';
 
 import { siteConfig } from '#/config/site';
 
@@ -62,12 +63,11 @@ export default async function SiteManage({
         <OverviewSitesCTA teamSlug={params.team_slug} />
         <CreatePostButton />
       </DashboardHeader>
-      <div className="my-8 flex flex-col space-y-6">
-        <div className="mt-10 border-b border-primary pb-5 sm:flex sm:items-center sm:justify-between">
-          <h3 className="text-lg font-semibold leading-6">
-            Posts for {site.name}
-          </h3>
-        </div>
+      <div className="my-8 flex flex-col md:my-12">
+        <h3 className="text-lg font-semibold leading-6">
+          Posts for {site.name}
+        </h3>
+        <Separator className="mb-6 mt-2 bg-primary/80" />
         <Posts
           siteId={decodeURIComponent(params.id)}
           teamSlug={params.team_slug}

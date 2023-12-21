@@ -18,7 +18,7 @@ export default function CreateSiteButton({
       onClick={() => modal?.show(children)}
       variant="default"
       size="lg"
-      className="mt-6 w-full whitespace-nowrap md:mt-0 md:w-auto"
+      className="mt-6 w-full md:mt-0 md:w-auto"
     >
       <Icons.plusCircled className="mr-2 h-4 w-4" /> New site
     </Button>

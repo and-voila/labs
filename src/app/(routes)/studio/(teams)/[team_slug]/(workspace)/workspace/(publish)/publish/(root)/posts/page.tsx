@@ -23,7 +23,7 @@ export default async function WorkspacePostsPage({
         title="Workspace Posts"
         description="It's content central for you and your crew. Convenient access to your recent posts in one place."
       />
-      <div className="my-8 flex flex-col">
+      <div className="my-8 flex flex-col md:my-12">
         <h3 className="text-lg font-semibold leading-6">
           Recent posts from your workspace
         </h3>

@@ -38,7 +38,7 @@ export default async function Posts({ siteId, limit, teamSlug }: PostsProps) {
   });
 
   return posts.length > 0 ? (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {posts.map((post) => (
         <PostCard key={post.id} data={post} teamSlug={teamSlug} />
       ))}

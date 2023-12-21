@@ -57,7 +57,7 @@ export default async function SupportPage() {
         title="Workspace support"
         description="Got questions or need a hand? We're all ears and ready to assist. Your team's success is our mission."
       />
-      <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
+      <div className="my-8 grid gap-6 sm:grid-cols-1 md:my-12 lg:grid-cols-3">
         {supportItems.map((item, index) => (
           <Card key={index} className="flex flex-col" aria-label={item.title}>
             <CardHeader>

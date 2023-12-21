@@ -34,7 +34,7 @@ export default async function SiteIdSettings({
         title={`Settings for ${site?.name}`}
         description="Your control center for customization. Tweak, tune, and tailor your site settings to create a unique digital experience."
       />
-      <div className="grid max-w-3xl gap-10">
+      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
         <Form
           title="Name"
           description="The name of your site. This will be used as the meta title on Google as well."

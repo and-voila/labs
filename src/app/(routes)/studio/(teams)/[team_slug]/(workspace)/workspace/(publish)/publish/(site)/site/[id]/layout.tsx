@@ -29,22 +29,18 @@ export default async function SiteIdLayout({
     {
       href: `${APP_BP}/${params.team_slug}/workspace/publish/site/${params.id}/settings`,
       label: 'Settings',
-      exact: true,
     },
     {
       href: `${APP_BP}/${params.team_slug}/workspace/publish/site/${params.id}/domains`,
       label: 'Domains',
-      exact: true,
     },
     {
       href: `${APP_BP}/${params.team_slug}/workspace/publish/site/${params.id}/appearance`,
       label: 'Appearance',
-      exact: true,
     },
     {
       href: `${APP_BP}/${params.team_slug}/workspace/publish/site/${params.id}/advanced`,
       label: 'Advanced',
-      exact: true,
     },
   ];
 
