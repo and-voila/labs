@@ -6,7 +6,7 @@ import { db } from '#/lib/db';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { TabbedNav } from '#/components/layout/tabbed-nav';
 
-interface PublishLayoutProps {
+interface PostIdLayoutProps {
   children: React.ReactNode;
   data: Site;
   params: {
@@ -18,7 +18,7 @@ interface PublishLayoutProps {
 export default async function PostIdLayout({
   children,
   params,
-}: PublishLayoutProps) {
+}: PostIdLayoutProps) {
   const post = await db.post.findUnique({
     where: {
       id: params.id,

@@ -5,7 +5,7 @@ import { APP_BP } from '#/lib/const';
 import { DashboardShell } from '#/components/dashboard/shell';
 import { TabbedNav } from '#/components/layout/tabbed-nav';
 
-interface PublishLayoutProps {
+interface SiteIdLayoutProps {
   children: React.ReactNode;
   data: Site;
   params: {
@@ -17,7 +17,7 @@ interface PublishLayoutProps {
 export default async function SiteIdLayout({
   children,
   params,
-}: PublishLayoutProps) {
+}: SiteIdLayoutProps) {
   const links = [
     {
       href: `${APP_BP}/${params.team_slug}/workspace/publish/site/${params.id}`,
