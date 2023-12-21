@@ -23,7 +23,7 @@ export default async function WorkspacePlanPage({
         title="Plan"
         description="Think of this as your digital marketing war room. It's where research meets planning, and your content comes to life with a sprinkle of AI magic."
       />
-      <div className="my-12 flex flex-col">
+      <div className="my-8 flex flex-col">
         <h3 className="text-lg font-semibold leading-6">
           Awesome AI-assisted planning tools on the horizon
         </h3>

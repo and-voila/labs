@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import DeletePostForm from ':/src/components/publish/form/delete-post-form';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 
 import { DashboardHeader } from '#/components/dashboard/header';
+import DeletePostForm from '#/components/publish/form/delete-post-form';
 
 export default async function SiteIdAdvanced({
   params,

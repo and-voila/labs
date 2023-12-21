@@ -23,7 +23,7 @@ export default async function WorkspaceImprovePage({
         title="Improve"
         description="Welcome to the future home of your mission control for marketing metrics. Get ready to make your data dance."
       />
-      <div className="my-12 flex flex-col">
+      <div className="my-8 flex flex-col">
         <h3 className="text-lg font-semibold leading-6">
           Awesome AI-assisted tools on the horizon
         </h3>

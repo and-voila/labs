@@ -53,22 +53,20 @@ export default async function SiteManage({
           }
           target="_blank"
           rel="noreferrer"
-          className="mr-2 mt-4 inline-flex w-full items-center truncate rounded-md bg-muted-foreground/20 px-2 py-2 text-xs text-foreground transition-colors hover:opacity-70 md:mt-0 md:w-auto md:py-0"
+          className="mr-2 mt-4 inline-flex w-full items-center truncate rounded-md text-xs text-foreground underline underline-offset-4 transition-colors hover:opacity-70 md:mt-0 md:w-auto md:py-0"
         >
           {url}
           {''}
-          <Icons.arrowSquareOut className="ml-1 h-4 w-4" />
+          <Icons.arrowSquareOut className="ml-1 h-4 w-4 text-primary" />
         </a>
         <OverviewSitesCTA teamSlug={params.team_slug} />
+        <CreatePostButton />
       </DashboardHeader>
       <div className="my-8 flex flex-col space-y-6">
         <div className="mt-10 border-b border-primary pb-5 sm:flex sm:items-center sm:justify-between">
           <h3 className="text-lg font-semibold leading-6">
             Posts for {site.name}
           </h3>
-          <div className="mt-3 flex sm:ml-4 sm:mt-0">
-            <CreatePostButton />
-          </div>
         </div>
         <Posts
           siteId={decodeURIComponent(params.id)}

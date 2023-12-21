@@ -29,13 +29,13 @@ export default async function WorkspacePublishPage({
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        title="Publish home"
-        description="Set up your blog in a snap with custom domains, AI-powered tools, and top-notch IP protection."
+        title="Publish"
+        description="Set up your blog in a snap with custom domains, AI-powered tools, and nifty helpers to protect your IP."
       >
         <OverviewSitesCTA teamSlug={params.team_slug} />
       </DashboardHeader>
       <div className="my-8 flex flex-col">
-        <h3 className="text-lg font-semibold leading-6">Sites</h3>
+        <h3 className="text-lg font-semibold leading-6">Workspace sites</h3>
         <Separator className="mb-6 mt-2 bg-primary/80" />
         <Sites teamSlug={params.team_slug} />
       </div>

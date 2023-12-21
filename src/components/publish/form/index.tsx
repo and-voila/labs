@@ -11,7 +11,7 @@ import { cn } from '#/lib/utils';
 import DomainConfiguration from '#/components/publish/form/domain-configuration';
 import DomainStatus from '#/components/publish/form/domain-status';
 import Uploader from '#/components/publish/form/uploader';
-import LoadingDots from '#/components/publish/icons/loading-dots';
+import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
 
@@ -152,7 +152,13 @@ function FormButton() {
       })}
       disabled={pending}
     >
-      {pending ? <LoadingDots color="#808080" /> : <p>Save</p>}
+      {pending ? (
+        <>
+          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> Just a sec
+        </>
+      ) : (
+        <p>Save</p>
+      )}
     </button>
   );
 }

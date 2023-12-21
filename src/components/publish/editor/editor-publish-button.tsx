@@ -4,7 +4,7 @@ import { updatePostMetadata } from '#/lib/actions/publish/publish-actions';
 import { cn } from '#/lib/utils';
 
 import { EditorAction, EditorState } from '#/components/publish/editor/editor';
-import LoadingDots from '#/components/publish/icons/loading-dots';
+import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
 
@@ -64,7 +64,9 @@ const EditorPublishButton = ({
       disabled={isPendingPublishing || !isPublishable}
     >
       {isPendingPublishing ? (
-        <LoadingDots />
+        <>
+          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> Just a sec
+        </>
       ) : (
         <p>{published ? 'Unpublish' : 'Publish'}</p>
       )}

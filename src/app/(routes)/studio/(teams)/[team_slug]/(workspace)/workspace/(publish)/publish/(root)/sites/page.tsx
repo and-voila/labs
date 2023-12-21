@@ -31,7 +31,7 @@ export default async function WorkspaceSitesPage({
           <CreateSiteModal teamSlug={params.team_slug} />
         </CreateSiteButton>
       </DashboardHeader>
-      <div className="my-12 flex flex-col space-y-6">
+      <div className="my-8 flex flex-col space-y-6">
         <h3 className="text-lg font-semibold leading-6">All workspace sites</h3>
         <Separator className="mb-6 mt-2 bg-primary/80" />
         <Sites teamSlug={params.team_slug} />

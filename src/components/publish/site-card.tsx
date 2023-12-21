@@ -61,12 +61,12 @@ export default function SiteCard({ data, teamSlug }: SiteCardProps) {
           }
           target="_blank"
           rel="noreferrer"
-          className="truncate rounded-md bg-muted-foreground/20 px-2 py-1 text-xs text-foreground transition-colors group-hover:opacity-70"
+          className="truncate rounded-md py-2 text-xs text-muted-foreground underline underline-offset-4 transition-colors group-hover:opacity-70"
         >
           <span className="flex flex-row items-center gap-1">
             {url}
             {''}
-            <Icons.arrowSquareOut className="ml-1 h-3 w-3" />
+            <Icons.arrowSquareOut className="ml-1 h-3 w-3 text-primary" />
           </span>
         </a>
       </div>

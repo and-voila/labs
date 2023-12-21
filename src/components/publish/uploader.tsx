@@ -3,7 +3,7 @@
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { PutBlobResult } from '@vercel/blob';
 
-import LoadingDots from '#/components/publish/icons/loading-dots';
+import { Icons } from '#/components/shared/icons';
 import { toast } from '#/components/ui/use-toast';
 
 export default function Uploader() {
@@ -210,7 +210,9 @@ export default function Uploader() {
         } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
       >
         {saving ? (
-          <LoadingDots color="#808080" />
+          <>
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> Just a sec
+          </>
         ) : (
           <p className="text-sm">Confirm upload</p>
         )}
