@@ -1,5 +1,3 @@
-import { Site } from '@prisma/client';
-
 import { APP_BP } from '#/lib/const';
 
 import { DashboardShell } from '#/components/dashboard/shell';
@@ -7,7 +5,6 @@ import { TabbedNav } from '#/components/layout/tabbed-nav';
 
 interface SiteIdLayoutProps {
   children: React.ReactNode;
-  data: Site;
   params: {
     team_slug: string;
     id: string;
