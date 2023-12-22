@@ -6,7 +6,7 @@ import { Post, Site } from '@prisma/client';
 import { put } from '@vercel/blob';
 import { customAlphabet } from 'nanoid';
 
-import { env } from ':/env.mjs';
+import { env } from 'env';
 
 import {
   addDomainToVercel,

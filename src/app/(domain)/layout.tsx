@@ -1,7 +1,8 @@
 import '#/styles/globals.css';
 
 import { Viewport } from 'next';
-import { fontBricolage } from ':/public/fonts';
+
+import { fontBricolage } from 'public/fonts';
 
 import { cn } from '#/lib/utils';
 

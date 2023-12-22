@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
-import { Separator } from ':/src/components/ui/separator';
 
 import { siteConfig } from '#/config/site';
 
@@ -14,6 +13,7 @@ import CreatePostButton from '#/components/publish/create-post-button';
 import OverviewSitesCTA from '#/components/publish/overview-sites-cta';
 import Posts from '#/components/publish/posts';
 import { Icons } from '#/components/shared/icons';
+import { Separator } from '#/components/ui/separator';
 
 export default async function SiteManage({
   params,

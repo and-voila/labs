@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
 
-import { env } from ':/env.mjs';
+import { env } from 'env';
 
 import { createSite } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
