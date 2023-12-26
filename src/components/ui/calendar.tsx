@@ -61,13 +61,9 @@ function Calendar({
       }}
       components={{
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        IconLeft: ({ ...props }) => (
-          <Icons.radixChevronLeft className="h-4 w-4" />
-        ),
+        IconLeft: ({ ...props }) => <Icons.caretLeft className="h-4 w-4" />,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        IconRight: ({ ...props }) => (
-          <Icons.radixChevronRight className="h-4 w-4" />
-        ),
+        IconRight: ({ ...props }) => <Icons.caretRight className="h-4 w-4" />,
       }}
       {...props}
     />

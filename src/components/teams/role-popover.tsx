@@ -94,7 +94,7 @@ export const RolePopover: React.FC<RolePopoverProps> = (props) => {
           disabled={!isOwner && !isAdmin}
         >
           <span className="capitalize">{role}</span>
-          <Icons.radixChevronDown
+          <Icons.caretDown
             className={cn(
               'ml-auto h-4 w-4 shrink-0 transition-transform',
               isOpen ? 'rotate-180' : 'rotate-0',

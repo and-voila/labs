@@ -31,6 +31,7 @@
   },
   "rules": {
     "@next/next/no-html-link-for-pages": "off",
+    "@next/next/no-img-element": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -45,13 +46,18 @@
       { "properties": "never", "ignoreDestructuring": true }
     ],
     "comma-style": ["error", "last"],
+    "import/no-anonymous-default-export": "off",
     "jsx-quotes": ["error", "prefer-double"],
     "no-console": "warn",
     "prefer-const": "error",
-    "prettier/prettier": "off",
+    "prettier/prettier": ["error"],
     "quotes": ["error", "single", { "avoidEscape": true }],
-    "react-hooks/exhaustive-deps": "error",
+    "react/display-name": "warn",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "warn",
     "react/jsx-key": "error",
+    "react/jsx-no-bind": "warn",
+    "react/jsx-no-constructed-context-values": "error",
     "react/prop-types": "off",
     "react/self-closing-comp": "error",
     "semi": ["error", "always"],

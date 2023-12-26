@@ -94,7 +94,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
               </AvatarFallback>
             </Avatar>
             {activeTeam?.name ?? user?.name ?? 'Personal account'}
-            <Icons.radixChevronDown
+            <Icons.caretDown
               className={cn(
                 'ml-auto h-4 w-4 shrink-0 transition-transform',
                 isOpen ? 'rotate-180' : 'rotate-0',
@@ -145,7 +145,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                         <AvatarFallback>{team.name?.[0]}</AvatarFallback>
                       </Avatar>
                       <p className="truncate">{team.name}</p>
-                      <Icons.radixCheck
+                      <Icons.check
                         className={cn(
                           'ml-auto h-4 w-4 text-primary',
                           activeTeam?.slug === team.slug

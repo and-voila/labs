@@ -69,7 +69,7 @@ export default function Error({ reset }: { reset: () => void }) {
                   </p>
                 </div>
                 <div className="flex-none self-center">
-                  <Icons.radixChevronRight
+                  <Icons.caretRight
                     className="h-5 w-5 text-primary"
                     aria-hidden="true"
                   />

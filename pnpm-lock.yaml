@@ -185,9 +185,6 @@ dependencies:
   openai-edge:
     specifier: ^1.2.2
     version: 1.2.2
-  prop-types:
-    specifier: ^15.8.1
-    version: 15.8.1
   query-string:
     specifier: ^8.1.0
     version: 8.1.0
@@ -364,6 +361,9 @@ devDependencies:
   prisma:
     specifier: ^5.7.0
     version: 5.7.1
+  prop-types:
+    specifier: ^15.8.1
+    version: 15.8.1
   react-email:
     specifier: ^1.10.0
     version: 1.10.0

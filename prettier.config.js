@@ -20,7 +20,7 @@ module.exports = {
     '',
     '^types$',
     '^env$',
-    '^public/fonts$',
+    '^public/(.*)$',
     '',
     '^:/env(.*)$',
     '^:/types/(.*)$',

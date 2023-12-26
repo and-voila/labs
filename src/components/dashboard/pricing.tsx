@@ -390,7 +390,7 @@ export default function DashboardPricing() {
                     >
                       {tier.benefits.map((mainFeature) => (
                         <li key={mainFeature} className="flex gap-x-3 py-2">
-                          <Icons.radixCheck
+                          <Icons.check
                             className={classNames(
                               tier.featured ? 'text-primary' : 'text-gray-500',
                               'h-6 w-5 flex-none',
@@ -481,12 +481,12 @@ export default function DashboardPricing() {
                                         <>
                                           {feature.tiers[tier.title] ===
                                           true ? (
-                                            <Icons.radixCheck
+                                            <Icons.check
                                               className="mx-auto h-5 w-5 text-primary"
                                               aria-hidden="true"
                                             />
                                           ) : (
-                                            <Icons.radixCross2
+                                            <Icons.crossLarge
                                               className="mx-auto h-5 w-5 text-muted-foreground/80"
                                               aria-hidden="true"
                                             />
@@ -618,12 +618,12 @@ export default function DashboardPricing() {
                                     ) : (
                                       <>
                                         {feature.tiers[tier.title] === true ? (
-                                          <Icons.radixCheck
+                                          <Icons.check
                                             className="mx-auto h-5 w-5 text-primary"
                                             aria-hidden="true"
                                           />
                                         ) : (
-                                          <Icons.radixCross2
+                                          <Icons.crossLarge
                                             className="mx-auto h-5 w-5 text-gray-400"
                                             aria-hidden="true"
                                           />

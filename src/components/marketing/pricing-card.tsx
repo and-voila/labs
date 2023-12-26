@@ -58,7 +58,7 @@ const PricingCard = ({
               className="flex items-start text-muted-foreground"
               key={feature}
             >
-              <Icons.radixCheck className="mr-3 h-5 w-5 shrink-0 text-primary/70" />
+              <Icons.check className="mr-3 h-5 w-5 shrink-0 text-primary/70" />
               <p>{feature}</p>
             </li>
           ))}
