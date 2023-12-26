@@ -67,7 +67,7 @@ export default async function SiteManage({
         <h3 className="text-lg font-semibold leading-6">
           Posts for {site.name}
         </h3>
-        <Separator className="mb-6 mt-2 bg-primary/80" />
+        <Separator className="mb-6 mt-2" />
         <Posts
           siteId={decodeURIComponent(params.id)}
           teamSlug={params.team_slug}

@@ -37,12 +37,12 @@ export default async function WorkspacePublishPage({
       <div className="my-8 flex flex-col gap-8 md:my-12 md:gap-12">
         <div>
           <h3 className="text-lg font-semibold leading-6">Workspace sites</h3>
-          <Separator className="mb-6 mt-2 bg-primary/80" />
+          <Separator className="mb-6 mt-2" />
           <Sites teamSlug={params.team_slug} />
         </div>
         <div>
           <h3 className="text-lg font-semibold leading-6">Recent posts</h3>
-          <Separator className="mb-6 mt-2 bg-primary/80" />
+          <Separator className="mb-6 mt-2" />
           <Posts teamSlug={params.team_slug} limit={8} />
         </div>
       </div>
