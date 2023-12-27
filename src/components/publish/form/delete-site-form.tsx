@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
@@ -49,6 +49,15 @@ export default function DeleteSiteForm({
     [id, teamSlug, router],
   );
 
+  const [isValid, setIsValid] = useState(false);
+
+  const handleInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setIsValid(event.target.value === siteName);
+    },
+    [siteName],
+  );
+
   return (
     <form
       action={handleDelete}
@@ -67,7 +76,8 @@ export default function DeleteSiteForm({
           required
           pattern={siteName}
           placeholder={siteName}
-          className="w-full max-w-md rounded-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
+          className="w-full rounded-md border border-input bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-ring focus:outline-none focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+          onChange={handleInputChange}
         />
       </div>
 
@@ -75,20 +85,20 @@ export default function DeleteSiteForm({
         <p className="text-center text-sm text-muted-foreground">
           This action is irreversible. Please proceed with caution.
         </p>
-        <FormButton />
+        <FormButton isValid={isValid} />
       </div>
     </form>
   );
 }
 
-function FormButton() {
+function FormButton({ isValid }: { isValid: boolean }) {
   const { pending } = useFormStatus();
   return (
     <button
       className={cn(buttonVariants({ variant: 'destructive', size: 'sm' }), {
-        'cursor-not-allowed opacity-50': pending,
+        'cursor-not-allowed opacity-50': pending || !isValid,
       })}
-      disabled={pending}
+      disabled={pending || !isValid}
     >
       {pending ? (
         <>
