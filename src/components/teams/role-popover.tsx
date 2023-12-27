@@ -27,10 +27,11 @@ export interface RolePopoverProps {
   teamSlug: string;
   memberId: string;
   role: string;
+  disabled: boolean;
 }
 
 export const RolePopover: React.FC<RolePopoverProps> = (props) => {
-  const { role, memberId, isOwner, isAdmin, teamSlug } = props;
+  const { role, memberId, isOwner, isAdmin, teamSlug, disabled } = props;
 
   const [isOpen, setOpen] = React.useState(false);
 
@@ -99,7 +100,7 @@ export const RolePopover: React.FC<RolePopoverProps> = (props) => {
           aria-expanded={isOpen}
           aria-label="Select a role"
           className={cn('w-52 justify-between truncate')}
-          disabled={!isOwner && !isAdmin}
+          disabled={disabled || (!isOwner && !isAdmin)}
         >
           <span className="capitalize">{role}</span>
           <Icons.caretDown

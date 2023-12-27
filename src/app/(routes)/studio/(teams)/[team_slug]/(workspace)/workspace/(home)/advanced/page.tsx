@@ -56,7 +56,7 @@ const TeamDangerZonePage: NextPage<Props> = async ({ params }) => {
             description="The point of no return. Delete your team and its workspace here. We'll definitely miss you all, so be careful."
           />
           <div className="grid max-w-3xl gap-10">
-            <DeleteForm teamSlug={params.team_slug} />
+            <DeleteForm team={team} teamSlug={params.team_slug} />
           </div>
         </>
       )}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { User } from '@prisma/client';
 import { useForm } from 'react-hook-form';
@@ -34,6 +34,7 @@ export function UserNameForm({ user }: UserNameFormProps) {
   const updateUserNameWithId = updateUserName.bind(null, user.id);
 
   const {
+    watch,
     handleSubmit,
     register,
     formState: { errors, isValid, isDirty },
@@ -41,9 +42,21 @@ export function UserNameForm({ user }: UserNameFormProps) {
     mode: 'onChange',
     resolver: zodResolver(userNameSchema),
     defaultValues: {
-      name: user?.name || '',
+      name: user?.name || 'And Voila user',
     },
   });
+
+  const [inputColor, setInputColor] = useState('text-muted-foreground');
+
+  const watchedName = watch('name');
+
+  useEffect(() => {
+    if (watchedName !== user.name) {
+      setInputColor('text-foreground');
+    } else {
+      setInputColor('text-muted-foreground');
+    }
+  }, [watchedName, user.name]);
 
   const onSubmit = handleSubmit((data) => {
     startTransition(async () => {
@@ -83,7 +96,7 @@ export function UserNameForm({ user }: UserNameFormProps) {
             </Label>
             <Input
               id="name"
-              className="w-full bg-background sm:w-[400px]"
+              className={`w-full bg-background sm:w-[400px] ${inputColor}`}
               size={32}
               {...register('name')}
             />

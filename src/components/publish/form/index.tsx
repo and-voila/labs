@@ -106,7 +106,7 @@ export default function Form({
             <input
               {...inputAttrs}
               required
-              className="z-10 flex-1 rounded-l-md border-border bg-background text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-ring"
+              className="z-10 flex-1 rounded-l-md border-border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
             />
             <div className="flex items-center rounded-r-lg border-l-0 border-border bg-primary/20 px-3 text-sm">
               {process.env.NEXT_PUBLIC_ROOT_DOMAIN}

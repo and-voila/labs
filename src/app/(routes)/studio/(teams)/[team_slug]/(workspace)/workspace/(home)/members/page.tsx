@@ -13,7 +13,6 @@ import { getSession } from '#/lib/operations/user/session';
 import { DashboardHeader } from '#/components/dashboard/header';
 import { MemberList } from '#/components/teams/member-list';
 import { MembershipActions } from '#/components/teams/member-list-actions';
-import { Separator } from '#/components/ui/separator';
 
 interface Props {
   params: {
@@ -53,14 +52,15 @@ const MembersPage: React.FC<Props> = async ({ params }) => {
           }
         />
       </DashboardHeader>
-      <Separator />
-      <MemberList
-        currentUserId={session.user.id}
-        hasAuthority={hasAuthority}
-        invites={invites}
-        members={members}
-        teamSlug={params.team_slug}
-      />
+      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
+        <MemberList
+          currentUserId={session.user.id}
+          hasAuthority={hasAuthority}
+          invites={invites}
+          members={members}
+          teamSlug={params.team_slug}
+        />
+      </div>
     </div>
   );
 };

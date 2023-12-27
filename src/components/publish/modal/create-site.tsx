@@ -89,10 +89,18 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
     [data],
   );
 
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    setIsValid(
+      data.name !== '' && data.subdomain !== '' && data.description !== '',
+    );
+  }, [data]);
+
   return (
     <form
       action={handleFormSubmit}
-      className="w-full rounded-md bg-card md:max-w-md md:border md:shadow "
+      className="w-full rounded-xl bg-card md:max-w-md md:border md:shadow"
     >
       <div className="relative flex flex-col space-y-4 p-5 md:p-10">
         <h2 className="text-2xl font-bold">Create a new site</h2>
@@ -113,7 +121,7 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
             onChange={handleNameChange}
             maxLength={32}
             required
-            className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-primary"
+            className="w-full rounded-md border border-input bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-ring focus:outline-none focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>
 
@@ -135,7 +143,7 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
               pattern="[a-zA-Z0-9\-]+" // only allow lowercase letters, numbers, and dashes
               maxLength={32}
               required
-              className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-primary"
+              className="w-full rounded-md border border-input bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-ring focus:outline-none focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
             />
             <div className="flex items-center rounded-r-lg border border-l-0 bg-primary/20 px-3 text-sm">
               .{env.NEXT_PUBLIC_ROOT_DOMAIN}
@@ -157,27 +165,27 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
             onChange={handleDescriptionChange}
             maxLength={140}
             rows={3}
-            className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-primary"
+            className="w-full rounded-md border border-input bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-ring focus:outline-none focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>
       </div>
-      <div className="flex items-center justify-end rounded-b-lg border border-t bg-card p-3 md:px-10">
-        <CreateSiteFormButton />
+      <div className="flex items-center justify-end rounded-b-lg bg-card p-3 md:px-10">
+        <CreateSiteFormButton isValid={isValid} />
       </div>
     </form>
   );
 }
-function CreateSiteFormButton() {
+function CreateSiteFormButton({ isValid }: { isValid: boolean }) {
   const { pending } = useFormStatus();
   return (
     <button
       className={cn(
-        'flex h-10 w-full items-center justify-center space-x-2 rounded-md border text-sm transition-all focus:outline-none',
-        pending
-          ? 'cursor-not-allowed bg-primary font-medium text-background shadow hover:bg-primary/70 disabled:opacity-50 dark:text-foreground'
-          : 'bg-primary font-medium text-background shadow hover:bg-primary/70 dark:text-foreground',
+        'flex h-10 w-full items-center justify-center space-x-2 rounded-md border text-sm text-primary-foreground transition-all hover:bg-primary/70 focus:outline-none',
+        pending || !isValid
+          ? 'bg-primary font-medium shadow disabled:pointer-events-none disabled:opacity-50'
+          : 'bg-primary font-medium shadow',
       )}
-      disabled={pending}
+      disabled={pending || !isValid}
     >
       {pending ? (
         <Icons.spinner className="h-4 w-4 animate-spin" />

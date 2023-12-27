@@ -1,6 +1,6 @@
 'use client';
 
-import { useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { User } from '@prisma/client';
 import { useForm } from 'react-hook-form';
@@ -47,6 +47,18 @@ export function DisplayNameForm({ user }: DisplayNameFormProps) {
     },
   });
 
+  const [inputColor, setInputColor] = useState('text-muted-foreground');
+
+  const watchedDisplayName = watch('displayName');
+
+  useEffect(() => {
+    if (watchedDisplayName !== user.displayName) {
+      setInputColor('text-foreground');
+    } else {
+      setInputColor('text-muted-foreground');
+    }
+  }, [watchedDisplayName, user.displayName]);
+
   const displayName = watch('displayName');
   const transformedDisplayName = displayName
     .toLowerCase()
@@ -91,7 +103,7 @@ export function DisplayNameForm({ user }: DisplayNameFormProps) {
             </Label>
             <Input
               id="displayName"
-              className="w-full bg-background sm:w-[400px]"
+              className={`w-full bg-background sm:w-[400px] ${inputColor}`}
               size={32}
               {...register('displayName')}
             />

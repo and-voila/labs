@@ -35,7 +35,7 @@ export default async function PersonalAdvancedSettingsPage() {
         description="The point of no return. Delete your account here and say goodbye. We'll definitely miss you, so be careful."
       />
       <div className="my-8 grid max-w-3xl gap-8 md:my-12">
-        <DeleteAccountForm teams={teams} />
+        <DeleteAccountForm teams={teams} user={session.user} />
       </div>
     </div>
   );

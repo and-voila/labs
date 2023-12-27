@@ -2,9 +2,13 @@
 
 import React, { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import { deleteTeam } from '#/lib/actions/teams/delete-team';
 import { APP_BP } from '#/lib/const';
+import { Team } from '#/lib/operations/teams/get-teams';
 
 import {
   AlertDialog,
@@ -27,12 +31,31 @@ import {
 } from '#/components/ui/card';
 import { toast } from '#/components/ui/use-toast';
 
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
+
 export interface DeleteFormProps {
   teamSlug: string;
+  team: Team;
 }
 
 export const DeleteForm: React.FC<DeleteFormProps> = (props) => {
-  const { teamSlug } = props;
+  const { teamSlug, team } = props;
+
+  const teamNameSchema = z.object({
+    teamName: z.string().refine((name) => name === team.name, {
+      message: "Team name doesn't match",
+    }),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: 'onChange',
+    resolver: zodResolver(teamNameSchema),
+  });
 
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -56,46 +79,70 @@ export const DeleteForm: React.FC<DeleteFormProps> = (props) => {
   }, [teamSlug, router]);
 
   return (
-    <AlertDialog>
-      <Card className="border border-destructive">
-        <CardHeader>
-          <CardTitle>Danger Zone</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>
-            You can delete your workspace at any time. This will permanently
-            remove your team, its members, and{' '}
-            <strong>all its related data</strong>. This process cannot be
-            undone.
-          </p>
-        </CardContent>
+    <form onSubmit={handleSubmit(onConfirm)}>
+      <AlertDialog>
+        <Card className="border border-destructive">
+          <CardHeader>
+            <CardTitle>Danger Zone</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-1">
+              <p className="pb-4 text-sm font-normal leading-6 text-muted-foreground">
+                Say goodbye to
+                <span className="font-semibold"> {team.name}</span> by typing
+                the team&apos;s name. It&apos;s like hitting the eject button on
+                your own spaceship, thrilling, but final.
+              </p>
 
-        <CardFooter className="py-3">
-          <div className="ml-auto flex items-center justify-end">
-            <AlertDialogTrigger asChild>
-              <Button variant="destructive">Delete workspace</Button>
-            </AlertDialogTrigger>
-          </div>
-        </CardFooter>
-      </Card>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>
-            Yikes! Sure you want to delete your team workspace?
-          </AlertDialogTitle>
-          <AlertDialogDescription>
-            You&apos;re about to delete your team workspace. That means it will
-            vanish into thin air along with its data. This trick is permanent
-            and cannot be undone.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel disabled={isSubmitting}>Cancel</AlertDialogCancel>
-          <AlertDialogAction disabled={isSubmitting} onClick={onConfirm}>
-            Continue
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+              <Label className="sr-only" htmlFor="teamName">
+                Team Name
+              </Label>
+              <Input
+                id="teamName"
+                placeholder="Your team name"
+                className="w-full bg-background sm:w-[400px]"
+                {...register('teamName')}
+              />
+              {errors?.teamName &&
+                typeof errors.teamName.message === 'string' && (
+                  <p className="px-1 text-xs text-red-600">
+                    {errors.teamName.message}
+                  </p>
+                )}
+            </div>
+          </CardContent>
+
+          <CardFooter className="py-3">
+            <div className="ml-auto flex items-center justify-end">
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" disabled={!isValid}>
+                  Delete workspace
+                </Button>
+              </AlertDialogTrigger>
+            </div>
+          </CardFooter>
+        </Card>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              Yikes! Sure you want to delete your team workspace?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              You&apos;re about to delete your team workspace. That means it
+              will vanish into thin air along with its data. This trick is
+              permanent and cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={isSubmitting}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction disabled={isSubmitting} onClick={onConfirm}>
+              Continue
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </form>
   );
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTheme } from 'next-themes';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -34,16 +34,20 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-const defaultValues: Partial<FormValues> = {
-  theme: 'dark',
-};
-
 export const AppearanceForm: React.FC = () => {
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues,
+    defaultValues: {
+      theme: 'dark',
+    },
   });
+
+  useEffect(() => {
+    if (theme === 'system' || theme === 'light' || theme === 'dark') {
+      form.reset({ theme });
+    }
+  }, [theme, form]);
 
   const onSubmit = (data: FormValues) => {
     try {
@@ -192,7 +196,7 @@ export const AppearanceForm: React.FC = () => {
                 size="sm"
                 isLoading={form.formState.isSubmitting}
                 type="submit"
-                disabled={!form.formState.isValid}
+                disabled={!form.formState.isDirty || !form.formState.isValid}
               >
                 Save
               </Button>

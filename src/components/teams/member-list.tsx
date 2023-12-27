@@ -24,6 +24,9 @@ export const MemberList: React.FC<MemberListProps> = (props) => {
     (member) => member.userId === currentUserId,
   );
 
+  const ownerCount =
+    members?.filter((member) => member.role === 'OWNER').length || 0;
+
   return (
     <ul className="divide-y rounded-lg border">
       {invites?.map((invite) => (
@@ -81,12 +84,15 @@ export const MemberList: React.FC<MemberListProps> = (props) => {
                 teamSlug={teamSlug}
                 memberId={member.id}
                 role={member.role}
+                disabled={!(members.length > 1 || ownerCount > 1)}
               />
-              <MemberActions
-                id={member.id}
-                isAdmin={hasAuthority}
-                isCurrentUser={currentUserId === member.userId}
-              />
+              {(members.length > 1 || ownerCount > 1) && (
+                <MemberActions
+                  id={member.id}
+                  isAdmin={hasAuthority}
+                  isCurrentUser={currentUserId === member.userId}
+                />
+              )}
             </div>
           </div>
         </li>
