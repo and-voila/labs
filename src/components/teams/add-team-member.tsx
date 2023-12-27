@@ -8,7 +8,6 @@ import { z } from 'zod';
 
 import { inviteMembers } from '#/lib/actions/teams/invite-members';
 
-import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import {
   Form,
@@ -156,10 +155,7 @@ export const AddTeamMember: React.FC<AddTeamMemberProps> = (props) => {
   return (
     <Sheet open={isOpen} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
-        <Button>
-          <Icons.userPlus className="mr-2 h-4 w-4" />
-          Invite member
-        </Button>
+        <Button>Invite member</Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

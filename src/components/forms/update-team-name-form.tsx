@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FieldValues, useForm } from 'react-hook-form';
 
@@ -77,16 +77,32 @@ export const UpdateTeamNameForm: React.FC<UpdateTeamNameFormProps> = (
     }
   };
 
+  const [inputColor, setInputColor] = useState('text-muted-foreground');
+  const watchedName = form.watch('name');
+
+  // Add this useEffect hook to update the input color
+  useEffect(() => {
+    if (watchedName !== defaultValues.name) {
+      setInputColor('text-foreground');
+    } else {
+      setInputColor('text-muted-foreground');
+    }
+  }, [watchedName, defaultValues.name]);
+
   const renderInput = useCallback(
     ({ field }: { field: FieldValues }) => (
       <FormItem>
         <FormControl>
-          <Input placeholder="Workspace name" {...field} />
+          <Input
+            placeholder="Workspace name"
+            className={inputColor}
+            {...field}
+          />
         </FormControl>
         <FormMessage />
       </FormItem>
     ),
-    [],
+    [inputColor],
   );
 
   return (
@@ -109,9 +125,10 @@ export const UpdateTeamNameForm: React.FC<UpdateTeamNameFormProps> = (
           <CardFooter className="py-3">
             <div className="ml-auto flex items-center justify-end">
               <Button
+                size="sm"
                 isLoading={form.formState.isSubmitting}
                 type="submit"
-                disabled={!form.formState.isValid}
+                disabled={!form.formState.isValid || !form.formState.isDirty}
               >
                 Save
               </Button>
