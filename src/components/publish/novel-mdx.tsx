@@ -36,7 +36,7 @@ export default function NovelMDX({ source }: { source: MDXRemoteProps }) {
 
   return (
     <article
-      className={`prose-md prose prose-gray m-auto w-11/12 dark:prose-invert sm:prose-lg prose-headings:text-foreground prose-p:text-muted-foreground prose-a:font-bold prose-a:text-primary prose-blockquote:border-primary prose-li:text-muted-foreground prose-img:rounded-lg prose-img:shadow sm:w-3/4 ${styles.root} cursor-default`}
+      className={`prose-md prose prose-gray m-auto w-11/12 sm:prose-lg dark:prose-invert prose-headings:text-foreground prose-p:text-muted-foreground prose-a:font-bold prose-a:text-primary prose-blockquote:border-primary prose-li:text-muted-foreground prose-img:rounded-lg prose-img:shadow sm:w-3/4 ${styles.root} cursor-default`}
       suppressHydrationWarning={true}
     >
       {/* @ts-expect-error TODO: Fix*/}
