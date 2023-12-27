@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
@@ -21,32 +22,37 @@ export default function DeletePostForm({
 }) {
   const { id } = useParams() as { id: string };
   const router = useRouter();
+
+  const handleDelete = useCallback(
+    async (data: FormData) => {
+      if (window.confirm('Are you sure you want to delete your post?')) {
+        const res = await deletePost(data, id, 'delete');
+        if (res.error) {
+          toast({
+            title: 'Could not delete post',
+            description: res.error,
+            variant: 'destructive',
+          });
+        } else {
+          va.track('Deleted Post');
+          router.refresh();
+          router.push(
+            `${APP_BP}/${teamSlug}/workspace/publish/site/${res.siteId}`,
+          );
+          toast({
+            title: 'Post deleted',
+            description:
+              "Your post was deleted successfully. Create another one so your audience doesn't miss you.",
+            variant: 'success',
+          });
+        }
+      }
+    },
+    [id, teamSlug, router],
+  );
   return (
     <form
-      action={async (data: FormData) =>
-        window.confirm('Are you sure you want to delete your post?') &&
-        deletePost(data, id, 'delete').then((res) => {
-          if (res.error) {
-            toast({
-              title: 'Could not delete post',
-              description: res.error,
-              variant: 'destructive',
-            });
-          } else {
-            va.track('Deleted Post');
-            router.refresh();
-            router.push(
-              `${APP_BP}/${teamSlug}/workspace/publish/site/${res.siteId}`,
-            );
-            toast({
-              title: 'Post deleted',
-              description:
-                "Your post was deleted successfully. Create another one so your audience doesn't miss you.",
-              variant: 'success',
-            });
-          }
-        })
-      }
+      action={handleDelete}
       className="max-w-3xl rounded-lg border border-destructive bg-card"
     >
       <div className="relative flex flex-col space-y-4 p-5 sm:p-10">

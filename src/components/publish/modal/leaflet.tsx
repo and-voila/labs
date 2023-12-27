@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Dispatch, ReactNode, SetStateAction, useEffect, useRef } from 'react';
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 
 export default function Leaflet({
@@ -11,7 +19,10 @@ export default function Leaflet({
 }) {
   const leafletRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
-  const transitionProps = { type: 'spring', stiffness: 500, damping: 30 };
+  const transitionProps = useMemo(
+    () => ({ type: 'spring', stiffness: 500, damping: 30 }),
+    [],
+  );
   useEffect(() => {
     controls.start({
       y: 20,
@@ -20,17 +31,24 @@ export default function Leaflet({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function handleDragEnd(_: any, info: any) {
-    const offset = info.offset.y;
-    const velocity = info.velocity.y;
-    const height = leafletRef.current?.getBoundingClientRect().height || 0;
-    if (offset > height / 2 || velocity > 800) {
-      await controls.start({ y: '100%', transition: transitionProps });
-      setShow(false);
-    } else {
-      controls.start({ y: 0, transition: transitionProps });
-    }
-  }
+  const handleDragEnd = useCallback(
+    async (_: any, info: any) => {
+      const offset = info.offset.y;
+      const velocity = info.velocity.y;
+      const height = leafletRef.current?.getBoundingClientRect().height || 0;
+      if (offset > height / 2 || velocity > 800) {
+        await controls.start({ y: '100%', transition: transitionProps });
+        setShow(false);
+      } else {
+        controls.start({ y: 0, transition: transitionProps });
+      }
+    },
+    [controls, setShow, transitionProps],
+  );
+
+  const handleClick = useCallback(() => {
+    setShow(false);
+  }, [setShow]);
 
   return (
     <AnimatePresence>
@@ -64,7 +82,7 @@ export default function Leaflet({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={() => setShow(false)}
+        onClick={handleClick}
       />
     </AnimatePresence>
   );

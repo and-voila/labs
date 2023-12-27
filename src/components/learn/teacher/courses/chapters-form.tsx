@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Chapter, Course } from '@prisma/client';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { APP_BP } from '#/lib/const';
@@ -45,9 +45,9 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const toggleCreating = () => {
+  const toggleCreating = useCallback(() => {
     setIsCreating((current) => !current);
-  };
+  }, []);
 
   const router = useRouter();
 
@@ -81,35 +81,62 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     }
   };
 
-  const onReorder = async (updateData: { id: string; position: number }[]) => {
-    try {
-      setIsUpdating(true);
+  const onReorder = useCallback(
+    async (updateData: { id: string; position: number }[]) => {
+      try {
+        setIsUpdating(true);
 
-      await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
-        list: updateData,
-      });
-      toast({
-        title: 'The order of Plays has been updated',
-        description:
-          "You're a dragger and a dropper. Nice work. You just Marie Kondo'd your Plays like a boss.",
-        variant: 'success',
-      });
-      router.refresh();
-    } catch {
-      toast({
-        title: 'Unable to change Play order',
-        description:
-          'Please check your dragging or your dropping and drag and drop again. Sorry...',
-        variant: 'destructive',
-      });
-    } finally {
-      setIsUpdating(false);
-    }
-  };
+        await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
+          list: updateData,
+        });
+        toast({
+          title: 'The order of Plays has been updated',
+          description:
+            "You're a dragger and a dropper. Nice work. You just Marie Kondo'd your Plays like a boss.",
+          variant: 'success',
+        });
+        router.refresh();
+      } catch {
+        toast({
+          title: 'Unable to change Play order',
+          description:
+            'Please check your dragging or your dropping and drag and drop again. Sorry...',
+          variant: 'destructive',
+        });
+      } finally {
+        setIsUpdating(false);
+      }
+    },
+    [courseId, router],
+  );
 
-  const onEdit = (id: string) => {
-    router.push(`${APP_BP}/admin/teacher/courses/${courseId}/chapters/${id}`);
-  };
+  const onEdit = useCallback(
+    (id: string) => {
+      router.push(`${APP_BP}/admin/teacher/courses/${courseId}/chapters/${id}`);
+    },
+    [router, courseId],
+  );
+
+  const renderField = useCallback(
+    ({ field }: { field: FieldValues }) => {
+      return (
+        <FormItem>
+          <FormControl>
+            <Input
+              disabled={isSubmitting}
+              placeholder="e.g. 'Introduction to the playbook'"
+              {...field}
+            />
+          </FormControl>
+          <FormDescription className="text-muted-foreground/70">
+            A playbook needs at least one play yo!
+          </FormDescription>
+          <FormMessage />
+        </FormItem>
+      );
+    },
+    [isSubmitting],
+  );
 
   return (
     <div className="relative mt-6 rounded-md border bg-card px-4 py-6">
@@ -140,21 +167,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
             <FormField
               control={form.control}
               name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      placeholder="e.g. 'Introduction to the playbook'"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormDescription className="text-muted-foreground/70">
-                    A playbook needs at least one play yo!
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
+              render={renderField}
             />
             <div className="flex items-center justify-end gap-x-2">
               <Button

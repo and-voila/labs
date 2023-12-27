@@ -289,6 +289,19 @@ export const Icons = {
       <path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm0,192a90,90,0,1,1,90-90A90.1,90.1,0,0,1,128,218Z" />
     </svg>
   ),
+  circleFilled: (props: IconProps) => (
+    // Phosphor circle-fill
+    <svg
+      role="img"
+      width="24"
+      height="24"
+      fill="currentColor"
+      viewBox="0 0 256 256"
+      {...props}
+    >
+      <path d="M232,128A104,104,0,1,1,128,24,104.13,104.13,0,0,1,232,128Z" />
+    </svg>
+  ),
   circleChecked: (props: IconProps) => (
     // Phosphor circle-check
     <svg

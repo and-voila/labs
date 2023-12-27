@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback } from 'react';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 
@@ -22,6 +23,21 @@ interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function UserAccountNav({ user }: UserAccountNavProps) {
+  const handleSignOut = useCallback((event: Event) => {
+    event.preventDefault();
+    signOut({
+      callbackUrl: `${window.location.origin}/`,
+    });
+  }, []);
+
+  const handleDropdownSelect = useCallback(
+    (e: Event) => {
+      const mouseEvent = e as unknown as React.MouseEvent<HTMLLIElement>;
+      mouseEvent.preventDefault();
+      handleSignOut(e);
+    },
+    [handleSignOut],
+  );
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -84,12 +100,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className="cursor-pointer"
-          onSelect={(event) => {
-            event.preventDefault();
-            signOut({
-              callbackUrl: `${window.location.origin}/`,
-            });
-          }}
+          onSelect={handleDropdownSelect}
         >
           <div className="flex items-center space-x-2.5">
             <Icons.signOut className="h-4 w-4 text-primary" />

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
@@ -31,7 +31,7 @@ export const CourseProgressButton = ({
   const confetti = useConfettiStore();
   const [isLoading, setIsLoading] = useState(false);
 
-  const onClick = async () => {
+  const onClick = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -44,6 +44,9 @@ export const CourseProgressButton = ({
 
       if (!isCompleted && !nextChapterId) {
         confetti.onOpen();
+        setTimeout(() => {
+          router.push(`${APP_BP}/${teamSlug}/workspace/learn`);
+        }, 2000);
       }
 
       if (!isCompleted && nextChapterId) {
@@ -69,7 +72,15 @@ export const CourseProgressButton = ({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [
+    isCompleted,
+    nextChapterId,
+    teamSlug,
+    courseId,
+    chapterId,
+    confetti,
+    router,
+  ]);
 
   const Icon: React.ElementType = isCompleted
     ? Icons.crossCircled

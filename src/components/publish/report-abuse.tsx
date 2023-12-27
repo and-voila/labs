@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useParams } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
@@ -17,11 +17,28 @@ export default function ReportAbuse() {
   const { domain, slug } = useParams() as { domain: string; slug?: string };
   const url = slug ? `https://${domain}/${slug}` : `https://${domain}`;
 
+  const handleButtonClick = useCallback(() => {
+    setOpen(!open);
+  }, [open]);
+
+  const handleFormAction = useCallback(async (formData: FormData) => {
+    const url = formData.get('url') as string;
+    va.track('Reported Abuse', { url });
+    // artificial 1s delay
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setOpen(false);
+    toast({
+      title: 'Your report has been submitted',
+      description: `Thanks for helping make ${siteConfig.name} a safer place. We'll review your report and take action as per our Terms of Service.`,
+      variant: 'success',
+    });
+  }, []);
+
   return (
     <>
       <button
         className="flex flex-row items-center gap-1 border border-destructive px-2 py-1 text-sm text-destructive hover:text-red-600"
-        onClick={() => setOpen(!open)}
+        onClick={handleButtonClick}
       >
         Report{''}
         <Icons.warning className="h-5 w-5" />
@@ -29,18 +46,7 @@ export default function ReportAbuse() {
       {open && (
         <div className="fixed bottom-5 right-5">
           <form
-            action={async (formData) => {
-              const url = formData.get('url') as string;
-              va.track('Reported Abuse', { url });
-              // artificial 1s delay
-              await new Promise((resolve) => setTimeout(resolve, 1000));
-              setOpen(false);
-              toast({
-                title: 'Your report has been submitted',
-                description: `Thanks for helping make the ${siteConfig.name} a safer place. We'll review your report and take action as per our Terms of Service.`,
-                variant: 'success',
-              });
-            }}
+            action={handleFormAction}
             className="absolute bottom-20 right-2 flex w-96 flex-col space-y-6 rounded-lg border bg-card p-8 shadow-lg animate-in slide-in-from-bottom-5"
           >
             <div>

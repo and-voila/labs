@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 
 import { createTeam } from '#/lib/actions/teams/create-team';
 import { APP_BP } from '#/lib/const';
@@ -77,29 +77,30 @@ export const NewTeamForm: React.FC = () => {
     }
   };
 
+  const renderInput = useCallback(
+    ({ field }: { field: FieldValues }) => (
+      <FormItem>
+        <FormLabel>New team name</FormLabel>
+        <FormControl>
+          <Input placeholder="Acme Inc." {...field} />
+        </FormControl>
+        <FormDescription className="my-2 text-sm text-muted-foreground">
+          Your team workspace will be{' '}
+          <span className="font-medium">labs.andvoila.gg</span>
+          <span className="font-medium text-primary">
+            {slugPreview ? `/${slugPreview}` : '/...'}
+          </span>
+        </FormDescription>
+        <FormMessage />
+      </FormItem>
+    ),
+    [slugPreview],
+  );
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>New team name</FormLabel>
-              <FormControl>
-                <Input placeholder="Acme Inc." {...field} />
-              </FormControl>
-              <FormDescription className="my-2 text-sm text-muted-foreground">
-                Your team workspace will be{' '}
-                <span className="font-medium">labs.andvoila.gg</span>
-                <span className="font-medium text-primary">
-                  {slugPreview ? `/${slugPreview}` : '/...'}
-                </span>
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <FormField control={form.control} name="name" render={renderInput} />
         <div className="flex justify-end">
           <Button
             size="sm"

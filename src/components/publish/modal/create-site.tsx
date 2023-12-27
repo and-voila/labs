@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
@@ -39,34 +39,59 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
     }));
   }, [data.name]);
 
+  const handleFormSubmit = useCallback(
+    async (data: FormData) => {
+      data.append('teamSlug', teamSlug);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      createSite(data).then((res: any) => {
+        if (res.error) {
+          toast({
+            title: 'Sorry, an error occurred',
+            description: `${res.error}. Please try again.`,
+            variant: 'destructive',
+          });
+        } else {
+          va.track('Created Site');
+          const { id } = res;
+          router.refresh();
+          router.push(`${APP_BP}/${teamSlug}/workspace/publish/site/${id}`);
+          modal?.hide();
+
+          toast({
+            title: 'Your site was created',
+            description: "Way to go! Your site was created. Let's get started.",
+            variant: 'success',
+          });
+        }
+      });
+    },
+    [teamSlug, router, modal],
+  );
+
+  const handleNameChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setData({ ...data, name: e.target.value });
+    },
+    [data],
+  );
+
+  const handleSubdomainChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setData({ ...data, subdomain: e.target.value });
+    },
+    [data],
+  );
+
+  const handleDescriptionChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setData({ ...data, description: e.target.value });
+    },
+    [data],
+  );
+
   return (
     <form
-      action={async (data: FormData) => {
-        data.append('teamSlug', teamSlug);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        createSite(data).then((res: any) => {
-          if (res.error) {
-            toast({
-              title: 'Sorry, an error occurred',
-              description: `${res.error}. Please try again.`,
-              variant: 'destructive',
-            });
-          } else {
-            va.track('Created Site');
-            const { id } = res;
-            router.refresh();
-            router.push(`${APP_BP}/${teamSlug}/workspace/publish/site/${id}`);
-            modal?.hide();
-
-            toast({
-              title: 'Your site was created',
-              description:
-                "Way to go! Your site was created. Let's get started.",
-              variant: 'success',
-            });
-          }
-        });
-      }}
+      action={handleFormSubmit}
       className="w-full rounded-md bg-card md:max-w-md md:border md:shadow "
     >
       <div className="relative flex flex-col space-y-4 p-5 md:p-10">
@@ -85,7 +110,7 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
             placeholder="My Awesome Site"
             autoFocus
             value={data.name}
-            onChange={(e) => setData({ ...data, name: e.target.value })}
+            onChange={handleNameChange}
             maxLength={32}
             required
             className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-primary"
@@ -105,7 +130,7 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
               type="text"
               placeholder="subdomain"
               value={data.subdomain}
-              onChange={(e) => setData({ ...data, subdomain: e.target.value })}
+              onChange={handleSubdomainChange}
               autoCapitalize="off"
               pattern="[a-zA-Z0-9\-]+" // only allow lowercase letters, numbers, and dashes
               maxLength={32}
@@ -129,7 +154,7 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
             name="description"
             placeholder="Description about why my site is so awesome"
             value={data.description}
-            onChange={(e) => setData({ ...data, description: e.target.value })}
+            onChange={handleDescriptionChange}
             maxLength={140}
             rows={3}
             className="w-full rounded-md border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-border focus:outline-none focus:ring-primary"

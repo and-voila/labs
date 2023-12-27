@@ -1,8 +1,9 @@
 'use client';
 
+import { ReactNode, useCallback } from 'react';
 import Link from 'next/link';
 import { Course } from '@prisma/client';
-import { ColumnDef } from '@tanstack/react-table';
+import { Column, ColumnDef } from '@tanstack/react-table';
 
 import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
@@ -17,34 +18,37 @@ import {
   DropdownMenuTrigger,
 } from '#/components/ui/dropdown-menu';
 
+type HeaderProps = {
+  column: Column<Course>;
+  children: ReactNode;
+  className?: string;
+};
+
+const Header = ({ column, children, className }: HeaderProps) => {
+  const toggleSorting = useCallback(() => {
+    column.toggleSorting(column.getIsSorted() === 'asc');
+  }, [column]);
+
+  return (
+    <Button variant="ghost" onClick={toggleSorting} className={className}>
+      {children}
+      <Icons.caretSort className="ml-2 h-4 w-4" />
+    </Button>
+  );
+};
+
 export const teacherCourseListColumns: ColumnDef<Course>[] = [
   {
     accessorKey: 'title',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Title
-          <Icons.caretSort className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: ({ column }) => (
+      <Header column={column} className="truncate md:min-w-[550px]">
+        Title
+      </Header>
+    ),
   },
   {
     accessorKey: 'price',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Price
-          <Icons.caretSort className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: ({ column }) => <Header column={column}>Price</Header>,
     cell: ({ row }) => {
       const price = parseFloat(row.getValue('price') || '0');
       const formatted = new Intl.NumberFormat('en-US', {
@@ -59,17 +63,7 @@ export const teacherCourseListColumns: ColumnDef<Course>[] = [
   },
   {
     accessorKey: 'isPublished',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Status
-          <Icons.caretSort className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: ({ column }) => <Header column={column}>Status</Header>,
     cell: ({ row }) => {
       const isPublished = row.getValue('isPublished') || false;
 

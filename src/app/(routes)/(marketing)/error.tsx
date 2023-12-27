@@ -1,5 +1,7 @@
 'use client';
 
+import { useCallback } from 'react';
+
 import { siteConfig } from '#/config/site';
 
 import { APP_BP } from '#/lib/const';
@@ -30,6 +32,10 @@ const links: Array<{
 ];
 
 export default function Error({ reset }: { reset: () => void }) {
+  const handleReset = useCallback(() => {
+    reset();
+  }, [reset]);
+
   return (
     <main className="mx-auto w-full max-w-7xl px-6 pb-16 pt-10 sm:pb-24 lg:px-8">
       <div className="mx-auto mt-20 max-w-2xl text-center sm:mt-24">
@@ -79,7 +85,7 @@ export default function Error({ reset }: { reset: () => void }) {
           })}
         </ul>
         <div className="mt-10 flex justify-center">
-          <Button type="submit" variant="default" onClick={() => reset()}>
+          <Button type="submit" variant="default" onClick={handleReset}>
             Try again
           </Button>
         </div>

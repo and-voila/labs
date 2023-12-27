@@ -57,15 +57,28 @@ export function TeacherCourseListDataTable<TData, TValue>({
     },
   });
 
+  const handleInputChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      table.getColumn('title')?.setFilterValue(event.target.value);
+    },
+    [table],
+  );
+
+  const handlePreviousPage = React.useCallback(() => {
+    table.previousPage();
+  }, [table]);
+
+  const handleNextPage = React.useCallback(() => {
+    table.nextPage();
+  }, [table]);
+
   return (
     <div>
       <div className="flex items-center py-4 md:justify-between">
         <Input
           placeholder="Filter courses by title..."
           value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('title')?.setFilterValue(event.target.value)
-          }
+          onChange={handleInputChange}
           className=" max-w-[300px] bg-card md:max-w-sm"
         />
         <Link href={`${APP_BP}/admin/teacher/create`}>
@@ -129,7 +142,7 @@ export function TeacherCourseListDataTable<TData, TValue>({
         <Button
           variant="outline"
           size="sm"
-          onClick={() => table.previousPage()}
+          onClick={handlePreviousPage}
           disabled={!table.getCanPreviousPage()}
         >
           Previous
@@ -137,7 +150,7 @@ export function TeacherCourseListDataTable<TData, TValue>({
         <Button
           variant="outline"
           size="sm"
-          onClick={() => table.nextPage()}
+          onClick={handleNextPage}
           disabled={!table.getCanNextPage()}
         >
           Next

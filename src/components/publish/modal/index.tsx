@@ -1,5 +1,3 @@
-'use client';
-
 import {
   Dispatch,
   SetStateAction,
@@ -41,6 +39,19 @@ export default function Modal({
 
   const { isMobile, isDesktop } = useWindowSize();
 
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      if (desktopModalRef.current === e.target) {
+        setShowModal(false);
+      }
+    },
+    [setShowModal],
+  );
+
+  const handleClick = useCallback(() => {
+    setShowModal(false);
+  }, [setShowModal]);
+
   return (
     <AnimatePresence>
       {showModal && (
@@ -56,11 +67,7 @@ export default function Modal({
                   initial={{ scale: 0.95 }}
                   animate={{ scale: 1 }}
                   exit={{ scale: 0.95 }}
-                  onMouseDown={(e) => {
-                    if (desktopModalRef.current === e.target) {
-                      setShowModal(false);
-                    }
-                  }}
+                  onMouseDown={handleMouseDown}
                 >
                   {children}
                 </motion.div>
@@ -71,7 +78,7 @@ export default function Modal({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                onClick={() => setShowModal(false)}
+                onClick={handleClick}
               />
             </>
           )}

@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { Icons } from '#/components/shared/icons';
 import { Switch } from '#/components/ui/switch';
@@ -277,6 +277,11 @@ function classNames(...classes: string[]) {
 
 export default function DashboardPricing() {
   const [frequency, setFrequency] = useState(frequencies[0]);
+  const handleFrequencyChange = useCallback(() => {
+    setFrequency(
+      frequencies.find((f) => f.value !== frequency.value) || frequencies[0],
+    );
+  }, [frequency, setFrequency]);
 
   return (
     <div className="isolate overflow-hidden">
@@ -289,12 +294,7 @@ export default function DashboardPricing() {
               </span>
               <Switch
                 checked={frequency.value === 'yearly'}
-                onCheckedChange={() =>
-                  setFrequency(
-                    frequencies.find((f) => f.value !== frequency.value) ||
-                      frequencies[0],
-                  )
-                }
+                onCheckedChange={handleFrequencyChange}
                 role="switch"
                 aria-label="switch-year"
               />

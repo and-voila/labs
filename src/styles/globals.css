@@ -31,7 +31,7 @@ body,
     --accent: 220 47% 96%; /* 100 */
     --accent-foreground: 227 15% 12%; /* 900 */
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 68% 42%;
     --destructive-foreground: 220 27% 98%; /* 50 */
 
     --border: 216 17% 90%; /* 200 */
@@ -65,8 +65,8 @@ body,
     --accent: 230 15% 18%; /* 800 */
     --accent-foreground: 220 27% 98%; /* 50 */
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 220 27% 98%; /* 50 */
+    --destructive: 0 68% 57%;
+    --destructive-foreground: 0 0% 100%; /* 50 */
 
     --border: 230 15% 18%; /* 800 */
     --input: 230 15% 18%; /* 800 */

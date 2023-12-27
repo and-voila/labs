@@ -32,12 +32,12 @@ export const MemberList: React.FC<MemberListProps> = (props) => {
             <div className="flex w-full flex-col justify-between truncate sm:flex-row">
               <div className="flex flex-col gap-1">
                 <div className="flex">
-                  <span className="text-sm font-semibold">
+                  <span className="mr-2 text-sm font-semibold">
                     {invite.name ??
                       invite.email.split('@')[0] ??
                       'Unnamed User'}
                   </span>{' '}
-                  <Badge variant="outline">Invited</Badge>
+                  <Badge variant="custom">Invited</Badge>
                 </div>
                 <div className="flex items-center text-foreground">
                   <span className="text-sm text-muted-foreground">

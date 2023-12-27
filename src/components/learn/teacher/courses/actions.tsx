@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
@@ -24,7 +24,7 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
   const confetti = useConfettiStore();
   const [isLoading, setIsLoading] = useState(false);
 
-  const onClick = async () => {
+  const onClick = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -58,9 +58,9 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [courseId, router, confetti, isPublished]);
 
-  const onDelete = async () => {
+  const onDelete = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -84,7 +84,7 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [courseId, router]);
 
   return (
     <div className="flex items-center gap-x-2">

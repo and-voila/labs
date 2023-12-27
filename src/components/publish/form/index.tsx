@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+import { useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useSession } from 'next-auth/react';
@@ -38,40 +39,46 @@ export default function Form({
   const { id } = useParams() as { id?: string };
   const router = useRouter();
   const { update } = useSession();
+
+  const handleFormAction = useCallback(
+    async (data: FormData) => {
+      if (
+        inputAttrs.name === 'customDomain' &&
+        inputAttrs.defaultValue &&
+        data.get('customDomain') !== inputAttrs.defaultValue &&
+        !confirm('Are you sure you want to change your custom domain?')
+      ) {
+        return;
+      }
+      handleSubmit(data, id, inputAttrs.name).then(async (res: any) => {
+        if (res.error) {
+          toast({
+            title: "We couldn't update your domain",
+            description: `${res.error}. Please try again.`,
+            variant: 'destructive',
+          });
+        } else {
+          va.track(`Updated ${inputAttrs.name}`, id ? { id } : {});
+          if (id) {
+            router.refresh();
+          } else {
+            await update();
+            router.refresh();
+          }
+          toast({
+            title: 'Domain updated',
+            description: `Your domain ${inputAttrs.name} was updated successfully.`,
+            variant: 'success',
+          });
+        }
+      });
+    },
+    [inputAttrs, id, handleSubmit, router, update],
+  );
+
   return (
     <form
-      action={async (data: FormData) => {
-        if (
-          inputAttrs.name === 'customDomain' &&
-          inputAttrs.defaultValue &&
-          data.get('customDomain') !== inputAttrs.defaultValue &&
-          !confirm('Are you sure you want to change your custom domain?')
-        ) {
-          return;
-        }
-        handleSubmit(data, id, inputAttrs.name).then(async (res: any) => {
-          if (res.error) {
-            toast({
-              title: "We couldn't update your domain",
-              description: `${res.error}. Please try again.`,
-              variant: 'destructive',
-            });
-          } else {
-            va.track(`Updated ${inputAttrs.name}`, id ? { id } : {});
-            if (id) {
-              router.refresh();
-            } else {
-              await update();
-              router.refresh();
-            }
-            toast({
-              title: 'Domain updated',
-              description: `Your domain ${inputAttrs.name} was updated successfully.`,
-              variant: 'success',
-            });
-          }
-        });
-      }}
+      action={handleFormAction}
       className="max-w-3xl rounded-lg border-border bg-card"
     >
       <div className="relative flex flex-col space-y-4 p-5 sm:p-10">

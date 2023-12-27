@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { deleteTeam } from '#/lib/actions/teams/delete-team';
@@ -37,7 +37,7 @@ export const DeleteForm: React.FC<DeleteFormProps> = (props) => {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-  const onConfirm = async () => {
+  const onConfirm = useCallback(async () => {
     setIsSubmitting(true);
 
     try {
@@ -53,7 +53,7 @@ export const DeleteForm: React.FC<DeleteFormProps> = (props) => {
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [teamSlug, router]);
 
   return (
     <AlertDialog>

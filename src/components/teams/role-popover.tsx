@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { MembershipRole } from '@prisma/client';
 
 import { changeRoleAction } from '#/lib/actions/teams/member-list-management';
@@ -34,31 +34,39 @@ export const RolePopover: React.FC<RolePopoverProps> = (props) => {
 
   const [isOpen, setOpen] = React.useState(false);
 
-  const handleUpdateRole = async (role: MembershipRole) => {
-    try {
-      const result = await changeRoleAction(memberId, teamSlug, role);
-      const { status, message } = result;
+  const handleUpdateRole = useCallback(
+    async (role: MembershipRole) => {
+      try {
+        const result = await changeRoleAction(memberId, teamSlug, role);
+        const { status, message } = result;
 
-      if (status === 'KO') {
-        return toast({
+        if (status === 'KO') {
+          return toast({
+            title: 'Error',
+            description: message,
+            variant: 'destructive',
+          });
+        }
+
+        toast({
+          title: 'Success',
+          description: 'Role updated',
+        });
+      } catch (error) {
+        toast({
           title: 'Error',
-          description: message,
+          description: 'Failed to change role',
           variant: 'destructive',
         });
       }
+    },
+    [memberId, teamSlug],
+  );
 
-      toast({
-        title: 'Success',
-        description: 'Role updated',
-      });
-    } catch (error) {
-      toast({
-        title: 'Error',
-        description: 'Failed to change role',
-        variant: 'destructive',
-      });
-    }
-  };
+  const handleUpdateRoleCallback = useCallback(
+    (selectedRole: MembershipRole) => () => handleUpdateRole(selectedRole),
+    [handleUpdateRole],
+  );
 
   const renderCommandItem = (
     label: string,
@@ -69,7 +77,7 @@ export const RolePopover: React.FC<RolePopoverProps> = (props) => {
 
     return (
       <CommandItem
-        onSelect={() => handleUpdateRole(selectedRole)}
+        onSelect={handleUpdateRoleCallback(selectedRole)}
         className={`flex cursor-pointer flex-col items-start gap-y-1 px-4 py-2 ${
           !canChangeRole &&
           'aria-disabled:cursor-not-allowed aria-disabled:opacity-40'

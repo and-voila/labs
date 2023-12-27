@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string';
 
@@ -20,7 +21,7 @@ export const CategoryItem = ({ label, value }: CategoryItemProps) => {
 
   const isSelected = currentCategoryId === value;
 
-  const onClick = () => {
+  const onClick = useCallback(() => {
     const url = qs.stringifyUrl(
       {
         url: pathname,
@@ -33,7 +34,7 @@ export const CategoryItem = ({ label, value }: CategoryItemProps) => {
     );
 
     router.push(url);
-  };
+  }, [pathname, router, currentTitle, isSelected, value]);
 
   return (
     <button

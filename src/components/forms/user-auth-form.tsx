@@ -117,6 +117,16 @@ export function UserAuthForm({
     });
   }
 
+  const handleDiscordSignIn = React.useCallback(() => {
+    setIsDiscordLoading(true);
+    signIn('discord');
+  }, []);
+
+  const handleGoogleSignIn = React.useCallback(() => {
+    setIsGoogleLoading(true);
+    signIn('google');
+  }, []);
+
   return (
     <div className={cn('max-w-sm', className)} {...props}>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -137,10 +147,7 @@ export function UserAuthForm({
               <button
                 type="button"
                 className={cn(buttonVariants())}
-                onClick={() => {
-                  setIsDiscordLoading(true);
-                  signIn('discord');
-                }}
+                onClick={handleDiscordSignIn}
                 disabled={isLoading || isDiscordLoading}
               >
                 {isDiscordLoading ? (
@@ -153,10 +160,7 @@ export function UserAuthForm({
               <button
                 type="button"
                 className={cn(buttonVariants())}
-                onClick={() => {
-                  setIsGoogleLoading(true);
-                  signIn('google');
-                }}
+                onClick={handleGoogleSignIn}
                 disabled={isLoading || isGoogleLoading}
               >
                 {isGoogleLoading ? (

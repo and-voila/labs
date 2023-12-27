@@ -1,10 +1,11 @@
 'use client';
 
+import { useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { APP_BP, COURSE_DEFAULT_PRICE } from '#/lib/const';
@@ -69,6 +70,26 @@ const CreatePage = () => {
     }
   };
 
+  const renderInput = useCallback(
+    ({ field }: { field: FieldValues }) => (
+      <FormItem>
+        <FormLabel>Playbook title</FormLabel>
+        <FormControl>
+          <Input
+            disabled={isSubmitting}
+            placeholder="e.g. 'The art of procrastination'"
+            {...field}
+          />
+        </FormControl>
+        <FormDescription className="text-muted-foreground/70">
+          Use sentence case for your title between 45-65 characters.
+        </FormDescription>
+        <FormMessage />
+      </FormItem>
+    ),
+    [isSubmitting],
+  );
+
   return (
     <DashboardShell>
       <div className="flex rounded-xl border bg-card p-6 shadow-md md:p-12">
@@ -85,22 +106,7 @@ const CreatePage = () => {
               <FormField
                 control={form.control}
                 name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Playbook title</FormLabel>
-                    <FormControl>
-                      <Input
-                        disabled={isSubmitting}
-                        placeholder="e.g. 'The art of procrastination'"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription className="text-muted-foreground/70">
-                      Use sentence case for your title between 45-65 characters.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={renderInput}
               />
               <div className="flex items-center gap-x-2">
                 <Link href={`${APP_BP}/admin/teacher/courses`}>

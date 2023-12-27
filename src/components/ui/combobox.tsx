@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 
 import { cn } from '#/lib/utils';
@@ -28,6 +26,16 @@ interface ComboboxProps {
 export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
   const [open, setOpen] = React.useState(false);
 
+  const handleSelect = React.useCallback(
+    (optionValue: string) => {
+      return () => {
+        onChange(optionValue === value ? '' : optionValue);
+        setOpen(false);
+      };
+    },
+    [onChange, value],
+  );
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -54,10 +62,7 @@ export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
             {options.map((option) => (
               <CommandItem
                 key={option.value}
-                onSelect={() => {
-                  onChange(option.value === value ? '' : option.value);
-                  setOpen(false);
-                }}
+                onSelect={handleSelect(option.value)}
               >
                 <Icons.check
                   className={cn(

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
@@ -27,7 +27,7 @@ export const ChapterActions = ({
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  const onClick = async () => {
+  const onClick = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -64,9 +64,9 @@ export const ChapterActions = ({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [isPublished, courseId, chapterId, router]);
 
-  const onDelete = async () => {
+  const onDelete = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -90,7 +90,7 @@ export const ChapterActions = ({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [courseId, chapterId, router]);
 
   return (
     <div className="flex items-center gap-x-2">

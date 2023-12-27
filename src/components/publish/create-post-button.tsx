@@ -1,6 +1,6 @@
 'use client';
 
-import { useTransition } from 'react';
+import { useCallback, useTransition } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 
@@ -13,30 +13,27 @@ import { buttonVariants } from '#/components/ui/button';
 
 export default function CreatePostButton() {
   const router = useRouter();
-  const { id, team_slug } = useParams() as { id: string; team_slug: string };
+  const { id, team_slug: teamSlug } = useParams() as {
+    id: string;
+    team_slug: string;
+  };
   const [isPending, startTransition] = useTransition();
+
+  const handleClick = useCallback(() => {
+    startTransition(async () => {
+      const post = await createPost(null, id, teamSlug);
+      va.track('Created Post');
+      router.refresh();
+      router.push(`${APP_BP}/${teamSlug}/workspace/publish/post/${post.id}`);
+    });
+  }, [startTransition, id, teamSlug, router]);
 
   return (
     <button
-      onClick={() =>
-        startTransition(async () => {
-          const post = await createPost(null, id, team_slug);
-          va.track('Created Post');
-          router.refresh();
-          // eslint-disable-next-line camelcase
-          router.push(
-            // eslint-disable-next-line camelcase
-            `${APP_BP}/${team_slug}/workspace/publish/post/${post.id}`,
-          );
-        })
-      }
-      className={cn(
-        buttonVariants({ size: 'lg' }),
-        'mt-6 w-full md:mt-0 md:w-auto',
-        {
-          'cursor-not-allowed opacity-50': isPending,
-        },
-      )}
+      onClick={handleClick}
+      className={cn(buttonVariants(), 'mt-6 w-full md:mt-0 md:w-auto', {
+        'cursor-not-allowed opacity-50': isPending,
+      })}
       disabled={isPending}
     >
       {isPending ? (
@@ -44,9 +41,7 @@ export default function CreatePostButton() {
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> Just a sec
         </>
       ) : (
-        <>
-          <Icons.plusCircled className="mr-2 h-4 w-4" /> New post
-        </>
+        <>New post</>
       )}
     </button>
   );

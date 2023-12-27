@@ -1,6 +1,4 @@
-'use client';
-
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   DragDropContext,
   Draggable,
@@ -36,27 +34,33 @@ export const ChaptersList = ({
     setChapters(items);
   }, [items]);
 
-  const onDragEnd = (result: DropResult) => {
-    if (!result.destination) return;
+  const onDragEnd = useCallback(
+    (result: DropResult) => {
+      if (!result.destination) return;
 
-    const items = Array.from(chapters);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
+      const items = Array.from(chapters);
+      const [reorderedItem] = items.splice(result.source.index, 1);
+      items.splice(result.destination.index, 0, reorderedItem);
 
-    const startIndex = Math.min(result.source.index, result.destination.index);
-    const endIndex = Math.max(result.source.index, result.destination.index);
+      const startIndex = Math.min(
+        result.source.index,
+        result.destination.index,
+      );
+      const endIndex = Math.max(result.source.index, result.destination.index);
 
-    const updatedChapters = items.slice(startIndex, endIndex + 1);
+      const updatedChapters = items.slice(startIndex, endIndex + 1);
 
-    setChapters(items);
+      setChapters(items);
 
-    const bulkUpdateData = updatedChapters.map((chapter) => ({
-      id: chapter.id,
-      position: items.findIndex((item) => item.id === chapter.id),
-    }));
+      const bulkUpdateData = updatedChapters.map((chapter) => ({
+        id: chapter.id,
+        position: items.findIndex((item) => item.id === chapter.id),
+      }));
 
-    onReorder(bulkUpdateData);
-  };
+      onReorder(bulkUpdateData);
+    },
+    [chapters, onReorder],
+  );
 
   if (!isMounted) {
     return null;
@@ -104,6 +108,7 @@ export const ChaptersList = ({
                         {chapter.isPublished ? 'Published' : 'Draft'}
                       </Badge>
                       <Icons.pencil
+                        // eslint-disable-next-line react/jsx-no-bind
                         onClick={() => onEdit(chapter.id)}
                         className="ml-2 h-4 w-4 cursor-pointer transition hover:opacity-75"
                       />

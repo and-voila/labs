@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
@@ -29,7 +29,7 @@ export const StartCourseButton = ({
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  const onClick = async () => {
+  const onClick = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -64,7 +64,15 @@ export const StartCourseButton = ({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [
+    isStarted,
+    teamSlug,
+    courseId,
+    chapterId,
+    firstChapterId,
+    router,
+    teamId,
+  ]);
 
   return (
     <Button

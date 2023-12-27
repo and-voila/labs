@@ -1,10 +1,11 @@
 'use client';
 
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
-import { PutBlobResult } from '@vercel/blob';
 
 import { Icons } from '#/components/shared/icons';
 import { toast } from '#/components/ui/use-toast';
+
+import { Button } from '../ui/button';
 
 export default function Uploader() {
   const [data, setData] = useState<{
@@ -46,118 +47,119 @@ export default function Uploader() {
     return !data.image || saving;
   }, [data.image, saving]);
 
-  return (
-    <form
-      className="grid gap-6"
-      onSubmit={async (e) => {
-        e.preventDefault();
-        setSaving(true);
-        fetch('/api/upload', {
-          method: 'POST',
-          headers: { 'content-type': file?.type || 'application/octet-stream' },
-          body: file,
-        }).then(async (res) => {
-          if (res.status === 200) {
-            const { url } = (await res.json()) as PutBlobResult;
-            toast(
-              <div className="relative">
-                <div className="p-2">
-                  <p className="font-semibold text-gray-900">File uploaded!</p>
-                  <p className="mt-1 text-sm text-gray-500">
-                    Your file has been uploaded to{' '}
-                    <a
-                      className="font-medium text-gray-900 underline"
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {url}
-                    </a>
-                  </p>
-                </div>
-              </div>,
-            );
-          } else {
-            const error = await res.text();
+  const handleDragOver = useCallback((e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(true);
+  }, []);
+
+  const handleDragEnter = useCallback((e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(true);
+  }, []);
+
+  const handleDragLeave = useCallback((e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+  }, []);
+
+  const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+
+    const file = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (file) {
+      if (file.size / 1024 / 1024 > 5) {
+        toast({
+          title: 'Upload size exceeded',
+          description: 'The max upload size is 5MB. Please try a smaller file.',
+          variant: 'destructive',
+        });
+      } else {
+        setFile(file);
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setData((prev) => ({
+            ...prev,
+            image: e.target?.result as string,
+          }));
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  }, []);
+
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setSaving(true);
+      fetch('/api/upload', {
+        method: 'POST',
+        headers: { 'content-type': file?.type || 'application/octet-stream' },
+        body: file,
+      })
+        .then(async (res) => {
+          if (res.ok) {
+            const { url } = await res.json();
             toast({
-              title: 'An error occurred',
-              description: `${error}. Please try again.`,
-              variant: 'destructive',
+              title: 'File uploaded!',
+              description: `Your file has been uploaded to ${url}`,
+              variant: 'success',
             });
+          } else {
+            throw new Error('Upload failed');
           }
+        })
+        .catch((error) => {
+          toast({
+            title: 'An error occurred',
+            description: `${error.message}. Please try again.`,
+            variant: 'destructive',
+          });
+        })
+        .finally(() => {
           setSaving(false);
         });
-      }}
-    >
+    },
+    [file],
+  );
+
+  return (
+    <form className="grid gap-6" onSubmit={handleSubmit}>
       <div>
         <div className="mb-4 space-y-1">
           <h2 className="text-xl font-semibold">Upload a file</h2>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-muted-foreground">
             Accepted formats: .png, .jpg, .gif, .mp4
           </p>
         </div>
         <label
           htmlFor="image-upload"
-          className="group relative mt-2 flex h-72 cursor-pointer flex-col items-center justify-center rounded-md border border-gray-300 bg-white shadow-sm transition-all hover:bg-gray-50"
+          className="group relative mt-2 flex h-72 cursor-pointer flex-col items-center justify-center rounded-md border border-border bg-background shadow-sm transition-all hover:bg-background/70"
         >
           <div
             className="absolute z-[5] h-full w-full rounded-md"
-            onDragOver={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setDragActive(true);
-            }}
-            onDragEnter={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setDragActive(true);
-            }}
-            onDragLeave={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setDragActive(false);
-            }}
-            onDrop={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setDragActive(false);
-
-              const file = e.dataTransfer.files && e.dataTransfer.files[0];
-              if (file) {
-                if (file.size / 1024 / 1024 > 50) {
-                  toast({
-                    title: 'Upload size exceeded',
-                    description:
-                      'The max upload size is 50MB. Please try a smaller file.',
-                    variant: 'destructive',
-                  });
-                } else {
-                  setFile(file);
-                  const reader = new FileReader();
-                  reader.onload = (e) => {
-                    setData((prev) => ({
-                      ...prev,
-                      image: e.target?.result as string,
-                    }));
-                  };
-                  reader.readAsDataURL(file);
-                }
-              }
-            }}
+            onDragOver={handleDragOver}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
           />
           <div
             className={`${
-              dragActive ? 'border-2 border-black' : ''
+              dragActive ? 'border' : ''
             } absolute z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all ${
               data.image
-                ? 'bg-white/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md'
-                : 'bg-white opacity-100 hover:bg-gray-50'
+                ? 'bg-background opacity-0 hover:opacity-100 hover:backdrop-blur-md'
+                : 'bg-background opacity-100 hover:bg-background/80'
             }`}
           >
             <svg
               className={`${
                 dragActive ? 'scale-110' : 'scale-100'
-              } h-7 w-7 text-gray-500 transition-all duration-75 group-hover:scale-110 group-active:scale-95`}
+              } h-7 w-7 text-primary transition-all duration-75 group-hover:scale-110 group-active:scale-95`}
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -172,11 +174,11 @@ export default function Uploader() {
               <path d="M12 12v9" />
               <path d="m16 16-4-4-4 4" />
             </svg>
-            <p className="mt-2 text-center text-sm text-gray-500">
+            <p className="mt-2 text-center text-sm text-muted-foreground">
               Drag and drop or click to upload.
             </p>
-            <p className="mt-2 text-center text-sm text-gray-500">
-              Max file size: 50MB
+            <p className="mt-2 text-center text-sm text-muted-foreground">
+              Max file size: 5MB
             </p>
             <span className="sr-only">Photo upload</span>
           </div>
@@ -201,14 +203,7 @@ export default function Uploader() {
         </div>
       </div>
 
-      <button
-        disabled={saveDisabled}
-        className={`${
-          saveDisabled
-            ? 'cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400'
-            : 'border-black bg-black text-white hover:bg-white hover:text-black'
-        } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
-      >
+      <Button disabled={saveDisabled}>
         {saving ? (
           <>
             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> Just a sec
@@ -216,7 +211,7 @@ export default function Uploader() {
         ) : (
           <p className="text-sm">Confirm upload</p>
         )}
-      </button>
+      </Button>
     </form>
   );
 }

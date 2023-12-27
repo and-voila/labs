@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Team } from '@prisma/client';
@@ -39,10 +39,10 @@ export const DeleteAccountForm: React.FC<DeleteAccountFormProps> = (props) => {
 
   const router = useRouter();
 
-  const onDeleteConfirm = async () => {
+  const handleDeleteConfirm = useCallback(async () => {
     await deletePersonalAccount();
     router.refresh();
-  };
+  }, [router]);
 
   return (
     <AlertDialog>
@@ -116,7 +116,7 @@ export const DeleteAccountForm: React.FC<DeleteAccountFormProps> = (props) => {
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           {teams.length > 0 ? null : (
-            <AlertDialogAction onClick={onDeleteConfirm}>
+            <AlertDialogAction onClick={handleDeleteConfirm}>
               Confirm
             </AlertDialogAction>
           )}
