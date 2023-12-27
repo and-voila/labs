@@ -60,12 +60,12 @@ body,
     --secondary-foreground: 220 27% 98%; /* 50 */
 
     --muted: 230 15% 18%; /* 800 */
-    --muted-foreground: 220 8% 64%; /* 400 */
+    --muted-foreground: 218 5% 68%; /* 400 */
 
     --accent: 230 15% 18%; /* 800 */
     --accent-foreground: 220 27% 98%; /* 50 */
 
-    --destructive: 0 68% 57%;
+    --destructive: 0 68% 40%;
     --destructive-foreground: 0 0% 100%; /* 50 */
 
     --border: 230 15% 18%; /* 800 */
