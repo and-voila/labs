@@ -1,6 +1,13 @@
 'use client';
 
-import { createContext, ReactNode, useContext, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 
 import Modal from '.';
 
@@ -15,20 +22,22 @@ export function ModalProvider({ children }: { children: ReactNode }) {
   const [modalContent, setModalContent] = useState<ReactNode | null>(null);
   const [showModal, setShowModal] = useState(false);
 
-  const show = (content: ReactNode) => {
+  const show = useCallback((content: ReactNode) => {
     setModalContent(content);
     setShowModal(true);
-  };
+  }, []);
 
-  const hide = () => {
+  const hide = useCallback(() => {
     setShowModal(false);
     setTimeout(() => {
       setModalContent(null);
     }, 300); // Adjust this timeout as per your transition duration
-  };
+  }, []);
+
+  const value = useMemo(() => ({ show, hide }), [show, hide]);
 
   return (
-    <ModalContext.Provider value={{ show, hide }}>
+    <ModalContext.Provider value={value}>
       {children}
       {showModal && (
         <Modal showModal={showModal} setShowModal={setShowModal}>

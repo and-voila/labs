@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 
 import { siteConfig } from '#/config/site';
 
@@ -77,6 +77,18 @@ export const UpdateTeamNameForm: React.FC<UpdateTeamNameFormProps> = (
     }
   };
 
+  const renderInput = useCallback(
+    ({ field }: { field: FieldValues }) => (
+      <FormItem>
+        <FormControl>
+          <Input placeholder="Workspace name" {...field} />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    ),
+    [],
+  );
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -91,14 +103,7 @@ export const UpdateTeamNameForm: React.FC<UpdateTeamNameFormProps> = (
             <FormField
               control={form.control}
               name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input placeholder="Workspace name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              render={renderInput}
             />
           </CardContent>
           <CardFooter className="py-3">

@@ -36,7 +36,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
     {...props}
   >
     {children}
-    <Icons.radixChevronRight className="ml-auto h-4 w-4" />
+    <Icons.caretRight className="ml-auto h-4 w-4" />
   </DropdownMenuPrimitive.SubTrigger>
 ));
 DropdownMenuSubTrigger.displayName =
@@ -87,7 +87,7 @@ const dropdownMenuItemVariants = cva(
       variant: {
         default: 'focus:bg-accent focus:text-accent-foreground',
         destructive:
-          'text-red-500 focus:bg-destructive focus:text-destructive-foreground',
+          'text-destructive hover:bg-destructive hover:text-destructive-foreground',
       },
     },
     defaultVariants: {
@@ -135,7 +135,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
-        <Icons.radixCheck className="h-4 w-4" />
+        <Icons.check className="h-4 w-4" />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
     {children}

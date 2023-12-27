@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 
 import { cn } from '#/lib/utils';
@@ -28,6 +26,16 @@ interface ComboboxProps {
 export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
   const [open, setOpen] = React.useState(false);
 
+  const handleSelect = React.useCallback(
+    (optionValue: string) => {
+      return () => {
+        onChange(optionValue === value ? '' : optionValue);
+        setOpen(false);
+      };
+    },
+    [onChange, value],
+  );
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -40,7 +48,7 @@ export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
           {value
             ? options.find((option) => option.value === value)?.label
             : 'Select category...'}
-          <Icons.radixCaretSort className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <Icons.caretSort className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
@@ -54,12 +62,9 @@ export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
             {options.map((option) => (
               <CommandItem
                 key={option.value}
-                onSelect={() => {
-                  onChange(option.value === value ? '' : option.value);
-                  setOpen(false);
-                }}
+                onSelect={handleSelect(option.value)}
               >
-                <Icons.radixCheck
+                <Icons.check
                   className={cn(
                     'mr-2 h-4 w-4',
                     value === option.value ? 'opacity-100' : 'opacity-0',

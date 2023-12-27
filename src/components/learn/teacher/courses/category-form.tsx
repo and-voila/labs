@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Course } from '@prisma/client';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { cn } from '#/lib/utils';
@@ -40,7 +40,9 @@ export const CategoryForm = ({
 }: CategoryFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const toggleEdit = () => setIsEditing((current) => !current);
+  const toggleEdit = useCallback(() => {
+    setIsEditing((current) => !current);
+  }, []);
 
   const router = useRouter();
 
@@ -77,6 +79,23 @@ export const CategoryForm = ({
     (option) => option.value === initialData.categoryId,
   );
 
+  const renderField = useCallback(
+    ({ field }: { field: FieldValues }) => {
+      return (
+        <FormItem>
+          <FormControl>
+            <Combobox options={options} {...field} onChange={field.onChange} />
+          </FormControl>
+          <FormDescription className="text-muted-foreground/70">
+            Each playbook must have a category, only one.
+          </FormDescription>
+          <FormMessage />
+        </FormItem>
+      );
+    },
+    [options],
+  );
+
   return (
     <div className="mt-6 rounded-md border bg-card px-4 py-6">
       <div className="mb-4 flex items-center justify-between font-semibold">
@@ -111,21 +130,7 @@ export const CategoryForm = ({
             <FormField
               control={form.control}
               name="categoryId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Combobox
-                      options={options}
-                      {...field}
-                      onChange={(value) => field.onChange(value)}
-                    />
-                  </FormControl>
-                  <FormDescription className="text-muted-foreground/70">
-                    Each playbook must have a category, only one.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
+              render={renderField}
             />
             <div className="flex items-center justify-end gap-x-2">
               <Button

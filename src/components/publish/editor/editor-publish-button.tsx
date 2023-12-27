@@ -1,4 +1,4 @@
-import { Dispatch } from 'react';
+import { Dispatch, useCallback } from 'react';
 
 import { updatePostMetadata } from '#/lib/actions/publish/publish-actions';
 import { cn } from '#/lib/utils';
@@ -27,30 +27,32 @@ const EditorPublishButton = ({
   dispatch,
   state,
 }: EditorPublishButtonProps) => {
+  const handleClick = useCallback(() => {
+    const formData = new FormData();
+    formData.append('published', String(!published));
+    startTransitionPublishing(async () => {
+      await updatePostMetadata(formData, postId, 'published').then(() => {
+        toast({
+          title: `Successfully ${
+            published ? 'unpublished' : 'published'
+          } your post.`,
+          description: 'Your post status has been updated.',
+          variant: 'success',
+        });
+        dispatch({
+          type: 'setData',
+          payload: {
+            ...state.data,
+            published: !published,
+          },
+        });
+      });
+    });
+  }, [published, startTransitionPublishing, postId, dispatch, state]);
+
   return (
     <button
-      onClick={() => {
-        const formData = new FormData();
-        formData.append('published', String(!published));
-        startTransitionPublishing(async () => {
-          await updatePostMetadata(formData, postId, 'published').then(() => {
-            toast({
-              title: `Successfully ${
-                published ? 'unpublished' : 'published'
-              } your post.`,
-              description: 'Your post status has been updated.',
-              variant: 'success',
-            });
-            dispatch({
-              type: 'setData',
-              payload: {
-                ...state.data,
-                published: !published,
-              },
-            });
-          });
-        });
-      }}
+      onClick={handleClick}
       className={cn(
         buttonVariants({
           variant: published ? 'destructive' : 'default',

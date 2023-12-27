@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
@@ -21,38 +22,36 @@ export default function DeleteSiteForm({
 }) {
   const { id } = useParams() as { id: string };
   const router = useRouter();
+
+  const handleDelete = useCallback(
+    async (data: FormData) => {
+      if (window.confirm('Are you sure you want to delete your site?')) {
+        const res = await deleteSite(data, id, 'delete');
+        if (res.error) {
+          toast({
+            title: 'Could not delete site',
+            description: `${res.error}. Please try again.`,
+            variant: 'destructive',
+          });
+        } else {
+          va.track('Deleted Site');
+          router.refresh();
+          router.push(`${APP_BP}/${teamSlug}/workspace/publish/sites`);
+          toast({
+            title: 'Your site was deleted',
+            description:
+              "Your site was deleted. Create another one so your fans don't miss you.",
+            variant: 'success',
+          });
+        }
+      }
+    },
+    [id, teamSlug, router],
+  );
+
   return (
     <form
-      action={async (data: FormData) =>
-        window.confirm('Are you sure you want to delete your site?') &&
-        deleteSite(data, id, 'delete')
-          .then(async (res) => {
-            if (res.error) {
-              toast({
-                title: 'Could not delete site',
-                description: `${res.error}. Please try again.`,
-                variant: 'destructive',
-              });
-            } else {
-              va.track('Deleted Site');
-              router.refresh();
-              router.push(`${APP_BP}/${teamSlug}/workspace/publish/sites`);
-              toast({
-                title: 'Your site was deleted',
-                description:
-                  "Your site was deleted. Create another one so your fans don't miss you.",
-                variant: 'success',
-              });
-            }
-          })
-          .catch((err: Error) => {
-            toast({
-              title: 'Error',
-              description: `${err.message}. Please try again.`,
-              variant: 'destructive',
-            });
-          })
-      }
+      action={handleDelete}
       className="max-w-3xl rounded-lg border-2 border-destructive bg-card"
     >
       <div className="relative flex flex-col space-y-4 p-5 sm:p-10">

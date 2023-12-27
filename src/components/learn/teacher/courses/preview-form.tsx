@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Course } from '@prisma/client';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { cn } from '#/lib/utils';
@@ -42,7 +42,9 @@ const formSchema = z.object({
 export const PreviewForm = ({ initialData, courseId }: PreviewFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const toggleEdit = () => setIsEditing((current) => !current);
+  const toggleEdit = useCallback(() => {
+    setIsEditing((current) => !current);
+  }, []);
 
   const router = useRouter();
 
@@ -74,6 +76,26 @@ export const PreviewForm = ({ initialData, courseId }: PreviewFormProps) => {
       });
     }
   };
+
+  const renderField = useCallback(
+    ({ field }: { field: FieldValues }) => (
+      <FormItem>
+        <FormControl>
+          <Textarea
+            disabled={isSubmitting}
+            placeholder="e.g. 'This is my super duper 158 character max playbook preview text...'"
+            {...field}
+          />
+        </FormControl>
+        <FormDescription className="text-muted-foreground/70">
+          Your preview text should be SEO optimized and between 125-165
+          characters.
+        </FormDescription>
+        <FormMessage />
+      </FormItem>
+    ),
+    [isSubmitting],
+  );
 
   return (
     <div className="mt-6 rounded-md border bg-card px-4 py-6">
@@ -109,22 +131,7 @@ export const PreviewForm = ({ initialData, courseId }: PreviewFormProps) => {
             <FormField
               control={form.control}
               name="preview"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Textarea
-                      disabled={isSubmitting}
-                      placeholder="e.g. 'This is my super duper 158 character max playbook preview text...'"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormDescription className="text-muted-foreground/70">
-                    Your preview text should be SEO optimized and between
-                    125-165 characters.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
+              render={renderField}
             />
             <div className="flex items-center justify-end gap-x-2">
               <Button

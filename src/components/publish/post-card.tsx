@@ -38,7 +38,7 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
           )}
         </div>
         <div className="border-t p-4">
-          <h3 className="my-0 line-clamp-2 text-lg font-semibold group-hover:text-primary">
+          <h3 className="my-0 line-clamp-2 text-lg font-semibold text-foreground">
             {data.title || 'Draft post without a title'}
           </h3>
           <p className="mt-2 line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -57,12 +57,12 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
             }
             target="_blank"
             rel="noreferrer"
-            className="truncate rounded-md py-2 text-xs text-muted-foreground underline underline-offset-4 transition-colors group-hover:opacity-70"
+            className="truncate rounded-md py-2 text-xs text-muted-foreground underline underline-offset-4 transition-colors group-hover:text-foreground"
           >
             <span className="flex flex-row items-center gap-1">
               Visit post
               {''}
-              <Icons.arrowSquareOut className="ml-1 h-3 w-3 text-primary" />
+              <Icons.arrowSquareOut className="ml-1 h-3 w-3 text-muted-foreground transition-colors group-hover:text-foreground" />
             </span>
           </a>
         </div>

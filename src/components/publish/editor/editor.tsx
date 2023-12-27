@@ -1,6 +1,12 @@
 'use client';
 
-import { useEffect, useReducer, useState, useTransition } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useReducer,
+  useState,
+  useTransition,
+} from 'react';
 import { Post } from '@prisma/client';
 import { Editor as NovelEditor } from 'novel';
 
@@ -123,6 +129,71 @@ export default function Editor({
     });
   });
 
+  const handleTitleChange = useCallback(
+    (newTitle: string) => {
+      dispatch({
+        type: 'setData',
+        payload: { ...state.data, title: newTitle },
+      });
+    },
+    [dispatch, state.data],
+  );
+
+  const handleDescriptionChange = useCallback(
+    (newDescription: string) => {
+      dispatch({
+        type: 'setData',
+        payload: { ...state.data, description: newDescription },
+      });
+    },
+    [dispatch, state.data],
+  );
+
+  const handleUpdate = useCallback(
+    (editor: unknown) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const currentContent = (editor as any)?.storage.markdown.getMarkdown();
+      dispatch({
+        type: 'setData',
+        payload: {
+          ...state.data,
+          content: currentContent,
+        },
+      });
+      handleContentChange(currentContent);
+    },
+    [dispatch, state.data, handleContentChange],
+  );
+
+  const handleDebouncedUpdate = useCallback(() => {
+    dispatch({
+      type: 'setTitleError',
+      payload: validateTitle(state.data.title || ''),
+    });
+    dispatch({
+      type: 'setDescriptionError',
+      payload: validateDescription(state.data.description || ''),
+    });
+    dispatch({
+      type: 'setContentError',
+      payload: validateContent(state.data.content || ''),
+    });
+
+    if (
+      state.data.title === post.title &&
+      state.data.description === post.description &&
+      state.data.content === post.content
+    ) {
+      return;
+    }
+
+    if (state.data.title && state.data.description) {
+      startTransitionSaving(async () => {
+        await updatePost(state.data, teamSlug);
+      });
+    }
+  }, [dispatch, state.data, post, startTransitionSaving, teamSlug]);
+
   return (
     <div className="relative min-h-[500px] w-full max-w-screen-lg gap-8 rounded-lg bg-card py-12 sm:mb-[calc(20vh)] sm:px-8 sm:shadow-lg">
       <EditorHeader
@@ -139,24 +210,14 @@ export default function Editor({
       <div className="my-5 flex flex-col space-y-3 px-4">
         <PostTitleInput
           value={state.data.title || ''}
-          onChange={(newTitle) =>
-            dispatch({
-              type: 'setData',
-              payload: { ...state.data, title: newTitle },
-            })
-          }
+          onChange={handleTitleChange}
         />
         {state.titleError && (
           <p className="text-xs text-red-500">{state.titleError}</p>
         )}
         <PostDescriptionInput
           value={state.data.description || ''}
-          onChange={(newDescription) =>
-            dispatch({
-              type: 'setData',
-              payload: { ...state.data, description: newDescription },
-            })
-          }
+          onChange={handleDescriptionChange}
         />
         {state.descriptionError && (
           <p className="text-xs text-red-500">{state.descriptionError}</p>
@@ -171,46 +232,9 @@ export default function Editor({
         storageKey={`novel__content_${post.id}`}
         className="relative block"
         defaultValue={post?.content || ''}
-        onUpdate={(editor) => {
-          const currentContent = editor?.storage.markdown.getMarkdown();
-          dispatch({
-            type: 'setData',
-            payload: {
-              ...state.data,
-              content: currentContent,
-            },
-          });
-          handleContentChange(currentContent);
-        }}
+        onUpdate={handleUpdate}
         debounceDuration={3000}
-        onDebouncedUpdate={() => {
-          dispatch({
-            type: 'setTitleError',
-            payload: validateTitle(state.data.title || ''),
-          });
-          dispatch({
-            type: 'setDescriptionError',
-            payload: validateDescription(state.data.description || ''),
-          });
-          dispatch({
-            type: 'setContentError',
-            payload: validateContent(state.data.content || ''),
-          });
-
-          if (
-            state.data.title === post.title &&
-            state.data.description === post.description &&
-            state.data.content === post.content
-          ) {
-            return;
-          }
-
-          if (state.data.title && state.data.description) {
-            startTransitionSaving(async () => {
-              await updatePost(state.data, teamSlug);
-            });
-          }
-        }}
+        onDebouncedUpdate={handleDebouncedUpdate}
       />
     </div>
   );

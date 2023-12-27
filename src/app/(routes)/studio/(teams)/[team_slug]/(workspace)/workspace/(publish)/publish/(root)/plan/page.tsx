@@ -27,7 +27,7 @@ export default async function WorkspacePlanPage({
         <h3 className="text-lg font-semibold leading-6">
           Awesome AI-assisted planning tools on the horizon
         </h3>
-        <Separator className="mb-6 mt-2 bg-primary/80" />
+        <Separator className="mb-6 mt-2" />
       </div>
       <div className="max-w-3xl justify-start">
         <EmptyPlaceholder>

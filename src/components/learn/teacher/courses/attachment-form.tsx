@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Attachment, Course } from '@prisma/client';
 import axios from 'axios';
@@ -27,52 +27,76 @@ export const AttachmentForm = ({
   const [isEditing, setIsEditing] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  const toggleEdit = () => setIsEditing((current) => !current);
+  const toggleEdit = useCallback(() => {
+    setIsEditing((current) => !current);
+  }, []);
 
   const router = useRouter();
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    try {
-      await axios.post(`/api/courses/${courseId}/attachments`, values);
-      toast({
-        title: 'Attachment attached successfully',
-        description:
-          "Your attachment has been added to the playbook. You're attached!",
-        variant: 'success',
-      });
-      toggleEdit();
-      router.refresh();
-    } catch {
-      toast({
-        title: 'Ugh, we have attachment issues',
-        description:
-          "Something went wrong and we couldn't attach your attachment. Please try again.",
-        variant: 'destructive',
-      });
-    }
-  };
+  const onSubmit = useCallback(
+    async (values: z.infer<typeof formSchema>) => {
+      try {
+        await axios.post(`/api/courses/${courseId}/attachments`, values);
+        toast({
+          title: 'Attachment attached successfully',
+          description:
+            "Your attachment has been added to the playbook. You're attached!",
+          variant: 'success',
+        });
+        toggleEdit();
+        router.refresh();
+      } catch {
+        toast({
+          title: 'Ugh, we have attachment issues',
+          description:
+            "Something went wrong and we couldn't attach your attachment. Please try again.",
+          variant: 'destructive',
+        });
+      }
+    },
+    [courseId, router, toggleEdit],
+  );
 
-  const onDelete = async (id: string) => {
-    try {
-      setDeletingId(id);
-      await axios.delete(`/api/courses/${courseId}/attachments/${id}`);
-      toast({
-        title: 'Your attachment was deleted',
-        description: 'You just removed the attachment from the playbook.',
-        variant: 'success',
-      });
-      router.refresh();
-    } catch {
-      toast({
-        title: 'Whoops, unable to remove attachment',
-        description:
-          'Please try removing the attachment again. Thanks for your patience.',
-        variant: 'destructive',
-      });
-    } finally {
-      setDeletingId(null);
-    }
-  };
+  const handleChange = useCallback(
+    (url?: string) => {
+      if (url) {
+        onSubmit({ url: url });
+      }
+    },
+    [onSubmit],
+  );
+
+  const onDelete = useCallback(
+    async (id: string) => {
+      try {
+        setDeletingId(id);
+        await axios.delete(`/api/courses/${courseId}/attachments/${id}`);
+        toast({
+          title: 'Your attachment was deleted',
+          description: 'You just removed the attachment from the playbook.',
+          variant: 'success',
+        });
+        router.refresh();
+      } catch {
+        toast({
+          title: 'Whoops, unable to remove attachment',
+          description:
+            'Please try removing the attachment again. Thanks for your patience.',
+          variant: 'destructive',
+        });
+      } finally {
+        setDeletingId(null);
+      }
+    },
+    [courseId, router],
+  );
+
+  const handleDelete = useCallback(
+    (id: string) => () => {
+      onDelete(id);
+    },
+    [onDelete],
+  );
 
   return (
     <div className="mt-6 rounded-md border bg-card px-4 py-6">
@@ -106,12 +130,12 @@ export const AttachmentForm = ({
                   <p className="line-clamp-1 text-xs">{attachment.name}</p>
                   {deletingId === attachment.id && (
                     <div>
-                      <Icons.spinner className="h-4 w-4 animate-spin" />
+                      <Icons.spinner className=" ml-2 h-4 w-4 animate-spin" />
                     </div>
                   )}
                   {deletingId !== attachment.id && (
                     <button
-                      onClick={() => onDelete(attachment.id)}
+                      onClick={handleDelete(attachment.id)}
                       className="ml-auto transition hover:opacity-75"
                     >
                       <Icons.crossLarge className="h-4 w-4 text-destructive" />
@@ -125,14 +149,7 @@ export const AttachmentForm = ({
       )}
       {isEditing && (
         <div>
-          <FileUpload
-            endpoint="courseAttachment"
-            onChange={(url) => {
-              if (url) {
-                onSubmit({ url: url });
-              }
-            }}
-          />
+          <FileUpload endpoint="courseAttachment" onChange={handleChange} />
           <div className="mt-4 text-sm text-muted-foreground">
             Add cool stuff to reinforce the learning experience.
           </div>

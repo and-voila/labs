@@ -3,6 +3,7 @@ import {
   ReactNode,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 import { usePathname } from 'next/navigation';
@@ -27,10 +28,13 @@ export function ActiveTeamSlugProvider({ children }: { children: ReactNode }) {
     setActiveTeamSlug(slug);
   }, [pathname]);
 
+  const value = useMemo(
+    () => ({ activeTeamSlug, setActiveTeamSlug }),
+    [activeTeamSlug, setActiveTeamSlug],
+  );
+
   return (
-    <ActiveTeamSlugContext.Provider
-      value={{ activeTeamSlug, setActiveTeamSlug }}
-    >
+    <ActiveTeamSlugContext.Provider value={value}>
       {children}
     </ActiveTeamSlugContext.Provider>
   );

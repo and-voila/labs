@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Course } from '@prisma/client';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { COURSE_DEFAULT_PRICE } from '#/lib/const';
@@ -34,7 +34,9 @@ const formSchema = z.object({
 export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const toggleEdit = () => setIsEditing((current) => !current);
+  const toggleEdit = useCallback(() => {
+    setIsEditing((current) => !current);
+  }, []);
 
   const router = useRouter();
 
@@ -71,6 +73,30 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
     }
   };
 
+  const renderField = useCallback(
+    ({ field }: { field: FieldValues }) => (
+      <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4">
+        <FormControl>
+          <Switch
+            checked={field.value}
+            onCheckedChange={field.onChange}
+            role="switch"
+            aria-checked={field.value}
+            aria-label="Toggle playbook free status"
+          />
+        </FormControl>
+        <div className="space-y-1 leading-none">
+          <FormDescription id="switch-label" className="text-base">
+            {field.value
+              ? 'This is a free playbook.'
+              : 'The is a paid playbook.'}
+          </FormDescription>
+        </div>
+      </FormItem>
+    ),
+    [],
+  );
+
   return (
     <div className="mt-6 rounded-md border bg-card px-4 py-6">
       <div className="mb-4 flex items-center justify-between font-semibold">
@@ -105,26 +131,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             <FormField
               control={form.control}
               name="isFree"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4">
-                  <FormControl>
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                      role="switch"
-                      aria-checked={field.value}
-                      aria-label="Toggle playbook free status"
-                    />
-                  </FormControl>
-                  <div className="space-y-1 leading-none">
-                    <FormDescription id="switch-label" className="text-base">
-                      {field.value
-                        ? 'This is a free playbook.'
-                        : 'The is a paid playbook.'}
-                    </FormDescription>
-                  </div>
-                </FormItem>
-              )}
+              render={renderField}
             />
             <div className="flex items-center justify-end gap-x-2">
               <Button

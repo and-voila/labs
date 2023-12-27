@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string';
 
@@ -34,11 +34,15 @@ export const SearchInput = () => {
     router.push(url);
   }, [debouncedValue, currentCategoryId, router, pathname]);
 
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  }, []);
+
   return (
     <div className="relative flex items-center">
       <Icons.search className="absolute left-2 h-4 w-4 text-muted-foreground" />
       <Input
-        onChange={(e) => setValue(e.target.value)}
+        onChange={handleChange}
         value={value}
         className="w-full rounded-lg bg-card pl-9 focus-visible:ring-ring md:w-[300px]"
         placeholder="Search for a playbook by title..."

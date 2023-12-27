@@ -17,8 +17,9 @@
     "target": "es5",
     "baseUrl": ".",
     "paths": {
-      ":/*": ["./*"],
       "#/*": ["./src/*"],
+      "env": ["./env.mjs"],
+      "public/*": ["./public/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "plugins": [

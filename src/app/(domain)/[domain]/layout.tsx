@@ -2,7 +2,8 @@ import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
-import { fontMapper } from ':/public/fonts';
+
+import { fontMapper } from 'public/fonts';
 
 import { getSiteData } from '#/lib/operations/publish/publish-fetchers';
 import { cn, placeholderBlurhash } from '#/lib/utils';

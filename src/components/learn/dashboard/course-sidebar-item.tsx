@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { APP_BP } from '#/lib/const';
@@ -18,11 +19,11 @@ export const CourseSidebarItem = ({
 
   const isActive = pathname?.includes(id);
 
-  const onClick = () => {
+  const onClick = useCallback(() => {
     router.push(
       `${APP_BP}/${teamSlug}/workspace/learn/courses/${courseId}/chapters/${id}`,
     );
-  };
+  }, [router, courseId, id, teamSlug]);
 
   return (
     <button

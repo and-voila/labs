@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { SidebarItemProps } from '#/lib/types';
@@ -13,9 +14,9 @@ export const SidebarItem = ({ icon, label, href }: SidebarItemProps) => {
 
   const isActive = pathname === href || pathname === `${href}/`;
 
-  const onClick = () => {
+  const onClick = useCallback(() => {
     router.push(href);
-  };
+  }, [router, href]);
 
   const IconComponent = Icons[icon];
 

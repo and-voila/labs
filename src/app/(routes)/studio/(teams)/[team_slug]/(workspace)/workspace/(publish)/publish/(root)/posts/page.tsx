@@ -27,7 +27,7 @@ export default async function WorkspacePostsPage({
         <h3 className="text-lg font-semibold leading-6">
           Recent posts from your workspace
         </h3>
-        <Separator className="mb-6 mt-2 bg-primary/80" />
+        <Separator className="mb-6 mt-2" />
         <Posts teamSlug={params.team_slug} limit={8} />
       </div>
     </div>

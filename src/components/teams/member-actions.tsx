@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 
 import { deleteMemberAction } from '#/lib/actions/teams/member-list-management';
 
@@ -36,15 +36,22 @@ export const MemberActions: React.FC<MemberActionsProps> = (props) => {
 
   const [isRemovingMember, setIsRemovingMember] = React.useState(false);
 
-  const handleRemoveMember = async () => {
+  const handleRemoveMember = useCallback(async () => {
     setIsRemovingMember(true);
-
     try {
       await deleteMemberAction(id);
     } finally {
       setIsRemovingMember(false);
     }
-  };
+  }, [id]);
+
+  const handleButtonClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      handleRemoveMember();
+    },
+    [handleRemoveMember],
+  );
 
   return (
     <DropdownMenu>
@@ -74,10 +81,7 @@ export const MemberActions: React.FC<MemberActionsProps> = (props) => {
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction asChild>
                 <Button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleRemoveMember();
-                  }}
+                  onClick={handleButtonClick}
                   isLoading={isRemovingMember}
                 >
                   Delete Member
@@ -110,10 +114,7 @@ export const MemberActions: React.FC<MemberActionsProps> = (props) => {
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction asChild>
                 <Button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleRemoveMember();
-                  }}
+                  onClick={handleButtonClick}
                   isLoading={isRemovingMember}
                 >
                   Delete Member
@@ -143,16 +144,23 @@ const DialogItem = forwardRef<
   DialogItemProps
 >((props, ref) => {
   const { triggerChildren, itemProps, children } = props;
+
+  const handleDropdownSelect = useCallback(
+    (e: Event) => {
+      const mouseEvent = e as unknown as React.MouseEvent<HTMLLIElement>;
+      mouseEvent.preventDefault();
+      itemProps?.onSelect?.(e);
+    },
+    [itemProps],
+  );
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <DropdownMenuItem
           {...itemProps}
           ref={ref}
-          onSelect={(e) => {
-            e.preventDefault();
-            itemProps?.onSelect?.(e);
-          }}
+          onSelect={handleDropdownSelect}
         >
           {triggerChildren}
         </DropdownMenuItem>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { getSubdomain } from '#/lib/actions/publish/domains';
 import { cn } from '#/lib/utils';
@@ -28,6 +28,14 @@ export const InlineSnippet = ({
 };
 export default function DomainConfiguration({ domain }: { domain: string }) {
   const [recordType, setRecordType] = useState<'A' | 'CNAME'>('A');
+
+  const handleSetRecordTypeA = useCallback(() => {
+    setRecordType('A');
+  }, []);
+
+  const handleSetRecordTypeCNAME = useCallback(() => {
+    setRecordType('CNAME');
+  }, []);
 
   const { status, domainJson } = useDomainStatus({ domain });
 
@@ -94,7 +102,7 @@ export default function DomainConfiguration({ domain }: { domain: string }) {
           <div className="flex justify-start space-x-4">
             <button
               type="button"
-              onClick={() => setRecordType('A')}
+              onClick={handleSetRecordTypeA}
               className={`${
                 recordType == 'A'
                   ? 'border-primary text-foreground'
@@ -105,7 +113,7 @@ export default function DomainConfiguration({ domain }: { domain: string }) {
             </button>
             <button
               type="button"
-              onClick={() => setRecordType('CNAME')}
+              onClick={handleSetRecordTypeCNAME}
               className={`${
                 recordType == 'CNAME'
                   ? 'border-primary text-foreground'

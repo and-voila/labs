@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import MuxPlayer from '@mux/mux-player-react/lazy';
 import axios from 'axios';
@@ -20,6 +20,7 @@ interface VideoPlayerProps {
   nextChapterId?: string;
   completeOnEnd: boolean;
   title: string;
+  teamSlug: string;
 }
 
 export const VideoPlayer = ({
@@ -29,12 +30,17 @@ export const VideoPlayer = ({
   nextChapterId,
   completeOnEnd,
   title,
+  teamSlug,
 }: VideoPlayerProps) => {
   const [isReady, setIsReady] = useState(false);
   const router = useRouter();
   const confetti = useConfettiStore();
 
-  const onEnd = async () => {
+  const handleCanPlay = useCallback(() => {
+    setIsReady(true);
+  }, []);
+
+  const onEnd = useCallback(async () => {
     try {
       if (completeOnEnd) {
         await axios.put(
@@ -58,7 +64,7 @@ export const VideoPlayer = ({
 
         if (nextChapterId) {
           router.push(
-            `${APP_BP}/workspace/learn/courses/${courseId}/chapters/${nextChapterId}`,
+            `${APP_BP}/${teamSlug}/workspace/learn/courses/${courseId}/chapters/${nextChapterId}`,
           );
         }
       }
@@ -70,7 +76,15 @@ export const VideoPlayer = ({
         variant: 'destructive',
       });
     }
-  };
+  }, [
+    completeOnEnd,
+    courseId,
+    chapterId,
+    nextChapterId,
+    confetti,
+    router,
+    teamSlug,
+  ]);
 
   return (
     <div className="relative aspect-video">
@@ -82,7 +96,7 @@ export const VideoPlayer = ({
       <MuxPlayer
         title={title}
         className={cn(!isReady && 'hidden')}
-        onCanPlay={() => setIsReady(true)}
+        onCanPlay={handleCanPlay}
         onEnded={onEnd}
         autoPlay
         playbackId={playbackId}

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { startTransition, useMemo } from 'react';
+import React, { startTransition, useCallback, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Team } from '@prisma/client';
 
@@ -61,14 +61,33 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
 
   const currentPath = usePathname().split('/').slice(4).join('/');
 
-  const onTeamSelect = (team: Team) => {
-    startTransition(() => {
-      setOpen(false);
-      router.replace(`${APP_BP}/${team.slug}/workspace/${currentPath}`);
-    });
-  };
+  const onTeamSelect = useCallback(
+    (team: Team) => {
+      startTransition(() => {
+        setOpen(false);
+        router.replace(`${APP_BP}/${team.slug}/workspace/${currentPath}`);
+      });
+    },
+    [currentPath, router],
+  );
+
+  const onTeamSelectCallback = useCallback(
+    (team: Team) => {
+      return () => onTeamSelect(team);
+    },
+    [onTeamSelect],
+  );
+
+  const onPersonalTeamSelect = useCallback(() => {
+    if (personalTeam) {
+      onTeamSelect(personalTeam);
+    }
+  }, [personalTeam, onTeamSelect]);
 
   const [isDialogOpen, setDialogOpen] = React.useState(false);
+  const openDialog = useCallback(() => {
+    setDialogOpen(true);
+  }, []);
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
@@ -94,7 +113,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
               </AvatarFallback>
             </Avatar>
             {activeTeam?.name ?? user?.name ?? 'Personal account'}
-            <Icons.radixChevronDown
+            <Icons.caretDown
               className={cn(
                 'ml-auto h-4 w-4 shrink-0 transition-transform',
                 isOpen ? 'rotate-180' : 'rotate-0',
@@ -111,7 +130,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                 <CommandItem
                   key="personal"
                   className="cursor-pointer text-sm"
-                  onSelect={() => personalTeam && onTeamSelect(personalTeam)}
+                  onSelect={onPersonalTeamSelect}
                 >
                   <Avatar className="mr-2 h-5 w-5">
                     <AvatarImage
@@ -135,7 +154,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                         'cursor-pointer text-sm',
                         activeTeam?.slug === team.slug ? 'bg-primary/20' : '',
                       )}
-                      onSelect={() => onTeamSelect(team)}
+                      onSelect={onTeamSelectCallback(team)}
                     >
                       <Avatar className="mr-2 h-5 w-5">
                         <AvatarImage
@@ -145,7 +164,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                         <AvatarFallback>{team.name?.[0]}</AvatarFallback>
                       </Avatar>
                       <p className="truncate">{team.name}</p>
-                      <Icons.radixCheck
+                      <Icons.check
                         className={cn(
                           'ml-auto h-4 w-4 text-primary',
                           activeTeam?.slug === team.slug
@@ -163,7 +182,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                 <DialogTrigger asChild>
                   <CommandItem
                     className="cursor-pointer text-sm"
-                    onSelect={() => setDialogOpen(true)}
+                    onSelect={openDialog}
                   >
                     <Icons.plusCircled className="mr-2 h-5 w-5 text-primary" />
                     Create workspace

@@ -40,7 +40,11 @@ export const getProgress = async (
 
     let progressPercentage = 0;
 
-    if (isStarted && validCompletedChapters === 0) {
+    if (
+      isStarted &&
+      validCompletedChapters === 0 &&
+      publishedChapterIds.length === 1
+    ) {
       progressPercentage = 25;
     } else if (isStarted && validCompletedChapters > 0) {
       progressPercentage =

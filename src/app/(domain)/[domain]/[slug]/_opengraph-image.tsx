@@ -40,7 +40,7 @@ export default async function PostOG({
   }
 
   const clashData = await fetch(
-    new URL(':/public/fonts/calsans-semibold.otf', import.meta.url),
+    new URL('public/fonts/calsans-semibold.otf', import.meta.url),
   ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(

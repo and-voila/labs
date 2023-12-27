@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Course } from '@prisma/client';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { ControllerRenderProps, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { cn } from '#/lib/utils';
@@ -29,6 +29,10 @@ interface DescriptionFormProps {
   courseId: string;
 }
 
+type FormValues = {
+  description: string;
+};
+
 const formSchema = z.object({
   description: z.string().refine(
     (value) => {
@@ -47,11 +51,13 @@ export const DescriptionForm = ({
 }: DescriptionFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const toggleEdit = () => setIsEditing((current) => !current);
+  const toggleEdit = useCallback(() => {
+    setIsEditing((current) => !current);
+  }, []);
 
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     mode: 'onSubmit',
     defaultValues: {
@@ -81,6 +87,21 @@ export const DescriptionForm = ({
       });
     }
   };
+
+  const renderField = useCallback(
+    ({ field }: { field: ControllerRenderProps<FormValues> }) => (
+      <FormItem>
+        <FormControl>
+          <QuillEditor {...field} />
+        </FormControl>
+        <FormDescription className="text-muted-foreground/70">
+          The playbook description should be at least 150 words.
+        </FormDescription>
+        <FormMessage />
+      </FormItem>
+    ),
+    [],
+  );
 
   return (
     <div className="mt-6 rounded-md border bg-card px-4 py-6">
@@ -119,17 +140,7 @@ export const DescriptionForm = ({
             <FormField
               control={form.control}
               name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <QuillEditor {...field} />
-                  </FormControl>
-                  <FormDescription className="text-muted-foreground/70">
-                    The playbook description should be at least 150 words.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
+              render={renderField}
             />
             <div className="flex items-center justify-end gap-x-2">
               <Button

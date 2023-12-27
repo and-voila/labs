@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Balancer from 'react-wrap-balancer';
 
 import { pricingData } from '#/config/subscriptions';
@@ -28,9 +28,9 @@ export function PricingCards({
     subscriptionPlan?.interval === 'year',
   );
 
-  const toggleBilling = () => {
-    setIsYearly(!isYearly);
-  };
+  const toggleBilling = useCallback(() => {
+    setIsYearly((prevIsYearly) => !prevIsYearly);
+  }, []);
 
   return (
     <section

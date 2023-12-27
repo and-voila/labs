@@ -10,7 +10,7 @@ import { toast } from '#/components/ui/use-toast';
 interface InsightsSearchProps extends React.HTMLAttributes<HTMLFormElement> {}
 
 export function InsightsSearch({ className, ...props }: InsightsSearchProps) {
-  function onSubmit(event: React.SyntheticEvent) {
+  const onSubmit = React.useCallback((event: React.SyntheticEvent) => {
     event.preventDefault();
 
     return toast({
@@ -19,7 +19,7 @@ export function InsightsSearch({ className, ...props }: InsightsSearchProps) {
         "We're still working on finishing things up including Search. Thank you for your patience. Please try again later.",
       variant: 'destructive',
     });
-  }
+  }, []);
 
   return (
     <form

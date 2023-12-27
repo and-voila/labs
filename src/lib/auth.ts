@@ -4,7 +4,7 @@ import DiscordProvider from 'next-auth/providers/discord';
 import EmailProvider from 'next-auth/providers/email';
 import GoogleProvider from 'next-auth/providers/google';
 
-import { env } from ':/env.mjs';
+import { env } from 'env';
 
 import { db } from '#/lib/db';
 import { createPersonalTeam } from '#/lib/operations/user/create-personal-team';

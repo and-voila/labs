@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { Icons } from '#/components/shared/icons';
@@ -41,7 +41,9 @@ const formSchema = z.object({
 export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const toggleEdit = () => setIsEditing((current) => !current);
+  const toggleEdit = useCallback(() => {
+    setIsEditing((current) => !current);
+  }, []);
 
   const router = useRouter();
 
@@ -70,6 +72,25 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
       });
     }
   };
+
+  const renderField = useCallback(
+    ({ field }: { field: FieldValues }) => (
+      <FormItem>
+        <FormControl>
+          <Input
+            disabled={isSubmitting}
+            placeholder="e.g. 'The art of procrastination'"
+            {...field}
+          />
+        </FormControl>
+        <FormDescription className="text-muted-foreground/70">
+          Use sentence case for your title between 45-65 characters.
+        </FormDescription>
+        <FormMessage />
+      </FormItem>
+    ),
+    [isSubmitting],
+  );
 
   return (
     <div className="mt-6 rounded-md border bg-card px-4 py-6">
@@ -100,21 +121,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
             <FormField
               control={form.control}
               name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      placeholder="e.g. 'The art of procrastination'"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormDescription className="text-muted-foreground/70">
-                    Use sentence case for your title between 45-65 characters.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
+              render={renderField}
             />
             <div className="flex items-center justify-end gap-x-2">
               <Button

@@ -60,6 +60,7 @@ const ChapterIdPage = async ({ params }: ChapterIdPageProps) => {
           // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
           playbackId={muxData?.playbackId!}
           completeOnEnd={completeOnEnd}
+          teamSlug={team.slug}
         />
       </div>
       <div className="rounded-xl bg-card p-6 lg:p-8">

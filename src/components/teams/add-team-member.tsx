@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MembershipRole } from '@prisma/client';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { inviteMembers } from '#/lib/actions/teams/invite-members';
@@ -86,6 +86,7 @@ export const AddTeamMember: React.FC<AddTeamMemberProps> = (props) => {
         toast({
           title: 'Invitation sent!',
           description: result.message,
+          variant: 'success',
         });
       } else {
         toast({
@@ -107,14 +108,53 @@ export const AddTeamMember: React.FC<AddTeamMemberProps> = (props) => {
     }
   };
 
+  const handleOpenChange = useCallback(
+    (state: boolean) => {
+      setIsOpen(state);
+      form.reset();
+    },
+    [form],
+  );
+
+  const renderEmailField = useCallback(
+    ({ field }: { field: FieldValues }) => (
+      <FormItem>
+        <FormLabel>Email</FormLabel>
+        <FormControl>
+          <Input type="email" placeholder="email@example.com" {...field} />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    ),
+    [],
+  );
+
+  const renderRoleField = useCallback(
+    ({ field }: { field: FieldValues }) => (
+      <FormItem>
+        <FormLabel>Invite as</FormLabel>
+        <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <FormControl>
+            <SelectTrigger>
+              <SelectValue placeholder="Select a Role" />
+            </SelectTrigger>
+          </FormControl>
+          <SelectContent>
+            {membershipRoleOptions.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <FormMessage />
+      </FormItem>
+    ),
+    [],
+  );
+
   return (
-    <Sheet
-      open={isOpen}
-      onOpenChange={(state) => {
-        setIsOpen(state);
-        form.reset();
-      }}
-    >
+    <Sheet open={isOpen} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
         <Button>
           <Icons.userPlus className="mr-2 h-4 w-4" />
@@ -132,47 +172,12 @@ export const AddTeamMember: React.FC<AddTeamMemberProps> = (props) => {
               <FormField
                 control={form.control}
                 name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="email@example.com"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={renderEmailField}
               />
-
               <FormField
                 control={form.control}
                 name="role"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Invite as</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a Role" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {membershipRoleOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={renderRoleField}
               />
             </div>
             <SheetFooter>

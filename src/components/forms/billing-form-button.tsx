@@ -1,4 +1,4 @@
-import { useTransition } from 'react';
+import { useCallback, useTransition } from 'react';
 import Link from 'next/link';
 
 import { generateUserStripe } from '#/lib/actions/stripe/generate-user-stripe';
@@ -24,7 +24,7 @@ export function BillingFormButton({
 }: BillingFormButtonProps) {
   const [isPending, startTransition] = useTransition();
 
-  const stripeSessionAction = () =>
+  const stripeSessionAction = useCallback(() => {
     startTransition(async () => {
       if (!teamId || !teamSlug) {
         return;
@@ -36,6 +36,7 @@ export function BillingFormButton({
         teamSlug,
       );
     });
+  }, [startTransition, teamId, teamSlug, offer.stripeIds, year]);
 
   return (
     <div>

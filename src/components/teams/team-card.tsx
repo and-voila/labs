@@ -65,7 +65,7 @@ export const TeamCard: React.FC<TeamCardProps> = (props) => {
           <CardContent>
             <div className="flex space-x-4 text-sm text-muted-foreground">
               <div className="flex items-center">
-                <Icons.circle className="mr-1 h-3 w-3 text-alternate" />
+                <Icons.circleFilled className="mr-1 h-3 w-3 text-alternate" />
                 labs.andvoila.gg/
                 <span className="text-primary">{team.slug}</span>
               </div>

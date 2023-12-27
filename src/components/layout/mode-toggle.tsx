@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback } from 'react';
 import { useTheme } from 'next-themes';
 
 import { Icons } from '#/components/shared/icons';
@@ -13,6 +14,9 @@ import {
 
 export function ModeToggle() {
   const { setTheme } = useTheme();
+  const setLightTheme = useCallback(() => setTheme('light'), [setTheme]);
+  const setDarkTheme = useCallback(() => setTheme('dark'), [setTheme]);
+  const setSystemTheme = useCallback(() => setTheme('system'), [setTheme]);
 
   return (
     <DropdownMenu>
@@ -24,15 +28,15 @@ export function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>
+        <DropdownMenuItem onClick={setLightTheme}>
           <Icons.sun className="mr-2 h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
+        <DropdownMenuItem onClick={setDarkTheme}>
           <Icons.moon className="mr-2 h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
+        <DropdownMenuItem onClick={setSystemTheme}>
           <Icons.laptop className="mr-2 h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>

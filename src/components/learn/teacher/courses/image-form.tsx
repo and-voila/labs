@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Course } from '@prisma/client';
 import axios from 'axios';
@@ -28,30 +28,44 @@ const formSchema = z.object({
 export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const toggleEdit = () => setIsEditing((current) => !current);
+  const toggleEdit = useCallback(() => {
+    setIsEditing((current) => !current);
+  }, []);
 
   const router = useRouter();
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    try {
-      await axios.patch(`/api/courses/${courseId}`, values);
-      toast({
-        title: 'Playbook image updated',
-        description:
-          'Wow, your Playbook has a fancy new featured image. Nice work! #cats',
-        variant: 'success',
-      });
-      toggleEdit();
-      router.refresh();
-    } catch {
-      toast({
-        title: 'Could not update image',
-        description:
-          'Please try uploading the image again, or saving it again. Whichever will work this time. Thanks for your patience.',
-        variant: 'destructive',
-      });
-    }
-  };
+  const onSubmit = useCallback(
+    async (values: z.infer<typeof formSchema>) => {
+      try {
+        await axios.patch(`/api/courses/${courseId}`, values);
+        toast({
+          title: 'Playbook image updated',
+          description:
+            'Wow, your Playbook has a fancy new featured image. Nice work! #cats',
+          variant: 'success',
+        });
+        toggleEdit();
+        router.refresh();
+      } catch {
+        toast({
+          title: 'Could not update image',
+          description:
+            'Please try uploading the image again, or saving it again. Whichever will work this time. Thanks for your patience.',
+          variant: 'destructive',
+        });
+      }
+    },
+    [courseId, router, toggleEdit],
+  );
+
+  const handleChange = useCallback(
+    (url?: string) => {
+      if (url) {
+        onSubmit({ imageUrl: url });
+      }
+    },
+    [onSubmit],
+  );
 
   return (
     <div className="mt-6 rounded-md border bg-card px-4 py-6">
@@ -93,14 +107,7 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
         ))}
       {isEditing && (
         <div>
-          <FileUpload
-            endpoint="courseImage"
-            onChange={(url) => {
-              if (url) {
-                onSubmit({ imageUrl: url });
-              }
-            }}
-          />
+          <FileUpload endpoint="courseImage" onChange={handleChange} />
           <div className="mt-4 text-sm text-muted-foreground">
             Upload a 2400px x 1260px image.
           </div>

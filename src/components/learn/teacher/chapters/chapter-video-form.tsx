@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import MuxPlayer from '@mux/mux-player-react';
 import { Chapter, MuxData } from '@prisma/client';
@@ -29,33 +29,47 @@ export const ChapterVideoForm = ({
 }: ChapterVideoFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const toggleEdit = () => setIsEditing((current) => !current);
+  const toggleEdit = useCallback(() => {
+    setIsEditing((current) => !current);
+  }, []);
 
   const router = useRouter();
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    try {
-      await axios.patch(
-        `/api/courses/${courseId}/chapters/${chapterId}`,
-        values,
-      );
-      toast({
-        title: 'Play video updated',
-        description:
-          "Your video is being processed and is on it's way to the Mux cloud.",
-        variant: 'success',
-      });
-      toggleEdit();
-      router.refresh();
-    } catch {
-      toast({
-        title: 'Could not update video',
-        description:
-          'Sorry for the inconvenience. We were unable to process your request. Please try uploading the video again.',
-        variant: 'destructive',
-      });
-    }
-  };
+  const onSubmit = useCallback(
+    async (values: z.infer<typeof formSchema>) => {
+      try {
+        await axios.patch(
+          `/api/courses/${courseId}/chapters/${chapterId}`,
+          values,
+        );
+        toast({
+          title: 'Play video updated',
+          description:
+            "Your video is being processed and is on it's way to the Mux cloud.",
+          variant: 'success',
+        });
+        toggleEdit();
+        router.refresh();
+      } catch {
+        toast({
+          title: 'Could not update video',
+          description:
+            'Sorry for the inconvenience. We were unable to process your request. Please try uploading the video again.',
+          variant: 'destructive',
+        });
+      }
+    },
+    [courseId, chapterId, router, toggleEdit],
+  );
+
+  const handleChange = useCallback(
+    (url?: string) => {
+      if (url) {
+        onSubmit({ videoUrl: url });
+      }
+    },
+    [onSubmit],
+  );
 
   return (
     <div className="mt-6 rounded-md border bg-card px-4 py-6">
@@ -89,14 +103,7 @@ export const ChapterVideoForm = ({
         ))}
       {isEditing && (
         <div>
-          <FileUpload
-            endpoint="chapterVideo"
-            onChange={(url) => {
-              if (url) {
-                onSubmit({ videoUrl: url });
-              }
-            }}
-          />
+          <FileUpload endpoint="chapterVideo" onChange={handleChange} />
           <div className="mt-4 text-xs text-muted-foreground">
             Upload this play&apos;s video
           </div>

@@ -4,6 +4,7 @@ import {
   ReactNode,
   SetStateAction,
   useContext,
+  useMemo,
   useState,
 } from 'react';
 
@@ -12,29 +13,30 @@ const frequencies = [
   { value: 'annually', label: 'Annually' },
 ];
 
-const BillingContext = createContext(null);
-
-interface BillingProviderProps {
-  children: ReactNode;
-}
-
 interface BillingContextValue {
   frequency: { value: string; label: string };
   setFrequency: Dispatch<SetStateAction<{ value: string; label: string }>>;
 }
 
-export function BillingProvider({ children }: BillingProviderProps) {
+const BillingContext = createContext<BillingContextValue | null>(null);
+
+export function BillingProvider({ children }: { children: ReactNode }) {
   const [frequency, setFrequency] = useState(frequencies[0]);
 
-  const BillingContext = createContext<BillingContextValue | null>(null);
+  const value = useMemo(
+    () => ({ frequency, setFrequency }),
+    [frequency, setFrequency],
+  );
 
   return (
-    <BillingContext.Provider value={{ frequency, setFrequency }}>
-      {children}
-    </BillingContext.Provider>
+    <BillingContext.Provider value={value}>{children}</BillingContext.Provider>
   );
 }
 
 export function useBilling() {
-  return useContext(BillingContext);
+  const context = useContext(BillingContext);
+  if (context === undefined) {
+    throw new Error('useBilling must be used within a BillingProvider');
+  }
+  return context;
 }

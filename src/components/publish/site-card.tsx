@@ -45,7 +45,7 @@ export default function SiteCard({ data, teamSlug }: SiteCardProps) {
                 blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
               />
             </div>
-            <h3 className="text-lg font-semibold leading-6 text-foreground group-hover:text-primary">
+            <h3 className="text-lg font-semibold leading-6 text-foreground">
               <span className="absolute inset-0" />
               {data.name}
             </h3>
@@ -61,12 +61,12 @@ export default function SiteCard({ data, teamSlug }: SiteCardProps) {
           }
           target="_blank"
           rel="noreferrer"
-          className="truncate rounded-md py-2 text-xs text-muted-foreground underline underline-offset-4 transition-colors group-hover:opacity-70"
+          className="truncate rounded-md py-2 text-xs text-muted-foreground underline underline-offset-4 transition-colors group-hover:text-foreground"
         >
           <span className="flex flex-row items-center gap-1">
             {url}
             {''}
-            <Icons.arrowSquareOut className="ml-1 h-3 w-3 text-primary" />
+            <Icons.arrowSquareOut className="ml-1 h-3 w-3 text-muted-foreground transition-colors group-hover:text-foreground" />
           </span>
         </a>
       </div>
