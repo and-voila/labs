@@ -13,6 +13,8 @@ import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
 
+const UNTITLED_POST_NAME = 'My untitled post';
+
 export default function DeletePostForm({
   postName,
   teamSlug,
@@ -22,6 +24,8 @@ export default function DeletePostForm({
 }) {
   const { id } = useParams() as { id: string };
   const router = useRouter();
+
+  const displayPostName = postName || UNTITLED_POST_NAME;
 
   const handleDelete = useCallback(
     async (data: FormData) => {
@@ -55,9 +59,9 @@ export default function DeletePostForm({
 
   const handleInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsValid(event.target.value === postName);
+      setIsValid(event.target.value === displayPostName);
     },
-    [postName],
+    [displayPostName],
   );
 
   return (
@@ -69,15 +73,15 @@ export default function DeletePostForm({
         <h2 className="text-xl font-semibold">Delete Post</h2>
         <p className="text-sm text-muted-foreground">
           Deletes your post permanently. Type in the name of your post{' '}
-          <b>{postName}</b> to confirm.
+          <b>{displayPostName}</b> to confirm.
         </p>
 
         <input
           name="confirm"
           type="text"
           required
-          pattern={postName}
-          placeholder={postName}
+          pattern={displayPostName}
+          placeholder={displayPostName}
           className="w-full rounded-md border border-input bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
           onChange={handleInputChange}
         />
