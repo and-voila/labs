@@ -178,9 +178,16 @@ export const AddTeamMember: React.FC<AddTeamMemberProps> = (props) => {
             </div>
             <SheetFooter>
               <SheetClose asChild>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="outline" size="sm">
+                  Cancel
+                </Button>
               </SheetClose>
-              <Button isLoading={isSubmitting} type="submit">
+              <Button
+                isLoading={isSubmitting}
+                type="submit"
+                size="sm"
+                disabled={!form.formState.isValid}
+              >
                 Send invite
               </Button>
             </SheetFooter>
