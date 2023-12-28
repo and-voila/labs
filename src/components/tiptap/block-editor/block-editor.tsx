@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useCallback, useMemo, useRef } from 'react';
 // import { WebSocketStatus } from '@hocuspocus/provider';
 import { EditorContent, PureEditorContent } from '@tiptap/react';
@@ -33,7 +31,6 @@ export const BlockEditor = ({ aiToken, ydoc, provider }: TiptapProps) => {
 
   const setEditorRef = useCallback((instance: HTMLDivElement | null) => {
     if (instance) {
-      // Assuming `PureEditorContent` is a class and `instance` is an instance of that class
       editorRef.current = instance as unknown as PureEditorContent;
     } else {
       editorRef.current = null;
