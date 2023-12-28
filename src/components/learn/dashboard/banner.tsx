@@ -5,12 +5,13 @@ import { cn } from '#/lib/utils';
 import { Icons } from '#/components/shared/icons';
 
 const bannerVariants = cva(
-  'border-2 text-center p-4 text-base flex items-center w-full mt-0.5',
+  'border-2 text-center p-4 text-base flex items-center w-full mb-2',
   {
     variants: {
       variant: {
-        warning: 'bg-yellow-400 border-yellow-600 text-black font-medium',
-        success: 'bg-alternate border-green-600 text-white font-medium',
+        warning: 'border-orange-600/80 border-2 border-dotted font-medium',
+        success:
+          'border-alternate/80 border-2 border-dotted text-alternate font-medium',
       },
     },
     defaultVariants: {
