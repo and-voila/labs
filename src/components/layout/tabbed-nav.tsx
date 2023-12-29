@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { APP_BP } from '#/lib/const';
 import { cn } from '#/lib/utils';
 
 export interface NavbarLink {
@@ -17,11 +18,15 @@ export const TabbedNav: React.FC<{
 }> = ({ links }) => {
   const pathname = usePathname();
 
+  if (!pathname.includes(APP_BP)) {
+    return null;
+  }
+
   return (
-    <div className="mt-8 overflow-auto border-b border-border md:mt-12">
+    <div className="overflow-auto">
       <nav
         className={cn(
-          'inline-flex flex-wrap items-center justify-center gap-6 text-muted-foreground md:gap-8',
+          'inline-flex flex-wrap items-center justify-center gap-6 text-muted-foreground',
         )}
       >
         {links.map((link) => (
@@ -29,7 +34,7 @@ export const TabbedNav: React.FC<{
             key={link.href}
             href={link.href}
             className={cn(
-              'border-b-2 px-1 py-1.5',
+              'border-b-2 px-1 py-2',
               'text-sm font-medium hover:border-primary hover:text-foreground',
               'inline-flex items-center justify-center whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
               (
