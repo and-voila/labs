@@ -40,8 +40,8 @@ const WorkspacesPage: NextPage = async () => {
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        title="Your workspaces"
-        description="Kick things off in your personal zone. Create client workspaces or start a collab and invite your crew. Thrive in multiplayer mode, and voila! Let the magic begin."
+        title="Your Workspaces"
+        description="Dive right in to create, collaborate, and bring your ideas to life."
       />
       <div className="my-8 grid md:my-12">
         <TeamList teams={teams} memberships={memberships} />

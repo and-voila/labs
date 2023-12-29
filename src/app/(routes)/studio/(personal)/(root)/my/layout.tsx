@@ -11,7 +11,7 @@ const MyWorkspaceRootLayout: React.FC<MyWorkspaceRootLayoutProps> = ({
   children,
 }) => {
   return (
-    <DashboardShell>
+    <>
       <TabbedNav
         links={[
           {
@@ -36,8 +36,8 @@ const MyWorkspaceRootLayout: React.FC<MyWorkspaceRootLayoutProps> = ({
           },
         ]}
       />
-      <div>{children}</div>
-    </DashboardShell>
+      <DashboardShell>{children}</DashboardShell>
+    </>
   );
 };
 

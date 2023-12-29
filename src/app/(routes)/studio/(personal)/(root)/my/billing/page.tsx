@@ -43,11 +43,10 @@ export default async function PersonalBillingPage() {
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        title="Billing overview"
-        description="See your subscriptions at a glance. Don't sweat it though, we won't bill you for inactive users. Head over to the workspace to manage billing."
+        title="Billing Overview"
+        description="View your workspace subscriptions and manage billing."
       />
-
-      <div className="my-8 grid max-w-5xl gap-8 md:my-12">
+      <div className="grid gap-8">
         {anyUnpaid && (
           <Alert className="max-w-xl border-2 border-dotted border-primary/80 !pl-14">
             <Icons.rocket className="fill-primary" />

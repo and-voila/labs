@@ -23,8 +23,8 @@ export default async function SettingsPage() {
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        title="Personal settings"
-        description="Make it yours. Personalize to your heart's content. Tweak your profile, account details, and set the vibe just right."
+        title="Personal Settings"
+        description="Customize your space for the perfect vibe."
       />
 
       <div className="my-8 grid max-w-3xl gap-8 md:my-12">

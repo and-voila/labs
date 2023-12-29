@@ -32,7 +32,7 @@ export default async function PersonalAdvancedSettingsPage() {
     <div className="flex flex-col gap-8">
       <DashboardHeader
         title="Danger zone"
-        description="The point of no return. Delete your account here and say goodbye. We'll definitely miss you, so be careful."
+        description="Delete your account and say goodbye. We'll miss you."
       />
       <div className="my-8 grid max-w-3xl gap-8 md:my-12">
         <DeleteAccountForm teams={teams} user={session.user} />

@@ -10,7 +10,7 @@ export function DashboardHeader({
   children,
 }: DashboardHeaderProps) {
   return (
-    <div className="mt-4 flex flex-col items-start justify-between md:flex-row md:items-center">
+    <div className="flex flex-col items-start justify-between md:flex-row md:items-center">
       <div className="grid gap-1">
         <h2 className="max-w-4xl truncate text-2xl font-bold md:text-3xl">
           {title}

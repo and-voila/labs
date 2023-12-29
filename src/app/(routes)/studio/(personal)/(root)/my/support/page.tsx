@@ -55,8 +55,9 @@ export default async function SupportPage() {
     <div className="flex flex-col gap-8">
       <DashboardHeader
         title="Support"
-        description="Need help with something? Quick question? No problem, we're here to help and look forward to hearing from you."
+        description="Reach out for quick help or in-depth support."
       />
+
       <div className="my-8 grid gap-6 sm:grid-cols-1 md:my-12 lg:grid-cols-3">
         {supportItems.map((item, index) => (
           <Card key={index} className="flex flex-col" aria-label={item.title}>
