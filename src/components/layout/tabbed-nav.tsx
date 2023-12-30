@@ -23,7 +23,7 @@ export const TabbedNav: React.FC<{
   }
 
   return (
-    <div className="overflow-auto">
+    <div className="overflow-x-auto">
       <nav
         className={cn(
           'inline-flex flex-wrap items-center justify-center gap-6 text-muted-foreground',
