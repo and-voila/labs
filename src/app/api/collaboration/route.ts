@@ -2,10 +2,23 @@ import jsonwebtoken from 'jsonwebtoken';
 
 const JWT_SECRET = process.env?.TIPTAP_COLLAB_SECRET as string;
 
-export async function POST(): Promise<Response> {
+export async function POST({
+  teamSlug,
+  postId,
+  teamId,
+  userId,
+}: {
+  teamSlug: string;
+  postId: string;
+  teamId: string;
+  userId: string;
+}): Promise<Response> {
   const jwt = await jsonwebtoken.sign(
     {
-      /* object to be encoded in the JWT */
+      teamSlug,
+      postId,
+      teamId,
+      userId,
     },
     JWT_SECRET,
   );
