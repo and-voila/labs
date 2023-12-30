@@ -15,7 +15,11 @@ export interface AiState {
   aiError?: string | null;
 }
 
-export default function Document({ params }: { params: { id: string } }) {
+export default function Document({
+  params,
+}: {
+  params: { id: string; team_slug: string };
+}) {
   const [provider, setProvider] = useState<TiptapCollabProvider | null>(null);
   const [collabToken, setCollabToken] = useState<string | null>(null);
   const [aiToken, setAiToken] = useState<string | null>(null);
@@ -23,7 +27,7 @@ export default function Document({ params }: { params: { id: string } }) {
 
   const hasCollab = parseInt(searchParams.get('noCollab') as string) !== 1;
 
-  const { id } = params;
+  const { id, team_slug } = params;
 
   useEffect(() => {
     // fetch data
@@ -73,14 +77,16 @@ export default function Document({ params }: { params: { id: string } }) {
     if (hasCollab && collabToken) {
       setProvider(
         new TiptapCollabProvider({
-          name: `${process.env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${id}`,
+          // eslint-disable-next-line camelcase
+          name: `${process.env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}/${team_slug}/${id}`,
           appId: process.env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID ?? '',
           token: collabToken,
           document: ydoc,
         }),
       );
     }
-  }, [setProvider, collabToken, ydoc, id, hasCollab]);
+    // eslint-disable-next-line camelcase
+  }, [setProvider, collabToken, ydoc, team_slug, id, hasCollab]);
 
   if ((hasCollab && (!collabToken || !provider)) || !aiToken) return;
 
