@@ -98,7 +98,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   );
 
   return (
-    <div className="mt-6 rounded-md border bg-card px-4 py-6">
+    <div className="rounded-md border bg-card px-4 py-6">
       <div className="mb-4 flex items-center justify-between font-semibold">
         Available to
         <Button

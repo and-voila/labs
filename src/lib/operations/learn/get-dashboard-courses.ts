@@ -42,6 +42,7 @@ export const getDashboardCourses = async ({
 
     const courses = await db.course.findMany({
       where: {
+        isPublished: true,
         chapters: {
           some: {
             id: {
@@ -94,9 +95,24 @@ export const getDashboardCourses = async ({
       (course) => (course.progress ?? 0) < 100,
     );
 
-    const totalCompletedCourses = await db.userProgress.count({
-      where: { teamId, isCompleted: true },
+    const courseCompletionStatus = await db.course.findMany({
+      where: {
+        isPublished: true,
+        chapters: {
+          every: {
+            userProgress: {
+              some: {
+                teamId,
+                isCompleted: true,
+              },
+            },
+          },
+        },
+      },
+      select: { id: true },
     });
+
+    const totalCompletedCourses = courseCompletionStatus.length;
 
     const totalCoursesInProgress = await db.userProgress.count({
       where: { teamId, isStarted: true, isCompleted: false },

@@ -39,7 +39,7 @@ export function NavBar({
 
   return (
     <header className="sticky top-0 z-40 flex w-full justify-center bg-background/60 backdrop-blur-xl transition-all">
-      <div className="container flex h-16 items-center justify-between py-2">
+      <div className="container flex h-16 items-center justify-between">
         <div className="flex flex-1 items-center space-x-3">
           {user ? (
             <Link href={`${APP_BP}/my/workspaces`}>
