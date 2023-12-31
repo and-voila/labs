@@ -5,6 +5,7 @@ import { revalidateTag } from 'next/cache';
 import { Post, Site } from '@prisma/client';
 import { put } from '@vercel/blob';
 import { customAlphabet } from 'nanoid';
+import slugify from 'slugify';
 
 import { env } from 'env';
 
@@ -298,7 +299,7 @@ export const createPost = withSiteAuth(
 
 export const createCollabPost = withSiteAuth(
   // eslint-disable-next-line camelcase
-  async (_: FormData, site: Site, team_slug: string) => {
+  async (formData: FormData, site: Site, team_slug: string) => {
     const session = await getSession();
     if (!session?.user.id) {
       return {
@@ -313,11 +314,21 @@ export const createCollabPost = withSiteAuth(
       };
     }
 
+    const title = formData.get('title') as string;
+    const description = formData.get('description') as string;
+    const slug = slugify(title, {
+      lower: true,
+      strict: true,
+    });
+
     const response = await db.post.create({
       data: {
         siteId: site.id,
         teamId: team.id,
         userId: session.user.id,
+        title: title,
+        description: description,
+        slug: slug,
       },
     });
 
@@ -483,6 +494,26 @@ export const deletePost = withPostAuth(async (_: FormData, post: Post) => {
         siteId: true,
       },
     });
+
+    if (!env.TIPTAP_COLLAB_API_SECRET) {
+      throw new Error('TIPTAP_COLLAB_API_SECRET is not defined');
+    }
+
+    // Delete the document from Tiptap Cloud
+    const tiptapResponse = await fetch(
+      `https://${env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID}.collab.tiptap.cloud/api/documents/${env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${post.id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: env.TIPTAP_COLLAB_API_SECRET,
+        },
+      },
+    );
+
+    if (!tiptapResponse.ok) {
+      throw new Error('Failed to delete the document from Tiptap Cloud');
+    }
+
     return response;
   } catch (error: any) {
     return {

@@ -53,7 +53,7 @@ export default function Document({
     };
 
     dataFetch();
-  }, [postId, teamId, userId, teamSlug]);
+  }, [teamSlug, postId, teamId, userId]);
 
   useEffect(() => {
     // fetch data
@@ -80,7 +80,7 @@ export default function Document({
     };
 
     dataFetch();
-  }, [postId, teamId, userId, teamSlug]);
+  }, [teamSlug, postId, teamId, userId]);
 
   const ydoc = useMemo(() => new Y.Doc(), []);
 
@@ -89,7 +89,7 @@ export default function Document({
       setProvider(
         new TiptapCollabProvider({
           // eslint-disable-next-line camelcase
-          name: `${process.env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}/${teamSlug}/${postId}`,
+          name: `${process.env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${postId}`,
           appId: process.env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID ?? '',
           token: collabToken,
           document: ydoc,
@@ -97,7 +97,7 @@ export default function Document({
       );
     }
     // eslint-disable-next-line camelcase
-  }, [setProvider, collabToken, ydoc, teamSlug, postId, hasCollab]);
+  }, [setProvider, collabToken, ydoc, postId, hasCollab]);
 
   if ((hasCollab && (!collabToken || !provider)) || !aiToken) return;
 

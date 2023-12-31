@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
 import { authOptions } from '#/lib/auth';
 import { getTeam } from '#/lib/operations/teams/get-current-team';
@@ -18,7 +18,7 @@ const CollabPostIdPage = async ({
 
   const team = await getTeam(params.team_slug);
   if (!team) {
-    redirect('/not-authorized');
+    notFound();
   }
 
   return (

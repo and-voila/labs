@@ -30,10 +30,6 @@ export default async function Posts({ siteId, limit, teamSlug }: PostsProps) {
     include: {
       site: true,
     },
-    cacheStrategy: {
-      ttl: 20,
-      swr: 10,
-    },
     ...(limit ? { take: limit } : {}),
   });
 

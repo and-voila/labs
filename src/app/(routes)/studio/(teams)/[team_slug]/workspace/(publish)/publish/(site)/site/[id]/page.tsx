@@ -9,8 +9,8 @@ import { db } from '#/lib/db';
 import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import CreateCollabPostButton from '#/components/publish/create-collab-post-button';
 import CreatePostButton from '#/components/publish/create-post-button';
+import { NewCollabPostButton } from '#/components/publish/new-collab-post-button';
 import OverviewSitesCTA from '#/components/publish/overview-sites-cta';
 import Posts from '#/components/publish/posts';
 import { Icons } from '#/components/shared/icons';
@@ -62,7 +62,7 @@ export default async function SiteManage({
           <Icons.arrowSquareOut className="ml-1 h-4 w-4 text-primary" />
         </a>
         <OverviewSitesCTA teamSlug={params.team_slug} />
-        <CreateCollabPostButton />
+        <NewCollabPostButton />
         <CreatePostButton />
       </DashboardHeader>
       <div className="my-8 flex flex-col md:my-12">

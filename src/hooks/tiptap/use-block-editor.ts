@@ -12,9 +12,9 @@ import { randomElement } from '#/lib/tiptap/utils';
 
 import { EditorUser } from '#/components/tiptap/block-editor/types';
 
+import { EditorContext } from '#/context/tiptap/editor-context';
 import { ExtensionKit } from '#/extensions/extension-kit';
 
-import { EditorContext } from '../../context/tiptap/editor-context';
 import { useSidebar } from './use-sidebar';
 
 const TIPTAP_AI_APP_ID = process.env.NEXT_PUBLIC_TIPTAP_AI_APP_ID;
