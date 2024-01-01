@@ -80,7 +80,7 @@ export const AiWriterView = ({
 
     try {
       // TODO: Streaming
-      // const response = await fetch(`${process.env.NEXT_PUBLIC_TIPTAP_AI_BASE_URL}/text/complete?stream=1` || '', {
+      // const response = await fetch(`${env.NEXT_PUBLIC_TIPTAP_AI_BASE_URL}/text/complete?stream=1` || '', {
       //   method: 'POST',
       //   headers: {
       //     accept: 'application/json',

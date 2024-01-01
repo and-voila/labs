@@ -7,6 +7,8 @@ import va from '@vercel/analytics';
 import { useSession } from 'next-auth/react';
 import { useFormStatus } from 'react-dom';
 
+import { env } from 'env';
+
 import { cn } from '#/lib/utils';
 
 import DomainConfiguration from '#/components/publish/form/domain-configuration';
@@ -109,7 +111,7 @@ export default function Form({
               className="z-10 flex-1 rounded-l-md border-border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
             />
             <div className="flex items-center rounded-r-lg border-l-0 border-border bg-primary/20 px-3 text-sm">
-              {process.env.NEXT_PUBLIC_ROOT_DOMAIN}
+              {env.NEXT_PUBLIC_ROOT_DOMAIN}
             </div>
           </div>
         ) : inputAttrs.name === 'customDomain' ? (

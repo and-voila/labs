@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
 
+import { env } from 'env';
+
 import { db } from '#/lib/db';
 import {
   getPostData,
@@ -55,7 +57,7 @@ export async function generateMetadata({
         },
       ],
     },
-    ...(params.domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
+    ...(params.domain.endsWith(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
       siteData.customDomain && {
         alternates: {
           canonical: `https://${siteData.customDomain}/${params.slug}`,
@@ -80,7 +82,7 @@ export async function generateStaticParams() {
   const allPaths = allPosts
     .flatMap(({ site, slug }) => [
       site?.subdomain && {
-        domain: `${site.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`,
+        domain: `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}`,
         slug,
       },
       site?.customDomain && {

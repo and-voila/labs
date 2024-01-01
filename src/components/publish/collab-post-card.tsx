@@ -10,18 +10,21 @@ import { placeholderBlurhash } from '#/lib/utils';
 import BlurImage from '#/components/publish/blur-image';
 import { Icons } from '#/components/shared/icons';
 
-interface PostCardProps {
+interface CollabPostCardProps {
   data: Post & { site: Site | null };
   teamSlug: string;
 }
 
-export default function PostCard({ data, teamSlug }: PostCardProps) {
+export default function CollabPostCard({
+  data,
+  teamSlug,
+}: CollabPostCardProps) {
   const url = `${data.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}/${data.slug}`;
 
   return (
     <div className="group relative rounded-lg border border-border bg-card pb-10">
       <Link
-        href={`${APP_BP}/${teamSlug}/workspace/publish/post/${data.id}`}
+        href={`${APP_BP}/${teamSlug}/workspace/publish/post/new/${data.id}`}
         className="flex flex-col overflow-hidden rounded-lg"
       >
         <div className="relative h-44 overflow-hidden">
@@ -51,7 +54,7 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
               </div>
               <h3 className="text-sm font-semibold leading-6 text-primary">
                 <span className="absolute inset-0" />
-                {data.site?.name}
+                {data.site?.name} New
               </h3>
             </div>
           </div>

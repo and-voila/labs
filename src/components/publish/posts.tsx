@@ -7,6 +7,8 @@ import { getTeam } from '#/lib/operations/teams/get-current-team';
 import PostCard from '#/components/publish/post-card';
 import { EmptyPlaceholder } from '#/components/shared/empty-placeholder';
 
+import CollabPostCard from './collab-post-card';
+
 interface PostsProps {
   siteId?: string;
   limit?: number;
@@ -36,7 +38,10 @@ export default async function Posts({ siteId, limit, teamSlug }: PostsProps) {
   return posts.length > 0 ? (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {posts.map((post) => (
-        <PostCard key={post.id} data={post} teamSlug={teamSlug} />
+        <>
+          <CollabPostCard key={post.id} data={post} teamSlug={teamSlug} />
+          <PostCard key={post.id} data={post} teamSlug={teamSlug} />
+        </>
       ))}
     </div>
   ) : (

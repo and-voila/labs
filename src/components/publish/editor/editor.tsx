@@ -10,6 +10,8 @@ import {
 import { Post } from '@prisma/client';
 import { Editor as NovelEditor } from 'novel';
 
+import { env } from 'env';
+
 import { updatePost } from '#/lib/actions/publish/publish-actions';
 
 import { EditorHeader } from '#/components/publish/editor/editor-header';
@@ -102,7 +104,7 @@ export default function Editor({
   );
 
   const url = process.env.NEXT_PUBLIC_VERCEL_ENV
-    ? `https://${state.data.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${state.data.slug}`
+    ? `https://${state.data.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}/${state.data.slug}`
     : `http://${state.data.site?.subdomain}.localhost:3001/${state.data.slug}`;
 
   useKeyboardSave(() => {

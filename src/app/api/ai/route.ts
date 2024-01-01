@@ -1,6 +1,8 @@
 import jsonwebtoken from 'jsonwebtoken';
 
-const JWT_SECRET = process.env?.TIPTAP_AI_SECRET as string;
+import { env } from 'env';
+
+const JWT_SECRET = env?.TIPTAP_AI_SECRET as string;
 
 export async function POST({
   teamSlug,

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
+import { env } from 'env';
+
 import { siteConfig } from '#/config/site';
 
 import { authOptions } from '#/lib/auth';
@@ -9,7 +11,6 @@ import { db } from '#/lib/db';
 import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import CreatePostButton from '#/components/publish/create-post-button';
 import { NewCollabPostButton } from '#/components/publish/new-collab-post-button';
 import OverviewSitesCTA from '#/components/publish/overview-sites-cta';
 import Posts from '#/components/publish/posts';
@@ -39,7 +40,7 @@ export default async function SiteManage({
     notFound();
   }
 
-  const url = `${site.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`;
+  const url = `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}`;
 
   return (
     <div className="flex flex-col gap-8">
@@ -63,7 +64,6 @@ export default async function SiteManage({
         </a>
         <OverviewSitesCTA teamSlug={params.team_slug} />
         <NewCollabPostButton />
-        <CreatePostButton />
       </DashboardHeader>
       <div className="my-8 flex flex-col md:my-12">
         <h3 className="text-lg font-semibold leading-6">

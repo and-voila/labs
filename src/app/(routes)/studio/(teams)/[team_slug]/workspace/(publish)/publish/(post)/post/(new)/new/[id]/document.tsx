@@ -8,6 +8,8 @@ import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import * as Y from 'yjs';
 
+import { env } from 'env';
+
 import { BlockEditor } from '#/components/tiptap/block-editor';
 
 export default function Document({
@@ -89,8 +91,8 @@ export default function Document({
       setProvider(
         new TiptapCollabProvider({
           // eslint-disable-next-line camelcase
-          name: `${process.env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${postId}`,
-          appId: process.env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID ?? '',
+          name: `${env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${postId}`,
+          appId: env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID ?? '',
           token: collabToken,
           document: ydoc,
         }),
