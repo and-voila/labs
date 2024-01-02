@@ -1,3 +1,4 @@
+import React from 'react';
 import { redirect } from 'next/navigation';
 
 import { authOptions } from '#/lib/auth';
@@ -38,10 +39,10 @@ export default async function Posts({ siteId, limit, teamSlug }: PostsProps) {
   return posts.length > 0 ? (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {posts.map((post) => (
-        <>
-          <CollabPostCard key={post.id} data={post} teamSlug={teamSlug} />
-          <PostCard key={post.id} data={post} teamSlug={teamSlug} />
-        </>
+        <React.Fragment key={post.id}>
+          <CollabPostCard data={post} teamSlug={teamSlug} />
+          <PostCard data={post} teamSlug={teamSlug} />
+        </React.Fragment>
       ))}
     </div>
   ) : (
