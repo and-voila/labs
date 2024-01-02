@@ -3,7 +3,7 @@ import { Editor } from '@tiptap/react';
 
 import { cn } from '#/lib/utils';
 
-import { TableOfContents } from '../table-of-contents/table-of-contents';
+import { TableOfContents } from './table-of-contents';
 
 export const Sidebar = memo(
   ({

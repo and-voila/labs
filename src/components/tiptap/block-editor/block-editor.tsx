@@ -10,10 +10,10 @@ import '#/styles/partials/index.css';
 
 import { createPortal } from 'react-dom';
 
+import { Sidebar } from '#/components/tiptap/block-editor/sidebar';
+import { Loader } from '#/components/tiptap/loader';
 import { ContentItemMenu } from '#/components/tiptap/menus/content-item-menu/content-item-menu';
 import { TextMenu } from '#/components/tiptap/menus/text-menu/text-menu';
-import { Sidebar } from '#/components/tiptap/sidebar/sidebar';
-import { Loader } from '#/components/tiptap/ui/loader';
 
 import { EditorContext } from '#/context/tiptap/editor-context';
 import ImageBlockMenu from '#/extensions/image-block/image-block-menu';
@@ -22,7 +22,7 @@ import TableColumnMenu from '#/extensions/table/menus/table-column/table-column-
 import TableRowMenu from '#/extensions/table/menus/table-row/table-row-menu';
 import { useAIState } from '#/hooks/tiptap/use-ai-state';
 
-import { EditorHeader } from './components/editor-header';
+import { EditorHeader } from './editor-header';
 import { TiptapProps } from './types';
 
 export const BlockEditor = ({ aiToken, ydoc, provider }: TiptapProps) => {

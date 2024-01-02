@@ -3,7 +3,7 @@ import { icons } from 'lucide-react';
 
 import { cn } from '#/lib/utils';
 
-import { Icon } from '#/components/tiptap/ui/icon';
+import { Icon } from '#/components/tiptap/icon';
 
 export type CommandButtonProps = {
   active?: boolean;

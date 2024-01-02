@@ -9,14 +9,14 @@ import {
 import toast from 'react-hot-toast';
 import { v4 as uuid } from 'uuid';
 
-import { DropdownButton } from '#/components/tiptap/ui/dropdown';
-import { Button } from '#/components/tiptap/ui/editor-button';
-import { Icon } from '#/components/tiptap/ui/icon';
-import { Loader } from '#/components/tiptap/ui/loader';
-import { Panel, PanelHeadline } from '#/components/tiptap/ui/panel';
-import { Surface } from '#/components/tiptap/ui/surface';
-import { Textarea } from '#/components/tiptap/ui/textarea';
-import { Toolbar } from '#/components/tiptap/ui/toolbar';
+import { DropdownButton } from '#/components/tiptap/dropdown';
+import { Button } from '#/components/tiptap/editor-button';
+import { Icon } from '#/components/tiptap/icon';
+import { Loader } from '#/components/tiptap/loader';
+import { Panel, PanelHeadline } from '#/components/tiptap/panel';
+import { Surface } from '#/components/tiptap/surface';
+import { Textarea } from '#/components/tiptap/textarea';
+import { Toolbar } from '#/components/tiptap/toolbar';
 
 const imageStyles = [
   { name: 'photorealistic', label: 'Photorealistic', value: 'photorealistic' },

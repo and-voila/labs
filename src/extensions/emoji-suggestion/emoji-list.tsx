@@ -7,8 +7,8 @@ import React, {
 } from 'react';
 import { EmojiItem } from '@tiptap-pro/extension-emoji';
 
-import { Button } from '#/components/tiptap/ui/editor-button';
-import { Panel } from '#/components/tiptap/ui/panel';
+import { Button } from '#/components/tiptap/editor-button';
+import { Panel } from '#/components/tiptap/panel';
 
 export interface Command {
   name: string;

@@ -1,9 +1,9 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { Button } from '#/components/tiptap/ui/editor-button';
-import { Icon } from '#/components/tiptap/ui/icon';
-import { Surface } from '#/components/tiptap/ui/surface';
-import { Toggle } from '#/components/tiptap/ui/toggle';
+import { Button } from '#/components/tiptap/editor-button';
+import { Icon } from '#/components/tiptap/icon';
+import { Surface } from '#/components/tiptap/surface';
+import { Toggle } from '#/components/tiptap/toggle';
 
 export type LinkEditorPanelProps = {
   initialUrl?: string;

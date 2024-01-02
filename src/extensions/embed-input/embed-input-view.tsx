@@ -1,7 +1,7 @@
 import React from 'react';
 import { NodeViewContent, NodeViewWrapper } from '@tiptap/react';
 
-import { Icon } from '#/components/tiptap/ui/icon';
+import { Icon } from '#/components/tiptap/icon';
 
 interface EmbedInputProps {
   // TODO:

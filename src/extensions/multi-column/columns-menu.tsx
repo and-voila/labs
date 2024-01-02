@@ -5,9 +5,9 @@ import { v4 as uuid } from 'uuid';
 
 import { getRenderContainer } from '#/lib/tiptap/utils/get-render-container';
 
+import { Icon } from '#/components/tiptap/icon';
 import { MenuProps } from '#/components/tiptap/menus/types';
-import { Icon } from '#/components/tiptap/ui/icon';
-import { Toolbar } from '#/components/tiptap/ui/toolbar';
+import { Toolbar } from '#/components/tiptap/toolbar';
 
 import { ColumnLayout } from './columns';
 

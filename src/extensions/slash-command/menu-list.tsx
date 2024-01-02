@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Editor } from '@tiptap/core';
 import { icons } from 'lucide-react';
 
-import { DropdownButton } from '#/components/tiptap/ui/dropdown';
-import { Icon } from '#/components/tiptap/ui/icon';
-import { Surface } from '#/components/tiptap/ui/surface';
+import { DropdownButton } from '#/components/tiptap/dropdown';
+import { Icon } from '#/components/tiptap/icon';
+import { Surface } from '#/components/tiptap/surface';
 
 // TODO:
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

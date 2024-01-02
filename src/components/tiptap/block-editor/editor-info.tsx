@@ -4,9 +4,9 @@ import { WebSocketStatus } from '@hocuspocus/provider';
 import { getConnectionText } from '#/lib/tiptap/utils/get-connection-text';
 import { cn } from '#/lib/utils';
 
-import Tooltip from '#/components/tiptap/ui/tooltip';
+import Tooltip from '#/components/tiptap/tooltip';
 
-import { EditorUser } from '../types';
+import { EditorUser } from './types';
 
 export type EditorInfoProps = {
   characters: number;

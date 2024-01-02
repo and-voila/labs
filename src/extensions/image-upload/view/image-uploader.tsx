@@ -2,9 +2,9 @@ import { ChangeEvent, useCallback } from 'react';
 
 import { cn } from '#/lib/utils';
 
-import { Button } from '#/components/tiptap/ui/editor-button';
-import { Icon } from '#/components/tiptap/ui/icon';
-import { Spinner } from '#/components/tiptap/ui/spinner';
+import { Button } from '#/components/tiptap/editor-button';
+import { Icon } from '#/components/tiptap/icon';
+import { Spinner } from '#/components/tiptap/spinner';
 
 import { useDropZone, useFileUpload, useUploader } from './hooks';
 

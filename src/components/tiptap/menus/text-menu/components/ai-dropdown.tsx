@@ -3,10 +3,10 @@ import * as Dropdown from '@radix-ui/react-dropdown-menu';
 
 import { languages, tones } from '#/lib/tiptap/constants';
 
-import { DropdownButton } from '#/components/tiptap/ui/dropdown';
-import { Icon } from '#/components/tiptap/ui/icon';
-import { Surface } from '#/components/tiptap/ui/surface';
-import { Toolbar } from '#/components/tiptap/ui/toolbar';
+import { DropdownButton } from '#/components/tiptap/dropdown';
+import { Icon } from '#/components/tiptap/icon';
+import { Surface } from '#/components/tiptap/surface';
+import { Toolbar } from '#/components/tiptap/toolbar';
 
 export type AIDropdownProps = {
   onSimplify: () => void;

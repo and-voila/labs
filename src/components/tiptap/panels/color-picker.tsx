@@ -3,8 +3,8 @@ import { HexColorPicker } from 'react-colorful';
 
 import { themeColors } from '#/lib/tiptap/constants';
 
-import { Icon } from '#/components/tiptap/ui/icon';
-import { Toolbar } from '#/components/tiptap/ui/toolbar';
+import { Icon } from '#/components/tiptap/icon';
+import { Toolbar } from '#/components/tiptap/toolbar';
 
 import { ColorButton } from './color-button';
 

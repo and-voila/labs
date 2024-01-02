@@ -4,10 +4,10 @@ import * as Dropdown from '@radix-ui/react-dropdown-menu';
 import {
   DropdownButton,
   // DropdownCategoryTitle,
-} from '#/components/tiptap/ui/dropdown';
-import { Icon } from '#/components/tiptap/ui/icon';
-import { Surface } from '#/components/tiptap/ui/surface';
-import { Toolbar } from '#/components/tiptap/ui/toolbar';
+} from '#/components/tiptap/dropdown';
+import { Icon } from '#/components/tiptap/icon';
+import { Surface } from '#/components/tiptap/surface';
+import { Toolbar } from '#/components/tiptap/toolbar';
 
 const FONT_SIZES = [
   { label: 'Smaller', value: '12px' },
