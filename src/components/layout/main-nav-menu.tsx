@@ -79,25 +79,6 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
       description: 'Invite your team for next-level multiplayer collaboration.',
     },
     {
-      title: 'Insights',
-      href: '/insights',
-      description: 'Explore marketing ideas in detail for smarter strategies.',
-      disabled: true,
-    },
-    {
-      title: 'Guides',
-      href: '/guides',
-      description: 'Easy steps to tackle tricky marketing tasks.',
-      disabled: true,
-    },
-    {
-      title: 'Blog',
-      href: '/blog',
-      description:
-        'Get the latest in digital marketing, served up hot and fresh.',
-      disabled: true,
-    },
-    {
       title: 'AI Experts',
       href: `${APP_BP}/${activeSlug}/workspace/chat`,
       description: 'Engage with purpose-trained marketing AI that just works.',
@@ -192,9 +173,6 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
                 title="Playbooks"
               >
                 Stuck? Score quick wins with Playbooks, just 5 mins to wisdom.
-              </ListItem>
-              <ListItem href="/insights" title="Insights" disabled>
-                Got bigger challenges? Our Insights and Guides have you covered.
               </ListItem>
               <ListItem
                 href={`${APP_BP}/${activeSlug}/workspace/publish`}

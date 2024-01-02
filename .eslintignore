@@ -3,7 +3,6 @@ target/
 .next/
 build/
 dist/
-.contentlayer
 cursor/
 **/*.md
 **/*.mdx

@@ -2,28 +2,9 @@ import { Icons } from '#/components/shared/icons';
 
 // :: Iconography Types ::
 
-export type SocialIcon = keyof typeof Icons;
-
-export type SocialItem = {
-  name: string;
-  href: string;
-  icon: SocialIcon;
-};
-
-export type SocialConfig = {
-  social: SocialItem[];
-};
-
 export type IconKey = keyof typeof Icons;
 
 // :: Navigation Types ::
-
-export type Route = {
-  id: string;
-  icon?: IconName;
-  label: string;
-  href: string;
-};
 
 export type NavItem = {
   id?: string;
@@ -36,39 +17,6 @@ export type NavItem = {
 };
 
 export type MainNavItem = NavItem;
-
-export type SidebarNavItem = {
-  id?: string;
-  title: string;
-  disabled?: boolean;
-  external?: boolean;
-  icon?: keyof typeof Icons;
-} & (
-  | {
-      href: string;
-      items?: never;
-    }
-  | {
-      href?: string;
-      items: NavLink[];
-    }
-);
-
-export interface SidebarItemProps {
-  icon: keyof typeof Icons;
-  label: string;
-  href: string;
-}
-
-export interface SidebarProps {
-  apiLimitCount: number;
-  isPaidMember: boolean;
-}
-
-export interface MobileSidebarProps {
-  apiLimitCount: number;
-  isPaidMember: boolean;
-}
 
 export interface CourseSidebarItemProps {
   label: string;
@@ -139,36 +87,8 @@ export type SiteConfig = {
   };
 };
 
-export type AdminConfig = {
-  sidebarNav: SidebarNavItem[];
-};
-
-export type DashboardConfig = {
-  sidebarNav: SidebarNavItem[];
-};
-
-export type InsightsConfig = {
-  sidebarNav: SidebarNavItem[];
-};
-
 export type FooterConfig = {
   footerNav: MainNavItem[];
-};
-
-export type PlaybooksConfig = {
-  sidebarNav: SidebarNavItem[];
-};
-
-export type TeacherConfig = {
-  sidebarNav: SidebarNavItem[];
-};
-
-export type TeamsConfig = {
-  sidebarNav: SidebarNavItem[];
-};
-
-export type ToolsConfig = {
-  sidebarNav: SidebarNavItem[];
 };
 
 // :: Stripe and Subscription Types ::

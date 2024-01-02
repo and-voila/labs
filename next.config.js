@@ -1,8 +1,3 @@
-// TODO: Related to https://github.com/shadcn-ui/taxonomy/issues/100#issuecomment-1605867844
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { createContentlayerPlugin } = require('next-contentlayer');
-
 import('./env.mjs');
 
 /** @type {import('next').NextConfig} */
@@ -87,6 +82,4 @@ const nextConfig = {
   },
 };
 
-const withContentlayer = createContentlayerPlugin({});
-
-module.exports = withContentlayer(nextConfig);
+module.exports = nextConfig;

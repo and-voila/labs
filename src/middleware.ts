@@ -68,11 +68,7 @@ function constructPath(url: URL): string {
 function isPublicPath(hostname: string, path: string): boolean {
   return (
     (hostname === `labs.${ROOT_DOMAIN}` || hostname === LOCALHOST) &&
-    (path === '/' ||
-      path === '/pricing' ||
-      path === '/blog' ||
-      path.startsWith('/blog/') ||
-      path === '/not-authorized')
+    (path === '/' || path === '/pricing' || path === '/not-authorized')
   );
 }
 
