@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 
+import { env } from 'env';
 import { fontMapper } from 'public/fonts';
 
 import { getSiteData } from '#/lib/operations/publish/publish-fetchers';
@@ -33,7 +34,7 @@ export async function generateMetadata({
   };
 
   const authorUrl =
-    params.domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
+    params.domain.endsWith(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
     data.customDomain
       ? `https://${data.customDomain}`
       : `https://${domain}`;
@@ -73,7 +74,7 @@ export async function generateMetadata({
     icons: [logo],
     metadataBase: new URL(`https://${domain}`),
     // Set canonical URL to custom domain if it exists
-    ...(params.domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
+    ...(params.domain.endsWith(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
       data.customDomain && {
         alternates: {
           canonical: `https://${data.customDomain}`,
@@ -98,7 +99,7 @@ export default async function SiteLayout({
 
   // Redirect to custom domain if it exists
   if (
-    domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
+    domain.endsWith(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
     data.customDomain &&
     process.env.REDIRECT_TO_CUSTOM_DOMAIN_IF_EXISTS === 'true'
   ) {

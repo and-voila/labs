@@ -144,3 +144,8 @@ export function initials(name: string) {
     ? `${firstName.charAt(0)}${lastName.charAt(0)}`
     : firstName.charAt(0);
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function randomElement(array: Array<any>) {
+  return array[Math.floor(Math.random() * array.length)];
+}

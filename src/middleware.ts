@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { withAuth } from 'next-auth/middleware';
 
+import { env } from 'env';
+
 import { APP_BP } from '#/lib/const';
 
-const ROOT_DOMAIN = process.env.NEXT_PUBLIC_ROOT_DOMAIN;
+const ROOT_DOMAIN = env.NEXT_PUBLIC_ROOT_DOMAIN;
 const VERCEL_DEPLOYMENT_SUFFIX =
   process.env.NEXT_PUBLIC_VERCEL_DEPLOYMENT_SUFFIX;
 const LOCALHOST = 'localhost:3001';

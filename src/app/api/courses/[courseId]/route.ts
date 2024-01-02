@@ -1,14 +1,13 @@
 import { NextResponse } from 'next/server';
 import Mux from '@mux/mux-node';
 
+import { env } from 'env';
+
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/operations/user/session';
 import { isTeacher } from '#/lib/teacher';
 
-const { Video } = new Mux(
-  process.env.MUX_TOKEN_ID!,
-  process.env.MUX_TOKEN_SECRET!,
-);
+const { Video } = new Mux(env.MUX_TOKEN_ID!, env.MUX_TOKEN_SECRET!);
 
 export async function DELETE(
   req: Request,

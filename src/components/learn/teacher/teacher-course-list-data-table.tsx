@@ -73,7 +73,7 @@ export function TeacherCourseListDataTable<TData, TValue>({
   }, [table]);
 
   return (
-    <div>
+    <>
       <div className="flex items-center py-4 md:justify-between">
         <Input
           placeholder="Filter courses by title..."
@@ -156,6 +156,6 @@ export function TeacherCourseListDataTable<TData, TValue>({
           Next
         </Button>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { Site } from '@prisma/client';
 
+import { env } from 'env';
+
 import { APP_BP } from '#/lib/const';
 import { placeholderBlurhash } from '#/lib/utils';
 
@@ -13,7 +15,7 @@ interface SiteCardProps {
 }
 
 export default function SiteCard({ data, teamSlug }: SiteCardProps) {
-  const url = `${data.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`;
+  const url = `${data.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}`;
   return (
     <div
       key={data.name}

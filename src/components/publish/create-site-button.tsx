@@ -20,6 +20,7 @@ export default function CreateSiteButton({
 
   return (
     <Button
+      size="sm"
       onClick={handleClick}
       variant="default"
       className="mt-6 w-full md:mt-0 md:w-auto"

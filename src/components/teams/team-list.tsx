@@ -32,7 +32,7 @@ export const TeamList: React.FC<TeamListProps> = (props) => {
   return (
     <div
       className={cn(
-        'grid w-full gap-6',
+        'grid w-full gap-8',
         'grid-cols-[repeat(auto-fill,minmax(350px,1fr))]',
       )}
     >

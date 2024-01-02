@@ -153,6 +153,10 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
 
   const isActive = (path: string) => pathname.startsWith(path);
 
+  if (pathname.includes(APP_BP)) {
+    return null;
+  }
+
   return (
     <NavigationMenu>
       <NavigationMenuList>

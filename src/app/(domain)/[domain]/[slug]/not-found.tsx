@@ -2,6 +2,8 @@ import { headers } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { env } from 'env';
+
 import { getSiteData } from '#/lib/operations/publish/publish-fetchers';
 import { cn } from '#/lib/utils';
 
@@ -12,7 +14,7 @@ export default async function NotFound() {
   const headersList = headers();
   const domain = headersList
     .get('host')
-    ?.replace('.localhost:3001', `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`);
+    ?.replace('.localhost:3001', `.${env.NEXT_PUBLIC_ROOT_DOMAIN}`);
   const data = await getSiteData(domain as string);
 
   return (

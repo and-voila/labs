@@ -1,0 +1,94 @@
+.ProseMirror {
+  /* Placeholder Styles */
+  .is-empty::before {
+    @apply pointer-events-none float-left h-0 w-full text-muted-foreground;
+  }
+
+  &.ProseMirror-focused {
+    /* Slashmenu Placeholder */
+    > p.has-focus.is-empty::before {
+      content: 'Type  /  to browse options';
+    }
+
+    > [data-type='columns']
+      > [data-type='column']
+      > p.is-empty.has-focus::before {
+      content: 'Type  /  to browse options';
+    }
+  }
+
+  /* Default Placeholder */
+  & > .is-editor-empty::before {
+    content: 'Click here to start writing …';
+  }
+
+  /* Blockquote Placeholder */
+  blockquote .is-empty:not(.is-editor-empty):first-child:last-child::before {
+    content: 'Enter a quote';
+  }
+
+  blockquote + figcaption.is-empty:not(.is-editor-empty)::before {
+    content: 'Author';
+  }
+
+  [data-placeholder][data-suggestion]::before,
+  [data-placeholder][data-suggestion] *::before {
+    content: none !important;
+  }
+
+  /* Embed */
+  .node-embedInput {
+    &.is-empty [data-node-view-content] > :last-child::before {
+      @apply pointer-events-none float-left h-0 text-muted-foreground;
+    }
+
+    &.is-empty
+      [data-node-view-wrapper]
+      [data-node-view-content]
+      > :last-child::before {
+      content: 'Paste or type a URL';
+    }
+
+    &.is-empty
+      [data-node-view-wrapper][data-service='twitter']
+      [data-node-view-content]
+      > :last-child::before {
+      content: 'Paste or type a Twitter URL';
+    }
+
+    &.is-empty
+      [data-node-view-wrapper][data-service='youtube']
+      [data-node-view-content]
+      > :last-child::before {
+      content: 'Paste or type an Instagram URL';
+    }
+
+    &.is-empty
+      [data-node-view-wrapper][data-service='tiktok']
+      [data-node-view-content]
+      > :last-child::before {
+      content: 'Paste or type a Figma URL';
+    }
+
+    &.is-empty
+      [data-node-view-wrapper][data-service='framer']
+      [data-node-view-content]
+      > :last-child::before {
+      content: 'Paste or type a Framer URL';
+    }
+
+    &.is-empty
+      [data-node-view-wrapper][data-service='figma']
+      [data-node-view-content]
+      > :last-child::before {
+      content: 'Paste or type a Tiktok URL';
+    }
+
+    &.is-empty
+      [data-node-view-wrapper][data-service='instagram']
+      [data-node-view-content]
+      > :last-child::before {
+      content: 'Paste or type a YouTube URL';
+    }
+  }
+}

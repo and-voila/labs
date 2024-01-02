@@ -5,6 +5,8 @@ import { unstable_cache } from 'next/cache';
 import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
 
+import { env } from 'env';
+
 import { db } from '#/lib/db';
 
 import {
@@ -13,8 +15,8 @@ import {
 } from '#/components/publish/remark-plugins';
 
 export async function getSiteData(domain: string) {
-  const subdomain = domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`)
-    ? domain.replace(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`, '')
+  const subdomain = domain.endsWith(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`)
+    ? domain.replace(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`, '')
     : null;
 
   return await unstable_cache(
@@ -33,8 +35,8 @@ export async function getSiteData(domain: string) {
 }
 
 export async function getPostsForSite(domain: string) {
-  const subdomain = domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`)
-    ? domain.replace(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`, '')
+  const subdomain = domain.endsWith(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`)
+    ? domain.replace(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`, '')
     : null;
 
   return await unstable_cache(
@@ -68,8 +70,8 @@ export async function getPostsForSite(domain: string) {
 }
 
 export async function getPostData(domain: string, slug: string) {
-  const subdomain = domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`)
-    ? domain.replace(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`, '')
+  const subdomain = domain.endsWith(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`)
+    ? domain.replace(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`, '')
     : null;
 
   return await unstable_cache(

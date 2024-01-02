@@ -5,6 +5,7 @@ import { revalidateTag } from 'next/cache';
 import { Post, Site } from '@prisma/client';
 import { put } from '@vercel/blob';
 import { customAlphabet } from 'nanoid';
+import slugify from 'slugify';
 
 import { env } from 'env';
 
@@ -71,9 +72,7 @@ export const createSite = async (formData: FormData) => {
         },
       },
     });
-    await revalidateTag(
-      `${subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
-    );
+    await revalidateTag(`${subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`);
     return response;
   } catch (error: any) {
     if (error.code === 'P2002') {
@@ -167,7 +166,7 @@ export const updateSite = withSiteAuth(
           */
         }
       } else if (key === 'image' || key === 'logo') {
-        if (!process.env.BLOB_READ_WRITE_TOKEN) {
+        if (!env.BLOB_READ_WRITE_TOKEN) {
           return {
             error:
               'Missing BLOB_READ_WRITE_TOKEN token. Note: Vercel Blob is currently in beta – please fill out this form for access: https://tally.so/r/nPDMNd',
@@ -205,12 +204,12 @@ export const updateSite = withSiteAuth(
       {
         /*console.log(
         'Updated site data! Revalidating tags: ',
-        `${site.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
+        `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
         `${site.customDomain}-metadata`,
       );*/
       }
       await revalidateTag(
-        `${site.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
+        `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
       );
       site.customDomain &&
         (await revalidateTag(`${site.customDomain}-metadata`));
@@ -238,7 +237,7 @@ export const deleteSite = withSiteAuth(async (_: FormData, site: Site) => {
       },
     });
     await revalidateTag(
-      `${site.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
+      `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
     );
     response.customDomain &&
       (await revalidateTag(`${site.customDomain}-metadata`));
@@ -288,7 +287,51 @@ export const createPost = withSiteAuth(
     });
 
     await revalidateTag(
-      `${site.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
+      `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
+    );
+    site.customDomain && (await revalidateTag(`${site.customDomain}-posts`));
+
+    return response;
+  },
+);
+
+export const createCollabPost = withSiteAuth(
+  // eslint-disable-next-line camelcase
+  async (formData: FormData, site: Site, team_slug: string) => {
+    const session = await getSession();
+    if (!session?.user.id) {
+      return {
+        error: 'Not authenticated',
+      };
+    }
+
+    const team = await getTeam(team_slug);
+    if (!team) {
+      return {
+        error: 'Not authenticated',
+      };
+    }
+
+    const title = formData.get('title') as string;
+    const description = formData.get('description') as string;
+    const slug = slugify(title, {
+      lower: true,
+      strict: true,
+    });
+
+    const response = await db.post.create({
+      data: {
+        siteId: site.id,
+        teamId: team.id,
+        userId: session.user.id,
+        title: title,
+        description: description,
+        slug: slug,
+      },
+    });
+
+    await revalidateTag(
+      `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
     );
     site.customDomain && (await revalidateTag(`${site.customDomain}-posts`));
 
@@ -351,10 +394,10 @@ export const updatePost = async (data: Post, teamSlug: string) => {
     });
 
     await revalidateTag(
-      `${post.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
+      `${post.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
     );
     await revalidateTag(
-      `${post.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-${post.slug}`,
+      `${post.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-${post.slug}`,
     );
 
     // if the site has a custom domain, we need to revalidate those tags too
@@ -413,10 +456,10 @@ export const updatePostMetadata = withPostAuth(
       }
 
       await revalidateTag(
-        `${post.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
+        `${post.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
       );
       await revalidateTag(
-        `${post.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-${post.slug}`,
+        `${post.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-${post.slug}`,
       );
 
       // if the site has a custom domain, we need to revalidate those tags too
@@ -449,6 +492,26 @@ export const deletePost = withPostAuth(async (_: FormData, post: Post) => {
         siteId: true,
       },
     });
+
+    if (!env.TIPTAP_COLLAB_API_SECRET) {
+      throw new Error('TIPTAP_COLLAB_API_SECRET is not defined');
+    }
+
+    // Delete the document from Tiptap Cloud
+    const tiptapResponse = await fetch(
+      `https://${env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID}.collab.tiptap.cloud/api/documents/${env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${post.id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: env.TIPTAP_COLLAB_API_SECRET,
+        },
+      },
+    );
+
+    if (!tiptapResponse.ok) {
+      throw new Error('Failed to delete the document from Tiptap Cloud');
+    }
+
     return response;
   } catch (error: any) {
     return {

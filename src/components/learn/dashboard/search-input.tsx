@@ -44,7 +44,7 @@ export const SearchInput = () => {
       <Input
         onChange={handleChange}
         value={value}
-        className="w-full rounded-lg bg-card pl-9 focus-visible:ring-ring md:w-[300px]"
+        className="w-full rounded-lg bg-card pl-9 focus-visible:ring-ring sm:w-[540px]"
         placeholder="Search for a playbook by title..."
       />
     </div>

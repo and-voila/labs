@@ -6,17 +6,17 @@ import { getTeams } from '#/lib/operations/teams/get-teams';
 import { NavBar } from '#/components/layout/navbar';
 import { SiteFooter } from '#/components/layout/site-footer';
 
-interface DashboardLayoutProps {
+interface MyWorkspaceLayoutProps {
   children?: React.ReactNode;
   params: {
     team_slug: string;
   };
 }
 
-export default async function DashboardLayout({
+export default async function MyWorkspaceLayout({
   children,
   params,
-}: DashboardLayoutProps) {
+}: MyWorkspaceLayoutProps) {
   const { user, teams } = await getTeams();
 
   if (!user) {
@@ -24,14 +24,13 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex min-h-screen flex-col space-y-6">
+    <div className="flex min-h-screen flex-col">
       <NavBar
         user={user}
         teams={teams}
         activeTeamSlug={params.team_slug}
         scroll={false}
       />
-
       <div className="container grid flex-1 gap-12">
         <main className="flex w-full flex-1 flex-col overflow-hidden">
           {children}

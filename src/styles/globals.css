@@ -1,3 +1,5 @@
+@import '../styles/partials/editor.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -85,12 +87,6 @@ body,
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
-  }
-}
-
-@layer utilities {
-  .overflow-hidden {
-    -webkit-mask-image: -webkit-radial-gradient(white, black);
   }
 }
 
@@ -303,4 +299,48 @@ ul[data-type='taskList'] li[data-checked='true'] > div > p {
 .ProseMirror code {
   @apply bg-muted;
   @apply text-foreground;
+}
+
+/* Tiptap Pro Styles */
+
+input::placeholder,
+textarea::placeholder {
+  @apply text-black/50 dark:text-white/40;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  @apply text-black/50 dark:text-white/40;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  @apply text-black/40 dark:text-white/40;
+}
+
+.react-colorful {
+  width: 100% !important;
+}
+
+[data-reference-hidden] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+::-webkit-scrollbar {
+  @apply h-1 w-1 bg-neutral-500/20;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-neutral-500/50;
+}
+
+input[type='range'] {
+  @apply h-2.5 appearance-none rounded border-0 bg-neutral-200 transition-all active:bg-neutral-300;
+  @apply dark:bg-neutral-700 dark:active:bg-neutral-600;
+
+  &::-webkit-slider-thumb {
+    @apply h-5 w-3 appearance-none rounded-full bg-neutral-800 transition-all active:h-6 active:w-4 active:bg-neutral-900;
+    @apply dark:bg-neutral-100 dark:active:bg-white;
+  }
 }

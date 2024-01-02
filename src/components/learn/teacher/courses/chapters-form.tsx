@@ -139,7 +139,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   );
 
   return (
-    <div className="relative mt-6 rounded-md border bg-card px-4 py-6">
+    <div className="relative rounded-md border bg-card px-4 py-6">
       {isUpdating && (
         <div className="rounded-m absolute right-0 top-0 flex h-full w-full items-center justify-center bg-slate-500/20">
           <Icons.spinner className="h-4 w-4 animate-spin text-muted-foreground" />

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
@@ -87,17 +88,28 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
   }, [courseId, router]);
 
   return (
-    <div className="flex items-center gap-x-2">
+    <div className="my-4 flex w-full flex-col items-center gap-4 rounded-md border bg-card p-2 sm:my-0 sm:w-auto sm:flex-row md:gap-2">
+      <Link href={`${APP_BP}/admin/teacher/courses`} className="w-full">
+        <Button variant="outline" className="w-full md:w-auto" size="sm">
+          Back to admin
+        </Button>
+      </Link>
       <Button
         onClick={onClick}
         disabled={disabled || isLoading}
         variant={isPublished ? 'secondary' : 'default'}
         size="sm"
+        className="w-full sm:w-auto"
       >
         {isPublished ? 'Unpublish' : 'Publish'}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
-        <Button variant="destructive" size="sm" disabled={isLoading}>
+        <Button
+          variant="destructive"
+          size="sm"
+          disabled={isLoading}
+          className="w-full sm:w-auto"
+        >
           <Icons.trash className="h-4 w-4 text-white" />
         </Button>
       </ConfirmModal>

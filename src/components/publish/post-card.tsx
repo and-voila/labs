@@ -1,5 +1,8 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Post, Site } from '@prisma/client';
+
+import { env } from 'env';
 
 import { APP_BP } from '#/lib/const';
 import { placeholderBlurhash } from '#/lib/utils';
@@ -13,7 +16,7 @@ interface PostCardProps {
 }
 
 export default function PostCard({ data, teamSlug }: PostCardProps) {
-  const url = `${data.site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${data.slug}`;
+  const url = `${data.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}/${data.slug}`;
 
   return (
     <div className="group relative rounded-lg border border-border bg-card pb-10">
@@ -31,23 +34,33 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
             placeholder="blur"
             blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
           />
-          {!data.published && (
-            <span className="absolute bottom-2 right-2 rounded-sm border border-muted-foreground bg-foreground px-1  text-sm font-medium text-primary-foreground shadow-md">
-              Draft
-            </span>
-          )}
         </div>
-        <div className="border-t p-4">
-          <h3 className="my-0 line-clamp-2 text-lg font-semibold text-foreground">
+        <div className="space-y-2 border-t p-4">
+          <div className="flex flex-wrap items-center gap-y-1 overflow-hidden">
+            <div className="flex items-center gap-x-2">
+              <div className="flex gap-x-1">
+                <Image
+                  width={48}
+                  height={48}
+                  src={data.site?.logo ?? '/default-site-logo.jpg'}
+                  alt=""
+                  className="h-5 w-5 flex-none rounded-full bg-background/10"
+                  placeholder="blur"
+                  blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
+                />
+              </div>
+              <h3 className="text-sm font-semibold leading-6 text-primary">
+                <span className="absolute inset-0" />
+                {data.site?.name}
+              </h3>
+            </div>
+          </div>
+          <h3 className="my-0 line-clamp-2 text-lg font-semibold leading-6 text-foreground">
             {data.title || 'Draft post without a title'}
           </h3>
-          <p className="mt-2 line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {data.description ||
-              "Before I publish this, I'll be sure to replace this description with something awesome, because SEO, right? "}
-          </p>
         </div>
       </Link>
-      {data.published && (
+      {data.published ? (
         <div className="absolute bottom-4 flex w-full px-4">
           <a
             href={
@@ -59,13 +72,17 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
             rel="noreferrer"
             className="truncate rounded-md py-2 text-xs text-muted-foreground underline underline-offset-4 transition-colors group-hover:text-foreground"
           >
-            <span className="flex flex-row items-center gap-1">
+            <span className="flex flex-row items-center gap-1 text-primary">
               Visit post
               {''}
               <Icons.arrowSquareOut className="ml-1 h-3 w-3 text-muted-foreground transition-colors group-hover:text-foreground" />
             </span>
           </a>
         </div>
+      ) : (
+        <span className="absolute bottom-4 mx-4 rounded-sm border border-muted-foreground bg-foreground px-1  text-sm font-medium text-primary-foreground shadow-md">
+          Draft
+        </span>
       )}
     </div>
   );

@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { env } from 'env';
+
 import { db } from '#/lib/db';
 import {
   getPostsForSite,
@@ -23,7 +25,7 @@ export async function generateStaticParams() {
   const allPaths = allSites
     .flatMap(({ subdomain, customDomain }) => [
       subdomain && {
-        domain: `${subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`,
+        domain: `${subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}`,
       },
       customDomain && {
         domain: customDomain,
