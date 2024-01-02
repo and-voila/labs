@@ -83,7 +83,7 @@ export default function CollabPostCard({
           </a>
         </div>
       ) : (
-        <span className="absolute bottom-4 mx-4 rounded-sm border border-muted-foreground bg-foreground px-1  text-sm font-medium text-primary-foreground shadow-md">
+        <span className="absolute bottom-4 mx-4 rounded-sm border border-primary px-2 text-sm font-medium text-primary shadow-md">
           Draft
         </span>
       )}

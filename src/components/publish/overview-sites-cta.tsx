@@ -33,6 +33,7 @@ export default async function OverviewSitesCTA({
   return sites > 0 ? (
     <Link href={`${APP_BP}/${teamSlug}/workspace/publish/sites`}>
       <Button
+        size="sm"
         variant="secondary"
         className="mt-6 w-full md:mx-2 md:mt-0 md:w-auto"
       >

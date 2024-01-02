@@ -22,7 +22,7 @@ export const NewCollabPostButton: React.FC = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>New post</Button>
+        <Button size="sm">New post</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
