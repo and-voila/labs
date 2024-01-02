@@ -40,7 +40,6 @@ next-env.d.ts
 /.react-email/
 
 .vscode
-.contentlayer
 
 /cursor/
 

@@ -47,7 +47,6 @@ This project follows the recommendations of the the Next JS team for v14 and rem
 │   │   ├── /(routes)                   # Route group for routes ¯\_(ツ)_/¯
 │   │   │   ├── /(auth)                 # Authentication pages
 │   │   │   ├── /(dashboard)            # Dashboard pages
-│   │   │   ├── /(insights)             # Insights pages
 │   │   │   ├── /(learn)                # Learn pages
 │   │   │   ├── /(marketing)            # Marketing pages
 │   │   │   ├── /(tools)                # Tools pages
@@ -70,7 +69,6 @@ This project follows the recommendations of the the Next JS team for v14 and rem
 │   │   └── /styles                     # Global styles
 │   ├── /prisma                         # Prisma schema and migrations
 │   └── /scripts                        # Scripts like seeding scripts
-├── /content                            # Contentlayer blogs, docs, etc.
 ├── /public                             # Static files like fonts, images, etc.
 ├── next.config.js
 ├── .env.example
