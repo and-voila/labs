@@ -6,6 +6,8 @@ import CollaborationCursor from '@tiptap/extension-collaboration-cursor';
 import { useEditor } from '@tiptap/react';
 import * as Y from 'yjs';
 
+import { env } from 'env';
+
 import { userColors, userNames } from '#/lib/tiptap/constants';
 import { initialContent } from '#/lib/tiptap/data/initial-content';
 import { randomElement } from '#/lib/tiptap/utils';
@@ -17,9 +19,9 @@ import { ExtensionKit } from '#/extensions/extension-kit';
 
 import { useSidebar } from './use-sidebar';
 
-const TIPTAP_AI_APP_ID = process.env.NEXT_PUBLIC_TIPTAP_AI_APP_ID;
+const TIPTAP_AI_APP_ID = env.NEXT_PUBLIC_TIPTAP_AI_APP_ID;
 const TIPTAP_AI_BASE_URL =
-  process.env.NEXT_PUBLIC_TIPTAP_AI_BASE_URL || 'https://api.tiptap.dev/v1/ai';
+  env.NEXT_PUBLIC_TIPTAP_AI_BASE_URL || 'https://api.tiptap.dev/v1/ai';
 
 export const useBlockEditor = ({
   aiToken,

@@ -44,6 +44,7 @@ export const env = createEnv({
     NEXT_PUBLIC_STRIPE_BETTER_YEARLY_PRICE_ID: z.string().min(1),
     NEXT_PUBLIC_TEACHER_ID: z.string().min(1),
     NEXT_PUBLIC_TIPTAP_AI_APP_ID: z.string().min(1),
+    NEXT_PUBLIC_TIPTAP_AI_BASE_URL: z.string().min(1),
     NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID: z.string().min(1),
     NEXT_PUBLIC_COLLAB_DOC_PREFIX: z.string().min(1),
   },
@@ -74,6 +75,7 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_STRIPE_BETTER_YEARLY_PRICE_ID,
     NEXT_PUBLIC_TEACHER_ID: process.env.NEXT_PUBLIC_TEACHER_ID,
     NEXT_PUBLIC_TIPTAP_AI_APP_ID: process.env.NEXT_PUBLIC_TIPTAP_AI_APP_ID,
+    NEXT_PUBLIC_TIPTAP_AI_BASE_URL: process.env.NEXT_PUBLIC_TIPTAP_AI_BASE_URL,
     NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID:
       process.env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID,
     NEXT_PUBLIC_COLLAB_DOC_PREFIX: process.env.NEXT_PUBLIC_COLLAB_DOC_PREFIX,
