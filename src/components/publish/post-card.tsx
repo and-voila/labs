@@ -55,13 +55,9 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
               </h3>
             </div>
           </div>
-          <h3 className="my-0 line-clamp-2 text-lg font-semibold text-foreground">
+          <h3 className="my-0 line-clamp-2 text-lg font-semibold leading-6 text-foreground">
             {data.title || 'Draft post without a title'}
           </h3>
-          <p className="mt-2 line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {data.description ||
-              "Before I publish this, I'll be sure to replace this description with something awesome, because SEO, right? "}
-          </p>
         </div>
       </Link>
       {data.published ? (
