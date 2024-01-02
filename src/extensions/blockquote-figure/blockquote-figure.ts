@@ -1,6 +1,6 @@
 import { mergeAttributes } from '@tiptap/core';
 
-import { Figure } from '../figure';
+import { Figure } from '../figure/figure';
 import { Quote } from './quote';
 import { QuoteCaption } from './quote-caption';
 

@@ -10,7 +10,7 @@ import { env } from 'env';
 
 import { userColors, userNames } from '#/lib/tiptap/constants';
 import { initialContent } from '#/lib/tiptap/data/initial-content';
-import { randomElement } from '#/lib/tiptap/utils';
+import { randomElement } from '#/lib/utils';
 
 import { EditorUser } from '#/components/tiptap/block-editor/types';
 

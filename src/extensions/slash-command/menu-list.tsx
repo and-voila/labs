@@ -1,4 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Editor } from '@tiptap/core';
+import { icons } from 'lucide-react';
 
 import { DropdownButton } from '#/components/tiptap/ui/dropdown';
 import { Icon } from '#/components/tiptap/ui/icon';
@@ -7,7 +9,23 @@ import { Surface } from '#/components/tiptap/ui/surface';
 // TODO:
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CommandButton } from './command-button';
-import { Command, MenuListProps } from './types';
+import { Group } from './groups';
+
+export interface Command {
+  name: string;
+  label: string;
+  description: string;
+  aliases?: string[];
+  iconName: keyof typeof icons;
+  action: (editor: Editor) => void;
+  shouldBeHidden?: (editor: Editor) => boolean;
+}
+
+export interface MenuListProps {
+  editor: Editor;
+  items: Group[];
+  command: (command: Command) => void;
+}
 
 export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
   const scrollContainer = useRef<HTMLDivElement>(null);

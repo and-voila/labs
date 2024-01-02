@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { WebSocketStatus } from '@hocuspocus/provider';
 
-import { cn } from '#/lib/tiptap/utils';
 import { getConnectionText } from '#/lib/tiptap/utils/get-connection-text';
+import { cn } from '#/lib/utils';
 
 import Tooltip from '#/components/tiptap/ui/tooltip';
 

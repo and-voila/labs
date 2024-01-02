@@ -1,6 +1,6 @@
 import { mergeAttributes, Node } from '@tiptap/core';
 
-import { Image } from '../image';
+import { Image } from '../image/image';
 
 export const Figcaption = Node.create({
   name: 'figcaption',

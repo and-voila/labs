@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback } from 'react';
 
-import { cn } from '#/lib/tiptap/utils';
+import { cn } from '#/lib/utils';
 
 import { Button } from '#/components/tiptap/ui/editor-button';
 import { Icon } from '#/components/tiptap/ui/icon';

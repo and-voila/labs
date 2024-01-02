@@ -2,7 +2,7 @@ import { mergeAttributes, Node } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 import { v4 as uuid } from 'uuid';
 
-import { AiImageView } from './components/ai-image-view';
+import { AiImageView } from './ai-image-view';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {

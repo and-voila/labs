@@ -3,7 +3,7 @@ import { ReactRenderer } from '@tiptap/react';
 import { SuggestionKeyDownProps, SuggestionProps } from '@tiptap/suggestion';
 import tippy, { Instance } from 'tippy.js';
 
-import EmojiList from './components/emoji-list';
+import EmojiList from './emoji-list';
 
 export const emojiSuggestion = {
   items: ({ editor, query }: { editor: Editor; query: string }) =>

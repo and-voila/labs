@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { icons } from 'lucide-react';
 
-import { cn } from '#/lib/tiptap/utils';
+import { cn } from '#/lib/utils';
 
 import { Icon } from '#/components/tiptap/ui/icon';
 

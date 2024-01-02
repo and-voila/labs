@@ -3,7 +3,8 @@
 import { useCallback, useMemo } from 'react';
 import { Editor } from '@tiptap/react';
 
-import { isCustomNodeSelected, isTextSelected } from '#/lib/tiptap/utils';
+import { isCustomNodeSelected } from '#/lib/tiptap/utils/is-custom-node-selected';
+import { isTextSelected } from '#/lib/tiptap/utils/is-text-selected';
 
 import { ShouldShowProps } from '#/components/tiptap/menus/types';
 

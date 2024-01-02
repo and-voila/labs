@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import { icons } from 'lucide-react';
 
-import { cn } from '#/lib/tiptap/utils';
+import { cn } from '#/lib/utils';
 
 import { Surface } from './surface';
 import { Toolbar } from './toolbar';

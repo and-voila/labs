@@ -1,6 +1,6 @@
 import * as Popover from '@radix-ui/react-popover';
 
-import { LinkEditorPanel } from '#/components/tiptap/panels';
+import { LinkEditorPanel } from '#/components/tiptap/panels/link-editor-panel';
 import { Icon } from '#/components/tiptap/ui/icon';
 import { Toolbar } from '#/components/tiptap/ui/toolbar';
 

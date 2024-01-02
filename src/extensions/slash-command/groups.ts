@@ -1,6 +1,12 @@
-import { Group } from './types';
+import { Command } from './menu-list';
 
 // import { EmbedService } from '#/lib/constants'
+
+export interface Group {
+  name: string;
+  title: string;
+  commands: Command[];
+}
 
 export const GROUPS: Group[] = [
   {

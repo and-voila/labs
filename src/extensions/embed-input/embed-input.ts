@@ -5,7 +5,7 @@ import { ReactNodeViewRenderer } from '@tiptap/react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { EmbedService, embeds as services } from '#/lib/tiptap/constants';
 
-import { EmbedInputView } from './components/embed-input-view';
+import { EmbedInputView } from './embed-input-view';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {

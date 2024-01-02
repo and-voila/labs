@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { icons } from 'lucide-react';
 
-import { cn } from '#/lib/tiptap/utils';
+import { cn } from '#/lib/utils';
 
 export type IconProps = {
   name: keyof typeof icons;

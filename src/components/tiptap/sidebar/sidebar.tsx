@@ -1,9 +1,9 @@
 import { memo, useCallback } from 'react';
 import { Editor } from '@tiptap/react';
 
-import { cn } from '#/lib/tiptap/utils';
+import { cn } from '#/lib/utils';
 
-import { TableOfContents } from '../table-of-contents';
+import { TableOfContents } from '../table-of-contents/table-of-contents';
 
 export const Sidebar = memo(
   ({

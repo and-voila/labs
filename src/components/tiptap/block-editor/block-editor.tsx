@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useRef } from 'react';
 // import { WebSocketStatus } from '@hocuspocus/provider';
 import { EditorContent, PureEditorContent } from '@tiptap/react';
 
-import { LinkMenu } from '#/components/tiptap/menus';
+import { LinkMenu } from '#/components/tiptap/menus/link-menu/link-menu';
 
 import { useBlockEditor } from '#/hooks/tiptap/use-block-editor';
 
@@ -10,17 +10,18 @@ import '#/styles/partials/index.css';
 
 import { createPortal } from 'react-dom';
 
-import { Sidebar } from '#/components/tiptap/sidebar';
+import { ContentItemMenu } from '#/components/tiptap/menus/content-item-menu/content-item-menu';
+import { TextMenu } from '#/components/tiptap/menus/text-menu/text-menu';
+import { Sidebar } from '#/components/tiptap/sidebar/sidebar';
 import { Loader } from '#/components/tiptap/ui/loader';
 
 import { EditorContext } from '#/context/tiptap/editor-context';
-import ImageBlockMenu from '#/extensions/image-block/components/image-block-menu';
-import { ColumnsMenu } from '#/extensions/multi-column/menus';
-import { TableColumnMenu, TableRowMenu } from '#/extensions/table/menus';
+import ImageBlockMenu from '#/extensions/image-block/image-block-menu';
+import { ColumnsMenu } from '#/extensions/multi-column/columns-menu';
+import TableColumnMenu from '#/extensions/table/menus/table-column/table-column-menu';
+import TableRowMenu from '#/extensions/table/menus/table-row/table-row-menu';
 import { useAIState } from '#/hooks/tiptap/use-ai-state';
 
-import { ContentItemMenu } from '../menus/content-item-menu';
-import { TextMenu } from '../menus/text-menu';
 import { EditorHeader } from './components/editor-header';
 import { TiptapProps } from './types';
 

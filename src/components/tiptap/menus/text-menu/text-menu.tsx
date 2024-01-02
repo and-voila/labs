@@ -2,7 +2,7 @@ import { memo } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import { BubbleMenu, Editor } from '@tiptap/react';
 
-import { ColorPicker } from '#/components/tiptap/panels';
+import { ColorPicker } from '#/components/tiptap/panels/color-picker';
 import { Icon } from '#/components/tiptap/ui/icon';
 import { Surface } from '#/components/tiptap/ui/surface';
 import { Toolbar } from '#/components/tiptap/ui/toolbar';

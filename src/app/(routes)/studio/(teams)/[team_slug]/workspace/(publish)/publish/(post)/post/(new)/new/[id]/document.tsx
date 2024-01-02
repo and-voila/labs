@@ -10,19 +10,14 @@ import * as Y from 'yjs';
 
 import { env } from 'env';
 
-import { BlockEditor } from '#/components/tiptap/block-editor';
+import { BlockEditor } from '#/components/tiptap/block-editor/block-editor';
 
-export default function Document({
-  teamSlug,
-  postId,
-  teamId,
-  userId,
-}: {
-  teamSlug: string;
-  postId: string;
-  teamId: string;
-  userId: string;
-}) {
+export interface AiState {
+  isAiLoading: boolean;
+  aiError?: string | null;
+}
+
+export default function Document({ postId }: { postId: string }) {
   const [provider, setProvider] = useState<TiptapCollabProvider | null>(null);
   const [collabToken, setCollabToken] = useState<string | null>(null);
   const [aiToken, setAiToken] = useState<string | null>(null);
@@ -39,12 +34,6 @@ export default function Document({
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            teamSlug,
-            postId,
-            teamId,
-            userId,
-          }),
         })
       ).json();
 
@@ -55,7 +44,7 @@ export default function Document({
     };
 
     dataFetch();
-  }, [teamSlug, postId, teamId, userId]);
+  }, []);
 
   useEffect(() => {
     // fetch data
@@ -66,12 +55,6 @@ export default function Document({
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            teamSlug,
-            postId,
-            teamId,
-            userId,
-          }),
         })
       ).json();
 
@@ -82,7 +65,7 @@ export default function Document({
     };
 
     dataFetch();
-  }, [teamSlug, postId, teamId, userId]);
+  }, []);
 
   const ydoc = useMemo(() => new Y.Doc(), []);
 
@@ -90,7 +73,6 @@ export default function Document({
     if (hasCollab && collabToken) {
       setProvider(
         new TiptapCollabProvider({
-          // eslint-disable-next-line camelcase
           name: `${env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${postId}`,
           appId: env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID ?? '',
           token: collabToken,
@@ -98,7 +80,6 @@ export default function Document({
         }),
       );
     }
-    // eslint-disable-next-line camelcase
   }, [setProvider, collabToken, ydoc, postId, hasCollab]);
 
   if ((hasCollab && (!collabToken || !provider)) || !aiToken) return;

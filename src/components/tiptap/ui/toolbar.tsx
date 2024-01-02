@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, forwardRef, HTMLProps } from 'react';
 
-import { cn } from '#/lib/tiptap/utils';
+import { cn } from '#/lib/utils';
 
 import { Button, ButtonProps } from './editor-button';
 import { Surface } from './surface';

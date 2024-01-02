@@ -21,14 +21,7 @@ const CollabPostIdPage = async ({
     notFound();
   }
 
-  return (
-    <Document
-      teamSlug={params.team_slug}
-      postId={params.id}
-      teamId={team.id}
-      userId={session.user.id}
-    />
-  );
+  return <Document postId={params.id} />;
 };
 
 export default CollabPostIdPage;

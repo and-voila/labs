@@ -2,7 +2,7 @@ import { mergeAttributes, Node } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 import { v4 as uuid } from 'uuid';
 
-import { AiWriterView } from './components/ai-writer-view';
+import { AiWriterView } from './ai-writer-view';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
