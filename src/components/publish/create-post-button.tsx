@@ -31,9 +31,13 @@ export default function CreatePostButton() {
   return (
     <button
       onClick={handleClick}
-      className={cn(buttonVariants(), 'mt-6 w-full md:mt-0 md:w-auto', {
-        'cursor-not-allowed opacity-50': isPending,
-      })}
+      className={cn(
+        buttonVariants({ size: 'sm' }),
+        'mt-6 w-full md:mt-0 md:w-auto',
+        {
+          'cursor-not-allowed opacity-50': isPending,
+        },
+      )}
       disabled={isPending}
     >
       {isPending ? (
