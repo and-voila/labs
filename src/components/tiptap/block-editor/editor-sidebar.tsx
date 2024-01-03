@@ -5,7 +5,7 @@ import { cn } from '#/lib/utils';
 
 import { TableOfContents } from './table-of-contents';
 
-export const Sidebar = memo(
+export const EditorSidebar = memo(
   ({
     editor,
     isOpen,
@@ -42,4 +42,4 @@ export const Sidebar = memo(
   },
 );
 
-Sidebar.displayName = 'TableOfContentSidepanel';
+EditorSidebar.displayName = 'TableOfContentSidepanel';

@@ -2,7 +2,6 @@ import Link from 'next/link';
 
 import { APP_BP } from '#/lib/const';
 import { Team } from '#/lib/operations/teams/get-teams';
-import { isTeacher } from '#/lib/teacher';
 import { MainNavItem } from '#/lib/types';
 import { cn } from '#/lib/utils';
 
@@ -28,12 +27,10 @@ interface NavBarProps {
 }
 
 export function NavBar({ user, teams, activeTeamSlug }: NavBarProps) {
-  const showAdminLink = isTeacher(user?.id);
-
   return (
-    <header className="sticky top-0 z-40 flex w-full justify-center bg-background/60 backdrop-blur-xl transition-all">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex flex-1 items-center space-x-3">
+    <header className="fixed top-0 z-40 flex w-full justify-center bg-background/60 backdrop-blur-xl transition-all">
+      <div className="flex h-16 w-screen items-center justify-between px-4">
+        <div className="flex flex-1 items-center space-x-10">
           {user ? (
             <Link href={`${APP_BP}/my/workspaces`}>
               <Icons.logo className="h-8 w-8 text-primary" />
@@ -61,18 +58,6 @@ export function NavBar({ user, teams, activeTeamSlug }: NavBarProps) {
         </div>
 
         <div className="flex flex-1 items-center justify-end space-x-3">
-          {showAdminLink && (
-            <Link
-              href={`${APP_BP}/admin`}
-              className={cn(
-                buttonVariants({ variant: 'outline', size: 'sm' }),
-                'hidden md:flex',
-              )}
-            >
-              Admin
-            </Link>
-          )}
-
           {!user ? (
             <Link
               href="/login"

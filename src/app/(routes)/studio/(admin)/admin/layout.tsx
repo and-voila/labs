@@ -22,7 +22,7 @@ const AdminRootLayout: React.FC<AdminRootLayoutProps> = async ({
     redirect('/not-authorized');
   }
   return (
-    <>
+    <div className="w-full max-w-7xl px-8 pb-16 pt-4">
       <TabbedNav
         links={[
           {
@@ -37,7 +37,7 @@ const AdminRootLayout: React.FC<AdminRootLayoutProps> = async ({
         ]}
       />
       <DashboardShell>{children}</DashboardShell>
-    </>
+    </div>
   );
 };
 

@@ -74,8 +74,8 @@ const links: FooterLinkData[] = [
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
-    <footer className={`${cn(className)} border-t border-primary bg-card`}>
-      <div className="container flex flex-col items-center justify-between gap-4 py-6 md:h-16 md:flex-row md:py-0">
+    <footer className={`${cn(className)}z-40 border-t border-primary bg-card`}>
+      <div className="flex w-screen flex-col items-center justify-between gap-4 px-4 py-6 md:h-16 md:flex-row md:py-0">
         <div className="flex flex-col items-center gap-4 px-8 text-sm md:flex-row md:gap-2 md:px-0">
           <Icons.logo className="mr-2 h-7 text-primary" />
           <p>{getCopyright()}</p>

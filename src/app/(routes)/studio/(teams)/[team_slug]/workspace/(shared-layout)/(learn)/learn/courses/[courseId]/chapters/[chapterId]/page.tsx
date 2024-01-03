@@ -51,7 +51,7 @@ const ChapterIdPage = async ({ params }: ChapterIdPageProps) => {
       {userProgress?.isCompleted && (
         <Banner variant="success" label="You've completed this play." />
       )}
-      <div className="mb-4 mt-8">
+      <div className="mb-4">
         <VideoPlayer
           chapterId={params.chapterId}
           title={chapter.title}
