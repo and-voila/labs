@@ -24,17 +24,10 @@ interface NavBarProps {
   } | null;
   items?: MainNavItem[];
   children?: React.ReactNode;
-  rightElements?: React.ReactNode;
-  scroll?: boolean;
   activeTeamSlug?: string;
 }
 
-export function NavBar({
-  user,
-  teams,
-  activeTeamSlug,
-  rightElements,
-}: NavBarProps) {
+export function NavBar({ user, teams, activeTeamSlug }: NavBarProps) {
   const showAdminLink = isTeacher(user?.id);
 
   return (
@@ -68,8 +61,6 @@ export function NavBar({
         </div>
 
         <div className="flex flex-1 items-center justify-end space-x-3">
-          {rightElements}
-
           {showAdminLink && (
             <Link
               href={`${APP_BP}/admin`}

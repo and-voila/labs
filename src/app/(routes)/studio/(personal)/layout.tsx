@@ -25,12 +25,7 @@ export default async function MyWorkspaceLayout({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <NavBar
-        user={user}
-        teams={teams}
-        activeTeamSlug={params.team_slug}
-        scroll={false}
-      />
+      <NavBar user={user} teams={teams} activeTeamSlug={params.team_slug} />
       <div className="container grid flex-1 gap-12">
         <main className="flex w-full flex-1 flex-col overflow-hidden">
           {children}
