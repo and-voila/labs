@@ -10,7 +10,7 @@ import '#/styles/partials/index.css';
 
 import { createPortal } from 'react-dom';
 
-import { Sidebar } from '#/components/tiptap/block-editor/sidebar';
+import { EditorSidebar } from '#/components/tiptap/block-editor/editor-sidebar';
 import { Loader } from '#/components/tiptap/loader';
 import { ContentItemMenu } from '#/components/tiptap/menus/content-item-menu/content-item-menu';
 import { TextMenu } from '#/components/tiptap/menus/text-menu/text-menu';
@@ -64,7 +64,7 @@ export const BlockEditor = ({ aiToken, ydoc, provider }: TiptapProps) => {
   return (
     <EditorContext.Provider value={providerValue}>
       <div className="flex h-full" ref={menuContainerRef}>
-        <Sidebar
+        <EditorSidebar
           isOpen={leftSidebar.isOpen}
           onClose={leftSidebar.close}
           editor={editor}

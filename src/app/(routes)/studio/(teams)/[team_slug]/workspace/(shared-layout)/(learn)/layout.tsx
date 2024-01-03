@@ -43,9 +43,9 @@ export default async function PlaybooksLayout({
   ];
 
   return (
-    <>
+    <div className="w-full max-w-7xl px-8 pb-16 pt-4">
       <TabbedNav links={links} />
       <DashboardShell>{children}</DashboardShell>
-    </>
+    </div>
   );
 }

@@ -59,7 +59,7 @@ const PlaybookLayout = async ({ children, params }: PlaybookLayoutProps) => {
 
   return (
     <div className="flex-1 md:grid md:grid-cols-[220px_1fr] md:gap-6 lg:grid-cols-[240px_1fr] lg:gap-10">
-      <aside className="fixed top-8 z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto py-6 md:sticky md:block lg:py-10">
+      <aside className="fixed z-20 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto md:sticky md:block">
         <CourseSidebar
           course={course}
           progressCount={progressCount}
