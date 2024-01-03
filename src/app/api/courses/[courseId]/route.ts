@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import Mux from '@mux/mux-node';
 
 import { env } from 'env';
@@ -6,13 +6,22 @@ import { env } from 'env';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/operations/user/session';
 import { isTeacher } from '#/lib/teacher';
+import { ratelimit } from '#/lib/upstash';
 
 const { Video } = new Mux(env.MUX_TOKEN_ID!, env.MUX_TOKEN_SECRET!);
 
 export async function DELETE(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { courseId: string } },
 ) {
+  const ip = req.ip ?? 'anonymous';
+  const { success } = await ratelimit(5, '1 m').limit(ip);
+  if (!success) {
+    return NextResponse.json('Too many requests 🤨. Try again later.', {
+      status: 429,
+    });
+  }
+
   try {
     const session = await getSession();
     if (!isTeacher(session?.user?.id)) {

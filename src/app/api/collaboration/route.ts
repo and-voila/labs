@@ -1,8 +1,21 @@
+import { NextRequest, NextResponse } from 'next/server';
 import jsonwebtoken from 'jsonwebtoken';
 
-const JWT_SECRET = process.env?.TIPTAP_COLLAB_SECRET as string;
+import { env } from 'env';
 
-export async function POST(): Promise<Response> {
+import { ratelimit } from '#/lib/upstash';
+
+const JWT_SECRET = env?.TIPTAP_COLLAB_SECRET as string;
+
+export async function POST(req: NextRequest): Promise<NextResponse> {
+  const ip = req.ip ?? 'anonymous';
+  const { success } = await ratelimit(5, '1 m').limit(ip);
+  if (!success) {
+    return NextResponse.json('Too many requests 🤨. Try again later.', {
+      status: 429,
+    });
+  }
+
   const jwt = await jsonwebtoken.sign(
     {
       /* object to be encoded in the JWT */
@@ -10,5 +23,5 @@ export async function POST(): Promise<Response> {
     JWT_SECRET,
   );
 
-  return new Response(JSON.stringify({ token: jwt }));
+  return NextResponse.json({ token: jwt });
 }

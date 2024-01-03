@@ -1,9 +1,13 @@
+import { NextRequest } from 'next/server';
 import { Ratelimit } from '@upstash/ratelimit';
+import { ipAddress } from '@vercel/edge';
 import { kv } from '@vercel/kv';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { Configuration, OpenAIApi } from 'openai-edge';
 
 import { env } from 'env';
+
+import { ratelimit } from '#/lib/upstash';
 
 const config = new Configuration({
   apiKey: env.OPENAI_API_KEY,
@@ -12,7 +16,15 @@ const openai = new OpenAIApi(config);
 
 export const runtime = 'edge';
 
-export async function POST(req: Request): Promise<Response> {
+export async function POST(req: NextRequest) {
+  const ip = ipAddress(req) || 'anonymous';
+  const { success } = await ratelimit(5, '1 m').limit(ip);
+  if (!success) {
+    return new Response('Too many requests 🤨. Try again later.', {
+      status: 429,
+    });
+  }
+
   if (
     process.env.NODE_ENV != 'development' &&
     env.KV_REST_API_URL &&

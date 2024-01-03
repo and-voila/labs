@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 import {
   getConfigResponse,
@@ -6,11 +6,20 @@ import {
   verifyDomain,
 } from '#/lib/actions/publish/domains';
 import { DomainVerificationStatusProps } from '#/lib/types';
+import { ratelimit } from '#/lib/upstash';
 
 export async function GET(
-  _req: Request,
+  req: NextRequest,
   { params }: { params: { slug: string } },
 ) {
+  const ip = req.ip ?? 'anonymous';
+  const { success } = await ratelimit(5, '1 m').limit(ip);
+  if (!success) {
+    return NextResponse.json('Too many requests 🤨. Try again later.', {
+      status: 429,
+    });
+  }
+
   const domain = decodeURIComponent(params.slug);
   let status: DomainVerificationStatusProps = 'Valid Configuration';
 

@@ -106,13 +106,13 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                 src={`https://avatar.vercel.sh/${
                   activeTeam?.slug ?? 'personal'
                 }.png`}
-                alt={activeTeam?.name ?? user?.name ?? 'Personal account'}
+                alt={activeTeam?.name ?? user?.displayName ?? 'Personal'}
               />
               <AvatarFallback>
-                {(activeTeam?.name ?? user?.name ?? 'P')[0]}
+                {(activeTeam?.name ?? user?.displayName ?? 'Personal')[0]}
               </AvatarFallback>
             </Avatar>
-            {activeTeam?.name ?? user?.name ?? 'Personal account'}
+            {activeTeam?.name ?? user?.displayName ?? 'Personal'}
             <Icons.caretDown
               className={cn(
                 'ml-auto h-4 w-4 shrink-0 transition-transform',
@@ -141,7 +141,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                     />
                     <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
                   </Avatar>
-                  {user?.name ?? 'Personal account'}
+                  {user?.displayName ?? 'Personal'}
                 </CommandItem>
               </CommandGroup>
               <CommandGroup heading="Team workspaces">
