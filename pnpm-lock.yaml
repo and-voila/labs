@@ -266,12 +266,18 @@ dependencies:
   '@upstash/ratelimit':
     specifier: ^1.0.0
     version: 1.0.0
+  '@upstash/redis':
+    specifier: ^1.27.1
+    version: 1.27.1
   '@vercel/analytics':
     specifier: ^1.1.1
     version: 1.1.1
   '@vercel/blob':
     specifier: ^0.16.1
     version: 0.16.1
+  '@vercel/edge':
+    specifier: ^1.1.1
+    version: 1.1.1
   '@vercel/kv':
     specifier: ^1.0.1
     version: 1.0.1
@@ -6616,6 +6622,10 @@ packages:
       - canvas
       - supports-color
       - utf-8-validate
+    dev: false
+
+  /@vercel/edge@1.1.1:
+    resolution: {integrity: sha512-NtKiIbn9Cq6HWGy+qRudz28mz5nxfOJWls5Pnckjw1yCfSX8rhXdvY/il3Sy3Zd5n/sKCM2h7VSCCpJF/oaDrQ==}
     dev: false
 
   /@vercel/kv@0.2.4:

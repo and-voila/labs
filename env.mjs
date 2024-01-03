@@ -21,6 +21,8 @@ export const env = createEnv({
     OPENAI_ASSISTANT_ID: z.string().min(1),
     POSTGRES_URL_NON_POOLING: z.string().min(1),
     PROJECT_ID_VERCEL: z.string().min(1),
+    RATELIMIT_UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
+    RATELIMIT_UPSTASH_REDIS_REST_URL: z.string().min(1),
     RESEND_API_KEY: z.string().min(1),
     RESERVED_DOMAINS: z.string().min(1),
     STRIPE_API_KEY: z.string().min(1),
@@ -83,6 +85,10 @@ export const env = createEnv({
     OPENAI_ASSISTANT_ID: process.env.OPENAI_ASSISTANT_ID,
     POSTGRES_URL_NON_POOLING: process.env.POSTGRES_URL_NON_POOLING,
     PROJECT_ID_VERCEL: process.env.PROJECT_ID_VERCEL,
+    RATELIMIT_UPSTASH_REDIS_REST_TOKEN:
+      process.env.RATELIMIT_UPSTASH_REDIS_REST_TOKEN,
+    RATELIMIT_UPSTASH_REDIS_REST_URL:
+      process.env.RATELIMIT_UPSTASH_REDIS_REST_URL,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     RESERVED_DOMAINS: process.env.RESERVED_DOMAINS,
     STRIPE_API_KEY: process.env.STRIPE_API_KEY,

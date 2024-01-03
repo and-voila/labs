@@ -1,10 +1,21 @@
 import { ImageResponse } from 'next/og';
+import { NextRequest } from 'next/server';
+import { ipAddress } from '@vercel/edge';
 
+import { ratelimit } from '#/lib/upstash';
 import { ogImageSchema } from '#/lib/validations/og';
 
 export const runtime = 'edge';
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
+  const ip = ipAddress(request) || 'anonymous';
+  const { success } = await ratelimit(5, '1 m').limit(ip);
+  if (!success) {
+    return new Response('Too many requests 🤨. Try again later.', {
+      status: 429,
+    });
+  }
+
   const bricolageBold = fetch(
     new URL('../../../../public/fonts/bricolage-bold.ttf', import.meta.url),
   ).then((res) => res.arrayBuffer());
