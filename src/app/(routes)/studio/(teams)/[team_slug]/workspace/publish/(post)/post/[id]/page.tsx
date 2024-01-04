@@ -35,23 +35,13 @@ export default async function PostIdPage({
       },
     },
   });
-  if (!post || !post.site?.id || post.teamId !== team.id) {
+  if (!post || !user || !post.site?.id || post.teamId !== team.id) {
     notFound();
   }
 
   const postId = params.id;
-  const siteId = post?.site?.id;
-  const teamId = team.id;
 
-  return (
-    <Document
-      postId={postId}
-      siteId={siteId}
-      user={user}
-      teamId={teamId}
-      teamSlug={params.team_slug}
-    />
-  );
+  return <Document postId={postId} user={user} />;
 }
 
 export function generateMetadata(): Metadata {

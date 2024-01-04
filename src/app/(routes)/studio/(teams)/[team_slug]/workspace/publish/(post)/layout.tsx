@@ -19,7 +19,6 @@ export default async function PostSharedLayout({
   params,
 }: PostLayoutProps) {
   const { user } = await getTeams();
-  const activeTeamSlug = params.team_slug;
 
   if (!user) {
     redirect(authOptions?.pages?.signIn || '/login');
@@ -32,9 +31,7 @@ export default async function PostSharedLayout({
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex w-full flex-1 flex-col overflow-hidden">
-        {React.cloneElement(children as React.ReactElement, {
-          activeTeamSlug,
-        })}
+        {children}
       </main>
       <SiteFooter />
     </div>

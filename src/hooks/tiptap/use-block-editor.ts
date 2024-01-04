@@ -27,16 +27,21 @@ export const useBlockEditor = ({
   aiToken,
   ydoc,
   provider,
+  user,
 }: {
   aiToken: string;
   ydoc: Y.Doc;
   provider?: TiptapCollabProvider | null | undefined;
+  user: EditorUser;
 }) => {
   const leftSidebar = useSidebar();
   const [collabState, setCollabState] = useState<WebSocketStatus>(
     WebSocketStatus.Connecting,
   );
   const { setIsAiLoading, setAiError } = useContext(EditorContext);
+
+  const randomName = useMemo(() => randomElement(userNames), []);
+  const randomColor = useMemo(() => randomElement(userColors), []);
 
   const editor = useEditor(
     {
@@ -58,8 +63,11 @@ export const useBlockEditor = ({
         CollaborationCursor.configure({
           provider,
           user: {
-            name: randomElement(userNames),
-            color: randomElement(userColors),
+            id: user.id,
+            name: user.displayName || randomName,
+            color: randomColor,
+            image: user.image,
+            displayName: user.displayName,
           },
         }),
         Ai.configure({
@@ -99,7 +107,7 @@ export const useBlockEditor = ({
     }
 
     return editor.storage.collaborationCursor?.users.map((user: EditorUser) => {
-      const names = user.name?.split(' ');
+      const names = user.displayName?.split(' ');
       const firstName = names?.[0];
       const lastName = names?.[names.length - 1];
       const initials = `${firstName?.[0] || '?'}${lastName?.[0] || '?'}`;

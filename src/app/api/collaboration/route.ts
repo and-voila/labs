@@ -4,15 +4,10 @@ import { env } from 'env';
 
 const JWT_SECRET = env?.TIPTAP_COLLAB_SECRET as string;
 
-export async function POST(req: Request): Promise<Response> {
-  const body = await req.json();
-  const { userId, postId, teamId } = body;
-
+export async function POST(): Promise<Response> {
   const jwt = await jsonwebtoken.sign(
     {
-      userId,
-      postId,
-      teamId,
+      /* TODO: Decide if we need to encode info in the JWT */
     },
     JWT_SECRET,
   );

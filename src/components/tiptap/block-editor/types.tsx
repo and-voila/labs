@@ -7,12 +7,14 @@ export interface TiptapProps {
   hasCollab: boolean;
   ydoc: Y.Doc;
   provider?: TiptapCollabProvider | null | undefined;
+  user: EditorUser;
 }
 
 export type EditorUser = {
-  clientId: string;
-  name: string;
-  color: string;
+  id: string;
+  displayName: string;
+  image: string;
+  color?: string;
   initials?: string;
 };
 

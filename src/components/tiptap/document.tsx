@@ -10,9 +10,9 @@ import * as Y from 'yjs';
 
 import { env } from 'env';
 
-import { User } from '#/lib/types/next-auth';
-
 import { BlockEditor } from '#/components/tiptap/block-editor/block-editor';
+
+import { EditorUser } from './block-editor/types';
 
 export interface AiState {
   isAiLoading: boolean;
@@ -21,19 +21,10 @@ export interface AiState {
 
 interface DocumentProps {
   postId: string;
-  siteId: string;
-  user: User | null;
-  teamId: string;
-  teamSlug: string;
+  user: EditorUser;
 }
 
-export default function Document({
-  postId,
-  siteId,
-  user,
-  teamId,
-  teamSlug,
-}: DocumentProps) {
+export default function Document({ postId, user }: DocumentProps) {
   const [provider, setProvider] = useState<TiptapCollabProvider | null>(null);
   const [collabToken, setCollabToken] = useState<string | null>(null);
   const [aiToken, setAiToken] = useState<string | null>(null);
@@ -42,7 +33,6 @@ export default function Document({
   const hasCollab = parseInt(searchParams.get('noCollab') as string) !== 1;
 
   useEffect(() => {
-    // fetch data
     const dataFetch = async () => {
       const data = await (
         await fetch('/api/collaboration', {
@@ -50,25 +40,18 @@ export default function Document({
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            userId: user?.id,
-            postId,
-            teamId,
-          }),
         })
       ).json();
 
       const { token } = data;
 
-      // set state when the data received
       setCollabToken(token);
     };
 
     dataFetch();
-  }, [user, postId, teamId]);
+  }, []);
 
   useEffect(() => {
-    // fetch data
     const dataFetch = async () => {
       const data = await (
         await fetch('/api/ai', {
@@ -76,22 +59,16 @@ export default function Document({
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            userId: user?.id,
-            postId,
-            teamId,
-          }),
         })
       ).json();
 
       const { token } = data;
 
-      // set state when the data received
       setAiToken(token);
     };
 
     dataFetch();
-  }, [user, postId, teamId]);
+  }, []);
 
   const ydoc = useMemo(() => new Y.Doc(), []);
 
@@ -117,9 +94,7 @@ export default function Document({
         hasCollab={hasCollab}
         ydoc={ydoc}
         provider={provider}
-        postId={postId}
-        siteId={siteId}
-        teamSlug={teamSlug}
+        user={user}
       />
     </>
   );
