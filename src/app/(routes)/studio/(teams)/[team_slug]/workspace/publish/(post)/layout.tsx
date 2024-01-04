@@ -1,13 +1,10 @@
+import React from 'react';
 import { redirect } from 'next/navigation';
-
-import { defaultSidebarLinks } from '#/config/default-sidebar-links';
 
 import { authOptions } from '#/lib/auth';
 import { getTeams } from '#/lib/operations/teams/get-teams';
 import { hasTeamAccess } from '#/lib/operations/teams/team-authority';
 
-import { NavBar } from '#/components/layout/navbar';
-import { Sidebar } from '#/components/layout/sidebar';
 import { SiteFooter } from '#/components/layout/site-footer';
 
 interface PostLayoutProps {
@@ -21,7 +18,7 @@ export default async function PostSharedLayout({
   children,
   params,
 }: PostLayoutProps) {
-  const { user, teams } = await getTeams();
+  const { user } = await getTeams();
   const activeTeamSlug = params.team_slug;
 
   if (!user) {
@@ -32,17 +29,13 @@ export default async function PostSharedLayout({
     redirect('/not-authorized');
   }
 
-  const links = defaultSidebarLinks(activeTeamSlug, user);
-
   return (
     <div className="flex min-h-screen flex-col">
-      <NavBar user={user} teams={teams} activeTeamSlug={params.team_slug} />
-      <div className="flex flex-1 flex-col ps-16 pt-16">
-        <Sidebar links={links} />
-        <main className="flex w-full flex-1 flex-col overflow-hidden">
-          {children}
-        </main>
-      </div>
+      <main className="flex w-full flex-1 flex-col overflow-hidden">
+        {React.cloneElement(children as React.ReactElement, {
+          activeTeamSlug,
+        })}
+      </main>
       <SiteFooter />
     </div>
   );

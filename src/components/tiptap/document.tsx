@@ -10,6 +10,8 @@ import * as Y from 'yjs';
 
 import { env } from 'env';
 
+import { User } from '#/lib/types/next-auth';
+
 import { BlockEditor } from '#/components/tiptap/block-editor/block-editor';
 
 export interface AiState {
@@ -17,7 +19,21 @@ export interface AiState {
   aiError?: string | null;
 }
 
-export default function Document({ postId }: { postId: string }) {
+interface DocumentProps {
+  postId: string;
+  siteId: string;
+  user: User | null;
+  teamId: string;
+  teamSlug: string;
+}
+
+export default function Document({
+  postId,
+  siteId,
+  user,
+  teamId,
+  teamSlug,
+}: DocumentProps) {
   const [provider, setProvider] = useState<TiptapCollabProvider | null>(null);
   const [collabToken, setCollabToken] = useState<string | null>(null);
   const [aiToken, setAiToken] = useState<string | null>(null);
@@ -34,6 +50,11 @@ export default function Document({ postId }: { postId: string }) {
           headers: {
             'Content-Type': 'application/json',
           },
+          body: JSON.stringify({
+            userId: user?.id,
+            postId,
+            teamId,
+          }),
         })
       ).json();
 
@@ -44,7 +65,7 @@ export default function Document({ postId }: { postId: string }) {
     };
 
     dataFetch();
-  }, []);
+  }, [user, postId, teamId]);
 
   useEffect(() => {
     // fetch data
@@ -55,6 +76,11 @@ export default function Document({ postId }: { postId: string }) {
           headers: {
             'Content-Type': 'application/json',
           },
+          body: JSON.stringify({
+            userId: user?.id,
+            postId,
+            teamId,
+          }),
         })
       ).json();
 
@@ -65,7 +91,7 @@ export default function Document({ postId }: { postId: string }) {
     };
 
     dataFetch();
-  }, []);
+  }, [user, postId, teamId]);
 
   const ydoc = useMemo(() => new Y.Doc(), []);
 
@@ -91,6 +117,9 @@ export default function Document({ postId }: { postId: string }) {
         hasCollab={hasCollab}
         ydoc={ydoc}
         provider={provider}
+        postId={postId}
+        siteId={siteId}
+        teamSlug={teamSlug}
       />
     </>
   );

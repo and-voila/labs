@@ -7,22 +7,22 @@ import { siteConfig } from '#/config/site';
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
-import { getTeam } from '#/lib/operations/teams/get-current-team';
+import { getTeams } from '#/lib/operations/teams/get-teams';
 
-import { DashboardHeader } from '#/components/dashboard/header';
-import Editor from '#/components/publish/editor/editor';
+import Document from '#/components/tiptap/document';
 
 export default async function PostIdPage({
   params,
 }: {
   params: { id: string; team_slug: string };
 }) {
-  const team = await getTeam(params.team_slug);
+  const { user, teams } = await getTeams();
+  const team = teams.find((team) => team.slug === params.team_slug);
   if (!team) {
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  const data = await db.post.findUnique({
+  const post = await db.post.findUnique({
     where: {
       id: decodeURIComponent(params.id),
     },
@@ -30,26 +30,27 @@ export default async function PostIdPage({
       site: {
         select: {
           subdomain: true,
+          id: true,
         },
       },
     },
   });
-  if (!data || data.teamId !== team.id) {
+  if (!post || !post.site?.id || post.teamId !== team.id) {
     notFound();
   }
 
+  const postId = params.id;
+  const siteId = post?.site?.id;
+  const teamId = team.id;
+
   return (
-    <div className="flex flex-col gap-8">
-      <DashboardHeader
-        title={`Editing: ${data.title || 'Untitled post'}`}
-        description={
-          'This is where the magic happens. Your creativity assisted by purpose built AI.'
-        }
-      />
-      <div className="my-8 flex flex-col md:my-12">
-        <Editor post={data} teamSlug={params.team_slug} />
-      </div>
-    </div>
+    <Document
+      postId={postId}
+      siteId={siteId}
+      user={user}
+      teamId={teamId}
+      teamSlug={params.team_slug}
+    />
   );
 }
 

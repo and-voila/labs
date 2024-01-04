@@ -4,8 +4,6 @@ import { authOptions } from '#/lib/auth';
 import { getTeam } from '#/lib/operations/teams/get-current-team';
 import { getSession } from '#/lib/operations/user/session';
 
-import Document from './document';
-
 const CollabPostIdPage = async ({
   params,
 }: {
@@ -21,7 +19,7 @@ const CollabPostIdPage = async ({
     notFound();
   }
 
-  return <Document postId={params.id} />;
+  return;
 };
 
 export default CollabPostIdPage;

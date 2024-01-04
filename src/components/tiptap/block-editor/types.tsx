@@ -7,6 +7,9 @@ export interface TiptapProps {
   hasCollab: boolean;
   ydoc: Y.Doc;
   provider?: TiptapCollabProvider | null | undefined;
+  postId: string;
+  siteId: string;
+  teamSlug: string;
 }
 
 export type EditorUser = {
