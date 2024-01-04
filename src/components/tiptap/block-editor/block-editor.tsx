@@ -25,14 +25,7 @@ import { useAIState } from '#/hooks/tiptap/use-ai-state';
 import { EditorHeader } from './editor-header';
 import { TiptapProps } from './types';
 
-export const BlockEditor = ({
-  aiToken,
-  ydoc,
-  provider,
-  postId,
-  siteId,
-  teamSlug,
-}: TiptapProps) => {
+export const BlockEditor = ({ aiToken, ydoc, provider }: TiptapProps) => {
   const aiState = useAIState();
   const menuContainerRef = useRef(null);
   const editorRef = useRef<PureEditorContent | null>(null);
@@ -70,7 +63,7 @@ export const BlockEditor = ({
 
   return (
     <EditorContext.Provider value={providerValue}>
-      <div className="flex h-full" ref={menuContainerRef}>
+      <div className="flex h-full py-24" ref={menuContainerRef}>
         <EditorSidebar
           isOpen={leftSidebar.isOpen}
           onClose={leftSidebar.close}
@@ -84,9 +77,6 @@ export const BlockEditor = ({
             words={characterCount.words()}
             isSidebarOpen={leftSidebar.isOpen}
             toggleSidebar={leftSidebar.toggle}
-            postId={postId}
-            siteId={siteId}
-            teamSlug={teamSlug}
           />
           <EditorContent
             editor={editor}
