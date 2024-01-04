@@ -29,7 +29,7 @@ interface MainNavigationMenuProps {
     image: string;
     displayName: string;
   } | null;
-  activeTeamSlug?: string;
+  activeTeamSlug?: string | null | undefined;
 }
 
 export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({

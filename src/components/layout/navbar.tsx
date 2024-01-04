@@ -23,7 +23,7 @@ interface NavBarProps {
   } | null;
   items?: MainNavItem[];
   children?: React.ReactNode;
-  activeTeamSlug?: string;
+  activeTeamSlug?: string | null | undefined;
 }
 
 export function NavBar({ user, teams, activeTeamSlug }: NavBarProps) {
