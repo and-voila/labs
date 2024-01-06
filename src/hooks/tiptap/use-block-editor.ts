@@ -45,7 +45,7 @@ export const useBlockEditor = ({
 
   const editor = useEditor(
     {
-      autofocus: true,
+      autofocus: false,
       onCreate: ({ editor }) => {
         provider?.on('synced', () => {
           if (editor.isEmpty) {
@@ -106,15 +106,17 @@ export const useBlockEditor = ({
       return [];
     }
 
-    return editor.storage.collaborationCursor?.users.map((user: EditorUser) => {
-      const names = user.displayName?.split(' ');
-      const firstName = names?.[0];
-      const lastName = names?.[names.length - 1];
-      const initials = `${firstName?.[0] || '?'}${lastName?.[0] || '?'}`;
+    return editor.storage.collaborationCursor?.users
+      .filter((u: EditorUser) => u.id !== user.id)
+      .map((user: EditorUser) => {
+        const names = user.displayName?.split(' ');
+        const firstName = names?.[0];
+        const lastName = names?.[names.length - 1];
+        const initials = `${firstName?.[0] || '?'}${lastName?.[0] || '?'}`;
 
-      return { ...user, initials: initials.length ? initials : '?' };
-    });
-  }, [editor?.storage.collaborationCursor?.users]);
+        return { ...user, initials: initials.length ? initials : '?' };
+      });
+  }, [editor?.storage.collaborationCursor?.users, user.id]);
 
   const characterCount = editor?.storage.characterCount || {
     characters: () => 0,

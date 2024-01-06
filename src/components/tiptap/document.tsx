@@ -10,8 +10,7 @@ import * as Y from 'yjs';
 
 import { env } from 'env';
 
-import { BlockEditor } from '#/components/tiptap/block-editor/block-editor';
-
+import AiEditor from './block-editor/ai-editor';
 import { EditorUser } from './block-editor/types';
 
 export interface AiState {
@@ -89,7 +88,7 @@ export default function Document({ postId, user }: DocumentProps) {
 
   return (
     <>
-      <BlockEditor
+      <AiEditor
         aiToken={aiToken}
         hasCollab={hasCollab}
         ydoc={ydoc}
