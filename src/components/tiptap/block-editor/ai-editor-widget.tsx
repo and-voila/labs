@@ -1,9 +1,9 @@
 import { WebSocketStatus } from '@hocuspocus/provider';
 import { Editor as CoreEditor } from '@tiptap/core';
 
+import AiEditorPublishButton from '#/components/publish/editor/ai-editor-publish-button';
 import { EditorState } from '#/components/publish/editor/editor';
 import EditorIpStatusIndicator from '#/components/publish/editor/editor-ip-status-indicator';
-import EditorPublishButton from '#/components/publish/editor/editor-publish-button';
 import {
   Card,
   CardContent,
@@ -85,7 +85,7 @@ const AiEditorWidget = ({
             <EditorIpStatusIndicator
               aiContentPercentage={aiContentPercentage}
             />
-            <EditorPublishButton
+            <AiEditorPublishButton
               isPendingPublishing={isPendingPublishing}
               isPublishable={isPublishable}
               published={published}
