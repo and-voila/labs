@@ -71,7 +71,7 @@ export const NewCollabPostForm: React.FC<NewCollabPostFormProps> = ({
           variant: 'success',
         });
         router.push(
-          `${APP_BP}/${teamSlug}/workspace/publish/post/new/${result.id}`,
+          `${APP_BP}/${teamSlug}/workspace/publish/post/${result.id}`,
         );
       }
     } catch (e) {
