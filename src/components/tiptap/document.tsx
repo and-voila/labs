@@ -72,16 +72,24 @@ export default function Document({ postId, user }: DocumentProps) {
   const ydoc = useMemo(() => new Y.Doc(), []);
 
   useLayoutEffect(() => {
+    let provider: TiptapCollabProvider | null = null;
+
     if (hasCollab && collabToken) {
-      setProvider(
-        new TiptapCollabProvider({
-          name: `${env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${postId}`,
-          appId: env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID ?? '',
-          token: collabToken,
-          document: ydoc,
-        }),
-      );
+      provider = new TiptapCollabProvider({
+        name: `${env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${postId}`,
+        appId: env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID ?? '',
+        token: collabToken,
+        document: ydoc,
+      });
+
+      setProvider(provider);
     }
+
+    return () => {
+      if (provider) {
+        provider.destroy();
+      }
+    };
   }, [setProvider, collabToken, ydoc, postId, hasCollab]);
 
   if ((hasCollab && (!collabToken || !provider)) || !aiToken) return;
