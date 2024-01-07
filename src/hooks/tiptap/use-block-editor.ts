@@ -27,10 +27,12 @@ export const useBlockEditor = ({
   aiToken,
   ydoc,
   provider,
+  user,
 }: {
   aiToken: string;
   ydoc: Y.Doc;
   provider?: TiptapCollabProvider | null | undefined;
+  user: EditorUser;
 }) => {
   const leftSidebar = useSidebar();
   const [collabState, setCollabState] = useState<WebSocketStatus>(
@@ -38,9 +40,12 @@ export const useBlockEditor = ({
   );
   const { setIsAiLoading, setAiError } = useContext(EditorContext);
 
+  const randomName = useMemo(() => randomElement(userNames), []);
+  const randomColor = useMemo(() => randomElement(userColors), []);
+
   const editor = useEditor(
     {
-      autofocus: true,
+      autofocus: false,
       onCreate: ({ editor }) => {
         provider?.on('synced', () => {
           if (editor.isEmpty) {
@@ -58,8 +63,11 @@ export const useBlockEditor = ({
         CollaborationCursor.configure({
           provider,
           user: {
-            name: randomElement(userNames),
-            color: randomElement(userColors),
+            id: user.id,
+            name: user.displayName || randomName,
+            color: randomColor,
+            image: user.image,
+            displayName: user.displayName,
           },
         }),
         Ai.configure({
@@ -98,15 +106,17 @@ export const useBlockEditor = ({
       return [];
     }
 
-    return editor.storage.collaborationCursor?.users.map((user: EditorUser) => {
-      const names = user.name?.split(' ');
-      const firstName = names?.[0];
-      const lastName = names?.[names.length - 1];
-      const initials = `${firstName?.[0] || '?'}${lastName?.[0] || '?'}`;
+    return editor.storage.collaborationCursor?.users
+      .filter((u: EditorUser) => u.id !== user.id)
+      .map((user: EditorUser) => {
+        const names = user.displayName?.split(' ');
+        const firstName = names?.[0];
+        const lastName = names?.[names.length - 1];
+        const initials = `${firstName?.[0] || '?'}${lastName?.[0] || '?'}`;
 
-      return { ...user, initials: initials.length ? initials : '?' };
-    });
-  }, [editor?.storage.collaborationCursor?.users]);
+        return { ...user, initials: initials.length ? initials : '?' };
+      });
+  }, [editor?.storage.collaborationCursor?.users, user.id]);
 
   const characterCount = editor?.storage.characterCount || {
     characters: () => 0,

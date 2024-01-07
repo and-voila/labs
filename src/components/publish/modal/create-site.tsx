@@ -140,7 +140,7 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
               value={data.subdomain}
               onChange={handleSubdomainChange}
               autoCapitalize="off"
-              pattern="[a-zA-Z0-9\-]+" // only allow lowercase letters, numbers, and dashes
+              pattern="[a-zA-Z0-9\-]+"
               maxLength={32}
               required
               className="w-full rounded-md border border-input bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-ring focus:outline-none focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"

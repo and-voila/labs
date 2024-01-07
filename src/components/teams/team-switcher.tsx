@@ -35,7 +35,7 @@ import {
 } from '#/components/ui/popover';
 
 export interface TeamSwitcherProps {
-  activeTeamSlug?: string;
+  activeTeamSlug?: string | null | undefined;
   teams?: Team[];
   user: {
     id: string;

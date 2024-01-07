@@ -497,16 +497,14 @@ export const deletePost = withPostAuth(async (_: FormData, post: Post) => {
       throw new Error('TIPTAP_COLLAB_API_SECRET is not defined');
     }
 
-    // Delete the document from Tiptap Cloud
-    const tiptapResponse = await fetch(
-      `https://${env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID}.collab.tiptap.cloud/api/documents/${env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${post.id}`,
-      {
-        method: 'DELETE',
-        headers: {
-          Authorization: env.TIPTAP_COLLAB_API_SECRET,
-        },
+    const requestUrl = `https://${env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID}.collab.tiptap.cloud/api/documents/${env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${post.id}`;
+
+    const tiptapResponse = await fetch(requestUrl, {
+      method: 'DELETE',
+      headers: {
+        Authorization: env.TIPTAP_COLLAB_API_SECRET,
       },
-    );
+    });
 
     if (!tiptapResponse.ok) {
       throw new Error('Failed to delete the document from Tiptap Cloud');

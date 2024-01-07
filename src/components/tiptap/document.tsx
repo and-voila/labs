@@ -10,14 +10,20 @@ import * as Y from 'yjs';
 
 import { env } from 'env';
 
-import { BlockEditor } from '#/components/tiptap/block-editor/block-editor';
+import AiEditor from './block-editor/ai-editor';
+import { EditorUser } from './block-editor/types';
 
 export interface AiState {
   isAiLoading: boolean;
   aiError?: string | null;
 }
 
-export default function Document({ postId }: { postId: string }) {
+interface DocumentProps {
+  postId: string;
+  user: EditorUser;
+}
+
+export default function Document({ postId, user }: DocumentProps) {
   const [provider, setProvider] = useState<TiptapCollabProvider | null>(null);
   const [collabToken, setCollabToken] = useState<string | null>(null);
   const [aiToken, setAiToken] = useState<string | null>(null);
@@ -26,7 +32,6 @@ export default function Document({ postId }: { postId: string }) {
   const hasCollab = parseInt(searchParams.get('noCollab') as string) !== 1;
 
   useEffect(() => {
-    // fetch data
     const dataFetch = async () => {
       const data = await (
         await fetch('/api/collaboration', {
@@ -39,7 +44,6 @@ export default function Document({ postId }: { postId: string }) {
 
       const { token } = data;
 
-      // set state when the data received
       setCollabToken(token);
     };
 
@@ -47,7 +51,6 @@ export default function Document({ postId }: { postId: string }) {
   }, []);
 
   useEffect(() => {
-    // fetch data
     const dataFetch = async () => {
       const data = await (
         await fetch('/api/ai', {
@@ -60,7 +63,6 @@ export default function Document({ postId }: { postId: string }) {
 
       const { token } = data;
 
-      // set state when the data received
       setAiToken(token);
     };
 
@@ -70,27 +72,36 @@ export default function Document({ postId }: { postId: string }) {
   const ydoc = useMemo(() => new Y.Doc(), []);
 
   useLayoutEffect(() => {
+    let provider: TiptapCollabProvider | null = null;
+
     if (hasCollab && collabToken) {
-      setProvider(
-        new TiptapCollabProvider({
-          name: `${env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${postId}`,
-          appId: env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID ?? '',
-          token: collabToken,
-          document: ydoc,
-        }),
-      );
+      provider = new TiptapCollabProvider({
+        name: `${env.NEXT_PUBLIC_COLLAB_DOC_PREFIX}${postId}`,
+        appId: env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID ?? '',
+        token: collabToken,
+        document: ydoc,
+      });
+
+      setProvider(provider);
     }
+
+    return () => {
+      if (provider) {
+        provider.destroy();
+      }
+    };
   }, [setProvider, collabToken, ydoc, postId, hasCollab]);
 
   if ((hasCollab && (!collabToken || !provider)) || !aiToken) return;
 
   return (
     <>
-      <BlockEditor
+      <AiEditor
         aiToken={aiToken}
         hasCollab={hasCollab}
         ydoc={ydoc}
         provider={provider}
+        user={user}
       />
     </>
   );

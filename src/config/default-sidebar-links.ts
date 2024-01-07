@@ -5,7 +5,7 @@ import { SidebarLink } from '#/lib/types';
 import { IconProps, Icons } from '#/components/shared/icons';
 
 export const defaultSidebarLinks = (
-  activeTeamSlug: string,
+  activeTeamSlug: string | null | undefined,
   user: { id: string } | null,
 ): SidebarLink[] => {
   const links: SidebarLink[] = [

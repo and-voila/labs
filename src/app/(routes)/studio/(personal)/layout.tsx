@@ -1,3 +1,4 @@
+import React from 'react';
 import { redirect } from 'next/navigation';
 
 import { defaultSidebarLinks } from '#/config/default-sidebar-links';
@@ -20,8 +21,8 @@ export default async function MyWorkspaceLayout({
   children,
   params,
 }: MyWorkspaceLayoutProps) {
-  const { user, teams } = await getTeams();
-  const activeTeamSlug = params.team_slug;
+  const { user, teams, activeTeamSlug: personalTeamSlug } = await getTeams();
+  const activeTeamSlug = params.team_slug || personalTeamSlug;
 
   if (!user) {
     redirect(authOptions?.pages?.signIn || '/login');
@@ -31,7 +32,7 @@ export default async function MyWorkspaceLayout({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <NavBar user={user} teams={teams} activeTeamSlug={params.team_slug} />
+      <NavBar user={user} teams={teams} activeTeamSlug={activeTeamSlug} />
       <div className="flex flex-1 flex-col ps-16 pt-16">
         <Sidebar links={links} />
         <main className="flex w-full flex-1 flex-col overflow-hidden">

@@ -1,6 +1,6 @@
 .ProseMirror {
   code {
-    @apply rounded-sm bg-secondary font-mono text-secondary-foreground caret-secondary-foreground  shadow-lg;
+    @apply rounded-sm bg-secondary font-mono text-secondary-foreground caret-secondary-foreground  shadow-sm;
 
     &::selection {
       @apply bg-white/30;

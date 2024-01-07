@@ -25,6 +25,8 @@ import { common, createLowlight } from 'lowlight';
 
 import { API } from '#/lib/tiptap/api';
 
+import { EditorUser } from '#/components/tiptap/block-editor/types';
+
 import { AiImage } from './ai-image/ai-image';
 import { AiWriter } from './ai-writer/ai-writer';
 import { BlockquoteFigure } from './blockquote-figure/blockquote-figure';
@@ -56,16 +58,10 @@ const lowlight = createLowlight(common);
 
 interface ExtensionKitProps {
   provider?: HocuspocusProvider | null;
-  userId?: string;
-  userName?: string;
-  userColor?: string;
+  user?: EditorUser;
 }
 
-export const ExtensionKit = ({
-  provider,
-  userId,
-  userName = 'Maxi',
-}: ExtensionKitProps) => [
+export const ExtensionKit = ({ provider, user }: ExtensionKitProps) => [
   Document,
   Columns,
   TaskList,
@@ -73,12 +69,12 @@ export const ExtensionKit = ({
     nested: true,
   }),
   AiWriter.configure({
-    authorId: userId,
-    authorName: userName,
+    authorId: user?.id,
+    authorName: user?.displayName,
   }),
   AiImage.configure({
-    authorId: userId,
-    authorName: userName,
+    authorId: user?.id,
+    authorName: user?.displayName,
   }),
   Column,
   Selection,

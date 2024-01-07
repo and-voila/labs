@@ -34,7 +34,6 @@ export default async function PostIdLayout({
       label: 'Compose',
       exact: true,
     },
-
     {
       href: `${APP_BP}/${params.team_slug}/workspace/publish/post/${params.id}/metadata`,
       label: 'Metadata',
@@ -47,7 +46,7 @@ export default async function PostIdLayout({
   ];
 
   return (
-    <div className="w-full max-w-7xl px-8 pb-16 pt-4">
+    <div className="w-screen px-8 pb-16 pt-4">
       <TabbedNav links={links} />
       <DashboardShell>{children}</DashboardShell>
     </div>

@@ -8,7 +8,6 @@ import '#/styles/partials/index.css';
 
 import { createPortal } from 'react-dom';
 
-import { EditorSidebar } from '#/components/tiptap/block-editor/editor-sidebar';
 import { Loader } from '#/components/tiptap/loader';
 import { ContentItemMenu } from '#/components/tiptap/menus/content-item-menu/content-item-menu';
 import { LinkMenu } from '#/components/tiptap/menus/link-menu/link-menu';
@@ -21,10 +20,10 @@ import TableColumnMenu from '#/extensions/table/menus/table-column/table-column-
 import TableRowMenu from '#/extensions/table/menus/table-row/table-row-menu';
 import { useAIState } from '#/hooks/tiptap/use-ai-state';
 
-import { EditorHeader } from './editor-header';
+import AiEditorWidget from './ai-editor-widget';
 import { TiptapProps } from './types';
 
-export const BlockEditor = ({ aiToken, ydoc, provider, user }: TiptapProps) => {
+export const AiEditor = ({ aiToken, ydoc, provider, user }: TiptapProps) => {
   const aiState = useAIState();
   const menuContainerRef = useRef(null);
   const editorRef = useRef<PureEditorContent | null>(null);
@@ -37,8 +36,12 @@ export const BlockEditor = ({ aiToken, ydoc, provider, user }: TiptapProps) => {
     }
   }, []);
 
-  const { editor, users, characterCount, collabState, leftSidebar } =
-    useBlockEditor({ aiToken, ydoc, provider, user });
+  const { editor, users, characterCount, collabState } = useBlockEditor({
+    aiToken,
+    ydoc,
+    provider,
+    user,
+  });
 
   const displayedUsers = users.slice(0, 3);
 
@@ -62,33 +65,33 @@ export const BlockEditor = ({ aiToken, ydoc, provider, user }: TiptapProps) => {
 
   return (
     <EditorContext.Provider value={providerValue}>
-      <div className="flex h-full" ref={menuContainerRef}>
-        <EditorSidebar
-          isOpen={leftSidebar.isOpen}
-          onClose={leftSidebar.close}
-          editor={editor}
-        />
-        <div className="relative flex h-full flex-1 flex-col overflow-hidden">
-          <EditorHeader
-            characters={characterCount.characters()}
-            collabState={collabState}
-            users={displayedUsers}
-            words={characterCount.words()}
-            isSidebarOpen={leftSidebar.isOpen}
-            toggleSidebar={leftSidebar.toggle}
-          />
-          <EditorContent
-            editor={editor}
-            ref={setEditorRef}
-            className="flex-1 overflow-y-auto py-16"
-          />
-          <ContentItemMenu editor={editor} />
-          <LinkMenu editor={editor} appendTo={menuContainerRef} />
-          <TextMenu editor={editor} />
-          <ColumnsMenu editor={editor} appendTo={menuContainerRef} />
-          <TableRowMenu editor={editor} appendTo={menuContainerRef} />
-          <TableColumnMenu editor={editor} appendTo={menuContainerRef} />
-          <ImageBlockMenu editor={editor} appendTo={menuContainerRef} />
+      <div
+        className="relative flex h-full flex-1 flex-col"
+        ref={menuContainerRef}
+      >
+        <div className="flex w-full max-w-7xl items-start gap-x-4 px-4">
+          <main className="flex-1">
+            <EditorContent
+              editor={editor}
+              ref={setEditorRef}
+              className="flex-1 overflow-y-auto"
+            />
+            <ContentItemMenu editor={editor} />
+            <LinkMenu editor={editor} appendTo={menuContainerRef} />
+            <TextMenu editor={editor} />
+            <ColumnsMenu editor={editor} appendTo={menuContainerRef} />
+            <TableRowMenu editor={editor} appendTo={menuContainerRef} />
+            <TableColumnMenu editor={editor} appendTo={menuContainerRef} />
+            <ImageBlockMenu editor={editor} appendTo={menuContainerRef} />
+          </main>
+          <aside className="sticky top-24 hidden w-96 shrink-0 xl:block">
+            <AiEditorWidget
+              characterCount={characterCount}
+              collabState={collabState}
+              displayedUsers={displayedUsers}
+              editor={editor}
+            />
+          </aside>
         </div>
       </div>
       {aiState.isAiLoading && aiLoaderPortal}
@@ -96,4 +99,4 @@ export const BlockEditor = ({ aiToken, ydoc, provider, user }: TiptapProps) => {
   );
 };
 
-export default BlockEditor;
+export default AiEditor;

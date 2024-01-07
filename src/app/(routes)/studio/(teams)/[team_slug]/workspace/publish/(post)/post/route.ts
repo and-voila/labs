@@ -26,7 +26,7 @@ export async function GET(
   return new Response(null, {
     status: 308,
     headers: {
-      Location: `${APP_BP}/${params.team_slug}/workspace/publish/post/new/${params.id}`,
+      Location: `${APP_BP}/${params.team_slug}/workspace/publish/post/${params.id}`,
       'Cache-Control': 'no-store, max-age=0',
     },
   });
