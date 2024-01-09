@@ -1,9 +1,9 @@
 import { WebSocketStatus } from '@hocuspocus/provider';
 import { Editor as CoreEditor } from '@tiptap/core';
 
-import AiEditorPublishButton from '#/components/publish/editor/ai-editor-publish-button';
-import { EditorState } from '#/components/publish/editor/editor';
+import { EditorState, PostWithSite } from '#/components/publish/editor/editor';
 import EditorIpStatusIndicator from '#/components/publish/editor/editor-ip-status-indicator';
+import AiEditorPublishButton from '#/components/tiptap/block-editor/ai-editor-publish-button';
 import {
   Card,
   CardContent,
@@ -25,6 +25,8 @@ interface AiEditorWidgetProps {
   collabState: WebSocketStatus;
   displayedUsers: EditorUser[];
   editor: CoreEditor;
+  post: PostWithSite;
+  teamSlug: string;
 }
 
 const AiEditorWidget = ({
@@ -32,6 +34,8 @@ const AiEditorWidget = ({
   collabState,
   displayedUsers,
   editor,
+  post,
+  teamSlug,
 }: AiEditorWidgetProps) => {
   // Mock aiContentPercentage
   const aiContentPercentage = 50;
@@ -40,7 +44,6 @@ const AiEditorWidget = ({
   const isPendingPublishing = false;
   const isPublishable = true;
   const published = false;
-  const postId = 'mockPostId';
   const dispatch = () => {};
   const state: EditorState = {
     data: {
@@ -91,10 +94,11 @@ const AiEditorWidget = ({
               published={published}
               // eslint-disable-next-line react/jsx-no-bind
               startTransitionPublishing={startTransitionPublishing}
-              postId={postId}
+              post={post}
               // eslint-disable-next-line react/jsx-no-bind
               dispatch={dispatch}
               state={state}
+              teamSlug={teamSlug}
             />
           </div>
           <div className="relative">

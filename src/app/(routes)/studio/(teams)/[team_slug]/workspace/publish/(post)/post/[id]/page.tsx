@@ -39,9 +39,7 @@ export default async function PostIdPage({
     notFound();
   }
 
-  const postId = params.id;
-
-  return <Document postId={postId} user={user} />;
+  return <Document post={post} user={user} teamSlug={params.team_slug} />;
 }
 
 export function generateMetadata(): Metadata {

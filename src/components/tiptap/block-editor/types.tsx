@@ -2,12 +2,16 @@ import { TiptapCollabProvider } from '@hocuspocus/provider';
 import { Language } from '@tiptap-pro/extension-ai';
 import * as Y from 'yjs';
 
+import { PostWithSite } from '#/components/publish/editor/editor';
+
 export interface TiptapProps {
   aiToken: string;
   hasCollab: boolean;
   ydoc: Y.Doc;
   provider?: TiptapCollabProvider | null | undefined;
   user: EditorUser;
+  post: PostWithSite;
+  teamSlug: string;
 }
 
 export type EditorUser = {

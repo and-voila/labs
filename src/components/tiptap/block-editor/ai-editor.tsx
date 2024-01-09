@@ -23,7 +23,14 @@ import { useAIState } from '#/hooks/tiptap/use-ai-state';
 import AiEditorWidget from './ai-editor-widget';
 import { TiptapProps } from './types';
 
-export const AiEditor = ({ aiToken, ydoc, provider, user }: TiptapProps) => {
+export const AiEditor = ({
+  aiToken,
+  ydoc,
+  provider,
+  user,
+  post,
+  teamSlug,
+}: TiptapProps) => {
   const aiState = useAIState();
   const menuContainerRef = useRef(null);
   const editorRef = useRef<PureEditorContent | null>(null);
@@ -90,6 +97,8 @@ export const AiEditor = ({ aiToken, ydoc, provider, user }: TiptapProps) => {
               collabState={collabState}
               displayedUsers={displayedUsers}
               editor={editor}
+              post={post}
+              teamSlug={teamSlug}
             />
           </aside>
         </div>

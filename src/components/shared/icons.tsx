@@ -573,6 +573,19 @@ export const Icons = {
       <path d="M222,128a94,94,0,1,1-21.49-59.82,6,6,0,1,1-9.25,7.64A82,82,0,1,0,209.78,134H128a6,6,0,0,1,0-12h88A6,6,0,0,1,222,128Z" />
     </svg>
   ),
+  facebook: (props: IconProps) => (
+    // Phosphor facebook-logo
+    <svg
+      role="img"
+      width="24"
+      height="24"
+      fill="currentColor"
+      viewBox="0 0 256 256"
+      {...props}
+    >
+      <path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm6,191.8V150h26a6,6,0,0,0,0-12H134V112a18,18,0,0,1,18-18h16a6,6,0,0,0,0-12H152a30,30,0,0,0-30,30v26H96a6,6,0,0,0,0,12h26v67.8a90,90,0,1,1,12,0Z" />
+    </svg>
+  ),
   file: (props: IconProps) => (
     // Phosphor file-text
     <svg

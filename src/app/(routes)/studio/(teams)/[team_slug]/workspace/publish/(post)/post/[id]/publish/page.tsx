@@ -4,11 +4,12 @@ import { notFound } from 'next/navigation';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
+import { getTeamMembers } from '#/lib/operations/teams/get-team-members';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import DeletePostForm from '#/components/publish/form/delete-post-form';
+import { PublishPostForm } from '#/components/publish/form/publish-post-form';
 
-export default async function PostIdAdvanced({
+export default async function PostIdPublish({
   params,
 }: {
   params: { id: string; team_slug: string };
@@ -16,6 +17,9 @@ export default async function PostIdAdvanced({
   const post = await db.post.findUnique({
     where: {
       id: decodeURIComponent(params.id),
+    },
+    include: {
+      site: true,
     },
     cacheStrategy: {
       ttl: 20,
@@ -27,23 +31,25 @@ export default async function PostIdAdvanced({
     notFound();
   }
 
+  const teamMembers = await getTeamMembers(params.team_slug);
+
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        title="Danger zone"
-        description="Welcome to the Oops, didn't mean to write that zone."
+        title="Publish post"
+        description="Review your post and publish it to your site."
       />
-      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
-        <DeletePostForm postName={post?.title!} teamSlug={params.team_slug} />
+      <div className="my-8 grid gap-8 md:my-12">
+        <PublishPostForm post={post} teamMembers={teamMembers} />
       </div>
     </div>
   );
 }
 
 export function generateMetadata(): Metadata {
-  const title = 'Delete my Post';
+  const title = 'My Post Metadata';
   const description =
-    'Experience convenience and control while creating content. Easily delete posts and maintain a clean, organized content space.';
+    'Manage your post metadata with ease. Our fine-tuned, task-specific AI is here to help. Spend less time on the details and more on creating impactful content.';
 
   const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

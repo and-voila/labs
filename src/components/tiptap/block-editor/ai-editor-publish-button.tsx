@@ -3,7 +3,11 @@ import { Dispatch, useCallback } from 'react';
 import { updatePostMetadata } from '#/lib/actions/publish/publish-actions';
 import { cn } from '#/lib/utils';
 
-import { EditorAction, EditorState } from '#/components/publish/editor/editor';
+import {
+  EditorAction,
+  EditorState,
+  PostWithSite,
+} from '#/components/publish/editor/editor';
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
@@ -13,9 +17,10 @@ interface AiEditorPublishButtonProps {
   isPublishable: boolean;
   published: boolean;
   startTransitionPublishing: (callback: () => Promise<void>) => void;
-  postId: string;
+  post: PostWithSite;
   dispatch: Dispatch<EditorAction>;
   state: EditorState;
+  teamSlug: string;
 }
 
 const AiEditorPublishButton = ({
@@ -23,7 +28,7 @@ const AiEditorPublishButton = ({
   isPublishable,
   published,
   startTransitionPublishing,
-  postId,
+  post,
   dispatch,
   state,
 }: AiEditorPublishButtonProps) => {
@@ -31,7 +36,7 @@ const AiEditorPublishButton = ({
     const formData = new FormData();
     formData.append('published', String(!published));
     startTransitionPublishing(async () => {
-      await updatePostMetadata(formData, postId, 'published').then(() => {
+      await updatePostMetadata(formData, post.id, 'published').then(() => {
         toast({
           title: `Successfully ${
             published ? 'unpublished' : 'published'
@@ -48,7 +53,7 @@ const AiEditorPublishButton = ({
         });
       });
     });
-  }, [published, startTransitionPublishing, postId, dispatch, state]);
+  }, [published, startTransitionPublishing, post, dispatch, state]);
 
   return (
     <button
