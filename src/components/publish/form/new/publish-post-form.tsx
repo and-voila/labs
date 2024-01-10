@@ -12,8 +12,9 @@ import * as z from 'zod';
 import { publishPost } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
 import { GetTeamMemberResult } from '#/lib/operations/teams/get-team-members';
-import { publishPostSchema } from '#/lib/validations/publish-post';
+import { publishPostSchema } from '#/lib/validations/post';
 
+import Uploader from '#/components/publish/form/uploader';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import {
@@ -35,8 +36,6 @@ import {
 } from '#/components/ui/select';
 import { Textarea } from '#/components/ui/textarea';
 import { toast } from '#/components/ui/use-toast';
-
-import Uploader from './uploader';
 
 type PublishPostFormProps = {
   post: Post & { site: Site };

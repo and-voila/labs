@@ -546,6 +546,79 @@ export const publishPost = async (
   }
 };
 
+type UpdateCollabPostResponse = {
+  data?: Post;
+  error?: string;
+};
+
+export const updateCollabPost = async (
+  formData: FormData,
+  post: Post & { site: Site },
+): Promise<UpdateCollabPostResponse> => {
+  try {
+    let imageUrl, blurhash;
+    if (formData.has('image')) {
+      const imageFile = formData.get('image') as File;
+      const filename = `${nanoid()}.${imageFile.type.split('/')[1]}`;
+
+      const uploadResult = await put(filename, imageFile, {
+        access: 'public',
+      });
+      imageUrl = uploadResult.url;
+      blurhash = await getBlurDataURL(imageUrl);
+    }
+
+    const updateData: { [key: string]: any } = {};
+    formData.forEach((value, key) => {
+      if (key === 'author') {
+        updateData.userId = value;
+      } else if (key === 'published') {
+        updateData.published = value === 'true';
+      } else {
+        updateData[key] = value;
+      }
+    });
+
+    if (imageUrl) {
+      updateData.image = imageUrl;
+      updateData.imageBlurhash = blurhash;
+    }
+
+    const response = await db.post.update({
+      where: {
+        id: post.id,
+      },
+      data: {
+        ...updateData,
+      },
+    });
+
+    const revalidatePostTags = async (site: Site, slug: string) => {
+      await revalidateTag(
+        `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
+      );
+      await revalidateTag(
+        `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-${slug}`,
+      );
+
+      if (site.customDomain) {
+        await revalidateTag(`${site.customDomain}-posts`);
+        await revalidateTag(`${site.customDomain}-${slug}`);
+      }
+    };
+
+    await revalidatePostTags(post.site, formData.get('slug') as string);
+
+    return { data: response };
+  } catch (error: any) {
+    if (error.code === 'P2002') {
+      return { error: 'This slug is already in use' };
+    } else {
+      return { error: error.message };
+    }
+  }
+};
+
 export const deletePost = withPostAuth(async (_: FormData, post: Post) => {
   try {
     const response = await db.post.delete({

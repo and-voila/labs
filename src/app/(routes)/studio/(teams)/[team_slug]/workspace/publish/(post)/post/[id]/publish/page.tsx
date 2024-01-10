@@ -7,7 +7,7 @@ import { db } from '#/lib/db';
 import { getTeamMembers } from '#/lib/operations/teams/get-team-members';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { PublishPostForm } from '#/components/publish/form/publish-post-form';
+import { PublishPostForm } from '#/components/publish/form/new/publish-post-form';
 
 export default async function PostIdPublish({
   params,
@@ -20,10 +20,6 @@ export default async function PostIdPublish({
     },
     include: {
       site: true,
-    },
-    cacheStrategy: {
-      ttl: 20,
-      swr: 10,
     },
   });
 

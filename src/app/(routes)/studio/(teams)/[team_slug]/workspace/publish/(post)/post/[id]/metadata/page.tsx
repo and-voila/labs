@@ -2,12 +2,12 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { updatePostMetadata } from '#/lib/actions/publish/publish-actions';
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
+import { getTeamMembers } from '#/lib/operations/teams/get-team-members';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import Form from '#/components/publish/form';
+import { UpdatePostForm } from '#/components/publish/form/new/update-post-form';
 
 export default async function PostIdMetadata({
   params,
@@ -18,9 +18,8 @@ export default async function PostIdMetadata({
     where: {
       id: decodeURIComponent(params.id),
     },
-    cacheStrategy: {
-      ttl: 20,
-      swr: 10,
+    include: {
+      site: true,
     },
   });
 
@@ -28,35 +27,19 @@ export default async function PostIdMetadata({
     notFound();
   }
 
+  const teamMembers = await getTeamMembers(params.team_slug);
+
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
         title="Post metadata"
         description="Let AI be your co-pilot in crafting the perfect metadata."
       />
-      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
-        <Form
-          title="Post Slug"
-          description="The slug is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."
-          helpText="Please use a slug that is unique to this post."
-          inputAttrs={{
-            name: 'slug',
-            type: 'text',
-            defaultValue: post?.slug!,
-            placeholder: 'slug',
-          }}
-          handleSubmit={updatePostMetadata}
-        />
-        <Form
-          title="Thumbnail image"
-          description="The thumbnail image for your post. Accepted formats: .png, .jpg, .jpeg"
-          helpText="Max file size 50MB. Recommended size 1200x630."
-          inputAttrs={{
-            name: 'image',
-            type: 'file',
-            defaultValue: post?.image!,
-          }}
-          handleSubmit={updatePostMetadata}
+      <div className="my-8 grid gap-8 md:my-12">
+        <UpdatePostForm
+          post={post}
+          teamMembers={teamMembers}
+          teamSlug={params.team_slug}
         />
       </div>
     </div>

@@ -1,5 +1,12 @@
 import { z } from 'zod';
 
+export const newCollabPostFormSchema = z.object({
+  title: z.string().min(3).max(58),
+  description: z.string().min(100).max(180),
+});
+
+export type NewCollabPostFormValues = z.infer<typeof newCollabPostFormSchema>;
+
 const fileSchema =
   typeof File !== 'undefined'
     ? z.instanceof(File).or(z.string().url()).optional()
@@ -8,10 +15,12 @@ const fileSchema =
 export const publishPostSchema = z.object({
   title: z
     .string()
+    .trim()
     .min(15, 'Need 15+ characters to give your title some zing.')
     .max(58, 'Under 58 characters keeps it snappy.'),
   description: z
     .string()
+    .trim()
     .min(100, '100+ characters, please. Paint a fuller picture.')
     .max(180, '180 characters max for a quick, easy read.'),
   slug: z
@@ -30,3 +39,11 @@ export const publishPostSchema = z.object({
       "We can't find an author. Please select one. If the problem persists, hit up support.",
     ),
 });
+
+export const updatePostSchema = publishPostSchema
+  .merge(
+    z.object({
+      status: z.enum(['published', 'draft']).optional(),
+    }),
+  )
+  .partial();

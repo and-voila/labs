@@ -8,7 +8,7 @@ import { APP_BP } from '#/lib/const';
 import {
   newCollabPostFormSchema,
   NewCollabPostFormValues,
-} from '#/lib/validations/new-post';
+} from '#/lib/validations/post';
 
 import { Button } from '#/components/ui/button';
 import {
