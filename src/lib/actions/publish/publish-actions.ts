@@ -520,21 +520,36 @@ export const publishPost = async (
       },
     });
 
-    const revalidatePostTags = async (site: Site, slug: string) => {
+    const revalidatePostTags = async (
+      site: Site,
+      slug: string,
+      postId: string,
+    ) => {
       await revalidateTag(
         `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
       );
       await revalidateTag(
+        `${post.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
+      );
+      await revalidateTag(
         `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-${slug}`,
+      );
+      await revalidateTag(
+        `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-post-${postId}`,
       );
 
       if (site.customDomain) {
         await revalidateTag(`${site.customDomain}-posts`);
         await revalidateTag(`${site.customDomain}-${slug}`);
+        await revalidateTag(`${site.customDomain}-post-${postId}`);
       }
     };
 
-    await revalidatePostTags(post.site, formData.get('slug') as string);
+    await revalidatePostTags(
+      post.site,
+      formData.get('slug') as string,
+      post.id,
+    );
 
     return { data: response };
   } catch (error: any) {

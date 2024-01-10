@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Post, Site } from '@prisma/client';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
@@ -45,7 +46,11 @@ type PublishPostFormProps = {
 
 export type PublishPostFormValues = z.infer<typeof publishPostSchema>;
 
-export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
+export function PublishPostForm({
+  post,
+  teamMembers,
+  teamSlug,
+}: PublishPostFormProps) {
   const form = useForm<PublishPostFormValues>({
     resolver: zodResolver(publishPostSchema),
     defaultValues: {
@@ -60,10 +65,12 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
   const watchedTitle = form.watch('title', post.title ?? '');
   const watchedDescription = form.watch('description', post.description ?? '');
 
+  const router = useRouter();
+
   const renderTitleField = useCallback(
     ({ field }: { field: FieldValues }) => (
       <FormItem>
-        <FormLabel>Title</FormLabel>
+        <FormLabel required>Title</FormLabel>
         <FormControl>
           <Input
             placeholder={
@@ -99,7 +106,7 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
   const renderSlugField = useCallback(
     ({ field }: { field: FieldValues }) => (
       <FormItem>
-        <FormLabel>Post slug</FormLabel>
+        <FormLabel required>Post slug</FormLabel>
         <FormControl>
           <Input
             placeholder={
@@ -132,7 +139,7 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
 
     return (
       <FormItem>
-        <FormLabel>Author</FormLabel>
+        <FormLabel required>Author</FormLabel>
         <Select onValueChange={handleAuthorChange}>
           <FormControl>
             <SelectTrigger>
@@ -164,7 +171,7 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
   const renderDescriptionField = useCallback(
     ({ field }: { field: FieldValues }) => (
       <FormItem>
-        <FormLabel>Description</FormLabel>
+        <FormLabel required>Description</FormLabel>
         <FormControl>
           <Textarea
             placeholder={
@@ -212,7 +219,7 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
   const renderImageField = useCallback(
     ({}: { field: FieldValues }) => (
       <FormItem>
-        <FormLabel>Image</FormLabel>
+        <FormLabel required>Image</FormLabel>
         <FormControl>
           <Uploader
             defaultValue={post.image}
@@ -273,6 +280,11 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
         form.reset();
         setImageFile(null);
         setImagePreviewUrl(post.image);
+        setTimeout(() => {
+          router.push(
+            `${APP_BP}/${teamSlug}/workspace/publish/post/${post.id}/metadata`,
+          );
+        }, 2000);
       }
     } catch (error: unknown) {
       let message = 'An unexpected error occurred.';

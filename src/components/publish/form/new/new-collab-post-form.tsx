@@ -10,6 +10,7 @@ import {
   NewCollabPostFormValues,
 } from '#/lib/validations/post';
 
+import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import {
   Form,
@@ -89,7 +90,7 @@ export const NewCollabPostForm: React.FC<NewCollabPostFormProps> = ({
   const renderInput = useCallback(
     ({ field }: { field: FieldValues }) => (
       <FormItem>
-        <FormLabel>Your post title</FormLabel>
+        <FormLabel required>Your post title</FormLabel>
         <FormControl>
           <Input
             placeholder="My draft post title with a max of 58 characters for SEO"
@@ -111,7 +112,7 @@ export const NewCollabPostForm: React.FC<NewCollabPostFormProps> = ({
   const renderDescription = useCallback(
     ({ field }: { field: FieldValues }) => (
       <FormItem>
-        <FormLabel>Your post description</FormLabel>
+        <FormLabel required>Your post description</FormLabel>
         <FormControl>
           <Textarea
             placeholder="This is my awesome SEO optimized post description that sums up the context of what this post is about. I can change it at anytime and get an AI assist too."
@@ -140,7 +141,14 @@ export const NewCollabPostForm: React.FC<NewCollabPostFormProps> = ({
             isLoading={isSubmitting}
             disabled={!formState.isValid || !formState.isDirty || isSubmitting}
           >
-            Create
+            {isSubmitting ? (
+              <>
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                Creating...
+              </>
+            ) : (
+              'Create'
+            )}
           </Button>
         </div>
       </form>

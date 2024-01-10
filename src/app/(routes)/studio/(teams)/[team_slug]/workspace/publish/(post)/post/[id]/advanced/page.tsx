@@ -6,7 +6,7 @@ import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import DeletePostForm from '#/components/publish/form/delete-post-form';
+import NewDeletePostForm from '#/components/publish/form/new/new-delete-post-form';
 
 export default async function PostIdAdvanced({
   params,
@@ -34,7 +34,10 @@ export default async function PostIdAdvanced({
         description="Welcome to the Oops, didn't mean to write that zone."
       />
       <div className="my-8 grid max-w-3xl gap-8 md:my-12">
-        <DeletePostForm postName={post?.title!} teamSlug={params.team_slug} />
+        <NewDeletePostForm
+          postName={post?.title!}
+          teamSlug={params.team_slug}
+        />
       </div>
     </div>
   );

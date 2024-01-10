@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const newCollabPostFormSchema = z.object({
   title: z.string().min(3).max(58),
-  description: z.string().min(100).max(180),
+  description: z.string().min(50).max(180),
 });
 
 export type NewCollabPostFormValues = z.infer<typeof newCollabPostFormSchema>;
@@ -21,7 +21,7 @@ export const publishPostSchema = z.object({
   description: z
     .string()
     .trim()
-    .min(100, '100+ characters, please. Paint a fuller picture.')
+    .min(50, '50+ characters, please. Paint a fuller picture.')
     .max(180, '180 characters max for a quick, easy read.'),
   slug: z
     .string()
