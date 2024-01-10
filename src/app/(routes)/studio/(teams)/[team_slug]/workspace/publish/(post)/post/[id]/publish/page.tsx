@@ -37,7 +37,7 @@ export default async function PostIdPublish({
     <div className="flex flex-col gap-8">
       <DashboardHeader
         title="Publish post"
-        description="Review your post and publish it to your site."
+        description="Every field is crafted to maximize your post's impact."
       />
       <div className="my-8 grid gap-8 md:my-12">
         <PublishPostForm

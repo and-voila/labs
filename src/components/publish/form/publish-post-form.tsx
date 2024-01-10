@@ -67,12 +67,14 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
         <FormLabel>Title</FormLabel>
         <FormControl>
           <Input
-            placeholder={post.title || 'Enter your post title here'}
+            placeholder={
+              post.title || 'Your engaging title here (42-58 characters)'
+            }
             {...field}
           />
         </FormControl>
         <FormDescription>
-          For the best results, your title should be 42-58 characters.
+          Titles between 42-58 characters tend to attract more views.
         </FormDescription>
         <FormMessage />
       </FormItem>
@@ -101,12 +103,14 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
         <FormLabel>Post slug</FormLabel>
         <FormControl>
           <Input
-            placeholder={post.slug || 'Set a human readable slug for your post'}
+            placeholder={
+              post.slug || 'Set a catchy, human-readable slug for your post'
+            }
             {...field}
           />
         </FormControl>
         <FormDescription>
-          Leave as is or define a human readable slug.
+          Use the default or create a unique slug for easy sharing.
         </FormDescription>
         <FormMessage />
       </FormItem>
@@ -145,7 +149,7 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
           </SelectContent>
         </Select>
         <FormDescription>
-          Select the author of the post. You can update your name at{' '}
+          Choose the author. Want a different name? Update it in your{' '}
           <Link
             className="text-primary underline underline-offset-4 hover:text-primary/80"
             href={`${APP_BP}/my/settings`}
@@ -166,14 +170,15 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
           <Textarea
             placeholder={
               post.description ||
-              'Describe your post in plain language so that readers can find it easily.'
+              'Summarize your post in 120-158 characters for optimal search visibility'
             }
             {...field}
             className="resize-none"
           />
         </FormControl>
         <FormDescription>
-          For best results, your description should be 120-158 characters.
+          Aim for 120-158 characters. This sweet spot boosts search performance
+          and reader engagement.
         </FormDescription>
         <FormMessage />
       </FormItem>
@@ -216,7 +221,10 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
             onChange={handleImageChange}
           />
         </FormControl>
-        <FormDescription>Upload an image for the post.</FormDescription>
+        <FormDescription>
+          Upload a captivating image. It&apos;ll be the face of your post in
+          searches and social shares.
+        </FormDescription>
         <FormMessage />
       </FormItem>
     ),
@@ -415,14 +423,14 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
                     {post.site?.subdomain}
                   </p>
                 ) : (
-                  <div className="mb-1 h-4 w-24 rounded-md bg-muted-foreground" />
+                  <div className="mb-1 h-4 w-24 rounded-md bg-primary/20" />
                 )}
                 {watchedTitle ? (
                   <h3 className="truncate font-semibold text-foreground">
                     {watchedTitle}
                   </h3>
                 ) : (
-                  <div className="mb-1 h-5 w-full rounded-md bg-muted-foreground" />
+                  <div className="mb-1 h-5 w-full rounded-md bg-primary/20" />
                 )}
                 {watchedDescription ? (
                   <p className="line-clamp-2 text-sm text-muted-foreground">
@@ -430,8 +438,8 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
                   </p>
                 ) : (
                   <div className="grid gap-2">
-                    <div className="h-4 w-full rounded-md bg-muted-foreground" />
-                    <div className="h-4 w-48 rounded-md bg-muted-foreground" />
+                    <div className="h-4 w-full rounded-md bg-primary/20" />
+                    <div className="h-4 w-48 rounded-md bg-primary/20" />
                   </div>
                 )}
               </div>
@@ -474,14 +482,14 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
                     {watchedTitle}
                   </h3>
                 ) : (
-                  <div className="mb-1 h-5 w-full rounded-md bg-muted-foreground" />
+                  <div className="mb-1 h-5 w-full rounded-md bg-primary/20" />
                 )}
                 {post.site?.subdomain ? (
                   <p className="text-xs text-muted-foreground">
                     {post.site?.subdomain}
                   </p>
                 ) : (
-                  <div className="mb-1 h-4 w-24 rounded-md bg-muted-foreground" />
+                  <div className="mb-1 h-4 w-24 rounded-md bg-primary/20" />
                 )}
               </div>
             </div>
