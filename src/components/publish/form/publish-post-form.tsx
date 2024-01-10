@@ -121,14 +121,19 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
     [form],
   );
 
-  const renderAuthorField = useCallback(
-    () => (
+  const renderAuthorField = useCallback(() => {
+    const placeholderText =
+      teamMembers && teamMembers.length === 1
+        ? teamMembers[0].user.name
+        : 'Select the author of the post';
+
+    return (
       <FormItem>
         <FormLabel>Author</FormLabel>
         <Select onValueChange={handleAuthorChange}>
           <FormControl>
             <SelectTrigger>
-              <SelectValue placeholder="Select the author of the post" />
+              <SelectValue placeholder={placeholderText} />
             </SelectTrigger>
           </FormControl>
           <SelectContent>
@@ -150,9 +155,8 @@ export function PublishPostForm({ post, teamMembers }: PublishPostFormProps) {
         </FormDescription>
         <FormMessage />
       </FormItem>
-    ),
-    [teamMembers, handleAuthorChange],
-  );
+    );
+  }, [teamMembers, handleAuthorChange]);
 
   const renderDescriptionField = useCallback(
     ({ field }: { field: FieldValues }) => (
