@@ -13,6 +13,7 @@ import * as z from 'zod';
 import { publishPost } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
 import { GetTeamMemberResult } from '#/lib/operations/teams/get-team-members';
+import { usePostContentStore } from '#/lib/store/use-post-content';
 import { publishPostSchema } from '#/lib/validations/post';
 
 import Uploader from '#/components/publish/form/uploader';
@@ -244,6 +245,9 @@ export function PublishPostForm({
         formData.append(key, value);
       }
     });
+
+    const { sanitizedHtmlContent } = usePostContentStore.getState();
+    formData.append('content', sanitizedHtmlContent);
 
     if (imageFile) {
       formData.append('image', imageFile);

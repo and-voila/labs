@@ -10,27 +10,27 @@ import {
   AlertDialogTrigger,
 } from '#/components/ui/alert-dialog';
 
-interface ConfirmModalProps {
+interface ConfirmPublishModalProps {
   children: React.ReactNode;
   onConfirm: () => void;
-  item?: string;
 }
 
-export const ConfirmModal = ({
+export const ConfirmPublishModal = ({
   children,
   onConfirm,
-  item,
-}: ConfirmModalProps) => {
+}: ConfirmPublishModalProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Heads up! Deleting this{item ? ` ${item}` : ''} is permanent.
+            Sweet! You&apos;re ready to publish your post.
           </AlertDialogTitle>
           <AlertDialogDescription>
-            There&apos;s no turning back once you hit delete.
+            Sure you you dotted all your i&apos;s and crossed all your t&apos;s?
+            We&apos;ll crank out some html and send you to the publish flow for
+            a final review.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

@@ -513,7 +513,7 @@ export const publishPost = async (
         slug: formData.get('slug') as string,
         userId: formData.get('author') as string,
         description: formData.get('description') as string,
-        // content: formData.get('content') as string,
+        content: formData.get('content') as string,
         image: imageUrl || post.image,
         imageBlurhash: blurhash || post.imageBlurhash,
         published: true,

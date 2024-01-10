@@ -1,9 +1,17 @@
+import { useCallback, useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { WebSocketStatus } from '@hocuspocus/provider';
 import { Editor as CoreEditor } from '@tiptap/core';
+import DOMPurify from 'isomorphic-dompurify';
 
-import { EditorState, PostWithSite } from '#/components/publish/editor/editor';
+import { APP_BP } from '#/lib/const';
+import { usePostContentStore } from '#/lib/store/use-post-content';
+
+import { ConfirmPublishModal } from '#/components/modals/confirm-publish-modal';
+import { PostWithSite } from '#/components/publish/editor/editor';
 import EditorIpStatusIndicator from '#/components/publish/editor/editor-ip-status-indicator';
-import AiEditorPublishButton from '#/components/tiptap/block-editor/ai-editor-publish-button';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
 import {
   Card,
   CardContent,
@@ -37,39 +45,32 @@ const AiEditorWidget = ({
   post,
   teamSlug,
 }: AiEditorWidgetProps) => {
-  // Mock aiContentPercentage
-  const aiContentPercentage = 50;
+  const setHtmlContent = usePostContentStore((state) => state.setHtmlContent);
+  const [isPublishing, setIsPublishing] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
-  // Mock props for EditorPublishButton
-  const isPendingPublishing = false;
-  const isPublishable = true;
-  const published = false;
-  const dispatch = () => {};
-  const state: EditorState = {
-    data: {
-      id: 'mockId',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      title: 'mockTitle',
-      description: 'mockDescription',
-      content: 'mockContent',
-      slug: 'mockSlug',
-      image: 'mockImageUrl',
-      imageBlurhash: 'mockImageBlurhash',
-      published: false,
-      userId: 'mockUserId',
-      teamId: 'mockTeamId',
-      siteId: 'mockSiteId',
-      site: {
-        subdomain: 'mockSubdomain',
-      },
-    },
-    titleError: '',
-    descriptionError: '',
-    contentError: '',
-  };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const startTransitionPublishing = (_: () => Promise<void>) => {};
+  useEffect(() => {
+    if (
+      pathname ===
+      `${APP_BP}/${teamSlug}/workspace/publish/post/${post.id}/publish`
+    ) {
+      setIsPublishing(false);
+    }
+  }, [pathname, teamSlug, post.id]);
+
+  const handleConfirm = useCallback(() => {
+    const htmlContent = editor.getHTML();
+    const sanitizedHtmlContent = DOMPurify.sanitize(htmlContent);
+    setHtmlContent(sanitizedHtmlContent);
+    // console.log('Updated HTML content in store:', usePostContentStore.getState().htmlContent);
+    router.push(
+      `${APP_BP}/${teamSlug}/workspace/publish/post/${post.id}/publish`,
+    );
+  }, [editor, setHtmlContent, router, teamSlug, post.id]);
+  // Mock aiContentPercentage
+  const aiContentPercentage = 10;
+
   return (
     <div className="py-10">
       <Card>
@@ -88,18 +89,18 @@ const AiEditorWidget = ({
             <EditorIpStatusIndicator
               aiContentPercentage={aiContentPercentage}
             />
-            <AiEditorPublishButton
-              isPendingPublishing={isPendingPublishing}
-              isPublishable={isPublishable}
-              published={published}
-              // eslint-disable-next-line react/jsx-no-bind
-              startTransitionPublishing={startTransitionPublishing}
-              post={post}
-              // eslint-disable-next-line react/jsx-no-bind
-              dispatch={dispatch}
-              state={state}
-              teamSlug={teamSlug}
-            />
+            <ConfirmPublishModal onConfirm={handleConfirm}>
+              <Button disabled={isPublishing}>
+                {isPublishing ? (
+                  <>
+                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                    Processing...
+                  </>
+                ) : (
+                  'Publish'
+                )}
+              </Button>
+            </ConfirmPublishModal>
           </div>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">

@@ -9,7 +9,7 @@ import * as z from 'zod';
 import { deletePost } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
 
-import { ConfirmModal } from '#/components/modals/confirm-modal';
+import { ConfirmDeleteModal } from '#/components/modals/confirm-delete-modal';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import {
@@ -95,7 +95,7 @@ export default function NewDeletePostForm({
           <FormMessage />
         </FormItem>
         <div className="flex justify-end">
-          <ConfirmModal item="post" onConfirm={handleDeleteConfirmation}>
+          <ConfirmDeleteModal item="post" onConfirm={handleDeleteConfirmation}>
             <Button
               variant="destructive"
               size="sm"
@@ -115,7 +115,7 @@ export default function NewDeletePostForm({
                 'Delete'
               )}
             </Button>
-          </ConfirmModal>
+          </ConfirmDeleteModal>
         </div>
       </form>
     </Form>

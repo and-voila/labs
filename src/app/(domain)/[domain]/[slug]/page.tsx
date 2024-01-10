@@ -4,7 +4,7 @@ import { env } from 'env';
 
 import { db } from '#/lib/db';
 import {
-  getPostData,
+  getCollabPostData,
   getSiteData,
 } from '#/lib/operations/publish/publish-fetchers';
 import { placeholderBlurhash, toDateString } from '#/lib/utils';
@@ -12,7 +12,6 @@ import { placeholderBlurhash, toDateString } from '#/lib/utils';
 import BlogCard from '#/components/publish/blog-card';
 import BlurImage from '#/components/publish/blur-image';
 import WriteCta from '#/components/publish/cta';
-import NovelMDX from '#/components/publish/novel-mdx';
 
 export async function generateMetadata({
   params,
@@ -23,7 +22,7 @@ export async function generateMetadata({
   const slug = decodeURIComponent(params.slug);
 
   const [data, siteData] = await Promise.all([
-    getPostData(domain, slug),
+    getCollabPostData(domain, slug),
     getSiteData(domain),
   ]);
   if (!data || !siteData) {
@@ -102,7 +101,7 @@ export default async function SitePostPage({
 }) {
   const domain = decodeURIComponent(params.domain);
   const slug = decodeURIComponent(params.slug);
-  const data = await getPostData(domain, slug);
+  const data = await getCollabPostData(domain, slug);
 
   if (!data) {
     notFound();
@@ -161,7 +160,10 @@ export default async function SitePostPage({
           </div>
         </div>
         <div className="w-3/5 border-t border-primary py-8" />
-        <NovelMDX source={data.mdxSource} />
+        <div
+          className="prose prose-gray lg:prose-lg dark:prose-invert"
+          dangerouslySetInnerHTML={{ __html: data.content || '' }}
+        />
         <div className="my-12 px-6 lg:px-8">
           <WriteCta domain={domain} />
         </div>

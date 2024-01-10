@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import { APP_BP } from '#/lib/const';
 
-import { ConfirmModal } from '#/components/modals/confirm-modal';
+import { ConfirmDeleteModal } from '#/components/modals/confirm-delete-modal';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
@@ -112,7 +112,7 @@ export const ChapterActions = ({
       >
         {isPublished ? 'Unpublish' : 'Publish'}
       </Button>
-      <ConfirmModal onConfirm={onDelete}>
+      <ConfirmDeleteModal onConfirm={onDelete}>
         <Button
           size="sm"
           disabled={isLoading}
@@ -121,7 +121,7 @@ export const ChapterActions = ({
         >
           <Icons.trash className="h-4 w-4 bg-destructive text-white" />
         </Button>
-      </ConfirmModal>
+      </ConfirmDeleteModal>
     </div>
   );
 };

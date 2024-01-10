@@ -131,6 +131,7 @@
     "focus-trap-react": "^10.2.3",
     "framer-motion": "^10.16.16",
     "iframe-resizer": "^4.3.9",
+    "isomorphic-dompurify": "^2.2.0",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "lowlight": "^3.1.0",
