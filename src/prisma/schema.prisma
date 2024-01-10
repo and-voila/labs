@@ -205,9 +205,9 @@ model Post {
   published     Boolean @default(false)
   userId        String?
   teamId        String?
-  siteId        String?
+  siteId        String
 
-  site Site? @relation(fields: [siteId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  site Site  @relation(fields: [siteId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   user User? @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   team Team? @relation(fields: [teamId], references: [id])
 

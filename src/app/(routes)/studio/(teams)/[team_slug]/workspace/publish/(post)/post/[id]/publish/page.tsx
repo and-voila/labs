@@ -40,7 +40,11 @@ export default async function PostIdPublish({
         description="Review your post and publish it to your site."
       />
       <div className="my-8 grid gap-8 md:my-12">
-        <PublishPostForm post={post} teamMembers={teamMembers} />
+        <PublishPostForm
+          post={post}
+          teamMembers={teamMembers}
+          teamSlug={params.team_slug}
+        />
       </div>
     </div>
   );
