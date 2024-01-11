@@ -116,7 +116,7 @@ const AiEditorWidget = ({
   }, [editor, post]);
 
   // Mock aiContentPercentage
-  const aiContentPercentage = 10;
+  const aiContentPercentage = 40;
 
   return (
     <div className="py-10">
