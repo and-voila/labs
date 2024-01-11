@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useTransition } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -46,6 +46,7 @@ type UpdatePostFormProps = {
 export type UpdatePostFormValues = z.infer<typeof updatePostSchema>;
 
 export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
+  const [isPending, startTransition] = useTransition();
   const form = useForm<UpdatePostFormValues>({
     resolver: zodResolver(updatePostSchema),
     defaultValues: {
@@ -264,71 +265,73 @@ export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
     [handleImageChange, post.image],
   );
 
-  const processForm: SubmitHandler<UpdatePostFormValues> = async (data) => {
-    const formData = new FormData();
-    Object.entries(data).forEach(([key, value]) => {
-      if (key !== 'image') {
-        if (key === 'status') {
-          formData.append(
-            'published',
-            value === 'published' ? 'true' : 'false',
-          );
-        } else {
-          formData.append(key, value);
+  const processForm: SubmitHandler<UpdatePostFormValues> = (data) => {
+    startTransition(async () => {
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        if (key !== 'image') {
+          if (key === 'status') {
+            formData.append(
+              'published',
+              value === 'published' ? 'true' : 'false',
+            );
+          } else {
+            formData.append(key, value);
+          }
         }
-      }
-    });
-
-    if (imageFile) {
-      formData.append('image', imageFile);
-    }
-
-    if (!post.site) {
-      toast({
-        title: 'Error',
-        description: 'Post must have an associated site.',
-        variant: 'destructive',
       });
-      // eslint-disable-next-line no-console
-      console.error('Post must have an associated site.');
-      return;
-    }
 
-    try {
-      const result = await updateCollabPost(formData, post);
+      if (imageFile) {
+        formData.append('image', imageFile);
+      }
 
-      if (result.error) {
+      if (!post.site) {
         toast({
           title: 'Error',
-          description: result.error,
+          description: 'Post must have an associated site.',
           variant: 'destructive',
         });
         // eslint-disable-next-line no-console
-        console.error(result.error);
-      } else {
-        toast({
-          title: 'Success, it worked!',
-          description: 'Your post has been updated.',
-          variant: 'success',
-        });
-        form.reset();
-        setImageFile(null);
-        setImagePreviewUrl(post.image);
-      }
-    } catch (error: unknown) {
-      let message = 'An unexpected error occurred.';
-      if (error instanceof Error) {
-        message = error.message;
+        console.error('Post must have an associated site.');
+        return;
       }
 
-      toast({
-        title: 'Unexpected Error',
-        description: message,
-        variant: 'destructive',
-      });
-      // eslint-disable-next-line no-console
-      console.error(error);
-    }
+      try {
+        const result = await updateCollabPost(formData, post);
+
+        if (result.error) {
+          toast({
+            title: 'Error',
+            description: result.error,
+            variant: 'destructive',
+          });
+          // eslint-disable-next-line no-console
+          console.error(result.error);
+        } else {
+          toast({
+            title: 'Success, it worked!',
+            description: 'Your post has been updated.',
+            variant: 'success',
+          });
+          form.reset();
+          setImageFile(null);
+          setImagePreviewUrl(post.image);
+        }
+      } catch (error: unknown) {
+        let message = 'An unexpected error occurred.';
+        if (error instanceof Error) {
+          message = error.message;
+        }
+
+        toast({
+          title: 'Unexpected Error',
+          description: message,
+          variant: 'destructive',
+        });
+        // eslint-disable-next-line no-console
+        console.error(error);
+      }
+    });
   };
 
   return (
@@ -369,11 +372,9 @@ export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
             <div className="flex justify-end">
               <Button
                 type="submit"
-                disabled={
-                  !form.formState.isDirty || form.formState.isSubmitting
-                }
+                disabled={!form.formState.isDirty || isPending}
               >
-                {form.formState.isSubmitting ? (
+                {isPending ? (
                   <>
                     <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                     Updating...

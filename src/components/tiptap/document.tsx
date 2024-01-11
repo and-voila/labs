@@ -6,11 +6,11 @@ import 'iframe-resizer/js/iframeResizer.contentWindow';
 
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Post, Site } from '@prisma/client';
 import * as Y from 'yjs';
 
 import { env } from 'env';
 
-import { PostWithSite } from '../publish/editor/editor';
 import AiEditor from './block-editor/ai-editor';
 import { EditorUser } from './block-editor/types';
 
@@ -20,7 +20,7 @@ export interface AiState {
 }
 
 interface DocumentProps {
-  post: PostWithSite;
+  post: Post & { site: Site };
   user: EditorUser;
   teamSlug: string;
 }

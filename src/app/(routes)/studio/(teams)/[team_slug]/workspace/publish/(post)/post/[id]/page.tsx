@@ -27,12 +27,7 @@ export default async function PostIdPage({
       id: decodeURIComponent(params.id),
     },
     include: {
-      site: {
-        select: {
-          subdomain: true,
-          id: true,
-        },
-      },
+      site: true,
     },
   });
   if (!post || !user || !post.site?.id || post.teamId !== team.id) {

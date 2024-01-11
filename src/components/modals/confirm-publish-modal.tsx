@@ -13,11 +13,13 @@ import {
 interface ConfirmPublishModalProps {
   children: React.ReactNode;
   onConfirm: () => void;
+  isUpdate?: boolean;
 }
 
 export const ConfirmPublishModal = ({
   children,
   onConfirm,
+  isUpdate = false,
 }: ConfirmPublishModalProps) => {
   return (
     <AlertDialog>
@@ -25,12 +27,14 @@ export const ConfirmPublishModal = ({
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Sweet! You&apos;re ready to publish your post.
+            {isUpdate
+              ? "Nice! Let's update your published post."
+              : "Sweet! You're ready to publish your post."}
           </AlertDialogTitle>
           <AlertDialogDescription>
-            Sure you you dotted all your i&apos;s and crossed all your t&apos;s?
-            We&apos;ll crank out some html and send you to the publish flow for
-            a final review.
+            {isUpdate
+              ? 'Make sure your changes are good to go before updating your post.'
+              : "Sure you dotted all your i's and crossed all your t's? We'll crank out some html and send you to the publish flow for a final review."}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

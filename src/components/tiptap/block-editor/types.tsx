@@ -1,8 +1,7 @@
 import { TiptapCollabProvider } from '@hocuspocus/provider';
+import { Post, Site } from '@prisma/client';
 import { Language } from '@tiptap-pro/extension-ai';
 import * as Y from 'yjs';
-
-import { PostWithSite } from '#/components/publish/editor/editor';
 
 export interface TiptapProps {
   aiToken: string;
@@ -10,7 +9,7 @@ export interface TiptapProps {
   ydoc: Y.Doc;
   provider?: TiptapCollabProvider | null | undefined;
   user: EditorUser;
-  post: PostWithSite;
+  post: Post & { site: Site };
   teamSlug: string;
 }
 

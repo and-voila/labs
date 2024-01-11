@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useTransition } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -67,6 +67,7 @@ export function PublishPostForm({
   const watchedDescription = form.watch('description', post.description ?? '');
 
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const renderTitleField = useCallback(
     ({ field }: { field: FieldValues }) => (
@@ -238,72 +239,74 @@ export function PublishPostForm({
     [handleImageChange, post.image],
   );
 
-  const processForm: SubmitHandler<PublishPostFormValues> = async (data) => {
-    const formData = new FormData();
-    Object.entries(data).forEach(([key, value]) => {
-      if (key !== 'image') {
-        formData.append(key, value);
-      }
-    });
-
-    const { sanitizedHtmlContent } = usePostContentStore.getState();
-    formData.append('content', sanitizedHtmlContent);
-
-    if (imageFile) {
-      formData.append('image', imageFile);
-    }
-
-    if (!post.site) {
-      toast({
-        title: 'Error',
-        description: 'Post must have an associated site.',
-        variant: 'destructive',
+  const processForm: SubmitHandler<PublishPostFormValues> = (data) => {
+    startTransition(async () => {
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        if (key !== 'image') {
+          formData.append(key, value);
+        }
       });
-      // eslint-disable-next-line no-console
-      console.error('Post must have an associated site.');
-      return;
-    }
 
-    try {
-      const result = await publishPost(formData, post);
+      const { sanitizedHtmlContent } = usePostContentStore.getState();
+      formData.append('content', sanitizedHtmlContent);
 
-      if (result.error) {
+      if (imageFile) {
+        formData.append('image', imageFile);
+      }
+
+      if (!post.site) {
         toast({
           title: 'Error',
-          description: result.error,
+          description: 'Post must have an associated site.',
           variant: 'destructive',
         });
         // eslint-disable-next-line no-console
-        console.error(result.error);
-      } else {
-        toast({
-          title: 'Success',
-          description: 'Your post has been published successfully.',
-          variant: 'success',
-        });
-        form.reset();
-        setImageFile(null);
-        setImagePreviewUrl(post.image);
-        setTimeout(() => {
-          router.push(
-            `${APP_BP}/${teamSlug}/workspace/publish/post/${post.id}/metadata`,
-          );
-        }, 2000);
-      }
-    } catch (error: unknown) {
-      let message = 'An unexpected error occurred.';
-      if (error instanceof Error) {
-        message = error.message;
+        console.error('Post must have an associated site.');
+        return;
       }
 
-      toast({
-        title: 'Unexpected Error',
-        description: message,
-        variant: 'destructive',
-      });
-      // eslint-disable-next-line no-console
-      console.error(error);
-    }
+      try {
+        const result = await publishPost(formData, post);
+
+        if (result.error) {
+          toast({
+            title: 'Error',
+            description: result.error,
+            variant: 'destructive',
+          });
+          // eslint-disable-next-line no-console
+          console.error(result.error);
+        } else {
+          toast({
+            title: 'Success',
+            description: 'Your post has been published successfully.',
+            variant: 'success',
+          });
+          form.reset();
+          setImageFile(null);
+          setImagePreviewUrl(post.image);
+          setTimeout(() => {
+            router.push(
+              `${APP_BP}/${teamSlug}/workspace/publish/post/${post.id}/metadata`,
+            );
+          }, 2000);
+        }
+      } catch (error: unknown) {
+        let message = 'An unexpected error occurred.';
+        if (error instanceof Error) {
+          message = error.message;
+        }
+
+        toast({
+          title: 'Unexpected Error',
+          description: message,
+          variant: 'destructive',
+        });
+        // eslint-disable-next-line no-console
+        console.error(error);
+      }
+    });
   };
 
   return (
@@ -342,10 +345,10 @@ export function PublishPostForm({
                 disabled={
                   !form.formState.isDirty ||
                   !form.formState.isValid ||
-                  form.formState.isSubmitting
+                  isPending
                 }
               >
-                {form.formState.isSubmitting ? (
+                {isPending ? (
                   <>
                     <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                     Publishing...

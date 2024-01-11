@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useTransition } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -39,6 +39,7 @@ export default function NewDeletePostForm({
   type DeletePostFormValues = z.infer<typeof deletePostSchema>;
   const { id } = useParams() as { id: string };
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const form = useForm<DeletePostFormValues>({
     resolver: zodResolver(deletePostSchema),
     mode: 'onChange',
@@ -47,28 +48,30 @@ export default function NewDeletePostForm({
   const displayPostName = postName || 'My untitled post';
 
   const processForm: SubmitHandler<DeletePostFormValues> = useCallback(
-    async (data) => {
-      if (data.confirm === (postName || 'My untitled post')) {
-        const res = await deletePost(null, id, 'delete');
-        if (res.error) {
-          toast({
-            title: 'Could not delete post',
-            description: res.error,
-            variant: 'destructive',
-          });
-        } else {
-          toast({
-            title: 'Post deleted',
-            description: 'Your post was deleted successfully.',
-            variant: 'success',
-          });
-          router.push(
-            `${APP_BP}/${teamSlug}/workspace/publish/site/${res.siteId}`,
-          );
+    (data) => {
+      startTransition(async () => {
+        if (data.confirm === (postName || 'My untitled post')) {
+          const res = await deletePost(null, id, 'delete');
+          if (res.error) {
+            toast({
+              title: 'Could not delete post',
+              description: res.error,
+              variant: 'destructive',
+            });
+          } else {
+            toast({
+              title: 'Post deleted',
+              description: 'Your post was deleted successfully.',
+              variant: 'success',
+            });
+            router.push(
+              `${APP_BP}/${teamSlug}/workspace/publish/site/${res.siteId}`,
+            );
+          }
         }
-      }
+      });
     },
-    [postName, id, router, teamSlug],
+    [postName, id, router, teamSlug, startTransition],
   );
 
   const handleDeleteConfirmation = useCallback(() => {
@@ -101,12 +104,12 @@ export default function NewDeletePostForm({
               size="sm"
               disabled={
                 !form.formState.isValid ||
-                form.formState.isSubmitting ||
+                isPending ||
                 !form.formState.isDirty ||
                 form.watch('confirm') === ''
               }
             >
-              {form.formState.isSubmitting ? (
+              {isPending ? (
                 <>
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                   Deleting...
