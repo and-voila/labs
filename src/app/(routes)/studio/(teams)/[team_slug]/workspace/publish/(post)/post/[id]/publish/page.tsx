@@ -4,11 +4,12 @@ import { notFound } from 'next/navigation';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
+import { getTeamMembers } from '#/lib/operations/teams/get-team-members';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import NewDeletePostForm from '#/components/publish/form/new/new-delete-post-form';
+import { PublishPostForm } from '#/components/publish/form/new/publish-post-form';
 
-export default async function PostIdAdvanced({
+export default async function PostIdPublish({
   params,
 }: {
   params: { id: string; team_slug: string };
@@ -17,9 +18,8 @@ export default async function PostIdAdvanced({
     where: {
       id: decodeURIComponent(params.id),
     },
-    cacheStrategy: {
-      ttl: 20,
-      swr: 10,
+    include: {
+      site: true,
     },
   });
 
@@ -27,15 +27,18 @@ export default async function PostIdAdvanced({
     notFound();
   }
 
+  const teamMembers = await getTeamMembers(params.team_slug);
+
   return (
     <div className="flex flex-col gap-8">
       <DashboardHeader
-        title="Danger zone"
-        description="Welcome to the Oops, didn't mean to write that zone."
+        title="Publish post"
+        description="Every field is crafted to maximize your post's impact."
       />
-      <div className="my-8 grid max-w-3xl gap-8 md:my-12">
-        <NewDeletePostForm
-          postName={post?.title!}
+      <div className="my-8 grid gap-8 md:my-12">
+        <PublishPostForm
+          post={post}
+          teamMembers={teamMembers}
           teamSlug={params.team_slug}
         />
       </div>
@@ -44,9 +47,9 @@ export default async function PostIdAdvanced({
 }
 
 export function generateMetadata(): Metadata {
-  const title = 'Delete my Post';
+  const title = 'My Post Metadata';
   const description =
-    'Experience convenience and control while creating content. Easily delete posts and maintain a clean, organized content space.';
+    'Manage your post metadata with ease. Our fine-tuned, task-specific AI is here to help. Spend less time on the details and more on creating impactful content.';
 
   const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);

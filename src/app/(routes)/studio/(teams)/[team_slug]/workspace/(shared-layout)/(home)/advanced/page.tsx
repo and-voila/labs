@@ -39,7 +39,7 @@ const TeamDangerZonePage: NextPage<Props> = async ({ params }) => {
               <AlertDescription className="text-muted-foreground">
                 Personal workspaces can&apos;t be removed. To delete all your
                 data, including your personal workspace, please{' '}
-                <Link href={`${APP_BP}/delete-account`}>
+                <Link href={`${APP_BP}/my/advanced`}>
                   <span className="font-semibold text-primary">
                     delete your account
                   </span>

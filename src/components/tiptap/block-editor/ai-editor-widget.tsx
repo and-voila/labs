@@ -1,15 +1,25 @@
+import { useCallback, useTransition } from 'react';
+import { useRouter } from 'next/navigation';
 import { WebSocketStatus } from '@hocuspocus/provider';
+import { Post, Site } from '@prisma/client';
 import { Editor as CoreEditor } from '@tiptap/core';
+import DOMPurify from 'isomorphic-dompurify';
 
-import AiEditorPublishButton from '#/components/publish/editor/ai-editor-publish-button';
-import { EditorState } from '#/components/publish/editor/editor';
+import { updateCollabPost } from '#/lib/actions/publish/publish-actions';
+import { APP_BP } from '#/lib/const';
+import { usePostContentStore } from '#/lib/store/use-post-content';
+
+import { ConfirmPublishModal } from '#/components/modals/confirm-publish-modal';
 import EditorIpStatusIndicator from '#/components/publish/editor/editor-ip-status-indicator';
+import { Icons } from '#/components/shared/icons';
+import { Button } from '#/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
 } from '#/components/ui/card';
+import { toast } from '#/components/ui/use-toast';
 
 import { EditorInfo } from './editor-info';
 import { TableOfContents } from './table-of-contents';
@@ -25,6 +35,8 @@ interface AiEditorWidgetProps {
   collabState: WebSocketStatus;
   displayedUsers: EditorUser[];
   editor: CoreEditor;
+  post: Post & { site: Site };
+  teamSlug: string;
 }
 
 const AiEditorWidget = ({
@@ -32,41 +44,80 @@ const AiEditorWidget = ({
   collabState,
   displayedUsers,
   editor,
+  post,
+  teamSlug,
 }: AiEditorWidgetProps) => {
-  // Mock aiContentPercentage
-  const aiContentPercentage = 50;
+  const setHtmlContent = usePostContentStore((state) => state.setHtmlContent);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
-  // Mock props for EditorPublishButton
-  const isPendingPublishing = false;
-  const isPublishable = true;
-  const published = false;
-  const postId = 'mockPostId';
-  const dispatch = () => {};
-  const state: EditorState = {
-    data: {
-      id: 'mockId',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      title: 'mockTitle',
-      description: 'mockDescription',
-      content: 'mockContent',
-      slug: 'mockSlug',
-      image: 'mockImageUrl',
-      imageBlurhash: 'mockImageBlurhash',
-      published: false,
-      userId: 'mockUserId',
-      teamId: 'mockTeamId',
-      siteId: 'mockSiteId',
-      site: {
-        subdomain: 'mockSubdomain',
-      },
-    },
-    titleError: '',
-    descriptionError: '',
-    contentError: '',
-  };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const startTransitionPublishing = (_: () => Promise<void>) => {};
+  const handlePublish = useCallback(() => {
+    const htmlContent = editor.getHTML();
+    const sanitizedHtmlContent = DOMPurify.sanitize(htmlContent);
+    setHtmlContent(sanitizedHtmlContent);
+    // console.log('Updated HTML content in store:', usePostContentStore.getState().htmlContent);
+    router.push(
+      `${APP_BP}/${teamSlug}/workspace/publish/post/${post.id}/publish`,
+    );
+  }, [editor, setHtmlContent, router, teamSlug, post.id]);
+
+  const handleUpdate = useCallback(() => {
+    startTransition(async () => {
+      const htmlContent = editor.getHTML();
+      const sanitizedHtmlContent = DOMPurify.sanitize(htmlContent);
+
+      const formData = new FormData();
+      formData.append('content', sanitizedHtmlContent);
+
+      if (!post.site) {
+        toast({
+          title: 'Error',
+          description: 'Post must have an associated site.',
+          variant: 'destructive',
+        });
+        // eslint-disable-next-line no-console
+        console.error('Post must have an associated site.');
+        return;
+      }
+
+      try {
+        const result = await updateCollabPost(formData, post);
+
+        if (result.error) {
+          toast({
+            title: 'Error',
+            description: result.error,
+            variant: 'destructive',
+          });
+          // eslint-disable-next-line no-console
+          console.error(result.error);
+        } else {
+          toast({
+            title: 'Success, it worked!',
+            description: 'Your post has been updated.',
+            variant: 'success',
+          });
+        }
+      } catch (error: unknown) {
+        let message = 'An unexpected error occurred.';
+        if (error instanceof Error) {
+          message = error.message;
+        }
+
+        toast({
+          title: 'Unexpected Error',
+          description: message,
+          variant: 'destructive',
+        });
+        // eslint-disable-next-line no-console
+        console.error(error);
+      }
+    });
+  }, [editor, post]);
+
+  // Mock aiContentPercentage
+  const aiContentPercentage = 40;
+
   return (
     <div className="py-10">
       <Card>
@@ -85,17 +136,33 @@ const AiEditorWidget = ({
             <EditorIpStatusIndicator
               aiContentPercentage={aiContentPercentage}
             />
-            <AiEditorPublishButton
-              isPendingPublishing={isPendingPublishing}
-              isPublishable={isPublishable}
-              published={published}
-              // eslint-disable-next-line react/jsx-no-bind
-              startTransitionPublishing={startTransitionPublishing}
-              postId={postId}
-              // eslint-disable-next-line react/jsx-no-bind
-              dispatch={dispatch}
-              state={state}
-            />
+            {!post.published ? (
+              <ConfirmPublishModal onConfirm={handlePublish}>
+                <Button disabled={isPending}>
+                  {isPending ? (
+                    <>
+                      <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                      Processing...
+                    </>
+                  ) : (
+                    'Publish'
+                  )}
+                </Button>
+              </ConfirmPublishModal>
+            ) : (
+              <ConfirmPublishModal isUpdate onConfirm={handleUpdate}>
+                <Button disabled={isPending}>
+                  {isPending ? (
+                    <>
+                      <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                      Updating...
+                    </>
+                  ) : (
+                    'Update'
+                  )}
+                </Button>
+              </ConfirmPublishModal>
+            )}
           </div>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">

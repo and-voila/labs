@@ -27,21 +27,14 @@ export default async function PostIdPage({
       id: decodeURIComponent(params.id),
     },
     include: {
-      site: {
-        select: {
-          subdomain: true,
-          id: true,
-        },
-      },
+      site: true,
     },
   });
   if (!post || !user || !post.site?.id || post.teamId !== team.id) {
     notFound();
   }
 
-  const postId = params.id;
-
-  return <Document postId={postId} user={user} />;
+  return <Document post={post} user={user} teamSlug={params.team_slug} />;
 }
 
 export function generateMetadata(): Metadata {

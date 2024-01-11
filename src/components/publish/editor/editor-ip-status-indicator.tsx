@@ -16,24 +16,36 @@ const statusVariants = [
     min: 0,
     max: 20,
     icon: 'circleChecked',
+    iconColor: 'text-alternate',
     title: 'Human',
-    description: 'Your IP is protected',
+    description:
+      'Fully human-authored, eligible for copyright as original works of authorship by human beings.',
     variant: 'human',
+    buttonStyle:
+      'bg-transparent text-alternate border border-alternate font-medium pointer-events-none',
   },
   {
     min: 21,
     max: 35,
     icon: 'warning',
+    iconColor: 'text-amber-600',
     title: 'Assisted',
-    description: 'Your IP is at risk',
+    description:
+      'Collaborative human-AI creation, may have copyright issues if AI determines expressive elements.',
     variant: 'warning',
+    buttonStyle:
+      'bg-transparent text-amber-600 border border-amber-600 font-medium pointer-events-none',
   },
   {
     min: 36,
     icon: 'robot',
+    iconColor: 'text-red-600',
     title: 'Generated',
-    description: 'Your IP is not protected',
+    description:
+      'Predominantly AI-generated, material not considered a product of human authorship for copyright.',
     variant: 'generated',
+    buttonStyle:
+      'bg-transparent text-red-600 border border-red-600 font-medium pointer-events-none',
   },
 ];
 
@@ -53,19 +65,42 @@ const EditorIpStatusIndicator = ({
       <Tooltip>
         <TooltipTrigger>
           <Button
-            variant={statusVariant.variant as 'human' | 'warning' | 'generated'}
-            className="flex items-center"
-            size="sm"
+            variant="outline"
+            className={`flex items-center ${statusVariant.buttonStyle}`}
             asChild
           >
             <div>
-              <Icon className="mr-0.5 h-3 w-3" />
+              <Icon className="mr-2 h-4 w-4" />
               <span>{statusVariant.title}</span>
             </div>
           </Button>
         </TooltipTrigger>
-        <TooltipContent className="-mr-20 border border-input bg-primary-foreground px-4 py-2 text-foreground">
-          <p>{statusVariant.description}</p>
+        <TooltipContent className="-mr-20 max-w-sm border border-input bg-primary-foreground p-4 text-foreground">
+          <div className="flex justify-between space-x-4">
+            <Icon
+              className={`h-8 w-8 justify-start ${statusVariant.iconColor}`}
+            />
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold">{statusVariant.title}</h2>
+              <p className="text-sm text-muted-foreground">
+                {statusVariant.description}
+              </p>
+              <div className="flex items-center pt-2">
+                <Icons.link className="mr-2 h-4 w-4 opacity-70" />{' '}
+                <a
+                  href="https://www.copyright.gov/comp3/chap300/ch300-copyrightable-authorship.pdf#page=7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-2 text-xs text-primary"
+                >
+                  Compendium of the U.S. Copyright Office Practices
+                </a>
+              </div>
+              <p className="text-xs">
+                Not legal advice. For informational purposes only.
+              </p>
+            </div>
+          </div>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

@@ -6,6 +6,7 @@ import 'iframe-resizer/js/iframeResizer.contentWindow';
 
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Post, Site } from '@prisma/client';
 import * as Y from 'yjs';
 
 import { env } from 'env';
@@ -19,17 +20,20 @@ export interface AiState {
 }
 
 interface DocumentProps {
-  postId: string;
+  post: Post & { site: Site };
   user: EditorUser;
+  teamSlug: string;
 }
 
-export default function Document({ postId, user }: DocumentProps) {
+export default function Document({ post, user, teamSlug }: DocumentProps) {
   const [provider, setProvider] = useState<TiptapCollabProvider | null>(null);
   const [collabToken, setCollabToken] = useState<string | null>(null);
   const [aiToken, setAiToken] = useState<string | null>(null);
   const searchParams = useSearchParams();
 
   const hasCollab = parseInt(searchParams.get('noCollab') as string) !== 1;
+
+  const postId = post.id;
 
   useEffect(() => {
     const dataFetch = async () => {
@@ -102,6 +106,8 @@ export default function Document({ postId, user }: DocumentProps) {
         ydoc={ydoc}
         provider={provider}
         user={user}
+        post={post}
+        teamSlug={teamSlug}
       />
     </>
   );

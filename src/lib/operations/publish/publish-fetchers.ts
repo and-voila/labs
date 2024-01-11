@@ -1,6 +1,4 @@
 // eslint-disable-next-line camelcase
-
-// eslint-disable-next-line camelcase
 import { unstable_cache } from 'next/cache';
 import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
@@ -65,6 +63,61 @@ export async function getPostsForSite(domain: string) {
     {
       revalidate: 900,
       tags: [`${domain}-posts`],
+    },
+  )();
+}
+
+export async function getCollabPostData(domain: string, slug: string) {
+  const subdomain = domain.endsWith(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`)
+    ? domain.replace(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`, '')
+    : null;
+
+  return await unstable_cache(
+    async () => {
+      const data = await db.post.findFirst({
+        where: {
+          site: subdomain ? { subdomain } : { customDomain: domain },
+          slug,
+          published: true,
+        },
+        include: {
+          site: {
+            include: {
+              user: true,
+            },
+          },
+        },
+      });
+
+      if (!data) return null;
+
+      const adjacentPosts = await db.post.findMany({
+        where: {
+          site: subdomain ? { subdomain } : { customDomain: domain },
+          published: true,
+          NOT: {
+            id: data.id,
+          },
+        },
+        select: {
+          slug: true,
+          title: true,
+          createdAt: true,
+          description: true,
+          image: true,
+          imageBlurhash: true,
+        },
+      });
+
+      return {
+        ...data,
+        adjacentPosts,
+      };
+    },
+    [`${domain}-${slug}`],
+    {
+      revalidate: 900, // 15 minutes
+      tags: [`${domain}-${slug}`],
     },
   )();
 }

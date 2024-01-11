@@ -34,6 +34,15 @@ export default async function PostIdLayout({
       label: 'Compose',
       exact: true,
     },
+    ...(!post?.published
+      ? [
+          {
+            href: `${APP_BP}/${params.team_slug}/workspace/publish/post/${params.id}/publish`,
+            label: 'Publish',
+            exact: true,
+          },
+        ]
+      : []),
     {
       href: `${APP_BP}/${params.team_slug}/workspace/publish/post/${params.id}/metadata`,
       label: 'Metadata',
