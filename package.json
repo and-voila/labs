@@ -16,7 +16,8 @@
     "prettier": "prettier --write .",
     "test": "pnpm run prettier && pnpm run lint && pnpm run type-check",
     "preview": "next build && next start",
-    "email": "prisma generate --no-engine && email dev --dir ./src/emails --port 3333"
+    "email": "prisma generate --no-engine && email dev --dir ./src/emails --port 3333",
+    "knip": "knip"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,md,mdx}": [
@@ -199,6 +200,7 @@
     "eslint-plugin-tailwindcss": "^3.13.0",
     "eslint-plugin-unicorn": "^50.0.1",
     "husky": "^8.0.3",
+    "knip": "^3.13.1",
     "lint-staged": "^15.2.0",
     "next-mdx-remote": "^4.4.1",
     "postcss": "^8.4.32",
