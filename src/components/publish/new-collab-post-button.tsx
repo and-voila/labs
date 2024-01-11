@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from '#/components/ui/dialog';
 
-import { NewCollabPostForm } from './form/new-collab-post-form';
+import { NewCollabPostForm } from './form/new/new-collab-post-form';
 
 export const NewCollabPostButton: React.FC = () => {
   const { id: siteId, team_slug: teamSlug } = useParams() as {

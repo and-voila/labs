@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import { APP_BP } from '#/lib/const';
 
-import { ConfirmModal } from '#/components/modals/confirm-modal';
+import { ConfirmDeleteModal } from '#/components/modals/confirm-delete-modal';
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 import { toast } from '#/components/ui/use-toast';
@@ -103,7 +103,7 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
       >
         {isPublished ? 'Unpublish' : 'Publish'}
       </Button>
-      <ConfirmModal onConfirm={onDelete}>
+      <ConfirmDeleteModal onConfirm={onDelete}>
         <Button
           variant="destructive"
           size="sm"
@@ -112,7 +112,7 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
         >
           <Icons.trash className="h-4 w-4 text-white" />
         </Button>
-      </ConfirmModal>
+      </ConfirmDeleteModal>
     </div>
   );
 };

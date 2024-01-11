@@ -155,7 +155,7 @@ export const AddTeamMember: React.FC<AddTeamMemberProps> = (props) => {
   return (
     <Sheet open={isOpen} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
-        <Button>Invite member</Button>
+        <Button size="sm">Invite</Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

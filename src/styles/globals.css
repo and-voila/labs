@@ -13,68 +13,68 @@ body,
 @layer base {
   :root {
     --background: 220 27% 98%; /* 50 instead of white */
-    --foreground: 231 17% 8%; /* 950 */
+    --foreground: 150 6% 7%; /* 950 */
 
     --card: 0 0% 100%; /* white */
-    --card-foreground: 231 17% 8%; /* 950 */
+    --card-foreground: 150 6% 7%; /* 950 */
 
     --popover: 0 0% 100%; /* white */
-    --popover-foreground: 231 17% 8%; /* 950 */
+    --popover-foreground: 150 6% 7%; /* 950 */
 
-    --primary: 245 15% 52%; /* primary 600 */
+    --primary: 164 64% 42%; /* primary 600 */
     --primary-foreground: 220 27% 98%; /* 50 */
 
-    --secondary: 220 47% 96%; /* 100 */
-    --secondary-foreground: 227 15% 12%; /* 900 */
+    --secondary: 150 18% 96%; /* 100 */
+    --secondary-foreground: 150 4% 9%; /* 900 */
 
-    --muted: 220 47% 96%; /* 100 */
-    --muted-foreground: 224 8% 48%; /* 500 */
+    --muted: 150 18% 96%; /* 100 */
+    --muted-foreground: 107 7% 47%; /* 500 */
 
-    --accent: 220 47% 96%; /* 100 */
-    --accent-foreground: 227 15% 12%; /* 900 */
+    --accent: 150 18% 96%; /* 100 */
+    --accent-foreground: 150 4% 9%; /* 900 */
 
     --destructive: 0 68% 42%;
     --destructive-foreground: 220 27% 98%; /* 50 */
 
-    --border: 216 17% 90%; /* 200 */
-    --input: 216 17% 90%; /* 200 */
+    --border: 100 7% 91%; /* 200 */
+    --input: 100 7% 91%; /* 200 */
 
-    --ring: 245 15% 52%; /* primary 600 */
-    --alternate: 177 20% 36%;
+    --ring: 164 64% 42%; /* primary 600 */
+    --alternate: 193 99% 36%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 231 17% 8%; /* 950 */
-    --foreground: 220 47% 96%; /* 100 */
+    --background: 150 6% 7%; /* 950 */
+    --foreground: 150 18% 96%; /* 100 */
 
-    --card: 227 15% 12%; /* 900 instead of 950 */
+    --card: 150 4% 9%; /* 900 instead of 950 */
     --card-foreground: 220 27% 98%; /* 50 */
 
-    --popover: 227 15% 12%; /* 900 instead of 950 */
+    --popover: 150 4% 9%; /* 900 instead of 950 */
     --popover-foreground: 220 27% 98%; /* 50 */
 
-    --primary: 244 15% 64%; /* primary 500 */
-    --primary-foreground: 227 15% 12%; /* 900 */
+    --primary: 163 75% 48%; /* primary 500 */
+    --primary-foreground: 150 4% 9%; /* 900 */
 
-    --secondary: 230 15% 18%; /* 800 */
+    --secondary: 150 3% 13%; /* 800 */
     --secondary-foreground: 220 27% 98%; /* 50 */
 
-    --muted: 230 15% 18%; /* 800 */
-    --muted-foreground: 218 5% 68%; /* 400 */
+    --muted: 150 3% 13%; /* 800 */
+    --muted-foreground: 105 5% 69%; /* 400 */
 
-    --accent: 230 15% 18%; /* 800 */
+    --accent: 150 3% 13%; /* 800 */
     --accent-foreground: 220 27% 98%; /* 50 */
 
     --destructive: 0 68% 40%;
     --destructive-foreground: 0 0% 100%; /* 50 */
 
-    --border: 230 15% 18%; /* 800 */
-    --input: 230 15% 18%; /* 800 */
+    --border: 150 3% 13%; /* 800 */
+    --input: 150 3% 13%; /* 800 */
 
-    --ring: 244 15% 64%; /* primary 500 */
-    --alternate: 176 20% 60%;
+    --ring: 163 75% 48%; /* primary 500 */
+    --alternate: 245 87% 67%;
   }
 }
 
@@ -88,217 +88,6 @@ body,
       'rlig' 1,
       'calt' 1;
   }
-}
-
-.ProseMirror {
-  @apply py-8 !important;
-  @apply px-4 !important;
-}
-
-.ProseMirror .is-editor-empty:first-child::before {
-  content: attr(data-placeholder);
-  float: left;
-  color: var(--muted-foreground) !important;
-  pointer-events: none;
-  height: 0;
-}
-.ProseMirror .is-empty::before {
-  content: attr(data-placeholder);
-  float: left;
-  color: var(--muted-foreground) !important;
-  pointer-events: none;
-  height: 0;
-}
-
-/* Custom image styles */
-
-.ProseMirror img {
-  transition: filter 0.1s ease-in-out;
-
-  &:hover {
-    cursor: pointer;
-    filter: brightness(90%);
-  }
-
-  &.ProseMirror-selectednode {
-    outline: 3px solid var(--primary) !important;
-    filter: brightness(90%);
-  }
-}
-
-.img-placeholder {
-  position: relative;
-
-  &:before {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 3px solid var(--border) !important;
-    border-top-color: var(--border) !important;
-    animation: spinning 0.6s linear infinite;
-  }
-}
-
-@keyframes spinning {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Custom TODO list checkboxes – shoutout to this awesome tutorial: https://moderncss.dev/pure-css-custom-checkbox-style/ */
-
-ul[data-type='taskList'] li > label {
-  margin-right: 0.2rem;
-  user-select: none;
-}
-
-@media screen and (max-width: 768px) {
-  ul[data-type='taskList'] li > label {
-    margin-right: 0.5rem;
-  }
-}
-
-ul[data-type='taskList'] li > label input[type='checkbox'] {
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: var(--bg-background);
-  margin: 0;
-  cursor: pointer;
-  width: 1.2em;
-  height: 1.2em;
-  position: relative;
-  top: 5px;
-  border: 2px solid var(--foreground);
-  margin-right: 0.3rem;
-  display: grid;
-  place-content: center;
-
-  &:hover {
-    background-color: var(--primary/20);
-  }
-
-  &:active {
-    background-color: var(--primary);
-  }
-
-  &::before {
-    content: '';
-    width: 0.65em;
-    height: 0.65em;
-    transform: scale(0);
-    transition: 120ms transform ease-in-out;
-    box-shadow: inset 1em 1em;
-    transform-origin: center;
-    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-  }
-
-  &:checked::before {
-    transform: scale(1);
-  }
-}
-
-ul[data-type='taskList'] li[data-checked='true'] > div > p {
-  color: var(--muted-foreground) !important;
-  text-decoration: line-through;
-  text-decoration-thickness: 2px;
-}
-
-/* Overwrite tippy-box original max-width */
-
-.tippy-box {
-  max-width: 400px !important;
-}
-
-.ProseMirror:not(.dragging) .ProseMirror-selectednode {
-  outline: none !important;
-  border-radius: 0.2rem;
-  background-color: #dfd9fc !important;
-  opacity:;
-  transition: background-color 0.2s;
-  box-shadow: none;
-}
-
-.drag-handle {
-  position: fixed;
-  opacity: 1;
-  transition: opacity ease-in 0.2s;
-  border-radius: 0.25rem;
-
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' style='fill: rgba(0, 0, 0, 0.5)'%3E%3Cpath d='M3,2 C2.44771525,2 2,1.55228475 2,1 C2,0.44771525 2.44771525,0 3,0 C3.55228475,0 4,0.44771525 4,1 C4,1.55228475 3.55228475,2 3,2 Z M3,6 C2.44771525,6 2,5.55228475 2,5 C2,4.44771525 2.44771525,4 3,4 C3.55228475,4 4,4.44771525 4,5 C4,5.55228475 3.55228475,6 3,6 Z M3,10 C2.44771525,10 2,9.55228475 2,9 C2,8.44771525 2.44771525,8 3,8 C3.55228475,8 4,8.44771525 4,9 C4,9.55228475 3.55228475,10 3,10 Z M7,2 C6.44771525,2 6,1.55228475 6,1 C6,0.44771525 6.44771525,0 7,0 C7.55228475,0 8,0.44771525 8,1 C8,1.55228475 7.55228475,2 7,2 Z M7,6 C6.44771525,6 6,5.55228475 6,5 C6,4.44771525 6.44771525,4 7,4 C7.55228475,4 8,4.44771525 8,5 C8,5.55228475 7.55228475,6 7,6 Z M7,10 C6.44771525,10 6,9.55228475 6,9 C6,8.44771525 6.44771525,8 7,8 C7.55228475,8 8,8.44771525 8,9 C8,9.55228475 7.55228475,10 7,10 Z'%3E%3C/path%3E%3C/svg%3E");
-  background-size: calc(0.5em + 0.375rem) calc(0.5em + 0.375rem);
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 1.2rem;
-  height: 1.5rem;
-  z-index: 50;
-  cursor: grab;
-
-  &:hover {
-    background-color: var(--primary) !important;
-    transition: background-color 0.2s;
-  }
-
-  &:active {
-    background-color: #a18ef7 !important;
-    transition: background-color 0.2s;
-  }
-
-  &.hide {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  @media screen and (max-width: 600px) {
-    display: none;
-    pointer-events: none;
-  }
-}
-
-.dark-theme .drag-handle {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' style='fill: rgba(161, 142, 247, 0.2)'%3E%3Cpath d='M3,2 C2.44771525,2 2,1.55228475 2,1 C2,0.44771525 2.44771525,0 3,0 C3.55228475,0 4,0.44771525 4,1 C4,1.55228475 3.55228475,2 3,2 Z M3,6 C2.44771525,6 2,5.55228475 2,5 C2,4.44771525 2.44771525,4 3,4 C3.55228475,4 4,4.44771525 4,5 C4,5.55228475 3.55228475,6 3,6 Z M3,10 C2.44771525,10 2,9.55228475 2,9 C2,8.44771525 2.44771525,8 3,8 C3.55228475,8 4,8.44771525 4,9 C4,9.55228475 3.55228475,10 3,10 Z M7,2 C6.44771525,2 6,1.55228475 6,1 C6,0.44771525 6.44771525,0 7,0 C7.55228475,0 8,0.44771525 8,1 C8,1.55228475 7.55228475,2 7,2 Z M7,6 C6.44771525,6 6,5.55228475 6,5 C6,4.44771525 6.44771525,4 7,4 C7.55228475,4 8,4.44771525 8,5 C8,5.55228475 7.55228475,6 7,6 Z M7,10 C6.44771525,10 6,9.55228475 6,9 C6,8.44771525 6.44771525,8 7,8 C7.55228475,8 8,8.44771525 8,9 C8,9.55228475 7.55228475,10 7,10 Z'%3E%3C/path%3E%3C/svg%3E");
-}
-
-/* Custom Typography styles */
-
-.ProseMirror blockquote {
-  border-left-color: #a18ef7 !important;
-}
-
-.ProseMirror h1,
-.ProseMirror h2,
-.ProseMirror h3 {
-  @apply font-bold;
-  @apply font-sans;
-}
-
-.ProseMirror p {
-  @apply text-muted-foreground;
-  @apply font-sans;
-}
-
-.ProseMirror a {
-  color: var(--primary);
-  font-weight: bold;
-  @apply font-sans;
-}
-
-.contains-task-list {
-  list-style-type: none;
-}
-
-.ProseMirror li {
-  @apply text-muted-foreground;
-}
-
-.ProseMirror pre,
-.ProseMirror code {
-  @apply bg-muted;
-  @apply text-foreground;
 }
 
 /* Tiptap Pro Styles */

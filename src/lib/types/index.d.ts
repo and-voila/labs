@@ -16,6 +16,13 @@ export type NavItem = {
   isTeacher?: boolean;
 };
 
+export interface SidebarLink {
+  href: string;
+  label: string;
+  icon?: React.ReactElement;
+  exact?: boolean;
+}
+
 export type MainNavItem = NavItem;
 
 export interface CourseSidebarItemProps {

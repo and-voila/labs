@@ -1,4 +1,5 @@
 import { TiptapCollabProvider } from '@hocuspocus/provider';
+import { Post, Site } from '@prisma/client';
 import { Language } from '@tiptap-pro/extension-ai';
 import * as Y from 'yjs';
 
@@ -7,12 +8,16 @@ export interface TiptapProps {
   hasCollab: boolean;
   ydoc: Y.Doc;
   provider?: TiptapCollabProvider | null | undefined;
+  user: EditorUser;
+  post: Post & { site: Site };
+  teamSlug: string;
 }
 
 export type EditorUser = {
-  clientId: string;
-  name: string;
-  color: string;
+  id: string;
+  displayName: string;
+  image: string;
+  color?: string;
   initials?: string;
 };
 

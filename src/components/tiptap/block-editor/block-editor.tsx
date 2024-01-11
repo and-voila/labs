@@ -2,17 +2,16 @@ import React, { useCallback, useMemo, useRef } from 'react';
 // import { WebSocketStatus } from '@hocuspocus/provider';
 import { EditorContent, PureEditorContent } from '@tiptap/react';
 
-import { LinkMenu } from '#/components/tiptap/menus/link-menu/link-menu';
-
 import { useBlockEditor } from '#/hooks/tiptap/use-block-editor';
 
 import '#/styles/partials/index.css';
 
 import { createPortal } from 'react-dom';
 
-import { Sidebar } from '#/components/tiptap/block-editor/sidebar';
+import { EditorSidebar } from '#/components/tiptap/block-editor/editor-sidebar';
 import { Loader } from '#/components/tiptap/loader';
 import { ContentItemMenu } from '#/components/tiptap/menus/content-item-menu/content-item-menu';
+import { LinkMenu } from '#/components/tiptap/menus/link-menu/link-menu';
 import { TextMenu } from '#/components/tiptap/menus/text-menu/text-menu';
 
 import { EditorContext } from '#/context/tiptap/editor-context';
@@ -25,7 +24,7 @@ import { useAIState } from '#/hooks/tiptap/use-ai-state';
 import { EditorHeader } from './editor-header';
 import { TiptapProps } from './types';
 
-export const BlockEditor = ({ aiToken, ydoc, provider }: TiptapProps) => {
+export const BlockEditor = ({ aiToken, ydoc, provider, user }: TiptapProps) => {
   const aiState = useAIState();
   const menuContainerRef = useRef(null);
   const editorRef = useRef<PureEditorContent | null>(null);
@@ -39,7 +38,7 @@ export const BlockEditor = ({ aiToken, ydoc, provider }: TiptapProps) => {
   }, []);
 
   const { editor, users, characterCount, collabState, leftSidebar } =
-    useBlockEditor({ aiToken, ydoc, provider });
+    useBlockEditor({ aiToken, ydoc, provider, user });
 
   const displayedUsers = users.slice(0, 3);
 
@@ -64,7 +63,7 @@ export const BlockEditor = ({ aiToken, ydoc, provider }: TiptapProps) => {
   return (
     <EditorContext.Provider value={providerValue}>
       <div className="flex h-full" ref={menuContainerRef}>
-        <Sidebar
+        <EditorSidebar
           isOpen={leftSidebar.isOpen}
           onClose={leftSidebar.close}
           editor={editor}
@@ -81,7 +80,7 @@ export const BlockEditor = ({ aiToken, ydoc, provider }: TiptapProps) => {
           <EditorContent
             editor={editor}
             ref={setEditorRef}
-            className="flex-1 overflow-y-auto"
+            className="flex-1 overflow-y-auto py-16"
           />
           <ContentItemMenu editor={editor} />
           <LinkMenu editor={editor} appendTo={menuContainerRef} />

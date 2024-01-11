@@ -34,7 +34,7 @@ export const TabbedNav: React.FC<{
             key={link.href}
             href={link.href}
             className={cn(
-              'border-b-2 px-1 py-2',
+              'border-b-2 p-1',
               'text-sm font-medium hover:border-primary hover:text-foreground',
               'inline-flex items-center justify-center whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
               (

@@ -31,7 +31,7 @@ export function ModalProvider({ children }: { children: ReactNode }) {
     setShowModal(false);
     setTimeout(() => {
       setModalContent(null);
-    }, 300); // Adjust this timeout as per your transition duration
+    }, 300);
   }, []);
 
   const value = useMemo(() => ({ show, hide }), [show, hide]);

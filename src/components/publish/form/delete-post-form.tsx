@@ -72,7 +72,7 @@ export default function DeletePostForm({
       <div className="relative flex flex-col space-y-4 p-5 sm:p-10">
         <h2 className="text-xl font-semibold">Delete Post</h2>
         <p className="text-sm text-muted-foreground">
-          Deletes your post permanently. Type in the name of your post{' '}
+          To proceed, please type in the name of your post exactly as shown{' '}
           <b>{displayPostName}</b> to confirm.
         </p>
 

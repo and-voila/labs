@@ -9,9 +9,11 @@ import { toast } from '#/components/ui/use-toast';
 export default function Uploader({
   defaultValue,
   name,
+  onChange,
 }: {
   defaultValue: string | null;
   name: 'image' | 'logo';
+  onChange?: (value: string | null) => void;
 }) {
   const aspectRatio = name === 'image' ? 'aspect-video' : 'aspect-square';
 
@@ -92,8 +94,12 @@ export default function Uploader({
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.currentTarget.files && e.currentTarget.files[0];
       handleUpload(file);
+      if (onChange) {
+        const newValue = file ? URL.createObjectURL(file) : null;
+        onChange(newValue);
+      }
     },
-    [handleUpload],
+    [handleUpload, onChange],
   );
 
   return (

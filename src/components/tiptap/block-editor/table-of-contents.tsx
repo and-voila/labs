@@ -33,19 +33,16 @@ export const TableOfContents = memo(
 
     return (
       <>
-        <div className="mb-2 text-xs font-semibold uppercase text-foreground">
-          Table of contents
-        </div>
         {data && data.content.length > 0 ? (
-          <div className="flex flex-col gap-1">
+          <div className="ml-2 flex flex-col gap-1">
             {data.content.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                style={{ marginLeft: `${1 * item.level - 1}rem` }}
+                style={{ marginLeft: `${0.25 * item.level - 1}rem` }}
                 onClick={onItemClick}
                 className={cn(
-                  'block w-full truncate rounded bg-opacity-10 p-1 text-sm font-medium text-muted-foreground transition-all hover:bg-primary/20 hover:text-foreground',
+                  'block w-full truncate rounded bg-opacity-10 p-1 text-xs font-medium text-muted-foreground transition-all hover:bg-primary/20 hover:text-foreground',
                   item.isActive &&
                     'bg-primary/20 font-semibold text-foreground',
                 )}
