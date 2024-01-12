@@ -1,16 +1,9 @@
 // eslint-disable-next-line camelcase
 import { unstable_cache } from 'next/cache';
-import { serialize } from 'next-mdx-remote/serialize';
-import remarkGfm from 'remark-gfm';
 
 import { env } from 'env';
 
 import { db } from '#/lib/db';
-
-import {
-  replaceExamples,
-  replaceTweets,
-} from '#/components/publish/remark-plugins';
 
 export async function getSiteData(domain: string) {
   const subdomain = domain.endsWith(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`)
@@ -120,78 +113,4 @@ export async function getCollabPostData(domain: string, slug: string) {
       tags: [`${domain}-${slug}`],
     },
   )();
-}
-
-export async function getPostData(domain: string, slug: string) {
-  const subdomain = domain.endsWith(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`)
-    ? domain.replace(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`, '')
-    : null;
-
-  return await unstable_cache(
-    async () => {
-      const data = await db.post.findFirst({
-        where: {
-          site: subdomain ? { subdomain } : { customDomain: domain },
-          slug,
-          published: true,
-        },
-        include: {
-          site: {
-            include: {
-              user: true,
-            },
-          },
-        },
-      });
-
-      if (!data) return null;
-
-      const [mdxSource, adjacentPosts] = await Promise.all([
-        getMdxSource(data.content!),
-        db.post.findMany({
-          where: {
-            site: subdomain ? { subdomain } : { customDomain: domain },
-            published: true,
-            NOT: {
-              id: data.id,
-            },
-          },
-          select: {
-            slug: true,
-            title: true,
-            createdAt: true,
-            description: true,
-            image: true,
-            imageBlurhash: true,
-          },
-        }),
-      ]);
-
-      return {
-        ...data,
-        mdxSource,
-        adjacentPosts,
-      };
-    },
-    [`${domain}-${slug}`],
-    {
-      revalidate: 900, // 15 minutes
-      tags: [`${domain}-${slug}`],
-    },
-  )();
-}
-
-async function getMdxSource(postContents: string) {
-  // transforms links like <link> to [link](link) as MDX doesn't support <link> syntax
-  // https://mdxjs.com/docs/what-is-mdx/#markdown
-  const content =
-    postContents?.replaceAll(/<(https?:\/\/\S+)>/g, '[$1]($1)') ?? '';
-  // Serialize the content string into MDX
-  const mdxSource = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm, replaceTweets, () => replaceExamples(db)],
-    },
-  });
-
-  return mdxSource;
 }

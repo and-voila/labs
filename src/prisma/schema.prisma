@@ -263,17 +263,6 @@ model SiteMeta {
   @@map(name: "site_meta")
 }
 
-model Example {
-  id Int @id @default(autoincrement())
-
-  name          String?
-  description   String? @db.Text
-  domainCount   Int?
-  url           String?
-  image         String? @db.Text
-  imageBlurhash String? @db.Text
-}
-
 model Course {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())

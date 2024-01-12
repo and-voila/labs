@@ -10,8 +10,8 @@ import { APP_BP } from '#/lib/const';
 import { usePostContentStore } from '#/lib/store/use-post-content';
 
 import { ConfirmPublishModal } from '#/components/modals/confirm-publish-modal';
-import EditorIpStatusIndicator from '#/components/publish/editor/editor-ip-status-indicator';
 import { Icons } from '#/components/shared/icons';
+import EditorIpStatusIndicator from '#/components/tiptap/block-editor/editor-ip-status-indicator';
 import { Button } from '#/components/ui/button';
 import {
   Card,

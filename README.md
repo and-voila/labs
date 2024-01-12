@@ -210,6 +210,8 @@ While the majority of our project is under the AGPL v3.0, it incorporates compon
 
 4. **NextJS SaaS Starter**: Code from the [NextJS SaaS Starter](https://github.com/juliankoehn/nextjs-saas-starter) is integrated into our project and is licensed under the MIT License.
 
+5. **Tiptap Pro**: Code from our friends at [Tiptap](https://github.com/ueberdosis) is integrated into our project. It has a private license and **must be accompanied by a Tiptap Pro (paid) plan**. You can learn more about [Tiptap pricing here](https://tiptap.dev/pricing).
+
 ### Comprehensive Licensing Details
 
 For a full understanding of how these licenses apply to our project and the interaction between the AGPL v3.0 and MIT Licenses, please see our [License](./LICENSE) file. This document provides a comprehensive overview of the licensing structure for our entire codebase.
