@@ -107,7 +107,7 @@ export default function Uploader({
       <label
         htmlFor={`${name}-upload`}
         className={cn(
-          'group relative mt-2 flex cursor-pointer flex-col items-center justify-center rounded-md border border-border bg-background shadow-sm transition-all hover:bg-background/70',
+          'group relative mt-2 flex cursor-pointer flex-col items-center justify-center rounded-md border bg-background shadow-sm transition-all hover:bg-background/70',
           aspectRatio,
           {
             'max-w-screen-md': aspectRatio === 'aspect-video',

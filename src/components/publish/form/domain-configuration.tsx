@@ -52,7 +52,7 @@ export default function DomainConfiguration({ domain }: { domain: string }) {
     null;
 
   return (
-    <div className="border-t border-border px-10 pb-5 pt-7">
+    <div className="border-t px-10 pb-5 pt-7">
       <div className="mb-4 flex items-center space-x-2">
         {status === 'Pending Verification' ? (
           <Icons.warning className="mr-2 h-5 w-5 text-yellow-600" />
@@ -108,7 +108,7 @@ export default function DomainConfiguration({ domain }: { domain: string }) {
               className={`${
                 recordType == 'A'
                   ? 'border-primary text-foreground'
-                  : 'border-border text-muted-foreground'
+                  : 'border text-muted-foreground'
               } ease border-b-2 pb-1 text-sm transition-all duration-150`}
             >
               A Record{!subdomain && ' (recommended)'}
@@ -119,7 +119,7 @@ export default function DomainConfiguration({ domain }: { domain: string }) {
               className={`${
                 recordType == 'CNAME'
                   ? 'border-primary text-foreground'
-                  : 'border-border text-muted-foreground'
+                  : 'border text-muted-foreground'
               } ease border-b-2 pb-1 text-sm transition-all duration-150`}
             >
               CNAME Record{subdomain && ' (recommended)'}

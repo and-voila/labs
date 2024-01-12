@@ -420,7 +420,7 @@ export default function DashboardPricing() {
 
               <div className="mx-auto max-w-2xl space-y-16">
                 {tiers.map((tier) => (
-                  <div key={tier.title} className="border-t border-border">
+                  <div key={tier.title} className="border-t">
                     <div
                       className={classNames(
                         tier.featured ? 'border-primary' : 'border-transparent',
@@ -533,7 +533,7 @@ export default function DashboardPricing() {
                 Feature comparison
               </h2>
 
-              <div className="grid grid-cols-4 gap-x-8 border-t border-border before:block">
+              <div className="grid grid-cols-4 gap-x-8 border-t before:block">
                 {tiers.map((tier) => (
                   <div key={tier.title} aria-hidden="true" className="-mt-px">
                     <div

@@ -19,7 +19,7 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
   const url = `${data.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}/${data.slug}`;
 
   return (
-    <div className="group relative rounded-lg border border-border bg-card pb-10">
+    <div className="group relative rounded-lg border bg-card pb-10">
       <Link
         href={`${APP_BP}/${teamSlug}/workspace/publish/post/${data.id}`}
         className="flex flex-col overflow-hidden rounded-lg"
