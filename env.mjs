@@ -17,8 +17,6 @@ export const env = createEnv({
     MUX_TOKEN_SECRET: z.string().min(1),
     NEXTAUTH_SECRET: z.string().min(1),
     NEXTAUTH_URL: z.string().url().optional(),
-    OPENAI_API_KEY: z.string().min(1),
-    OPENAI_ASSISTANT_ID: z.string().min(1),
     POSTGRES_URL_NON_POOLING: z.string().min(1),
     PROJECT_ID_VERCEL: z.string().min(1),
     RATELIMIT_UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
@@ -81,8 +79,6 @@ export const env = createEnv({
     NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID:
       process.env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID,
     NEXT_PUBLIC_COLLAB_DOC_PREFIX: process.env.NEXT_PUBLIC_COLLAB_DOC_PREFIX,
-    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-    OPENAI_ASSISTANT_ID: process.env.OPENAI_ASSISTANT_ID,
     POSTGRES_URL_NON_POOLING: process.env.POSTGRES_URL_NON_POOLING,
     PROJECT_ID_VERCEL: process.env.PROJECT_ID_VERCEL,
     RATELIMIT_UPSTASH_REDIS_REST_TOKEN:

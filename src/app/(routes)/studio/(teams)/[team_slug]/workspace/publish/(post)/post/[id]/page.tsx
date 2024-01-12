@@ -39,7 +39,7 @@ export default async function PostIdPage({
 
 export function generateMetadata(): Metadata {
   const title = 'AI Editor';
-  const description = `Draft content with ${siteConfig.name} Edit Post. Embrace a Notion-inspired, AI-powered editor built on Novel.sh for seamless creation and editing that feels like magic.`;
+  const description = `Draft content with ${siteConfig.name} Edit Post. Embrace a Notion-inspired, AI-powered editor built for seamless creation and editing that feels like magic.`;
 
   const ogImageUrl = new URL(`${SITE_URL}/api/og`);
   ogImageUrl.searchParams.set('title', title);
