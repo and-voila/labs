@@ -18,8 +18,20 @@ import { EditorHeader } from '#/components/publish/editor/editor-header';
 import PostDescriptionInput from '#/components/publish/editor/post-description-input';
 import PostTitleInput from '#/components/publish/editor/post-title-input';
 
-import { useAiContentPercentage } from '#/hooks/use-ai-content-percentage';
 import { useKeyboardSave } from '#/hooks/use-keyboard-save';
+
+const useAiContentPercentageMock = (): {
+  aiContentPercentage: number;
+  handleContentChange: (content: string) => void;
+} => {
+  const [aiContentPercentage, setAiContentPercentage] = useState<number>(0);
+
+  const handleContentChange = (content: string) => {
+    setAiContentPercentage(content.length % 100);
+  };
+
+  return { aiContentPercentage, handleContentChange };
+};
 
 export type PostWithSite = Post & { site: { subdomain: string | null } | null };
 
@@ -98,10 +110,8 @@ export default function Editor({
     );
   }, [state.data]);
 
-  const { aiContentPercentage, handleContentChange } = useAiContentPercentage(
-    post?.content || '',
-    post.id,
-  );
+  const { aiContentPercentage, handleContentChange } =
+    useAiContentPercentageMock();
 
   const url = process.env.NEXT_PUBLIC_VERCEL_ENV
     ? `https://${state.data.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}/${state.data.slug}`
