@@ -1,4 +1,4 @@
-import { useCallback, useTransition } from 'react';
+import { useCallback, useEffect, useRef, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { WebSocketStatus } from '@hocuspocus/provider';
 import { Post, Site } from '@prisma/client';
@@ -20,6 +20,8 @@ import {
   CardHeader,
 } from '#/components/ui/card';
 import { toast } from '#/components/ui/use-toast';
+
+import { useAiContentPercentage } from '#/hooks/use-ai-content-percentage';
 
 import { EditorInfo } from './editor-info';
 import { TableOfContents } from './table-of-contents';
@@ -47,6 +49,48 @@ const AiEditorWidget = ({
   post,
   teamSlug,
 }: AiEditorWidgetProps) => {
+  const isFirstLoad = useRef(true);
+  const initialCharacterCountValue = editor.storage.characterCount.characters();
+  const initialCharacterCount =
+    initialCharacterCountValue !== 0 ? initialCharacterCountValue : 0;
+  const characterCountRef = useRef(initialCharacterCount);
+
+  const {
+    aiContentPercentage: calculatedAiContentPercentage,
+    handleContentChange,
+  } = useAiContentPercentage(characterCountRef.current, post.id);
+
+  const aiContentPercentage =
+    collabState === WebSocketStatus.Connected
+      ? calculatedAiContentPercentage
+      : 0;
+
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const updateCharacterCount = () => {
+      const newCharacterCount = editor.storage.characterCount.characters();
+      characterCountRef.current = newCharacterCount;
+      handleContentChange(newCharacterCount);
+    };
+
+    const subscribeToUpdate = () => {
+      editor.on('update', updateCharacterCount);
+      isFirstLoad.current = false;
+    };
+
+    if (isFirstLoad.current) {
+      timeoutId = setTimeout(subscribeToUpdate, 5000);
+    } else {
+      subscribeToUpdate();
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+      editor.off('update', updateCharacterCount);
+    };
+  }, [editor, handleContentChange]);
+
   const setHtmlContent = usePostContentStore((state) => state.setHtmlContent);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
@@ -114,9 +158,6 @@ const AiEditorWidget = ({
       }
     });
   }, [editor, post]);
-
-  // Mock aiContentPercentage
-  const aiContentPercentage = 40;
 
   return (
     <div className="py-10">

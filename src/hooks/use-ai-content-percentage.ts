@@ -47,95 +47,107 @@ const updateLocalStorage = (
 };
 
 export const useAiContentPercentage = (
-  initialContent: string,
+  initialCharacterCount: number,
   postId: string,
 ): {
   aiContentPercentage: number;
-  handleContentChange: (arg0: string) => void;
+  handleContentChange: (arg0: number) => void;
 } => {
-  const [totalContentLength, setTotalContentLength] = useState<number>(
-    initialContent.length,
+  const [totalCharacterCount, setTotalCharacterCount] = useState<number>(
+    initialCharacterCount,
   );
-  const [aiContentLength, setAiContentLength] = useState<number>(0);
+  const [aiCharacterCount, setAiCharacterCount] = useState<number>(0);
   const [aiContentPercentage, setAiContentPercentage] = useState<number>(() =>
     getInitialPercentage(postId),
   );
-  const [previousContent, setPreviousContent] =
-    useState<string>(initialContent);
+  const [previousCharacterCount, setPreviousCharacterCount] = useState<number>(
+    initialCharacterCount,
+  );
   const [isPastedContent, setIsPastedContent] = usePasteDetection();
 
   const calculateAiContentPercentage = (
-    aiContentLength: number,
-    totalContentLength: number,
+    aiCharacterCount: number,
+    totalCharacterCount: number,
   ) => {
-    return totalContentLength === 0
+    return totalCharacterCount === 0
       ? 0
-      : (aiContentLength / totalContentLength) * 100;
+      : (aiCharacterCount / totalCharacterCount) * 100;
   };
 
   const updateAiContentPercentage = (
-    currentContent: string,
-    previousContent: string,
+    currentCharacterCount: number,
+    previousCharacterCount: number,
   ) => {
-    const lengthDifference = currentContent.length - previousContent.length;
-    let newTotalContentLength = totalContentLength;
-    let newAiContentLength = aiContentLength;
+    const characterDifference = currentCharacterCount - previousCharacterCount;
+    let newTotalCharacterCount = totalCharacterCount;
+    let newAiCharacterCount = aiCharacterCount;
 
     if (
-      lengthDifference > 0 &&
+      characterDifference > 0 &&
       !isPastedContent &&
-      lengthDifference > SIGNIFICANT_CONTENT_LENGTH
+      characterDifference > SIGNIFICANT_CONTENT_LENGTH
     ) {
-      newTotalContentLength += lengthDifference;
-      newAiContentLength += lengthDifference;
-    } else if (lengthDifference > 0) {
-      newTotalContentLength += lengthDifference;
-    } else if (lengthDifference < 0) {
-      newTotalContentLength = Math.max(
+      newTotalCharacterCount += characterDifference;
+      newAiCharacterCount += characterDifference;
+    } else if (characterDifference > 0) {
+      newTotalCharacterCount += characterDifference;
+    } else if (characterDifference < 0) {
+      newTotalCharacterCount = Math.max(
         0,
-        newTotalContentLength + lengthDifference,
+        newTotalCharacterCount + characterDifference,
       );
-      newAiContentLength = Math.max(0, newAiContentLength + lengthDifference);
+      newAiCharacterCount = Math.max(
+        0,
+        newAiCharacterCount + characterDifference,
+      );
     }
 
     const newAiContentPercentage = calculateAiContentPercentage(
-      newAiContentLength,
-      newTotalContentLength,
+      newAiCharacterCount,
+      newTotalCharacterCount,
     );
 
-    // console.log(`Current content length: ${newTotalContentLength}`);
-    // console.log(`AI content length: ${newAiContentLength}`);
-    // console.log(`AI content percentage: ${newAiContentPercentage}`);
-
-    setTotalContentLength(newTotalContentLength);
-    setAiContentLength(newAiContentLength);
+    setTotalCharacterCount(newTotalCharacterCount);
+    // console.log('Total character count set to:', newTotalCharacterCount);
+    setAiCharacterCount(newAiCharacterCount);
+    // console.log('AI character count set to:', newAiCharacterCount);
     setAiContentPercentage(newAiContentPercentage);
-    setPreviousContent(currentContent);
+    // console.log('AI content percentage set to:', newAiContentPercentage);
+    setPreviousCharacterCount(currentCharacterCount);
+    // console.log('Previous character count set to:', currentCharacterCount);
   };
 
-  const handleContentChange = useDebouncedCallback((currentContent: string) => {
-    const lengthDifference = currentContent.length - previousContent.length;
-    let newTotalContentLength = totalContentLength;
+  const handleContentChange = useDebouncedCallback(
+    (currentCharacterCount: number) => {
+      // console.log('handleContentChange called:', currentCharacterCount);
+      const characterDifference =
+        currentCharacterCount - previousCharacterCount;
+      let newTotalCharacterCount = totalCharacterCount;
 
-    if (isPastedContent) {
-      // console.log('Content pasted, ignoring for generation count');
-      setIsPastedContent(false);
-      if (lengthDifference > 0) {
-        newTotalContentLength += lengthDifference;
-      } else if (lengthDifference < 0) {
-        newTotalContentLength = Math.max(
-          0,
-          newTotalContentLength + lengthDifference,
+      if (isPastedContent) {
+        // console.log('Content pasted, ignoring for generation count');
+        setIsPastedContent(false);
+        if (characterDifference > 0) {
+          newTotalCharacterCount += characterDifference;
+        } else if (characterDifference < 0) {
+          newTotalCharacterCount = Math.max(
+            0,
+            newTotalCharacterCount + characterDifference,
+          );
+        }
+        setTotalCharacterCount(newTotalCharacterCount);
+        // console.log(`Current total character count: ${newTotalCharacterCount}`);
+      } else {
+        updateAiContentPercentage(
+          currentCharacterCount,
+          previousCharacterCount,
         );
       }
-      setTotalContentLength(newTotalContentLength);
-      // console.log(`Current content length: ${newTotalContentLength}`);
-    } else {
-      updateAiContentPercentage(currentContent, previousContent);
-    }
 
-    setPreviousContent(currentContent);
-  }, 300);
+      setPreviousCharacterCount(currentCharacterCount);
+    },
+    1000,
+  );
 
   useEffect(
     () => updateLocalStorage(postId, aiContentPercentage),
