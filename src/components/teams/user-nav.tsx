@@ -1,11 +1,13 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import Link from 'next/link';
+import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
 
 import { APP_BP } from '#/lib/const';
-import type { User } from '#/lib/types/next-auth';
+import { userColors } from '#/lib/tiptap/constants';
+import { randomElement } from '#/lib/tiptap/utils';
 
 import { Icons } from '#/components/shared/icons';
 import { AvatarFallback } from '#/components/ui/avatar';
@@ -19,7 +21,7 @@ import {
 import { UserAvatar } from '#/components/ui/user-avatar';
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
-  user: Pick<User, 'name' | 'image' | 'email' | 'displayName'>;
+  user: Pick<User, 'name' | 'image' | 'email' | 'displayName' | 'id'>;
 }
 
 export function UserAccountNav({ user }: UserAccountNavProps) {
@@ -38,15 +40,21 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
     },
     [handleSignOut],
   );
+
+  const randomColor = useMemo(() => randomElement(userColors), []);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
           user={{
+            id: user?.id,
             name: user?.name || user?.displayName || null,
             image:
               user?.image ||
-              `https://avatar.vercel.sh/${user?.name || user?.displayName}`,
+              `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${user?.displayName}.svg?backgroundColor=${(
+                randomColor || 'bg-primary'
+              ).replace('#', '')}`,
             displayName: user?.displayName || null,
           }}
           className="h-8 w-8"

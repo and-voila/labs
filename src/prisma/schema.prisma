@@ -42,6 +42,7 @@ model Team {
 
   name       String  @unique
   slug       String  @unique
+  image      String?
   isPersonal Boolean @default(false)
 
   members          Membership[]
