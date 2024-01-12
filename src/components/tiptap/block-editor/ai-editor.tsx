@@ -91,7 +91,7 @@ export const AiEditor = ({
             <TableColumnMenu editor={editor} appendTo={menuContainerRef} />
             <ImageBlockMenu editor={editor} appendTo={menuContainerRef} />
           </main>
-          <aside className="sticky top-24 hidden w-96 shrink-0 xl:block">
+          <aside className="sticky top-36 hidden w-96 shrink-0 xl:block">
             <AiEditorWidget
               characterCount={characterCount}
               collabState={collabState}
