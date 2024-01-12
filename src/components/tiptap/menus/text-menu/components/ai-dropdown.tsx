@@ -48,7 +48,7 @@ export const AIDropdown = ({
           activeClassname="text-alternate/80 hover:text-alternate"
         >
           <Icon name="Sparkles" className="mr-1" />
-          AI Tools
+          AI Assist
           <Icon name="ChevronDown" className="ml-1 h-2 w-2" />
         </Toolbar.Button>
       </Dropdown.Trigger>
@@ -63,7 +63,7 @@ export const AIDropdown = ({
           <Dropdown.Item onClick={onFixSpelling}>
             <DropdownButton>
               <Icon name="Eraser" />
-              Fix spelling & grammar
+              Proofread
             </DropdownButton>
           </Dropdown.Item>
           <Dropdown.Item onClick={onMakeShorter}>
@@ -79,7 +79,7 @@ export const AIDropdown = ({
             </DropdownButton>
           </Dropdown.Item>
           <Dropdown.Sub>
-            <Dropdown.SubTrigger asChild>
+            <Dropdown.SubTrigger>
               <DropdownButton>
                 <Icon name="Mic" />
                 Change tone
@@ -102,7 +102,7 @@ export const AIDropdown = ({
           <Dropdown.Item onClick={onTldr}>
             <DropdownButton>
               <Icon name="MoreHorizontal" />
-              Tl;dr:
+              Summarize
             </DropdownButton>
           </Dropdown.Item>
           <Dropdown.Item onClick={onEmojify}>
@@ -135,7 +135,7 @@ export const AIDropdown = ({
           <Dropdown.Item onClick={onCompleteSentence}>
             <DropdownButton>
               <Icon name="PenLine" />
-              Complete sentence
+              Finish Sentence
             </DropdownButton>
           </Dropdown.Item>
         </Surface>
