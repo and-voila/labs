@@ -35,7 +35,7 @@ export const TextMenu = ({ editor }: TextMenuProps) => {
 
   return (
     <BubbleMenu
-      tippyOptions={{ popperOptions: { placement: 'top-end' } }}
+      tippyOptions={{ popperOptions: { placement: 'auto-end' } }}
       editor={editor}
       pluginKey="textMenu"
       shouldShow={states.shouldShow}
@@ -96,17 +96,6 @@ export const TextMenu = ({ editor }: TextMenuProps) => {
         >
           <Icon name="Strikethrough" />
         </MemoButton>
-        <MemoButton
-          tooltip="Code"
-          tooltipShortcut={['Mod', 'E']}
-          onClick={commands.onCode}
-          active={states.isCode}
-        >
-          <Icon name="Code" />
-        </MemoButton>
-        <MemoButton tooltip="Code block" onClick={commands.onCodeBlock}>
-          <Icon name="Code2" />
-        </MemoButton>
         <EditLinkPopover onSetLink={commands.onLink} />
         <Popover.Root>
           <Popover.Trigger asChild>
@@ -151,6 +140,17 @@ export const TextMenu = ({ editor }: TextMenuProps) => {
           </Popover.Trigger>
           <Popover.Content side="top" asChild>
             <Toolbar.Wrapper>
+              <MemoButton
+                tooltip="Code"
+                tooltipShortcut={['Mod', 'E']}
+                onClick={commands.onCode}
+                active={states.isCode}
+              >
+                <Icon name="Code" />
+              </MemoButton>
+              <MemoButton tooltip="Code block" onClick={commands.onCodeBlock}>
+                <Icon name="Code2" />
+              </MemoButton>
               <MemoButton
                 tooltip="Subscript"
                 tooltipShortcut={['Mod', '.']}
