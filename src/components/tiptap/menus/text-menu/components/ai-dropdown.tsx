@@ -47,7 +47,7 @@ export const AIDropdown = ({
           className="text-alternate hover:text-alternate/80 active:text-alternate"
           activeClassname="text-alternate/80 hover:text-alternate"
         >
-          <Icon name="Sparkles" className="mr-1" />
+          <Icon name="Bot" className="mr-1" />
           AI Assist
           <Icon name="ChevronDown" className="ml-1 h-2 w-2" />
         </Toolbar.Button>

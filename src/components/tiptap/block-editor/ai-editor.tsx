@@ -76,7 +76,7 @@ export const AiEditor = ({
         className="relative flex h-full flex-1 flex-col"
         ref={menuContainerRef}
       >
-        <div className="flex w-full max-w-7xl items-start gap-x-4 px-4">
+        <div className="mx-auto flex w-full max-w-7xl items-start gap-x-4 px-4">
           <main className="flex-1">
             <EditorContent
               editor={editor}
