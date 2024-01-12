@@ -8,6 +8,7 @@ export interface Team {
   createdAt: Date;
   updatedAt: Date | null;
   isPersonal: boolean;
+  image?: string | null | undefined;
 }
 
 interface GetTeamsResult {

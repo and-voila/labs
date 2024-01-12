@@ -2,9 +2,9 @@
 
 import React, { startTransition, useCallback, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { Team } from '@prisma/client';
 
 import { APP_BP } from '#/lib/const';
+import { Team } from '#/lib/operations/teams/get-teams';
 import { userColors } from '#/lib/tiptap/constants';
 import { randomElement } from '#/lib/tiptap/utils';
 import { cn } from '#/lib/utils';
