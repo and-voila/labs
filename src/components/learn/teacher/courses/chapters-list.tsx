@@ -100,7 +100,7 @@ export const ChaptersList = ({
                     <div className="ml-auto flex items-center gap-x-2 pr-2">
                       <Badge
                         className={cn(
-                          'pointer-events-none border border-border bg-transparent text-muted-foreground',
+                          'pointer-events-none border bg-transparent text-muted-foreground',
                           chapter.isPublished &&
                             'pointer-events-none border-primary bg-transparent text-primary',
                         )}
