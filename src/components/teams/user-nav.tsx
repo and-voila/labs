@@ -55,7 +55,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
               `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${user?.displayName}.svg?backgroundColor=${(
                 randomColor || 'bg-primary'
               ).replace('#', '')}`,
-            displayName: user?.displayName || null,
+            displayName: user?.name || user?.displayName || null,
           }}
           className="h-8 w-8"
         >
@@ -65,7 +65,9 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
       <DropdownMenuContent align="end">
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col space-y-1 leading-none">
-            <p className="text-sm font-medium">{user?.displayName}</p>
+            <p className="text-sm font-medium text-alternate">
+              {user?.name || user?.displayName}
+            </p>
             {user?.email && (
               <p className="w-[200px] truncate text-xs text-muted-foreground">
                 {user?.email}

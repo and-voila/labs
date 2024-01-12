@@ -85,8 +85,7 @@ export function UserNameForm({ user }: UserNameFormProps) {
         <CardHeader>
           <CardTitle>Your name</CardTitle>
           <CardDescription>
-            Please use your real name here. It&apos;s private and will not be
-            visible to others.
+            Real name&apos;s for the team and cool custom domains.
           </CardDescription>
         </CardHeader>
         <CardContent>

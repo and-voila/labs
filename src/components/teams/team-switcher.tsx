@@ -103,7 +103,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
             role="combobox"
             aria-expanded={isOpen}
             aria-label="Select workspace"
-            className={cn('w-52 justify-between')}
+            className={cn('w-52 justify-between text-alternate')}
           >
             <Avatar className="mr-2 h-5 w-5">
               <AvatarImage

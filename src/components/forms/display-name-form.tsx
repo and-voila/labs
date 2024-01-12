@@ -92,8 +92,7 @@ export function DisplayNameForm({ user }: DisplayNameFormProps) {
         <CardHeader>
           <CardTitle>Your display name</CardTitle>
           <CardDescription>
-            This name will be visible in the app to your team collaborators and
-            on app leaderboards.
+            This name? It&apos;s for the outside world to see.
           </CardDescription>
         </CardHeader>
         <CardContent>
