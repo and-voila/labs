@@ -23,7 +23,8 @@
     "*.{js,ts,jsx,tsx,md,mdx}": [
       "pnpm run prettier --write",
       "eslint --fix"
-    ]
+    ],
+    "*.{ts,tsx}": "pnpm run type-check"
   },
   "prisma": {
     "schema": "src/prisma/schema.prisma"
