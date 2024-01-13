@@ -99,7 +99,6 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
         <PopoverTrigger asChild>
           <Button
             variant="outline"
-            size="sm"
             role="combobox"
             aria-expanded={isOpen}
             aria-label="Select workspace"
@@ -110,7 +109,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                 src={
                   activeTeam?.image ||
                   `https://api.dicebear.com/7.x/shapes/svg?seed=${activeTeam?.id}.svg?backgroundColor=${(
-                    randomColor || 'bg-primary'
+                    randomColor || ''
                   ).replace('#', '')}`
                 }
                 alt={activeTeam?.name ?? 'Active Team'}
@@ -131,12 +130,20 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
         <PopoverContent className="w-52 p-0">
           <Command>
             <CommandList>
-              <CommandInput placeholder="Search workspaces..." />
+              <CommandInput
+                placeholder="Search workspaces..."
+                className="bg-background text-xs"
+              />
               <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup heading="Personal workspace">
                 <CommandItem
                   key="personal"
-                  className="cursor-pointer text-sm"
+                  className={cn(
+                    'cursor-pointer text-sm',
+                    activeTeam?.slug === personalTeam?.slug
+                      ? 'bg-primary/20 font-semibold text-foreground'
+                      : 'text-muted-foreground',
+                  )}
                   onSelect={onPersonalTeamSelect}
                 >
                   <Avatar className="mr-2 h-5 w-5">
@@ -144,7 +151,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                       src={
                         personalTeam?.image ||
                         `https://api.dicebear.com/7.x/shapes/svg?seed=${personalTeam?.id}.svg?backgroundColor=${(
-                          randomColor || 'bg-primary'
+                          randomColor || ''
                         ).replace('#', '')}`
                       }
                       alt={`Profile avatar of ${
@@ -154,6 +161,14 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                     <AvatarFallback>{personalTeam?.name?.[0]}</AvatarFallback>
                   </Avatar>
                   {personalTeam?.name ?? 'Personal Team'}
+                  <Icons.check
+                    className={cn(
+                      'ml-auto h-4 w-4 text-foreground',
+                      activeTeam?.slug === personalTeam?.slug
+                        ? 'opacity-100'
+                        : 'opacity-0',
+                    )}
+                  />
                 </CommandItem>
               </CommandGroup>
               <CommandGroup heading="Team workspaces">
@@ -164,7 +179,9 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                       key={team.id}
                       className={cn(
                         'cursor-pointer text-sm',
-                        team?.slug === team.slug ? 'bg-primary/20' : '',
+                        activeTeam?.slug === team.slug
+                          ? 'bg-primary/20 font-semibold text-foreground'
+                          : 'text-muted-foreground',
                       )}
                       onSelect={onTeamSelectCallback(team)}
                     >
@@ -183,7 +200,7 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                       <p className="truncate">{team.name}</p>
                       <Icons.check
                         className={cn(
-                          'ml-auto h-4 w-4 text-primary',
+                          'ml-auto h-4 w-4 text-foreground',
                           activeTeam?.slug === team.slug
                             ? 'opacity-100'
                             : 'opacity-0',
