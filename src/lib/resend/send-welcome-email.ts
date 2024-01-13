@@ -1,3 +1,5 @@
+'use server';
+
 import { siteConfig } from '#/config/site';
 
 import { APP_BP, SITE_URL } from '#/lib/const';

@@ -26,7 +26,7 @@ export type EmailVerificationLinkEmailProps = {
   invitedBy: string;
 };
 
-export const Template = ({
+export const TeamInviteEmail = ({
   link,
   appName,
   teamName,
