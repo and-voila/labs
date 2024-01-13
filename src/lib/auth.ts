@@ -167,12 +167,11 @@ export function withSiteAuth(action: any) {
         },
       },
     });
-    if (!membership || !['ADMIN', 'OWNER'].includes(membership.role)) {
+    if (!membership) {
       return {
         error: 'Not authorized',
       };
     }
-
     return action(formData, site, key);
   };
 }

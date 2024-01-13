@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use server';
 
 import { revalidateTag } from 'next/cache';
@@ -26,7 +25,7 @@ import { getBlurDataURL } from '#/lib/utils';
 const nanoid = customAlphabet(
   '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
   7,
-); // 7-character random string
+);
 
 export const createSite = async (formData: FormData) => {
   const session = await getSession();
@@ -74,6 +73,7 @@ export const createSite = async (formData: FormData) => {
     });
     await revalidateTag(`${subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`);
     return response;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.code === 'P2002') {
       return {
@@ -215,6 +215,7 @@ export const updateSite = withSiteAuth(
         (await revalidateTag(`${site.customDomain}-metadata`));
 
       return response;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.code === 'P2002') {
         return {
@@ -230,6 +231,29 @@ export const updateSite = withSiteAuth(
 );
 
 export const deleteSite = withSiteAuth(async (_: FormData, site: Site) => {
+  const session = await getSession();
+
+  if (!session?.user.id || !site.teamId) {
+    return {
+      error: 'Not authenticated',
+    };
+  }
+
+  const membership = await db.membership.findUnique({
+    where: {
+      userId_teamId: {
+        userId: session.user.id,
+        teamId: site.teamId,
+      },
+    },
+  });
+
+  if (!membership || !['OWNER', 'ADMIN'].includes(membership.role)) {
+    return {
+      error:
+        'Whoops, for now, you need to be an admin to delete a site. Thank you for your patience.',
+    };
+  }
   try {
     const response = await db.site.delete({
       where: {
@@ -242,6 +266,7 @@ export const deleteSite = withSiteAuth(async (_: FormData, site: Site) => {
     response.customDomain &&
       (await revalidateTag(`${site.customDomain}-metadata`));
     return response;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return {
       error: error.message,
@@ -260,40 +285,6 @@ export const getSiteFromPostId = async (postId: string) => {
   });
   return post?.siteId;
 };
-
-export const createPost = withSiteAuth(
-  // eslint-disable-next-line camelcase
-  async (_: FormData, site: Site, team_slug: string) => {
-    const session = await getSession();
-    if (!session?.user.id) {
-      return {
-        error: 'Not authenticated',
-      };
-    }
-
-    const team = await getTeam(team_slug);
-    if (!team) {
-      return {
-        error: 'Not authenticated',
-      };
-    }
-
-    const response = await db.post.create({
-      data: {
-        siteId: site.id,
-        teamId: team.id,
-        userId: session.user.id,
-      },
-    });
-
-    await revalidateTag(
-      `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
-    );
-    site.customDomain && (await revalidateTag(`${site.customDomain}-posts`));
-
-    return response;
-  },
-);
 
 export const createCollabPost = withSiteAuth(
   // eslint-disable-next-line camelcase
@@ -336,149 +327,6 @@ export const createCollabPost = withSiteAuth(
     site.customDomain && (await revalidateTag(`${site.customDomain}-posts`));
 
     return response;
-  },
-);
-
-// creating a separate function for this because we're not using FormData
-export const updatePost = async (data: Post, teamSlug: string) => {
-  const session = await getSession();
-  if (!session?.user.id) {
-    return {
-      error: 'Not authenticated',
-    };
-  }
-
-  const team = await getTeam(teamSlug);
-  if (!team) {
-    return {
-      error: 'Team not found',
-    };
-  }
-
-  const membership = await db.membership.findUnique({
-    where: {
-      userId_teamId: {
-        userId: session.user.id,
-        teamId: team.id,
-      },
-    },
-  });
-  if (!membership) {
-    return {
-      error: 'Not authorized',
-    };
-  }
-  const post = await db.post.findUnique({
-    where: {
-      id: data.id,
-    },
-    include: {
-      site: true,
-    },
-  });
-  if (!post || post.teamId !== team.id) {
-    return {
-      error: 'Post not found',
-    };
-  }
-  try {
-    const response = await db.post.update({
-      where: {
-        id: data.id,
-      },
-      data: {
-        title: data.title,
-        description: data.description,
-        content: data.content,
-      },
-    });
-
-    await revalidateTag(
-      `${post.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
-    );
-    await revalidateTag(
-      `${post.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-${post.slug}`,
-    );
-
-    // if the site has a custom domain, we need to revalidate those tags too
-    post.site?.customDomain &&
-      (await revalidateTag(`${post.site?.customDomain}-posts`),
-      await revalidateTag(`${post.site?.customDomain}-${post.slug}`));
-
-    return response;
-  } catch (error: any) {
-    return {
-      error: error.message,
-    };
-  }
-};
-
-export const updatePostMetadata = withPostAuth(
-  async (
-    formData: FormData,
-    post: Post & {
-      site: Site;
-    },
-    key: string,
-  ) => {
-    const value = formData.get(key) as string;
-
-    try {
-      let response;
-      if (key === 'image') {
-        const file = formData.get('image') as File;
-        const filename = `${nanoid()}.${file.type.split('/')[1]}`;
-
-        const { url } = await put(filename, file, {
-          access: 'public',
-        });
-
-        const blurhash = await getBlurDataURL(url);
-
-        response = await db.post.update({
-          where: {
-            id: post.id,
-          },
-          data: {
-            image: url,
-            imageBlurhash: blurhash,
-          },
-        });
-      } else {
-        response = await db.post.update({
-          where: {
-            id: post.id,
-          },
-          data: {
-            [key]: key === 'published' ? value === 'true' : value,
-          },
-        });
-      }
-
-      await revalidateTag(
-        `${post.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
-      );
-      await revalidateTag(
-        `${post.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-${post.slug}`,
-      );
-
-      // if the site has a custom domain, we need to revalidate those tags too
-      post.site?.customDomain &&
-        (await revalidateTag(`${post.site?.customDomain}-posts`),
-        await revalidateTag(`${post.site?.customDomain}-${post.slug}`));
-
-      return response;
-    } catch (error: any) {
-      if (error.code === 'P2002') {
-        return {
-          error: 'This slug is already in use',
-        };
-      } else {
-        return {
-          error: error.message,
-        };
-      }
-    }
   },
 );
 
@@ -552,6 +400,7 @@ export const publishPost = async (
     );
 
     return { data: response };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.code === 'P2002') {
       return { error: 'This slug is already in use' };
@@ -583,6 +432,7 @@ export const updateCollabPost = async (
       blurhash = await getBlurDataURL(imageUrl);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const updateData: { [key: string]: any } = {};
     formData.forEach((value, key) => {
       if (key === 'author') {
@@ -625,6 +475,7 @@ export const updateCollabPost = async (
     await revalidatePostTags(post.site, formData.get('slug') as string);
 
     return { data: response };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.code === 'P2002') {
       return { error: 'This slug is already in use' };
@@ -635,6 +486,30 @@ export const updateCollabPost = async (
 };
 
 export const deletePost = withPostAuth(async (_: FormData, post: Post) => {
+  const session = await getSession();
+
+  if (!session?.user.id || !post.teamId) {
+    return {
+      error: 'Not authenticated',
+    };
+  }
+
+  const isAuthor = session.user.id === post.userId;
+  const membership = await db.membership.findFirst({
+    where: {
+      userId: session.user.id,
+      teamId: post.teamId,
+    },
+  });
+  const hasRequiredRole =
+    membership && ['OWNER', 'ADMIN'].includes(membership.role);
+
+  if (!isAuthor && !hasRequiredRole) {
+    return {
+      error:
+        "You didn't create this post or are not the assigned author. Please ask an Admin to delete it. Thank you.",
+    };
+  }
   try {
     const response = await db.post.delete({
       where: {
@@ -663,45 +538,10 @@ export const deletePost = withPostAuth(async (_: FormData, post: Post) => {
     }
 
     return response;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return {
       error: error.message,
     };
   }
 });
-
-export const editUser = async (
-  formData: FormData,
-  _id: unknown,
-  key: string,
-) => {
-  const session = await getSession();
-  if (!session?.user.id) {
-    return {
-      error: 'Not authenticated',
-    };
-  }
-  const value = formData.get(key) as string;
-
-  try {
-    const response = await db.user.update({
-      where: {
-        id: session.user.id,
-      },
-      data: {
-        [key]: value,
-      },
-    });
-    return response;
-  } catch (error: any) {
-    if (error.code === 'P2002') {
-      return {
-        error: `This ${key} is already in use`,
-      };
-    } else {
-      return {
-        error: error.message,
-      };
-    }
-  }
-};
