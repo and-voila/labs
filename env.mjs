@@ -65,12 +65,17 @@ export const env = createEnv({
     MUX_TOKEN_SECRET: process.env.MUX_TOKEN_SECRET,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    NEXT_PUBLIC_APP_URL:
+      process.env.VERCEL_ENV === 'production'
+        ? `${process.env.NEXT_PUBLIC_APP_URL}`
+        : process.env.VERCEL_ENV === 'preview'
+          ? `${process.env.VERCEL_URL}`
+          : 'http://localhost:3001',
     NEXT_PUBLIC_POSTHOG_HOST:
       process.env.VERCEL_ENV === 'production'
         ? `${process.env.NEXT_PUBLIC_APP_URL}/ingest`
         : process.env.VERCEL_ENV === 'preview'
-          ? `https://${process.env.VERCEL_URL}/ingest`
+          ? `${process.env.VERCEL_URL}/ingest`
           : 'http://localhost:3001/ingest',
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_ROOT_DOMAIN: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
