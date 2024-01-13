@@ -14,8 +14,8 @@ interface DomainRootLayoutProps {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#edf1f2' },
-    { media: '(prefers-color-scheme: dark)', color: '#010101' },
+    { media: '(prefers-color-scheme: light)', color: '#f8f9fb' },
+    { media: '(prefers-color-scheme: dark)', color: '#020617' },
   ],
   width: 'device-width',
   initialScale: 1,
