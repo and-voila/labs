@@ -14,11 +14,12 @@ export default async function MarketingLayout({
   children,
   params,
 }: MarketingLayoutProps) {
-  const { user, teams } = await getTeams();
+  const { user, teams, activeTeamSlug: personalTeamSlug } = await getTeams();
+  const activeTeamSlug = params.team_slug || personalTeamSlug;
 
   return (
     <div className=" flex min-h-screen flex-col">
-      <NavBar user={user} teams={teams} activeTeamSlug={params.team_slug} />
+      <NavBar user={user} teams={teams} activeTeamSlug={activeTeamSlug} />
       <main className="mx-auto max-w-7xl flex-1 px-6 py-8 lg:px-12">
         {children}
       </main>
