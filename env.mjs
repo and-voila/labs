@@ -38,6 +38,8 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_APP_URL: z.string().min(1),
     NEXT_PUBLIC_ROOT_DOMAIN: z.string().min(1),
+    NEXT_PUBLIC_POSTHOG_KEY: z.string().min(1),
+    NEXT_PUBLIC_POSTHOG_HOST: z.string().min(1),
     NEXT_PUBLIC_STRIPE_BEST_MONTHLY_PRICE_ID: z.string().min(1),
     NEXT_PUBLIC_STRIPE_BEST_YEARLY_PRICE_ID: z.string().min(1),
     NEXT_PUBLIC_STRIPE_BETTER_MONTHLY_PRICE_ID: z.string().min(1),
@@ -64,6 +66,13 @@ export const env = createEnv({
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    NEXT_PUBLIC_POSTHOG_HOST:
+      process.env.VERCEL_ENV === 'production'
+        ? `${process.env.NEXT_PUBLIC_APP_URL}/ingest`
+        : process.env.VERCEL_ENV === 'preview'
+          ? `https://${process.env.VERCEL_URL}/ingest`
+          : 'http://localhost:3001/ingest',
+    NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_ROOT_DOMAIN: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
     NEXT_PUBLIC_STRIPE_BEST_MONTHLY_PRICE_ID:
       process.env.NEXT_PUBLIC_STRIPE_BEST_MONTHLY_PRICE_ID,
