@@ -1,3 +1,5 @@
+'use server';
+
 import { siteConfig } from '#/config/site';
 
 import { db } from '#/lib/db';

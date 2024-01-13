@@ -2,11 +2,11 @@
 
 import { useCallback, useState } from 'react';
 import { useParams } from 'next/navigation';
-import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
 
 import { siteConfig } from '#/config/site';
 
+import { sendAbuseReportEmail } from '#/lib/resend/send-abuse-report';
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
@@ -21,18 +21,24 @@ export default function ReportAbuse() {
     setOpen(!open);
   }, [open]);
 
-  const handleFormAction = useCallback(async (formData: FormData) => {
-    const url = formData.get('url') as string;
-    va.track('Reported Abuse', { url });
-    // artificial 1s delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setOpen(false);
-    toast({
-      title: 'Your report has been submitted',
-      description: `Thanks for helping make ${siteConfig.name} a safer place. We'll review your report and take action as per our Terms of Service.`,
-      variant: 'success',
-    });
-  }, []);
+  const handleFormAction = useCallback(async () => {
+    try {
+      await sendAbuseReportEmail(domain, slug);
+      setOpen(false);
+      toast({
+        title: 'Your report has been submitted',
+        description: `Thanks for helping make ${siteConfig.name} a safer place. We'll review your report and take action as per our Terms of Service.`,
+        variant: 'success',
+      });
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description:
+          'There was an issue submitting your report. Please try again.',
+        variant: 'destructive',
+      });
+    }
+  }, [domain, slug]);
 
   return (
     <>

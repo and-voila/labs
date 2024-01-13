@@ -1,10 +1,11 @@
-// src/lib/resend/send-team-invite-email.ts
+'use server';
+
 import { siteConfig } from '#/config/site';
 
 import { SITE_URL } from '#/lib/const';
 import { resend } from '#/lib/resend/resend';
 
-import { Template } from '#/emails/team-invite-email';
+import { TeamInviteEmail } from '#/emails/team-invite-email';
 
 export async function sendTeamInviteEmail(
   teamName: string,
@@ -22,7 +23,7 @@ export async function sendTeamInviteEmail(
       to:
         process.env.NODE_ENV === 'development' ? 'delivered@resend.dev' : email,
       subject: subject,
-      react: Template({
+      react: TeamInviteEmail({
         teamName,
         link: url,
         appName: siteConfig.name,
