@@ -39,9 +39,7 @@ export default async function WorkspaceSharedLayout({
       <NavBar user={user} teams={teams} activeTeamSlug={params.team_slug} />
       <div className="flex flex-1 flex-col ps-16 pt-16">
         <Sidebar links={links} />
-        <main className="flex w-full flex-1 flex-col overflow-hidden">
-          {children}
-        </main>
+        <main className="flex w-full flex-1 flex-col">{children}</main>
       </div>
       <SiteFooter />
     </div>
