@@ -2,7 +2,6 @@
 
 import { useCallback, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
 
 import { deletePost } from '#/lib/actions/publish/publish-actions';
@@ -38,7 +37,6 @@ export default function DeletePostForm({
             variant: 'destructive',
           });
         } else {
-          va.track('Deleted Post');
           router.refresh();
           router.push(
             `${APP_BP}/${teamSlug}/workspace/publish/site/${res.siteId}`,

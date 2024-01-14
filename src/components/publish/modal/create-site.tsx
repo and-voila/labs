@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import va from '@vercel/analytics';
 import { useFormStatus } from 'react-dom';
 
 import { env } from 'env';
@@ -51,7 +50,6 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
             variant: 'destructive',
           });
         } else {
-          va.track('Created Site');
           const { id } = res;
           router.refresh();
           router.push(`${APP_BP}/${teamSlug}/workspace/publish/site/${id}`);

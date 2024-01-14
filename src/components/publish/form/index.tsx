@@ -3,7 +3,6 @@
 
 import { useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import va from '@vercel/analytics';
 import { useSession } from 'next-auth/react';
 import { useFormStatus } from 'react-dom';
 
@@ -60,7 +59,6 @@ export default function Form({
             variant: 'destructive',
           });
         } else {
-          va.track(`Updated ${inputAttrs.name}`, id ? { id } : {});
           if (id) {
             router.refresh();
           } else {
