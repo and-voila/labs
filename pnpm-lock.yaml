@@ -116,6 +116,9 @@ dependencies:
   '@radix-ui/react-tooltip':
     specifier: ^1.0.7
     version: 1.0.7(@types/react-dom@18.2.18)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
+  '@rive-app/react-canvas-lite':
+    specifier: ^4.7.1
+    version: 4.7.1(react@18.2.0)
   '@svgr/webpack':
     specifier: ^8.1.0
     version: 8.1.0(typescript@5.3.3)
@@ -4929,6 +4932,19 @@ packages:
       type-fest: 2.19.0
     dev: false
 
+  /@rive-app/canvas-lite@2.9.2:
+    resolution: {integrity: sha512-d5V5m2cbccZMa/VxMmyUyNsKBynn8JdaLyORDJQLpaNJI8lWtOHApFWxJX17h4HoTybqUaff4RBOFYITGWGhDg==}
+    dev: false
+
+  /@rive-app/react-canvas-lite@4.7.1(react@18.2.0):
+    resolution: {integrity: sha512-2JeJbkGlHS2N1U174EiNoUY8q8qXqN9PPETu+qUFyeJKWyH2n5oPjlR/LvSen/ANN4aTAvQNEMCOeeQrQRDzag==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@rive-app/canvas-lite': 2.9.2
+      react: 18.2.0
+    dev: false
+
   /@rushstack/eslint-patch@1.6.1:
     resolution: {integrity: sha512-UY+FGM/2jjMkzQLn8pxcHGMaVLh9aEitG3zY2CiY7XHdLiz3bZOwa6oDxNqEMv7zZkV+cj5DOdz0cQ1BP5Hjgw==}
     dev: true
@@ -6797,6 +6813,7 @@ packages:
   /clone@1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
+    requiresBuild: true
     dev: true
 
   /clone@2.1.2:
@@ -7194,6 +7211,7 @@ packages:
 
   /defaults@1.0.4:
     resolution: {integrity: sha512-eFuaLoy/Rxalv2kr+lqMlUnrDWV+3j4pljOIJgLIhI058IQfWJ7vXhyEIHu+HtC738klGALYxOKDO0bQP3tg8A==}
+    requiresBuild: true
     dependencies:
       clone: 1.0.4
     dev: true

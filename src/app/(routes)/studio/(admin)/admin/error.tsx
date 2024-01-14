@@ -3,6 +3,8 @@
 import { useCallback } from 'react';
 import Link from 'next/link';
 
+import { siteConfig } from '#/config/site';
+
 import { APP_BP } from '#/lib/const';
 import { IconKey } from '#/lib/types';
 
@@ -16,21 +18,21 @@ const links: Array<{
   icon: IconKey;
 }> = [
   {
-    name: 'Home page',
-    href: '/',
-    description: "Could do what our tech couldn't? Go to the home page.",
+    name: 'Admin dashboard',
+    href: `${APP_BP}/my/admin`,
+    description: `Your command center for everything ${siteConfig.name}. Navigate like a pro.`,
     icon: 'dashboard',
   },
   {
-    name: 'Live support',
+    name: 'Spank the developer',
     href: `${APP_BP}/my/support`,
     description:
-      'Stuck? Chat with our support folks live and get unstuck in a jiffy.',
-    icon: 'discord',
+      'Just ping Sam or the crew and send them some questionable karma.',
+    icon: 'help',
   },
 ];
 
-export default function MarketingError({ reset }: { reset: () => void }) {
+export default function AdminError({ reset }: { reset: () => void }) {
   const handleReset = useCallback(() => {
     reset();
   }, [reset]);

@@ -1,9 +1,7 @@
 'use client';
 
 import { useCallback } from 'react';
-import Link from 'next/link';
 
-import { APP_BP } from '#/lib/const';
 import { IconKey } from '#/lib/types';
 
 import { Icons } from '#/components/shared/icons';
@@ -16,21 +14,15 @@ const links: Array<{
   icon: IconKey;
 }> = [
   {
-    name: 'Home page',
-    href: '/',
-    description: "Could do what our tech couldn't? Go to the home page.",
-    icon: 'dashboard',
-  },
-  {
     name: 'Live support',
-    href: `${APP_BP}/my/support`,
+    href: 'https://discord.com/channels/1151749282806910976/1151825811427561623',
     description:
       'Stuck? Chat with our support folks live and get unstuck in a jiffy.',
     icon: 'discord',
   },
 ];
 
-export default function MarketingError({ reset }: { reset: () => void }) {
+export default function DomainError({ reset }: { reset: () => void }) {
   const handleReset = useCallback(() => {
     reset();
   }, [reset]);
@@ -46,7 +38,7 @@ export default function MarketingError({ reset }: { reset: () => void }) {
         </h1>
         <p className="mt-4 text-base leading-7 text-muted-foreground sm:mt-6 sm:text-lg sm:leading-8">
           Looks like our tech just tripped over its own feet. We&apos;re on it,
-          so hang tight. Thanks for your patience.
+          so hang tight. Thank you for your patience.
         </p>
       </div>
       <div className="mx-auto mt-16 flow-root max-w-lg sm:mt-20">
@@ -61,13 +53,15 @@ export default function MarketingError({ reset }: { reset: () => void }) {
                 </div>
                 <div className="flex-auto">
                   <h3 className="text-sm font-semibold leading-6">
-                    <Link
+                    <a
                       href={link.href}
-                      aria-label={`Navigate to ${link.name}page.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Navigate to And Voila support in new tab."
                     >
                       <span className="absolute inset-0" aria-hidden="true" />
                       {link.name}
-                    </Link>
+                    </a>
                   </h3>
                   <p className="mt-2 leading-6 text-muted-foreground">
                     {link.description}

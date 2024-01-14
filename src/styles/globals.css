@@ -133,3 +133,7 @@ input[type='range'] {
     @apply dark:bg-neutral-100 dark:active:bg-white;
   }
 }
+
+.animation-container__rive-component {
+  @apply inline-block h-full w-full;
+}

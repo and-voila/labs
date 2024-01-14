@@ -19,8 +19,8 @@ export default async function NotFound() {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="text-sm= my-6 font-semibold uppercase tracking-widest">
-        {data ? `${data.name}: ` : ''}404
+      <h1 className="my-6 text-sm font-semibold uppercase tracking-widest text-primary">
+        {data ? `${data.name} ` : ''}404
       </h1>
       <Image
         alt="missing site"
@@ -51,7 +51,7 @@ export default async function NotFound() {
       <p className="my-6 text-lg text-foreground lg:text-xl">
         {data
           ? data.message404
-          : "Blimey! You've found a page that doesn't exist."}
+          : 'Woof! The hoomans who built this site broke something.'}
       </p>
       <div className="mt-10 flex justify-center">
         <Link href="/" className={cn(buttonVariants({ variant: 'outline' }))}>
