@@ -12,7 +12,7 @@ import { buttonVariants } from '#/components/ui/button';
 
 const NotAuthorizedPage = () => {
   return (
-    <main className=" relative isolate min-h-full min-w-full">
+    <main className="relative isolate min-h-full min-w-full">
       <div className="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">
         <p className="text-sm font-semibold uppercase tracking-widest text-primary">
           Not Authorized
