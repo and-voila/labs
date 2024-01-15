@@ -6,6 +6,7 @@ import { authOptions } from '#/lib/auth';
 import { getTeams } from '#/lib/operations/teams/get-teams';
 import { isTeacher } from '#/lib/teacher';
 
+import { MobileNotSupported } from '#/components/dashboard/mobile-not-supported';
 import { NavBar } from '#/components/layout/navbar';
 import { Sidebar } from '#/components/layout/sidebar';
 import { SiteFooter } from '#/components/layout/site-footer';
@@ -38,6 +39,7 @@ export default async function AdminLayout({
       <div className="flex flex-1 flex-col ps-16 pt-16">
         <Sidebar links={links} />
         <main className="flex w-full flex-1 flex-col overflow-hidden">
+          <MobileNotSupported />
           {children}
         </main>
       </div>
