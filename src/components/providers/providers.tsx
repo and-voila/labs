@@ -1,7 +1,6 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { SessionProvider } from 'next-auth/react';
 import { Provider as BalancerProvider } from 'react-wrap-balancer';
 
 import { ActiveTeamSlugProvider } from '#/components/providers/active-team-slug-provider';
@@ -15,12 +14,10 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <ActiveTeamSlugProvider>
-        <SessionProvider>
-          <ModalProvider>
-            <TopLoader />
-            {children}
-          </ModalProvider>
-        </SessionProvider>
+        <ModalProvider>
+          <TopLoader />
+          {children}
+        </ModalProvider>
       </ActiveTeamSlugProvider>
 
       <ConfettiProvider />

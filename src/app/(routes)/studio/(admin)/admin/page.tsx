@@ -43,12 +43,6 @@ const adminItems: AdminItemProps[] = [
     linkText: 'Manage AI tools',
     disabled: true,
   },
-  {
-    title: 'Playbooks admin',
-    icon: Icons.courses,
-    linkHref: `${APP_BP}/admin/teacher/courses`,
-    linkText: 'Manage Playbooks',
-  },
 ];
 
 export default async function AdminPage() {

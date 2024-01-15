@@ -1,9 +1,9 @@
 import { redirect } from 'next/navigation';
 
+import { isAdmin } from '#/lib/admin';
 import { authOptions } from '#/lib/auth';
 import { APP_BP } from '#/lib/const';
 import { getSession } from '#/lib/operations/user/session';
-import { isTeacher } from '#/lib/teacher';
 
 import { DashboardShell } from '#/components/dashboard/shell';
 import { TabbedNav } from '#/components/layout/tabbed-nav';
@@ -18,7 +18,7 @@ const AdminRootLayout: React.FC<AdminRootLayoutProps> = async ({
   const session = await getSession();
   if (!session) {
     redirect(authOptions?.pages?.signIn || '/login');
-  } else if (!isTeacher(session.user.id)) {
+  } else if (!isAdmin(session.user.id)) {
     redirect('/not-authorized');
   }
   return (

@@ -51,14 +51,6 @@ const TeamWorkspaceIndex: NextPage<Props> = async (props) => {
       isExternal: true,
     },
     {
-      title: 'Learn',
-      icon: Icons.courses,
-      linkHref: `${APP_BP}/${params.team_slug}/workspace/learn`,
-      linkText: 'Crush it',
-      description:
-        'Unlock daily micro-courses that supercharge your marketing game. Boost your ROI in less than 5 minutes.',
-    },
-    {
       title: 'Publish',
       icon: Icons.browsers,
       linkHref: `${APP_BP}/${params.team_slug}/workspace/publish`,

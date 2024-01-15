@@ -13,8 +13,6 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string().min(1),
     KV_REST_API_TOKEN: z.string().min(1),
     KV_REST_API_URL: z.string().min(1),
-    MUX_TOKEN_ID: z.string().min(1),
-    MUX_TOKEN_SECRET: z.string().min(1),
     NEXTAUTH_SECRET: z.string().min(1),
     NEXTAUTH_URL: z.string().url().optional(),
     POSTGRES_URL_NON_POOLING: z.string().min(1),
@@ -32,8 +30,6 @@ export const env = createEnv({
     TIPTAP_COLLAB_SECRET: z.string().min(1),
     TWITTER_CREATOR: z.string().min(1),
     TWITTER_SITE: z.string().min(1),
-    UPLOADTHING_APP_ID: z.string().min(1),
-    UPLOADTHING_SECRET: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string().min(1),
@@ -44,7 +40,7 @@ export const env = createEnv({
     NEXT_PUBLIC_STRIPE_BEST_YEARLY_PRICE_ID: z.string().min(1),
     NEXT_PUBLIC_STRIPE_BETTER_MONTHLY_PRICE_ID: z.string().min(1),
     NEXT_PUBLIC_STRIPE_BETTER_YEARLY_PRICE_ID: z.string().min(1),
-    NEXT_PUBLIC_TEACHER_ID: z.string().min(1),
+    NEXT_PUBLIC_ADMIN_ID: z.string().min(1),
     NEXT_PUBLIC_TIPTAP_AI_APP_ID: z.string().min(1),
     NEXT_PUBLIC_TIPTAP_AI_BASE_URL: z.string().min(1),
     NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID: z.string().min(1),
@@ -61,8 +57,6 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,
     KV_REST_API_URL: process.env.KV_REST_API_URL,
-    MUX_TOKEN_ID: process.env.MUX_TOKEN_ID,
-    MUX_TOKEN_SECRET: process.env.MUX_TOKEN_SECRET,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXT_PUBLIC_APP_URL:
@@ -87,7 +81,7 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_STRIPE_BETTER_MONTHLY_PRICE_ID,
     NEXT_PUBLIC_STRIPE_BETTER_YEARLY_PRICE_ID:
       process.env.NEXT_PUBLIC_STRIPE_BETTER_YEARLY_PRICE_ID,
-    NEXT_PUBLIC_TEACHER_ID: process.env.NEXT_PUBLIC_TEACHER_ID,
+    NEXT_PUBLIC_ADMIN_ID: process.env.NEXT_PUBLIC_ADMIN_ID,
     NEXT_PUBLIC_TIPTAP_AI_APP_ID: process.env.NEXT_PUBLIC_TIPTAP_AI_APP_ID,
     NEXT_PUBLIC_TIPTAP_AI_BASE_URL: process.env.NEXT_PUBLIC_TIPTAP_AI_BASE_URL,
     NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID:
@@ -110,7 +104,5 @@ export const env = createEnv({
     TIPTAP_COLLAB_SECRET: process.env.TIPTAP_COLLAB_SECRET,
     TWITTER_CREATOR: process.env.TWITTER_CREATOR,
     TWITTER_SITE: process.env.TWITTER_SITE,
-    UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID,
-    UPLOADTHING_SECRET: process.env.UPLOADTHING_SECRET,
   },
 });

@@ -15,11 +15,11 @@ import {
   // removeDomainFromVercelTeam,
   validDomainRegex,
 } from '#/lib/actions/publish/domains';
+import { isAdmin } from '#/lib/admin';
 import { withPostAuth, withSiteAuth } from '#/lib/auth';
 import { db } from '#/lib/db';
 import { getTeam } from '#/lib/operations/teams/get-current-team';
 import { getSession } from '#/lib/operations/user/session';
-import { isTeacher } from '#/lib/teacher';
 import { getBlurDataURL } from '#/lib/utils';
 
 const nanoid = customAlphabet(
@@ -44,7 +44,7 @@ export const createSite = async (formData: FormData) => {
   const reservedDomains = env.RESERVED_DOMAINS?.split(',') || [];
 
   if (
-    !isTeacher(session.user.id) &&
+    !isAdmin(session.user.id) &&
     reservedDomains.includes(subdomain.toLowerCase())
   ) {
     return {

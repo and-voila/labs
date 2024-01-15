@@ -64,14 +64,7 @@ export const WelcomeEmail = () => (
               Community
             </Link>
             . It&apos;s buzzing with ideas, insights, and fellow marketing
-            adventurers. Find your stride with a{' '}
-            <Link
-              className={linkClass}
-              href={`${SITE_URL}${APP_BP}/my/workspaces`}
-            >
-              Playbook
-            </Link>
-            . They&apos;re your go-to guides for upping your marketing game.
+            adventurers.
           </Text>
           <Text className={textClass}>
             Eager to share your voice?{' '}
