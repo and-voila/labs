@@ -72,7 +72,7 @@ export const ColumnsMenu = ({ editor, appendTo }: MenuProps) => {
           })}
           onClick={onColumnTwo}
         >
-          <Icon name="Columns" />
+          <Icon name="Columns2" />
         </Toolbar.Button>
         <Toolbar.Button
           tooltip="Sidebar right"

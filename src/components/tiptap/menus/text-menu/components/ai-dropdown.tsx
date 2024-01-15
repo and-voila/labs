@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import * as Dropdown from '@radix-ui/react-dropdown-menu';
+import { Tone } from '@tiptap-pro/extension-ai';
 
 import { languages, tones } from '#/lib/tiptap/constants';
 
@@ -16,7 +17,7 @@ export type AIDropdownProps = {
   onEmojify: () => void;
   onTldr: () => void;
   onTranslate: (language: string) => void;
-  onTone: (tone: string) => void;
+  onTone: (tone: Tone) => void;
   onCompleteSentence: () => void;
 };
 
@@ -31,10 +32,7 @@ export const AIDropdown = ({
   onTone,
   onTranslate,
 }: AIDropdownProps) => {
-  const handleTone = useCallback(
-    (tone: string) => () => onTone(tone),
-    [onTone],
-  );
+  const handleTone = useCallback((tone: Tone) => () => onTone(tone), [onTone]);
   const handleTranslate = useCallback(
     (language: string) => () => onTranslate(language),
     [onTranslate],
@@ -90,7 +88,7 @@ export const AIDropdown = ({
               <Surface className="flex max-h-[20rem] min-w-[15rem] flex-col overflow-auto p-2">
                 {tones.map((tone) => (
                   <Dropdown.Item
-                    onClick={handleTone(tone.value)}
+                    onClick={handleTone(tone.value as Tone)}
                     key={tone.value}
                   >
                     <DropdownButton>{tone.label}</DropdownButton>
