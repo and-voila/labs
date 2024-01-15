@@ -2,9 +2,9 @@ import { redirect } from 'next/navigation';
 
 import { defaultSidebarLinks } from '#/config/default-sidebar-links';
 
+import { isAdmin } from '#/lib/admin';
 import { authOptions } from '#/lib/auth';
 import { getTeams } from '#/lib/operations/teams/get-teams';
-import { isTeacher } from '#/lib/teacher';
 
 import { MobileNotSupported } from '#/components/dashboard/mobile-not-supported';
 import { NavBar } from '#/components/layout/navbar';
@@ -27,7 +27,7 @@ export default async function AdminLayout({
 
   if (!user) {
     redirect(authOptions?.pages?.signIn || '/login');
-  } else if (!isTeacher(user.id)) {
+  } else if (!isAdmin(user.id)) {
     redirect('/not-authorized');
   }
 

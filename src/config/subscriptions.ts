@@ -53,8 +53,6 @@ export const pricingData: SubscriptionPlan[] = [
       'Unlimited access to Discord channels',
       'Attend all expert AMAs',
       'Personalized AMAs with expert moderators',
-      'Full access to Playbook library',
-      'Full access to Insights, Briefs, Guides',
       '24/7 live support',
       '100% Delight Guarantee',
     ],

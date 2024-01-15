@@ -47,7 +47,6 @@ This project follows the recommendations of the the Next JS team for v14 and rem
 │   │   ├── /(routes)                   # Route group for routes ¯\_(ツ)_/¯
 │   │   │   ├── /(auth)                 # Authentication pages
 │   │   │   ├── /(dashboard)            # Dashboard pages
-│   │   │   ├── /(learn)                # Learn pages
 │   │   │   ├── /(marketing)            # Marketing pages
 │   │   │   ├── /(tools)                # Tools pages
 │   │   │   │   ├── /[team_slug]        # Fancy collaboration features
@@ -60,7 +59,6 @@ This project follows the recommendations of the the Next JS team for v14 and rem
 │   │   │   ├── /validations            # Zod stuff
 │   │   │   └── /...                    # Other lib stuff
 │   │   ├── /components                 # All UI components
-│   │   │   ├── /learn                  # Learn feature components organized into sub-folders
 │   │   │   ├── /layout                 # Shared stuff organized into sub-folders
 │   │   │   ├── /publish                # Publish feature components organized into sub-folders
 │   │   │   ├── /...
@@ -206,11 +204,9 @@ While the majority of our project is under the AGPL v3.0, it incorporates compon
 
 2. **Platforms by Vercel**: We also use code from [Platforms by Vercel](https://github.com/vercel/platforms), covered under the MIT License.
 
-3. **Next13 LMS Platform**: Code from the [Next13 LMS Platform](https://github.com/AntonioErdeljac/next13-lms-platform) is integrated into our project and is licensed under the MIT License.
+3. **NextJS SaaS Starter**: Code from the [NextJS SaaS Starter](https://github.com/juliankoehn/nextjs-saas-starter) is integrated into our project and is licensed under the MIT License.
 
-4. **NextJS SaaS Starter**: Code from the [NextJS SaaS Starter](https://github.com/juliankoehn/nextjs-saas-starter) is integrated into our project and is licensed under the MIT License.
-
-5. **Tiptap Pro**: Code from our friends at [Tiptap](https://github.com/ueberdosis) is integrated into our project. It has a private license and **must be accompanied by a Tiptap Pro (paid) plan**. You can learn more about [Tiptap pricing here](https://tiptap.dev/pricing).
+4. **Tiptap Pro**: Code from our friends at [Tiptap](https://github.com/ueberdosis) is integrated into our project. It has a private license and **must be accompanied by a Tiptap Pro (paid) plan**. You can learn more about [Tiptap pricing here](https://tiptap.dev/pricing).
 
 ### Comprehensive Licensing Details
 

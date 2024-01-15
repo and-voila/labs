@@ -51,8 +51,6 @@ model Team {
   invitations      TeamInvitation[]
   sites            Site[]
   posts            Post[]
-  userProgresses   UserProgress[]
-  teamApiLimit     TeamApiLimit?
 
   @@index([name, slug])
   @@index([slug])
@@ -125,11 +123,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-
-  discordId           String?  @unique
-  discordUsername     String?
-  discordAvatar       String?
-  discordServerMember Boolean? @default(false)
+  role UserRole @default(USER)
 
   teams       Membership[]
   accounts    Account[]
@@ -262,129 +256,6 @@ model SiteMeta {
   site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
 
   @@map(name: "site_meta")
-}
-
-model Course {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  userId      String
-  teamId      String?
-  title       String  @db.Text
-  description String? @db.Text
-  preview     String? @db.Text
-  imageUrl    String? @db.Text
-  price       Float?
-  isPublished Boolean @default(false)
-  categoryId  String?
-
-  chapters    Chapter[]
-  attachments Attachment[]
-
-  category Category? @relation(fields: [categoryId], references: [id])
-
-  @@index([userId])
-  @@index([categoryId])
-  @@map(name: "courses")
-}
-
-model Category {
-  id        String    @id @default(cuid())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
-
-  name String @unique
-
-  courses Course[]
-
-  @@map(name: "categories")
-}
-
-model Attachment {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  name String
-  url  String @db.Text
-
-  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
-
-  courseId String
-
-  @@map(name: "attachments")
-}
-
-model Chapter {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  title       String   @db.Text
-  description String?  @db.Text
-  videoUrl    String?  @db.Text
-  position    Int
-  isPublished Boolean  @default(false)
-  muxData     MuxData?
-
-  userProgress UserProgress[]
-
-  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
-
-  courseId String
-
-  @@index([courseId])
-  @@map(name: "chapters")
-}
-
-model MuxData {
-  id        String    @id @default(cuid())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
-
-  assetId    String
-  playbackId String?
-  chapterId  String  @unique
-
-  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
-
-  @@map(name: "mux-data")
-}
-
-model UserProgress {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  userId      String?
-  teamId      String?
-  chapterId   String
-  isStarted   Boolean @default(false)
-  isCompleted Boolean @default(false)
-
-  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
-  team    Team?   @relation(fields: [teamId], references: [id])
-
-  @@unique([userId, chapterId])
-  @@unique([teamId, chapterId])
-  @@index([chapterId])
-  @@index([userId])
-  @@index([teamId])
-  @@map(name: "user_progress")
-}
-
-model TeamApiLimit {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  teamId String @unique
-  count  Int    @default(0)
-
-  team Team @relation(fields: [teamId], references: [id])
-
-  @@map(name: "team_api_limits")
 }
 
 enum SubscriptionStatus {

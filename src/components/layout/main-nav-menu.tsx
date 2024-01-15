@@ -56,12 +56,6 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
     disabled?: boolean;
   }[] = [
     {
-      title: 'Playbooks',
-      href: `${APP_BP}/${activeSlug}/workspace/learn`,
-      description:
-        'Snappy lessons for quick marketing skills. Think TikTok, but for learning.',
-    },
-    {
       title: 'Publish',
       href: `${APP_BP}/${activeSlug}/workspace/publish`,
       description:
@@ -102,12 +96,6 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
       title: 'Teams',
       href: `${APP_BP}/my/workspaces`,
       description: 'Collaborate in real-time with multiplayer convenience.',
-    },
-    {
-      title: 'Learn',
-      href: `${APP_BP}/${activeSlug}/workspace/learn`,
-      description:
-        'Crush your marketing goals. Lessons, tips, and insider tips await.',
     },
     {
       title: 'Publish',
@@ -168,19 +156,6 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem
-                href={`${APP_BP}/${activeSlug}/workspace/learn`}
-                title="Playbooks"
-              >
-                Stuck? Score quick wins with Playbooks, just 5 mins to wisdom.
-              </ListItem>
-              <ListItem
-                href={`${APP_BP}/${activeSlug}/workspace/publish`}
-                title="Publish"
-              >
-                Engage your audience with our full-stack marketing suite, with
-                an AI boost.
-              </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -205,13 +180,12 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
         <NavigationMenuItem className="hidden md:block">
           <NavigationMenuTrigger
             className={
-              isActive(`${APP_BP}/${activeSlug}/workspace/learn`) ||
               isActive(`${APP_BP}/${activeSlug}/workspace/publish`)
                 ? 'text-primary'
                 : ''
             }
           >
-            <Link href={`${APP_BP}/${activeSlug}/workspace/learn`}>
+            <Link href={`${APP_BP}/${activeSlug}/workspace/publish`}>
               Resources
             </Link>
           </NavigationMenuTrigger>

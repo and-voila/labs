@@ -1,5 +1,5 @@
+import { isAdmin } from '#/lib/admin';
 import { APP_BP } from '#/lib/const';
-import { isTeacher } from '#/lib/teacher';
 import { SidebarLink } from '#/lib/types';
 
 import { IconProps, Icons } from '#/components/shared/icons';
@@ -15,7 +15,7 @@ export const defaultSidebarLinks = (
       icon: Icons.home({} as IconProps),
       exact: true,
     },
-    ...(isTeacher(user?.id)
+    ...(isAdmin(user?.id)
       ? [
           {
             href: `${APP_BP}/admin`,
@@ -25,11 +25,6 @@ export const defaultSidebarLinks = (
           },
         ]
       : []),
-    {
-      href: `${APP_BP}/${activeTeamSlug}/workspace/learn`,
-      label: 'Learn',
-      icon: Icons.courses({} as IconProps),
-    },
     {
       href: `${APP_BP}/${activeTeamSlug}/workspace/publish`,
       label: 'Publish',

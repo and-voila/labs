@@ -13,7 +13,7 @@ export type NavItem = {
   disabled?: boolean;
   isExternal?: boolean;
   isLoggedIn?: boolean;
-  isTeacher?: boolean;
+  isAdmin?: boolean;
 };
 
 export interface SidebarLink {
@@ -24,60 +24,6 @@ export interface SidebarLink {
 }
 
 export type MainNavItem = NavItem;
-
-export interface CourseSidebarItemProps {
-  label: string;
-  id: string;
-  isCompleted: boolean;
-  courseId: string;
-  isLocked: boolean;
-  teamSlug: string;
-}
-
-export interface CourseSidebarProps {
-  course: Course & {
-    chapters: (Chapter & {
-      userProgress: UserProgress[] | null;
-    })[];
-  };
-  progressCount: number;
-  apiLimitCount?: number;
-  isPaidMember: boolean;
-  teamSlug: string;
-}
-
-export interface CourseMobileSidebarProps {
-  course: Course & {
-    chapters: (Chapter & {
-      userProgress: UserProgress[] | null;
-    })[];
-  };
-  progressCount: number;
-  isPaidMember: boolean;
-  apiLimitCount: number;
-}
-
-export interface CourseNavbarProps {
-  course: Course & {
-    chapters: (Chapter & {
-      userProgress: UserProgress[] | null;
-    })[];
-  };
-  progressCount: number;
-  apiLimitCount: number;
-  isPaidMember: boolean;
-}
-
-// :: Course & Chapter Types ::
-
-export type ChapterType = {
-  id: string;
-  title: string;
-  description: string;
-  video: string;
-  thumbnail: string;
-  userProgress?: { isCompleted: boolean }[];
-};
 
 // :: Config Types ::
 
