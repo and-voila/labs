@@ -161,7 +161,7 @@ export default async function SitePostPage({
         </div>
         <div className="w-3/5 border-t border-primary py-8" />
         <div
-          className="prose prose-gray lg:prose-lg dark:prose-invert"
+          className="prose prose-gray dark:prose-invert lg:prose-lg"
           dangerouslySetInnerHTML={{ __html: data.content || '' }}
         />
         <div className="my-12 px-6 lg:px-8">

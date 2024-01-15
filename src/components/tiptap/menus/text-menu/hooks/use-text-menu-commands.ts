@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { Tone } from '@tiptap-pro/extension-ai';
 import { Editor } from '@tiptap/react';
 
 export const useTextmenuCommands = (editor: Editor) => {
@@ -99,7 +100,7 @@ export const useTextmenuCommands = (editor: Editor) => {
     [editor],
   );
   const onTone = useCallback(
-    (tone: string) => editor.chain().focus().aiAdjustTone(tone).run(),
+    (tone: Tone) => editor.chain().focus().aiAdjustTone(tone).run(),
     [editor],
   );
   const onTranslate = useCallback(

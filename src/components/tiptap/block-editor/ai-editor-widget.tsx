@@ -13,12 +13,7 @@ import { ConfirmPublishModal } from '#/components/modals/confirm-publish-modal';
 import { Icons } from '#/components/shared/icons';
 import EditorIpStatusIndicator from '#/components/tiptap/block-editor/editor-ip-status-indicator';
 import { Button } from '#/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-} from '#/components/ui/card';
+import { Card, CardContent, CardHeader } from '#/components/ui/card';
 import { toast } from '#/components/ui/use-toast';
 
 import { useAiContentPercentage } from '#/hooks/use-ai-content-percentage';
@@ -163,14 +158,12 @@ const AiEditorWidget = ({
     <div className="py-10">
       <Card>
         <CardHeader className="space-y-1">
-          <CardDescription>
-            <EditorInfo
-              characters={characterCount.characters()}
-              words={characterCount.words()}
-              collabState={collabState}
-              users={displayedUsers}
-            />
-          </CardDescription>
+          <EditorInfo
+            characters={characterCount.characters()}
+            words={characterCount.words()}
+            collabState={collabState}
+            users={displayedUsers}
+          />
         </CardHeader>
         <CardContent className="grid gap-6">
           <div className="grid grid-cols-2 gap-6">

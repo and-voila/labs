@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 import * as Dropdown from '@radix-ui/react-dropdown-menu';
+import { Tone } from '@tiptap-pro/extension-ai';
 import {
   Extension,
   NodeViewWrapper,
@@ -10,7 +11,7 @@ import { v4 as uuid } from 'uuid';
 
 import { tones } from '#/lib/tiptap/constants';
 
-import { AiTone, AiToneOption } from '#/components/tiptap/block-editor/types';
+import { AiToneOption } from '#/components/tiptap/block-editor/types';
 import { DropdownButton } from '#/components/tiptap/dropdown';
 import { Button } from '#/components/tiptap/editor-button';
 import { Icon } from '#/components/tiptap/icon';
@@ -23,7 +24,7 @@ import { Toolbar } from '#/components/tiptap/toolbar';
 export interface DataProps {
   text: string;
   addHeading: boolean;
-  tone?: AiTone;
+  tone?: Tone;
   textUnit?: string;
   textLength?: string;
   language?: string;

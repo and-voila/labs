@@ -68,7 +68,7 @@ export const tones: AiToneOption[] = [
   { name: 'humorous', label: 'Humorous', value: 'humorous' },
   { name: 'informative', label: 'Informative', value: 'informative' },
   { name: 'inspirational', label: 'Inspirational', value: 'inspirational' },
-  { name: 'memeify', label: 'Memeify', value: 'meme' },
+  { name: 'memeify', label: 'Memeify', value: 'memeify' },
   { name: 'narrative', label: 'Narrative', value: 'narrative' },
   { name: 'objective', label: 'Objective', value: 'objective' },
   { name: 'persuasive', label: 'Persuasive', value: 'persuasive' },
