@@ -106,12 +106,6 @@ model TeamInvitation {
   @@map("team_invitations")
 }
 
-enum UserRole {
-  USER
-  ADMIN
-  SUPERADMIN
-}
-
 model User {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now()) @map(name: "created_at")
@@ -123,7 +117,6 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  role UserRole @default(USER)
 
   teams       Membership[]
   accounts    Account[]
@@ -131,10 +124,24 @@ model User {
   sites       Site[]
   posts       Post[]
   invitations TeamInvitation[]
+  admin       Admin?
 
   @@index([email])
   @@index([displayName])
   @@map(name: "users")
+}
+
+model Admin {
+  id     String    @id @default(cuid())
+  userId String    @unique
+  role   AdminRole
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum AdminRole {
+  ADMIN
+  SUPERADMIN
 }
 
 model Account {
@@ -191,14 +198,14 @@ model Post {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  title         String? @db.Text
-  description   String? @db.Text
+  title         String  @db.Text
+  description   String  @db.Text
   content       String? @db.Text
   slug          String  @default(cuid())
   image         String? @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/IoGBwOC-9CvtiYRSGCNZAuY0UAemMZ0UzFtuZ7.jpeg") @db.Text
   imageBlurhash String? @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC") @db.Text
   published     Boolean @default(false)
-  userId        String?
+  userId        String
   teamId        String?
   siteId        String
 
@@ -217,8 +224,8 @@ model Site {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name          String?
-  description   String? @db.Text
+  name          String
+  description   String  @db.Text
   logo          String? @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/SgQEI5B-KRu6KULIVq8OXj0eKRn7drD4RRCGf1.png") @db.Text
   image         String? @default("https://xa09cquxuk1zok5f.public.blob.vercel-storage.com/qbRcbkW-GSx1IuBuKyVEbOJkFlkxBCVaCy5qfD.jpeg") @db.Text
   imageBlurhash String? @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC") @db.Text
@@ -226,12 +233,12 @@ model Site {
   customDomain  String? @unique
   font          String  @default("font-cal")
   message404    String? @default("Oops! You've found a page that doesn't exist.") @db.Text
-  teamId        String?
+  teamId        String
   userId        String?
 
   user     User?     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   posts    Post[]
-  team     Team?     @relation(fields: [teamId], references: [id], onDelete: SetNull)
+  team     Team      @relation(fields: [teamId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   metaData SiteMeta?
 
   @@index([userId])
@@ -282,7 +289,7 @@ model StripeSubscription {
   stripePriceId          String?             @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime?           @map(name: "stripe_current_period_end")
 
-  team Team? @relation(fields: [teamId], references: [id])
+  team Team @relation(fields: [teamId], references: [id])
 
   @@index([teamId])
   @@map(name: "stripe_subscriptions")
@@ -294,10 +301,10 @@ model StripeCustomer {
   updatedAt DateTime @updatedAt
 
   userId           String? @unique
-  teamId           String? @unique
+  teamId           String  @unique
   stripeCustomerId String  @unique
 
-  team Team? @relation(fields: [teamId], references: [id])
+  team Team @relation(fields: [teamId], references: [id])
 
   @@index([userId])
   @@index([teamId])

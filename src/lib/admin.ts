@@ -1,7 +1,11 @@
-import { env } from 'env';
+import { db } from './db';
 
-export const isAdmin = (userId?: string | null) => {
-  const adminIds = env.NEXT_PUBLIC_ADMIN_ID.split(',');
+export const isAdmin = async (userId?: string | null): Promise<boolean> => {
+  if (!userId) return false;
 
-  return userId ? adminIds.includes(userId) : false;
+  const admin = await db.admin.findUnique({
+    where: { userId },
+  });
+
+  return !!admin;
 };

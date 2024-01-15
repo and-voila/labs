@@ -1,4 +1,3 @@
-import { isAdmin } from '#/lib/admin';
 import { APP_BP } from '#/lib/const';
 import { SidebarLink } from '#/lib/types';
 
@@ -6,7 +5,6 @@ import { IconProps, Icons } from '#/components/shared/icons';
 
 export const defaultSidebarLinks = (
   activeTeamSlug: string | null | undefined,
-  user: { id: string } | null,
 ): SidebarLink[] => {
   const links: SidebarLink[] = [
     {
@@ -15,16 +13,6 @@ export const defaultSidebarLinks = (
       icon: Icons.home({} as IconProps),
       exact: true,
     },
-    ...(isAdmin(user?.id)
-      ? [
-          {
-            href: `${APP_BP}/admin`,
-            label: 'Admin',
-            icon: Icons.airTrafficControl({} as IconProps),
-            exact: true,
-          },
-        ]
-      : []),
     {
       href: `${APP_BP}/${activeTeamSlug}/workspace/publish`,
       label: 'Publish',

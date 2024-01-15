@@ -31,7 +31,7 @@ export default async function AdminLayout({
     redirect('/not-authorized');
   }
 
-  const links = defaultSidebarLinks(activeTeamSlug, user);
+  const links = defaultSidebarLinks(activeTeamSlug);
 
   return (
     <div className="flex min-h-screen flex-col">

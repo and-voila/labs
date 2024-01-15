@@ -27,10 +27,6 @@ export default async function Sites({ teamSlug, limit }: SitesProps) {
     orderBy: {
       createdAt: 'asc',
     },
-    cacheStrategy: {
-      ttl: 20,
-      swr: 10,
-    },
     ...(limit ? { take: limit } : {}),
   });
 
