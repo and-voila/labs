@@ -23,25 +23,24 @@ export const initialContent = {
     {
       type: 'paragraph',
       attrs: {
-        class: null,
         textAlign: 'left',
       },
       content: [
         {
           type: 'text',
-          text: 'A user-friendly editor that mirrors the simplicity and efficiency of Notion, offering a straightforward, what-you-see-is-what-you-get experience. Purpose built for the way you work.',
+          text: 'Meet your new editor. Simple, yet advanced with AI assistance. It manages routine tasks, giving you more time for creativity.',
         },
       ],
     },
     {
-      type: 'codeBlock',
+      type: 'paragraph',
       attrs: {
-        language: null,
+        textAlign: 'left',
       },
       content: [
         {
           type: 'text',
-          text: "import { useState } from 'react';\n\nfunction App() {\n  const [state, setState] = useState<any>('Strictly TypeScript');\n\n  const breakRules = () => {\n    setState({\n      type: 'Not a string anymore',\n      payload: Math.random() > 0.5 ? 'Oops' : ['An', 'array', '?', 'Really', '?'],\n    });\n  };\n\n  return <button onClick={breakRules}>Break the rules</button>;\n}",
+          text: "Digital tools are powerful, but your unique touch is key. Our editor helps you track your content's origin: Human, Assisted, or Generated. This ensures your work remains personal and protected.",
         },
       ],
     },
@@ -73,7 +72,7 @@ export const initialContent = {
       content: [
         {
           type: 'text',
-          text: "Bring out your inner Shakespeare (or Hemingway, if you're into brevity) with our AI-powered editor. It's like having a tiny genius in your computer, eager to assist with tools like Write, Image, Simplify, and more, all while making sure your unique voice isn't lost in translation.",
+          text: 'Craft your narrative with a tool designed by creators, for creators. And Voila brings AI assistance to your fingertips, offering features like Write, Image, Simplify, and more. It ensures your voice shines through with the right balance of technologies to help us thrive.',
         },
       ],
     },
@@ -93,7 +92,7 @@ export const initialContent = {
                 },
                 {
                   type: 'text',
-                  text: ': Imagine a crystal ball for writing - start typing, hit the ',
+                  text: ': Stuck with a transition? No worries, hit the ',
                 },
                 {
                   type: 'text',
@@ -102,7 +101,7 @@ export const initialContent = {
                 },
                 {
                   type: 'text',
-                  text: ' key, and watch it predict your next masterpiece.',
+                  text: ' key, and get a quick idea or nudge to continue.',
                 },
               ],
             },
@@ -121,7 +120,7 @@ export const initialContent = {
                 },
                 {
                   type: 'text',
-                  text: ': Like a virtual muse, this tool whispers creative suggestions in your ear, helping transform your thoughts into words.',
+                  text: ': Like a virtual muse, this tool whispers creative suggestions in your ear to help convert your thoughts into words. Roll with it to make it your own.',
                 },
               ],
             },
@@ -140,7 +139,7 @@ export const initialContent = {
                 },
                 {
                   type: 'text',
-                  text: ': Need eye candy for your words? Say no more. This tool conjures images that make your content pop.',
+                  text: ': Need eye candy? We got you covered. The DALL-E 3 integration can help create stunning graphics to help you make your point.',
                 },
               ],
             },
@@ -159,7 +158,7 @@ export const initialContent = {
                 },
                 {
                   type: 'text',
-                  text: ": Ever wish you had a 'make it simple' button for convoluted text? Well, now you do. Simplify turns complex jargon into something even your grandma can understand.",
+                  text: ': With just a click, it turns complex jargon into something even your grandma can understand.',
                 },
               ],
             },
@@ -178,7 +177,7 @@ export const initialContent = {
                 },
                 {
                   type: 'text',
-                  text: ": Transform your text into an emoji wonderland. It's like adding a dash of spice to a bland dish, but with smiley faces and thumbs up.",
+                  text: ': Transform your text into an emoji wonderland.',
                 },
               ],
             },
@@ -205,7 +204,7 @@ export const initialContent = {
                 },
                 {
                   type: 'text',
-                  text: ': Finishes your sentences like a mind-reading sidekick. Ideal for those moments when the right words are just on the tip of your tongue.',
+                  text: ': Finishes your sentences like a mind-reading sidekick.',
                 },
               ],
             },
@@ -232,7 +231,7 @@ export const initialContent = {
                 },
                 {
                   type: 'text',
-                  text: ': Banishes typos and spelling gremlins with a magical flick of its digital wand, ensuring your writing is as polished as a shiny apple.',
+                  text: ': Banishes typos and spelling gremlins with a magical flick of its digital wand.',
                 },
               ],
             },
@@ -255,38 +254,11 @@ export const initialContent = {
                       type: 'bold',
                     },
                   ],
-                  text: 'Expand',
+                  text: 'Shorten',
                 },
                 {
                   type: 'text',
-                  text: ': Like a friendly chatterbox, this tool helps you add more meat to your prose, turning succinct sentences into detailed explanations.',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: 'listItem',
-          content: [
-            {
-              type: 'paragraph',
-              attrs: {
-                class: null,
-                textAlign: 'left',
-              },
-              content: [
-                {
-                  type: 'text',
-                  marks: [
-                    {
-                      type: 'bold',
-                    },
-                  ],
-                  text: 'Expand',
-                },
-                {
-                  type: 'text',
-                  text: ': Like a friendly chatterbox, this tool helps you add more meat to your prose, turning succinct sentences into detailed explanations.',
+                  text: ': Condense your verbose prose for clarity.',
                 },
               ],
             },
@@ -309,11 +281,38 @@ export const initialContent = {
                       type: 'bold',
                     },
                   ],
-                  text: 'TLDR',
+                  text: 'Extend',
                 },
                 {
                   type: 'text',
-                  text: ": The superhero of summarization, swooping in to distill lengthy text into bite-sized, snackable content. Perfect for the 'give me the gist' crowd.",
+                  text: ': Like a friendly chatterbox, this tool helps you add more meat to your content.',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: 'listItem',
+          content: [
+            {
+              type: 'paragraph',
+              attrs: {
+                class: null,
+                textAlign: 'left',
+              },
+              content: [
+                {
+                  type: 'text',
+                  marks: [
+                    {
+                      type: 'bold',
+                    },
+                  ],
+                  text: 'Summarize',
+                },
+                {
+                  type: 'text',
+                  text: ': The superhero of TL;DR, swooping in to distill lengthy text into bite-sized, snackable content.',
                 },
               ],
             },
@@ -340,7 +339,7 @@ export const initialContent = {
                 },
                 {
                   type: 'text',
-                  text: ': A mood ring for your text, this tool adjusts the emotional vibe of your writing, ensuring it resonates just right with your audience.',
+                  text: ': A mood ring for your text, this tool adjusts the emotional vibe of your writing.',
                 },
               ],
             },
@@ -367,7 +366,7 @@ export const initialContent = {
                 },
                 {
                   type: 'text',
-                  text: ': A linguistic chameleon, this tool seamlessly transforms your text across a variety of languages, including Arabic, Chinese, English, French, German, Greek, Italian, Japanese, Korean, Russian, Spanish, Swedish, and Ukrainian. Ideal for global communication without the babel.',
+                  text: ': A linguistic chameleon with a variety of languages, including Arabic, Chinese, English, French, German, Greek, Italian, Japanese, Korean, Russian, Spanish, Swedish, and Ukrainian.',
                 },
               ],
             },
@@ -390,7 +389,7 @@ export const initialContent = {
         },
         {
           type: 'text',
-          text: " The editor also has cool stuff you'll love using:",
+          text: ' And Voila has all the tech you love too:',
         },
       ],
     },
@@ -476,7 +475,7 @@ export const initialContent = {
               content: [
                 {
                   type: 'text',
-                  text: 'A TextFormatting menu that lets you play dress-up with your text, changing ',
+                  text: 'A text formatting menu that lets you play dress-up with your text, changing ',
                 },
                 {
                   type: 'text',
@@ -566,6 +565,50 @@ export const initialContent = {
               ],
             },
           ],
+        },
+      ],
+    },
+    {
+      type: 'heading',
+      attrs: {
+        textAlign: 'left',
+        level: 2,
+      },
+      content: [
+        {
+          type: 'emoji',
+          attrs: {
+            name: 'melting face',
+          },
+        },
+        {
+          type: 'text',
+          text: "An AI assisted editor that's built for you",
+        },
+      ],
+    },
+    {
+      type: 'paragraph',
+      attrs: {
+        class: null,
+        textAlign: 'left',
+      },
+      content: [
+        {
+          type: 'text',
+          text: 'Want to share code snippets with your conent? No problem. Our code block supports prettified syntax highlighting for over 100 languages.',
+        },
+      ],
+    },
+    {
+      type: 'codeBlock',
+      attrs: {
+        language: null,
+      },
+      content: [
+        {
+          type: 'text',
+          text: "import { useState } from 'react';\n\nfunction App() {\n  const [state, setState] = useState<any>('Strictly TypeScript');\n\n  const breakRules = () => {\n    setState({\n      type: 'Not a string anymore',\n      payload: Math.random() > 0.5 ? 'Oops' : ['An', 'array', '?', 'Really', '?'],\n    });\n  };\n\n  return <button onClick={breakRules}>Break the rules</button>;\n}",
         },
       ],
     },
