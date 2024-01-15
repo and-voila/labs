@@ -69,13 +69,13 @@ export const AIDropdown = ({
           <Dropdown.Item onClick={onMakeShorter}>
             <DropdownButton>
               <Icon name="ArrowLeftToLine" />
-              Make shorter
+              Shorten
             </DropdownButton>
           </Dropdown.Item>
           <Dropdown.Item onClick={onMakeLonger}>
             <DropdownButton>
               <Icon name="ArrowRightToLine" />
-              Make longer
+              Extend
             </DropdownButton>
           </Dropdown.Item>
           <Dropdown.Sub>
