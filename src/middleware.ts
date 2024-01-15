@@ -88,8 +88,8 @@ function isCrawler(userAgent: string | null): boolean {
     'yandexbot',
   ];
 
-  return crawlerUserAgents.some(
-    (crawlerUserAgent) => userAgent?.toLowerCase().includes(crawlerUserAgent),
+  return crawlerUserAgents.some((crawlerUserAgent) =>
+    userAgent?.toLowerCase().includes(crawlerUserAgent),
   );
 }
 
