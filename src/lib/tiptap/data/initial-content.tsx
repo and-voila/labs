@@ -569,38 +569,6 @@ export const initialContent = {
       ],
     },
     {
-      type: 'heading',
-      attrs: {
-        textAlign: 'left',
-        level: 2,
-      },
-      content: [
-        {
-          type: 'emoji',
-          attrs: {
-            name: 'melting face',
-          },
-        },
-        {
-          type: 'text',
-          text: "An AI assisted editor that's built for you",
-        },
-      ],
-    },
-    {
-      type: 'paragraph',
-      attrs: {
-        class: null,
-        textAlign: 'left',
-      },
-      content: [
-        {
-          type: 'text',
-          text: 'Want to share code snippets with your conent? No problem. Our code block supports prettified syntax highlighting for over 100 languages.',
-        },
-      ],
-    },
-    {
       type: 'codeBlock',
       attrs: {
         language: null,
