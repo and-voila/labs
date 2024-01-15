@@ -11,8 +11,8 @@ interface BillingFormButtonProps {
   offer: SubscriptionPlan;
   subscriptionPlan: TeamSubscriptionPlan;
   year: boolean;
-  teamId?: string;
-  teamSlug?: string;
+  teamId: string;
+  teamSlug: string;
 }
 
 export function BillingFormButton({

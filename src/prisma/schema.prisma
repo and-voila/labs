@@ -123,7 +123,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  role UserRole @default(USER)
+  role          UserRole  @default(USER)
 
   teams       Membership[]
   accounts    Account[]
@@ -282,7 +282,7 @@ model StripeSubscription {
   stripePriceId          String?             @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime?           @map(name: "stripe_current_period_end")
 
-  team Team? @relation(fields: [teamId], references: [id])
+  team Team @relation(fields: [teamId], references: [id])
 
   @@index([teamId])
   @@map(name: "stripe_subscriptions")
@@ -294,10 +294,10 @@ model StripeCustomer {
   updatedAt DateTime @updatedAt
 
   userId           String? @unique
-  teamId           String? @unique
+  teamId           String  @unique
   stripeCustomerId String  @unique
 
-  team Team? @relation(fields: [teamId], references: [id])
+  team Team @relation(fields: [teamId], references: [id])
 
   @@index([userId])
   @@index([teamId])
