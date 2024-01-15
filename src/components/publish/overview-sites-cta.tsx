@@ -24,10 +24,6 @@ export default async function OverviewSitesCTA({
     where: {
       teamId: team.id as string,
     },
-    cacheStrategy: {
-      ttl: 90,
-      swr: 30,
-    },
   });
 
   return sites > 0 ? (

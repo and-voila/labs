@@ -18,10 +18,6 @@ export default async function SiteIdSettings({
     where: {
       id: decodeURIComponent(params.id),
     },
-    cacheStrategy: {
-      ttl: 20,
-      swr: 10,
-    },
   });
 
   if (!site) {

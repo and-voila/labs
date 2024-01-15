@@ -28,7 +28,7 @@ export default async function MyWorkspaceLayout({
     redirect(authOptions?.pages?.signIn || '/login');
   }
 
-  const links = defaultSidebarLinks(activeTeamSlug, user);
+  const links = defaultSidebarLinks(activeTeamSlug);
 
   return (
     <div className="flex min-h-screen flex-col">

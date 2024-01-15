@@ -17,10 +17,6 @@ export default async function SiteIdAdvanced({
     where: {
       id: decodeURIComponent(params.id),
     },
-    cacheStrategy: {
-      ttl: 20,
-      swr: 10,
-    },
   });
 
   if (!site) {

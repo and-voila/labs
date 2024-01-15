@@ -30,10 +30,6 @@ export default async function SiteManage({
     where: {
       id: decodeURIComponent(params.id),
     },
-    cacheStrategy: {
-      ttl: 20,
-      swr: 10,
-    },
   });
 
   if (!site || site.teamId !== team.id) {
