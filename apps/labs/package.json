@@ -1,5 +1,5 @@
 {
-  "name": "@acme/nextjs",
+  "name": "@acme/labs",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -14,23 +14,12 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@acme/api": "workspace:^0.1.0",
-    "@acme/auth": "workspace:^0.1.0",
     "@acme/db": "workspace:^0.1.0",
     "@acme/ui": "workspace:^0.1.0",
-    "@acme/validators": "workspace:^0.1.0",
     "@t3-oss/env-nextjs": "^0.7.1",
-    "@tanstack/react-query": "^5.17.7",
-    "@tanstack/react-query-devtools": "^5.17.7",
-    "@tanstack/react-query-next-experimental": "5.17.7",
-    "@trpc/client": "next",
-    "@trpc/react-query": "next",
-    "@trpc/server": "next",
-    "geist": "^1.2.0",
     "next": "^14.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "superjson": "2.2.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
