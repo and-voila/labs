@@ -1,5 +1,5 @@
 {
-  "name": "@and-voila/validators",
+  "name": "@and-voila/email",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -12,9 +12,6 @@
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@and-voila/eslint-config": "workspace:^0.2.0",
@@ -29,5 +26,9 @@
       "@and-voila/eslint-config/base"
     ]
   },
-  "prettier": "@and-voila/prettier-config"
+  "prettier": "@and-voila/prettier-config",
+  "dependencies": {
+    "react-email": "^2.0.0",
+    "@react-email/components": "^0.0.14"
+  }
 }
