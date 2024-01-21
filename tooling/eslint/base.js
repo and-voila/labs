@@ -1,10 +1,14 @@
+import { fileURLToPath } from "url";
+
 /** @type {import("eslint").Linter.Config} */
 const config = {
   extends: [
     "turbo",
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:prettier/recommended",
     "prettier",
   ],
   env: {
@@ -13,13 +17,14 @@ const config = {
   },
   parser: "@typescript-eslint/parser",
   parserOptions: { project: true },
-  plugins: ["@typescript-eslint", "import"],
+  plugins: [
+    "@typescript-eslint",
+    "import",
+    "tailwindcss",
+    "unicorn",
+    "prettier",
+  ],
   rules: {
-    "turbo/no-undeclared-env-vars": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
-    ],
     "@typescript-eslint/consistent-type-imports": [
       "warn",
       { prefer: "type-imports", fixStyle: "separate-type-imports" },
@@ -28,7 +33,33 @@ const config = {
       2,
       { checksVoidReturn: { attributes: false } },
     ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        args: "after-used",
+        argsIgnorePattern: "^_",
+        caughtErrors: "none",
+        ignoreRestSiblings: true,
+        vars: "all",
+        varsIgnorePattern: "^_",
+      },
+    ],
+    camelcase: ["error", { properties: "never", ignoreDestructuring: true }],
+    "comma-style": ["error", "last"],
     "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+    "import/no-anonymous-default-export": "off",
+    "jsx-quotes": ["error", "prefer-double"],
+    "no-console": "warn",
+    "prefer-const": "error",
+    "prettier/prettier": ["error"],
+    quotes: ["error", "single", { avoidEscape: true }],
+    semi: ["error", "always"],
+    "unicorn/filename-case": [
+      "error",
+      {
+        case: "kebabCase",
+      },
+    ],
   },
   ignorePatterns: [
     "**/*.config.js",
@@ -39,6 +70,14 @@ const config = {
     "pnpm-lock.yaml",
   ],
   reportUnusedDisableDirectives: true,
+  settings: {
+    tailwindcss: {
+      callees: ["cn", "clsx"],
+      config: fileURLToPath(
+        new URL("../../tooling/tailwind/index.ts", import.meta.url),
+      ),
+    },
+  },
 };
 
 module.exports = config;

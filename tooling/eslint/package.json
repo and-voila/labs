@@ -22,8 +22,11 @@
     "eslint-config-turbo": "^1.11.3",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-tailwindcss": "^3.14.0",
+    "eslint-plugin-unicorn": "^50.0.1"
   },
   "devDependencies": {
     "@and-voila/prettier-config": "workspace:^0.1.0",
