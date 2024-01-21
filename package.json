@@ -1,5 +1,5 @@
 {
-  "name": "create-t3-turbo",
+  "name": "@and-voila/turbo",
   "private": true,
   "engines": {
     "node": ">=20.10"
@@ -23,7 +23,9 @@
   "devDependencies": {
     "@and-voila/prettier-config": "workspace:^0.1.0",
     "@turbo/gen": "^1.11.3",
+    "eslint": "^8.56.0",
     "prettier": "^3.2.2",
+    "tailwindcss": "^3.4.0",
     "turbo": "^1.11.3",
     "typescript": "^5.3.3"
   },

@@ -17,9 +17,15 @@ importers:
       '@turbo/gen':
         specifier: ^1.11.3
         version: 1.11.3(@types/node@20.10.6)(typescript@5.3.3)
+      eslint:
+        specifier: ^8.56.0
+        version: 8.56.0
       prettier:
         specifier: ^3.2.2
         version: 3.2.4
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.0
       turbo:
         specifier: ^1.11.3
         version: 1.11.3
