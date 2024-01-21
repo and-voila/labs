@@ -1,6 +1,6 @@
-import { Auth } from "@auth/core";
-import Discord from "@auth/core/providers/discord";
-import { eventHandler, toWebRequest } from "h3";
+import { Auth } from '@auth/core';
+import Discord from '@auth/core/providers/discord';
+import { eventHandler, toWebRequest } from 'h3';
 
 // TODO: Update this once migration done.
 export default eventHandler(async (event) =>

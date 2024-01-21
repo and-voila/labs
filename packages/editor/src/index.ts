@@ -1,1 +1,1 @@
-export const name = "editor";
+export const name = 'editor';
