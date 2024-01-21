@@ -11,6 +11,7 @@
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
     "format": "prettier --check . --ignore-path ../../.gitignore",
+    "knip": "knip",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
@@ -33,6 +34,7 @@
     "@and-voila/tsconfig": "workspace:^0.1.0",
     "@types/eslint": "^8.56.0",
     "eslint": "^8.56.0",
+    "knip": "^4.1.0",
     "prettier": "^3.2.2",
     "typescript": "^5.3.3"
   },
