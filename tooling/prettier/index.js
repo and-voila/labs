@@ -6,6 +6,15 @@ import { fileURLToPath } from "url";
 
 /** @type { PrettierConfig | SortImportsConfig | TailwindConfig } */
 const config = {
+  arrowParens: "always",
+  bracketSpacing: true,
+  endOfLine: "lf",
+  printWidth: 80,
+  semi: true,
+  singleQuote: true,
+  tabWidth: 2,
+  trailingComma: "all",
+  useTabs: false,
   plugins: [
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss",
@@ -13,9 +22,13 @@ const config = {
   tailwindConfig: fileURLToPath(
     new URL("../../tooling/tailwind/index.ts", import.meta.url),
   ),
-  tailwindFunctions: ["cn", "cva"],
+  tailwindFunctions: ["clsx", "cn", "cva", "tw"],
   importOrder: [
+    "^#/env(.*)$",
+    "",
     "<TYPES>",
+    "",
+    "<BUILT_IN_MODULES>",
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
@@ -24,6 +37,17 @@ const config = {
     "^@and-voila/(.*)$",
     "",
     "<TYPES>^[.|..|~]",
+    "",
+    "^#/config/(.*)$",
+    "",
+    "^#/lib/(.*)$",
+    "^#/lib/hooks/(.*)$",
+    "",
+    "^#/components/(.*)$",
+    "^#/styles/(.*)$",
+    "",
+    "^#/(.*)$",
+    "",
     "^~/",
     "^[../]",
     "^[./]",
