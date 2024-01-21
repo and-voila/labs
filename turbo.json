@@ -1,6 +1,6 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "globalDependencies": ["**/.env"],
+  "globalDependencies": ["**/.env*"],
   "pipeline": {
     "topo": {
       "dependsOn": ["^topo"]
@@ -13,11 +13,13 @@
         "next-env.d.ts",
         ".output/**",
         ".vercel/output/**"
-      ]
+      ],
+      "dotEnv": [".env.local", ".env.development", ".env.production", ".env"]
     },
     "dev": {
       "persistent": true,
-      "cache": false
+      "cache": false,
+      "dotEnv": [".env.local", ".env.development", ".env"]
     },
     "format": {
       "outputs": ["node_modules/.cache/.prettiercache"],
@@ -39,11 +41,45 @@
     }
   },
   "globalEnv": [
+    "AUTH_URL",
+    "AUTH_BEARER_TOKEN",
+    "BLOB_READ_WRITE_TOKEN",
     "DATABASE_URL",
-    "AUTH_DISCORD_ID",
-    "AUTH_DISCORD_SECRET",
-    "AUTH_REDIRECT_PROXY_URL",
-    "AUTH_SECRET",
-    "AUTH_URL"
+    "DISCORD_CLIENT_ID",
+    "DISCORD_CLIENT_SECRET",
+    "GITHUB_OAUTH_TOKEN",
+    "GOOGLE_CLIENT_ID",
+    "GOOGLE_CLIENT_SECRET",
+    "KV_REST_API_TOKEN",
+    "KV_REST_API_URL",
+    "NEXTAUTH_SECRET",
+    "NEXTAUTH_URL",
+    "NEXT_PUBLIC_APP_URL",
+    "NEXT_PUBLIC_POSTHOG_HOST",
+    "NEXT_PUBLIC_POSTHOG_KEY",
+    "NEXT_PUBLIC_ROOT_DOMAIN",
+    "NEXT_PUBLIC_STRIPE_BEST_MONTHLY_PRICE_ID",
+    "NEXT_PUBLIC_STRIPE_BEST_YEARLY_PRICE_ID",
+    "NEXT_PUBLIC_STRIPE_BETTER_MONTHLY_PRICE_ID",
+    "NEXT_PUBLIC_STRIPE_BETTER_YEARLY_PRICE_ID",
+    "NEXT_PUBLIC_TIPTAP_AI_APP_ID",
+    "NEXT_PUBLIC_TIPTAP_AI_BASE_URL",
+    "NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID",
+    "NEXT_PUBLIC_COLLAB_DOC_PREFIX",
+    "POSTGRES_URL_NON_POOLING",
+    "PROJECT_ID_VERCEL",
+    "RATELIMIT_UPSTASH_REDIS_REST_TOKEN",
+    "RATELIMIT_UPSTASH_REDIS_REST_URL",
+    "RESEND_API_KEY",
+    "RESERVED_DOMAINS",
+    "STRIPE_API_KEY",
+    "STRIPE_COUPON_ID",
+    "STRIPE_WEBHOOK_SECRET",
+    "TEAM_ID_VERCEL",
+    "TIPTAP_AI_SECRET",
+    "TIPTAP_COLLAB_API_SECRET",
+    "TIPTAP_COLLAB_SECRET",
+    "TWITTER_CREATOR",
+    "TWITTER_SITE"
   ]
 }
