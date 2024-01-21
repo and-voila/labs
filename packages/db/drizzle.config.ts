@@ -1,23 +1,19 @@
-import type { Config } from "drizzle-kit";
-import * as dotenv from "dotenv";
+import type { Config } from 'drizzle-kit';
 
-dotenv.config({ path: "../../.env" });
+import * as dotenv from 'dotenv';
 
-const uri = [
-  "mysql://",
-  process.env.DB_USERNAME,
-  ":",
-  process.env.DB_PASSWORD,
-  "@",
-  process.env.DB_HOST,
-  ":3306/",
-  process.env.DB_NAME,
-  '?ssl={"rejectUnauthorized":true}',
-].join("");
+dotenv.config({ path: '../../.env' });
+
+if (!process.env.DREON_DIRECT_URL) {
+  throw new Error('Drizzle Config Error: DREON_DIRECT_URL is not defined.`');
+}
 
 export default {
-  schema: "./src/schema",
-  driver: "mysql2",
-  dbCredentials: { uri },
-  tablesFilter: ["t3turbo_*"],
+  schema: './src/schema',
+  out: './drizzle',
+  driver: 'pg',
+  dbCredentials: {
+    connectionString: process.env.DREON_DIRECT_URL,
+  },
+  tablesFilter: ['av_*'],
 } satisfies Config;

@@ -1,12 +1,12 @@
-import { createEnv } from "@t3-oss/env-nextjs";
-import { z } from "zod";
+import { createEnv } from '@t3-oss/env-nextjs';
+import { z } from 'zod';
 
 export const env = createEnv({
   shared: {
     NODE_ENV: z
-      .enum(["development", "production", "test"])
-      .default("development"),
-    VERCEL_ENV: z.enum(["development", "preview", "production"]).optional(),
+      .enum(['development', 'production', 'test'])
+      .default('development'),
+    VERCEL_ENV: z.enum(['development', 'preview', 'production']).optional(),
     VERCEL_URL: z
       .string()
       .optional()
@@ -19,6 +19,7 @@ export const env = createEnv({
     DATABASE_URL: z.string().min(1),
     DISCORD_CLIENT_ID: z.string().min(1),
     DISCORD_CLIENT_SECRET: z.string().min(1),
+    DREON_DIRECT_URL: z.string().min(1),
     GITHUB_OAUTH_TOKEN: z.string().min(1),
     GOOGLE_CLIENT_ID: z.string().min(1),
     GOOGLE_CLIENT_SECRET: z.string().min(1),
@@ -27,6 +28,7 @@ export const env = createEnv({
     NEXTAUTH_SECRET: z.string().min(1),
     NEXTAUTH_URL: z.string().url().optional(),
     POSTGRES_URL_NON_POOLING: z.string().min(1),
+    PREON_DIRECT_URL: z.string().min(1),
     PROJECT_ID_VERCEL: z.string().min(1),
     RATELIMIT_UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
     RATELIMIT_UPSTASH_REDIS_REST_URL: z.string().min(1),
@@ -62,6 +64,7 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
+    DREON_DIRECT_URL: process.env.DREON_DIRECT_URL,
     GITHUB_OAUTH_TOKEN: process.env.GITHUB_OAUTH_TOKEN,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
@@ -70,17 +73,17 @@ export const env = createEnv({
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXT_PUBLIC_APP_URL:
-      process.env.VERCEL_ENV === "production"
+      process.env.VERCEL_ENV === 'production'
         ? `${process.env.NEXT_PUBLIC_APP_URL}`
-        : process.env.VERCEL_ENV === "preview"
+        : process.env.VERCEL_ENV === 'preview'
           ? `${process.env.VERCEL_URL}`
-          : "http://localhost:3001",
+          : 'http://localhost:3001',
     NEXT_PUBLIC_POSTHOG_HOST:
-      process.env.VERCEL_ENV === "production"
+      process.env.VERCEL_ENV === 'production'
         ? `${process.env.NEXT_PUBLIC_APP_URL}/ingest`
-        : process.env.VERCEL_ENV === "preview"
+        : process.env.VERCEL_ENV === 'preview'
           ? `${process.env.VERCEL_URL}/ingest`
-          : "http://localhost:3001/ingest",
+          : 'http://localhost:3001/ingest',
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_ROOT_DOMAIN: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
     NEXT_PUBLIC_STRIPE_BEST_MONTHLY_PRICE_ID:
@@ -97,6 +100,7 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID,
     NEXT_PUBLIC_COLLAB_DOC_PREFIX: process.env.NEXT_PUBLIC_COLLAB_DOC_PREFIX,
     POSTGRES_URL_NON_POOLING: process.env.POSTGRES_URL_NON_POOLING,
+    PREON_DIRECT_URL: process.env.PREON_DIRECT_URL,
     PROJECT_ID_VERCEL: process.env.PROJECT_ID_VERCEL,
     RATELIMIT_UPSTASH_REDIS_REST_TOKEN:
       process.env.RATELIMIT_UPSTASH_REDIS_REST_TOKEN,
@@ -117,5 +121,5 @@ export const env = createEnv({
   skipValidation:
     !!process.env.CI ||
     !!process.env.SKIP_ENV_VALIDATION ||
-    process.env.npm_lifecycle_event === "lint",
+    process.env.npm_lifecycle_event === 'lint',
 });

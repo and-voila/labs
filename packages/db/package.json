@@ -10,14 +10,15 @@
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
     "format": "prettier --check . --ignore-path ../../.gitignore",
+    "generate": "drizzle-kit generate:pg",
     "knip": "knip",
     "lint": "eslint .",
-    "push": "drizzle-kit push:mysql",
+    "push": "drizzle-kit push:pg",
     "studio": "drizzle-kit studio",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@planetscale/database": "^1.13.0",
+    "@neondatabase/serverless": "^0.7.2",
     "drizzle-orm": "^0.29.3"
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
     "drizzle-kit": "^0.20.10",
     "eslint": "^8.56.0",
     "knip": "^4.1.0",
+    "pg": "^8.11.3",
     "prettier": "^3.2.2",
     "typescript": "^5.3.3"
   },
