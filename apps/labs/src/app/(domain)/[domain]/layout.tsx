@@ -121,8 +121,8 @@ export default async function SiteLayout({
           <Link href="/" className="flex items-center justify-center">
             <div className="inline-block h-8 w-8 overflow-hidden rounded-full align-middle">
               <BlurImage
-                src={data.logo ?? ''}
-                alt={data.name || ''}
+                src={data.logo ?? '/default-site-logo.jpg'}
+                alt={data.name ?? 'A placeholder logo for the site'}
                 width={40}
                 height={40}
                 placeholder="blur"
@@ -142,7 +142,7 @@ export default async function SiteLayout({
       <div className="flex flex-col">
         <DomainsFooter
           className="mt-20"
-          name={data.name || 'BRIL.LA, LLC.'}
+          name={data.name ?? 'BRIL.LA, LLC.'}
           logo={data.logo ?? undefined}
         />
       </div>
