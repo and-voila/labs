@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { Editor } from '@tiptap/react';
 
 import { isCustomNodeSelected } from '#/lib/tiptap/utils/is-custom-node-selected';
