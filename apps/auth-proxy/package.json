@@ -19,7 +19,7 @@
     "@and-voila/prettier-config": "workspace:^0.1.0",
     "@and-voila/tailwind-config": "workspace:^0.1.0",
     "@and-voila/tsconfig": "workspace:^0.1.0",
-    "@types/node": "^20.10.6",
+    "@types/node": "^20.11.1",
     "eslint": "^8.56.0",
     "nitropack": "^2.8.1",
     "prettier": "^3.2.2",
