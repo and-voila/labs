@@ -46,6 +46,7 @@ const config = {
         varsIgnorePattern: '^_',
       },
     ],
+    '@typescript-eslint/prefer-nullish-coalescing': 'error',
     camelcase: ['error', { properties: 'never', ignoreDestructuring: true }],
     'comma-style': ['error', 'last'],
     'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
