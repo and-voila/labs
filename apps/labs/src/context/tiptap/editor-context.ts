@@ -13,6 +13,12 @@ interface AiEditorContext {
 export const EditorContext = createContext<AiEditorContext>({
   isAiLoading: false,
   aiError: null,
-  setIsAiLoading: () => {},
-  setAiError: () => {},
+  setIsAiLoading: () => {
+    // eslint-disable-next-line no-console
+    console.warn('setIsAiLoading function is not implemented yet');
+  },
+  setAiError: () => {
+    // eslint-disable-next-line no-console
+    console.warn('setAiError function is not implemented yet');
+  },
 });
