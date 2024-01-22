@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+
 import { notFound, redirect } from 'next/navigation';
 
 import { siteConfig } from '#/config/site';
@@ -19,7 +19,7 @@ export default async function PostIdPage({
   const { user, teams } = await getTeams();
   const team = teams.find((team) => team.slug === params.team_slug);
   if (!team) {
-    redirect(authOptions?.pages?.signIn || '/login');
+    redirect(authOptions?.pages?.signIn ?? '/login');
   }
 
   const post = await db.post.findUnique({

@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server';
+import type { NextRequest } from 'next/server';
 
 import { APP_BP } from '#/lib/const';
 
@@ -19,7 +19,7 @@ export async function GET(
 ): Promise<Response> {
   const { params } = props;
 
-  if (!params || !params.team_slug || !params.id) {
+  if (!params) {
     return new Response('Bad Request', { status: 400 });
   }
 
