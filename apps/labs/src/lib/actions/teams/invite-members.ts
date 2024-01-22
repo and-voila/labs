@@ -96,7 +96,7 @@ export const inviteMembers = async (
   const emailsToInviteFiltered = emailsToInvite.filter((email) => {
     return !usersInTeam.some((u) => {
       return (
-        u.members.some((m) => m.user.email === email) ||
+        u.members.some((m) => m.user.email === email) ??
         u.invitations.some((i) => i.email === email)
       );
     });

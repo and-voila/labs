@@ -40,6 +40,9 @@ jobs:
         shell: bash
         run: cp .env.example .env
 
+      - name: Generate Prisma Client
+        run: pnpm prisma generate --no-engine
+
       - name: Lint
         run: pnpm lint && pnpm lint:ws
 
@@ -60,6 +63,9 @@ jobs:
       - name: Setup
         uses: ./tooling/github/setup
 
+      - name: Generate Prisma Client
+        run: pnpm prisma generate --no-engine
+
       - name: Format
         run: pnpm format
 
@@ -79,6 +85,9 @@ jobs:
 
       - name: Setup
         uses: ./tooling/github/setup
+      
+      - name: Generate Prisma Client
+        run: pnpm prisma generate --no-engine
 
       - name: Typecheck
         run: pnpm typecheck
