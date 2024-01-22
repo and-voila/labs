@@ -1,7 +1,7 @@
-import React from 'react';
+import type { GetTeamInvitesReturn } from '#/lib/operations/teams/get-team-invites';
+import type { GetTeamMemberResult } from '#/lib/operations/teams/get-team-members';
 
-import { GetTeamInvitesReturn } from '#/lib/operations/teams/get-team-invites';
-import { GetTeamMemberResult } from '#/lib/operations/teams/get-team-members';
+import React from 'react';
 
 import { Badge } from '#/components/ui/badge';
 
@@ -25,7 +25,7 @@ export const MemberList: React.FC<MemberListProps> = (props) => {
   );
 
   const ownerCount =
-    members?.filter((member) => member.role === 'OWNER').length || 0;
+    members?.filter((member) => member.role === 'OWNER').length ?? 0;
 
   return (
     <ul className="divide-y rounded-lg border">

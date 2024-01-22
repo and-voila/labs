@@ -1,6 +1,8 @@
+import type { Membership, Team } from '@prisma/client';
+
 import React from 'react';
 import Link from 'next/link';
-import { Membership, MembershipRole, Team } from '@prisma/client';
+import { MembershipRole } from '@prisma/client';
 
 import { siteConfig } from '#/config/site';
 

@@ -1,5 +1,7 @@
 'use client';
 
+import type { DropdownMenuItemProps } from '#/components/ui/dropdown-menu';
+
 import React, { forwardRef, useCallback } from 'react';
 
 import { deleteInviteAction } from '#/lib/actions/teams/member-list-management';
@@ -21,7 +23,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuItemProps,
   DropdownMenuTrigger,
 } from '#/components/ui/dropdown-menu';
 import { toast } from '#/components/ui/use-toast';
@@ -59,7 +60,7 @@ export const InvitesActions: React.FC<MemberActionsProps> = (props) => {
   const handleButtonClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-      handleDelete();
+      void handleDelete();
     },
     [handleDelete],
   );

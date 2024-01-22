@@ -1,5 +1,6 @@
+import type { Membership, Team } from '@prisma/client';
+
 import React from 'react';
-import { Membership, Team } from '@prisma/client';
 
 import { cn } from '#/lib/utils';
 
@@ -40,7 +41,7 @@ export const TeamList: React.FC<TeamListProps> = (props) => {
         <TeamCard
           key={team.slug}
           team={team}
-          membership={memberships[index]}
+          membership={memberships[index] ?? ({} as Membership)}
           isPersonal={team.isPersonal}
         />
       ))}

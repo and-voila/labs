@@ -1,9 +1,11 @@
 'use client';
 
+import type { FieldValues } from 'react-hook-form';
+
 import React, { useCallback } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MembershipRole } from '@prisma/client';
-import { FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { inviteMembers } from '#/lib/actions/teams/invite-members';
