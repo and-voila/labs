@@ -4,7 +4,7 @@ import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
 
-interface EmptyPlaceholderProps extends React.HTMLAttributes<HTMLDivElement> {}
+type EmptyPlaceholderProps = React.HTMLAttributes<HTMLDivElement>;
 
 export function EmptyPlaceholder({
   className,
@@ -53,20 +53,21 @@ EmptyPlaceholder.Icon = function EmptyPlaceHolderIcon({
   );
 };
 
-interface EmptyPlacholderTitleProps
-  extends React.HTMLAttributes<HTMLHeadingElement> {}
+type EmptyPlacholderTitleProps = React.HTMLAttributes<HTMLHeadingElement>;
 
 EmptyPlaceholder.Title = function EmptyPlaceholderTitle({
   className,
   ...props
 }: EmptyPlacholderTitleProps) {
   return (
+    // TODO: Check if need to add children with default value
+    // eslint-disable-next-line jsx-a11y/heading-has-content
     <h2 className={cn('mt-2 text-xl font-semibold', className)} {...props} />
   );
 };
 
-interface EmptyPlaceholderDescriptionProps
-  extends React.HTMLAttributes<HTMLParagraphElement> {}
+type EmptyPlaceholderDescriptionProps =
+  React.HTMLAttributes<HTMLParagraphElement>;
 
 EmptyPlaceholder.Description = function EmptyPlaceholderDescription({
   className,
