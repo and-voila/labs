@@ -1,20 +1,22 @@
+import { neonConfig, Pool } from '@neondatabase/serverless';
+import { PrismaNeon } from '@prisma/adapter-neon';
 import { PrismaClient } from '@prisma/client';
-import { withAccelerate } from '@prisma/extension-accelerate';
+import dotenv from 'dotenv';
+import ws from 'ws';
 
-const prismaClientSingleton = () => {
-  const baseClient = new PrismaClient();
-  const extendedClient = baseClient.$extends(withAccelerate());
-  return extendedClient as PrismaClient & typeof extendedClient;
-};
+dotenv.config({ path: '../../../../.env' });
+neonConfig.webSocketConstructor = ws;
+const connectionString = `${process.env.DATABASE_URL}`;
 
-type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
+const pool = new Pool({ connectionString });
+const adapter = new PrismaNeon(pool);
+const prisma = new PrismaClient({ adapter });
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClientSingleton | undefined;
-};
+declare global {
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined;
+}
 
-const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
+export const db = globalThis.prisma ?? prisma;
 
-export const db = prisma;
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db;
+if (process.env.NODE_ENV !== 'production') globalThis.prisma = db;

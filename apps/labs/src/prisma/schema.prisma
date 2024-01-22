@@ -1,39 +1,12 @@
 datasource db {
   provider  = "postgresql"
-  url       = env("DATABASE_URL") // uses prisma accelerate
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  url       = env("DATABASE_URL")
 }
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  previewFeatures = ["driverAdapters"]
 }
-
-// model YourModelName {
-// Standard fields (by usage frequency):
-// id (Int @id @default(autoincrement())), createdAt (DateTime @default(now())), updatedAt (DateTime @updatedAt)
-
-// Optional fields (as needed, by likelihood of inclusion):
-// e.g., deletedAt (DateTime?), expiresAt (DateTime?)
-
-// Model-specific fields (by relevance and query frequency):
-// fieldName (FieldType)
-
-// Simple relations (by relational importance):
-// relation (RelationType[])
-
-// Explicit relations (by frequency and complexity):
-// namedRelation (RelationType @relation(fields: [relationField], references: [id], onDelete: Cascade))
-
-// Unique constraints (by query relevance):
-// @@unique([field1, field2])
-
-// Indexes (by query performance impact):
-// @@index([field1, field2], name: "index_name_optional")
-
-// Table mapping (specific database table):
-// @@map("database_table_name")
-// }
 
 model Team {
   id        String    @id @default(cuid())
@@ -137,6 +110,8 @@ model Admin {
   role   AdminRole
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map(name: "admins")
 }
 
 enum AdminRole {
