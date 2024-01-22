@@ -6,11 +6,11 @@ import { useCallback, useState } from 'react';
 import Balancer from 'react-wrap-balancer';
 
 import { cn } from '@and-voila/ui';
+import { Switch } from '@and-voila/ui/switch';
 
 import { pricingData } from '#/config/subscriptions';
 
 import PricingCard from '#/components/marketing/pricing-card';
-import { Switch } from '#/components/ui/switch';
 
 interface PricingCardsProps {
   teamId?: string;

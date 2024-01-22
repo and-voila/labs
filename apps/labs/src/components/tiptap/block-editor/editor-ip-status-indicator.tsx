@@ -1,11 +1,11 @@
-import { Icons } from '#/components/shared/icons';
-import { Button } from '#/components/ui/button';
+import { Button } from '@and-voila/ui/button';
+import { Icons } from '@and-voila/ui/icons';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '#/components/ui/tooltip';
+} from '@and-voila/ui/tooltip';
 
 interface EditorIpStatusIndicatorProps {
   aiContentPercentage: number;

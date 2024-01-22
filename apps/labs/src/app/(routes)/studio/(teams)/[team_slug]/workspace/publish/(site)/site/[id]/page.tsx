@@ -4,6 +4,9 @@ import type { Metadata } from 'next';
 
 import { notFound, redirect } from 'next/navigation';
 
+import { Icons } from '@and-voila/ui/icons';
+import { Separator } from '@and-voila/ui/separator';
+
 import { siteConfig } from '#/config/site';
 
 import { authOptions } from '#/lib/auth';
@@ -15,8 +18,6 @@ import { DashboardHeader } from '#/components/dashboard/header';
 import { NewCollabPostButton } from '#/components/publish/new-collab-post-button';
 import OverviewSitesCTA from '#/components/publish/overview-sites-cta';
 import Posts from '#/components/publish/posts';
-import { Icons } from '#/components/shared/icons';
-import { Separator } from '#/components/ui/separator';
 
 export default async function SiteManage({
   params,

@@ -6,15 +6,8 @@ import React, { startTransition, useCallback, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { cn } from '@and-voila/ui';
-
-import { APP_BP } from '#/lib/const';
-import { userColors } from '#/lib/tiptap/constants';
-import { randomElement } from '#/lib/tiptap/utils';
-
-import { NewTeamForm } from '#/components/forms/new-team-form';
-import { Icons } from '#/components/shared/icons';
-import { Avatar, AvatarFallback, AvatarImage } from '#/components/ui/avatar';
-import { Button } from '#/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@and-voila/ui/avatar';
+import { Button } from '@and-voila/ui/button';
 import {
   Command,
   CommandEmpty,
@@ -23,7 +16,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '#/components/ui/command';
+} from '@and-voila/ui/command';
 import {
   Dialog,
   DialogContent,
@@ -31,12 +24,15 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '#/components/ui/dialog';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '#/components/ui/popover';
+} from '@and-voila/ui/dialog';
+import { Icons } from '@and-voila/ui/icons';
+import { Popover, PopoverContent, PopoverTrigger } from '@and-voila/ui/popover';
+
+import { APP_BP } from '#/lib/const';
+import { userColors } from '#/lib/tiptap/constants';
+import { randomElement } from '#/lib/tiptap/utils';
+
+import { NewTeamForm } from '#/components/forms/new-team-form';
 
 export interface TeamSwitcherProps {
   activeTeamSlug?: string | null | undefined;

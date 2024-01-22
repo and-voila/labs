@@ -7,8 +7,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { cn } from '@and-voila/ui';
-
-import { buttonVariants } from '#/components/ui/button';
+import { buttonVariants } from '@and-voila/ui/button';
 
 interface SidebarProps {
   links: SidebarLink[];

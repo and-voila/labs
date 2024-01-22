@@ -5,7 +5,7 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion';
 
 import { cn } from '@and-voila/ui';
 
-import { Icons } from '#/components/shared/icons';
+import { Icons } from './icons';
 
 const Accordion = AccordionPrimitive.Root;
 

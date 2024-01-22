@@ -1,21 +1,17 @@
 import * as React from 'react';
 
 import { cn } from '@and-voila/ui';
-
-import { Icons } from '#/components/shared/icons';
-import { Button } from '#/components/ui/button';
+import { Button } from '@and-voila/ui/button';
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from '#/components/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '#/components/ui/popover';
+} from '@and-voila/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@and-voila/ui/popover';
+
+import { Icons } from './icons';
 
 interface ComboboxProps {
   options: { label: string; value: string }[];

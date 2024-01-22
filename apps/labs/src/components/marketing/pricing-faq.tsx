@@ -5,7 +5,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '#/components/ui/accordion';
+} from '@and-voila/ui/accordion';
 
 const pricingFaqData = [
   {

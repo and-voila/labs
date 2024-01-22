@@ -4,14 +4,14 @@ import type { MainNavItem } from '#/lib/types';
 import Link from 'next/link';
 
 import { cn } from '@and-voila/ui';
+import { buttonVariants } from '@and-voila/ui/button';
+import { Icons } from '@and-voila/ui/icons';
 
 import { APP_BP } from '#/lib/const';
 
 import { MainNavigationMenu } from '#/components/layout/main-nav-menu';
-import { Icons } from '#/components/shared/icons';
 import { TeamSwitcher } from '#/components/teams/team-switcher';
 import UserNavSSR from '#/components/teams/user-nav-ssr';
-import { buttonVariants } from '#/components/ui/button';
 
 interface NavBarProps {
   teams?: Team[];

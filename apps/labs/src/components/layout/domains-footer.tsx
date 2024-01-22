@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { cn } from '@and-voila/ui';
+import { Icons } from '@and-voila/ui/icons';
 
 import { siteConfig } from '#/config/site';
 
@@ -9,7 +10,6 @@ import { placeholderBlurhash } from '#/lib/utils';
 import { ModeToggle } from '#/components/layout/mode-toggle';
 import BlurImage from '#/components/publish/blur-image';
 import ReportAbuse from '#/components/publish/report-abuse';
-import { Icons } from '#/components/shared/icons';
 
 interface DomainsFooterLinkData {
   href: string;

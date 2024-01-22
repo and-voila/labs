@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import { cn } from '@and-voila/ui';
+import { Icons } from '@and-voila/ui/icons';
 
 import { siteConfig } from '#/config/site';
 
 import { ModeToggle } from '#/components/layout/mode-toggle';
-import { Icons } from '#/components/shared/icons';
 
 interface FooterLinkData {
   href: string;

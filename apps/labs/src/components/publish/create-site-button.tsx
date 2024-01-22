@@ -4,8 +4,9 @@ import type { ReactNode } from 'react';
 
 import { useCallback } from 'react';
 
+import { Button } from '@and-voila/ui/button';
+
 import { useModal } from '#/components/publish/modal/provider';
-import { Button } from '#/components/ui/button';
 
 export default function CreateSiteButton({
   children,

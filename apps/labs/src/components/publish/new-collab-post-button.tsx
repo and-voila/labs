@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 
-import { Button } from '#/components/ui/button';
+import { Button } from '@and-voila/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -10,7 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '#/components/ui/dialog';
+} from '@and-voila/ui/dialog';
 
 import { NewCollabPostForm } from './form/new/new-collab-post-form';
 

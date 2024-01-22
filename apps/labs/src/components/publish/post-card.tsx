@@ -5,11 +5,12 @@ import type { Post, Site } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { Icons } from '@and-voila/ui/icons';
+
 import { APP_BP } from '#/lib/const';
 import { placeholderBlurhash } from '#/lib/utils';
 
 import BlurImage from '#/components/publish/blur-image';
-import { Icons } from '#/components/shared/icons';
 
 interface PostCardProps {
   data: Post & { site: Site | null };

@@ -8,12 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { deletePost } from '#/lib/actions/publish/publish-actions';
-import { APP_BP } from '#/lib/const';
-
-import { ConfirmDeleteModal } from '#/components/modals/confirm-delete-modal';
-import { Icons } from '#/components/shared/icons';
-import { Button } from '#/components/ui/button';
+import { Button } from '@and-voila/ui/button';
 import {
   Form,
   FormControl,
@@ -21,9 +16,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '#/components/ui/form';
-import { Input } from '#/components/ui/input';
-import { toast } from '#/components/ui/use-toast';
+} from '@and-voila/ui/form';
+import { Icons } from '@and-voila/ui/icons';
+import { Input } from '@and-voila/ui/input';
+import { toast } from '@and-voila/ui/use-toast';
+
+import { deletePost } from '#/lib/actions/publish/publish-actions';
+import { APP_BP } from '#/lib/const';
+
+import { ConfirmDeleteModal } from '#/components/modals/confirm-delete-modal';
 
 export default function NewDeletePostForm({
   postName,

@@ -3,6 +3,9 @@ import type { Metadata, NextPage } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { Alert, AlertDescription, AlertTitle } from '@and-voila/ui/alert';
+import { Icons } from '@and-voila/ui/icons';
+
 import { siteConfig } from '#/config/site';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
@@ -10,8 +13,6 @@ import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { DeleteForm } from '#/components/forms/delete-team-form';
-import { Icons } from '#/components/shared/icons';
-import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
 
 interface Props {
   params: {

@@ -10,9 +10,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { deletePersonalAccount } from '#/lib/actions/user/update-user';
-import { APP_BP } from '#/lib/const';
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,15 +20,18 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '#/components/ui/alert-dialog';
-import { Button, buttonVariants } from '#/components/ui/button';
+} from '@and-voila/ui/alert-dialog';
+import { Button, buttonVariants } from '@and-voila/ui/button';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '#/components/ui/card';
+} from '@and-voila/ui/card';
+
+import { deletePersonalAccount } from '#/lib/actions/user/update-user';
+import { APP_BP } from '#/lib/const';
 
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';

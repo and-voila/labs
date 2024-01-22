@@ -3,14 +3,14 @@
 import { useCallback } from 'react';
 import { useTheme } from 'next-themes';
 
-import { Icons } from '#/components/shared/icons';
-import { Button } from '#/components/ui/button';
+import { Button } from '@and-voila/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '#/components/ui/dropdown-menu';
+} from '@and-voila/ui/dropdown-menu';
+import { Icons } from '@and-voila/ui/icons';
 
 export function ModeToggle() {
   const { setTheme } = useTheme();

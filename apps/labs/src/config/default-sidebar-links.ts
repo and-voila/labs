@@ -1,9 +1,9 @@
-import type { IconProps } from '#/components/shared/icons';
 import type { SidebarLink } from '#/lib/types';
 
-import { APP_BP } from '#/lib/const';
+import type { IconProps } from '@and-voila/ui/icons';
+import { Icons } from '@and-voila/ui/icons';
 
-import { Icons } from '#/components/shared/icons';
+import { APP_BP } from '#/lib/const';
 
 export const defaultSidebarLinks = (
   activeTeamSlug: string | null | undefined,

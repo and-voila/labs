@@ -7,13 +7,13 @@ import { useRouter } from 'next/navigation';
 import { useFormStatus } from 'react-dom';
 
 import { cn } from '@and-voila/ui';
+import { Icons } from '@and-voila/ui/icons';
+import { toast } from '@and-voila/ui/use-toast';
 
 import { createSite } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
 
 import { useModal } from '#/components/publish/modal/provider';
-import { Icons } from '#/components/shared/icons';
-import { toast } from '#/components/ui/use-toast';
 
 interface CreateSiteModalProps {
   teamSlug: string;

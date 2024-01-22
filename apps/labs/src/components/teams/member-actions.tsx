@@ -1,12 +1,8 @@
 'use client';
 
-import type { DropdownMenuItemProps } from '#/components/ui/dropdown-menu';
-
 import React, { forwardRef, useCallback } from 'react';
 
-import { deleteMemberAction } from '#/lib/actions/teams/member-list-management';
-
-import { Icons } from '#/components/shared/icons';
+import type { DropdownMenuItemProps } from '@and-voila/ui/dropdown-menu';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,14 +13,17 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '#/components/ui/alert-dialog';
-import { Button } from '#/components/ui/button';
+} from '@and-voila/ui/alert-dialog';
+import { Button } from '@and-voila/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '#/components/ui/dropdown-menu';
+} from '@and-voila/ui/dropdown-menu';
+import { Icons } from '@and-voila/ui/icons';
+
+import { deleteMemberAction } from '#/lib/actions/teams/member-list-management';
 
 export interface MemberActionsProps {
   id: string;

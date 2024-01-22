@@ -1,8 +1,7 @@
 import { Drawer } from 'vaul';
 
 import { cn } from '@and-voila/ui';
-
-import { Dialog, DialogContent } from '#/components/ui/dialog';
+import { Dialog, DialogContent } from '@and-voila/ui/dialog';
 
 import useMediaQuery from '#/hooks/use-media-query';
 

@@ -4,8 +4,8 @@ import type { ChangeEvent } from 'react';
 
 import { useCallback, useMemo, useState } from 'react';
 
-import { Icons } from '#/components/shared/icons';
-import { toast } from '#/components/ui/use-toast';
+import { Icons } from '@and-voila/ui/icons';
+import { toast } from '@and-voila/ui/use-toast';
 
 import { Button } from '../ui/button';
 

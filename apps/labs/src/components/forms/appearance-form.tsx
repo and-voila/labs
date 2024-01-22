@@ -8,14 +8,14 @@ import { useTheme } from 'next-themes';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '#/components/ui/button';
+import { Button } from '@and-voila/ui/button';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '#/components/ui/card';
+} from '@and-voila/ui/card';
 import {
   Form,
   FormControl,
@@ -24,9 +24,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '#/components/ui/form';
-import { RadioGroup, RadioGroupItem } from '#/components/ui/radio-group';
-import { toast } from '#/components/ui/use-toast';
+} from '@and-voila/ui/form';
+import { RadioGroup, RadioGroupItem } from '@and-voila/ui/radio-group';
+import { toast } from '@and-voila/ui/use-toast';
 
 const schema = z.object({
   theme: z.enum(['system', 'light', 'dark'], {

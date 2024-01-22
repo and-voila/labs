@@ -1,8 +1,6 @@
 'use client';
 
-import { NewTeamForm } from '#/components/forms/new-team-form';
-import { Icons } from '#/components/shared/icons';
-import { Button } from '#/components/ui/button';
+import { Button } from '@and-voila/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -10,7 +8,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '#/components/ui/dialog';
+} from '@and-voila/ui/dialog';
+import { Icons } from '@and-voila/ui/icons';
+
+import { NewTeamForm } from '#/components/forms/new-team-form';
 
 export const NewTeamButton: React.FC = () => {
   return (

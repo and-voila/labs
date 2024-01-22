@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
 import { cn } from '@and-voila/ui';
+import { buttonVariants } from '@and-voila/ui/button';
 
 import { Logo } from '#/components/shared/logo-square';
-import { buttonVariants } from '#/components/ui/button';
 
 interface WriteCtaProps {
   domain: string;

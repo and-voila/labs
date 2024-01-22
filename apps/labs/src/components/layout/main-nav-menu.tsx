@@ -7,11 +7,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { cn } from '@and-voila/ui';
-
-import { APP_BP } from '#/lib/const';
-
-import { Icons } from '#/components/shared/icons';
-import { Badge } from '#/components/ui/badge';
+import { Badge } from '@and-voila/ui/badge';
+import { Icons } from '@and-voila/ui/icons';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -19,7 +16,9 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '#/components/ui/navigation-menu';
+} from '@and-voila/ui/navigation-menu';
+
+import { APP_BP } from '#/lib/const';
 
 interface MainNavigationMenuProps {
   teams?: Team[];

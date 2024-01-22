@@ -1,4 +1,4 @@
-import { Icons } from '#/components/shared/icons';
+import { Icons } from '@and-voila/ui/icons';
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (

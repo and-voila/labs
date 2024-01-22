@@ -4,23 +4,18 @@ import React, { useCallback } from 'react';
 import { MembershipRole } from '@prisma/client';
 
 import { cn } from '@and-voila/ui';
-
-import { changeRoleAction } from '#/lib/actions/teams/member-list-management';
-
-import { Icons } from '#/components/shared/icons';
-import { Button } from '#/components/ui/button';
+import { Button } from '@and-voila/ui/button';
 import {
   Command,
   CommandGroup,
   CommandItem,
   CommandList,
-} from '#/components/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '#/components/ui/popover';
-import { toast } from '#/components/ui/use-toast';
+} from '@and-voila/ui/command';
+import { Icons } from '@and-voila/ui/icons';
+import { Popover, PopoverContent, PopoverTrigger } from '@and-voila/ui/popover';
+import { toast } from '@and-voila/ui/use-toast';
+
+import { changeRoleAction } from '#/lib/actions/teams/member-list-management';
 
 export interface RolePopoverProps {
   isOwner: boolean;

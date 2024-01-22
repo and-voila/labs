@@ -6,6 +6,11 @@ import { useRouter } from 'next/navigation';
 import { WebSocketStatus } from '@hocuspocus/provider';
 import DOMPurify from 'isomorphic-dompurify';
 
+import { Button } from '@and-voila/ui/button';
+import { Card, CardContent, CardHeader } from '@and-voila/ui/card';
+import { Icons } from '@and-voila/ui/icons';
+import { toast } from '@and-voila/ui/use-toast';
+
 import type { EditorUser } from './types';
 
 import { updateCollabPost } from '#/lib/actions/publish/publish-actions';
@@ -13,11 +18,7 @@ import { APP_BP } from '#/lib/const';
 import { usePostContentStore } from '#/lib/store/use-post-content';
 
 import { ConfirmPublishModal } from '#/components/modals/confirm-publish-modal';
-import { Icons } from '#/components/shared/icons';
 import EditorIpStatusIndicator from '#/components/tiptap/block-editor/editor-ip-status-indicator';
-import { Button } from '#/components/ui/button';
-import { Card, CardContent, CardHeader } from '#/components/ui/card';
-import { toast } from '#/components/ui/use-toast';
 
 import { useAiContentPercentage } from '#/hooks/use-ai-content-percentage';
 

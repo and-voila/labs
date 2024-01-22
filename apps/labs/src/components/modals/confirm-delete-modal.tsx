@@ -8,7 +8,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '#/components/ui/alert-dialog';
+} from '@and-voila/ui/alert-dialog';
 
 interface ConfirmDeleteModalProps {
   children: React.ReactNode;

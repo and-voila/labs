@@ -1,8 +1,7 @@
 import Link from 'next/link';
 
 import { cn } from '@and-voila/ui';
-
-import { buttonVariants } from '#/components/ui/button';
+import { buttonVariants } from '@and-voila/ui/button';
 
 const MarketingIndexHero = (): JSX.Element => {
   return (

@@ -6,20 +6,20 @@ import { useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 
-import { APP_BP } from '#/lib/const';
-import { userColors } from '#/lib/tiptap/constants';
-import { randomElement } from '#/lib/tiptap/utils';
-
-import { Icons } from '#/components/shared/icons';
-import { AvatarFallback } from '#/components/ui/avatar';
+import { AvatarFallback } from '@and-voila/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '#/components/ui/dropdown-menu';
-import { UserAvatar } from '#/components/ui/user-avatar';
+} from '@and-voila/ui/dropdown-menu';
+import { Icons } from '@and-voila/ui/icons';
+import { UserAvatar } from '@and-voila/ui/user-avatar';
+
+import { APP_BP } from '#/lib/const';
+import { userColors } from '#/lib/tiptap/constants';
+import { randomElement } from '#/lib/tiptap/utils';
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, 'name' | 'image' | 'email' | 'displayName' | 'id'>;

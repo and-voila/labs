@@ -3,8 +3,7 @@
 import { useCallback, useRef, useState } from 'react';
 
 import { cn } from '@and-voila/ui';
-
-import { toast } from '#/components/ui/use-toast';
+import { toast } from '@and-voila/ui/use-toast';
 
 export default function Uploader({
   defaultValue,

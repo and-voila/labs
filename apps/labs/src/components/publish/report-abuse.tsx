@@ -5,13 +5,12 @@ import { useParams } from 'next/navigation';
 import { useFormStatus } from 'react-dom';
 
 import { cn } from '@and-voila/ui';
+import { Icons } from '@and-voila/ui/icons';
+import { toast } from '@and-voila/ui/use-toast';
 
 import { siteConfig } from '#/config/site';
 
 import { sendAbuseReportEmail } from '#/lib/resend/send-abuse-report';
-
-import { Icons } from '#/components/shared/icons';
-import { toast } from '#/components/ui/use-toast';
 
 export default function ReportAbuse() {
   const [open, setOpen] = useState(false);

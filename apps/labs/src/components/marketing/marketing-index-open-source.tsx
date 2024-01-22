@@ -2,9 +2,9 @@ import { env } from '#/env';
 
 import Link from 'next/link';
 
-import { siteConfig } from '#/config/site';
+import { Icons } from '@and-voila/ui/icons';
 
-import { Icons } from '#/components/shared/icons';
+import { siteConfig } from '#/config/site';
 
 async function getGitHubStars(): Promise<string | null> {
   try {

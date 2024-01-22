@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 import { cn } from '@and-voila/ui';
-
-import { Icons } from '#/components/shared/icons';
+import { Icons } from '@and-voila/ui/icons';
 
 type EmptyPlaceholderProps = React.HTMLAttributes<HTMLDivElement>;
 

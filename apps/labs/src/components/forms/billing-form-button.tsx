@@ -3,10 +3,10 @@ import type { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
 import { useCallback, useTransition } from 'react';
 import Link from 'next/link';
 
-import { generateUserStripe } from '#/lib/actions/stripe/generate-user-stripe';
+import { Button } from '@and-voila/ui/button';
+import { Icons } from '@and-voila/ui/icons';
 
-import { Icons } from '#/components/shared/icons';
-import { Button } from '#/components/ui/button';
+import { generateUserStripe } from '#/lib/actions/stripe/generate-user-stripe';
 
 interface BillingFormButtonProps {
   offer: SubscriptionPlan;

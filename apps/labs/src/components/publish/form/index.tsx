@@ -9,13 +9,13 @@ import { useSession } from 'next-auth/react';
 import { useFormStatus } from 'react-dom';
 
 import { cn } from '@and-voila/ui';
+import { buttonVariants } from '@and-voila/ui/button';
+import { Icons } from '@and-voila/ui/icons';
+import { toast } from '@and-voila/ui/use-toast';
 
 import DomainConfiguration from '#/components/publish/form/domain-configuration';
 import DomainStatus from '#/components/publish/form/domain-status';
 import Uploader from '#/components/publish/form/uploader';
-import { Icons } from '#/components/shared/icons';
-import { buttonVariants } from '#/components/ui/button';
-import { toast } from '#/components/ui/use-toast';
 
 export default function Form({
   title,

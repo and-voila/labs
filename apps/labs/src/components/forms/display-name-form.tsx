@@ -8,12 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import { cn } from '@and-voila/ui';
-
-import { updateDisplayName } from '#/lib/actions/user/update-user';
-import { displayNameSchema } from '#/lib/validations/display-name';
-
-import { Icons } from '#/components/shared/icons';
-import { buttonVariants } from '#/components/ui/button';
+import { buttonVariants } from '@and-voila/ui/button';
 import {
   Card,
   CardContent,
@@ -21,10 +16,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '#/components/ui/card';
-import { Input } from '#/components/ui/input';
-import { Label } from '#/components/ui/label';
-import { toast } from '#/components/ui/use-toast';
+} from '@and-voila/ui/card';
+import { Icons } from '@and-voila/ui/icons';
+import { Input } from '@and-voila/ui/input';
+import { Label } from '@and-voila/ui/label';
+import { toast } from '@and-voila/ui/use-toast';
+
+import { updateDisplayName } from '#/lib/actions/user/update-user';
+import { displayNameSchema } from '#/lib/validations/display-name';
 
 interface DisplayNameFormProps {
   user: Pick<User, 'id' | 'displayName'>;

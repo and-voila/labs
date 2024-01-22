@@ -3,12 +3,12 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 
 import { cn } from '@and-voila/ui';
+import { buttonVariants } from '@and-voila/ui/button';
+import { Icons } from '@and-voila/ui/icons';
 
 import { APP_BP } from '#/lib/const';
 
 import Sith404 from '#/components/layout/sith-404';
-import { Icons } from '#/components/shared/icons';
-import { buttonVariants } from '#/components/ui/button';
 
 const PostIdNotFound: NextPage = () => {
   return (

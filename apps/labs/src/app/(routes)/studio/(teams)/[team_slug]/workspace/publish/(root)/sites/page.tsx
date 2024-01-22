@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 
 import { notFound } from 'next/navigation';
 
+import { Separator } from '@and-voila/ui/separator';
+
 import { siteConfig } from '#/config/site';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
@@ -11,7 +13,6 @@ import { DashboardHeader } from '#/components/dashboard/header';
 import CreateSiteButton from '#/components/publish/create-site-button';
 import CreateSiteModal from '#/components/publish/modal/create-site';
 import Sites from '#/components/publish/sites';
-import { Separator } from '#/components/ui/separator';
 
 export default async function WorkspaceSitesPage({
   params,

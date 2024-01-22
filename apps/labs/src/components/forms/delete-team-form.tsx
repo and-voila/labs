@@ -8,9 +8,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { deleteTeam } from '#/lib/actions/teams/delete-team';
-import { APP_BP } from '#/lib/const';
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,16 +18,19 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '#/components/ui/alert-dialog';
-import { Button } from '#/components/ui/button';
+} from '@and-voila/ui/alert-dialog';
+import { Button } from '@and-voila/ui/button';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '#/components/ui/card';
-import { toast } from '#/components/ui/use-toast';
+} from '@and-voila/ui/card';
+import { toast } from '@and-voila/ui/use-toast';
+
+import { deleteTeam } from '#/lib/actions/teams/delete-team';
+import { APP_BP } from '#/lib/const';
 
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';

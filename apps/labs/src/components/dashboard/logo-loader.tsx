@@ -1,6 +1,5 @@
 import { cn } from '@and-voila/ui';
-
-import { Icons } from '#/components/shared/icons';
+import { Icons } from '@and-voila/ui/icons';
 
 interface LogoLoaderProps {
   className?: string;

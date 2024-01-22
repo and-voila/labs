@@ -6,11 +6,7 @@ import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { createTeam } from '#/lib/actions/teams/create-team';
-import { APP_BP } from '#/lib/const';
-import { newTeamFormSchema } from '#/lib/validations/new-team';
-
-import { Button } from '#/components/ui/button';
+import { Button } from '@and-voila/ui/button';
 import {
   Form,
   FormControl,
@@ -19,9 +15,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '#/components/ui/form';
-import { Input } from '#/components/ui/input';
-import { toast } from '#/components/ui/use-toast';
+} from '@and-voila/ui/form';
+import { Input } from '@and-voila/ui/input';
+import { toast } from '@and-voila/ui/use-toast';
+
+import { createTeam } from '#/lib/actions/teams/create-team';
+import { APP_BP } from '#/lib/const';
+import { newTeamFormSchema } from '#/lib/validations/new-team';
 
 const defaultValues: NewTeamFormValues = {
   name: '',

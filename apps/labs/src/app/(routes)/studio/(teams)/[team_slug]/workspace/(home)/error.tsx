@@ -5,12 +5,12 @@ import type { IconKey } from '#/lib/types';
 import { useCallback } from 'react';
 import Link from 'next/link';
 
+import { Button } from '@and-voila/ui/button';
+import { Icons } from '@and-voila/ui/icons';
+
 import { siteConfig } from '#/config/site';
 
 import { APP_BP } from '#/lib/const';
-
-import { Icons } from '#/components/shared/icons';
-import { Button } from '#/components/ui/button';
 
 const links: {
   name: string;
@@ -56,7 +56,7 @@ export default function WorkspaceRootError({ reset }: { reset: () => void }) {
         <h2 className="sr-only">Popular pages</h2>
         <ul className="-mt-6 divide-y divide-border border-b">
           {links.map((link, linkIdx) => {
-            const Icon = Icons[link.icon];
+            const Icon = Icons[link.icon as keyof typeof Icons];
             return (
               <li key={linkIdx} className="relative flex gap-x-6 py-6">
                 <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg shadow-sm">

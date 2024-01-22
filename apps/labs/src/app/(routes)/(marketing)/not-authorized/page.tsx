@@ -4,13 +4,12 @@ import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
 import { cn } from '@and-voila/ui';
+import { buttonVariants } from '@and-voila/ui/button';
+import { Icons } from '@and-voila/ui/icons';
 
 import { siteConfig } from '#/config/site';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
-
-import { Icons } from '#/components/shared/icons';
-import { buttonVariants } from '#/components/ui/button';
 
 const NotAuthorizedPage = () => {
   return (

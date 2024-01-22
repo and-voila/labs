@@ -13,14 +13,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import slugify from 'slugify';
 
-import { publishPost } from '#/lib/actions/publish/publish-actions';
-import { APP_BP } from '#/lib/const';
-import { usePostContentStore } from '#/lib/store/use-post-content';
-import { publishPostSchema } from '#/lib/validations/post';
-
-import Uploader from '#/components/publish/form/uploader';
-import { Icons } from '#/components/shared/icons';
-import { Button } from '#/components/ui/button';
+import { Button } from '@and-voila/ui/button';
 import {
   Form,
   FormControl,
@@ -29,17 +22,25 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '#/components/ui/form';
-import { Input } from '#/components/ui/input';
+} from '@and-voila/ui/form';
+import { Icons } from '@and-voila/ui/icons';
+import { Input } from '@and-voila/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '#/components/ui/select';
-import { Textarea } from '#/components/ui/textarea';
-import { toast } from '#/components/ui/use-toast';
+} from '@and-voila/ui/select';
+import { Textarea } from '@and-voila/ui/textarea';
+import { toast } from '@and-voila/ui/use-toast';
+
+import { publishPost } from '#/lib/actions/publish/publish-actions';
+import { APP_BP } from '#/lib/const';
+import { usePostContentStore } from '#/lib/store/use-post-content';
+import { publishPostSchema } from '#/lib/validations/post';
+
+import Uploader from '#/components/publish/form/uploader';
 
 interface PublishPostFormProps {
   post: Post & { site: Site };

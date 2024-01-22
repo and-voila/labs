@@ -1,39 +1,12 @@
-'use client';
-
 import type * as LabelPrimitive from '@radix-ui/react-label';
-import type {
-  ControllerProps,
-  FieldPath,
-  FieldValues,
-  UseFormProps,
-} from 'react-hook-form';
-import type { ZodType } from 'zod';
+import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form';
 
 import * as React from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Slot } from '@radix-ui/react-slot';
-import {
-  useForm as __useForm,
-  Controller,
-  FormProvider,
-  useFormContext,
-} from 'react-hook-form';
+import { Controller, FormProvider, useFormContext } from 'react-hook-form';
 
-import { cn } from '.';
-import { Label } from './label';
-
-function useForm<TSchema extends ZodType>(
-  props: Omit<UseFormProps<TSchema['_input']>, 'resolver'> & {
-    schema: TSchema;
-  },
-) {
-  const form = __useForm<TSchema['_input']>({
-    ...props,
-    resolver: zodResolver(props.schema, undefined),
-  });
-
-  return form;
-}
+import { cn } from '@and-voila/ui';
+import { Label } from '@and-voila/ui/label';
 
 const Form = FormProvider;
 
@@ -54,10 +27,13 @@ const FormField = <
 >({
   ...props
 }: ControllerProps<TFieldValues, TName>) => {
+  const contextValue = React.useMemo(
+    () => ({ name: props.name }),
+    [props.name],
+  );
+
   return (
-    // TODO: Remove this eslint-disable once this issue is resolved:
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <FormFieldContext.Provider value={{ name: props.name }}>
+    <FormFieldContext.Provider value={contextValue}>
       <Controller {...props} />
     </FormFieldContext.Provider>
   );
@@ -99,21 +75,25 @@ const FormItem = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
   const id = React.useId();
+  const contextValue = React.useMemo(() => ({ id }), [id]);
 
   return (
-    // TODO: Remove this eslint-disable once this issue is resolved:
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <FormItemContext.Provider value={{ id }}>
+    <FormItemContext.Provider value={contextValue}>
       <div ref={ref} className={cn('space-y-2', className)} {...props} />
     </FormItemContext.Provider>
   );
 });
 FormItem.displayName = 'FormItem';
 
+interface FormLabelProps
+  extends React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> {
+  required?: boolean;
+}
+
 const FormLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
->(({ className, ...props }, ref) => {
+  FormLabelProps
+>(({ className, required, ...props }, ref) => {
   const { error, formItemId } = useFormField();
 
   return (
@@ -122,7 +102,14 @@ const FormLabel = React.forwardRef<
       className={cn(error && 'text-destructive', className)}
       htmlFor={formItemId}
       {...props}
-    />
+    >
+      {props.children}
+      {required && (
+        <span className="text-destructive">
+          <sup>*</sup>
+        </span>
+      )}
+    </Label>
   );
 });
 FormLabel.displayName = 'FormLabel';
@@ -192,15 +179,12 @@ const FormMessage = React.forwardRef<
 FormMessage.displayName = 'FormMessage';
 
 export {
-  useForm,
-  useFormField,
   Form,
-  FormItem,
-  FormLabel,
   FormControl,
   FormDescription,
-  FormMessage,
   FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  useFormField,
 };
-
-export { useFieldArray } from 'react-hook-form';

@@ -4,7 +4,7 @@ import { cva } from 'class-variance-authority';
 
 import { cn } from '@and-voila/ui';
 
-import { Icons } from '#/components/shared/icons';
+import { Icons } from './icons';
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,

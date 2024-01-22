@@ -1,7 +1,8 @@
 'use client';
 
+import { Icons } from '@and-voila/ui/icons';
+
 import { useDomainStatus } from '#/components/publish/form/use-domain-status';
-import { Icons } from '#/components/shared/icons';
 
 export default function DomainStatus({ domain }: { domain: string }) {
   const { status, loading } = useDomainStatus({ domain });

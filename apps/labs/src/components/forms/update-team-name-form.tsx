@@ -7,12 +7,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { siteConfig } from '#/config/site';
-
-import { updateTeam } from '#/lib/actions/teams/team-settings';
-import { updateTeamNameFormSchema } from '#/lib/validations/update-team';
-
-import { Button } from '#/components/ui/button';
+import { Button } from '@and-voila/ui/button';
 import {
   Card,
   CardContent,
@@ -20,16 +15,21 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '#/components/ui/card';
+} from '@and-voila/ui/card';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '#/components/ui/form';
-import { Input } from '#/components/ui/input';
-import { toast } from '#/components/ui/use-toast';
+} from '@and-voila/ui/form';
+import { Input } from '@and-voila/ui/input';
+import { toast } from '@and-voila/ui/use-toast';
+
+import { siteConfig } from '#/config/site';
+
+import { updateTeam } from '#/lib/actions/teams/team-settings';
+import { updateTeamNameFormSchema } from '#/lib/validations/update-team';
 
 export interface UpdateTeamNameFormProps {
   teamSlug: string;

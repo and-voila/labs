@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { MembershipRole } from '@prisma/client';
 
+import { Alert, AlertDescription, AlertTitle } from '@and-voila/ui/alert';
+import { Icons } from '@and-voila/ui/icons';
+
 import { siteConfig } from '#/config/site';
 
 import { authOptions } from '#/lib/auth';
@@ -13,8 +16,6 @@ import { getSession } from '#/lib/operations/user/session';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { BillingInfo } from '#/components/forms/billing-info';
-import { Icons } from '#/components/shared/icons';
-import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
 
 export default async function PersonalBillingPage() {
   const session = await getSession();

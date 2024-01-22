@@ -2,22 +2,21 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { cn } from '@and-voila/ui';
-
-import { siteConfig } from '#/config/site';
-
-import { getInvitationByToken } from '#/lib/operations/teams/members/get-invitation';
-import { getSession } from '#/lib/operations/user/session';
-
-import { Icons } from '#/components/shared/icons';
-import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
-import { buttonVariants } from '#/components/ui/button';
+import { Alert, AlertDescription, AlertTitle } from '@and-voila/ui/alert';
+import { buttonVariants } from '@and-voila/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '#/components/ui/card';
+} from '@and-voila/ui/card';
+import { Icons } from '@and-voila/ui/icons';
+
+import { siteConfig } from '#/config/site';
+
+import { getInvitationByToken } from '#/lib/operations/teams/members/get-invitation';
+import { getSession } from '#/lib/operations/user/session';
 
 import SignOutButton from './sign-out-button';
 

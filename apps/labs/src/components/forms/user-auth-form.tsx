@@ -10,13 +10,7 @@ import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 
 import { cn } from '@and-voila/ui';
-
-import { siteConfig } from '#/config/site';
-
-import { userAuthSchema } from '#/lib/validations/auth';
-
-import { Icons } from '#/components/shared/icons';
-import { buttonVariants } from '#/components/ui/button';
+import { buttonVariants } from '@and-voila/ui/button';
 import {
   Card,
   CardContent,
@@ -24,11 +18,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '#/components/ui/card';
-import { Input } from '#/components/ui/input';
-import { Label } from '#/components/ui/label';
-import { ToastAction } from '#/components/ui/toast';
-import { toast } from '#/components/ui/use-toast';
+} from '@and-voila/ui/card';
+import { Icons } from '@and-voila/ui/icons';
+import { Input } from '@and-voila/ui/input';
+import { Label } from '@and-voila/ui/label';
+import { ToastAction } from '@and-voila/ui/toast';
+import { toast } from '@and-voila/ui/use-toast';
+
+import { siteConfig } from '#/config/site';
+
+import { userAuthSchema } from '#/lib/validations/auth';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   isRegistration?: boolean;

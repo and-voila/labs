@@ -5,11 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { cn } from '@and-voila/ui';
+import { buttonVariants } from '@and-voila/ui/button';
+import { Icons } from '@and-voila/ui/icons';
 
 import { getSiteData } from '#/lib/operations/publish/publish-fetchers';
-
-import { Icons } from '#/components/shared/icons';
-import { buttonVariants } from '#/components/ui/button';
 
 export default async function NotFound() {
   const headersList = headers();

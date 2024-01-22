@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 
 import { notFound } from 'next/navigation';
 
+import { Separator } from '@and-voila/ui/separator';
+
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import Posts from '#/components/publish/posts';
-import { Separator } from '#/components/ui/separator';
 
 export default async function WorkspacePostsPage({
   params,

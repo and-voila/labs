@@ -4,15 +4,15 @@ import type { SVGProps } from 'react';
 import Link from 'next/link';
 
 import { cn } from '@and-voila/ui';
+import { buttonVariants } from '@and-voila/ui/button';
+import { Card, CardFooter, CardHeader, CardTitle } from '@and-voila/ui/card';
+import { Icons } from '@and-voila/ui/icons';
 
 import { siteConfig } from '#/config/site';
 
 import { APP_BP } from '#/lib/const';
 
 import { DashboardHeader } from '#/components/dashboard/header';
-import { Icons } from '#/components/shared/icons';
-import { buttonVariants } from '#/components/ui/button';
-import { Card, CardFooter, CardHeader, CardTitle } from '#/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Admin Center',

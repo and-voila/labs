@@ -4,19 +4,20 @@ import React from 'react';
 import Link from 'next/link';
 import { MembershipRole } from '@prisma/client';
 
-import { siteConfig } from '#/config/site';
-
-import { APP_BP } from '#/lib/const';
-
-import { Icons } from '#/components/shared/icons';
-import { RoleBadge } from '#/components/teams/role-badge';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '#/components/ui/card';
+} from '@and-voila/ui/card';
+import { Icons } from '@and-voila/ui/icons';
+
+import { siteConfig } from '#/config/site';
+
+import { APP_BP } from '#/lib/const';
+
+import { RoleBadge } from '#/components/teams/role-badge';
 
 export interface TeamCardProps {
   team: Team;
