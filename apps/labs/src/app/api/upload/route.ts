@@ -12,7 +12,7 @@ import { ratelimit } from '#/lib/upstash';
 export const runtime = 'edge';
 
 export async function POST(req: NextRequest) {
-  const ip = ipAddress(req) || 'anonymous';
+  const ip = ipAddress(req) ?? 'anonymous';
   const { success } = await ratelimit(5, '1 m').limit(ip);
   if (!success) {
     return new Response('Too many requests 🤨. Try again later.', {
@@ -29,8 +29,8 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const file = req.body || '';
-  const contentType = req.headers.get('content-type') || 'text/plain';
+  const file = req.body ?? '';
+  const contentType = req.headers.get('content-type') ?? 'text/plain';
   const filename = `${nanoid()}.${contentType.split('/')[1]}`;
   const blob = await put(filename, file, {
     contentType,

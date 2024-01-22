@@ -50,6 +50,11 @@ export async function POST(req: Request) {
         session.subscription as string,
       );
 
+      const stripePriceId = subscription.items?.data[0]?.price?.id;
+      if (!stripePriceId) {
+        return new NextResponse('Stripe price ID not found', { status: 400 });
+      }
+
       if (!teamId) {
         return new NextResponse('Team id is required', { status: 400 });
       }
@@ -64,7 +69,7 @@ export async function POST(req: Request) {
           teamId: teamId,
           stripeSubscriptionId: subscription.id,
           stripeCustomerId: subscription.customer as string,
-          stripePriceId: subscription.items.data[0].price.id,
+          stripePriceId: stripePriceId,
           stripeCurrentPeriodEnd: new Date(
             subscription.current_period_end * 1000,
           ),
@@ -80,13 +85,18 @@ export async function POST(req: Request) {
       where: { stripeSubscriptionId: subscription.id },
     });
 
+    const stripePriceId = subscription.items?.data[0]?.price?.id;
+    if (!stripePriceId) {
+      return new NextResponse('Stripe price ID not found', { status: 400 });
+    }
+
     if (!stripeSubscription) {
       await db.stripeSubscription.create({
         data: {
           teamId: session?.metadata?.teamId,
           stripeSubscriptionId: subscription.id,
           stripeCustomerId: subscription.customer as string,
-          stripePriceId: subscription.items.data[0].price.id,
+          stripePriceId: stripePriceId,
           stripeCurrentPeriodEnd: new Date(
             subscription.current_period_end * 1000,
           ),
@@ -96,7 +106,7 @@ export async function POST(req: Request) {
       await db.stripeSubscription.update({
         where: { stripeSubscriptionId: subscription.id },
         data: {
-          stripePriceId: subscription.items.data[0].price.id,
+          stripePriceId: stripePriceId,
           stripeCurrentPeriodEnd: new Date(
             subscription.current_period_end * 1000,
           ),

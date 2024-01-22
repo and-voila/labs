@@ -1,5 +1,6 @@
+import type { NextRequest } from 'next/server';
+
 import { ImageResponse } from 'next/og';
-import { NextRequest } from 'next/server';
 import { ipAddress } from '@vercel/edge';
 
 import { ratelimit } from '#/lib/upstash';
@@ -8,7 +9,7 @@ import { ogImageSchema } from '#/lib/validations/og';
 export const runtime = 'edge';
 
 export async function GET(request: NextRequest) {
-  const ip = ipAddress(request) || 'anonymous';
+  const ip = ipAddress(request) ?? 'anonymous';
   const { success } = await ratelimit(5, '1 m').limit(ip);
   if (!success) {
     return new Response('Too many requests 🤨. Try again later.', {
@@ -24,7 +25,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
 
     let titleParam =
-      searchParams.get('title') || 'Delightfully good digital marketing';
+      searchParams.get('title') ?? 'Delightfully good digital marketing';
 
     // console.log('Received title:', titleParam);
 

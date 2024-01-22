@@ -1,11 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server';
+import type { DomainVerificationStatusProps } from '#/lib/types';
+import type { NextRequest } from 'next/server';
+
+import { NextResponse } from 'next/server';
 
 import {
   getConfigResponse,
   getDomainResponse,
   verifyDomain,
 } from '#/lib/actions/publish/domains';
-import { DomainVerificationStatusProps } from '#/lib/types';
 import { ratelimit } from '#/lib/upstash';
 
 export async function GET(
