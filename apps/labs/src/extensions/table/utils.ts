@@ -244,8 +244,10 @@ const select =
                 bottom,
               });
 
-        const head = table.start + cellsInFirstRow[0]!;
-        const anchor = table.start + cellsInLastRow[cellsInLastRow.length - 1]!;
+        // @ts-expect-error TODO:
+        const head = table.start + cellsInFirstRow[0];
+        // @ts-expect-error TODO:
+        const anchor = table.start + cellsInLastRow[cellsInLastRow.length - 1];
         const $head = tr.doc.resolve(head);
         const $anchor = tr.doc.resolve(anchor);
 
@@ -266,8 +268,10 @@ export const selectTable = (tr: Transaction) => {
     const { map } = TableMap.get(table.node);
 
     if (map?.length) {
-      const head = table.start + map[0]!;
-      const anchor = table.start + map[map.length - 1]!;
+      // @ts-expect-error TODO:
+      const head = table.start + map[0];
+      // @ts-expect-error TODO:
+      const anchor = table.start + map[map.length - 1];
       const $head = tr.doc.resolve(head);
       const $anchor = tr.doc.resolve(anchor);
 

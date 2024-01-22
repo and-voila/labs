@@ -58,8 +58,8 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
         if (!props.items.length) {
           return false;
         }
-
-        const commands = props.items[selectedGroupIndex]!.commands;
+        // @ts-expect-error TODO:
+        const commands = props.items[selectedGroupIndex].commands;
 
         let newCommandIndex = selectedCommandIndex + 1;
         let newGroupIndex = selectedGroupIndex;
@@ -89,13 +89,14 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
 
         if (newCommandIndex < 0) {
           newGroupIndex = selectedGroupIndex - 1;
-          newCommandIndex =
-            props.items[newGroupIndex]!.commands.length - 1 || 0;
+          // @ts-expect-error TODO:
+          newCommandIndex = props.items[newGroupIndex].commands.length - 1 || 0;
         }
 
         if (newGroupIndex < 0) {
           newGroupIndex = props.items.length - 1;
-          newCommandIndex = props.items[newGroupIndex]!.commands.length - 1;
+          // @ts-expect-error TODO:
+          newCommandIndex = props.items[newGroupIndex].commands.length - 1;
         }
 
         setSelectedCommandIndex(newCommandIndex);

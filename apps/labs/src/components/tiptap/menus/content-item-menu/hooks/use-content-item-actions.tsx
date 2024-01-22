@@ -77,8 +77,8 @@ const useContentItemActions = (
             } else {
               tr.insert(
                 insertPos,
-                // TODO: Make TS happy
-                state.schema.nodes.paragraph!.create(null, [
+                // @ts-expect-error TODO:
+                state.schema.nodes.paragraph.create(null, [
                   state.schema.text('/'),
                 ]),
               );
