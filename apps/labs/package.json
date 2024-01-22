@@ -4,13 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm with-env next build",
+    "build": "prisma generate --no-engine && pnpm with-env next build",
     "clean": "git clean -xdf .next .turbo node_modules",
-    "dev": "pnpm with-env next dev",
+    "dev": "prisma generate --no-engine && pnpm with-env next dev",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "knip": "knip",
     "lint": "dotenv -v SKIP_ENV_VALIDATION=1 next lint",
-    "start": "pnpm with-env next start",
+    "start": "prisma generate --no-engine && pnpm with-env next start",
     "typecheck": "tsc --noEmit",
     "with-env": "dotenv -e ../../.env --"
   },
