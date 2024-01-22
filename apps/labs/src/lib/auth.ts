@@ -108,6 +108,7 @@ export const authOptions: NextAuthOptions = {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { team, isNew } = await createPersonalTeam(dbUser.id);
       if (isNew) {
+        /* empty */
       }
 
       return {
@@ -126,7 +127,7 @@ export const authOptions: NextAuthOptions = {
         if (typeof email === 'string') {
           setTimeout(
             () => {
-              sendWelcomeEmail({ email });
+              void sendWelcomeEmail({ email });
             },
             3 * 60 * 1000,
           );

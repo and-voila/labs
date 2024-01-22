@@ -1,4 +1,4 @@
-import { Icons } from '#/components/shared/icons';
+import type { Icons } from '#/components/shared/icons';
 
 // :: Iconography Types ::
 
@@ -6,7 +6,7 @@ export type IconKey = keyof typeof Icons;
 
 // :: Navigation Types ::
 
-export type NavItem = {
+export interface NavItem {
   id?: string;
   title: string;
   href: string;
@@ -14,7 +14,7 @@ export type NavItem = {
   isExternal?: boolean;
   isLoggedIn?: boolean;
   isAdmin?: boolean;
-};
+}
 
 export interface SidebarLink {
   href: string;
@@ -27,7 +27,7 @@ export type MainNavItem = NavItem;
 
 // :: Config Types ::
 
-export type SiteConfig = {
+export interface SiteConfig {
   company: string;
   name: string;
   description: string;
@@ -38,11 +38,11 @@ export type SiteConfig = {
     twitter: string;
     github: string;
   };
-};
+}
 
-export type FooterConfig = {
+export interface FooterConfig {
   footerNav: MainNavItem[];
-};
+}
 
 // :: Stripe and Subscription Types ::
 
@@ -78,13 +78,13 @@ export type TeamSubscriptionPlan = SubscriptionPlan & {
 
 // :: Miscellaneous Types ::
 
-export type MarketingBenefitsProps = {
+export interface MarketingBenefitsProps {
   id: string;
   title: string;
   description: string;
   emoji: string;
   emojiDescription: string;
-};
+}
 
 // :: Write Types ::
 
