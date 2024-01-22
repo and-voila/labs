@@ -1,6 +1,5 @@
 import './src/env.js';
 
-/** We already do linting and typechecking as separate tasks in CI */
 /** @type {import("next").NextConfig} */
 const config = {
   // TODO: Check if this redirect still needed.
