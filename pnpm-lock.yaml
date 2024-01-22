@@ -153,6 +153,9 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.0.7
         version: 1.0.7(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+      '@react-email/components':
+        specifier: ^0.0.14
+        version: 0.0.14(@types/react@18.2.48)(react@18.2.0)
       '@rive-app/react-canvas-lite':
         specifier: ^4.7.1
         version: 4.7.1(react@18.2.0)
@@ -384,6 +387,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      react-email:
+        specifier: ^2.0.0
+        version: 2.0.0(@babel/core@7.23.7)(eslint@8.56.0)
       react-hook-form:
         specifier: ^7.49.3
         version: 7.49.3(react@18.2.0)
@@ -572,7 +578,7 @@ importers:
         version: 0.0.14(@types/react@18.2.48)(react@18.2.0)
       react-email:
         specifier: ^2.0.0
-        version: 2.0.0(eslint@8.56.0)
+        version: 2.0.0(@babel/core@7.23.7)(eslint@8.56.0)
     devDependencies:
       '@and-voila/eslint-config':
         specifier: workspace:^0.2.0
@@ -11589,7 +11595,7 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /next@14.0.5-canary.46(react-dom@18.2.0)(react@18.2.0):
+  /next@14.0.5-canary.46(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-u8yiAK7L+fl/U9yFmq3VOpkHlImx5wg3OoDz3qxTXhPmmMzNcPbblWgxBf5d6Z+aik8BEn27L31k/tXCRzwFxA==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -13062,7 +13068,7 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-email@2.0.0(eslint@8.56.0):
+  /react-email@2.0.0(@babel/core@7.23.7)(eslint@8.56.0):
     resolution: {integrity: sha512-XzxyWkrfZC3zF9HnAjWwB823u9eTMpAQCy+SjLMtNSh4i8WuV8Fr5LriTTz/p1RRt6aXoiV3c/ZthaDt0nvBEA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
@@ -13092,7 +13098,7 @@ packages:
       glob: 10.3.4
       log-symbols: 4.1.0
       mime-types: 2.1.35
-      next: 14.0.5-canary.46(react-dom@18.2.0)(react@18.2.0)
+      next: 14.0.5-canary.46(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)
       normalize-path: 3.0.0
       ora: 5.4.1
       postcss: 8.4.32
