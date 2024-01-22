@@ -1,8 +1,9 @@
+import type { Team } from '#/lib/operations/teams/get-teams';
+import type { MainNavItem } from '#/lib/types';
+
 import Link from 'next/link';
 
 import { APP_BP } from '#/lib/const';
-import { Team } from '#/lib/operations/teams/get-teams';
-import { MainNavItem } from '#/lib/types';
 import { cn } from '#/lib/utils';
 
 import { MainNavigationMenu } from '#/components/layout/main-nav-menu';

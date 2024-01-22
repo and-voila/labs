@@ -1,12 +1,10 @@
 // Rive animation by Bobbeh https://rive.app/@Bobbeh/
 'use client';
 
+import type { RiveState } from '@rive-app/react-canvas-lite';
+
 import { useCallback } from 'react';
-import {
-  RiveState,
-  useRive,
-  useStateMachineInput,
-} from '@rive-app/react-canvas-lite';
+import { useRive, useStateMachineInput } from '@rive-app/react-canvas-lite';
 
 const Sith404 = () => {
   const { rive, RiveComponent }: RiveState = useRive({

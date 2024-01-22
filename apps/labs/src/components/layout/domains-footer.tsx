@@ -46,7 +46,7 @@ const DomainsFooterLink: React.FC<DomainsFooterLinkData> = ({
         href={href}
         aria-label={ariaLabel}
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
         className="font-medium text-primary hover:underline hover:underline-offset-4"
       >
         {label}

@@ -1,11 +1,12 @@
 'use client';
 
+import type { Team } from '#/lib/operations/teams/get-teams';
+
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { APP_BP } from '#/lib/const';
-import { Team } from '#/lib/operations/teams/get-teams';
 import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';

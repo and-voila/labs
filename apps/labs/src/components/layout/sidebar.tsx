@@ -1,10 +1,11 @@
 'use client';
 
+import type { SidebarLink } from '#/lib/types';
+
 import { cloneElement, isValidElement } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { SidebarLink } from '#/lib/types';
 import { cn } from '#/lib/utils';
 
 import { buttonVariants } from '#/components/ui/button';
