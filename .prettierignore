@@ -1,6 +1,1 @@
-dist
-node_modules
-.next
-build
-cursor/
-pnpm-lock.yaml
+*.json.hbs

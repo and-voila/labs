@@ -1,0 +1,4 @@
+{
+  "extends": "@and-voila/tsconfig/base.json",
+  "include": ["routes"],
+}

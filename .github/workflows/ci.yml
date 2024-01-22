@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  pull_request:
+    branches: ['*']
+  push:
+    branches: ['main']
+  merge_group:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
+# You can leverage Vercel Remote Caching with Turbo to speed up your builds
+# @link https://turborepo.org/docs/core-concepts/remote-caching#remote-caching-on-vercel-builds
+env:
+  FORCE_COLOR: 3
+  TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.11'
+
+      - name: Create .npmrc for Tiptap Pro
+        run: echo "${{ secrets.TIPTAP_PRO_TOKEN }}" > .npmrc
+        shell: bash
+
+      - name: Setup
+        uses: ./tooling/github/setup
+
+      - name: Copy env
+        shell: bash
+        run: cp .env.example .env
+
+      - name: Generate Prisma Client
+        run: npx prisma generate --schema=./src/prisma/schema.prisma --no-engine
+        working-directory: ./apps/labs
+
+      - name: Lint
+        run: pnpm lint && pnpm lint:ws
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.11'
+
+      - name: Create .npmrc for Tiptap Pro
+        run: echo "${{ secrets.TIPTAP_PRO_TOKEN }}" > .npmrc
+        shell: bash
+
+      - name: Setup
+        uses: ./tooling/github/setup
+
+      - name: Generate Prisma Client
+        run: npx prisma generate --schema=./src/prisma/schema.prisma --no-engine
+        working-directory: ./apps/labs
+
+      - name: Format
+        run: pnpm format
+
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.11'
+
+      - name: Create .npmrc for Tiptap Pro
+        run: echo "${{ secrets.TIPTAP_PRO_TOKEN }}" > .npmrc
+        shell: bash
+
+      - name: Setup
+        uses: ./tooling/github/setup
+
+      - name: Generate Prisma Client
+        run: npx prisma generate --schema=./src/prisma/schema.prisma --no-engine
+        working-directory: ./apps/labs
+
+      - name: Typecheck
+        run: pnpm typecheck

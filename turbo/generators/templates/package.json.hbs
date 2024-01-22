@@ -1,0 +1,32 @@
+{
+  "name": "@and-voila/{{ name }}",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "knip": "knip",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@and-voila/eslint-config": "workspace:^0.2.0",
+    "@and-voila/prettier-config": "workspace:^0.1.0",
+    "@and-voila/tsconfig": "workspace:^0.1.0",
+    "eslint": "^8.56.0",
+    "knip": "^4.1.0",
+    "prettier": "^3.2.2",
+    "typescript": "^5.3.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@and-voila/eslint-config/base"
+    ]
+  },
+  "prettier": "@and-voila/prettier-config"
+}

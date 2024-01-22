@@ -1,0 +1,42 @@
+{
+  "name": "@and-voila/tailwind-config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "knip": "knip",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "postcss-nesting": "^12.0.2",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss": "^3.4.0",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@and-voila/eslint-config": "workspace:^0.2.0",
+    "@and-voila/prettier-config": "workspace:^0.1.0",
+    "@and-voila/tsconfig": "workspace:^0.1.0",
+    "eslint": "^8.56.0",
+    "knip": "^4.1.0",
+    "prettier": "^3.2.2",
+    "typescript": "^5.3.3"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@and-voila/eslint-config/base"
+    ]
+  },
+  "prettier": "@and-voila/prettier-config"
+}
