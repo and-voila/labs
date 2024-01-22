@@ -1,7 +1,8 @@
+import type { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
+
 import Link from 'next/link';
 
 import { APP_BP } from '#/lib/const';
-import { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
 import { cn } from '#/lib/utils';
 
 import { BillingFormButton } from '#/components/forms/billing-form-button';

@@ -1,11 +1,12 @@
 'use client';
 
+import type { TeamSubscriptionPlan } from '#/lib/types';
+
 import { useCallback, useState } from 'react';
 import Balancer from 'react-wrap-balancer';
 
 import { pricingData } from '#/config/subscriptions';
 
-import { TeamSubscriptionPlan } from '#/lib/types';
 import { cn } from '#/lib/utils';
 
 import PricingCard from '#/components/marketing/pricing-card';

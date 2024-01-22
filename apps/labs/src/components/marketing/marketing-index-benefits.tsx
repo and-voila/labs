@@ -1,4 +1,4 @@
-import { MarketingBenefitsProps } from '#/lib/types';
+import type { MarketingBenefitsProps } from '#/lib/types';
 
 const marketingBenefits: MarketingBenefitsProps[] = [
   {
