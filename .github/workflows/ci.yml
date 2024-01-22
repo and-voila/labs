@@ -24,12 +24,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup
-        uses: ./tooling/github/setup
-
       - name: Create .npmrc for Tiptap Pro
         run: echo "${{ secrets.TIPTAP_PRO_TOKEN }}" > .npmrc
         shell: bash
+
+      - name: Setup
+        uses: ./tooling/github/setup
 
       - name: Copy env
         shell: bash
