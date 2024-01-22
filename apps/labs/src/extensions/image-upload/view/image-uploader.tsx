@@ -2,7 +2,7 @@ import type { ChangeEvent } from 'react';
 
 import { useCallback } from 'react';
 
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 import { Button } from '#/components/tiptap/editor-button';
 import { Icon } from '#/components/tiptap/icon';

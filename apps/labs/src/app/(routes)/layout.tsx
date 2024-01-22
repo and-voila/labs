@@ -6,10 +6,12 @@ import type { Viewport } from 'next';
 
 import { fontBricolage } from 'public/fonts';
 
+import { cn } from '@and-voila/ui';
+
 import { siteConfig } from '#/config/site';
 
 import { SITE_URL } from '#/lib/const';
-import { cn, ensureStartsWith } from '#/lib/utils';
+import { ensureStartsWith } from '#/lib/utils';
 
 import { Providers } from '#/components/providers/providers';
 

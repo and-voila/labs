@@ -6,9 +6,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useFormStatus } from 'react-dom';
 
+import { cn } from '@and-voila/ui';
+
 import { createSite } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
-import { cn } from '#/lib/utils';
 
 import { useModal } from '#/components/publish/modal/provider';
 import { Icons } from '#/components/shared/icons';
@@ -42,7 +43,7 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
     async (data: FormData) => {
       data.append('teamSlug', teamSlug);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      createSite(data).then((res: any) => {
+      void createSite(data).then((res: any) => {
         if (res.error) {
           toast({
             title: 'Sorry, an error occurred',
@@ -114,7 +115,6 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
             name="name"
             type="text"
             placeholder="My Awesome Site"
-            autoFocus
             value={data.name}
             onChange={handleNameChange}
             maxLength={32}

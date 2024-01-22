@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { cn } from '@and-voila/ui';
+
 import { siteConfig } from '#/config/site';
 
 import { getInvitationByToken } from '#/lib/operations/teams/members/get-invitation';
 import { getSession } from '#/lib/operations/user/session';
-import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
 import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';

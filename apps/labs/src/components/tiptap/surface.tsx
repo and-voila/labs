@@ -2,7 +2,7 @@ import type { HTMLProps } from 'react';
 
 import { forwardRef } from 'react';
 
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 export type SurfaceProps = HTMLProps<HTMLDivElement> & {
   withShadow?: boolean;

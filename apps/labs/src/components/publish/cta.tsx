@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 import { Logo } from '#/components/shared/logo-square';
 import { buttonVariants } from '#/components/ui/button';

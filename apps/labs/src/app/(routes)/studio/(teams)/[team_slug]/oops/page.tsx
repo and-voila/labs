@@ -2,10 +2,11 @@ import type { Metadata, NextPage } from 'next';
 
 import Link from 'next/link';
 
+import { cn } from '@and-voila/ui';
+
 import { siteConfig } from '#/config/site';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
-import { cn } from '#/lib/utils';
 
 import { DashboardShell } from '#/components/dashboard/shell';
 import { buttonVariants } from '#/components/ui/button';

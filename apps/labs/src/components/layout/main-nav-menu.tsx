@@ -6,8 +6,9 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { cn } from '@and-voila/ui';
+
 import { APP_BP } from '#/lib/const';
-import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
 import { Badge } from '#/components/ui/badge';

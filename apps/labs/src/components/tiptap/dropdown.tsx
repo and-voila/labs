@@ -1,4 +1,4 @@
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 export const DropdownCategoryTitle = ({
   children,

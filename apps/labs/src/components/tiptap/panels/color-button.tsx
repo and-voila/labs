@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 export interface ColorButtonProps {
   color?: string;

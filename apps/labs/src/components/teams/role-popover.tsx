@@ -3,8 +3,9 @@
 import React, { useCallback } from 'react';
 import { MembershipRole } from '@prisma/client';
 
+import { cn } from '@and-voila/ui';
+
 import { changeRoleAction } from '#/lib/actions/teams/member-list-management';
-import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';

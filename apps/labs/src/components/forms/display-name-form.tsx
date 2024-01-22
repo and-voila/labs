@@ -7,8 +7,9 @@ import { useEffect, useState, useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
+import { cn } from '@and-voila/ui';
+
 import { updateDisplayName } from '#/lib/actions/user/update-user';
-import { cn } from '#/lib/utils';
 import { displayNameSchema } from '#/lib/validations/display-name';
 
 import { Icons } from '#/components/shared/icons';

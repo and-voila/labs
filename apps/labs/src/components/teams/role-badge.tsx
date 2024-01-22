@@ -1,7 +1,7 @@
 import React from 'react';
 import { MembershipRole } from '@prisma/client';
 
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 import { Badge } from '#/components/ui/badge';
 

@@ -4,7 +4,7 @@ import type { Editor } from '@tiptap/react';
 import { useCallback, useRef } from 'react';
 import { NodeViewWrapper } from '@tiptap/react';
 
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 interface ImageBlockViewProps {
   editor: Editor;

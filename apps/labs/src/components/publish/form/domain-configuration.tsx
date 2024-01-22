@@ -4,8 +4,9 @@ import { env } from '#/env';
 
 import { useCallback, useState } from 'react';
 
+import { cn } from '@and-voila/ui';
+
 import { getSubdomain } from '#/lib/actions/publish/domains';
-import { cn } from '#/lib/utils';
 
 import { useDomainStatus } from '#/components/publish/form/use-domain-status';
 import { Icons } from '#/components/shared/icons';

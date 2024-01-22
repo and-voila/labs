@@ -7,8 +7,10 @@ import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { fontMapper } from 'public/fonts';
 
+import { cn } from '@and-voila/ui';
+
 import { getSiteData } from '#/lib/operations/publish/publish-fetchers';
-import { cn, placeholderBlurhash } from '#/lib/utils';
+import { placeholderBlurhash } from '#/lib/utils';
 
 import { DomainsFooter } from '#/components/layout/domains-footer';
 import BlurImage from '#/components/publish/blur-image';

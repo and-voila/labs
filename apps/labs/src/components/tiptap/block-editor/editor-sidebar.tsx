@@ -2,7 +2,7 @@ import type { Editor } from '@tiptap/react';
 
 import { memo, useCallback } from 'react';
 
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 import { TableOfContents } from './table-of-contents';
 

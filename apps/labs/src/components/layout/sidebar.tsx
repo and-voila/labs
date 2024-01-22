@@ -6,7 +6,7 @@ import { cloneElement, isValidElement } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 import { buttonVariants } from '#/components/ui/button';
 

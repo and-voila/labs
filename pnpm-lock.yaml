@@ -324,9 +324,6 @@ importers:
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
-      clsx:
-        specifier: ^2.1.0
-        version: 2.1.0
       cmdk:
         specifier: ^0.2.0
         version: 0.2.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
@@ -365,7 +362,7 @@ importers:
         version: 4.24.5(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
       next-safe-action:
         specifier: ^6.0.1
-        version: 6.0.1(next@14.0.4)(react@18.2.0)
+        version: 6.0.1(ajv@6.12.6)(next@14.0.4)(react@18.2.0)
       next-themes:
         specifier: ^0.2.1
         version: 0.2.1(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
@@ -2237,7 +2234,7 @@ packages:
       postcss-selector-parser: 6.0.15
     dev: false
 
-  /@decs/typeschema@0.12.2(zod@3.22.4):
+  /@decs/typeschema@0.12.2(ajv@6.12.6)(zod@3.22.4):
     resolution: {integrity: sha512-PA8uAH/Xfsa5X2UNNSnb5i6vB8qWZywp4+d2U8kNMCO7qwirYRPbFCHwIfWBJyURh4rULn3Ey+VBADLcK2xxaQ==}
     peerDependencies:
       '@deepkit/type': ^1.0.1-alpha.113
@@ -2290,6 +2287,7 @@ packages:
       zod:
         optional: true
     dependencies:
+      ajv: 6.12.6
       zod: 3.22.4
     dev: false
 
@@ -11509,14 +11507,14 @@ packages:
       uuid: 8.3.2
     dev: false
 
-  /next-safe-action@6.0.1(next@14.0.4)(react@18.2.0):
+  /next-safe-action@6.0.1(ajv@6.12.6)(next@14.0.4)(react@18.2.0):
     resolution: {integrity: sha512-iXkjorrUrz3sHMo1MVdBx5WzcCGktrBe+XqMfBav++eegXMdOkZB2+LqUTPXmaidv0lo+/fSRLOcNmr/S9IqTw==}
     engines: {node: '>=18.17'}
     peerDependencies:
       next: '>= 14.0.0'
       react: '>= 18.2.0'
     dependencies:
-      '@decs/typeschema': 0.12.2(zod@3.22.4)
+      '@decs/typeschema': 0.12.2(ajv@6.12.6)(zod@3.22.4)
       next: 14.0.4(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
     optionalDependencies:

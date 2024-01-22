@@ -5,8 +5,10 @@ import type { TeamSubscriptionPlan } from '#/lib/types';
 import * as React from 'react';
 import Link from 'next/link';
 
+import { cn } from '@and-voila/ui';
+
 import { APP_BP } from '#/lib/const';
-import { cn, formatDate } from '#/lib/utils';
+import { formatDate } from '#/lib/utils';
 
 import { buttonVariants } from '#/components/ui/button';
 import {

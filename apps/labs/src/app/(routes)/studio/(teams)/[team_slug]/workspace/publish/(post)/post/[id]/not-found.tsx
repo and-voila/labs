@@ -2,8 +2,9 @@ import type { NextPage } from 'next';
 
 import Link from 'next/link';
 
+import { cn } from '@and-voila/ui';
+
 import { APP_BP } from '#/lib/const';
-import { cn } from '#/lib/utils';
 
 import Sith404 from '#/components/layout/sith-404';
 import { Icons } from '#/components/shared/icons';

@@ -1,8 +1,10 @@
 import * as React from 'react';
 
+import { cn } from '@and-voila/ui';
+
 import { siteConfig } from '#/config/site';
 
-import { cn, placeholderBlurhash } from '#/lib/utils';
+import { placeholderBlurhash } from '#/lib/utils';
 
 import { ModeToggle } from '#/components/layout/mode-toggle';
 import BlurImage from '#/components/publish/blur-image';

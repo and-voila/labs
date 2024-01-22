@@ -2,9 +2,9 @@ import type { ButtonHTMLAttributes, HTMLProps } from 'react';
 
 import React, { forwardRef } from 'react';
 
-import type { ButtonProps } from './editor-button';
+import { cn } from '@and-voila/ui';
 
-import { cn } from '#/lib/utils';
+import type { ButtonProps } from './editor-button';
 
 import { Button } from './editor-button';
 import { Surface } from './surface';

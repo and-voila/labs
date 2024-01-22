@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { cn } from '@and-voila/ui';
 
 import { Icons } from '#/components/shared/icons';
 
@@ -8,7 +8,7 @@ interface LogoLoaderProps {
 
 const LogoLoader: React.FC<LogoLoaderProps> = ({ className }) => {
   return (
-    <div className={clsx('flex w-full items-center justify-center', className)}>
+    <div className={cn('flex w-full items-center justify-center', className)}>
       <div className="animate-pulse">
         <Icons.logo className="h-24 w-24 text-primary" />
       </div>

@@ -8,7 +8,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { useFormStatus } from 'react-dom';
 
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 import DomainConfiguration from '#/components/publish/form/domain-configuration';
 import DomainStatus from '#/components/publish/form/domain-status';
@@ -51,7 +51,7 @@ export default function Form({
       ) {
         return;
       }
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+
       handleSubmit(data, id, inputAttrs.name).then(async (res: any) => {
         if (res.error) {
           toast({

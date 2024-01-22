@@ -4,18 +4,21 @@ import { useCallback, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useFormStatus } from 'react-dom';
 
+import { cn } from '@and-voila/ui';
+
 import { siteConfig } from '#/config/site';
 
 import { sendAbuseReportEmail } from '#/lib/resend/send-abuse-report';
-import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
 import { toast } from '#/components/ui/use-toast';
 
 export default function ReportAbuse() {
   const [open, setOpen] = useState(false);
-  const { domain, slug } = useParams() as { domain: string; slug?: string };
-  const url = slug ? `https://${domain}/${slug}` : `https://${domain}`;
+  const { domain, slug } = useParams();
+  const url = slug
+    ? `https://${domain as string}/${slug as string}`
+    : `https://${domain as string}`;
 
   const handleButtonClick = useCallback(() => {
     setOpen(!open);
@@ -23,7 +26,7 @@ export default function ReportAbuse() {
 
   const handleFormAction = useCallback(async () => {
     try {
-      await sendAbuseReportEmail(domain, slug);
+      await sendAbuseReportEmail(domain as string, slug as string);
       setOpen(false);
       toast({
         title: 'Your report has been submitted',

@@ -7,10 +7,11 @@ import { useEffect, useState, useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
+import { cn } from '@and-voila/ui';
+
 import { siteConfig } from '#/config/site';
 
 import { updateUserName } from '#/lib/actions/user/update-user';
-import { cn } from '#/lib/utils';
 import { userNameSchema } from '#/lib/validations/user';
 
 import { Icons } from '#/components/shared/icons';

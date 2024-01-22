@@ -1,14 +1,6 @@
 import { env } from '#/env';
 
-import type { ClassValue } from 'clsx';
-
-import { clsx } from 'clsx';
 import ms from 'ms';
-import { twMerge } from 'tailwind-merge';
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 export function formatDate(input: string | number): string {
   const date = new Date(input);

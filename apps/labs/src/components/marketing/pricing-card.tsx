@@ -2,8 +2,9 @@ import type { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
 
 import Link from 'next/link';
 
+import { cn } from '@and-voila/ui';
+
 import { APP_BP } from '#/lib/const';
-import { cn } from '#/lib/utils';
 
 import { BillingFormButton } from '#/components/forms/billing-form-button';
 import { Icons } from '#/components/shared/icons';

@@ -1,8 +1,11 @@
 'use client';
 
-import { useCallback, useState, type ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
+
+import { useCallback, useState } from 'react';
 import Image from 'next/image';
-import cn from 'clsx';
+
+import { cn } from '@and-voila/ui';
 
 export default function BlurImage(props: ComponentProps<typeof Image>) {
   const [isLoading, setLoading] = useState(true);

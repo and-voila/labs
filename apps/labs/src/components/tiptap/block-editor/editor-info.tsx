@@ -2,10 +2,11 @@ import type { WebSocketStatus } from '@hocuspocus/provider';
 
 import { memo } from 'react';
 
+import { cn } from '@and-voila/ui';
+
 import type { EditorUser } from './types';
 
 import { getConnectionText } from '#/lib/tiptap/utils/get-connection-text';
-import { cn } from '#/lib/utils';
 
 import Tooltip from '#/components/tiptap/tooltip';
 

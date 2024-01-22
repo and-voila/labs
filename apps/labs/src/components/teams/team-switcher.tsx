@@ -3,11 +3,12 @@
 import React, { startTransition, useCallback, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
+import { cn } from '@and-voila/ui';
+
 import { APP_BP } from '#/lib/const';
 import { Team } from '#/lib/operations/teams/get-teams';
 import { userColors } from '#/lib/tiptap/constants';
 import { randomElement } from '#/lib/tiptap/utils';
-import { cn } from '#/lib/utils';
 
 import { NewTeamForm } from '#/components/forms/new-team-form';
 import { Icons } from '#/components/shared/icons';

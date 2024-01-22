@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from 'react';
 
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 interface DashboardShellProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;

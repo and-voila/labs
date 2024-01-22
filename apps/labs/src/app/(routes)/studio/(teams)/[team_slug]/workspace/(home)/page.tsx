@@ -3,11 +3,12 @@ import type { SVGProps } from 'react';
 
 import Link from 'next/link';
 
+import { cn } from '@and-voila/ui';
+
 import { siteConfig } from '#/config/site';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
 import { getTeams } from '#/lib/operations/teams/get-teams';
-import { cn } from '#/lib/utils';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 import { Icons } from '#/components/shared/icons';

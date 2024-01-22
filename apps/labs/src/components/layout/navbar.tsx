@@ -3,8 +3,9 @@ import type { MainNavItem } from '#/lib/types';
 
 import Link from 'next/link';
 
+import { cn } from '@and-voila/ui';
+
 import { APP_BP } from '#/lib/const';
-import { cn } from '#/lib/utils';
 
 import { MainNavigationMenu } from '#/components/layout/main-nav-menu';
 import { Icons } from '#/components/shared/icons';

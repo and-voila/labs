@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 
 import Link from 'next/link';
 
+import { cn } from '@and-voila/ui';
+
 import { siteConfig } from '#/config/site';
 
 import { SITE_URL } from '#/lib/const';
-import { cn } from '#/lib/utils';
 
 import UserAuthForm from '#/components/forms/user-auth-form';
 import { Icons } from '#/components/shared/icons';

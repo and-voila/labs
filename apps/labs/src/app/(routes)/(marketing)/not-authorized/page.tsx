@@ -3,10 +3,11 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
+import { cn } from '@and-voila/ui';
+
 import { siteConfig } from '#/config/site';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
-import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';

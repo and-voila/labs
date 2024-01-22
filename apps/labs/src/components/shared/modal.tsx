@@ -1,6 +1,6 @@
 import { Drawer } from 'vaul';
 
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 import { Dialog, DialogContent } from '#/components/ui/dialog';
 

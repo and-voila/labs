@@ -9,9 +9,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 
+import { cn } from '@and-voila/ui';
+
 import { siteConfig } from '#/config/site';
 
-import { cn } from '#/lib/utils';
 import { userAuthSchema } from '#/lib/validations/auth';
 
 import { Icons } from '#/components/shared/icons';

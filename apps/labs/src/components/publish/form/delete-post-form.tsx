@@ -4,9 +4,10 @@ import { useCallback, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useFormStatus } from 'react-dom';
 
+import { cn } from '@and-voila/ui';
+
 import { deletePost } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
-import { cn } from '#/lib/utils';
 
 import { Icons } from '#/components/shared/icons';
 import { buttonVariants } from '#/components/ui/button';
