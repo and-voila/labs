@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 import { SITE_URL } from '#/lib/const';
 import { getTeamSubscriptionPlan } from '#/lib/operations/subsctiptions/subscription';
@@ -9,7 +9,7 @@ import { PricingFaq } from '#/components/marketing/pricing-faq';
 
 export default async function PricingPage() {
   const session = await getSession();
-  const user = session?.user || null;
+  const user = session?.user ?? null;
 
   let subscriptionPlan;
 
