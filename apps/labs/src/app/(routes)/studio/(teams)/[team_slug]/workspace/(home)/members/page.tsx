@@ -1,4 +1,5 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+
 import { redirect } from 'next/navigation';
 import { MembershipRole } from '@prisma/client';
 
@@ -28,7 +29,7 @@ const MembersPage: React.FC<Props> = async ({ params }) => {
 
   const session = await getSession();
   if (!session) {
-    redirect(authOptions?.pages?.signIn || '/login');
+    redirect(authOptions?.pages?.signIn ?? '/login');
   }
 
   const [members, invites, hasAuthority] = await Promise.all([

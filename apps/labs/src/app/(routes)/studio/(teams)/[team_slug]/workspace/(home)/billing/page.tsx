@@ -1,4 +1,5 @@
-import { Metadata, NextPage } from 'next';
+import type { Metadata, NextPage } from 'next';
+
 import { notFound } from 'next/navigation';
 
 import { siteConfig } from '#/config/site';
