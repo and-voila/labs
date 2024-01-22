@@ -1,12 +1,6 @@
-import {
-  createContext,
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useContext,
-  useMemo,
-  useState,
-} from 'react';
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
+
+import { createContext, useContext, useMemo, useState } from 'react';
 
 const frequencies = [
   { value: 'monthly', label: 'Monthly' },
@@ -21,12 +15,11 @@ interface BillingContextValue {
 const BillingContext = createContext<BillingContextValue | null>(null);
 
 export function BillingProvider({ children }: { children: ReactNode }) {
-  const [frequency, setFrequency] = useState(frequencies[0]);
-
-  const value = useMemo(
-    () => ({ frequency, setFrequency }),
-    [frequency, setFrequency],
+  const [frequency, setFrequency] = useState<BillingContextValue['frequency']>(
+    frequencies[0] ?? { value: 'monthly', label: 'Monthly' },
   );
+
+  const value = useMemo(() => ({ frequency, setFrequency }), [frequency]);
 
   return (
     <BillingContext.Provider value={value}>{children}</BillingContext.Provider>

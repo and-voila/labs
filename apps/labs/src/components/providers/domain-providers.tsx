@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
+
 import { Provider as BalancerProvider } from 'react-wrap-balancer';
 
 import { ThemeProvider } from '#/components/providers/theme-provider';
