@@ -1,8 +1,9 @@
 'use client';
 
+import type { Placement, Props } from 'tippy.js';
+
 import React, { useCallback } from 'react';
 import Tippy from '@tippyjs/react/headless';
-import { Placement, Props } from 'tippy.js';
 
 export interface TooltipProps {
   children?: string | React.ReactNode;
@@ -82,7 +83,6 @@ export const Tooltip = ({
         touch={false}
         zIndex={99999}
         appendTo={document.body}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...tippyOptions}
         render={renderTooltip}
       >

@@ -3,11 +3,11 @@ import { icons } from 'lucide-react';
 
 import { cn } from '#/lib/utils';
 
-export type IconProps = {
+export interface IconProps {
   name: keyof typeof icons;
   className?: string;
   strokeWidth?: number;
-};
+}
 
 export const Icon = memo(({ name, className, strokeWidth }: IconProps) => {
   const IconComponent = icons[name];
@@ -19,7 +19,7 @@ export const Icon = memo(({ name, className, strokeWidth }: IconProps) => {
   return (
     <IconComponent
       className={cn('h-4 w-4', className)}
-      strokeWidth={strokeWidth || 2.5}
+      strokeWidth={strokeWidth ?? 2.5}
     />
   );
 });

@@ -10,7 +10,7 @@ import { Toolbar } from './toolbar';
 export const Trigger = Popover.Trigger;
 export const Portal = Popover.Portal;
 
-export type MenuProps = {
+export interface MenuProps {
   children: React.ReactNode;
   trigger: React.ReactNode;
   triggerClassName?: string;
@@ -20,7 +20,7 @@ export type MenuProps = {
   withPortal?: boolean;
   tooltip?: string;
   isActive?: boolean;
-};
+}
 
 export const Menu = ({
   customTrigger,
@@ -93,7 +93,7 @@ export const Item = ({
   );
 
   const IconComponent = icon ? icons[icon] : null;
-  const IconCustomComponent = iconComponent || null;
+  const IconCustomComponent = iconComponent ?? null;
 
   const ItemComponent = close ? Popover.Close : 'button';
 
@@ -106,9 +106,9 @@ export const Item = ({
   );
 };
 
-export type CategoryTitle = {
+export interface CategoryTitle {
   children: React.ReactNode;
-};
+}
 
 export const CategoryTitle = ({ children }: CategoryTitle) => {
   return (

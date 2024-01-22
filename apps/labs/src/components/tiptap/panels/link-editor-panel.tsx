@@ -5,20 +5,20 @@ import { Icon } from '#/components/tiptap/icon';
 import { Surface } from '#/components/tiptap/surface';
 import { Toggle } from '#/components/tiptap/toggle';
 
-export type LinkEditorPanelProps = {
+export interface LinkEditorPanelProps {
   initialUrl?: string;
   initialOpenInNewTab?: boolean;
   onSetLink: (url: string, openInNewTab?: boolean) => void;
-};
+}
 
 export const useLinkEditorState = ({
   initialUrl,
   initialOpenInNewTab,
   onSetLink,
 }: LinkEditorPanelProps) => {
-  const [url, setUrl] = useState(initialUrl || '');
+  const [url, setUrl] = useState(initialUrl ?? '');
   const [openInNewTab, setOpenInNewTab] = useState(
-    initialOpenInNewTab || false,
+    initialOpenInNewTab ?? false,
   );
 
   const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,6 +62,8 @@ export const LinkEditorPanel = ({
   return (
     <Surface className="p-2">
       <form onSubmit={state.handleSubmit} className="flex items-center gap-2">
+        {/* TODO: Review this control */}
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="flex cursor-text items-center gap-2 rounded-lg bg-background p-2">
           <Icon name="Link" className="flex-none text-primary" />
           <input
@@ -82,6 +84,8 @@ export const LinkEditorPanel = ({
         </Button>
       </form>
       <div className="mt-3">
+        {/* TODO: Review this control too */}
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="flex cursor-pointer select-none items-center justify-start gap-2 text-sm text-muted-foreground">
           Open in new tab
           <Toggle

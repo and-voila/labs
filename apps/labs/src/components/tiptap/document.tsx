@@ -52,8 +52,8 @@ export default function Document({ post, user, teamSlug }: DocumentProps) {
 
       setCollabToken(token);
     };
-
-    dataFetch();
+    // TODO: Check if this is ok or need to use catch
+    void dataFetch();
   }, []);
 
   useEffect(() => {
@@ -71,8 +71,8 @@ export default function Document({ post, user, teamSlug }: DocumentProps) {
 
       setAiToken(token);
     };
-
-    dataFetch();
+    // TODO: Check if this is ok or need to use catch
+    void dataFetch();
   }, []);
 
   const ydoc = useMemo(() => new Y.Doc(), []);

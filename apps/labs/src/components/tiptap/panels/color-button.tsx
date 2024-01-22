@@ -2,11 +2,11 @@ import { memo, useCallback } from 'react';
 
 import { cn } from '#/lib/utils';
 
-export type ColorButtonProps = {
+export interface ColorButtonProps {
   color?: string;
   active?: boolean;
   onColorChange?: (color: string) => void;
-};
+}
 
 export const ColorButton = memo(
   ({ color, active, onColorChange }: ColorButtonProps) => {
@@ -23,7 +23,7 @@ export const ColorButton = memo(
 
     const handleClick = useCallback(() => {
       if (onColorChange) {
-        onColorChange(color || '');
+        onColorChange(color ?? '');
       }
     }, [onColorChange, color]);
 

@@ -8,14 +8,14 @@ import { Toolbar } from '#/components/tiptap/toolbar';
 
 import { ColorButton } from './color-button';
 
-export type ColorPickerProps = {
+export interface ColorPickerProps {
   color?: string;
   onChange?: (color: string) => void;
   onClear?: () => void;
-};
+}
 
 export const ColorPicker = ({ color, onChange, onClear }: ColorPickerProps) => {
-  const [colorInputValue, setColorInputValue] = useState(color || '');
+  const [colorInputValue, setColorInputValue] = useState(color ?? '');
 
   const handleColorUpdate = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +44,7 @@ export const ColorPicker = ({ color, onChange, onClear }: ColorPickerProps) => {
     <div className="flex flex-col gap-2">
       <HexColorPicker
         className="w-full"
-        color={color || ''}
+        color={color ?? ''}
         onChange={onChange}
       />
       <input

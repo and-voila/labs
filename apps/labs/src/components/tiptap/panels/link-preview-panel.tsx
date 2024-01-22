@@ -3,11 +3,11 @@ import { Surface } from '#/components/tiptap/surface';
 import { Toolbar } from '#/components/tiptap/toolbar';
 import Tooltip from '#/components/tiptap/tooltip';
 
-export type LinkPreviewPanelProps = {
+export interface LinkPreviewPanelProps {
   url: string;
   onEdit: () => void;
   onClear: () => void;
-};
+}
 
 export const LinkPreviewPanel = ({
   onClear,
