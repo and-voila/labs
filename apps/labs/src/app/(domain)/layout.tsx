@@ -1,6 +1,6 @@
 import '#/styles/globals.css';
 
-import { Viewport } from 'next';
+import type { Viewport } from 'next';
 
 import { fontBricolage } from 'public/fonts';
 

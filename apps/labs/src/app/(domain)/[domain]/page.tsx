@@ -93,7 +93,9 @@ export default async function SiteHomePage({
                 </p>
                 <div className="h-6 border-l border-primary" />
                 <p className="m-auto my-5 w-10/12 text-sm text-muted-foreground md:text-base">
-                  {toDateString(posts[0].createdAt)}
+                  {posts[0]?.createdAt
+                    ? toDateString(posts[0].createdAt)
+                    : 'Recent'}
                 </p>
               </div>
               <div className="mx-auto w-5/6 lg:w-full">
