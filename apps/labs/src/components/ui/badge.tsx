@@ -1,10 +1,12 @@
+import type { VariantProps } from 'class-variance-authority';
+
 import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 
 import { cn } from '#/lib/utils';
 
 const badgeVariants = cva(
-  'inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 shadow-sm',
+  'inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
   {
     variants: {
       variant: {
@@ -16,9 +18,9 @@ const badgeVariants = cva(
           'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80',
         outline: 'text-foreground',
         custom:
-          'border-alternate bg-transparent text-alternate pointer-events-none',
+          'pointer-events-none border-alternate bg-transparent text-alternate',
         comingSoon:
-          'border-alternate bg-transparent text-alternate text-[10px] px-1 pointer-events-none ml-2',
+          'pointer-events-none ml-2 border-alternate bg-transparent px-1 text-[10px] text-alternate',
       },
     },
     defaultVariants: {
