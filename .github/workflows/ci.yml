@@ -28,9 +28,7 @@ jobs:
         uses: ./tooling/github/setup
 
       - name: Create .npmrc for Tiptap Pro
-        run: |
-          echo "@tiptap-pro:registry=https://registry.tiptap.dev/" > .npmrc
-          echo "//registry.tiptap.dev/:_authToken=${{ secrets.TIPTAP_PRO_TOKEN }}" >> .npmrc
+        run: echo "${{ secrets.TIPTAP_PRO_TOKEN }}" > .npmrc
         shell: bash
 
       - name: Copy env
