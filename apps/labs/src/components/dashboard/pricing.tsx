@@ -25,9 +25,7 @@ interface Tier {
   benefits: string[];
 }
 
-interface FeatureTier {
-  [key: string]: boolean | string;
-}
+type FeatureTier = Record<string, boolean | string>;
 
 interface Feature {
   title: string;
@@ -279,7 +277,7 @@ export default function DashboardPricing() {
   const [frequency, setFrequency] = useState(frequencies[0]);
   const handleFrequencyChange = useCallback(() => {
     setFrequency(
-      frequencies.find((f) => f.value !== frequency.value) || frequencies[0],
+      frequencies.find((f) => f.value !== frequency?.value) ?? frequencies[0],
     );
   }, [frequency, setFrequency]);
 
@@ -293,7 +291,7 @@ export default function DashboardPricing() {
                 Monthly
               </span>
               <Switch
-                checked={frequency.value === 'yearly'}
+                checked={frequency?.value === 'yearly'}
                 onCheckedChange={handleFrequencyChange}
                 role="switch"
                 aria-label="switch-year"
@@ -336,7 +334,7 @@ export default function DashboardPricing() {
                           'text-6xl font-bold tracking-tight',
                         )}
                       >
-                        {frequency.value === 'yearly' &&
+                        {frequency?.value === 'yearly' &&
                         tier.prices.monthly > 0 ? (
                           <>
                             <span>${Math.floor(tier.prices.yearly / 12)}</span>
@@ -363,7 +361,7 @@ export default function DashboardPricing() {
                               ? 'text-muted-foreground'
                               : 'text-muted-foreground/80'
                           }
-                        >{`Billed ${frequency.value}`}</p>
+                        >{`Billed ${frequency?.value}`}</p>
                       </div>
                     </div>
                     <button
@@ -380,7 +378,6 @@ export default function DashboardPricing() {
                   </div>
                   <div className="mt-8 flow-root sm:mt-10">
                     <ul
-                      role="list"
                       className={classNames(
                         tier.featured
                           ? 'divide-gray-900/5 border-gray-900/5 text-foreground'
