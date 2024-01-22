@@ -20,11 +20,11 @@ import {
 
 import SignOutButton from './sign-out-button';
 
-type Props = {
+interface Props {
   params: {
     token: string;
   };
-};
+}
 
 const AcceptInvitation = async ({ params }: Props) => {
   const [session, invitation] = await Promise.all([

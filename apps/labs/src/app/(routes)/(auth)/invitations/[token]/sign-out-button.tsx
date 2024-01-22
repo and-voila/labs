@@ -7,7 +7,7 @@ import { buttonVariants } from '#/components/ui/button';
 
 const SignOutButton = () => {
   const handleSignOut = useCallback(() => {
-    signOut({ callbackUrl: '/login' });
+    void signOut({ callbackUrl: '/login' });
   }, []);
 
   return (
