@@ -2,9 +2,9 @@ name: CI
 
 on:
   pull_request:
-    branches: ["*"]
+    branches: ['*']
   push:
-    branches: ["main"]
+    branches: ['main']
   merge_group:
 
 concurrency:
@@ -26,6 +26,12 @@ jobs:
 
       - name: Setup
         uses: ./tooling/github/setup
+
+      - name: Create .npmrc for Tiptap Pro
+        run: |
+          echo "@tiptap-pro:registry=https://registry.tiptap.dev/" > .npmrc
+          echo "//registry.tiptap.dev/:_authToken=${{ secrets.TIPTAP_PRO_TOKEN }}" >> .npmrc
+        shell: bash
 
       - name: Copy env
         shell: bash
