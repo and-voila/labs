@@ -1,18 +1,19 @@
 import { env } from '#/env';
 
+import type { TiptapCollabProvider } from '@hocuspocus/provider';
+import type { EditorUser } from '#/components/tiptap/block-editor/types';
+import type * as Y from 'yjs';
+
 import { useContext, useEffect, useMemo, useState } from 'react';
-import { TiptapCollabProvider, WebSocketStatus } from '@hocuspocus/provider';
+import { WebSocketStatus } from '@hocuspocus/provider';
 import Ai from '@tiptap-pro/extension-ai';
 import Collaboration from '@tiptap/extension-collaboration';
 import CollaborationCursor from '@tiptap/extension-collaboration-cursor';
 import { useEditor } from '@tiptap/react';
-import * as Y from 'yjs';
 
 import { userColors, userNames } from '#/lib/tiptap/constants';
 import { initialContent } from '#/lib/tiptap/data/initial-content';
 import { randomElement } from '#/lib/utils';
-
-import { EditorUser } from '#/components/tiptap/block-editor/types';
 
 import { EditorContext } from '#/context/tiptap/editor-context';
 import { ExtensionKit } from '#/extensions/extension-kit';
@@ -112,13 +113,13 @@ export const useBlockEditor = ({
         const names = user.displayName?.split(' ');
         const firstName = names?.[0];
         const lastName = names?.[names.length - 1];
-        const initials = `${firstName?.[0] || '?'}${lastName?.[0] || '?'}`;
+        const initials = `${firstName?.[0] ?? '?'}${lastName?.[0] ?? '?'}`;
 
         return { ...user, initials: initials.length ? initials : '?' };
       });
   }, [editor?.storage.collaborationCursor?.users, user.id]);
 
-  const characterCount = editor?.storage.characterCount || {
+  const characterCount = editor?.storage.characterCount ?? {
     characters: () => 0,
     words: () => 0,
   };

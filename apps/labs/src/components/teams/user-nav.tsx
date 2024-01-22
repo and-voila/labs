@@ -1,8 +1,9 @@
 'use client';
 
+import type { User } from '@prisma/client';
+
 import { useCallback, useMemo } from 'react';
 import Link from 'next/link';
-import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
 
 import { APP_BP } from '#/lib/const';
@@ -27,7 +28,7 @@ interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
 export function UserAccountNav({ user }: UserAccountNavProps) {
   const handleSignOut = useCallback((event: Event) => {
     event.preventDefault();
-    signOut({
+    void signOut({
       callbackUrl: `${window.location.origin}/`,
     });
   }, []);
@@ -49,13 +50,13 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         <UserAvatar
           user={{
             id: user?.id,
-            name: user?.name || user?.displayName || null,
+            name: user?.name ?? user?.displayName ?? null,
             image:
-              user?.image ||
+              user?.image ??
               `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${user?.displayName}.svg?backgroundColor=${(
-                randomColor || 'bg-primary'
+                randomColor ?? 'bg-primary'
               ).replace('#', '')}`,
-            displayName: user?.name || user?.displayName || null,
+            displayName: user?.name ?? user?.displayName ?? null,
           }}
           className="h-8 w-8"
         >
@@ -66,7 +67,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col space-y-1 leading-none">
             <p className="text-sm font-medium text-alternate">
-              {user?.name || user?.displayName}
+              {user?.name ?? user?.displayName}
             </p>
             {user?.email && (
               <p className="w-[200px] truncate text-xs text-muted-foreground">

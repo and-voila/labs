@@ -1,7 +1,8 @@
+import type { User } from '@prisma/client';
+import type { AvatarProps } from '@radix-ui/react-avatar';
+
 import { useMemo } from 'react';
 import Image from 'next/image';
-import { User } from '@prisma/client';
-import { AvatarProps } from '@radix-ui/react-avatar';
 
 import { userColors } from '#/lib/tiptap/constants';
 import { randomElement } from '#/lib/tiptap/utils';
@@ -24,10 +25,10 @@ export function UserAvatar({ user, ...props }: UserAvatarProps) {
         />
       ) : (
         <AvatarFallback>
-          <span className="sr-only">{user.name || user.displayName}</span>
+          <span className="sr-only">{user.name ?? user.displayName}</span>
           <Image
             src={`https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${user?.id}.svg?backgroundColor=${(
-              randomColor || 'bg-primary'
+              randomColor ?? 'bg-primary'
             ).replace('#', '')}`}
             alt="The current user's avatar or a fallback image of a Avataaars Neutral"
             width={120}

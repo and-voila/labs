@@ -15,13 +15,13 @@ interface SitesProps {
 export default async function Sites({ teamSlug, limit }: SitesProps) {
   const team = await getTeam(teamSlug);
   if (!team) {
-    redirect(authOptions?.pages?.signIn || '/login');
+    redirect(authOptions?.pages?.signIn ?? '/login');
   }
 
   const sites = await db.site.findMany({
     where: {
       team: {
-        id: team.id as string,
+        id: team.id,
       },
     },
     orderBy: {

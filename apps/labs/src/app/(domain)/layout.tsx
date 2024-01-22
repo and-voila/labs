@@ -4,7 +4,7 @@ import type { Viewport } from 'next';
 
 import { fontBricolage } from 'public/fonts';
 
-import { cn } from '#/lib/utils';
+import { cn } from '@and-voila/ui';
 
 import { DomainProviders } from '#/components/providers/domain-providers';
 

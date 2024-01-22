@@ -1,12 +1,13 @@
 'use client';
 
+import type { Team } from '#/lib/operations/teams/get-teams';
+
 import React, { startTransition, useCallback, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { cn } from '@and-voila/ui';
 
 import { APP_BP } from '#/lib/const';
-import { Team } from '#/lib/operations/teams/get-teams';
 import { userColors } from '#/lib/tiptap/constants';
 import { randomElement } from '#/lib/tiptap/utils';
 
@@ -108,9 +109,9 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
             <Avatar className="mr-2 h-5 w-5">
               <AvatarImage
                 src={
-                  activeTeam?.image ||
+                  activeTeam?.image ??
                   `https://api.dicebear.com/7.x/shapes/svg?seed=${activeTeam?.id}.svg?backgroundColor=${(
-                    randomColor || ''
+                    randomColor ?? ''
                   ).replace('#', '')}`
                 }
                 alt={activeTeam?.name ?? 'Active Team'}
@@ -150,13 +151,13 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                   <Avatar className="mr-2 h-5 w-5">
                     <AvatarImage
                       src={
-                        personalTeam?.image ||
+                        personalTeam?.image ??
                         `https://api.dicebear.com/7.x/shapes/svg?seed=${personalTeam?.id}.svg?backgroundColor=${(
-                          randomColor || ''
+                          randomColor ?? ''
                         ).replace('#', '')}`
                       }
                       alt={`Profile avatar of ${
-                        personalTeam?.name || 'Personal Team'
+                        personalTeam?.name ?? 'Personal Team'
                       }`}
                     />
                     <AvatarFallback>{personalTeam?.name?.[0]}</AvatarFallback>
@@ -189,12 +190,12 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                       <Avatar className="mr-2 h-5 w-5">
                         <AvatarImage
                           src={
-                            team?.image ||
+                            team?.image ??
                             `https://api.dicebear.com/7.x/shapes/svg?seed=${team?.id}.svg?backgroundColor=${(
-                              randomColor || 'bg-primary'
+                              randomColor ?? 'bg-primary'
                             ).replace('#', '')}`
                           }
-                          alt={`Profile avatar of ${team?.name || 'My Team'}`}
+                          alt={`Profile avatar of ${team?.name ?? 'My Team'}`}
                         />
                         <AvatarFallback>{team.name?.[0]}</AvatarFallback>
                       </Avatar>

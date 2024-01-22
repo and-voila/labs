@@ -1,4 +1,6 @@
-import { DragEvent, useCallback, useEffect, useRef, useState } from 'react';
+import type { DragEvent } from 'react';
+
+import { useCallback, useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import { API } from '#/lib/tiptap/api';
@@ -19,7 +21,7 @@ export const useUploader = ({
       // TODO:
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (errPayload: any) {
-      const error = errPayload?.response?.data?.error || 'Something went wrong';
+      const error = errPayload?.response?.data?.error ?? 'Something went wrong';
       toast.error(error);
     }
     setLoading(false);

@@ -15,10 +15,7 @@ import {
 import { NewCollabPostForm } from './form/new/new-collab-post-form';
 
 export const NewCollabPostButton: React.FC = () => {
-  const { id: siteId, team_slug: teamSlug } = useParams() as {
-    id: string;
-    team_slug: string;
-  };
+  const { id: siteId, team_slug: teamSlug } = useParams();
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -33,7 +30,10 @@ export const NewCollabPostButton: React.FC = () => {
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <NewCollabPostForm siteId={siteId} teamSlug={teamSlug} />
+          <NewCollabPostForm
+            siteId={siteId as string}
+            teamSlug={teamSlug as string}
+          />
         </div>
       </DialogContent>
     </Dialog>

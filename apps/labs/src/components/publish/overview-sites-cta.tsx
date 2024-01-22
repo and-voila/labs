@@ -22,7 +22,7 @@ export default async function OverviewSitesCTA({
   }
   const sites = await db.site.count({
     where: {
-      teamId: team.id as string,
+      teamId: team.id,
     },
   });
 

@@ -1,6 +1,8 @@
 'use client';
 
-import { ChangeEvent, useCallback, useMemo, useState } from 'react';
+import type { ChangeEvent } from 'react';
+
+import { useCallback, useMemo, useState } from 'react';
 
 import { Icons } from '#/components/shared/icons';
 import { toast } from '#/components/ui/use-toast';
@@ -19,7 +21,7 @@ export default function Uploader() {
 
   const onChangePicture = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      const file = event.currentTarget.files && event.currentTarget.files[0];
+      const file = event.currentTarget.files?.[0];
       if (file) {
         if (file.size / 1024 / 1024 > 50) {
           toast({
@@ -70,7 +72,7 @@ export default function Uploader() {
     e.stopPropagation();
     setDragActive(false);
 
-    const file = e.dataTransfer.files && e.dataTransfer.files[0];
+    const file = e.dataTransfer.files?.[0];
     if (file) {
       if (file.size / 1024 / 1024 > 5) {
         toast({
@@ -98,7 +100,7 @@ export default function Uploader() {
       setSaving(true);
       fetch('/api/upload', {
         method: 'POST',
-        headers: { 'content-type': file?.type || 'application/octet-stream' },
+        headers: { 'content-type': file?.type ?? 'application/octet-stream' },
         body: file,
       })
         .then(async (res) => {
@@ -183,7 +185,6 @@ export default function Uploader() {
             <span className="sr-only">Photo upload</span>
           </div>
           {data.image && (
-            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={data.image}
               alt="Preview"

@@ -17,12 +17,12 @@ interface PostsProps {
 export default async function Posts({ siteId, limit, teamSlug }: PostsProps) {
   const team = await getTeam(teamSlug);
   if (!team) {
-    redirect(authOptions?.pages?.signIn || '/login');
+    redirect(authOptions?.pages?.signIn ?? '/login');
   }
 
   const posts = await db.post.findMany({
     where: {
-      teamId: team.id as string,
+      teamId: team.id,
       ...(siteId ? { siteId } : {}),
     },
     orderBy: {

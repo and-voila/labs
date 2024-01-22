@@ -1,6 +1,8 @@
 'use client';
 
-import { ReactNode, useCallback } from 'react';
+import type { ReactNode } from 'react';
+
+import { useCallback } from 'react';
 
 import { useModal } from '#/components/publish/modal/provider';
 import { Button } from '#/components/ui/button';

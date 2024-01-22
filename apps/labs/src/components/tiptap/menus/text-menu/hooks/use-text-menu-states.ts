@@ -1,10 +1,10 @@
+import type { Editor } from '@tiptap/react';
+import type { ShouldShowProps } from '#/components/tiptap/menus/types';
+
 import { useCallback } from 'react';
-import { Editor } from '@tiptap/react';
 
 import { isCustomNodeSelected } from '#/lib/tiptap/utils/is-custom-node-selected';
 import { isTextSelected } from '#/lib/tiptap/utils/is-text-selected';
-
-import { ShouldShowProps } from '#/components/tiptap/menus/types';
 
 export const useTextmenuStates = (editor: Editor) => {
   const shouldShow = useCallback(
@@ -13,8 +13,8 @@ export const useTextmenuStates = (editor: Editor) => {
         return false;
       }
 
-      const domAtPos = view.domAtPos(from || 0).node as HTMLElement;
-      const nodeDOM = view.nodeDOM(from || 0) as HTMLElement;
+      const domAtPos = view.domAtPos(from ?? 0).node as HTMLElement;
+      const nodeDOM = view.nodeDOM(from ?? 0) as HTMLElement;
       const node = nodeDOM || domAtPos;
 
       if (isCustomNodeSelected(editor, node)) {
@@ -38,10 +38,10 @@ export const useTextmenuStates = (editor: Editor) => {
     isAlignCenter: editor.isActive({ textAlign: 'center' }),
     isAlignRight: editor.isActive({ textAlign: 'right' }),
     isAlignJustify: editor.isActive({ textAlign: 'justify' }),
-    currentColor: editor.getAttributes('textStyle')?.color || undefined,
-    currentHighlight: editor.getAttributes('highlight')?.color || undefined,
-    currentFont: editor.getAttributes('textStyle')?.fontFamily || undefined,
-    currentSize: editor.getAttributes('textStyle')?.fontSize || undefined,
+    currentColor: editor.getAttributes('textStyle')?.color ?? undefined,
+    currentHighlight: editor.getAttributes('highlight')?.color ?? undefined,
+    currentFont: editor.getAttributes('textStyle')?.fontFamily ?? undefined,
+    currentSize: editor.getAttributes('textStyle')?.fontSize ?? undefined,
     shouldShow,
   };
 };

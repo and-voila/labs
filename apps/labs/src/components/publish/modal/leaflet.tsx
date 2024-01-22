@@ -1,13 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-} from 'react';
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
+
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 
 export default function Leaflet({
@@ -24,7 +17,7 @@ export default function Leaflet({
     [],
   );
   useEffect(() => {
-    controls.start({
+    void controls.start({
       y: 20,
       transition: transitionProps,
     });
@@ -32,15 +25,16 @@ export default function Leaflet({
   }, []);
 
   const handleDragEnd = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async (_: any, info: any) => {
       const offset = info.offset.y;
       const velocity = info.velocity.y;
-      const height = leafletRef.current?.getBoundingClientRect().height || 0;
+      const height = leafletRef.current?.getBoundingClientRect().height ?? 0;
       if (offset > height / 2 || velocity > 800) {
         await controls.start({ y: '100%', transition: transitionProps });
         setShow(false);
       } else {
-        controls.start({ y: 0, transition: transitionProps });
+        void controls.start({ y: 0, transition: transitionProps });
       }
     },
     [controls, setShow, transitionProps],

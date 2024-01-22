@@ -1,6 +1,8 @@
+import type { Editor } from '@tiptap/react';
+
 import { memo } from 'react';
 import * as Popover from '@radix-ui/react-popover';
-import { BubbleMenu, Editor } from '@tiptap/react';
+import { BubbleMenu } from '@tiptap/react';
 
 import { Icon } from '#/components/tiptap/icon';
 import { ColorPicker } from '#/components/tiptap/panels/color-picker';
@@ -24,9 +26,9 @@ const MemoFontFamilyPicker = memo(FontFamilyPicker);
 const MemoFontSizePicker = memo(FontSizePicker);
 const MemoContentTypePicker = memo(ContentTypePicker);
 
-export type TextMenuProps = {
+export interface TextMenuProps {
   editor: Editor;
-};
+}
 
 export const TextMenu = ({ editor }: TextMenuProps) => {
   const commands = useTextmenuCommands(editor);
@@ -57,11 +59,11 @@ export const TextMenu = ({ editor }: TextMenuProps) => {
         <MemoContentTypePicker options={blockOptions} />
         <MemoFontFamilyPicker
           onChange={commands.onSetFont}
-          value={states.currentFont || ''}
+          value={states.currentFont ?? ''}
         />
         <MemoFontSizePicker
           onChange={commands.onSetFontSize}
-          value={states.currentSize || ''}
+          value={states.currentSize ?? ''}
         />
         <Toolbar.Divider />
         <MemoButton
