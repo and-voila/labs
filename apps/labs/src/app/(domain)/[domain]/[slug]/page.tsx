@@ -120,7 +120,7 @@ export default async function SitePostPage({
             placeholder="blur"
             blurDataURL={placeholderBlurhash}
             role="img"
-            alt={data.title || 'A featured image for the post'}
+            alt={data.title ?? 'A featured image for the post'}
           />
           <div
             className="absolute inset-0 bg-gradient-to-t from-background via-background/20"

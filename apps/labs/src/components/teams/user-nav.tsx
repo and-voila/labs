@@ -15,11 +15,12 @@ import {
   DropdownMenuTrigger,
 } from '@and-voila/ui/dropdown-menu';
 import { Icons } from '@and-voila/ui/icons';
-import { UserAvatar } from '@and-voila/ui/user-avatar';
 
 import { APP_BP } from '#/lib/const';
 import { userColors } from '#/lib/tiptap/constants';
 import { randomElement } from '#/lib/tiptap/utils';
+
+import { UserAvatar } from '../shared/user-avatar';
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, 'name' | 'image' | 'email' | 'displayName' | 'id'>;

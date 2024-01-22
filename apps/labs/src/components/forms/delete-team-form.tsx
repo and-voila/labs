@@ -27,13 +27,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@and-voila/ui/card';
+import { Input } from '@and-voila/ui/input';
+import { Label } from '@and-voila/ui/label';
 import { toast } from '@and-voila/ui/use-toast';
 
 import { deleteTeam } from '#/lib/actions/teams/delete-team';
 import { APP_BP } from '#/lib/const';
-
-import { Input } from '../ui/input';
-import { Label } from '../ui/label';
 
 export interface DeleteFormProps {
   teamSlug: string;

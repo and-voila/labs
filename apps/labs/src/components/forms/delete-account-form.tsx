@@ -29,12 +29,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@and-voila/ui/card';
+import { Input } from '@and-voila/ui/input';
+import { Label } from '@and-voila/ui/label';
 
 import { deletePersonalAccount } from '#/lib/actions/user/update-user';
 import { APP_BP } from '#/lib/const';
-
-import { Input } from '../ui/input';
-import { Label } from '../ui/label';
 
 export interface DeleteAccountFormProps {
   teams: Team[];

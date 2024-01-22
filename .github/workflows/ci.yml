@@ -24,6 +24,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Node.js from .nvmrc
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
       - name: Create .npmrc for Tiptap Pro
         run: echo "${{ secrets.TIPTAP_PRO_TOKEN }}" > .npmrc
         shell: bash
@@ -43,6 +48,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Node.js from .nvmrc
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Create .npmrc for Tiptap Pro
+        run: echo "${{ secrets.TIPTAP_PRO_TOKEN }}" > .npmrc
+        shell: bash
+
       - name: Setup
         uses: ./tooling/github/setup
 
@@ -53,6 +67,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Node.js from .nvmrc
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Create .npmrc for Tiptap Pro
+        run: echo "${{ secrets.TIPTAP_PRO_TOKEN }}" > .npmrc
+        shell: bash
 
       - name: Setup
         uses: ./tooling/github/setup
