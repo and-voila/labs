@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import { env } from '#/env';
 
-import { env } from 'env';
+import Link from 'next/link';
 
 import { siteConfig } from '#/config/site';
 
@@ -27,7 +27,7 @@ async function getGitHubStars(): Promise<string | null> {
 
     const json = await response.json();
 
-    return parseInt(json['stargazers_count']).toLocaleString();
+    return parseInt(json.stargazers_count).toLocaleString();
   } catch (error) {
     return null;
   }

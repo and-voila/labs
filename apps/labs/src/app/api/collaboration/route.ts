@@ -1,8 +1,8 @@
+import { env } from '#/env';
+
 import jsonwebtoken from 'jsonwebtoken';
 
-import { env } from 'env';
-
-const JWT_SECRET = env?.TIPTAP_COLLAB_SECRET as string;
+const JWT_SECRET = env?.TIPTAP_COLLAB_SECRET;
 
 export async function POST(): Promise<Response> {
   const jwt = await jsonwebtoken.sign(

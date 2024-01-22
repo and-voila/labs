@@ -1,8 +1,9 @@
 import '#/styles/globals.css';
 
-import { Viewport } from 'next';
+import { env } from '#/env';
 
-import { env } from 'env';
+import type { Viewport } from 'next';
+
 import { fontBricolage } from 'public/fonts';
 
 import { siteConfig } from '#/config/site';

@@ -1,6 +1,6 @@
-import { env } from 'env';
+import { env } from '#/env';
 
-import { SubscriptionPlan } from '#/lib/types';
+import type { SubscriptionPlan } from '#/lib/types';
 
 export const pricingData: SubscriptionPlan[] = [
   {

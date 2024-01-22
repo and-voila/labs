@@ -1,10 +1,11 @@
+import { env } from '#/env';
+
+import type { NextAuthOptions } from 'next-auth';
+
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { NextAuthOptions } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 import EmailProvider from 'next-auth/providers/email';
 import GoogleProvider from 'next-auth/providers/google';
-
-import { env } from 'env';
 
 import { db } from '#/lib/db';
 import { createPersonalTeam } from '#/lib/operations/user/create-personal-team';
@@ -42,8 +43,8 @@ export const authOptions: NextAuthOptions = {
   },
   providers: [
     DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID as string,
-      clientSecret: env.DISCORD_CLIENT_SECRET as string,
+      clientId: env.DISCORD_CLIENT_ID,
+      clientSecret: env.DISCORD_CLIENT_SECRET,
       allowDangerousEmailAccountLinking: true,
       profile(profile) {
         return {
@@ -60,8 +61,8 @@ export const authOptions: NextAuthOptions = {
       },
     }),
     GoogleProvider({
-      clientId: env.GOOGLE_CLIENT_ID as string,
-      clientSecret: env.GOOGLE_CLIENT_SECRET as string,
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
       allowDangerousEmailAccountLinking: true,
     }),
     EmailProvider({
@@ -154,7 +155,7 @@ export function withSiteAuth(action: any) {
         id: siteId,
       },
     });
-    if (!site || !site.teamId) {
+    if (!site?.teamId) {
       return {
         error: 'Site not found',
       };
@@ -197,7 +198,7 @@ export function withPostAuth(action: any) {
         site: true,
       },
     });
-    if (!post || !post.site || !post.site.teamId) {
+    if (!post || !post.site?.teamId) {
       return {
         error: 'Post or site not found',
       };

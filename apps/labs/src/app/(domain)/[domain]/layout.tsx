@@ -1,9 +1,10 @@
-import { ReactNode } from 'react';
-import { Metadata } from 'next';
+import { env } from '#/env';
+
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
+
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
-
-import { env } from 'env';
 import { fontMapper } from 'public/fonts';
 
 import { getSiteData } from '#/lib/operations/publish/publish-fetchers';
@@ -118,7 +119,7 @@ export default async function SiteLayout({
           <Link href="/" className="flex items-center justify-center">
             <div className="inline-block h-8 w-8 overflow-hidden rounded-full align-middle">
               <BlurImage
-                src={data.logo || ''}
+                src={data.logo ?? ''}
                 alt={data.name || ''}
                 width={40}
                 height={40}
@@ -140,7 +141,7 @@ export default async function SiteLayout({
         <DomainsFooter
           className="mt-20"
           name={data.name || 'BRIL.LA, LLC.'}
-          logo={data.logo || undefined}
+          logo={data.logo ?? undefined}
         />
       </div>
     </div>

@@ -1,7 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@vercel/kv';
+import { env } from '#/env';
 
-import { env } from 'env';
+import type { NextRequest } from 'next/server';
+
+import { NextResponse } from 'next/server';
+import { createClient } from '@vercel/kv';
 
 import { ratelimit } from '#/lib/upstash';
 

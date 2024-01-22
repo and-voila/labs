@@ -1,6 +1,6 @@
-import { env } from 'env';
+import { env } from '#/env';
 
-import {
+import type {
   DomainConfigResponse,
   DomainResponse,
   DomainVerificationResponse,

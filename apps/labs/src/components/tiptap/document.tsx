@@ -4,15 +4,17 @@ import { TiptapCollabProvider } from '@hocuspocus/provider';
 
 import 'iframe-resizer/js/iframeResizer.contentWindow';
 
+import { env } from '#/env';
+
+import type { Post, Site } from '@prisma/client';
+
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Post, Site } from '@prisma/client';
 import * as Y from 'yjs';
 
-import { env } from 'env';
+import type { EditorUser } from './block-editor/types';
 
 import AiEditor from './block-editor/ai-editor';
-import { EditorUser } from './block-editor/types';
 
 export interface AiState {
   isAiLoading: boolean;
@@ -31,7 +33,7 @@ export default function Document({ post, user, teamSlug }: DocumentProps) {
   const [aiToken, setAiToken] = useState<string | null>(null);
   const searchParams = useSearchParams();
 
-  const hasCollab = parseInt(searchParams.get('noCollab') as string) !== 1;
+  const hasCollab = parseInt(searchParams.get('noCollab')!) !== 1;
 
   const postId = post.id;
 

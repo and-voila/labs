@@ -1,8 +1,10 @@
-import { ClassValue, clsx } from 'clsx';
+import { env } from '#/env';
+
+import type { ClassValue } from 'clsx';
+
+import { clsx } from 'clsx';
 import ms from 'ms';
 import { twMerge } from 'tailwind-merge';
-
-import { env } from 'env';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -146,6 +148,6 @@ export function initials(name: string) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function randomElement(array: Array<any>) {
+export function randomElement(array: any[]) {
   return array[Math.floor(Math.random() * array.length)];
 }

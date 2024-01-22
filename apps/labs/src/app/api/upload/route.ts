@@ -1,9 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { env } from '#/env';
+
+import type { NextRequest } from 'next/server';
+
+import { NextResponse } from 'next/server';
 import { put } from '@vercel/blob';
 import { ipAddress } from '@vercel/edge';
 import { nanoid } from 'nanoid';
-
-import { env } from 'env';
 
 import { ratelimit } from '#/lib/upstash';
 

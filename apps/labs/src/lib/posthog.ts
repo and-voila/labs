@@ -1,6 +1,6 @@
-import { PostHog } from 'posthog-node';
+import { env } from '#/env';
 
-import { env } from 'env';
+import { PostHog } from 'posthog-node';
 
 interface PostHogOptions {
   host: string;

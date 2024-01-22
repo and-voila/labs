@@ -1,15 +1,16 @@
+import { env } from '#/env';
+
+import type Stripe from 'stripe';
+
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
-import Stripe from 'stripe';
-
-import { env } from 'env';
 
 import { db } from '#/lib/db';
 import { stripe } from '#/lib/stripe';
 
 export async function POST(req: Request) {
   const body = await req.text();
-  const signature = headers().get('Stripe-Signature') as string;
+  const signature = headers().get('Stripe-Signature')!;
 
   let event: Stripe.Event;
 
@@ -17,7 +18,7 @@ export async function POST(req: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      env.STRIPE_WEBHOOK_SECRET!,
+      env.STRIPE_WEBHOOK_SECRET,
     );
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {

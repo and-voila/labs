@@ -1,8 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { env } from '#/env';
+
+import type { NextRequest } from 'next/server';
+
+import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { withAuth } from 'next-auth/middleware';
-
-import { env } from 'env';
 
 import { APP_BP } from '#/lib/const';
 
@@ -103,7 +105,7 @@ async function handleAuthLogic(req: NextRequest): Promise<NextResponse> {
   if (isAuthPage) {
     if (isAuth) {
       const from =
-        req.nextUrl.searchParams.get('from') || `${APP_BP}/my/workspaces`;
+        req.nextUrl.searchParams.get('from') ?? `${APP_BP}/my/workspaces`;
       return NextResponse.redirect(new URL(from, req.url));
     }
     return NextResponse.next();

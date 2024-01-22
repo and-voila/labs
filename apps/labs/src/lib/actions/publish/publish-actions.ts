@@ -1,12 +1,13 @@
 'use server';
 
+import { env } from '#/env';
+
+import type { Post, Site } from '@prisma/client';
+
 import { revalidateTag } from 'next/cache';
-import { Post, Site } from '@prisma/client';
 import { put } from '@vercel/blob';
 import { customAlphabet } from 'nanoid';
 import slugify from 'slugify';
-
-import { env } from 'env';
 
 import {
   addDomainToVercel,
@@ -330,10 +331,10 @@ export const createCollabPost = withSiteAuth(
   },
 );
 
-type PublishPostResponse = {
+interface PublishPostResponse {
   data?: Post;
   error?: string;
-};
+}
 
 export const publishPost = async (
   formData: FormData,
@@ -410,10 +411,10 @@ export const publishPost = async (
   }
 };
 
-type UpdateCollabPostResponse = {
+interface UpdateCollabPostResponse {
   data?: Post;
   error?: string;
-};
+}
 
 export const updateCollabPost = async (
   formData: FormData,
@@ -433,7 +434,7 @@ export const updateCollabPost = async (
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const updateData: { [key: string]: any } = {};
+    const updateData: Record<string, any> = {};
     formData.forEach((value, key) => {
       if (key === 'author') {
         updateData.userId = value;

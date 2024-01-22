@@ -1,7 +1,8 @@
-import Link from 'next/link';
-import { Site } from '@prisma/client';
+import { env } from '#/env';
 
-import { env } from 'env';
+import type { Site } from '@prisma/client';
+
+import Link from 'next/link';
 
 import { APP_BP } from '#/lib/const';
 import { placeholderBlurhash } from '#/lib/utils';

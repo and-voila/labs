@@ -1,7 +1,7 @@
+import { env } from '#/env';
+
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
-
-import { env } from 'env';
 
 export const ratelimitRedis = new Redis({
   url: env.RATELIMIT_UPSTASH_REDIS_REST_URL || '',
@@ -9,7 +9,7 @@ export const ratelimitRedis = new Redis({
 });
 
 export const ratelimit = (
-  requests: number = 10,
+  requests = 10,
   seconds:
     | `${number} ms`
     | `${number} s`

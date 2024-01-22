@@ -1,6 +1,6 @@
-import { notFound } from 'next/navigation';
+import { env } from '#/env';
 
-import { env } from 'env';
+import { notFound } from 'next/navigation';
 
 import { db } from '#/lib/db';
 import {
@@ -162,7 +162,7 @@ export default async function SitePostPage({
         <div className="w-3/5 border-t border-primary py-8" />
         <div
           className="prose prose-gray dark:prose-invert lg:prose-lg"
-          dangerouslySetInnerHTML={{ __html: data.content || '' }}
+          dangerouslySetInnerHTML={{ __html: data.content ?? '' }}
         />
         <div className="my-12 px-6 lg:px-8">
           <WriteCta domain={domain} />

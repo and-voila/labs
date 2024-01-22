@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+import { env } from '#/env';
+
 import { useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { useFormStatus } from 'react-dom';
-
-import { env } from 'env';
 
 import { cn } from '#/lib/utils';
 
@@ -37,7 +37,7 @@ export default function Form({
   };
   handleSubmit: any;
 }) {
-  const { id } = useParams() as { id?: string };
+  const { id } = useParams();
   const router = useRouter();
   const { update } = useSession();
 

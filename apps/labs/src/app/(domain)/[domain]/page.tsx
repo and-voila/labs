@@ -1,7 +1,7 @@
+import { env } from '#/env';
+
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-
-import { env } from 'env';
 
 import { db } from '#/lib/db';
 import {
@@ -59,16 +59,16 @@ export default async function SiteHomePage({
         </h2>
         {posts.length > 0 ? (
           <div className="mx-auto w-full md:mb-28">
-            <Link href={`/${posts[0].slug}`}>
+            <Link href={`/${posts[0]?.slug}`}>
               <div className="group relative mx-auto h-80 w-full overflow-hidden sm:h-150 lg:rounded-xl">
                 <BlurImage
-                  alt={posts[0].title ?? ''}
-                  blurDataURL={posts[0].imageBlurhash ?? placeholderBlurhash}
+                  alt={posts[0]?.title ?? ''}
+                  blurDataURL={posts[0]?.imageBlurhash ?? placeholderBlurhash}
                   className="h-full w-full object-cover group-hover:scale-105 group-hover:duration-300"
                   width={1200}
                   height={630}
                   placeholder="blur"
-                  src={posts[0].image ?? '/post-placeholder.jpg'}
+                  src={posts[0]?.image ?? '/post-placeholder.jpg'}
                 />
               </div>
               <div className="mt-4 flex w-full items-center justify-start space-x-4">
@@ -98,10 +98,10 @@ export default async function SiteHomePage({
               </div>
               <div className="mx-auto w-5/6 lg:w-full">
                 <h2 className="mb-8 font-title text-4xl md:text-6xl">
-                  {posts[0].title}
+                  {posts[0]?.title}
                 </h2>
                 <p className="w-full text-base text-muted-foreground md:text-lg lg:w-4/5">
-                  {posts[0].description}
+                  {posts[0]?.description}
                 </p>
               </div>
             </Link>

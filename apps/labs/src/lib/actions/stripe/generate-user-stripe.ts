@@ -1,9 +1,9 @@
 'use server';
 
+import { env } from '#/env';
+
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
-
-import { env } from 'env';
 
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
@@ -11,17 +11,17 @@ import { db } from '#/lib/db';
 import { getTeamSubscriptionPlan } from '#/lib/operations/subsctiptions/subscription';
 import { stripe } from '#/lib/stripe';
 
-export type responseAction = {
+export interface responseAction {
   status: 'success' | 'error';
   stripeUrl?: string;
-};
+}
 
 export async function generateUserStripe(
   priceId: string,
   teamId: string,
   teamSlug: string,
 ): Promise<responseAction> {
-  let redirectUrl: string = '';
+  let redirectUrl = '';
 
   try {
     const session = await getServerSession(authOptions);
@@ -62,7 +62,7 @@ export async function generateUserStripe(
         return_url: billingUrl,
       });
 
-      redirectUrl = stripeSession.url as string;
+      redirectUrl = stripeSession.url;
     } else {
       const stripeSession = await stripe.checkout.sessions.create({
         success_url: billingUrl,
@@ -87,7 +87,7 @@ export async function generateUserStripe(
         },
       });
 
-      redirectUrl = stripeSession.url as string;
+      redirectUrl = stripeSession.url!;
     }
   } catch (error) {
     throw new Error('Failed to generate user stripe session');

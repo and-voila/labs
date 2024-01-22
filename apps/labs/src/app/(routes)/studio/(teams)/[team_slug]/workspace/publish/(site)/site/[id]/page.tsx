@@ -1,7 +1,8 @@
-import { Metadata } from 'next';
-import { notFound, redirect } from 'next/navigation';
+import { env } from '#/env';
 
-import { env } from 'env';
+import type { Metadata } from 'next';
+
+import { notFound, redirect } from 'next/navigation';
 
 import { siteConfig } from '#/config/site';
 

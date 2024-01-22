@@ -1,3 +1,5 @@
+import { env } from '#/env';
+
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { TiptapCollabProvider, WebSocketStatus } from '@hocuspocus/provider';
 import Ai from '@tiptap-pro/extension-ai';
@@ -5,8 +7,6 @@ import Collaboration from '@tiptap/extension-collaboration';
 import CollaborationCursor from '@tiptap/extension-collaboration-cursor';
 import { useEditor } from '@tiptap/react';
 import * as Y from 'yjs';
-
-import { env } from 'env';
 
 import { userColors, userNames } from '#/lib/tiptap/constants';
 import { initialContent } from '#/lib/tiptap/data/initial-content';

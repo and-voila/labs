@@ -1,8 +1,8 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { env } from '#/env';
 
-import { env } from 'env';
+import { useCallback, useState } from 'react';
 
 import { getSubdomain } from '#/lib/actions/publish/domains';
 import { cn } from '#/lib/utils';

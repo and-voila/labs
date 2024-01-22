@@ -1,7 +1,6 @@
-// eslint-disable-next-line camelcase
-import { unstable_cache } from 'next/cache';
+import { env } from '#/env';
 
-import { env } from 'env';
+import { unstable_cache } from 'next/cache';
 
 import { db } from '#/lib/db';
 
