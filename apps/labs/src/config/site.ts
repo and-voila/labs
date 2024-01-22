@@ -1,5 +1,6 @@
+import type { SiteConfig } from '#/lib/types';
+
 import { SITE_URL } from '#/lib/const';
-import { SiteConfig } from '#/lib/types';
 
 const siteUrl = SITE_URL;
 

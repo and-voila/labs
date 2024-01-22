@@ -1,7 +1,9 @@
-import { APP_BP } from '#/lib/const';
-import { SidebarLink } from '#/lib/types';
+import type { IconProps } from '#/components/shared/icons';
+import type { SidebarLink } from '#/lib/types';
 
-import { IconProps, Icons } from '#/components/shared/icons';
+import { APP_BP } from '#/lib/const';
+
+import { Icons } from '#/components/shared/icons';
 
 export const defaultSidebarLinks = (
   activeTeamSlug: string | null | undefined,
