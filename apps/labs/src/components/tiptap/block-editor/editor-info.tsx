@@ -1,19 +1,20 @@
+import type { WebSocketStatus } from '@hocuspocus/provider';
+
 import { memo } from 'react';
-import { WebSocketStatus } from '@hocuspocus/provider';
+
+import type { EditorUser } from './types';
 
 import { getConnectionText } from '#/lib/tiptap/utils/get-connection-text';
 import { cn } from '#/lib/utils';
 
 import Tooltip from '#/components/tiptap/tooltip';
 
-import { EditorUser } from './types';
-
-export type EditorInfoProps = {
+export interface EditorInfoProps {
   characters: number;
   words: number;
   collabState: WebSocketStatus;
   users: EditorUser[];
-};
+}
 
 export const EditorInfo = memo(
   ({ characters, collabState, users, words }: EditorInfoProps) => {
@@ -30,8 +31,12 @@ export const EditorInfo = memo(
         <div className="mr-2 flex items-center gap-2">
           <div
             className={cn('h-2 w-2 rounded-full', {
+              // TODO: Make TS happy about this
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
               'bg-yellow-600 dark:bg-yellow-500': collabState === 'connecting',
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
               'bg-green-600 dark:bg-green-500': collabState === 'connected',
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
               'bg-red-600 dark:bg-red-500': collabState === 'disconnected',
             })}
           />
@@ -39,6 +44,7 @@ export const EditorInfo = memo(
             {getConnectionText(collabState)}
           </span>
         </div>
+        {/* eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison */}
         {collabState === 'connected' && (
           <div className="flex flex-row items-center">
             <div className="relative ml-3 flex flex-row items-center">
@@ -52,7 +58,7 @@ export const EditorInfo = memo(
                         `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${
                           user.displayName
                         }&backgroundColor=${(
-                          user.color || 'bg-primary'
+                          user.color ?? 'bg-primary'
                         ).replace('#', '')}`
                       }
                       alt="avatar"

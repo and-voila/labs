@@ -1,12 +1,16 @@
-import React, { useCallback, useMemo, useRef } from 'react';
 // import { WebSocketStatus } from '@hocuspocus/provider';
-import { EditorContent, PureEditorContent } from '@tiptap/react';
+import type { PureEditorContent } from '@tiptap/react';
+
+import React, { useCallback, useMemo, useRef } from 'react';
+import { EditorContent } from '@tiptap/react';
 
 import { useBlockEditor } from '#/hooks/tiptap/use-block-editor';
 
 import '#/styles/partials/index.css';
 
 import { createPortal } from 'react-dom';
+
+import type { TiptapProps } from './types';
 
 import { EditorSidebar } from '#/components/tiptap/block-editor/editor-sidebar';
 import { Loader } from '#/components/tiptap/loader';
@@ -22,7 +26,6 @@ import TableRowMenu from '#/extensions/table/menus/table-row/table-row-menu';
 import { useAIState } from '#/hooks/tiptap/use-ai-state';
 
 import { EditorHeader } from './editor-header';
-import { TiptapProps } from './types';
 
 export const BlockEditor = ({ aiToken, ydoc, provider, user }: TiptapProps) => {
   const aiState = useAIState();

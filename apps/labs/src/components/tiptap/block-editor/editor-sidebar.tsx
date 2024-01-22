@@ -1,5 +1,6 @@
+import type { Editor } from '@tiptap/react';
+
 import { memo, useCallback } from 'react';
-import { Editor } from '@tiptap/react';
 
 import { cn } from '#/lib/utils';
 

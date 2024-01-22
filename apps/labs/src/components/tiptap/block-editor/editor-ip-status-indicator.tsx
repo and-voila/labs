@@ -7,9 +7,9 @@ import {
   TooltipTrigger,
 } from '#/components/ui/tooltip';
 
-type EditorIpStatusIndicatorProps = {
+interface EditorIpStatusIndicatorProps {
   aiContentPercentage: number;
-};
+}
 
 const statusVariants = [
   {
@@ -57,33 +57,34 @@ const EditorIpStatusIndicator = ({
       (variant) =>
         aiContentPercentage >= variant.min &&
         (variant.max ? aiContentPercentage <= variant.max : true),
-    ) || statusVariants[0];
+    ) ?? statusVariants[0];
 
-  const Icon = Icons[statusVariant.icon as keyof typeof Icons];
+  // TODO: Make TS happy about this
+  const Icon = Icons[statusVariant?.icon as keyof typeof Icons];
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger>
           <Button
             variant="outline"
-            className={`flex items-center ${statusVariant.buttonStyle}`}
+            className={`flex items-center ${statusVariant?.buttonStyle}`}
             asChild
           >
             <div>
               <Icon className="mr-2 h-4 w-4" />
-              <span>{statusVariant.title}</span>
+              <span>{statusVariant?.title}</span>
             </div>
           </Button>
         </TooltipTrigger>
         <TooltipContent className="-mr-20 max-w-sm border border-input bg-primary-foreground p-4 text-foreground">
           <div className="flex justify-between space-x-4">
             <Icon
-              className={`h-8 w-8 justify-start ${statusVariant.iconColor}`}
+              className={`h-8 w-8 justify-start ${statusVariant?.iconColor}`}
             />
             <div className="space-y-1">
-              <h2 className="text-lg font-semibold">{statusVariant.title}</h2>
+              <h2 className="text-lg font-semibold">{statusVariant?.title}</h2>
               <p className="text-sm text-muted-foreground">
-                {statusVariant.description}
+                {statusVariant?.description}
               </p>
               <div className="flex items-center pt-2">
                 <Icons.link className="mr-2 h-4 w-4 opacity-70" />{' '}

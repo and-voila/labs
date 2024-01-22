@@ -1,9 +1,12 @@
+import type { Post, Site } from '@prisma/client';
+import type { Editor as CoreEditor } from '@tiptap/core';
+
 import { useCallback, useEffect, useRef, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { WebSocketStatus } from '@hocuspocus/provider';
-import { Post, Site } from '@prisma/client';
-import { Editor as CoreEditor } from '@tiptap/core';
 import DOMPurify from 'isomorphic-dompurify';
+
+import type { EditorUser } from './types';
 
 import { updateCollabPost } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
@@ -20,7 +23,6 @@ import { useAiContentPercentage } from '#/hooks/use-ai-content-percentage';
 
 import { EditorInfo } from './editor-info';
 import { TableOfContents } from './table-of-contents';
-import { EditorUser } from './types';
 
 interface CharacterCount {
   characters: () => number;

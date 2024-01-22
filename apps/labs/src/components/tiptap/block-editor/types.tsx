@@ -1,7 +1,7 @@
-import { TiptapCollabProvider } from '@hocuspocus/provider';
-import { Post, Site } from '@prisma/client';
-import { Language, Tone } from '@tiptap-pro/extension-ai';
-import * as Y from 'yjs';
+import type { TiptapCollabProvider } from '@hocuspocus/provider';
+import type { Post, Site } from '@prisma/client';
+import type { Language, Tone } from '@tiptap-pro/extension-ai';
+import type * as Y from 'yjs';
 
 export interface TiptapProps {
   aiToken: string;
@@ -13,30 +13,30 @@ export interface TiptapProps {
   teamSlug: string;
 }
 
-export type EditorUser = {
+export interface EditorUser {
   id: string;
   displayName: string;
   image: string;
   color?: string;
   initials?: string;
-};
+}
 
-export type LanguageOption = {
+export interface LanguageOption {
   name: string;
   label: string;
   value: Language;
-};
+}
 
 export type AiPromptType = 'SHORTEN' | 'EXTEND' | 'SIMPLIFY' | 'TONE';
 
-export type AiToneOption = {
+export interface AiToneOption {
   name: string;
   label: string;
   value: Tone;
-};
+}
 
-export type AiImageStyle = {
+export interface AiImageStyle {
   name: string;
   label: string;
   value: string;
-};
+}

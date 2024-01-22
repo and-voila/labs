@@ -1,19 +1,20 @@
-import { WebSocketStatus } from '@hocuspocus/provider';
+import type { WebSocketStatus } from '@hocuspocus/provider';
+
+import type { EditorUser } from './types';
 
 import { Icon } from '#/components/tiptap/icon';
 import { Toolbar } from '#/components/tiptap/toolbar';
 
 import { EditorInfo } from './editor-info';
-import { EditorUser } from './types';
 
-export type EditorHeaderProps = {
+export interface EditorHeaderProps {
   isSidebarOpen?: boolean;
   toggleSidebar?: () => void;
   characters: number;
   words: number;
   collabState: WebSocketStatus;
   users: EditorUser[];
-};
+}
 
 export const EditorHeader = ({
   characters,
