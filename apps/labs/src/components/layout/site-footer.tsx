@@ -17,7 +17,7 @@ interface FooterLinkData {
 const getCopyright = () => {
   const currentYear = new Date().getFullYear();
   const startYear = 2023;
-  const copyrightName = siteConfig.company || siteConfig.name || '';
+  const copyrightName = siteConfig.company ?? siteConfig.name ?? '';
   return `© ${startYear}${
     currentYear > startYear ? `-${currentYear}` : ''
   } ${copyrightName}${

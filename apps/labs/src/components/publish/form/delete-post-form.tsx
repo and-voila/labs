@@ -24,7 +24,7 @@ export default function DeletePostForm({
   const { id } = useParams();
   const router = useRouter();
 
-  const displayPostName = postName || UNTITLED_POST_NAME;
+  const displayPostName = postName ?? UNTITLED_POST_NAME;
 
   const handleDelete = useCallback(
     async (data: FormData) => {

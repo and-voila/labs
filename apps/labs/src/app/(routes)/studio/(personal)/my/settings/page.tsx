@@ -29,9 +29,9 @@ export default async function SettingsPage() {
       />
 
       <div className="my-8 grid max-w-3xl gap-8 md:my-12">
-        <UserNameForm user={{ id: user.id, name: user.name || '' }} />
+        <UserNameForm user={{ id: user.id, name: user.name ?? '' }} />
         <DisplayNameForm
-          user={{ id: user.id, displayName: user.displayName || '' }}
+          user={{ id: user.id, displayName: user.displayName ?? '' }}
         />
         <AppearanceForm />
       </div>

@@ -22,7 +22,7 @@ import { useSidebar } from './use-sidebar';
 
 const TIPTAP_AI_APP_ID = env.NEXT_PUBLIC_TIPTAP_AI_APP_ID;
 const TIPTAP_AI_BASE_URL =
-  env.NEXT_PUBLIC_TIPTAP_AI_BASE_URL || 'https://api.tiptap.dev/v1/ai';
+  env.NEXT_PUBLIC_TIPTAP_AI_BASE_URL ?? 'https://api.tiptap.dev/v1/ai';
 
 export const useBlockEditor = ({
   aiToken,
@@ -65,7 +65,7 @@ export const useBlockEditor = ({
           provider,
           user: {
             id: user.id,
-            name: user.displayName || randomName,
+            name: user.displayName ?? randomName,
             color: randomColor,
             image: user.image,
             displayName: user.displayName,

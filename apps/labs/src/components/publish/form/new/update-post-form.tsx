@@ -54,9 +54,9 @@ export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
     resolver: zodResolver(updatePostSchema),
     defaultValues: {
       status: post.published ? 'published' : 'draft',
-      title: post.title || '',
-      description: post.description || '',
-      slug: post.slug || '',
+      title: post.title ?? '',
+      description: post.description ?? '',
+      slug: post.slug ?? '',
       author: post?.userId ?? '',
     },
     mode: 'onChange',
@@ -105,7 +105,7 @@ export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
         <FormControl>
           <Input
             placeholder={
-              post.title || 'Your engaging title here (42-58 characters)'
+              post.title ?? 'Your engaging title here (42-58 characters)'
             }
             {...field}
           />
@@ -141,7 +141,7 @@ export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
         <FormControl>
           <Input
             placeholder={
-              post.slug || 'Set a catchy, human-readable slug for your post'
+              post.slug ?? 'Set a catchy, human-readable slug for your post'
             }
             {...field}
           />
@@ -206,7 +206,7 @@ export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
         <FormControl>
           <Textarea
             placeholder={
-              post.description ||
+              post.description ??
               'Summarize your post in 120-158 characters for optimal search visibility'
             }
             {...field}

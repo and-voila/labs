@@ -58,9 +58,9 @@ export function PublishPostForm({
   const form = useForm<PublishPostFormValues>({
     resolver: zodResolver(publishPostSchema),
     defaultValues: {
-      title: post.title || '',
-      description: post.description || '',
-      slug: post.slug || '',
+      title: post.title ?? '',
+      description: post.description ?? '',
+      slug: post.slug ?? '',
       author: post?.userId ?? '',
     },
     mode: 'onChange',
@@ -79,7 +79,7 @@ export function PublishPostForm({
         <FormControl>
           <Input
             placeholder={
-              post.title || 'Your engaging title here (42-58 characters)'
+              post.title ?? 'Your engaging title here (42-58 characters)'
             }
             {...field}
           />
@@ -115,7 +115,7 @@ export function PublishPostForm({
         <FormControl>
           <Input
             placeholder={
-              post.slug || 'Set a catchy, human-readable slug for your post'
+              post.slug ?? 'Set a catchy, human-readable slug for your post'
             }
             {...field}
           />
@@ -180,7 +180,7 @@ export function PublishPostForm({
         <FormControl>
           <Textarea
             placeholder={
-              post.description ||
+              post.description ??
               'Summarize your post in 120-158 characters for optimal search visibility'
             }
             {...field}
@@ -393,7 +393,7 @@ export function PublishPostForm({
                   src={imagePreviewUrl}
                   width={500}
                   height={300}
-                  alt={watchedTitle || 'Image preview'}
+                  alt={watchedTitle ?? 'Image preview'}
                 />
               ) : (
                 <div>Image preview not available</div>
@@ -433,7 +433,7 @@ export function PublishPostForm({
                   src={imagePreviewUrl}
                   width={500}
                   height={300}
-                  alt={watchedTitle || 'Image preview'}
+                  alt={watchedTitle ?? 'Image preview'}
                 />
               ) : (
                 <div>Image preview not available</div>
@@ -492,7 +492,7 @@ export function PublishPostForm({
                   src={imagePreviewUrl}
                   width={500}
                   height={300}
-                  alt={watchedTitle || 'Image preview'}
+                  alt={watchedTitle ?? 'Image preview'}
                 />
               ) : (
                 <div>Image preview not available</div>

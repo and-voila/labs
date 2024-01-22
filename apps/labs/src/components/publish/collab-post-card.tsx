@@ -61,7 +61,7 @@ export default function CollabPostCard({
             </div>
           </div>
           <h3 className="my-0 line-clamp-2 text-lg font-semibold leading-6 text-foreground">
-            {data.title || 'Draft post without a title'}
+            {data.title ?? 'Draft post without a title'}
           </h3>
         </div>
       </Link>

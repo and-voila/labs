@@ -42,7 +42,7 @@ export const createSite = async (formData: FormData) => {
   const description = formData.get('description') as string;
   const subdomain = formData.get('subdomain') as string;
 
-  const reservedDomains = env.RESERVED_DOMAINS?.split(',') || [];
+  const reservedDomains = env.RESERVED_DOMAINS?.split(',') ?? [];
 
   const isAdminResult = await isAdmin(session.user.id);
   if (!isAdminResult && reservedDomains.includes(subdomain.toLowerCase())) {

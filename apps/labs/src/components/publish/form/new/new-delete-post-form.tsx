@@ -48,12 +48,12 @@ export default function NewDeletePostForm({
     mode: 'onChange',
   });
 
-  const displayPostName = postName || 'My untitled post';
+  const displayPostName = postName ?? 'My untitled post';
 
   const processForm: SubmitHandler<DeletePostFormValues> = useCallback(
     (data) => {
       startTransition(async () => {
-        if (data.confirm === (postName || 'My untitled post')) {
+        if (data.confirm === (postName ?? 'My untitled post')) {
           const res = await deletePost(null, id as string, 'delete');
           if (res.error) {
             toast({

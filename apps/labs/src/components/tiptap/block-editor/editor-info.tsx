@@ -51,11 +51,11 @@ export const EditorInfo = memo(
             <div className="relative ml-3 flex flex-row items-center">
               {users.map((user: EditorUser) => (
                 <div key={user.id} className="-ml-3">
-                  <Tooltip title={user.displayName || 'Hello world'}>
+                  <Tooltip title={user.displayName ?? 'Hello world'}>
                     <img
                       className="h-8 w-8 rounded-full border shadow-sm"
                       src={
-                        user.image ||
+                        user.image ??
                         `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${
                           user.displayName
                         }&backgroundColor=${(

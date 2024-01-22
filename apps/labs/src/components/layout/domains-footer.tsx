@@ -26,7 +26,7 @@ interface DomainsFooterProps extends React.HTMLAttributes<HTMLElement> {
 const getCopyright = (name: string) => {
   const currentYear = new Date().getFullYear();
   const startYear = 2023;
-  const copyrightName = name || '';
+  const copyrightName = name ?? '';
   return `© ${startYear}${
     currentYear > startYear ? `-${currentYear}` : ''
   } ${copyrightName}${
