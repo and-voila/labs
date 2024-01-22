@@ -41,7 +41,7 @@ jobs:
         run: cp .env.example .env
 
       - name: Generate Prisma Client
-        run: npx prisma generate --schema=./src/prisma/schema.prisma --no-engine
+        run: npx prisma generate --schema=./src/prisma/schema.prisma
         working-directory: ./apps/labs
 
       - name: Lint
@@ -65,7 +65,7 @@ jobs:
         uses: ./tooling/github/setup
 
       - name: Generate Prisma Client
-        run: npx prisma generate --schema=./src/prisma/schema.prisma --no-engine
+        run: npx prisma generate --schema=./src/prisma/schema.prisma
         working-directory: ./apps/labs
 
       - name: Format
@@ -89,7 +89,7 @@ jobs:
         uses: ./tooling/github/setup
 
       - name: Generate Prisma Client
-        run: npx prisma generate --schema=./src/prisma/schema.prisma --no-engine
+        run: npx prisma generate --schema=./src/prisma/schema.prisma
         working-directory: ./apps/labs
 
       - name: Typecheck
