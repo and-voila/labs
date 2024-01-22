@@ -4,9 +4,9 @@ import { Icon } from '#/components/tiptap/icon';
 import { LinkEditorPanel } from '#/components/tiptap/panels/link-editor-panel';
 import { Toolbar } from '#/components/tiptap/toolbar';
 
-export type EditLinkPopoverProps = {
+export interface EditLinkPopoverProps {
   onSetLink: (link: string, openInNewTab?: boolean) => void;
-};
+}
 
 export const EditLinkPopover = ({ onSetLink }: EditLinkPopoverProps) => {
   return (

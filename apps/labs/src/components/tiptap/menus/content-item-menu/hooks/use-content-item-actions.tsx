@@ -1,7 +1,8 @@
+import type { Node } from '@tiptap/pm/model';
+import type { NodeSelection } from '@tiptap/pm/state';
+import type { Editor } from '@tiptap/react';
+
 import { useCallback } from 'react';
-import { Node } from '@tiptap/pm/model';
-import { NodeSelection } from '@tiptap/pm/state';
-import { Editor } from '@tiptap/react';
 
 const useContentItemActions = (
   editor: Editor,
@@ -31,7 +32,7 @@ const useContentItemActions = (
       .chain()
       .setMeta('hideDragHandle', true)
       .insertContentAt(
-        currentNodePos + (currentNode?.nodeSize || 0),
+        currentNodePos + (currentNode?.nodeSize ?? 0),
         selectedNode.toJSON(),
       )
       .run();
@@ -58,7 +59,7 @@ const useContentItemActions = (
 
   const handleAdd = useCallback(() => {
     if (currentNodePos !== -1) {
-      const currentNodeSize = currentNode?.nodeSize || 0;
+      const currentNodeSize = currentNode?.nodeSize ?? 0;
       const insertPos = currentNodePos + currentNodeSize;
       const currentNodeIsEmptyParagraph =
         currentNode?.type.name === 'paragraph' &&
@@ -76,7 +77,8 @@ const useContentItemActions = (
             } else {
               tr.insert(
                 insertPos,
-                state.schema.nodes.paragraph.create(null, [
+                // TODO: Make TS happy
+                state.schema.nodes.paragraph!.create(null, [
                   state.schema.text('/'),
                 ]),
               );

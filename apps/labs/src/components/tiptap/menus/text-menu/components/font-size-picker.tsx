@@ -17,14 +17,14 @@ const FONT_SIZES = [
   { label: 'Extra Large', value: '24px' },
 ];
 
-export type FontSizePickerProps = {
+export interface FontSizePickerProps {
   onChange: (value: string) => void;
   value: string;
-};
+}
 
 export const FontSizePicker = ({ onChange, value }: FontSizePickerProps) => {
   const currentValue = FONT_SIZES.find((size) => size.value === value);
-  const currentSizeLabel = currentValue?.label.split(' ')[0] || 'Medium';
+  const currentSizeLabel = currentValue?.label.split(' ')[0] ?? 'Medium';
 
   const selectSize = useCallback(
     (size: string) => () => onChange(size),

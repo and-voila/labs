@@ -1,6 +1,7 @@
+import type { Tone } from '@tiptap-pro/extension-ai';
+import type { Editor } from '@tiptap/react';
+
 import { useCallback } from 'react';
-import { Tone } from '@tiptap-pro/extension-ai';
-import { Editor } from '@tiptap/react';
 
 export const useTextmenuCommands = (editor: Editor) => {
   const onBold = useCallback(

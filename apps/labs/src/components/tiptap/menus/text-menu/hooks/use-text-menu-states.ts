@@ -1,5 +1,3 @@
-// TODO:
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useCallback, useMemo } from 'react';
 import { Editor } from '@tiptap/react';
 

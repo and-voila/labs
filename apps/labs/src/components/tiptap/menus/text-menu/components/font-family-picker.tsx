@@ -39,17 +39,17 @@ const FONT_FAMILIES = FONT_FAMILY_GROUPS.flatMap((group) => [
   group.options,
 ]).flat();
 
-export type FontFamilyPickerProps = {
+export interface FontFamilyPickerProps {
   onChange: (value: string) => void;
   value: string;
-};
+}
 
 export const FontFamilyPicker = ({
   onChange,
   value,
 }: FontFamilyPickerProps) => {
   const currentValue = FONT_FAMILIES.find((size) => size.value === value);
-  const currentFontLabel = currentValue?.label.split(' ')[0] || 'Inter';
+  const currentFontLabel = currentValue?.label.split(' ')[0] ?? 'Inter';
 
   const selectFont = useCallback(
     (font: string) => () => onChange(font),

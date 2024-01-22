@@ -1,6 +1,7 @@
+import type { icons } from 'lucide-react';
+
 import { useMemo } from 'react';
 import * as Dropdown from '@radix-ui/react-dropdown-menu';
-import { icons } from 'lucide-react';
 
 import {
   DropdownButton,
@@ -10,7 +11,7 @@ import { Icon } from '#/components/tiptap/icon';
 import { Surface } from '#/components/tiptap/surface';
 import { Toolbar } from '#/components/tiptap/toolbar';
 
-export type ContentTypePickerOption = {
+export interface ContentTypePickerOption {
   label: string;
   id: string;
   type: 'option';
@@ -18,21 +19,22 @@ export type ContentTypePickerOption = {
   isActive: () => boolean;
   onClick: () => void;
   icon: keyof typeof icons;
-};
+}
 
-export type ContentTypePickerCategory = {
+export interface ContentTypePickerCategory {
   label: string;
   id: string;
   type: 'category';
-};
+}
 
-export type ContentPickerOptions = Array<
-  ContentTypePickerOption | ContentTypePickerCategory
->;
+export type ContentPickerOptions = (
+  | ContentTypePickerOption
+  | ContentTypePickerCategory
+)[];
 
-export type ContentTypePickerProps = {
+export interface ContentTypePickerProps {
   options: ContentPickerOptions;
-};
+}
 
 const isOption = (
   option: ContentTypePickerOption | ContentTypePickerCategory,

@@ -1,6 +1,7 @@
+import type { Tone } from '@tiptap-pro/extension-ai';
+
 import { useCallback } from 'react';
 import * as Dropdown from '@radix-ui/react-dropdown-menu';
-import { Tone } from '@tiptap-pro/extension-ai';
 
 import { languages, tones } from '#/lib/tiptap/constants';
 
@@ -9,7 +10,7 @@ import { Icon } from '#/components/tiptap/icon';
 import { Surface } from '#/components/tiptap/surface';
 import { Toolbar } from '#/components/tiptap/toolbar';
 
-export type AIDropdownProps = {
+export interface AIDropdownProps {
   onSimplify: () => void;
   onFixSpelling: () => void;
   onMakeShorter: () => void;
@@ -19,7 +20,7 @@ export type AIDropdownProps = {
   onTranslate: (language: string) => void;
   onTone: (tone: Tone) => void;
   onCompleteSentence: () => void;
-};
+}
 
 export const AIDropdown = ({
   onCompleteSentence,

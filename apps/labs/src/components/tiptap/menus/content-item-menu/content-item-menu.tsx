@@ -1,7 +1,8 @@
+import type { Editor } from '@tiptap/react';
+
 import { useEffect, useState } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import DragHandle from '@tiptap-pro/extension-drag-handle-react';
-import { Editor } from '@tiptap/react';
 
 import { DropdownButton } from '#/components/tiptap/dropdown';
 import { Icon } from '#/components/tiptap/icon';
@@ -11,9 +12,9 @@ import { Toolbar } from '#/components/tiptap/toolbar';
 import useContentItemActions from './hooks/use-content-item-actions';
 import { useData } from './hooks/use-data';
 
-export type ContentItemMenuProps = {
+export interface ContentItemMenuProps {
   editor: Editor;
-};
+}
 
 export const ContentItemMenu = ({ editor }: ContentItemMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
