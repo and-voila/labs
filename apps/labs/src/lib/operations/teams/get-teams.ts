@@ -39,7 +39,7 @@ export const getTeams = async (): Promise<
     },
   });
 
-  const personalTeamSlug = teams.find((team) => team.isPersonal)?.slug || null;
+  const personalTeamSlug = teams.find((team) => team.isPersonal)?.slug ?? null;
 
   return {
     teams: teams ?? [],

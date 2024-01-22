@@ -1,4 +1,4 @@
-import { MembershipRole } from '@prisma/client';
+import type { MembershipRole } from '@prisma/client';
 
 import { db } from '#/lib/db';
 import { generateId } from '#/lib/helpers/id-helper';

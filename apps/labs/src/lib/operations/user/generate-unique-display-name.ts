@@ -1,9 +1,8 @@
-import { PrismaClient, User } from '@prisma/client';
-import {
-  Config,
-  NumberDictionary,
-  uniqueNamesGenerator,
-} from 'unique-names-generator';
+import type { User } from '@prisma/client';
+import type { Config } from 'unique-names-generator';
+
+import { PrismaClient } from '@prisma/client';
+import { NumberDictionary, uniqueNamesGenerator } from 'unique-names-generator';
 
 const db = new PrismaClient();
 

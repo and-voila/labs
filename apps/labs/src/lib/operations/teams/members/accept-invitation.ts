@@ -14,7 +14,7 @@ export const acceptInvitationByToken = async (
     throw new Error('Invalid invitation token');
   }
 
-  db.$transaction(async (trx) => {
+  void db.$transaction(async (trx) => {
     // we delete the invitation and create a new membership for the user
     const result = await trx.membership.create({
       data: {

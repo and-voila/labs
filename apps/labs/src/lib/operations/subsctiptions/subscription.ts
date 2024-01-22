@@ -1,8 +1,9 @@
+import type { TeamSubscriptionPlan } from '#/lib/types';
+
 import { pricingData } from '#/config/subscriptions';
 
 import { db } from '#/lib/db';
 import { stripe } from '#/lib/stripe';
-import { TeamSubscriptionPlan } from '#/lib/types';
 
 const DAY_IN_MS = 86_400_000;
 
@@ -48,12 +49,16 @@ export async function getTeamSubscriptionPlan(
   const userPlan =
     pricingData.find(
       (plan) => plan.stripeIds.monthly === stripeSubscription.stripePriceId,
-    ) ||
+    ) ??
     pricingData.find(
       (plan) => plan.stripeIds.yearly === stripeSubscription.stripePriceId,
     );
 
   const plan = isPaid && userPlan ? userPlan : pricingData[0];
+
+  if (!plan?.title) {
+    throw new Error('Plan title is undefined');
+  }
 
   const interval = isPaid
     ? userPlan?.stripeIds.monthly === stripeSubscription.stripePriceId

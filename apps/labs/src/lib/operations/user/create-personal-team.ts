@@ -26,7 +26,7 @@ export const createPersonalTeam = async (userId: string) => {
     },
   });
 
-  if (!user || !user.displayName) {
+  if (!user?.displayName) {
     throw new Error('User not found or displayName is missing');
   }
 
@@ -36,7 +36,7 @@ export const createPersonalTeam = async (userId: string) => {
 
   const team = await db.team.create({
     data: {
-      name: user.name || user.displayName,
+      name: user.name ?? user.displayName,
       slug: teamSlug,
       isPersonal: true,
       members: {
