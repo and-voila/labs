@@ -41,14 +41,14 @@ export class InternalServerError extends AppError {
 }
 
 export class UnauthenticatedError extends Error {
-  constructor(message: string = 'Unauthenticated') {
+  constructor(message = 'Unauthenticated') {
     super(message);
     this.name = 'UnauthenticatedError';
   }
 }
 
 export class NotFoundError extends Error {
-  constructor(message: string = 'Not Found') {
+  constructor(message = 'Not Found') {
     super(message);
     this.name = 'NotFoundError';
   }

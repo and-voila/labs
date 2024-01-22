@@ -4,7 +4,7 @@
  * @param {number} [ms=100] - The desired delay in milliseconds (optional).
  * @returns {Promise<void>} - A promise representing the delay.
  */
-export const delay = (ms: number = 100): Promise<void> => {
+export const delay = (ms = 100): Promise<void> => {
   const minimumDelay = 100; // Minimum delay in milliseconds
   const actualDelay = Math.max(minimumDelay, ms); // Uses the maximum between the specified delay and the minimum value
 
