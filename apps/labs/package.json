@@ -6,13 +6,16 @@
   "scripts": {
     "build": "prisma generate --no-engine && pnpm with-env next build",
     "clean": "git clean -xdf .next .turbo node_modules",
-    "dev": "prisma generate --no-engine && pnpm with-env next dev",
+    "dev": "prisma generate --no-engine && pnpm with-env next dev --port 3001",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "knip": "knip",
     "lint": "dotenv -v SKIP_ENV_VALIDATION=1 next lint",
     "start": "prisma generate --no-engine && pnpm with-env next start",
     "typecheck": "tsc --noEmit",
     "with-env": "dotenv -e ../../.env --"
+  },
+  "prisma": {
+    "schema": "./src/prisma/schema.prisma"
   },
   "dependencies": {
     "@and-voila/db": "workspace:^0.1.0",
