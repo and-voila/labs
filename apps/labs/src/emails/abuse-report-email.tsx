@@ -18,10 +18,10 @@ export const TemplateName = 'send-abuse-report-email';
 
 const subject = '😱 Abuse Report Notification';
 
-export type SendAbuseReportEmailProps = {
+export interface SendAbuseReportEmailProps {
   urlToReport: string;
   siteName: string;
-};
+}
 
 export const SendAbuseReportEmail = ({
   urlToReport,

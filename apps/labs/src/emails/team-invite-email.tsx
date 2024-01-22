@@ -19,12 +19,12 @@ export const TemplateName = 'team-invite-email';
 
 const subject = "You've been invited to a team workspace";
 
-export type EmailVerificationLinkEmailProps = {
+export interface EmailVerificationLinkEmailProps {
   appName: string;
   link: string;
   teamName: string;
   invitedBy: string;
-};
+}
 
 export const TeamInviteEmail = ({
   link,

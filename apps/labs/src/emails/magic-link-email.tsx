@@ -14,11 +14,11 @@ import {
 
 import { SITE_URL } from '#/lib/const';
 
-type MagicLinkEmailProps = {
+interface MagicLinkEmailProps {
   actionUrl: string;
   mailType: 'login' | 'register';
   siteName: string;
-};
+}
 
 export const MagicLinkEmail = ({
   actionUrl,
