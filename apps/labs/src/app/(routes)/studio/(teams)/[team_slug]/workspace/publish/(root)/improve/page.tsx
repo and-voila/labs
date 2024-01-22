@@ -1,4 +1,5 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+
 import { notFound } from 'next/navigation';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
