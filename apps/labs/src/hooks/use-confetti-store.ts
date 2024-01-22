@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 
-type ConfettiStore = {
+interface ConfettiStore {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-};
+}
 
 export const useConfettiStore = create<ConfettiStore>((set) => ({
   isOpen: false,

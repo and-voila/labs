@@ -1,11 +1,11 @@
 import { useCallback, useState } from 'react';
 
-export type SidebarState = {
+export interface SidebarState {
   isOpen: boolean;
   open: () => void;
   close: () => void;
   toggle: () => void;
-};
+}
 
 export const useSidebar = (): SidebarState => {
   const [isOpen, setIsOpen] = useState(false);
