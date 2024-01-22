@@ -44,10 +44,8 @@ export const createSite = async (formData: FormData) => {
 
   const reservedDomains = env.RESERVED_DOMAINS?.split(',') || [];
 
-  if (
-    !isAdmin(session.user.id) &&
-    reservedDomains.includes(subdomain.toLowerCase())
-  ) {
+  const isAdminResult = await isAdmin(session.user.id);
+  if (!isAdminResult && reservedDomains.includes(subdomain.toLowerCase())) {
     return {
       error:
         "Oh no, this is a reserved subdomain and can't be used. Please try another one.",
@@ -72,7 +70,7 @@ export const createSite = async (formData: FormData) => {
         },
       },
     });
-    await revalidateTag(`${subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`);
+    revalidateTag(`${subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`);
     return response;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
@@ -209,11 +207,10 @@ export const updateSite = withSiteAuth(
         `${site.customDomain}-metadata`,
       );*/
       }
-      await revalidateTag(
+      revalidateTag(
         `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
       );
-      site.customDomain &&
-        (await revalidateTag(`${site.customDomain}-metadata`));
+      site.customDomain && revalidateTag(`${site.customDomain}-metadata`);
 
       return response;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -261,11 +258,8 @@ export const deleteSite = withSiteAuth(async (_: FormData, site: Site) => {
         id: site.id,
       },
     });
-    await revalidateTag(
-      `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
-    );
-    response.customDomain &&
-      (await revalidateTag(`${site.customDomain}-metadata`));
+    revalidateTag(`${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`);
+    response.customDomain && revalidateTag(`${site.customDomain}-metadata`);
     return response;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
@@ -322,10 +316,8 @@ export const createCollabPost = withSiteAuth(
       },
     });
 
-    await revalidateTag(
-      `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
-    );
-    site.customDomain && (await revalidateTag(`${site.customDomain}-posts`));
+    revalidateTag(`${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`);
+    site.customDomain && revalidateTag(`${site.customDomain}-posts`);
 
     return response;
   },
@@ -363,8 +355,8 @@ export const publishPost = async (
         userId: formData.get('author') as string,
         description: formData.get('description') as string,
         content: formData.get('content') as string,
-        image: imageUrl || post.image,
-        imageBlurhash: blurhash || post.imageBlurhash,
+        image: imageUrl ?? post.image,
+        imageBlurhash: blurhash ?? post.imageBlurhash,
         published: true,
       },
     });
@@ -374,23 +366,19 @@ export const publishPost = async (
       slug: string,
       postId: string,
     ) => {
-      await revalidateTag(
-        `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
-      );
-      await revalidateTag(
+      revalidateTag(`${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`);
+      revalidateTag(
         `${post.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
       );
-      await revalidateTag(
-        `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-${slug}`,
-      );
-      await revalidateTag(
+      revalidateTag(`${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-${slug}`);
+      revalidateTag(
         `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-post-${postId}`,
       );
 
       if (site.customDomain) {
-        await revalidateTag(`${site.customDomain}-posts`);
-        await revalidateTag(`${site.customDomain}-${slug}`);
-        await revalidateTag(`${site.customDomain}-post-${postId}`);
+        revalidateTag(`${site.customDomain}-posts`);
+        revalidateTag(`${site.customDomain}-${slug}`);
+        revalidateTag(`${site.customDomain}-post-${postId}`);
       }
     };
 
@@ -460,16 +448,12 @@ export const updateCollabPost = async (
     });
 
     const revalidatePostTags = async (site: Site, slug: string) => {
-      await revalidateTag(
-        `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`,
-      );
-      await revalidateTag(
-        `${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-${slug}`,
-      );
+      revalidateTag(`${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-posts`);
+      revalidateTag(`${site.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}-${slug}`);
 
       if (site.customDomain) {
-        await revalidateTag(`${site.customDomain}-posts`);
-        await revalidateTag(`${site.customDomain}-${slug}`);
+        revalidateTag(`${site.customDomain}-posts`);
+        revalidateTag(`${site.customDomain}-${slug}`);
       }
     };
 

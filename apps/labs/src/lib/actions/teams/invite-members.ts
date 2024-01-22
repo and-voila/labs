@@ -1,7 +1,8 @@
 'use server';
 
+import type { MembershipRole } from '@prisma/client';
+
 import { revalidatePath } from 'next/cache';
-import { MembershipRole } from '@prisma/client';
 
 import { db } from '#/lib/db';
 import { getTeam } from '#/lib/operations/teams/get-current-team';

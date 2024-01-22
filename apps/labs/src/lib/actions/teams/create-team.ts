@@ -1,5 +1,7 @@
 'use server';
 
+import type { NewTeamFormValues } from '#/lib/validations/new-team';
+
 import { revalidatePath } from 'next/cache';
 import { MembershipRole } from '@prisma/client';
 import slugify from 'slugify';
@@ -7,7 +9,6 @@ import slugify from 'slugify';
 import { APP_BP } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/operations/user/session';
-import { NewTeamFormValues } from '#/lib/validations/new-team';
 
 export const createTeam = async (data: NewTeamFormValues) => {
   'use server';

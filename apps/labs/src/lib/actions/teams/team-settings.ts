@@ -1,12 +1,13 @@
 'use server';
 
+import type { UpdateTeamNameFormSchema } from '#/lib/validations/update-team';
+
 import { revalidatePath } from 'next/cache';
 import { MembershipRole } from '@prisma/client';
 
 import { APP_BP } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/operations/user/session';
-import { UpdateTeamNameFormSchema } from '#/lib/validations/update-team';
 
 export const updateTeam = async (
   teamSlug: string,

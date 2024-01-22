@@ -12,9 +12,9 @@ import { getSession } from '#/lib/operations/user/session';
 import { displayNameSchema } from '#/lib/validations/display-name';
 import { userNameSchema } from '#/lib/validations/user';
 
-export type FormData = {
+export interface FormData {
   name: string;
-};
+}
 
 export async function updateUserName(userId: string, data: FormData) {
   try {
@@ -42,9 +42,9 @@ export async function updateUserName(userId: string, data: FormData) {
   }
 }
 
-export type DisplayNameFormData = {
+export interface DisplayNameFormData {
   displayName: string;
-};
+}
 
 export async function updateDisplayName(
   userId: string,
@@ -75,9 +75,9 @@ export async function updateDisplayName(
   }
 }
 
-export type UserImageFormData = {
+export interface UserImageFormData {
   imageUrl: string;
-};
+}
 
 export async function updateUserImage(userId: string, data: UserImageFormData) {
   try {
