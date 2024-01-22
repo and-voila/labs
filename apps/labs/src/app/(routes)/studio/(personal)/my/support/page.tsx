@@ -1,5 +1,6 @@
-import { SVGProps } from 'react';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+import type { SVGProps } from 'react';
+
 import Link from 'next/link';
 
 import { siteConfig } from '#/config/site';

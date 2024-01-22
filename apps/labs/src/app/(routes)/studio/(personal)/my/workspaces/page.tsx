@@ -1,6 +1,7 @@
-import { Metadata, NextPage } from 'next';
+import type { Membership } from '@prisma/client';
+import type { Metadata, NextPage } from 'next';
+
 import { redirect } from 'next/navigation';
-import { Membership } from '@prisma/client';
 
 import { authOptions } from '#/lib/auth';
 import { APP_BP, SITE_URL } from '#/lib/const';
@@ -13,7 +14,7 @@ import { TeamList } from '#/components/teams/team-list';
 const WorkspacesPage: NextPage = async () => {
   const session = await getSession();
   if (!session) {
-    redirect(authOptions?.pages?.signIn || '/login');
+    redirect(authOptions?.pages?.signIn ?? '/login');
   }
 
   const teams = await db.team.findMany({

@@ -1,4 +1,5 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+
 import { redirect } from 'next/navigation';
 import { MembershipRole } from '@prisma/client';
 
@@ -18,7 +19,7 @@ import { Alert, AlertDescription, AlertTitle } from '#/components/ui/alert';
 export default async function PersonalBillingPage() {
   const session = await getSession();
   if (!session) {
-    redirect(authOptions?.pages?.signIn || '/login');
+    redirect(authOptions?.pages?.signIn ?? '/login');
   }
 
   const user = session.user;
@@ -58,13 +59,14 @@ export default async function PersonalBillingPage() {
             </AlertDescription>
           </Alert>
         )}
+        {/* TODO: Check undefined */}
         <div className="grid max-w-3xl grid-cols-1 gap-8">
           {subscriptionPlans.map((subscriptionPlan, index) => (
-            <div key={teams[index].id}>
+            <div key={teams[index]!.id}>
               <BillingInfo
                 subscriptionPlan={subscriptionPlan}
-                teamName={teams[index].name}
-                teamSlug={teams[index].slug}
+                teamName={teams[index]!.name}
+                teamSlug={teams[index]!.slug}
               />
             </div>
           ))}

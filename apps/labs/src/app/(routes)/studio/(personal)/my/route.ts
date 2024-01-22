@@ -1,5 +1,6 @@
+import type { NextRequest, NextResponse } from 'next/server';
+
 import { redirect } from 'next/navigation';
-import { NextRequest, NextResponse } from 'next/server';
 
 import { APP_BP } from '#/lib/const';
 

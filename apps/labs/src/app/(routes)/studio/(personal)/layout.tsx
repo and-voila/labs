@@ -25,7 +25,7 @@ export default async function MyWorkspaceLayout({
   const activeTeamSlug = params.team_slug || personalTeamSlug;
 
   if (!user) {
-    redirect(authOptions?.pages?.signIn || '/login');
+    redirect(authOptions?.pages?.signIn ?? '/login');
   }
 
   const links = defaultSidebarLinks(activeTeamSlug);

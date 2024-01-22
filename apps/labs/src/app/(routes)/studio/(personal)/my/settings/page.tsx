@@ -1,4 +1,5 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+
 import { redirect } from 'next/navigation';
 
 import { siteConfig } from '#/config/site';
@@ -15,7 +16,7 @@ import { UserNameForm } from '#/components/forms/user-name-form';
 export default async function SettingsPage() {
   const session = await getSession();
   if (!session) {
-    redirect(authOptions?.pages?.signIn || '/login');
+    redirect(authOptions?.pages?.signIn ?? '/login');
   }
 
   const user = session.user;
