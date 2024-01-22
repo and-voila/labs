@@ -1,12 +1,14 @@
+import type { MenuProps } from '#/components/tiptap/menus/types';
+import type { Instance } from 'tippy.js';
+
 import React, { useCallback, useRef } from 'react';
 import { BubbleMenu as BaseBubbleMenu } from '@tiptap/react';
-import { Instance, sticky } from 'tippy.js';
+import { sticky } from 'tippy.js';
 import { v4 as uuid } from 'uuid';
 
 import { getRenderContainer } from '#/lib/tiptap/utils/get-render-container';
 
 import { Icon } from '#/components/tiptap/icon';
-import { MenuProps } from '#/components/tiptap/menus/types';
 import { Toolbar } from '#/components/tiptap/toolbar';
 
 import { ImageBlockWidth } from './image-block-width';

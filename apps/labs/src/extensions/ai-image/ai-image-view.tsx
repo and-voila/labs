@@ -1,11 +1,9 @@
+import type { ImageOptions } from '@tiptap-pro/extension-ai';
+import type { Extension, NodeViewWrapperProps } from '@tiptap/react';
+
 import { useCallback, useMemo, useState } from 'react';
 import * as Dropdown from '@radix-ui/react-dropdown-menu';
-import { ImageOptions } from '@tiptap-pro/extension-ai';
-import {
-  Extension,
-  NodeViewWrapper,
-  NodeViewWrapperProps,
-} from '@tiptap/react';
+import { NodeViewWrapper } from '@tiptap/react';
 import toast from 'react-hot-toast';
 import { v4 as uuid } from 'uuid';
 
@@ -183,7 +181,7 @@ export const AiImageView = ({
                 <Dropdown.Trigger asChild>
                   <Button variant="tertiary">
                     <Icon name="Image" />
-                    {currentImageStyle?.label || 'Image style'}
+                    {currentImageStyle?.label ?? 'Image style'}
                     <Icon name="ChevronDown" />
                   </Button>
                 </Dropdown.Trigger>

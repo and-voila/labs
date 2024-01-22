@@ -1,6 +1,9 @@
+import type { Editor } from '@tiptap/core';
+import type { icons } from 'lucide-react';
+
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Editor } from '@tiptap/core';
-import { icons } from 'lucide-react';
+
+import type { Group } from './groups';
 
 import { DropdownButton } from '#/components/tiptap/dropdown';
 import { Icon } from '#/components/tiptap/icon';
@@ -9,7 +12,6 @@ import { Surface } from '#/components/tiptap/surface';
 // TODO:
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CommandButton } from './command-button';
-import { Group } from './groups';
 
 export interface Command {
   name: string;
@@ -42,8 +44,10 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
 
   const selectItem = useCallback(
     (groupIndex: number, commandIndex: number) => {
-      const command = props.items[groupIndex].commands[commandIndex];
-      props.command(command);
+      const command = props.items[groupIndex]?.commands[commandIndex];
+      if (command) {
+        props.command(command);
+      }
     },
     [props],
   );
@@ -55,7 +59,7 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
           return false;
         }
 
-        const commands = props.items[selectedGroupIndex].commands;
+        const commands = props.items[selectedGroupIndex]!.commands;
 
         let newCommandIndex = selectedCommandIndex + 1;
         let newGroupIndex = selectedGroupIndex;
@@ -86,12 +90,12 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
         if (newCommandIndex < 0) {
           newGroupIndex = selectedGroupIndex - 1;
           newCommandIndex =
-            props.items[newGroupIndex]?.commands.length - 1 || 0;
+            props.items[newGroupIndex]!.commands.length - 1 || 0;
         }
 
         if (newGroupIndex < 0) {
           newGroupIndex = props.items.length - 1;
-          newCommandIndex = props.items[newGroupIndex].commands.length - 1;
+          newCommandIndex = props.items[newGroupIndex]!.commands.length - 1;
         }
 
         setSelectedCommandIndex(newCommandIndex);

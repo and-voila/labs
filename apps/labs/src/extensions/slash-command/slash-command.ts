@@ -1,10 +1,13 @@
-import { Editor, Extension } from '@tiptap/core';
-import { PluginKey } from '@tiptap/pm/state';
-import { ReactRenderer } from '@tiptap/react';
-import Suggestion, {
+import type { Editor } from '@tiptap/core';
+import type {
   SuggestionKeyDownProps,
   SuggestionProps,
 } from '@tiptap/suggestion';
+
+import { Extension } from '@tiptap/core';
+import { PluginKey } from '@tiptap/pm/state';
+import { ReactRenderer } from '@tiptap/react';
+import Suggestion from '@tiptap/suggestion';
 import tippy from 'tippy.js';
 
 import { GROUPS } from './groups';
@@ -53,7 +56,7 @@ export const SlashCommand = Extension.create({
           const $from = state.doc.resolve(range.from);
           const isRootDepth = $from.depth === 1;
           const isParagraph = $from.parent.type.name === 'paragraph';
-          const isStartOfNode = $from.parent.textContent?.charAt(0) === '/';
+          const isStartOfNode = $from.parent.textContent?.startsWith('/');
           // TODO
           const isInColumn = this.editor.isActive('column');
 
@@ -149,7 +152,7 @@ export const SlashCommand = Extension.create({
 
               const { view } = props.editor;
 
-              const editorNode = view.dom as HTMLElement;
+              const editorNode = view.dom;
 
               const getReferenceClientRect = () => {
                 if (!props.clientRect) {
@@ -207,7 +210,7 @@ export const SlashCommand = Extension.create({
 
               // TODO:
               // eslint-disable-next-line @typescript-eslint/no-unused-vars
-              const editorNode = view.dom as HTMLElement;
+              const editorNode = view.dom;
 
               const getReferenceClientRect = () => {
                 if (!props.clientRect) {
@@ -232,7 +235,6 @@ export const SlashCommand = Extension.create({
 
               view.dom.parentElement?.addEventListener('scroll', scrollHandler);
 
-              // eslint-disable-next-line no-param-reassign
               props.editor.storage[extensionName].rect = props.clientRect
                 ? getReferenceClientRect()
                 : {

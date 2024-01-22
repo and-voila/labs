@@ -1,6 +1,8 @@
 'use client';
 
-import { HocuspocusProvider } from '@hocuspocus/provider';
+import type { HocuspocusProvider } from '@hocuspocus/provider';
+import type { EditorUser } from '#/components/tiptap/block-editor/types';
+
 import { Emoji } from '@tiptap-pro/extension-emoji';
 import { FileHandler } from '@tiptap-pro/extension-file-handler';
 import { TableOfContent } from '@tiptap-pro/extension-table-of-content';
@@ -24,8 +26,6 @@ import { StarterKit } from '@tiptap/starter-kit';
 import { common, createLowlight } from 'lowlight';
 
 import { API } from '#/lib/tiptap/api';
-
-import { EditorUser } from '#/components/tiptap/block-editor/types';
 
 import { AiImage } from './ai-image/ai-image';
 import { AiWriter } from './ai-writer/ai-writer';
@@ -116,6 +116,7 @@ export const ExtensionKit = ({ provider, user }: ExtensionKitProps) => [
   FileHandler.configure({
     allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
     onDrop: (currentEditor, files, pos) => {
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       files.forEach(async () => {
         const url = await API.uploadImage();
 
@@ -123,6 +124,7 @@ export const ExtensionKit = ({ provider, user }: ExtensionKitProps) => [
       });
     },
     onPaste: (currentEditor, files) => {
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       files.forEach(async () => {
         const url = await API.uploadImage();
 

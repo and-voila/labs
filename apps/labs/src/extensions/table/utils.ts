@@ -1,6 +1,7 @@
+import type { Node, ResolvedPos } from '@tiptap/pm/model';
+import type { Selection, Transaction } from '@tiptap/pm/state';
+
 import { findParentNode } from '@tiptap/core';
-import { Node, ResolvedPos } from '@tiptap/pm/model';
-import { Selection, Transaction } from '@tiptap/pm/state';
 import { CellSelection, TableMap } from '@tiptap/pm/tables';
 
 // TODO:
@@ -15,9 +16,9 @@ export const isRectSelected = (rect: any) => (selection: CellSelection) => {
       selection.$headCell.pos - start,
     ),
   );
-
+  // TODO: Refactor this and remove the non-nullish assertions
   for (let i = 0, count = cells.length; i < count; i += 1) {
-    if (selectedCells.indexOf(cells[i]) === -1) {
+    if (selectedCells.indexOf(cells[i]!) === -1) {
       return false;
     }
   }
@@ -243,8 +244,8 @@ const select =
                 bottom,
               });
 
-        const head = table.start + cellsInFirstRow[0];
-        const anchor = table.start + cellsInLastRow[cellsInLastRow.length - 1];
+        const head = table.start + cellsInFirstRow[0]!;
+        const anchor = table.start + cellsInLastRow[cellsInLastRow.length - 1]!;
         const $head = tr.doc.resolve(head);
         const $anchor = tr.doc.resolve(anchor);
 
@@ -264,9 +265,9 @@ export const selectTable = (tr: Transaction) => {
   if (table) {
     const { map } = TableMap.get(table.node);
 
-    if (map && map.length) {
-      const head = table.start + map[0];
-      const anchor = table.start + map[map.length - 1];
+    if (map?.length) {
+      const head = table.start + map[0]!;
+      const anchor = table.start + map[map.length - 1]!;
       const $head = tr.doc.resolve(head);
       const $anchor = tr.doc.resolve(anchor);
 

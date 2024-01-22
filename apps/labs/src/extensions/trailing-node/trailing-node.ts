@@ -48,8 +48,9 @@ export const TrailingNode = Extension.create<TrailingNodeOptions>({
             return;
           }
 
-          // eslint-disable-next-line consistent-return
-          return tr.insert(endPosition, type.create());
+          if (type) {
+            return tr.insert(endPosition, type.create());
+          }
         },
         state: {
           init: (_, state) => {

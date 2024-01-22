@@ -1,17 +1,15 @@
+import type { Tone } from '@tiptap-pro/extension-ai';
+import type { Extension, NodeViewWrapperProps } from '@tiptap/react';
+import type { AiToneOption } from '#/components/tiptap/block-editor/types';
+
 import { useCallback, useMemo, useState } from 'react';
 import * as Dropdown from '@radix-ui/react-dropdown-menu';
-import { Tone } from '@tiptap-pro/extension-ai';
-import {
-  Extension,
-  NodeViewWrapper,
-  NodeViewWrapperProps,
-} from '@tiptap/react';
+import { NodeViewWrapper } from '@tiptap/react';
 import toast from 'react-hot-toast';
 import { v4 as uuid } from 'uuid';
 
 import { tones } from '#/lib/tiptap/constants';
 
-import { AiToneOption } from '#/components/tiptap/block-editor/types';
 import { DropdownButton } from '#/components/tiptap/dropdown';
 import { Button } from '#/components/tiptap/editor-button';
 import { Icon } from '#/components/tiptap/icon';
@@ -217,7 +215,7 @@ export const AiWriterView = ({
                 <Dropdown.Trigger asChild>
                   <Button variant="tertiary">
                     <Icon name="Mic" />
-                    {currentTone?.label || 'Change tone'}
+                    {currentTone?.label ?? 'Change tone'}
                     <Icon name="ChevronDown" />
                   </Button>
                 </Dropdown.Trigger>

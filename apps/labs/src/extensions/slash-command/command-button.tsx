@@ -1,17 +1,18 @@
+import type { icons } from 'lucide-react';
+
 import { forwardRef } from 'react';
-import { icons } from 'lucide-react';
 
 import { cn } from '#/lib/utils';
 
 import { Icon } from '#/components/tiptap/icon';
 
-export type CommandButtonProps = {
+export interface CommandButtonProps {
   active?: boolean;
   description: string;
   icon: keyof typeof icons;
   onClick: () => void;
   title: string;
-};
+}
 
 export const CommandButton = forwardRef<HTMLButtonElement, CommandButtonProps>(
   ({ active, icon, onClick, title }, ref) => {

@@ -1,4 +1,6 @@
-import { Node, NodeViewRendererProps } from '@tiptap/core';
+import type { NodeViewRendererProps } from '@tiptap/core';
+
+import { Node } from '@tiptap/core';
 import { NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react';
 
 import { TableOfContents } from '#/components/tiptap/block-editor/table-of-contents';

@@ -1,4 +1,6 @@
-import { ChangeEvent, useCallback } from 'react';
+import type { ChangeEvent } from 'react';
+
+import { useCallback } from 'react';
 
 import { cn } from '#/lib/utils';
 
@@ -16,6 +18,8 @@ export const ImageUploader = ({
   const { loading, uploadFile } = useUploader({ onUpload });
   const { handleUploadClick, ref } = useFileUpload();
   const { draggedInside, onDrop, onDragEnter, onDragLeave } = useDropZone({
+    // TODO: Review and fix this
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     uploader: uploadFile,
   });
 

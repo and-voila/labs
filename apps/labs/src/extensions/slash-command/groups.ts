@@ -1,4 +1,4 @@
-import { Command } from './menu-list';
+import type { Command } from './menu-list';
 
 // import { EmbedService } from '#/lib/constants'
 

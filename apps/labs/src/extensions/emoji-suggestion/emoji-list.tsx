@@ -1,3 +1,5 @@
+import type { EmojiItem } from '@tiptap-pro/extension-emoji';
+
 import React, {
   forwardRef,
   useCallback,
@@ -5,7 +7,6 @@ import React, {
   useImperativeHandle,
   useState,
 } from 'react';
-import { EmojiItem } from '@tiptap-pro/extension-emoji';
 
 import { Button } from '#/components/tiptap/editor-button';
 import { Panel } from '#/components/tiptap/panel';
@@ -98,7 +99,7 @@ const EmojiList = forwardRef((props: EmojiListProps, ref) => {
     [selectItem],
   );
 
-  if (!props.items || !props.items.length) {
+  if (!props.items?.length) {
     return null;
   }
 

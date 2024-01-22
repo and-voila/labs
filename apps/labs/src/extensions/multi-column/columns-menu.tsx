@@ -1,3 +1,5 @@
+import type { MenuProps } from '#/components/tiptap/menus/types';
+
 import { useCallback } from 'react';
 import { BubbleMenu as BaseBubbleMenu } from '@tiptap/react';
 import { sticky } from 'tippy.js';
@@ -6,7 +8,6 @@ import { v4 as uuid } from 'uuid';
 import { getRenderContainer } from '#/lib/tiptap/utils/get-render-container';
 
 import { Icon } from '#/components/tiptap/icon';
-import { MenuProps } from '#/components/tiptap/menus/types';
 import { Toolbar } from '#/components/tiptap/toolbar';
 
 import { ColumnLayout } from './columns';

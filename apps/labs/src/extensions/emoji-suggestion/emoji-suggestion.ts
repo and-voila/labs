@@ -1,7 +1,12 @@
-import { Editor } from '@tiptap/core';
+import type { Editor } from '@tiptap/core';
+import type {
+  SuggestionKeyDownProps,
+  SuggestionProps,
+} from '@tiptap/suggestion';
+import type { Instance } from 'tippy.js';
+
 import { ReactRenderer } from '@tiptap/react';
-import { SuggestionKeyDownProps, SuggestionProps } from '@tiptap/suggestion';
-import tippy, { Instance } from 'tippy.js';
+import tippy from 'tippy.js';
 
 import EmojiList from './emoji-list';
 
@@ -12,7 +17,7 @@ export const emojiSuggestion = {
         ({ shortcodes, tags }: { shortcodes: string[]; tags: string[] }) =>
           shortcodes.find((shortcode) =>
             shortcode.startsWith(query.toLowerCase()),
-          ) || tags.find((tag) => tag.startsWith(query.toLowerCase())),
+          ) ?? tags.find((tag) => tag.startsWith(query.toLowerCase())),
       )
       .slice(0, 250),
 

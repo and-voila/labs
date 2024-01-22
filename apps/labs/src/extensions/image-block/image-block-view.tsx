@@ -1,6 +1,8 @@
+import type { Node } from '@tiptap/pm/model';
+import type { Editor } from '@tiptap/react';
+
 import { useCallback, useRef } from 'react';
-import { Node } from '@tiptap/pm/model';
-import { Editor, NodeViewWrapper } from '@tiptap/react';
+import { NodeViewWrapper } from '@tiptap/react';
 
 import { cn } from '#/lib/utils';
 
@@ -34,6 +36,9 @@ export const ImageBlockView = (props: ImageBlockViewProps) => {
     <NodeViewWrapper>
       <div className={wrapperClassName} style={{ width: node.attrs.width }}>
         <div contentEditable={false} ref={imageWrapperRef}>
+          {/* TODO: Figure out this a11y issue(s) */}
+          {/* eslint-disable jsx-a11y/click-events-have-key-events */}
+          {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
           <img className="block" src={src} alt="" onClick={onClick} />
         </div>
       </div>

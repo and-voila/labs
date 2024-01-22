@@ -1,5 +1,7 @@
+import type { Editor } from '@tiptap/react';
+
 import { useCallback } from 'react';
-import { Editor, NodeViewWrapper } from '@tiptap/react';
+import { NodeViewWrapper } from '@tiptap/react';
 
 import { ImageUploader } from './image-uploader';
 

@@ -1,9 +1,9 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 
-export type ImageBlockWidthProps = {
+export interface ImageBlockWidthProps {
   onChange: (value: number) => void;
   value: number;
-};
+}
 
 export const ImageBlockWidth = memo(
   ({ onChange, value }: ImageBlockWidthProps) => {
