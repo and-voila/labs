@@ -1,22 +1,23 @@
 'use client';
 
+import type { IconKey } from '#/lib/types';
+
 import { useCallback } from 'react';
 import Link from 'next/link';
 
 import { siteConfig } from '#/config/site';
 
 import { APP_BP } from '#/lib/const';
-import { IconKey } from '#/lib/types';
 
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
 
-const links: Array<{
+const links: {
   name: string;
   href: string;
   description: string;
   icon: IconKey;
-}> = [
+}[] = [
   {
     name: 'Admin dashboard',
     href: `${APP_BP}/my/admin`,
@@ -53,7 +54,7 @@ export default function AdminError({ reset }: { reset: () => void }) {
       </div>
       <div className="mx-auto mt-16 flow-root max-w-lg sm:mt-20">
         <h2 className="sr-only">Popular pages</h2>
-        <ul role="list" className="-mt-6 divide-y divide-border border-b">
+        <ul className="-mt-6 divide-y divide-border border-b">
           {links.map((link, linkIdx) => {
             const Icon = Icons[link.icon];
             return (

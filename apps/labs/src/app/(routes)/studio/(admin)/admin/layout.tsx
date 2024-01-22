@@ -17,8 +17,10 @@ const AdminRootLayout: React.FC<AdminRootLayoutProps> = async ({
 }) => {
   const session = await getSession();
   if (!session) {
-    redirect(authOptions?.pages?.signIn || '/login');
-  } else if (!isAdmin(session.user.id)) {
+    redirect(authOptions?.pages?.signIn ?? '/login');
+  }
+  const isAdminUser = await isAdmin(session.user.id);
+  if (!isAdminUser) {
     redirect('/not-authorized');
   }
   return (

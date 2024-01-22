@@ -26,8 +26,10 @@ export default async function AdminLayout({
   const activeTeamSlug = params.team_slug || personalTeamSlug;
 
   if (!user) {
-    redirect(authOptions?.pages?.signIn || '/login');
-  } else if (!isAdmin(user.id)) {
+    redirect(authOptions?.pages?.signIn ?? '/login');
+  }
+  const isAdminUser = await isAdmin(user.id);
+  if (!isAdminUser) {
     redirect('/not-authorized');
   }
 
