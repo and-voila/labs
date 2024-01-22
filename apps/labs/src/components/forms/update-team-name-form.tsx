@@ -1,16 +1,16 @@
 'use client';
 
+import type { UpdateTeamNameFormSchema } from '#/lib/validations/update-team';
+import type { FieldValues } from 'react-hook-form';
+
 import React, { useCallback, useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { siteConfig } from '#/config/site';
 
 import { updateTeam } from '#/lib/actions/teams/team-settings';
-import {
-  UpdateTeamNameFormSchema,
-  updateTeamNameFormSchema,
-} from '#/lib/validations/update-team';
+import { updateTeamNameFormSchema } from '#/lib/validations/update-team';
 
 import { Button } from '#/components/ui/button';
 import {

@@ -1,8 +1,9 @@
+import type { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
+
 import { useCallback, useTransition } from 'react';
 import Link from 'next/link';
 
 import { generateUserStripe } from '#/lib/actions/stripe/generate-user-stripe';
-import { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
 
 import { Icons } from '#/components/shared/icons';
 import { Button } from '#/components/ui/button';
@@ -31,7 +32,7 @@ export function BillingFormButton({
       }
 
       await generateUserStripe(
-        offer.stripeIds[year ? 'yearly' : 'monthly'] || '',
+        offer.stripeIds[year ? 'yearly' : 'monthly'] ?? 'monthly',
         teamId,
         teamSlug,
       );

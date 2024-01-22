@@ -1,5 +1,7 @@
 'use client';
 
+import type { Team } from '#/lib/operations/teams/get-teams';
+
 import React, { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,7 +10,6 @@ import { z } from 'zod';
 
 import { deleteTeam } from '#/lib/actions/teams/delete-team';
 import { APP_BP } from '#/lib/const';
-import { Team } from '#/lib/operations/teams/get-teams';
 
 import {
   AlertDialog,

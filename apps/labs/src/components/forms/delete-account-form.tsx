@@ -1,16 +1,17 @@
 'use client';
 
+import type { Team } from '@prisma/client';
+import type { User } from '#/lib/types/next-auth';
+
 import React, { useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Team } from '@prisma/client';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { deletePersonalAccount } from '#/lib/actions/user/update-user';
 import { APP_BP } from '#/lib/const';
-import { User } from '#/lib/types/next-auth';
 
 import {
   AlertDialog,
@@ -80,7 +81,7 @@ export const DeleteAccountForm: React.FC<DeleteAccountFormProps> = (props) => {
                 Is it really goodbye? If you&apos;re set on making your personal
                 account a thing of the past, just type your account name:{' '}
                 <span className="font-semibold text-foreground">
-                  {user.name || user.displayName}
+                  {user.name ?? user.displayName}
                 </span>
                 , right here. Once you hit delete, it&apos;s like unseeing a
                 funny cat video...impossible. So, double-check before you leave

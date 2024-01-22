@@ -1,10 +1,11 @@
 'use client';
 
+import type { TeamSubscriptionPlan } from '#/lib/types';
+
 import * as React from 'react';
 import Link from 'next/link';
 
 import { APP_BP } from '#/lib/const';
-import { TeamSubscriptionPlan } from '#/lib/types';
 import { cn, formatDate } from '#/lib/utils';
 
 import { buttonVariants } from '#/components/ui/button';

@@ -1,12 +1,13 @@
 'use client';
 
+import type { z } from 'zod';
+
 import * as React from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 import { siteConfig } from '#/config/site';
 
@@ -88,7 +89,7 @@ export function UserAuthForm({
       });
     }
 
-    let callbackUrl = searchParams.get('from') || '/';
+    let callbackUrl = searchParams.get('from') ?? '/';
     if (token) {
       callbackUrl = `/invitations/${token}`;
     }
@@ -119,12 +120,12 @@ export function UserAuthForm({
 
   const handleDiscordSignIn = React.useCallback(() => {
     setIsDiscordLoading(true);
-    signIn('discord');
+    void signIn('discord');
   }, []);
 
   const handleGoogleSignIn = React.useCallback(() => {
     setIsGoogleLoading(true);
-    signIn('google');
+    void signIn('google');
   }, []);
 
   return (

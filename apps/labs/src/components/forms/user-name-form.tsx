@@ -1,13 +1,15 @@
 'use client';
 
+import type { User } from '@prisma/client';
+import type { FormData } from '#/lib/actions/user/update-user';
+
 import { useEffect, useState, useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { User } from '@prisma/client';
 import { useForm } from 'react-hook-form';
 
 import { siteConfig } from '#/config/site';
 
-import { updateUserName, type FormData } from '#/lib/actions/user/update-user';
+import { updateUserName } from '#/lib/actions/user/update-user';
 import { cn } from '#/lib/utils';
 import { userNameSchema } from '#/lib/validations/user';
 
@@ -42,7 +44,7 @@ export function UserNameForm({ user }: UserNameFormProps) {
     mode: 'onChange',
     resolver: zodResolver(userNameSchema),
     defaultValues: {
-      name: user?.name || 'And Voila user',
+      name: user?.name ?? 'And Voila user',
     },
   });
 

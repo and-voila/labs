@@ -1,14 +1,14 @@
+import type { NewTeamFormValues } from '#/lib/validations/new-team';
+import type { FieldValues } from 'react-hook-form';
+
 import React, { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { createTeam } from '#/lib/actions/teams/create-team';
 import { APP_BP } from '#/lib/const';
-import {
-  newTeamFormSchema,
-  NewTeamFormValues,
-} from '#/lib/validations/new-team';
+import { newTeamFormSchema } from '#/lib/validations/new-team';
 
 import { Button } from '#/components/ui/button';
 import {
