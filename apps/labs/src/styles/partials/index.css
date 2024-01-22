@@ -1,0 +1,45 @@
+@import './animations.css';
+@import './blocks.css';
+@import './code.css';
+@import './collab.css';
+@import './lists.css';
+@import './placeholder.css';
+@import './table.css';
+@import './typography.css';
+
+.ProseMirror {
+  @apply z-0 py-10 pl-20 caret-foreground outline-0;
+
+  & > * {
+    @apply max-w-2xl;
+  }
+
+  .selection {
+    @apply inline;
+  }
+
+  .selection,
+  *::selection {
+    @apply bg-foreground/20;
+  }
+
+  & > .react-renderer {
+    @apply my-12 first:mt-0 last:mb-0;
+  }
+
+  &.resize-cursor {
+    @apply cursor-col-resize;
+  }
+
+  .ProseMirror-gapcursor {
+    @apply relative mx-auto w-full max-w-2xl;
+
+    &:after {
+      @apply -top-[1.5em] left-0 right-0 mx-auto w-full max-w-2xl border-t;
+    }
+  }
+}
+
+[data-theme='slash-command'] {
+  width: 1000vw;
+}
