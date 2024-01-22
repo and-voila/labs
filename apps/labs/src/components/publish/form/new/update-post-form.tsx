@@ -1,17 +1,19 @@
 'use client';
 
+import type { Post, Site } from '@prisma/client';
+import type { GetTeamMemberResult } from '#/lib/operations/teams/get-team-members';
+import type { FieldValues, SubmitHandler } from 'react-hook-form';
+import type * as z from 'zod';
+
 import { useCallback, useEffect, useState, useTransition } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Post, Site } from '@prisma/client';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import slugify from 'slugify';
-import * as z from 'zod';
 
 import { updateCollabPost } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
-import { GetTeamMemberResult } from '#/lib/operations/teams/get-team-members';
 import { updatePostSchema } from '#/lib/validations/post';
 
 import Uploader from '#/components/publish/form/uploader';
@@ -37,11 +39,11 @@ import {
 import { Textarea } from '#/components/ui/textarea';
 import { toast } from '#/components/ui/use-toast';
 
-type UpdatePostFormProps = {
+interface UpdatePostFormProps {
   post: Post & { site: Site };
   teamMembers: GetTeamMemberResult | null;
   teamSlug: string;
-};
+}
 
 export type UpdatePostFormValues = z.infer<typeof updatePostSchema>;
 
@@ -162,7 +164,7 @@ export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
   const renderAuthorField = useCallback(() => {
     const placeholderText =
       teamMembers && teamMembers.length === 1
-        ? teamMembers[0].user.name
+        ? teamMembers[0]?.user.name
         : 'Select the author of the post';
 
     return (
@@ -229,7 +231,7 @@ export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
     (value: string | null) => {
       form.setValue('image', value);
       if (typeof value === 'string' && value.startsWith('blob:')) {
-        fetch(value)
+        void fetch(value)
           .then((res) => res.blob())
           .then((blob) => {
             const newFile = new File([blob], 'image', { type: blob.type });
@@ -245,7 +247,7 @@ export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
   );
 
   const renderImageField = useCallback(
-    ({}: { field: FieldValues }) => (
+    () => (
       <FormItem>
         <FormLabel>Image</FormLabel>
         <FormControl>
@@ -416,7 +418,7 @@ export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
                   src={imagePreviewUrl}
                   width={500}
                   height={300}
-                  alt={watchedTitle || 'Image preview'}
+                  alt={watchedTitle ?? 'Image preview'}
                 />
               ) : (
                 <div>Image preview not available</div>
@@ -456,7 +458,7 @@ export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
                   src={imagePreviewUrl}
                   width={500}
                   height={300}
-                  alt={watchedTitle || 'Image preview'}
+                  alt={watchedTitle ?? 'Image preview'}
                 />
               ) : (
                 <div>Image preview not available</div>
@@ -515,7 +517,7 @@ export function UpdatePostForm({ post, teamMembers }: UpdatePostFormProps) {
                   src={imagePreviewUrl}
                   width={500}
                   height={300}
-                  alt={watchedTitle || 'Image preview'}
+                  alt={watchedTitle ?? 'Image preview'}
                 />
               ) : (
                 <div>Image preview not available</div>

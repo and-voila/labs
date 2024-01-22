@@ -1,18 +1,20 @@
 'use client';
 
+import type { Post, Site } from '@prisma/client';
+import type { GetTeamMemberResult } from '#/lib/operations/teams/get-team-members';
+import type { FieldValues, SubmitHandler } from 'react-hook-form';
+import type * as z from 'zod';
+
 import { useCallback, useEffect, useState, useTransition } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Post, Site } from '@prisma/client';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import slugify from 'slugify';
-import * as z from 'zod';
 
 import { publishPost } from '#/lib/actions/publish/publish-actions';
 import { APP_BP } from '#/lib/const';
-import { GetTeamMemberResult } from '#/lib/operations/teams/get-team-members';
 import { usePostContentStore } from '#/lib/store/use-post-content';
 import { publishPostSchema } from '#/lib/validations/post';
 
@@ -39,11 +41,11 @@ import {
 import { Textarea } from '#/components/ui/textarea';
 import { toast } from '#/components/ui/use-toast';
 
-type PublishPostFormProps = {
+interface PublishPostFormProps {
   post: Post & { site: Site };
   teamMembers: GetTeamMemberResult | null;
   teamSlug: string;
-};
+}
 
 export type PublishPostFormValues = z.infer<typeof publishPostSchema>;
 
@@ -136,7 +138,7 @@ export function PublishPostForm({
   const renderAuthorField = useCallback(() => {
     const placeholderText =
       teamMembers && teamMembers.length === 1
-        ? teamMembers[0].user.name
+        ? teamMembers[0]?.user.name
         : 'Select the author of the post';
 
     return (
@@ -203,7 +205,7 @@ export function PublishPostForm({
     (value: string | null) => {
       form.setValue('image', value);
       if (typeof value === 'string' && value.startsWith('blob:')) {
-        fetch(value)
+        void fetch(value)
           .then((res) => res.blob())
           .then((blob) => {
             const newFile = new File([blob], 'image', { type: blob.type });
@@ -219,7 +221,7 @@ export function PublishPostForm({
   );
 
   const renderImageField = useCallback(
-    ({}: { field: FieldValues }) => (
+    () => (
       <FormItem>
         <FormLabel required>Image</FormLabel>
         <FormControl>

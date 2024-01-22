@@ -51,6 +51,7 @@ export default function Form({
       ) {
         return;
       }
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       handleSubmit(data, id, inputAttrs.name).then(async (res: any) => {
         if (res.error) {
           toast({

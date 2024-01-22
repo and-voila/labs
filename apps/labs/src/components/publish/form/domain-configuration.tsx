@@ -48,7 +48,7 @@ export default function DomainConfiguration({ domain }: { domain: string }) {
   const txtVerification =
     (status === 'Pending Verification' &&
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      domainJson.verification.find((x: any) => x.type === 'TXT')) ||
+      domainJson.verification.find((x: any) => x.type === 'TXT')) ??
     null;
 
   return (

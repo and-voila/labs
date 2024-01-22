@@ -82,8 +82,8 @@ export default function Uploader({
       e.preventDefault();
       e.stopPropagation();
       setDragActive(false);
-
-      const file = e.dataTransfer.files && e.dataTransfer.files[0];
+      // TODO: Check null safety
+      const file = e.dataTransfer.files?.[0] ?? null;
       inputRef.current!.files = e.dataTransfer.files;
       handleUpload(file);
     },
@@ -92,7 +92,8 @@ export default function Uploader({
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.currentTarget.files && e.currentTarget.files[0];
+      // TODO: Check null safety
+      const file = e.currentTarget.files?.[0] ?? null;
       handleUpload(file);
       if (onChange) {
         const newValue = file ? URL.createObjectURL(file) : null;
@@ -158,9 +159,8 @@ export default function Uploader({
           <span className="sr-only">Photo upload</span>
         </div>
         {data[name] && (
-          // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={data[name] as string}
+            src={data[name]!}
             alt="Preview"
             className="h-full w-full rounded-md object-cover"
           />

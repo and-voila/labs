@@ -1,9 +1,11 @@
 'use client';
 
+import type { SubmitHandler } from 'react-hook-form';
+
 import { useCallback, useTransition } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { deletePost } from '#/lib/actions/publish/publish-actions';
@@ -37,7 +39,7 @@ export default function NewDeletePostForm({
   });
 
   type DeletePostFormValues = z.infer<typeof deletePostSchema>;
-  const { id } = useParams() as { id: string };
+  const { id } = useParams();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const form = useForm<DeletePostFormValues>({
@@ -51,7 +53,7 @@ export default function NewDeletePostForm({
     (data) => {
       startTransition(async () => {
         if (data.confirm === (postName || 'My untitled post')) {
-          const res = await deletePost(null, id, 'delete');
+          const res = await deletePost(null, id as string, 'delete');
           if (res.error) {
             toast({
               title: 'Could not delete post',
@@ -75,7 +77,7 @@ export default function NewDeletePostForm({
   );
 
   const handleDeleteConfirmation = useCallback(() => {
-    form.handleSubmit(processForm)();
+    void form.handleSubmit(processForm)();
   }, [processForm, form]);
 
   return (

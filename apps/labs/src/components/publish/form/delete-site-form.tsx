@@ -19,13 +19,13 @@ export default function DeleteSiteForm({
   siteName: string;
   teamSlug: string;
 }) {
-  const { id } = useParams() as { id: string };
+  const { id } = useParams();
   const router = useRouter();
 
   const handleDelete = useCallback(
     async (data: FormData) => {
       if (window.confirm('Are you sure you want to delete your site?')) {
-        const res = await deleteSite(data, id, 'delete');
+        const res = await deleteSite(data, id as string, 'delete');
         if (res.error) {
           toast({
             title: 'Could not delete site',

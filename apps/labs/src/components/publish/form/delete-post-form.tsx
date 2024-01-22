@@ -21,7 +21,7 @@ export default function DeletePostForm({
   postName: string;
   teamSlug: string;
 }) {
-  const { id } = useParams() as { id: string };
+  const { id } = useParams();
   const router = useRouter();
 
   const displayPostName = postName || UNTITLED_POST_NAME;
@@ -29,7 +29,7 @@ export default function DeletePostForm({
   const handleDelete = useCallback(
     async (data: FormData) => {
       if (window.confirm('Are you sure you want to delete your post?')) {
-        const res = await deletePost(data, id, 'delete');
+        const res = await deletePost(data, id as string, 'delete');
         if (res.error) {
           toast({
             title: 'Could not delete post',
