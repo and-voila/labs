@@ -1,4 +1,5 @@
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
+
 import Link from 'next/link';
 
 import { APP_BP } from '#/lib/const';

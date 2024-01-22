@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+
 import { notFound } from 'next/navigation';
 
 import { updateSite } from '#/lib/actions/publish/publish-actions';

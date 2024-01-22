@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+
 import { notFound } from 'next/navigation';
 
 import { updateSite } from '#/lib/actions/publish/publish-actions';
@@ -38,7 +38,7 @@ export default async function SiteIdAppearance({
           inputAttrs={{
             name: 'image',
             type: 'file',
-            defaultValue: site?.image!,
+            defaultValue: site?.image ?? '/site-placeholder.jpg',
           }}
           handleSubmit={updateSite}
         />
@@ -49,7 +49,7 @@ export default async function SiteIdAppearance({
           inputAttrs={{
             name: 'logo',
             type: 'file',
-            defaultValue: site?.logo!,
+            defaultValue: site?.logo ?? '/default-site-logo.jpg',
           }}
           handleSubmit={updateSite}
         />
@@ -60,7 +60,7 @@ export default async function SiteIdAppearance({
           inputAttrs={{
             name: 'font',
             type: 'select',
-            defaultValue: site?.font!,
+            defaultValue: site?.font ?? 'font-cal',
           }}
           handleSubmit={updateSite}
         />
@@ -71,8 +71,9 @@ export default async function SiteIdAppearance({
           inputAttrs={{
             name: 'message404',
             type: 'text',
-            defaultValue: site?.message404!,
-            placeholder: "Oops! You've found a page that doesn't exist.",
+            defaultValue:
+              site?.message404 ?? 'Oops! You found a page that does not exist.',
+            placeholder: 'Oops! You found a page that does not exist',
             maxLength: 240,
           }}
           handleSubmit={updateSite}

@@ -26,7 +26,7 @@ export default async function WorkspaceSharedLayout({
   const activeTeamSlug = params.team_slug;
 
   if (!user) {
-    redirect(authOptions?.pages?.signIn || '/login');
+    redirect(authOptions?.pages?.signIn ?? '/login');
   }
 
   if (!(await hasTeamAccess(user.id, params.team_slug))) {

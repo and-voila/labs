@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+
 import { notFound } from 'next/navigation';
 
 import { APP_BP, SITE_URL } from '#/lib/const';
@@ -30,7 +30,7 @@ export default async function SiteIdAdvanced({
         description="This is where sites come to an end, or get a fresh start."
       />
       <div className="my-8 grid max-w-3xl gap-8 md:my-12">
-        <DeleteSiteForm siteName={site?.name!} teamSlug={params.team_slug} />
+        <DeleteSiteForm siteName={site?.name} teamSlug={params.team_slug} />
       </div>
     </div>
   );

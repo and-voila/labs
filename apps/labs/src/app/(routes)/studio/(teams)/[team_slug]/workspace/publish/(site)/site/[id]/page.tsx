@@ -25,7 +25,7 @@ export default async function SiteManage({
 }) {
   const team = await getTeam(params.team_slug);
   if (!team) {
-    redirect(authOptions?.pages?.signIn || '/login');
+    redirect(authOptions?.pages?.signIn ?? '/login');
   }
   const site = await db.site.findUnique({
     where: {

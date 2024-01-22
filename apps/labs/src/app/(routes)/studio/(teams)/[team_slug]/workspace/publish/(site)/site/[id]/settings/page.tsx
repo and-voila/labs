@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+
 import { notFound } from 'next/navigation';
 
 import { updateSite } from '#/lib/actions/publish/publish-actions';
@@ -38,7 +38,7 @@ export default async function SiteIdSettings({
           inputAttrs={{
             name: 'name',
             type: 'text',
-            defaultValue: site?.name!,
+            defaultValue: site?.name,
             placeholder: 'My Awesome Site',
             maxLength: 32,
           }}
@@ -51,7 +51,7 @@ export default async function SiteIdSettings({
           inputAttrs={{
             name: 'description',
             type: 'text',
-            defaultValue: site?.description!,
+            defaultValue: site?.description,
             placeholder: 'A blog about really interesting things.',
           }}
           handleSubmit={updateSite}
