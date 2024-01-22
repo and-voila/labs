@@ -1,4 +1,4 @@
-import {
+import type {
   AiToneOption,
   LanguageOption,
 } from '#/components/tiptap/block-editor/types';

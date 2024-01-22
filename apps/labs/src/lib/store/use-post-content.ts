@@ -1,9 +1,9 @@
 import { create } from 'zustand';
 
-type PostContentState = {
+interface PostContentState {
   sanitizedHtmlContent: string;
   setHtmlContent: (html: string) => void;
-};
+}
 
 export const usePostContentStore = create<PostContentState>((set) => ({
   sanitizedHtmlContent: '',

@@ -1,6 +1,6 @@
 // TODO:
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function randomElement(array: Array<any>) {
+export function randomElement(array: any[]) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
