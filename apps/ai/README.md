@@ -44,7 +44,7 @@ Each component of our stack is selected to ensure that your experience is not ju
 This project follows the recommendations of the the Next JS team for v14 and remains a work in progress. We chose sub-directories to better organize across a growing codebase.
 
 ```
-/and-voila/labs
+/and-voila/labs/ai
 ├── /src
 │   ├── /app
 │   │   ├── /(routes)                   # Route group for routes ¯\_(ツ)_/¯
