@@ -1,0 +1,34 @@
+name: 🛠 Project Issue
+description: Got a project issue? Let's sort it out.
+title: 'issue: '
+labels: ['🔧 project issue']
+assignees: ['srizvi']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Hey team, let's get this sorted.
+  - type: textarea
+    attributes:
+      label: What's up?
+      description: Give us the lowdown. Why's this an issue?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What's the plan?
+      description: Got a solution in mind? Share it here.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What's the current state of play?
+      description: Any other info or links? Pop them here.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What's the goal?
+      description: What are we aiming for? Let's visualize the win.
+    validations:
+      required: true
