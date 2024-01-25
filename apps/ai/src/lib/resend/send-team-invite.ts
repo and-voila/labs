@@ -1,11 +1,11 @@
 'use server';
 
+import { TeamInviteEmail } from '@and-voila/email/team-invite-email';
+
 import { siteConfig } from '#/config/site';
 
 import { SITE_URL } from '#/lib/const';
 import { resend } from '#/lib/resend/resend';
-
-import { TeamInviteEmail } from '#/emails/team-invite-email';
 
 export async function sendTeamInviteEmail(
   teamName: string,
@@ -28,6 +28,7 @@ export async function sendTeamInviteEmail(
         link: url,
         appName: siteConfig.name,
         invitedBy,
+        siteUrl: SITE_URL,
       }),
       text: plainTextEmail,
     });

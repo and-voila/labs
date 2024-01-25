@@ -1,13 +1,12 @@
 'use server';
 
+import WelcomeEmail from '@and-voila/email/welcome-email';
 import { APP_BP } from '@and-voila/utils';
 
 import { siteConfig } from '#/config/site';
 
 import { SITE_URL } from '#/lib/const';
 import { resend } from '#/lib/resend/resend';
-
-import WelcomeEmail from '#/emails/welcome-email';
 
 const plainTextWelcomeEmail = `🎉 Welcome!\n
 Our team has been brewing up decades of marketing expertise into something special just for you. Ready to unlock your marketing superpowers?\n
@@ -29,7 +28,9 @@ export async function sendWelcomeEmail({ email }: { email: string }) {
       to:
         process.env.NODE_ENV === 'development' ? 'delivered@resend.dev' : email,
       subject: welcomeSubject,
-      react: WelcomeEmail(),
+      react: WelcomeEmail({
+        siteUrl: SITE_URL,
+      }),
       text: plainTextWelcomeEmail,
     });
 

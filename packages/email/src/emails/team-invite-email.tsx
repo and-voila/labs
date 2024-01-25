@@ -13,10 +13,6 @@ import {
   Text,
 } from '@react-email/components';
 
-import { SITE_URL } from '#/lib/const';
-
-export const TemplateName = 'team-invite-email';
-
 const subject = "You've been invited to a team workspace";
 
 export interface EmailVerificationLinkEmailProps {
@@ -24,6 +20,7 @@ export interface EmailVerificationLinkEmailProps {
   link: string;
   teamName: string;
   invitedBy: string;
+  siteUrl: string;
 }
 
 export const TeamInviteEmail = ({
@@ -31,6 +28,7 @@ export const TeamInviteEmail = ({
   appName,
   teamName,
   invitedBy,
+  siteUrl,
 }: EmailVerificationLinkEmailProps) => (
   <Html>
     <Head />
@@ -39,7 +37,7 @@ export const TeamInviteEmail = ({
       <Body className="mx-auto my-auto bg-[#B4B4B4] font-sans">
         <Container className="mx-auto my-[40px] w-[465px] border-separate rounded border border-solid border-[#D20F9A] bg-[#F8F9FB] p-[20px]">
           <Img
-            src={`${SITE_URL}/and-voila-logo.png`}
+            src={`${siteUrl}/and-voila-logo.png`}
             width="150"
             height="34"
             alt="A colored logomark with an ampersand and exclamation icon and the the Voila"
@@ -80,3 +78,5 @@ export const TeamInviteEmail = ({
     </Tailwind>
   </Html>
 );
+
+export default TeamInviteEmail;
