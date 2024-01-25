@@ -2,7 +2,8 @@ import type { NextRequest } from 'next/server';
 
 import { notFound, redirect } from 'next/navigation';
 
-import { APP_BP } from '#/lib/const';
+import { APP_BP } from '@and-voila/utils';
+
 import { acceptInvitationByToken } from '#/lib/operations/teams/members/accept-invitation';
 import { getInvitationByToken } from '#/lib/operations/teams/members/get-invitation';
 import { getSession } from '#/lib/operations/user/session';

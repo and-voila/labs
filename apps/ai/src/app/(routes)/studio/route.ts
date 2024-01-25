@@ -2,7 +2,7 @@ import type { NextRequest, NextResponse } from 'next/server';
 
 import { redirect } from 'next/navigation';
 
-import { APP_BP } from '#/lib/const';
+import { APP_BP } from '@and-voila/utils';
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   // eslint-disable-next-line no-console

@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 
 import { notFound, redirect } from 'next/navigation';
 
+import { APP_BP } from '@and-voila/utils';
+
 import { siteConfig } from '#/config/site';
 
 import { authOptions } from '#/lib/auth';
-import { APP_BP, SITE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getTeams } from '#/lib/operations/teams/get-teams';
 

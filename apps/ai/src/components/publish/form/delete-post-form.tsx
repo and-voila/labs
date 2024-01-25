@@ -8,9 +8,9 @@ import { cn } from '@and-voila/ui';
 import { buttonVariants } from '@and-voila/ui/button';
 import { Icons } from '@and-voila/ui/icons';
 import { toast } from '@and-voila/ui/use-toast';
+import { APP_BP } from '@and-voila/utils';
 
 import { deletePost } from '#/lib/actions/publish/publish-actions';
-import { APP_BP } from '#/lib/const';
 
 const UNTITLED_POST_NAME = 'My untitled post';
 

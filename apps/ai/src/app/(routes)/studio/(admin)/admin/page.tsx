@@ -7,10 +7,9 @@ import { cn } from '@and-voila/ui';
 import { buttonVariants } from '@and-voila/ui/button';
 import { Card, CardFooter, CardHeader, CardTitle } from '@and-voila/ui/card';
 import { Icons } from '@and-voila/ui/icons';
+import { APP_BP } from '@and-voila/utils';
 
 import { siteConfig } from '#/config/site';
-
-import { APP_BP } from '#/lib/const';
 
 import { DashboardHeader } from '#/components/dashboard/header';
 

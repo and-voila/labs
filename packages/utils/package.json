@@ -4,7 +4,11 @@
   "version": "0.1.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./helpers/error-code": "./src/helpers/error-code.ts",
+    "./helpers/exceptions": "./src/helpers/exceptions.ts",
+    "./helpers/id-helper": "./src/helpers/id-helper.ts",
+    "./helpers/security": "./src/helpers/security.ts"
   },
   "license": "MIT",
   "scripts": {

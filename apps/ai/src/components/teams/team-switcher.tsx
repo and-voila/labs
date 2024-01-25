@@ -27,10 +27,9 @@ import {
 } from '@and-voila/ui/dialog';
 import { Icons } from '@and-voila/ui/icons';
 import { Popover, PopoverContent, PopoverTrigger } from '@and-voila/ui/popover';
+import { APP_BP, randomElement } from '@and-voila/utils';
 
-import { APP_BP } from '#/lib/const';
 import { userColors } from '#/lib/tiptap/constants';
-import { randomElement } from '#/lib/tiptap/utils';
 
 import { NewTeamForm } from '#/components/forms/new-team-form';
 

@@ -18,9 +18,9 @@ import {
 } from '@and-voila/ui/form';
 import { Input } from '@and-voila/ui/input';
 import { toast } from '@and-voila/ui/use-toast';
+import { APP_BP } from '@and-voila/utils';
 
 import { createTeam } from '#/lib/actions/teams/create-team';
-import { APP_BP } from '#/lib/const';
 import { newTeamFormSchema } from '#/lib/validations/new-team';
 
 const defaultValues: NewTeamFormValues = {

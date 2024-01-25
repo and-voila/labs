@@ -1,4 +1,4 @@
-import { APP_BP } from '#/lib/const';
+import { APP_BP } from '@and-voila/utils';
 
 import { DashboardShell } from '#/components/dashboard/shell';
 import { TabbedNav } from '#/components/layout/tabbed-nav';

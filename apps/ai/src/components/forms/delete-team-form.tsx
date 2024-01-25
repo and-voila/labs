@@ -30,9 +30,9 @@ import {
 import { Input } from '@and-voila/ui/input';
 import { Label } from '@and-voila/ui/label';
 import { toast } from '@and-voila/ui/use-toast';
+import { APP_BP } from '@and-voila/utils';
 
 import { deleteTeam } from '#/lib/actions/teams/delete-team';
-import { APP_BP } from '#/lib/const';
 
 export interface DeleteFormProps {
   teamSlug: string;

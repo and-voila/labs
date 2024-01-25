@@ -15,10 +15,9 @@ import {
   DropdownMenuTrigger,
 } from '@and-voila/ui/dropdown-menu';
 import { Icons } from '@and-voila/ui/icons';
+import { APP_BP, randomElement } from '@and-voila/utils';
 
-import { APP_BP } from '#/lib/const';
 import { userColors } from '#/lib/tiptap/constants';
-import { randomElement } from '#/lib/tiptap/utils';
 
 import { UserAvatar } from '../shared/user-avatar';
 

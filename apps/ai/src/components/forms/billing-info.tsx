@@ -15,9 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@and-voila/ui/card';
-
-import { APP_BP } from '#/lib/const';
-import { formatDate } from '#/lib/utils';
+import { APP_BP, formatDate } from '@and-voila/utils';
 
 interface BillingInfoProps extends React.HTMLAttributes<HTMLFormElement> {
   subscriptionPlan: TeamSubscriptionPlan;

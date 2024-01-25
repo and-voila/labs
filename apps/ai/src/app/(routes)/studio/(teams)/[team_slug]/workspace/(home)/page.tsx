@@ -14,10 +14,11 @@ import {
   CardTitle,
 } from '@and-voila/ui/card';
 import { Icons } from '@and-voila/ui/icons';
+import { APP_BP } from '@and-voila/utils';
 
 import { siteConfig } from '#/config/site';
 
-import { APP_BP, SITE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { getTeams } from '#/lib/operations/teams/get-teams';
 
 import { DashboardHeader } from '#/components/dashboard/header';

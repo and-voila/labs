@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation';
 
+import { APP_BP } from '@and-voila/utils';
+
 import { isAdmin } from '#/lib/admin';
 import { authOptions } from '#/lib/auth';
-import { APP_BP } from '#/lib/const';
 import { getSession } from '#/lib/operations/user/session';
 
 import { DashboardShell } from '#/components/dashboard/shell';

@@ -1,4 +1,5 @@
-import { APP_BP } from '#/lib/const';
+import { APP_BP } from '@and-voila/utils';
+
 import { db } from '#/lib/db';
 
 import { DashboardShell } from '#/components/dashboard/shell';

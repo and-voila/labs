@@ -1,7 +1,8 @@
 import { MembershipRole } from '@prisma/client';
 
+import { UnauthorizedError } from '@and-voila/utils/helpers/error-code';
+
 import { db } from '#/lib/db';
-import { UnauthorizedError } from '#/lib/helpers/error-code';
 
 export const hasTeamAccess = async (userId: string, teamSlug: string) => {
   const team = await db.team.findUnique({
