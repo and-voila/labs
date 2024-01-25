@@ -9,9 +9,9 @@ import { useFormStatus } from 'react-dom';
 import { cn } from '@and-voila/ui';
 import { Icons } from '@and-voila/ui/icons';
 import { toast } from '@and-voila/ui/use-toast';
+import { APP_BP } from '@and-voila/utils';
 
 import { createSite } from '#/lib/actions/publish/publish-actions';
-import { APP_BP } from '#/lib/const';
 
 import { useModal } from '#/components/publish/modal/provider';
 

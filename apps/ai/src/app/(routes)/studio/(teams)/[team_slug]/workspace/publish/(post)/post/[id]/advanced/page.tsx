@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 
 import { notFound } from 'next/navigation';
 
-import { APP_BP, SITE_URL } from '#/lib/const';
+import { APP_BP } from '@and-voila/utils';
+
+import { SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 
 import { DashboardHeader } from '#/components/dashboard/header';

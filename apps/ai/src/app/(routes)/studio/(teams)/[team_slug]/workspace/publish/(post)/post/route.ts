@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
 
-import { APP_BP } from '#/lib/const';
+import { APP_BP } from '@and-voila/utils';
 
 export const dynamic = 'auto';
 export const dynamicParams = true;

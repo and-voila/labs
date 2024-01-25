@@ -5,9 +5,9 @@ import { useMemo } from 'react';
 import Image from 'next/image';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@and-voila/ui/avatar';
+import { randomElement } from '@and-voila/utils';
 
 import { userColors } from '#/lib/tiptap/constants';
-import { randomElement } from '#/lib/tiptap/utils';
 
 interface UserAvatarProps extends AvatarProps {
   user: Pick<User, 'image' | 'name' | 'displayName' | 'id'>;

@@ -1,7 +1,8 @@
 import type { MembershipRole } from '@prisma/client';
 
+import { generateNanoId } from '@and-voila/utils/helpers/id-helper';
+
 import { db } from '#/lib/db';
-import { generateId } from '#/lib/helpers/id-helper';
 
 /**
  * Creates a new team invitation.
@@ -13,7 +14,7 @@ export const createInvitation = async (params: {
   role?: MembershipRole;
 }) => {
   const { teamSlug, invitedBy, email, role } = params;
-  const expires = new Date(Date.now() + 7 * 24 * 3600 * 1000); // 7 days
+  const expires = new Date(Date.now() + 7 * 24 * 3600 * 1000);
 
   const team = await db.team.findUnique({
     where: {
@@ -33,7 +34,7 @@ export const createInvitation = async (params: {
       role: role,
       expires,
       invitedById: invitedBy,
-      token: generateId('inv'),
+      token: generateNanoId('inv'),
     },
   });
 };
@@ -62,7 +63,7 @@ export const createManyInvitations = async (params: {
 
   const pairs = emails.map((email) => ({
     email: email.toLowerCase(),
-    token: generateId('inv'),
+    token: generateNanoId('inv'),
   }));
 
   const result = await db.teamInvitation.createMany({

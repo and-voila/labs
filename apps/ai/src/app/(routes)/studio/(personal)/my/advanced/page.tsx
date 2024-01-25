@@ -3,10 +3,12 @@ import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { MembershipRole } from '@prisma/client';
 
+import { APP_BP } from '@and-voila/utils';
+
 import { siteConfig } from '#/config/site';
 
 import { authOptions } from '#/lib/auth';
-import { APP_BP, SITE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/operations/user/session';
 

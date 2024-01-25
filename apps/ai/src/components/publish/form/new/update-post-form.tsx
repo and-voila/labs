@@ -33,9 +33,9 @@ import {
 } from '@and-voila/ui/select';
 import { Textarea } from '@and-voila/ui/textarea';
 import { toast } from '@and-voila/ui/use-toast';
+import { APP_BP } from '@and-voila/utils';
 
 import { updateCollabPost } from '#/lib/actions/publish/publish-actions';
-import { APP_BP } from '#/lib/const';
 import { updatePostSchema } from '#/lib/validations/post';
 
 import Uploader from '#/components/publish/form/uploader';

@@ -1,4 +1,5 @@
-import { APP_BP } from '#/lib/const';
+import { APP_BP } from '@and-voila/utils';
+
 import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardShell } from '#/components/dashboard/shell';

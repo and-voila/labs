@@ -17,8 +17,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@and-voila/ui/navigation-menu';
-
-import { APP_BP } from '#/lib/const';
+import { APP_BP } from '@and-voila/utils';
 
 interface MainNavigationMenuProps {
   teams?: Team[];

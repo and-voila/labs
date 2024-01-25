@@ -3,8 +3,9 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { Separator } from '@and-voila/ui/separator';
+import { APP_BP } from '@and-voila/utils';
 
-import { APP_BP, SITE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { getTeam } from '#/lib/operations/teams/get-current-team';
 
 import { DashboardHeader } from '#/components/dashboard/header';

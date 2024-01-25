@@ -20,9 +20,9 @@ import { Icons } from '@and-voila/ui/icons';
 import { Input } from '@and-voila/ui/input';
 import { Textarea } from '@and-voila/ui/textarea';
 import { toast } from '@and-voila/ui/use-toast';
+import { APP_BP } from '@and-voila/utils';
 
 import { createCollabPost } from '#/lib/actions/publish/publish-actions';
-import { APP_BP } from '#/lib/const';
 import { newCollabPostFormSchema } from '#/lib/validations/post';
 
 const defaultValues: NewCollabPostFormValues = {

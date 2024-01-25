@@ -3,8 +3,10 @@ import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { MembershipRole } from '@prisma/client';
 
+import { APP_BP } from '@and-voila/utils';
+
 import { authOptions } from '#/lib/auth';
-import { APP_BP, SITE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { getTeam } from '#/lib/operations/teams/get-current-team';
 import { getTeamInvites } from '#/lib/operations/teams/get-team-invites';
 import { getTeamMembers } from '#/lib/operations/teams/get-team-members';

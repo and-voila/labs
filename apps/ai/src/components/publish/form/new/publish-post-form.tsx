@@ -34,9 +34,9 @@ import {
 } from '@and-voila/ui/select';
 import { Textarea } from '@and-voila/ui/textarea';
 import { toast } from '@and-voila/ui/use-toast';
+import { APP_BP } from '@and-voila/utils';
 
 import { publishPost } from '#/lib/actions/publish/publish-actions';
-import { APP_BP } from '#/lib/const';
 import { usePostContentStore } from '#/lib/store/use-post-content';
 import { publishPostSchema } from '#/lib/validations/post';
 

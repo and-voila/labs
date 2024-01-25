@@ -2,7 +2,9 @@ import type { Post } from '@prisma/client';
 
 import Link from 'next/link';
 
-import { placeholderBlurhash, toDateString } from '#/lib/utils';
+import { toDateString } from '@and-voila/utils';
+
+import { placeholderBlurhash } from '#/lib/utils';
 
 import BlurImage from '#/components/publish/blur-image';
 

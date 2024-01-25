@@ -20,9 +20,9 @@ import {
 import { Icons } from '@and-voila/ui/icons';
 import { Input } from '@and-voila/ui/input';
 import { toast } from '@and-voila/ui/use-toast';
+import { APP_BP } from '@and-voila/utils';
 
 import { deletePost } from '#/lib/actions/publish/publish-actions';
-import { APP_BP } from '#/lib/const';
 
 import { ConfirmDeleteModal } from '#/components/modals/confirm-delete-modal';
 

@@ -2,12 +2,13 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { APP_BP } from '#/lib/const';
-import { db } from '#/lib/db';
+import { APP_BP } from '@and-voila/utils';
 import {
   InternalServerError,
   UnauthorizedError,
-} from '#/lib/helpers/error-code';
+} from '@and-voila/utils/helpers/error-code';
+
+import { db } from '#/lib/db';
 import { getSession } from '#/lib/operations/user/session';
 import { displayNameSchema } from '#/lib/validations/display-name';
 import { userNameSchema } from '#/lib/validations/user';

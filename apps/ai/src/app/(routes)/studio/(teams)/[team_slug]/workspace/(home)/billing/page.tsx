@@ -2,9 +2,11 @@ import type { Metadata, NextPage } from 'next';
 
 import { notFound } from 'next/navigation';
 
+import { APP_BP } from '@and-voila/utils';
+
 import { siteConfig } from '#/config/site';
 
-import { APP_BP, SITE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { getTeamSubscriptionPlan } from '#/lib/operations/subsctiptions/subscription';
 import { getTeam } from '#/lib/operations/teams/get-current-team';
 

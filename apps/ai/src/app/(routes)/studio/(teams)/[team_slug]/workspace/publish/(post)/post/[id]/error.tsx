@@ -7,10 +7,9 @@ import Link from 'next/link';
 
 import { Button } from '@and-voila/ui/button';
 import { Icons } from '@and-voila/ui/icons';
+import { APP_BP } from '@and-voila/utils';
 
 import { siteConfig } from '#/config/site';
-
-import { APP_BP } from '#/lib/const';
 
 const links: {
   name: string;

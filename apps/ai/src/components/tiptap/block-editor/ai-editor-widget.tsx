@@ -10,11 +10,11 @@ import { Button } from '@and-voila/ui/button';
 import { Card, CardContent, CardHeader } from '@and-voila/ui/card';
 import { Icons } from '@and-voila/ui/icons';
 import { toast } from '@and-voila/ui/use-toast';
+import { APP_BP } from '@and-voila/utils';
 
 import type { EditorUser } from './types';
 
 import { updateCollabPost } from '#/lib/actions/publish/publish-actions';
-import { APP_BP } from '#/lib/const';
 import { usePostContentStore } from '#/lib/store/use-post-content';
 
 import { ConfirmPublishModal } from '#/components/modals/confirm-publish-modal';

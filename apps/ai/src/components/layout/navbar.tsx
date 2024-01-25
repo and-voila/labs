@@ -6,8 +6,7 @@ import Link from 'next/link';
 import { cn } from '@and-voila/ui';
 import { buttonVariants } from '@and-voila/ui/button';
 import { Icons } from '@and-voila/ui/icons';
-
-import { APP_BP } from '#/lib/const';
+import { APP_BP } from '@and-voila/utils';
 
 import { MainNavigationMenu } from '#/components/layout/main-nav-menu';
 import { TeamSwitcher } from '#/components/teams/team-switcher';

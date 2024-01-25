@@ -4,10 +4,11 @@ import Link from 'next/link';
 
 import { cn } from '@and-voila/ui';
 import { buttonVariants } from '@and-voila/ui/button';
+import { APP_BP } from '@and-voila/utils';
 
 import { siteConfig } from '#/config/site';
 
-import { APP_BP, SITE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 
 import { DashboardShell } from '#/components/dashboard/shell';
 

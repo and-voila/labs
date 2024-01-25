@@ -5,8 +5,8 @@ import type { Site } from '@prisma/client';
 import Link from 'next/link';
 
 import { Icons } from '@and-voila/ui/icons';
+import { APP_BP } from '@and-voila/utils';
 
-import { APP_BP } from '#/lib/const';
 import { placeholderBlurhash } from '#/lib/utils';
 
 import BlurImage from '#/components/publish/blur-image';

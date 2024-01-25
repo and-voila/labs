@@ -2,12 +2,14 @@ import { env } from '#/env';
 
 import { notFound } from 'next/navigation';
 
+import { toDateString } from '@and-voila/utils';
+
 import { db } from '#/lib/db';
 import {
   getCollabPostData,
   getSiteData,
 } from '#/lib/operations/publish/publish-fetchers';
-import { placeholderBlurhash, toDateString } from '#/lib/utils';
+import { placeholderBlurhash } from '#/lib/utils';
 
 import BlogCard from '#/components/publish/blog-card';
 import BlurImage from '#/components/publish/blur-image';

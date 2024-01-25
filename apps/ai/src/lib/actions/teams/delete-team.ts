@@ -3,7 +3,8 @@
 import { revalidatePath } from 'next/cache';
 import { MembershipRole } from '@prisma/client';
 
-import { APP_BP } from '#/lib/const';
+import { APP_BP } from '@and-voila/utils';
+
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/operations/user/session';
 

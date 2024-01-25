@@ -5,11 +5,12 @@ import { MembershipRole } from '@prisma/client';
 
 import { Alert, AlertDescription, AlertTitle } from '@and-voila/ui/alert';
 import { Icons } from '@and-voila/ui/icons';
+import { APP_BP } from '@and-voila/utils';
 
 import { siteConfig } from '#/config/site';
 
 import { authOptions } from '#/lib/auth';
-import { APP_BP, SITE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { getTeamSubscriptionPlan } from '#/lib/operations/subsctiptions/subscription';
 import { getSession } from '#/lib/operations/user/session';

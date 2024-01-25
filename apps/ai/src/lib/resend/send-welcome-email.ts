@@ -1,8 +1,10 @@
 'use server';
 
+import { APP_BP } from '@and-voila/utils';
+
 import { siteConfig } from '#/config/site';
 
-import { APP_BP, SITE_URL } from '#/lib/const';
+import { SITE_URL } from '#/lib/const';
 import { resend } from '#/lib/resend/resend';
 
 import WelcomeEmail from '#/emails/welcome-email';
