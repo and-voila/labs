@@ -81,12 +81,8 @@
           "name": "av_accounts_userId_av_users_id_fk",
           "tableFrom": "av_accounts",
           "tableTo": "av_users",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -94,10 +90,7 @@
       "compositePrimaryKeys": {
         "av_accounts_provider_providerAccountId_pk": {
           "name": "av_accounts_provider_providerAccountId_pk",
-          "columns": [
-            "provider",
-            "providerAccountId"
-          ]
+          "columns": ["provider", "providerAccountId"]
         }
       },
       "uniqueConstraints": {}
@@ -142,9 +135,7 @@
       "indexes": {
         "admin_user_id_idx": {
           "name": "admin_user_id_idx",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         }
       },
@@ -153,12 +144,8 @@
           "name": "av_admins_user_id_av_users_id_fk",
           "tableFrom": "av_admins",
           "tableTo": "av_users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -220,24 +207,17 @@
       "indexes": {
         "membership_user_id_site_id_idx": {
           "name": "membership_user_id_site_id_idx",
-          "columns": [
-            "user_id",
-            "team_id"
-          ],
+          "columns": ["user_id", "team_id"],
           "isUnique": true
         },
         "membership_team_id_idx": {
           "name": "membership_team_id_idx",
-          "columns": [
-            "team_id"
-          ],
+          "columns": ["team_id"],
           "isUnique": false
         },
         "membership_user_id_idx": {
           "name": "membership_user_id_idx",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         }
       },
@@ -246,12 +226,8 @@
           "name": "av_memberships_team_id_av_teams_id_fk",
           "tableFrom": "av_memberships",
           "tableTo": "av_teams",
-          "columnsFrom": [
-            "team_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["team_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -259,12 +235,8 @@
           "name": "av_memberships_user_id_av_users_id_fk",
           "tableFrom": "av_memberships",
           "tableTo": "av_users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -363,24 +335,17 @@
       "indexes": {
         "post_slug_site_id_idx": {
           "name": "post_slug_site_id_idx",
-          "columns": [
-            "slug",
-            "site_id"
-          ],
+          "columns": ["slug", "site_id"],
           "isUnique": true
         },
         "post_user_id_idx": {
           "name": "post_user_id_idx",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         },
         "post_site_id_idx": {
           "name": "post_site_id_idx",
-          "columns": [
-            "site_id"
-          ],
+          "columns": ["site_id"],
           "isUnique": false
         }
       },
@@ -389,12 +354,8 @@
           "name": "av_posts_user_id_av_users_id_fk",
           "tableFrom": "av_posts",
           "tableTo": "av_users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "cascade"
         },
@@ -402,12 +363,8 @@
           "name": "av_posts_team_id_av_teams_id_fk",
           "tableFrom": "av_posts",
           "tableTo": "av_teams",
-          "columnsFrom": [
-            "team_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["team_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "cascade"
         },
@@ -415,12 +372,8 @@
           "name": "av_posts_site_id_av_sites_id_fk",
           "tableFrom": "av_posts",
           "tableTo": "av_sites",
-          "columnsFrom": [
-            "site_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["site_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "cascade"
         }
@@ -457,12 +410,8 @@
           "name": "av_sessions_userId_av_users_id_fk",
           "tableFrom": "av_sessions",
           "tableTo": "av_users",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -569,16 +518,12 @@
       "indexes": {
         "site_user_id_idx": {
           "name": "site_user_id_idx",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         },
         "site_team_id_idx": {
           "name": "site_team_id_idx",
-          "columns": [
-            "team_id"
-          ],
+          "columns": ["team_id"],
           "isUnique": false
         }
       },
@@ -587,12 +532,8 @@
           "name": "av_sites_team_id_av_teams_id_fk",
           "tableFrom": "av_sites",
           "tableTo": "av_teams",
-          "columnsFrom": [
-            "team_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["team_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "cascade"
         },
@@ -600,12 +541,8 @@
           "name": "av_sites_user_id_av_users_id_fk",
           "tableFrom": "av_sites",
           "tableTo": "av_users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "cascade"
         }
@@ -615,16 +552,12 @@
         "av_sites_subdomain_unique": {
           "name": "av_sites_subdomain_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "subdomain"
-          ]
+          "columns": ["subdomain"]
         },
         "av_sites_custom_domain_unique": {
           "name": "av_sites_custom_domain_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "custom_domain"
-          ]
+          "columns": ["custom_domain"]
         }
       }
     },
@@ -677,12 +610,8 @@
           "name": "av_stripe_customer_user_id_av_users_id_fk",
           "tableFrom": "av_stripe_customer",
           "tableTo": "av_users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -690,12 +619,8 @@
           "name": "av_stripe_customer_team_id_av_teams_id_fk",
           "tableFrom": "av_stripe_customer",
           "tableTo": "av_teams",
-          "columnsFrom": [
-            "team_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["team_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -705,23 +630,17 @@
         "av_stripe_customer_user_id_unique": {
           "name": "av_stripe_customer_user_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_id"
-          ]
+          "columns": ["user_id"]
         },
         "av_stripe_customer_team_id_unique": {
           "name": "av_stripe_customer_team_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "team_id"
-          ]
+          "columns": ["team_id"]
         },
         "av_stripe_customer_stripe_customer_id_unique": {
           "name": "av_stripe_customer_stripe_customer_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "stripe_customer_id"
-          ]
+          "columns": ["stripe_customer_id"]
         }
       }
     },
@@ -789,9 +708,7 @@
       "indexes": {
         "stripe_subscription_team_id_idx": {
           "name": "stripe_subscription_team_id_idx",
-          "columns": [
-            "team_id"
-          ],
+          "columns": ["team_id"],
           "isUnique": false
         }
       },
@@ -800,12 +717,8 @@
           "name": "av_stripe_subscriptions_team_id_av_teams_id_fk",
           "tableFrom": "av_stripe_subscriptions",
           "tableTo": "av_teams",
-          "columnsFrom": [
-            "team_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["team_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -813,12 +726,8 @@
           "name": "av_stripe_subscriptions_stripe_customer_id_av_stripe_customer_stripe_customer_id_fk",
           "tableFrom": "av_stripe_subscriptions",
           "tableTo": "av_stripe_customer",
-          "columnsFrom": [
-            "stripe_customer_id"
-          ],
-          "columnsTo": [
-            "stripe_customer_id"
-          ],
+          "columnsFrom": ["stripe_customer_id"],
+          "columnsTo": ["stripe_customer_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -828,30 +737,22 @@
         "av_stripe_subscriptions_team_id_unique": {
           "name": "av_stripe_subscriptions_team_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "team_id"
-          ]
+          "columns": ["team_id"]
         },
         "av_stripe_subscriptions_stripe_customer_id_unique": {
           "name": "av_stripe_subscriptions_stripe_customer_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "stripe_customer_id"
-          ]
+          "columns": ["stripe_customer_id"]
         },
         "av_stripe_subscriptions_stripe_subscription_id_unique": {
           "name": "av_stripe_subscriptions_stripe_subscription_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "stripe_subscription_id"
-          ]
+          "columns": ["stripe_subscription_id"]
         },
         "av_stripe_subscriptions_stripe_price_id_unique": {
           "name": "av_stripe_subscriptions_stripe_price_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "stripe_price_id"
-          ]
+          "columns": ["stripe_price_id"]
         }
       }
     },
@@ -932,17 +833,12 @@
       "indexes": {
         "invites_team_id_email_idx": {
           "name": "invites_team_id_email_idx",
-          "columns": [
-            "team_id",
-            "email"
-          ],
+          "columns": ["team_id", "email"],
           "isUnique": true
         },
         "invites_team_id_idx": {
           "name": "invites_team_id_idx",
-          "columns": [
-            "team_id"
-          ],
+          "columns": ["team_id"],
           "isUnique": false
         }
       },
@@ -951,12 +847,8 @@
           "name": "av_team_invitations_team_id_av_teams_id_fk",
           "tableFrom": "av_team_invitations",
           "tableTo": "av_teams",
-          "columnsFrom": [
-            "team_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["team_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -964,12 +856,8 @@
           "name": "av_team_invitations_invited_by_av_users_id_fk",
           "tableFrom": "av_team_invitations",
           "tableTo": "av_users",
-          "columnsFrom": [
-            "invited_by"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["invited_by"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -979,9 +867,7 @@
         "av_team_invitations_token_unique": {
           "name": "av_team_invitations_token_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "token"
-          ]
+          "columns": ["token"]
         }
       }
     },
@@ -1046,24 +932,17 @@
       "indexes": {
         "team_team_name_slug_unique_idx": {
           "name": "team_team_name_slug_unique_idx",
-          "columns": [
-            "name",
-            "slug"
-          ],
+          "columns": ["name", "slug"],
           "isUnique": true
         },
         "team_team_slug_idx": {
           "name": "team_team_slug_idx",
-          "columns": [
-            "slug"
-          ],
+          "columns": ["slug"],
           "isUnique": false
         },
         "team_team_id_idx": {
           "name": "team_team_id_idx",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": false
         }
       },
@@ -1073,16 +952,12 @@
         "av_teams_name_unique": {
           "name": "av_teams_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "name"
-          ]
+          "columns": ["name"]
         },
         "av_teams_slug_unique": {
           "name": "av_teams_slug_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "slug"
-          ]
+          "columns": ["slug"]
         }
       }
     },
@@ -1150,16 +1025,12 @@
       "indexes": {
         "user_user_email_idx": {
           "name": "user_user_email_idx",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": false
         },
         "user_user_id_idx": {
           "name": "user_user_id_idx",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": false
         }
       },
@@ -1169,16 +1040,12 @@
         "av_users_dislpay_name_unique": {
           "name": "av_users_dislpay_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "dislpay_name"
-          ]
+          "columns": ["dislpay_name"]
         },
         "av_users_email_unique": {
           "name": "av_users_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       }
     },
@@ -1210,10 +1077,7 @@
       "compositePrimaryKeys": {
         "av_verification_tokens_identifier_token_pk": {
           "name": "av_verification_tokens_identifier_token_pk",
-          "columns": [
-            "identifier",
-            "token"
-          ]
+          "columns": ["identifier", "token"]
         }
       },
       "uniqueConstraints": {}
