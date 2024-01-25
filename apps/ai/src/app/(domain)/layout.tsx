@@ -1,4 +1,4 @@
-import '#/styles/globals.css';
+import '@and-voila/ui/styles/globals.css';
 
 import type { Viewport } from 'next';
 
