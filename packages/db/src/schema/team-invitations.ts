@@ -58,3 +58,6 @@ export const teamInvitationsTableRelations = relations(
     }),
   }),
 );
+
+export type TeamInvitation = typeof teamInvitationsTable.$inferSelect;
+export type NewTeamInvitation = typeof teamInvitationsTable.$inferInsert;

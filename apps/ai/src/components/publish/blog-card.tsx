@@ -18,7 +18,7 @@ export default function BlogCard({ data }: BlogCardProps) {
     <Link href={`/${data.slug}`}>
       <div className="ease overflow-hidden rounded-2xl border bg-card pb-6 shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
         <BlurImage
-          src={data.image!}
+          src={data.image ?? '/post-placeholder.jpg'}
           alt={data.title ?? 'Blog Post'}
           width={500}
           height={400}

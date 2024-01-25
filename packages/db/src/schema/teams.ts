@@ -66,3 +66,6 @@ export const teamsTableRelations = relations(teamsTable, ({ one, many }) => ({
   sites: many(sitesTable, { relationName: 'SiteToTeam' }),
   posts: many(postsTable, { relationName: 'PostToTeam' }),
 }));
+
+export type Team = typeof teamsTable.$inferSelect;
+export type NewTeam = typeof teamsTable.$inferInsert;

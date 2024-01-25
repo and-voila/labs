@@ -34,3 +34,6 @@ export const stripeCustomersTableRelations = relations(
     }),
   }),
 );
+
+export type StripeCustomer = typeof stripeCustomersTable.$inferSelect;
+export type NewStripeCustomer = typeof stripeCustomersTable.$inferInsert;

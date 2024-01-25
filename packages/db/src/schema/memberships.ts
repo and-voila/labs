@@ -61,3 +61,6 @@ export const membershipsTableRelations = relations(
     }),
   }),
 );
+
+export type Membership = typeof membershipsTable.$inferSelect;
+export type NewMembership = typeof membershipsTable.$inferInsert;

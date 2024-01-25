@@ -36,3 +36,6 @@ export const adminsTableRelations = relations(adminsTable, ({ one }) => ({
     references: [usersTable.id],
   }),
 }));
+
+export type Admin = typeof adminsTable.$inferSelect;
+export type NewAdmin = typeof adminsTable.$inferInsert;

@@ -10,7 +10,7 @@ if (!process.env.DREON_DIRECT_URL) {
 
 export default {
   schema: './src/schema',
-  out: './drizzle',
+  out: './src/migrations',
   driver: 'pg',
   dbCredentials: {
     connectionString: process.env.DREON_DIRECT_URL,
