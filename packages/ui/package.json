@@ -28,6 +28,7 @@
     "./sheet": "./src/sheet.tsx",
     "./skeleton": "./src/skeleton.tsx",
     "./styles/globals.css": "./src/styles/globals.css",
+    "./styles/partials/index.css": "./src/styles/partials/index.css",
     "./switch": "./src/switch.tsx",
     "./table": "./src/table.tsx",
     "./textarea": "./src/textarea.tsx",

@@ -6,7 +6,7 @@ import { EditorContent } from '@tiptap/react';
 
 import { useBlockEditor } from '#/hooks/tiptap/use-block-editor';
 
-import '#/styles/partials/index.css';
+import '@and-voila/ui/styles/partials/index.css';
 
 import { createPortal } from 'react-dom';
 
