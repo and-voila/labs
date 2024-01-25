@@ -1,11 +1,7 @@
-export function formatDate(input: string | number): string {
-  const date = new Date(input);
-  return date.toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
-}
+export const ensureStartsWith = (stringToCheck: string, startsWith: string) =>
+  stringToCheck.startsWith(startsWith)
+    ? stringToCheck
+    : `${startsWith}${stringToCheck}`;
 
 export async function fetcher<JSON = unknown>(
   input: RequestInfo,
@@ -27,6 +23,15 @@ export async function fetcher<JSON = unknown>(
   }
 
   return res.json();
+}
+
+export function formatDate(input: string | number): string {
+  const date = new Date(input);
+  return date.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
 }
 
 export function nFormatter(num: number, digits?: number) {
@@ -52,10 +57,13 @@ export function nFormatter(num: number, digits?: number) {
     : '0';
 }
 
-export const ensureStartsWith = (stringToCheck: string, startsWith: string) =>
-  stringToCheck.startsWith(startsWith)
-    ? stringToCheck
-    : `${startsWith}${stringToCheck}`;
+export const random = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+export function randomElement(array: string[]): string {
+  return array[Math.floor(Math.random() * array.length)] ?? '';
+}
 
 export const toDateString = (date: Date) => {
   return new Date(date).toLocaleDateString('en-US', {
@@ -65,10 +73,6 @@ export const toDateString = (date: Date) => {
   });
 };
 
-export const random = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
 export function userInitials(name: string) {
   const names = name.split(' ');
   const firstName = names[0] ?? '';
@@ -76,10 +80,6 @@ export function userInitials(name: string) {
   return firstName && lastName
     ? `${firstName.charAt(0)}${lastName.charAt(0)}`
     : firstName.charAt(0);
-}
-
-export function randomElement(array: string[]): string {
-  return array[Math.floor(Math.random() * array.length)] ?? '';
 }
 
 // ::: CONSTANTS :::

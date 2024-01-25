@@ -16,12 +16,14 @@ import {
 
 import { APP_BP } from '@and-voila/utils';
 
-import { SITE_URL } from '#/lib/const';
-
 const textClass = 'text-[18px] leading-[26px] text-[#6E6E6E]';
 const linkClass = 'font-semibold text-[#d20f9a] underline underline-offset-4';
 
-export const WelcomeEmail = () => (
+export interface WelcomeEmailProps {
+  siteUrl: string;
+}
+
+export const WelcomeEmail = ({ siteUrl }: WelcomeEmailProps) => (
   <Html>
     <Head />
     <Preview>
@@ -32,7 +34,7 @@ export const WelcomeEmail = () => (
       <Body className="bg-[#B4B4B4] py-[24px] font-sans">
         <Container className="mx-auto rounded-lg bg-[#F8F9FB] px-[24px] pt-[36px]">
           <Img
-            src={`${SITE_URL}/and-voila-logo.png`}
+            src={`${siteUrl}/and-voila-logo.png`}
             width="150"
             height="34"
             alt="And Voila Logo"
@@ -50,7 +52,7 @@ export const WelcomeEmail = () => (
           <Section className="mt-[48px] text-center">
             <Button
               className="inline-block w-[75%] rounded-md bg-[#18A300] px-[32px] py-[16px] text-[18px] leading-[26px] text-[#ffffff] no-underline"
-              href={`${SITE_URL}${APP_BP}/my/workspaces`}
+              href={`${siteUrl}${APP_BP}/my/workspaces`}
             >
               Dive Right In
             </Button>
@@ -72,7 +74,7 @@ export const WelcomeEmail = () => (
             Eager to share your voice?{' '}
             <Link
               className={linkClass}
-              href={`${SITE_URL}${APP_BP}/my/workspaces`}
+              href={`${siteUrl}${APP_BP}/my/workspaces`}
             >
               Create your site
             </Link>{' '}
@@ -89,7 +91,7 @@ export const WelcomeEmail = () => (
           <Text className={textClass}>
             Our Good plan is free-for-life and includes generous limits. If you
             find yourself needing more, you can{' '}
-            <Link className={linkClass} href={`${SITE_URL}/pricing`}>
+            <Link className={linkClass} href={`${siteUrl}/pricing`}>
               upgrade
             </Link>{' '}
             upgrade at any time and{' '}

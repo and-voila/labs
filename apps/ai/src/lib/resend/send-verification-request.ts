@@ -1,11 +1,12 @@
 'use server';
 
+import MagicLinkEmail from '@and-voila/email/magic-link-email';
+
 import { siteConfig } from '#/config/site';
 
+import { SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
 import { resend } from '#/lib/resend/resend';
-
-import MagicLinkEmail from '#/emails/magic-link-email';
 
 export async function sendVerificationRequest({
   identifier,
@@ -45,6 +46,7 @@ export async function sendVerificationRequest({
         actionUrl: url,
         mailType: userVerified ? 'login' : 'register',
         siteName: siteConfig.name,
+        siteUrl: SITE_URL,
       }),
       text: plainTextEmail,
       // Set this to prevent Gmail from threading emails.

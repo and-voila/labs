@@ -1,10 +1,11 @@
 'use server';
 
+import { SendAbuseReportEmail } from '@and-voila/email/abuse-report-email';
+
 import { siteConfig } from '#/config/site';
 
+import { SITE_URL } from '#/lib/const';
 import { resend } from '#/lib/resend/resend';
-
-import { SendAbuseReportEmail } from '#/emails/abuse-report-email';
 
 export async function sendAbuseReportEmail(domain: string, slug?: string) {
   const urlToReport = slug ? `https://${domain}/${slug}` : `https://${domain}`;
@@ -22,6 +23,7 @@ export async function sendAbuseReportEmail(domain: string, slug?: string) {
       react: SendAbuseReportEmail({
         urlToReport,
         siteName: siteConfig.name,
+        siteUrl: SITE_URL,
       }),
       text: plainTextEmail,
     });

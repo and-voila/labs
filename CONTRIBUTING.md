@@ -2,7 +2,7 @@
 
 ## Welcome
 
-Interested in contributing? Great! This guide helps you start.
+Interested in contributing? Great! **[This guide](https://opensource.guide/)** helps you start things off right.
 
 ## Code of Conduct
 
