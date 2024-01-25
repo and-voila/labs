@@ -199,7 +199,7 @@ export function withPostAuth(action: any) {
         site: true,
       },
     });
-    if (!post || !post.site?.teamId) {
+    if (!post?.site?.teamId) {
       return {
         error: 'Post or site not found',
       };

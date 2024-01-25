@@ -1,6 +1,6 @@
 // :: Authentication Module Types ::
 
-import type { User as NextAuthUser } from 'next-auth';
+import type { DefaultSession, User as NextAuthUser } from 'next-auth';
 
 import 'next-auth/jwt';
 
@@ -21,6 +21,6 @@ declare module 'next-auth' {
   interface Session {
     user: User & {
       id: UserId;
-    };
+    } & DefaultSession['user'];
   }
 }

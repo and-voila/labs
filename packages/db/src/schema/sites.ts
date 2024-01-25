@@ -69,3 +69,6 @@ export const sitesTableRelations = relations(sitesTable, ({ one, many }) => ({
   }),
   posts: many(postsTable, { relationName: 'PostToSite' }),
 }));
+
+export type Site = typeof sitesTable.$inferSelect;
+export type NewSite = typeof sitesTable.$inferInsert;

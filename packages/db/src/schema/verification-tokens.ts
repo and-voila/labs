@@ -13,3 +13,6 @@ export const verificationTokensTable = myPgTable(
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   }),
 );
+
+export type VerificationToken = typeof verificationTokensTable.$inferSelect;
+export type NewVerificationToken = typeof verificationTokensTable.$inferInsert;

@@ -1,4 +1,3 @@
-import type { User } from '@prisma/client';
 import type { Config } from 'unique-names-generator';
 
 import { PrismaClient } from '@prisma/client';
@@ -247,7 +246,7 @@ export async function generateUniqueDisplayName(): Promise<string> {
 
   while (!unique) {
     newName = uniqueNamesGenerator(config);
-    const existingUser: User | null = await db.user.findFirst({
+    const existingUser = await db.user.findFirst({
       where: { displayName: newName },
     });
 

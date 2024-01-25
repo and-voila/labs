@@ -56,3 +56,7 @@ export const stripeSubscriptionsTableRelations = relations(
     }),
   }),
 );
+
+export type StripeSubscription = typeof stripeSubscriptionsTable.$inferSelect;
+export type NewStripeSubscription =
+  typeof stripeSubscriptionsTable.$inferInsert;

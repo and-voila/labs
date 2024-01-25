@@ -51,3 +51,6 @@ export const usersTableRelations = relations(usersTable, ({ one, many }) => ({
     references: [adminsTable.userId],
   }),
 }));
+
+export type User = typeof usersTable.$inferSelect;
+export type NewUser = typeof usersTable.$inferInsert;

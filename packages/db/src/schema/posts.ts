@@ -83,3 +83,6 @@ export const postsTableRelations = relations(postsTable, ({ one }) => ({
     references: [sitesTable.id],
   }),
 }));
+
+export type Post = typeof postsTable.$inferSelect;
+export type NewPost = typeof postsTable.$inferInsert;
