@@ -1,4 +1,9 @@
+import type { TiptapCollabProvider } from '@hocuspocus/provider';
+import type { Post, Site } from '@prisma/client';
 import type { Icons } from '#/components/shared/icons';
+import type * as Y from 'yjs';
+
+import type { EditorUser } from '@av/editor/types';
 
 // :: Iconography Types ::
 
@@ -145,4 +150,14 @@ export interface DomainVerificationResponse {
     value: string;
     reason: string;
   }[];
+}
+
+export interface TiptapProps {
+  aiToken: string;
+  hasCollab: boolean;
+  ydoc: Y.Doc;
+  provider?: TiptapCollabProvider | null | undefined;
+  user: EditorUser;
+  post: Post & { site: Site };
+  teamSlug: string;
 }

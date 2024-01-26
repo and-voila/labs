@@ -36,6 +36,8 @@ const config = {
     '<TYPES>^@av',
     '^@av/(.*)$',
     '',
+    '^#editor/(.*)$',
+    '',
     '<TYPES>^[.|..|~]',
     '',
     '^#/config/(.*)$',

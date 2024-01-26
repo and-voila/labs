@@ -4,10 +4,9 @@ import type { AvatarProps } from '@radix-ui/react-avatar';
 import { useMemo } from 'react';
 import Image from 'next/image';
 
+import { userColors } from '@av/editor/constants';
 import { Avatar, AvatarFallback, AvatarImage } from '@av/ui/avatar';
 import { randomElement } from '@av/utils';
-
-import { userColors } from '#/lib/tiptap/constants';
 
 interface UserAvatarProps extends AvatarProps {
   user: Pick<User, 'image' | 'name' | 'displayName' | 'id'>;

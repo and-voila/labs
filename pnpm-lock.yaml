@@ -74,15 +74,6 @@ importers:
       '@radix-ui/react-avatar':
         specifier: ^1.0.4
         version: 1.0.4(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-dropdown-menu':
-        specifier: ^2.0.6
-        version: 2.0.6(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-popover':
-        specifier: ^1.0.7
-        version: 1.0.7(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-slot':
-        specifier: ^1.0.2
-        version: 1.0.2(@types/react@18.2.48)(react@18.2.0)
       '@rive-app/react-canvas-lite':
         specifier: ^4.7.1
         version: 4.7.1(react@18.2.0)
@@ -92,6 +83,289 @@ importers:
       '@t3-oss/env-nextjs':
         specifier: ^0.7.3
         version: 0.7.3(typescript@5.3.3)(zod@3.22.4)
+      '@tiptap-pro/extension-ai':
+        specifier: ^2.6.0
+        version: 2.6.3(@tiptap/core@2.1.16)(@tiptap/extension-image@2.1.16)(@tiptap/pm@2.1.16)(prosemirror-state@1.4.3)(prosemirror-view@1.32.7)
+      '@tiptap/core':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/pm@2.1.16)
+      '@tiptap/extension-collaboration':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)(y-prosemirror@1.2.2)
+      '@tiptap/extension-collaboration-cursor':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(y-prosemirror@1.2.2)
+      '@tiptap/pm':
+        specifier: ^2.1.16
+        version: 2.1.16
+      '@tiptap/react':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)(react-dom@18.2.0)(react@18.2.0)
+      '@upstash/ratelimit':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@upstash/redis':
+        specifier: ^1.28.0
+        version: 1.28.2
+      '@vercel/blob':
+        specifier: ^0.17.0
+        version: 0.17.1
+      '@vercel/edge':
+        specifier: ^1.1.1
+        version: 1.1.1
+      '@vercel/kv':
+        specifier: ^1.0.1
+        version: 1.0.1
+      cal-sans:
+        specifier: ^1.0.1
+        version: 1.0.1
+      focus-trap-react:
+        specifier: ^10.2.3
+        version: 10.2.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
+      framer-motion:
+        specifier: ^10.18.0
+        version: 10.18.0(react-dom@18.2.0)(react@18.2.0)
+      iframe-resizer:
+        specifier: ^4.3.9
+        version: 4.3.9
+      isomorphic-dompurify:
+        specifier: ^2.2.0
+        version: 2.3.0(bufferutil@4.0.8)
+      jsonwebtoken:
+        specifier: ^9.0.2
+        version: 9.0.2
+      nanoid:
+        specifier: ^5.0.4
+        version: 5.0.4
+      next:
+        specifier: 14.0.4
+        version: 14.0.4(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
+      next-auth:
+        specifier: 4.24.5
+        version: 4.24.5(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
+      next-safe-action:
+        specifier: ^6.0.1
+        version: 6.0.2(next@14.0.4)(react@18.2.0)
+      next-themes:
+        specifier: ^0.2.1
+        version: 0.2.1(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
+      nextjs-toploader:
+        specifier: ^1.6.4
+        version: 1.6.4(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
+      posthog-node:
+        specifier: ^3.5.0
+        version: 3.6.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-confetti:
+        specifier: ^6.1.0
+        version: 6.1.0(react@18.2.0)
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-hook-form:
+        specifier: ^7.49.3
+        version: 7.49.3(react@18.2.0)
+      react-wrap-balancer:
+        specifier: ^1.1.0
+        version: 1.1.0(react@18.2.0)
+      resend:
+        specifier: ^2.1.0
+        version: 2.1.0
+      slugify:
+        specifier: ^1.6.6
+        version: 1.6.6
+      stripe:
+        specifier: ^14.12.0
+        version: 14.14.0
+      swr:
+        specifier: ^2.2.4
+        version: 2.2.4(react@18.2.0)
+      unique-names-generator:
+        specifier: ^4.7.1
+        version: 4.7.1
+      use-debounce:
+        specifier: ^10.0.0
+        version: 10.0.0(react@18.2.0)
+      ws:
+        specifier: ^8.16.0
+        version: 8.16.0(bufferutil@4.0.8)
+      y-prosemirror:
+        specifier: ^1.2.1
+        version: 1.2.2(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.32.7)(y-protocols@1.0.6)(yjs@13.6.11)
+      yjs:
+        specifier: ^13.6.10
+        version: 13.6.11
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
+      zustand:
+        specifier: ^4.4.7
+        version: 4.5.0(@types/react@18.2.48)(react@18.2.0)
+    optionalDependencies:
+      bufferutil:
+        specifier: ^4.0.8
+        version: 4.0.8
+    devDependencies:
+      '@av/eslint-config':
+        specifier: workspace:^0.2.0
+        version: link:../../tooling/eslint
+      '@av/prettier-config':
+        specifier: workspace:^0.1.0
+        version: link:../../tooling/prettier
+      '@av/tailwind-config':
+        specifier: workspace:^0.1.0
+        version: link:../../tooling/tailwind
+      '@av/tsconfig':
+        specifier: workspace:^0.1.0
+        version: link:../../tooling/typescript
+      '@types/jsonwebtoken':
+        specifier: ^9.0.5
+        version: 9.0.5
+      '@types/node':
+        specifier: ^20.11.1
+        version: 20.11.6
+      '@types/react':
+        specifier: ^18.2.48
+        version: 18.2.48
+      '@types/react-dom':
+        specifier: ^18.2.18
+        version: 18.2.18
+      '@types/ws':
+        specifier: ^8.5.10
+        version: 8.5.10
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.4.1
+      dotenv-cli:
+        specifier: ^7.3.0
+        version: 7.3.0
+      eslint:
+        specifier: ^8.56.0
+        version: 8.56.0
+      knip:
+        specifier: ^4.1.0
+        version: 4.2.1(@types/node@20.11.6)(typescript@5.3.3)
+      prettier:
+        specifier: ^3.2.2
+        version: 3.2.4
+      prisma:
+        specifier: ^5.8.1
+        version: 5.8.1
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.1
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+
+  apps/auth-proxy:
+    dependencies:
+      '@auth/core':
+        specifier: 0.20.0
+        version: 0.20.0
+      h3:
+        specifier: ^1.10.0
+        version: 1.10.1
+    devDependencies:
+      '@av/eslint-config':
+        specifier: workspace:^0.2.0
+        version: link:../../tooling/eslint
+      '@av/prettier-config':
+        specifier: workspace:^0.1.0
+        version: link:../../tooling/prettier
+      '@av/tailwind-config':
+        specifier: workspace:^0.1.0
+        version: link:../../tooling/tailwind
+      '@av/tsconfig':
+        specifier: workspace:^0.1.0
+        version: link:../../tooling/typescript
+      '@types/node':
+        specifier: ^20.11.1
+        version: 20.11.6
+      eslint:
+        specifier: ^8.56.0
+        version: 8.56.0
+      nitropack:
+        specifier: ^2.8.1
+        version: 2.8.1
+      prettier:
+        specifier: ^3.2.2
+        version: 3.2.4
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+
+  packages/db:
+    dependencies:
+      '@neondatabase/serverless':
+        specifier: ^0.7.2
+        version: 0.7.2
+      drizzle-orm:
+        specifier: ^0.29.3
+        version: 0.29.3(@neondatabase/serverless@0.7.2)(pg@8.11.3)
+    devDependencies:
+      '@av/eslint-config':
+        specifier: workspace:^0.2.0
+        version: link:../../tooling/eslint
+      '@av/prettier-config':
+        specifier: workspace:^0.1.0
+        version: link:../../tooling/prettier
+      '@av/tsconfig':
+        specifier: workspace:^0.1.0
+        version: link:../../tooling/typescript
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.4.1
+      drizzle-kit:
+        specifier: ^0.20.10
+        version: 0.20.13
+      eslint:
+        specifier: ^8.56.0
+        version: 8.56.0
+      knip:
+        specifier: ^4.1.0
+        version: 4.2.1(@types/node@20.11.6)(typescript@5.3.3)
+      pg:
+        specifier: ^8.11.3
+        version: 8.11.3
+      prettier:
+        specifier: ^3.2.2
+        version: 3.2.4
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+
+  packages/editor:
+    dependencies:
+      '@av/tailwind-config':
+        specifier: workspace:^0.1.0
+        version: link:../../tooling/tailwind
+      '@av/ui':
+        specifier: workspace:^0.1.0
+        version: link:../ui
+      '@av/utils':
+        specifier: workspace:^0.1.0
+        version: link:../utils
+      '@fontsource/inter':
+        specifier: ^5.0.16
+        version: 5.0.16
+      '@hocuspocus/provider':
+        specifier: ^2.9.0
+        version: 2.9.0(bufferutil@4.0.8)(y-protocols@1.0.6)(yjs@13.6.11)
+      '@radix-ui/react-dropdown-menu':
+        specifier: ^2.0.6
+        version: 2.0.6(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-popover':
+        specifier: ^1.0.7
+        version: 1.0.7(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-slot':
+        specifier: ^1.0.2
+        version: 1.0.2(@types/react@18.2.48)(react@18.2.0)
+      '@svgr/webpack':
+        specifier: ^8.1.0
+        version: 8.1.0(typescript@5.3.3)
       '@tippyjs/react':
         specifier: ^4.2.6
         version: 4.2.6(react-dom@18.2.0)(react@18.2.0)
@@ -227,130 +501,39 @@ importers:
       '@tiptap/suggestion':
         specifier: ^2.1.16
         version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
-      '@upstash/ratelimit':
-        specifier: ^1.0.0
-        version: 1.0.0
-      '@upstash/redis':
-        specifier: ^1.28.0
-        version: 1.28.2
-      '@vercel/blob':
-        specifier: ^0.17.0
-        version: 0.17.1
-      '@vercel/edge':
-        specifier: ^1.1.1
-        version: 1.1.1
-      '@vercel/kv':
-        specifier: ^1.0.1
-        version: 1.0.1
       cal-sans:
         specifier: ^1.0.1
         version: 1.0.1
-      focus-trap-react:
-        specifier: ^10.2.3
-        version: 10.2.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-      framer-motion:
-        specifier: ^10.18.0
-        version: 10.18.0(react-dom@18.2.0)(react@18.2.0)
-      iframe-resizer:
-        specifier: ^4.3.9
-        version: 4.3.9
-      isomorphic-dompurify:
-        specifier: ^2.2.0
-        version: 2.3.0(bufferutil@4.0.8)
-      jsonwebtoken:
-        specifier: ^9.0.2
-        version: 9.0.2
       lowlight:
         specifier: ^3.1.0
         version: 3.1.0
       lucide-react:
         specifier: ^0.309.0
         version: 0.309.0(react@18.2.0)
-      nanoid:
-        specifier: ^5.0.4
-        version: 5.0.4
-      next:
-        specifier: 14.0.4
-        version: 14.0.4(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
-      next-auth:
-        specifier: 4.24.5
-        version: 4.24.5(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
-      next-safe-action:
-        specifier: ^6.0.1
-        version: 6.0.2(next@14.0.4)(react@18.2.0)
-      next-themes:
-        specifier: ^0.2.1
-        version: 0.2.1(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
-      nextjs-toploader:
-        specifier: ^1.6.4
-        version: 1.6.4(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
-      posthog-node:
-        specifier: ^3.5.0
-        version: 3.6.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
       react-colorful:
         specifier: ^5.6.1
         version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
-      react-confetti:
-        specifier: ^6.1.0
-        version: 6.1.0(react@18.2.0)
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-      react-hook-form:
-        specifier: ^7.49.3
-        version: 7.49.3(react@18.2.0)
       react-hot-toast:
         specifier: ^2.4.1
         version: 2.4.1(csstype@3.1.3)(react-dom@18.2.0)(react@18.2.0)
-      react-wrap-balancer:
-        specifier: ^1.1.0
-        version: 1.1.0(react@18.2.0)
-      resend:
-        specifier: ^2.1.0
-        version: 2.1.0
-      slugify:
-        specifier: ^1.6.6
-        version: 1.6.6
-      stripe:
-        specifier: ^14.12.0
-        version: 14.14.0
-      swr:
-        specifier: ^2.2.4
-        version: 2.2.4(react@18.2.0)
       tippy.js:
         specifier: ^6.3.7
         version: 6.3.7
-      unique-names-generator:
-        specifier: ^4.7.1
-        version: 4.7.1
-      use-debounce:
-        specifier: ^10.0.0
-        version: 10.0.0(react@18.2.0)
       uuid:
         specifier: ^9.0.1
         version: 9.0.1
-      ws:
-        specifier: ^8.16.0
-        version: 8.16.0(bufferutil@4.0.8)
       y-prosemirror:
         specifier: ^1.2.1
         version: 1.2.2(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.32.7)(y-protocols@1.0.6)(yjs@13.6.11)
       yjs:
         specifier: ^13.6.10
         version: 13.6.11
-      zod:
-        specifier: ^3.22.4
-        version: 3.22.4
-      zustand:
-        specifier: ^4.4.7
-        version: 4.5.0(@types/react@18.2.48)(react@18.2.0)
-    optionalDependencies:
-      bufferutil:
-        specifier: ^4.0.8
-        version: 4.0.8
     devDependencies:
       '@av/eslint-config':
         specifier: workspace:^0.2.0
@@ -358,15 +541,9 @@ importers:
       '@av/prettier-config':
         specifier: workspace:^0.1.0
         version: link:../../tooling/prettier
-      '@av/tailwind-config':
-        specifier: workspace:^0.1.0
-        version: link:../../tooling/tailwind
       '@av/tsconfig':
         specifier: workspace:^0.1.0
         version: link:../../tooling/typescript
-      '@types/jsonwebtoken':
-        specifier: ^9.0.5
-        version: 9.0.5
       '@types/node':
         specifier: ^20.11.1
         version: 20.11.6
@@ -379,15 +556,6 @@ importers:
       '@types/uuid':
         specifier: ^9.0.7
         version: 9.0.8
-      '@types/ws':
-        specifier: ^8.5.10
-        version: 8.5.10
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.4.1
-      dotenv-cli:
-        specifier: ^7.3.0
-        version: 7.3.0
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -397,126 +565,9 @@ importers:
       prettier:
         specifier: ^3.2.2
         version: 3.2.4
-      prisma:
-        specifier: ^5.8.1
-        version: 5.8.1
       tailwindcss:
         specifier: ^3.4.0
         version: 3.4.1
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-
-  apps/auth-proxy:
-    dependencies:
-      '@auth/core':
-        specifier: 0.20.0
-        version: 0.20.0
-      h3:
-        specifier: ^1.10.0
-        version: 1.10.1
-    devDependencies:
-      '@av/eslint-config':
-        specifier: workspace:^0.2.0
-        version: link:../../tooling/eslint
-      '@av/prettier-config':
-        specifier: workspace:^0.1.0
-        version: link:../../tooling/prettier
-      '@av/tailwind-config':
-        specifier: workspace:^0.1.0
-        version: link:../../tooling/tailwind
-      '@av/tsconfig':
-        specifier: workspace:^0.1.0
-        version: link:../../tooling/typescript
-      '@types/node':
-        specifier: ^20.11.1
-        version: 20.11.6
-      eslint:
-        specifier: ^8.56.0
-        version: 8.56.0
-      nitropack:
-        specifier: ^2.8.1
-        version: 2.8.1
-      prettier:
-        specifier: ^3.2.2
-        version: 3.2.4
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-
-  packages/db:
-    dependencies:
-      '@neondatabase/serverless':
-        specifier: ^0.7.2
-        version: 0.7.2
-      drizzle-orm:
-        specifier: ^0.29.3
-        version: 0.29.3(@neondatabase/serverless@0.7.2)(pg@8.11.3)
-    devDependencies:
-      '@av/eslint-config':
-        specifier: workspace:^0.2.0
-        version: link:../../tooling/eslint
-      '@av/prettier-config':
-        specifier: workspace:^0.1.0
-        version: link:../../tooling/prettier
-      '@av/tsconfig':
-        specifier: workspace:^0.1.0
-        version: link:../../tooling/typescript
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.4.1
-      drizzle-kit:
-        specifier: ^0.20.10
-        version: 0.20.13
-      eslint:
-        specifier: ^8.56.0
-        version: 8.56.0
-      knip:
-        specifier: ^4.1.0
-        version: 4.2.1(@types/node@20.11.6)(typescript@5.3.3)
-      pg:
-        specifier: ^8.11.3
-        version: 8.11.3
-      prettier:
-        specifier: ^3.2.2
-        version: 3.2.4
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-
-  packages/editor:
-    dependencies:
-      '@tiptap/core':
-        specifier: ^2.1.16
-        version: 2.1.16(@tiptap/pm@2.1.16)
-      '@tiptap/pm':
-        specifier: ^2.1.16
-        version: 2.1.16
-      '@tiptap/react':
-        specifier: ^2.1.16
-        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)(react-dom@18.2.0)(react@18.2.0)
-      '@tiptap/starter-kit':
-        specifier: ^2.1.16
-        version: 2.1.16(@tiptap/pm@2.1.16)
-    devDependencies:
-      '@av/eslint-config':
-        specifier: workspace:^0.2.0
-        version: link:../../tooling/eslint
-      '@av/prettier-config':
-        specifier: workspace:^0.1.0
-        version: link:../../tooling/prettier
-      '@av/tsconfig':
-        specifier: workspace:^0.1.0
-        version: link:../../tooling/typescript
-      eslint:
-        specifier: ^8.56.0
-        version: 8.56.0
-      knip:
-        specifier: ^4.1.0
-        version: 4.2.1(@types/node@20.11.6)(typescript@5.3.3)
-      prettier:
-        specifier: ^3.2.2
-        version: 3.2.4
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -545,6 +596,9 @@ importers:
       '@av/prettier-config':
         specifier: workspace:^0.1.0
         version: link:../../tooling/prettier
+      '@av/tailwind-config':
+        specifier: workspace:^0.1.0
+        version: link:../../tooling/tailwind
       '@av/tsconfig':
         specifier: workspace:^0.1.0
         version: link:../../tooling/typescript
@@ -563,6 +617,9 @@ importers:
       prettier:
         specifier: ^3.2.2
         version: 3.2.4
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.1
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -7978,6 +8035,7 @@ packages:
   /clone@1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
+    requiresBuild: true
 
   /clsx@1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
@@ -8397,6 +8455,7 @@ packages:
 
   /defaults@1.0.4:
     resolution: {integrity: sha512-eFuaLoy/Rxalv2kr+lqMlUnrDWV+3j4pljOIJgLIhI058IQfWJ7vXhyEIHu+HtC738klGALYxOKDO0bQP3tg8A==}
+    requiresBuild: true
     dependencies:
       clone: 1.0.4
 

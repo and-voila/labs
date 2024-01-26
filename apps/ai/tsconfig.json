@@ -4,10 +4,17 @@
     "baseUrl": ".",
     "paths": {
       "#/*": ["./src/*"],
+      "#editor/*": ["../../packages/editor/src/*"],
     },
     "plugins": [{ "name": "next" }],
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
   },
-  "include": [".", ".next/types/**/*.ts"],
+  "include": [
+    ".",
+    ".next/types/**/*.ts",
+    "../../packages/editor/src/**/*.{ts,tsx}",
+    "../../packages/email/src/**/*.{ts,tsx}",
+    "../../packages/utils/src/**/*.{ts,tsx}",
+  ],
   "exclude": ["node_modules"],
 }

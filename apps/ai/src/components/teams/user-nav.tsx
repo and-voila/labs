@@ -6,6 +6,7 @@ import { useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 
+import { userColors } from '@av/editor/constants';
 import { AvatarFallback } from '@av/ui/avatar';
 import {
   DropdownMenu,
@@ -16,8 +17,6 @@ import {
 } from '@av/ui/dropdown-menu';
 import { Icons } from '@av/ui/icons';
 import { APP_BP, randomElement } from '@av/utils';
-
-import { userColors } from '#/lib/tiptap/constants';
 
 import { UserAvatar } from '../shared/user-avatar';
 

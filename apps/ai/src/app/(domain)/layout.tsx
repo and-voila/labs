@@ -1,4 +1,4 @@
-import '@av/ui/styles/globals.css';
+import '#/styles/globals.css';
 
 import type { Viewport } from 'next';
 

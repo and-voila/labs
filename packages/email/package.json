@@ -6,8 +6,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./abuse-report-email": "./src/emails/abuse-report-email.tsx",
-    "./verification-request-email": "./src/emails/verification-request-email.tsx",
     "./team-invite-email": "./src/emails/team-invite-email.tsx",
+    "./verification-request-email": "./src/emails/verification-request-email.tsx",
     "./welcome-email": "./src/emails/welcome-email.tsx"
   },
   "license": "MIT",
@@ -22,12 +22,14 @@
   "devDependencies": {
     "@av/eslint-config": "workspace:^0.2.0",
     "@av/prettier-config": "workspace:^0.1.0",
+    "@av/tailwind-config": "workspace:^0.1.0",
     "@av/tsconfig": "workspace:^0.1.0",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "eslint": "^8.56.0",
     "knip": "^4.1.0",
     "prettier": "^3.2.2",
+    "tailwindcss": "^3.4.0",
     "typescript": "^5.3.3"
   },
   "eslintConfig": {
