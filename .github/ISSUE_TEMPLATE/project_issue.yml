@@ -4,31 +4,31 @@ title: 'issue: '
 labels: ['🔧 project issue']
 assignees: ['srizvi']
 body:
-  - type: markdown
+  - type: dropdown
+    id: issue-type
     attributes:
-      value: |
-        Hey team, let's get this sorted.
-  - type: textarea
-    attributes:
-      label: What's up?
-      description: Give us the lowdown. Why's this an issue?
+      label: What's this about?
+      description: Is this a new feature or maintenance work?
+      options:
+        - New feature
+        - Maintenance
     validations:
       required: true
   - type: textarea
     attributes:
-      label: What's the plan?
-      description: Got a solution in mind? Share it here.
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: What's the current state of play?
-      description: Any other info or links? Pop them here.
+      label: What's up now?
+      description: Give us the lowdown. What's the current situation?
     validations:
       required: true
   - type: textarea
     attributes:
       label: What's the goal?
-      description: What are we aiming for? Let's visualize the win.
+      description: What should it be? Let's visualize the win.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What's the plan?
+      description: How you going to make it happen? Share your plan here.
     validations:
       required: true
