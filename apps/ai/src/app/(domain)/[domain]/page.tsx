@@ -3,7 +3,7 @@ import { env } from '#/env';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { toDateString } from '@and-voila/utils';
+import { toDateString } from '@av/utils';
 
 import { db } from '#/lib/db';
 import {

@@ -4,9 +4,9 @@ import { useCallback, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useFormStatus } from 'react-dom';
 
-import { cn } from '@and-voila/ui';
-import { Icons } from '@and-voila/ui/icons';
-import { toast } from '@and-voila/ui/use-toast';
+import { cn } from '@av/ui';
+import { Icons } from '@av/ui/icons';
+import { toast } from '@av/ui/use-toast';
 
 import { siteConfig } from '#/config/site';
 

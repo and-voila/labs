@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 import { Surface } from '#/components/tiptap/surface';
 

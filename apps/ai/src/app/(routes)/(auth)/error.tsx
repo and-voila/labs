@@ -5,8 +5,8 @@ import type { IconKey } from '#/lib/types';
 import { useCallback } from 'react';
 import Link from 'next/link';
 
-import { Button } from '@and-voila/ui/button';
-import { Icons } from '@and-voila/ui/icons';
+import { Button } from '@av/ui/button';
+import { Icons } from '@av/ui/icons';
 
 const links: {
   name: string;

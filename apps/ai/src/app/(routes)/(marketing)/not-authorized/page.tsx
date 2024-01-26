@@ -3,10 +3,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
-import { cn } from '@and-voila/ui';
-import { buttonVariants } from '@and-voila/ui/button';
-import { Icons } from '@and-voila/ui/icons';
-import { APP_BP } from '@and-voila/utils';
+import { cn } from '@av/ui';
+import { buttonVariants } from '@av/ui/button';
+import { Icons } from '@av/ui/icons';
+import { APP_BP } from '@av/utils';
 
 import { siteConfig } from '#/config/site';
 

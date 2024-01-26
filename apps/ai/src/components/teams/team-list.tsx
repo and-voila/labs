@@ -2,7 +2,7 @@ import type { Membership, Team } from '@prisma/client';
 
 import React from 'react';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 import { EmptyPlaceholder } from '#/components/shared/empty-placeholder';
 import { NewTeamButton } from '#/components/teams/new-team-button';

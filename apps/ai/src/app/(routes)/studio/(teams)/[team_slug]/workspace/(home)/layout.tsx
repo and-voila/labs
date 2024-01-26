@@ -1,4 +1,4 @@
-import { APP_BP } from '@and-voila/utils';
+import { APP_BP } from '@av/utils';
 
 import { getTeam } from '#/lib/operations/teams/get-current-team';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@and-voila/ui/button';
+import { Button } from '@av/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,8 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@and-voila/ui/dialog';
-import { Icons } from '@and-voila/ui/icons';
+} from '@av/ui/dialog';
+import { Icons } from '@av/ui/icons';
 
 import { NewTeamForm } from '#/components/forms/new-team-form';
 

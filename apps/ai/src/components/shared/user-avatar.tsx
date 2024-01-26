@@ -4,8 +4,8 @@ import type { AvatarProps } from '@radix-ui/react-avatar';
 import { useMemo } from 'react';
 import Image from 'next/image';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@and-voila/ui/avatar';
-import { randomElement } from '@and-voila/utils';
+import { Avatar, AvatarFallback, AvatarImage } from '@av/ui/avatar';
+import { randomElement } from '@av/utils';
 
 import { userColors } from '#/lib/tiptap/constants';
 

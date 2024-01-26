@@ -1,5 +1,5 @@
 {
-  "name": "@and-voila/editor",
+  "name": "@av/editor",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -15,9 +15,9 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@and-voila/eslint-config": "workspace:^0.2.0",
-    "@and-voila/prettier-config": "workspace:^0.1.0",
-    "@and-voila/tsconfig": "workspace:^0.1.0",
+    "@av/eslint-config": "workspace:^0.2.0",
+    "@av/prettier-config": "workspace:^0.1.0",
+    "@av/tsconfig": "workspace:^0.1.0",
     "eslint": "^8.56.0",
     "knip": "^4.1.0",
     "prettier": "^3.2.2",
@@ -25,10 +25,10 @@
   },
   "eslintConfig": {
     "extends": [
-      "@and-voila/eslint-config/base"
+      "@av/eslint-config/base"
     ]
   },
-  "prettier": "@and-voila/prettier-config",
+  "prettier": "@av/prettier-config",
   "dependencies": {
     "@tiptap/core": "^2.1.16",
     "@tiptap/starter-kit": "^2.1.16",

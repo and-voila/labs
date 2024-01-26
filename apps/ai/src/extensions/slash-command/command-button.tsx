@@ -2,7 +2,7 @@ import type { icons } from 'lucide-react';
 
 import { forwardRef } from 'react';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 import { Icon } from '#/components/tiptap/icon';
 

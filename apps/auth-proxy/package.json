@@ -1,5 +1,5 @@
 {
-  "name": "@and-voila/auth-proxy",
+  "name": "@av/auth-proxy",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,10 +15,10 @@
     "h3": "^1.10.0"
   },
   "devDependencies": {
-    "@and-voila/eslint-config": "workspace:^0.2.0",
-    "@and-voila/prettier-config": "workspace:^0.1.0",
-    "@and-voila/tailwind-config": "workspace:^0.1.0",
-    "@and-voila/tsconfig": "workspace:^0.1.0",
+    "@av/eslint-config": "workspace:^0.2.0",
+    "@av/prettier-config": "workspace:^0.1.0",
+    "@av/tailwind-config": "workspace:^0.1.0",
+    "@av/tsconfig": "workspace:^0.1.0",
     "@types/node": "^20.11.1",
     "eslint": "^8.56.0",
     "nitropack": "^2.8.1",
@@ -28,8 +28,8 @@
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@and-voila/eslint-config/base"
+      "@av/eslint-config/base"
     ]
   },
-  "prettier": "@and-voila/prettier-config"
+  "prettier": "@av/prettier-config"
 }

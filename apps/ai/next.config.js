@@ -69,11 +69,11 @@ const config = {
   reactStrictMode: true,
   swcMinify: true,
   transpilePackages: [
-    '@and-voila/db',
-    '@and-voila/editor',
-    '@and-voila/email',
-    '@and-voila/ui',
-    '@and-voila/utils',
+    '@av/db',
+    '@av/editor',
+    '@av/email',
+    '@av/ui',
+    '@av/utils',
   ],
   typescript: { ignoreBuildErrors: true },
   webpack(config) {

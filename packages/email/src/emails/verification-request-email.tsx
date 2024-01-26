@@ -19,7 +19,7 @@ interface MagicLinkEmailProps {
   siteUrl: string;
 }
 
-export const MagicLinkEmail = ({
+export const VerificationRequestEmail = ({
   actionUrl,
   mailType,
   siteUrl,
@@ -78,4 +78,4 @@ export const MagicLinkEmail = ({
   </Html>
 );
 
-export default MagicLinkEmail;
+export default VerificationRequestEmail;

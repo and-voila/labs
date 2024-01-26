@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { cn } from '@and-voila/ui';
-import { buttonVariants } from '@and-voila/ui/button';
-import { Icons } from '@and-voila/ui/icons';
+import { cn } from '@av/ui';
+import { buttonVariants } from '@av/ui/button';
+import { Icons } from '@av/ui/icons';
 
 export const MobileNotSupported: React.FC = () => {
   return (

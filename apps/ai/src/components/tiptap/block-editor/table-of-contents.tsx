@@ -5,7 +5,7 @@ import type { Editor as CoreEditor } from '@tiptap/core';
 
 import { memo, useEffect, useState } from 'react';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 export interface TableOfContentsProps {
   editor: CoreEditor;

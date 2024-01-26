@@ -1,5 +1,5 @@
-import { cn } from '@and-voila/ui';
-import { Icons } from '@and-voila/ui/icons';
+import { cn } from '@av/ui';
+import { Icons } from '@av/ui/icons';
 
 interface LogoLoaderProps {
   className?: string;

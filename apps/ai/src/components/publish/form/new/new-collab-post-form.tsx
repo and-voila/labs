@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { Button } from '@and-voila/ui/button';
+import { Button } from '@av/ui/button';
 import {
   Form,
   FormControl,
@@ -15,12 +15,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@and-voila/ui/form';
-import { Icons } from '@and-voila/ui/icons';
-import { Input } from '@and-voila/ui/input';
-import { Textarea } from '@and-voila/ui/textarea';
-import { toast } from '@and-voila/ui/use-toast';
-import { APP_BP } from '@and-voila/utils';
+} from '@av/ui/form';
+import { Icons } from '@av/ui/icons';
+import { Input } from '@av/ui/input';
+import { Textarea } from '@av/ui/textarea';
+import { toast } from '@av/ui/use-toast';
+import { APP_BP } from '@av/utils';
 
 import { createCollabPost } from '#/lib/actions/publish/publish-actions';
 import { newCollabPostFormSchema } from '#/lib/validations/post';

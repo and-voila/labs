@@ -14,7 +14,7 @@ import {
   Text,
 } from '@react-email/components';
 
-import { APP_BP } from '@and-voila/utils';
+import { APP_BP } from '@av/utils';
 
 const textClass = 'text-[18px] leading-[26px] text-[#6E6E6E]';
 const linkClass = 'font-semibold text-[#d20f9a] underline underline-offset-4';

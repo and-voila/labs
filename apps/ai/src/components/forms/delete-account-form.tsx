@@ -20,18 +20,18 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@and-voila/ui/alert-dialog';
-import { Button, buttonVariants } from '@and-voila/ui/button';
+} from '@av/ui/alert-dialog';
+import { Button, buttonVariants } from '@av/ui/button';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@and-voila/ui/card';
-import { Input } from '@and-voila/ui/input';
-import { Label } from '@and-voila/ui/label';
-import { APP_BP } from '@and-voila/utils';
+} from '@av/ui/card';
+import { Input } from '@av/ui/input';
+import { Label } from '@av/ui/label';
+import { APP_BP } from '@av/utils';
 
 import { deletePersonalAccount } from '#/lib/actions/user/update-user';
 

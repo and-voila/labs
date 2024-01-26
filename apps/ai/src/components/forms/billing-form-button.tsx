@@ -3,8 +3,8 @@ import type { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
 import { useCallback, useTransition } from 'react';
 import Link from 'next/link';
 
-import { Button } from '@and-voila/ui/button';
-import { Icons } from '@and-voila/ui/icons';
+import { Button } from '@av/ui/button';
+import { Icons } from '@av/ui/icons';
 
 import { generateUserStripe } from '#/lib/actions/stripe/generate-user-stripe';
 

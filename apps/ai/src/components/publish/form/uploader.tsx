@@ -2,8 +2,8 @@
 
 import { useCallback, useRef, useState } from 'react';
 
-import { cn } from '@and-voila/ui';
-import { toast } from '@and-voila/ui/use-toast';
+import { cn } from '@av/ui';
+import { toast } from '@av/ui/use-toast';
 
 export default function Uploader({
   defaultValue,

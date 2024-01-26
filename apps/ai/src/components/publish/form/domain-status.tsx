@@ -1,6 +1,6 @@
 'use client';
 
-import { Icons } from '@and-voila/ui/icons';
+import { Icons } from '@av/ui/icons';
 
 import { useDomainStatus } from '#/components/publish/form/use-domain-status';
 

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import { Provider as BalancerProvider } from 'react-wrap-balancer';
 
-import { Toaster } from '@and-voila/ui/toaster';
+import { Toaster } from '@av/ui/toaster';
 
 import { ThemeProvider } from '#/components/providers/theme-provider';
 import TopLoader from '#/components/providers/top-loader';

@@ -1,5 +1,5 @@
 {
-  "name": "@and-voila/tailwind-config",
+  "name": "@av/tailwind-config",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -24,9 +24,9 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@and-voila/eslint-config": "workspace:^0.2.0",
-    "@and-voila/prettier-config": "workspace:^0.1.0",
-    "@and-voila/tsconfig": "workspace:^0.1.0",
+    "@av/eslint-config": "workspace:^0.2.0",
+    "@av/prettier-config": "workspace:^0.1.0",
+    "@av/tsconfig": "workspace:^0.1.0",
     "eslint": "^8.56.0",
     "knip": "^4.1.0",
     "prettier": "^3.2.2",
@@ -35,8 +35,8 @@
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@and-voila/eslint-config/base"
+      "@av/eslint-config/base"
     ]
   },
-  "prettier": "@and-voila/prettier-config"
+  "prettier": "@av/prettier-config"
 }

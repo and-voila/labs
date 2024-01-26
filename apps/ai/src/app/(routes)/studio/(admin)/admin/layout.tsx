@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-import { APP_BP } from '@and-voila/utils';
+import { APP_BP } from '@av/utils';
 
 import { isAdmin } from '#/lib/admin';
 import { authOptions } from '#/lib/auth';

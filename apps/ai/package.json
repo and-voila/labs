@@ -1,5 +1,5 @@
 {
-  "name": "@and-voila/ai",
+  "name": "@av/ai",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -19,11 +19,11 @@
     "schema": "./src/prisma/schema.prisma"
   },
   "dependencies": {
-    "@and-voila/db": "workspace:^0.1.0",
-    "@and-voila/editor": "workspace:^0.1.0",
-    "@and-voila/email": "workspace:^0.1.0",
-    "@and-voila/ui": "workspace:^0.1.0",
-    "@and-voila/utils": "workspace:^0.1.0",
+    "@av/db": "workspace:^0.1.0",
+    "@av/editor": "workspace:^0.1.0",
+    "@av/email": "workspace:^0.1.0",
+    "@av/ui": "workspace:^0.1.0",
+    "@av/utils": "workspace:^0.1.0",
     "@fontsource/inter": "^5.0.16",
     "@hocuspocus/provider": "^2.9.0",
     "@hookform/resolvers": "^3.3.4",
@@ -125,10 +125,10 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
-    "@and-voila/eslint-config": "workspace:^0.2.0",
-    "@and-voila/prettier-config": "workspace:^0.1.0",
-    "@and-voila/tailwind-config": "workspace:^0.1.0",
-    "@and-voila/tsconfig": "workspace:^0.1.0",
+    "@av/eslint-config": "workspace:^0.2.0",
+    "@av/prettier-config": "workspace:^0.1.0",
+    "@av/tailwind-config": "workspace:^0.1.0",
+    "@av/tsconfig": "workspace:^0.1.0",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.11.1",
     "@types/react": "^18.2.48",
@@ -147,12 +147,12 @@
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@and-voila/eslint-config/base",
-      "@and-voila/eslint-config/nextjs",
-      "@and-voila/eslint-config/react"
+      "@av/eslint-config/base",
+      "@av/eslint-config/nextjs",
+      "@av/eslint-config/react"
     ]
   },
-  "prettier": "@and-voila/prettier-config",
+  "prettier": "@av/prettier-config",
   "optionalDependencies": {
     "bufferutil": "^4.0.8"
   }

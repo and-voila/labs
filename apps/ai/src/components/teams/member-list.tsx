@@ -3,7 +3,7 @@ import type { GetTeamMemberResult } from '#/lib/operations/teams/get-team-member
 
 import React from 'react';
 
-import { Badge } from '@and-voila/ui/badge';
+import { Badge } from '@av/ui/badge';
 
 import { InvitesActions } from './invites-actions';
 import { MemberActions } from './member-actions';

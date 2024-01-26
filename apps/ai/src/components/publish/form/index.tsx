@@ -8,10 +8,10 @@ import { useParams, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { useFormStatus } from 'react-dom';
 
-import { cn } from '@and-voila/ui';
-import { buttonVariants } from '@and-voila/ui/button';
-import { Icons } from '@and-voila/ui/icons';
-import { toast } from '@and-voila/ui/use-toast';
+import { cn } from '@av/ui';
+import { buttonVariants } from '@av/ui/button';
+import { Icons } from '@av/ui/icons';
+import { toast } from '@av/ui/use-toast';
 
 import DomainConfiguration from '#/components/publish/form/domain-configuration';
 import DomainStatus from '#/components/publish/form/domain-status';

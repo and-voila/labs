@@ -3,7 +3,7 @@
 import { useCallback } from 'react';
 import { signOut } from 'next-auth/react';
 
-import { buttonVariants } from '@and-voila/ui/button';
+import { buttonVariants } from '@av/ui/button';
 
 const SignOutButton = () => {
   const handleSignOut = useCallback(() => {

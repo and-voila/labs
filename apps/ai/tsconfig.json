@@ -1,5 +1,5 @@
 {
-  "extends": "@and-voila/tsconfig/base.json",
+  "extends": "@av/tsconfig/base.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

@@ -1,5 +1,5 @@
 {
-  "name": "@and-voila/ui",
+  "name": "@av/ui",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -74,10 +74,10 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@and-voila/eslint-config": "workspace:^0.2.0",
-    "@and-voila/prettier-config": "workspace:^0.1.0",
-    "@and-voila/tailwind-config": "workspace:^0.1.0",
-    "@and-voila/tsconfig": "workspace:^0.1.0",
+    "@av/eslint-config": "workspace:^0.2.0",
+    "@av/prettier-config": "workspace:^0.1.0",
+    "@av/tailwind-config": "workspace:^0.1.0",
+    "@av/tsconfig": "workspace:^0.1.0",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "eslint": "^8.56.0",
@@ -92,9 +92,9 @@
   },
   "eslintConfig": {
     "extends": [
-      "@and-voila/eslint-config/base",
-      "@and-voila/eslint-config/react"
+      "@av/eslint-config/base",
+      "@av/eslint-config/react"
     ]
   },
-  "prettier": "@and-voila/prettier-config"
+  "prettier": "@av/prettier-config"
 }

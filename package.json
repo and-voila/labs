@@ -1,5 +1,5 @@
 {
-  "name": "@and-voila/turbo",
+  "name": "@av/turbo",
   "private": true,
   "engines": {
     "node": ">=20.10"
@@ -22,7 +22,7 @@
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
-    "@and-voila/prettier-config": "workspace:^0.1.0",
+    "@av/prettier-config": "workspace:^0.1.0",
     "@turbo/gen": "^1.11.3",
     "knip": "^4.1.0",
     "prettier": "^3.2.2",
@@ -30,7 +30,7 @@
     "turbo": "^1.11.3",
     "typescript": "^5.3.3"
   },
-  "prettier": "@and-voila/prettier-config",
+  "prettier": "@av/prettier-config",
   "pnpm": {
     "overrides": {
       "@auth/core": "0.20.0"

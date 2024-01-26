@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { Button } from '@and-voila/ui/button';
-import { APP_BP } from '@and-voila/utils';
+import { Button } from '@av/ui/button';
+import { APP_BP } from '@av/utils';
 
 import { db } from '#/lib/db';
 import { getTeam } from '#/lib/operations/teams/get-current-team';

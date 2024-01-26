@@ -6,11 +6,11 @@ import { useRouter } from 'next/navigation';
 import { WebSocketStatus } from '@hocuspocus/provider';
 import DOMPurify from 'isomorphic-dompurify';
 
-import { Button } from '@and-voila/ui/button';
-import { Card, CardContent, CardHeader } from '@and-voila/ui/card';
-import { Icons } from '@and-voila/ui/icons';
-import { toast } from '@and-voila/ui/use-toast';
-import { APP_BP } from '@and-voila/utils';
+import { Button } from '@av/ui/button';
+import { Card, CardContent, CardHeader } from '@av/ui/card';
+import { Icons } from '@av/ui/icons';
+import { toast } from '@av/ui/use-toast';
+import { APP_BP } from '@av/utils';
 
 import type { EditorUser } from './types';
 

@@ -6,16 +6,16 @@ import { useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 
-import { AvatarFallback } from '@and-voila/ui/avatar';
+import { AvatarFallback } from '@av/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@and-voila/ui/dropdown-menu';
-import { Icons } from '@and-voila/ui/icons';
-import { APP_BP, randomElement } from '@and-voila/utils';
+} from '@av/ui/dropdown-menu';
+import { Icons } from '@av/ui/icons';
+import { APP_BP, randomElement } from '@av/utils';
 
 import { userColors } from '#/lib/tiptap/constants';
 

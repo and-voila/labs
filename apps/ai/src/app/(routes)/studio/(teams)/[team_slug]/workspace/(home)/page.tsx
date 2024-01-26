@@ -3,8 +3,8 @@ import type { SVGProps } from 'react';
 
 import Link from 'next/link';
 
-import { cn } from '@and-voila/ui';
-import { buttonVariants } from '@and-voila/ui/button';
+import { cn } from '@av/ui';
+import { buttonVariants } from '@av/ui/button';
 import {
   Card,
   CardContent,
@@ -12,9 +12,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@and-voila/ui/card';
-import { Icons } from '@and-voila/ui/icons';
-import { APP_BP } from '@and-voila/utils';
+} from '@av/ui/card';
+import { Icons } from '@av/ui/icons';
+import { APP_BP } from '@av/utils';
 
 import { siteConfig } from '#/config/site';
 

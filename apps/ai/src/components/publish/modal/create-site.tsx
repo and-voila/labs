@@ -6,10 +6,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useFormStatus } from 'react-dom';
 
-import { cn } from '@and-voila/ui';
-import { Icons } from '@and-voila/ui/icons';
-import { toast } from '@and-voila/ui/use-toast';
-import { APP_BP } from '@and-voila/utils';
+import { cn } from '@av/ui';
+import { Icons } from '@av/ui/icons';
+import { toast } from '@av/ui/use-toast';
+import { APP_BP } from '@av/utils';
 
 import { createSite } from '#/lib/actions/publish/publish-actions';
 

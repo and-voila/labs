@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 
 import { useCallback } from 'react';
 
-import { Button } from '@and-voila/ui/button';
+import { Button } from '@av/ui/button';
 
 import { useModal } from '#/components/publish/modal/provider';
 

@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 export const Textarea = forwardRef<
   HTMLTextAreaElement,

@@ -10,9 +10,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@and-voila/ui/card';
-import { Icons } from '@and-voila/ui/icons';
-import { APP_BP } from '@and-voila/utils';
+} from '@av/ui/card';
+import { Icons } from '@av/ui/icons';
+import { APP_BP } from '@av/utils';
 
 import { siteConfig } from '#/config/site';
 

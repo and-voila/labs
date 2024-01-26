@@ -4,8 +4,8 @@
 
 import { useCallback, useState } from 'react';
 
-import { Icons } from '@and-voila/ui/icons';
-import { Switch } from '@and-voila/ui/switch';
+import { Icons } from '@av/ui/icons';
+import { Switch } from '@av/ui/switch';
 
 interface Frequency {
   value: string;

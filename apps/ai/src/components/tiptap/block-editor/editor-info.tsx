@@ -2,7 +2,7 @@ import type { WebSocketStatus } from '@hocuspocus/provider';
 
 import { memo } from 'react';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 import type { EditorUser } from './types';
 

@@ -5,7 +5,7 @@ import { env } from '#/env';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 
-import { APP_BP } from '@and-voila/utils';
+import { APP_BP } from '@av/utils';
 
 import { authOptions } from '#/lib/auth';
 import { SITE_URL } from '#/lib/const';

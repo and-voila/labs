@@ -1,5 +1,5 @@
 {
-  "name": "@and-voila/db",
+  "name": "@av/db",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -22,9 +22,9 @@
     "drizzle-orm": "^0.29.3"
   },
   "devDependencies": {
-    "@and-voila/eslint-config": "workspace:^0.2.0",
-    "@and-voila/prettier-config": "workspace:^0.1.0",
-    "@and-voila/tsconfig": "workspace:^0.1.0",
+    "@av/eslint-config": "workspace:^0.2.0",
+    "@av/prettier-config": "workspace:^0.1.0",
+    "@av/tsconfig": "workspace:^0.1.0",
     "dotenv": "^16.3.1",
     "drizzle-kit": "^0.20.10",
     "eslint": "^8.56.0",
@@ -36,8 +36,8 @@
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@and-voila/eslint-config/base"
+      "@av/eslint-config/base"
     ]
   },
-  "prettier": "@and-voila/prettier-config"
+  "prettier": "@av/prettier-config"
 }

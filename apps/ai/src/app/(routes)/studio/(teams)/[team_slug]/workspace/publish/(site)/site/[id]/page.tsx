@@ -4,9 +4,9 @@ import type { Metadata } from 'next';
 
 import { notFound, redirect } from 'next/navigation';
 
-import { Icons } from '@and-voila/ui/icons';
-import { Separator } from '@and-voila/ui/separator';
-import { APP_BP } from '@and-voila/utils';
+import { Icons } from '@av/ui/icons';
+import { Separator } from '@av/ui/separator';
+import { APP_BP } from '@av/utils';
 
 import { siteConfig } from '#/config/site';
 

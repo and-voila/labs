@@ -5,9 +5,9 @@ import type { Team } from '#/lib/operations/teams/get-teams';
 import React, { startTransition, useCallback, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { cn } from '@and-voila/ui';
-import { Avatar, AvatarFallback, AvatarImage } from '@and-voila/ui/avatar';
-import { Button } from '@and-voila/ui/button';
+import { cn } from '@av/ui';
+import { Avatar, AvatarFallback, AvatarImage } from '@av/ui/avatar';
+import { Button } from '@av/ui/button';
 import {
   Command,
   CommandEmpty,
@@ -16,7 +16,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '@and-voila/ui/command';
+} from '@av/ui/command';
 import {
   Dialog,
   DialogContent,
@@ -24,10 +24,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@and-voila/ui/dialog';
-import { Icons } from '@and-voila/ui/icons';
-import { Popover, PopoverContent, PopoverTrigger } from '@and-voila/ui/popover';
-import { APP_BP, randomElement } from '@and-voila/utils';
+} from '@av/ui/dialog';
+import { Icons } from '@av/ui/icons';
+import { Popover, PopoverContent, PopoverTrigger } from '@av/ui/popover';
+import { APP_BP, randomElement } from '@av/utils';
 
 import { userColors } from '#/lib/tiptap/constants';
 
