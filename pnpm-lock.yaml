@@ -339,6 +339,12 @@ importers:
 
   packages/editor:
     dependencies:
+      '@av/ui':
+        specifier: workspace:^0.1.0
+        version: link:../ui
+      '@av/utils':
+        specifier: workspace:^0.1.0
+        version: link:../utils
       '@fontsource/inter':
         specifier: ^5.0.16
         version: 5.0.16

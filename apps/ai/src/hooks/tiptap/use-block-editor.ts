@@ -1,7 +1,6 @@
 import { env } from '#/env';
 
 import type { TiptapCollabProvider } from '@hocuspocus/provider';
-import type { EditorUser } from '#/components/tiptap/block-editor/types';
 import type * as Y from 'yjs';
 
 import { useContext, useEffect, useMemo, useState } from 'react';
@@ -11,15 +10,13 @@ import Collaboration from '@tiptap/extension-collaboration';
 import CollaborationCursor from '@tiptap/extension-collaboration-cursor';
 import { useEditor } from '@tiptap/react';
 
+import type { EditorUser } from '@av/editor/types';
+import { userColors, userNames } from '@av/editor/constants';
+import { ExtensionKit } from '@av/editor/extension-kit';
+import { initialContent } from '@av/editor/initial-content';
 import { randomElement } from '@av/utils';
 
-import { userColors, userNames } from '#/lib/tiptap/constants';
-import { initialContent } from '#/lib/tiptap/data/initial-content';
-
-import { EditorContext } from '#/context/tiptap/editor-context';
-import { ExtensionKit } from '#/extensions/extension-kit';
-
-import { useSidebar } from './use-sidebar';
+import { AiEditorContext } from '#/context/ai-editor-context';
 
 const TIPTAP_AI_APP_ID = env.NEXT_PUBLIC_TIPTAP_AI_APP_ID;
 const TIPTAP_AI_BASE_URL =
@@ -36,11 +33,10 @@ export const useBlockEditor = ({
   provider?: TiptapCollabProvider | null | undefined;
   user: EditorUser;
 }) => {
-  const leftSidebar = useSidebar();
   const [collabState, setCollabState] = useState<WebSocketStatus>(
     WebSocketStatus.Connecting,
   );
-  const { setIsAiLoading, setAiError } = useContext(EditorContext);
+  const { setIsAiLoading, setAiError } = useContext(AiEditorContext);
 
   const randomName = useMemo(() => randomElement(userNames), []);
   const randomColor = useMemo(() => randomElement(userColors), []);
@@ -134,5 +130,5 @@ export const useBlockEditor = ({
   // @ts-expect-error TODO:
   window.editor = editor;
 
-  return { editor, users, characterCount, collabState, leftSidebar };
+  return { editor, users, characterCount, collabState };
 };

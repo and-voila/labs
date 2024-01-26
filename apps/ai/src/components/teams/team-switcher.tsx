@@ -5,6 +5,7 @@ import type { Team } from '#/lib/operations/teams/get-teams';
 import React, { startTransition, useCallback, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
+import { userColors } from '@av/editor/constants';
 import { cn } from '@av/ui';
 import { Avatar, AvatarFallback, AvatarImage } from '@av/ui/avatar';
 import { Button } from '@av/ui/button';
@@ -28,8 +29,6 @@ import {
 import { Icons } from '@av/ui/icons';
 import { Popover, PopoverContent, PopoverTrigger } from '@av/ui/popover';
 import { APP_BP, randomElement } from '@av/utils';
-
-import { userColors } from '#/lib/tiptap/constants';
 
 import { NewTeamForm } from '#/components/forms/new-team-form';
 

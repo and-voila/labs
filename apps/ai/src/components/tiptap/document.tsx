@@ -12,9 +12,9 @@ import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import * as Y from 'yjs';
 
-import type { EditorUser } from './block-editor/types';
+import type { EditorUser } from '@av/editor/types';
 
-import AiEditor from './block-editor/ai-editor';
+import AiEditor from './ai-editor';
 
 export interface AiState {
   isAiLoading: boolean;
