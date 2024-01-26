@@ -10,13 +10,18 @@ const connectionString = `${process.env.DATABASE_URL}`;
 
 const pool = new Pool({ connectionString });
 const adapter = new PrismaNeon(pool);
-const prisma = new PrismaClient({ adapter });
+
+const prismaClientSingleton = () => {
+  return new PrismaClient({ adapter });
+};
 
 declare global {
   // eslint-disable-next-line no-var
   var prisma: PrismaClient | undefined;
 }
 
-export const db = globalThis.prisma ?? prisma;
+const prisma = globalThis.prisma ?? prismaClientSingleton();
 
-if (process.env.NODE_ENV !== 'production') globalThis.prisma = db;
+export const db = prisma;
+
+if (process.env.NODE_ENV !== 'production') globalThis.prisma = prisma;
