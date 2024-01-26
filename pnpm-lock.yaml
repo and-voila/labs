@@ -486,9 +486,147 @@ importers:
 
   packages/editor:
     dependencies:
+      '@fontsource/inter':
+        specifier: ^5.0.16
+        version: 5.0.16
+      '@hocuspocus/provider':
+        specifier: ^2.9.0
+        version: 2.9.0(bufferutil@4.0.8)(y-protocols@1.0.6)(yjs@13.6.11)
+      '@radix-ui/react-dropdown-menu':
+        specifier: ^2.0.6
+        version: 2.0.6(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-popover':
+        specifier: ^1.0.7
+        version: 1.0.7(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-slot':
+        specifier: ^1.0.2
+        version: 1.0.2(@types/react@18.2.48)(react@18.2.0)
+      '@svgr/webpack':
+        specifier: ^8.1.0
+        version: 8.1.0(typescript@5.3.3)
+      '@tippyjs/react':
+        specifier: ^4.2.6
+        version: 4.2.6(react-dom@18.2.0)(react@18.2.0)
+      '@tiptap-pro/extension-ai':
+        specifier: ^2.6.0
+        version: 2.6.3(@tiptap/core@2.1.16)(@tiptap/extension-image@2.1.16)(@tiptap/pm@2.1.16)(prosemirror-state@1.4.3)(prosemirror-view@1.32.7)
+      '@tiptap-pro/extension-drag-handle':
+        specifier: ^2.6.0
+        version: 2.6.3(@tiptap-pro/extension-node-range@2.6.3)(@tiptap/core@2.1.16)(@tiptap/extension-collaboration@2.1.16)(@tiptap/pm@2.1.16)(y-prosemirror@1.2.2)
+      '@tiptap-pro/extension-drag-handle-react':
+        specifier: ^2.6.0
+        version: 2.6.3(@tiptap-pro/extension-drag-handle@2.6.3)(@tiptap/pm@2.1.16)(@tiptap/react@2.1.16)(react-dom@18.2.0)(react@18.2.0)
+      '@tiptap-pro/extension-emoji':
+        specifier: ^2.6.0
+        version: 2.6.3(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)(@tiptap/suggestion@2.1.16)(emojibase@15.3.0)
+      '@tiptap-pro/extension-file-handler':
+        specifier: ^2.6.0
+        version: 2.6.3(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap-pro/extension-mathematics':
+        specifier: ^2.6.0
+        version: 2.6.3(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)(katex@0.16.9)
+      '@tiptap-pro/extension-node-range':
+        specifier: ^2.6.0
+        version: 2.6.3(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap-pro/extension-table-of-content':
+        specifier: ^2.4.1
+        version: 2.4.1(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap-pro/extension-unique-id':
+        specifier: ^2.6.0
+        version: 2.6.3(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
       '@tiptap/core':
         specifier: ^2.1.16
         version: 2.1.16(@tiptap/pm@2.1.16)
+      '@tiptap/extension-bullet-list':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-character-count':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap/extension-code-block':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap/extension-code-block-lowlight':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/extension-code-block@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap/extension-collaboration':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)(y-prosemirror@1.2.2)
+      '@tiptap/extension-collaboration-cursor':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(y-prosemirror@1.2.2)
+      '@tiptap/extension-color':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/extension-text-style@2.1.16)
+      '@tiptap/extension-document':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-dropcursor':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap/extension-focus':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap/extension-font-family':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/extension-text-style@2.1.16)
+      '@tiptap/extension-heading':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-highlight':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-horizontal-rule':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap/extension-image':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-link':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap/extension-ordered-list':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-paragraph':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-placeholder':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap/extension-subscript':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-superscript':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-table':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap/extension-table-header':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-table-row':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-task-item':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      '@tiptap/extension-task-list':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-text-align':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-text-style':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-typography':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
+      '@tiptap/extension-underline':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)
       '@tiptap/pm':
         specifier: ^2.1.16
         version: 2.1.16
@@ -498,6 +636,42 @@ importers:
       '@tiptap/starter-kit':
         specifier: ^2.1.16
         version: 2.1.16(@tiptap/pm@2.1.16)
+      '@tiptap/suggestion':
+        specifier: ^2.1.16
+        version: 2.1.16(@tiptap/core@2.1.16)(@tiptap/pm@2.1.16)
+      cal-sans:
+        specifier: ^1.0.1
+        version: 1.0.1
+      lowlight:
+        specifier: ^3.1.0
+        version: 3.1.0
+      lucide-react:
+        specifier: ^0.309.0
+        version: 0.309.0(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-colorful:
+        specifier: ^5.6.1
+        version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-hot-toast:
+        specifier: ^2.4.1
+        version: 2.4.1(csstype@3.1.3)(react-dom@18.2.0)(react@18.2.0)
+      tippy.js:
+        specifier: ^6.3.7
+        version: 6.3.7
+      uuid:
+        specifier: ^9.0.1
+        version: 9.0.1
+      y-prosemirror:
+        specifier: ^1.2.1
+        version: 1.2.2(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.32.7)(y-protocols@1.0.6)(yjs@13.6.11)
+      yjs:
+        specifier: ^13.6.10
+        version: 13.6.11
     devDependencies:
       '@av/eslint-config':
         specifier: workspace:^0.2.0
@@ -508,6 +682,18 @@ importers:
       '@av/tsconfig':
         specifier: workspace:^0.1.0
         version: link:../../tooling/typescript
+      '@types/node':
+        specifier: ^20.11.1
+        version: 20.11.6
+      '@types/react':
+        specifier: ^18.2.48
+        version: 18.2.48
+      '@types/react-dom':
+        specifier: ^18.2.18
+        version: 18.2.18
+      '@types/uuid':
+        specifier: ^9.0.7
+        version: 9.0.8
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
