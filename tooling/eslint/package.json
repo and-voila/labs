@@ -1,5 +1,5 @@
 {
-  "name": "@and-voila/eslint-config",
+  "name": "@av/eslint-config",
   "version": "0.2.0",
   "private": true,
   "license": "MIT",
@@ -30,8 +30,8 @@
     "eslint-plugin-unicorn": "^50.0.1"
   },
   "devDependencies": {
-    "@and-voila/prettier-config": "workspace:^0.1.0",
-    "@and-voila/tsconfig": "workspace:^0.1.0",
+    "@av/prettier-config": "workspace:^0.1.0",
+    "@av/tsconfig": "workspace:^0.1.0",
     "@types/eslint": "^8.56.0",
     "eslint": "^8.56.0",
     "knip": "^4.1.0",
@@ -44,5 +44,5 @@
       "./base.js"
     ]
   },
-  "prettier": "@and-voila/prettier-config"
+  "prettier": "@av/prettier-config"
 }

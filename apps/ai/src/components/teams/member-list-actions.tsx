@@ -2,8 +2,8 @@
 
 import { MembershipRole } from '@prisma/client';
 
-import { Button } from '@and-voila/ui/button';
-import { Icons } from '@and-voila/ui/icons';
+import { Button } from '@av/ui/button';
+import { Icons } from '@av/ui/icons';
 
 import { AddTeamMember } from './add-team-member';
 

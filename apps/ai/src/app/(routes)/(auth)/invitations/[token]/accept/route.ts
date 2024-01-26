@@ -2,7 +2,7 @@ import type { NextRequest } from 'next/server';
 
 import { notFound, redirect } from 'next/navigation';
 
-import { APP_BP } from '@and-voila/utils';
+import { APP_BP } from '@av/utils';
 
 import { acceptInvitationByToken } from '#/lib/operations/teams/members/accept-invitation';
 import { getInvitationByToken } from '#/lib/operations/teams/members/get-invitation';

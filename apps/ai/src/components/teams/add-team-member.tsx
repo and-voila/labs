@@ -8,7 +8,7 @@ import { MembershipRole } from '@prisma/client';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@and-voila/ui/button';
+import { Button } from '@av/ui/button';
 import {
   Form,
   FormControl,
@@ -16,15 +16,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@and-voila/ui/form';
-import { Input } from '@and-voila/ui/input';
+} from '@av/ui/form';
+import { Input } from '@av/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@and-voila/ui/select';
+} from '@av/ui/select';
 import {
   Sheet,
   SheetClose,
@@ -34,8 +34,8 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@and-voila/ui/sheet';
-import { toast } from '@and-voila/ui/use-toast';
+} from '@av/ui/sheet';
+import { toast } from '@av/ui/use-toast';
 
 import { inviteMembers } from '#/lib/actions/teams/invite-members';
 

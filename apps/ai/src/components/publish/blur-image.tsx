@@ -5,7 +5,7 @@ import type { ComponentProps } from 'react';
 import { useCallback, useState } from 'react';
 import Image from 'next/image';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 export default function BlurImage(props: ComponentProps<typeof Image>) {
   const [isLoading, setLoading] = useState(true);

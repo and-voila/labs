@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useFormStatus } from 'react-dom';
 
-import { cn } from '@and-voila/ui';
-import { buttonVariants } from '@and-voila/ui/button';
-import { Icons } from '@and-voila/ui/icons';
-import { toast } from '@and-voila/ui/use-toast';
-import { APP_BP } from '@and-voila/utils';
+import { cn } from '@av/ui';
+import { buttonVariants } from '@av/ui/button';
+import { Icons } from '@av/ui/icons';
+import { toast } from '@av/ui/use-toast';
+import { APP_BP } from '@av/utils';
 
 import { deleteSite } from '#/lib/actions/publish/publish-actions';
 

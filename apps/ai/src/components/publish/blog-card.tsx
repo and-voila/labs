@@ -2,7 +2,7 @@ import type { Post } from '@prisma/client';
 
 import Link from 'next/link';
 
-import { toDateString } from '@and-voila/utils';
+import { toDateString } from '@av/utils';
 
 import { placeholderBlurhash } from '#/lib/utils';
 

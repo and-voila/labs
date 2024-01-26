@@ -3,9 +3,9 @@ import type { Metadata, NextPage } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { Alert, AlertDescription, AlertTitle } from '@and-voila/ui/alert';
-import { Icons } from '@and-voila/ui/icons';
-import { APP_BP } from '@and-voila/utils';
+import { Alert, AlertDescription, AlertTitle } from '@av/ui/alert';
+import { Icons } from '@av/ui/icons';
+import { APP_BP } from '@av/utils';
 
 import { siteConfig } from '#/config/site';
 

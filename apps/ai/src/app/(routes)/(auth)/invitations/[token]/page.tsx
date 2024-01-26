@@ -1,17 +1,17 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { cn } from '@and-voila/ui';
-import { Alert, AlertDescription, AlertTitle } from '@and-voila/ui/alert';
-import { buttonVariants } from '@and-voila/ui/button';
+import { cn } from '@av/ui';
+import { Alert, AlertDescription, AlertTitle } from '@av/ui/alert';
+import { buttonVariants } from '@av/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@and-voila/ui/card';
-import { Icons } from '@and-voila/ui/icons';
+} from '@av/ui/card';
+import { Icons } from '@av/ui/icons';
 
 import { siteConfig } from '#/config/site';
 

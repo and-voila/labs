@@ -2,7 +2,7 @@ import type { HTMLProps } from 'react';
 
 import { forwardRef } from 'react';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 export const Spinner = forwardRef<HTMLDivElement, HTMLProps<HTMLDivElement>>(
   ({ className, ...rest }, ref) => {

@@ -5,8 +5,8 @@ import type { TeamSubscriptionPlan } from '#/lib/types';
 import { useCallback, useState } from 'react';
 import Balancer from 'react-wrap-balancer';
 
-import { cn } from '@and-voila/ui';
-import { Switch } from '@and-voila/ui/switch';
+import { cn } from '@av/ui';
+import { Switch } from '@av/ui/switch';
 
 import { pricingData } from '#/config/subscriptions';
 

@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 
 import { Provider as BalancerProvider } from 'react-wrap-balancer';
 
-import { Toaster } from '@and-voila/ui/toaster';
+import { Toaster } from '@av/ui/toaster';
 
 import { ConfettiProvider } from '#/components/providers/confetti-provider';
 import { ThemeProvider } from '#/components/providers/theme-provider';

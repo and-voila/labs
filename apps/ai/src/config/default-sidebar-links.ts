@@ -1,8 +1,8 @@
 import type { SidebarLink } from '#/lib/types';
 
-import type { IconProps } from '@and-voila/ui/icons';
-import { Icons } from '@and-voila/ui/icons';
-import { APP_BP } from '@and-voila/utils';
+import type { IconProps } from '@av/ui/icons';
+import { Icons } from '@av/ui/icons';
+import { APP_BP } from '@av/utils';
 
 export const defaultSidebarLinks = (
   activeTeamSlug: string | null | undefined,

@@ -7,7 +7,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { Button } from '@and-voila/ui/button';
+import { Button } from '@av/ui/button';
 import {
   Card,
   CardContent,
@@ -15,16 +15,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@and-voila/ui/card';
+} from '@av/ui/card';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@and-voila/ui/form';
-import { Input } from '@and-voila/ui/input';
-import { toast } from '@and-voila/ui/use-toast';
+} from '@av/ui/form';
+import { Input } from '@av/ui/input';
+import { toast } from '@av/ui/use-toast';
 
 import { siteConfig } from '#/config/site';
 

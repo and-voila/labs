@@ -1,10 +1,10 @@
-import '@and-voila/ui/styles/globals.css';
+import '@av/ui/styles/globals.css';
 
 import type { Viewport } from 'next';
 
 import { fontBricolage } from 'public/fonts';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 import { DomainProviders } from '#/components/providers/domain-providers';
 

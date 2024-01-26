@@ -5,8 +5,8 @@ import type { Post, Site } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Icons } from '@and-voila/ui/icons';
-import { APP_BP } from '@and-voila/utils';
+import { Icons } from '@av/ui/icons';
+import { APP_BP } from '@av/utils';
 
 import { placeholderBlurhash } from '#/lib/utils';
 

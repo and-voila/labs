@@ -1,6 +1,6 @@
 'use server';
 
-import VerificationRequestEmail from '@and-voila/email/verification-request-email';
+import VerificationRequestEmail from '@av/email/verification-request-email';
 
 import { siteConfig } from '#/config/site';
 

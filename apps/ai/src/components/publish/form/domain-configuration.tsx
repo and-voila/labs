@@ -4,8 +4,8 @@ import { env } from '#/env';
 
 import { useCallback, useState } from 'react';
 
-import { cn } from '@and-voila/ui';
-import { Icons } from '@and-voila/ui/icons';
+import { cn } from '@av/ui';
+import { Icons } from '@av/ui/icons';
 
 import { getSubdomain } from '#/lib/actions/publish/domains';
 

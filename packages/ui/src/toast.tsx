@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ToastPrimitives from '@radix-ui/react-toast';
 import { cva } from 'class-variance-authority';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 import { Icons } from './icons';
 

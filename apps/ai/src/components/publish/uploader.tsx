@@ -4,9 +4,9 @@ import type { ChangeEvent } from 'react';
 
 import { useCallback, useMemo, useState } from 'react';
 
-import { Button } from '@and-voila/ui/button';
-import { Icons } from '@and-voila/ui/icons';
-import { toast } from '@and-voila/ui/use-toast';
+import { Button } from '@av/ui/button';
+import { Icons } from '@av/ui/icons';
+import { toast } from '@av/ui/use-toast';
 
 export default function Uploader() {
   const [data, setData] = useState<{

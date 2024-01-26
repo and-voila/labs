@@ -1,15 +1,15 @@
 import * as React from 'react';
 
-import { cn } from '@and-voila/ui';
-import { Button } from '@and-voila/ui/button';
+import { cn } from '@av/ui';
+import { Button } from '@av/ui/button';
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from '@and-voila/ui/command';
-import { Popover, PopoverContent, PopoverTrigger } from '@and-voila/ui/popover';
+} from '@av/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@av/ui/popover';
 
 import { Icons } from './icons';
 

@@ -11,7 +11,7 @@ import Collaboration from '@tiptap/extension-collaboration';
 import CollaborationCursor from '@tiptap/extension-collaboration-cursor';
 import { useEditor } from '@tiptap/react';
 
-import { randomElement } from '@and-voila/utils';
+import { randomElement } from '@av/utils';
 
 import { userColors, userNames } from '#/lib/tiptap/constants';
 import { initialContent } from '#/lib/tiptap/data/initial-content';

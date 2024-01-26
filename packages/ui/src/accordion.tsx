@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 import { Icons } from './icons';
 

@@ -5,7 +5,7 @@ import type {
 
 import useSWR from 'swr';
 
-import { fetcher } from '@and-voila/utils';
+import { fetcher } from '@av/utils';
 
 export function useDomainStatus({ domain }: { domain: string }) {
   const { data, isValidating } = useSWR<{

@@ -6,8 +6,8 @@ import { cloneElement, isValidElement } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { cn } from '@and-voila/ui';
-import { buttonVariants } from '@and-voila/ui/button';
+import { cn } from '@av/ui';
+import { buttonVariants } from '@av/ui/button';
 
 interface SidebarProps {
   links: SidebarLink[];

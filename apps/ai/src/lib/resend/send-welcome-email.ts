@@ -1,7 +1,7 @@
 'use server';
 
-import WelcomeEmail from '@and-voila/email/welcome-email';
-import { APP_BP } from '@and-voila/utils';
+import WelcomeEmail from '@av/email/welcome-email';
+import { APP_BP } from '@av/utils';
 
 import { siteConfig } from '#/config/site';
 

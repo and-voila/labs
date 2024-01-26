@@ -1,12 +1,12 @@
 {
-  "name": "@and-voila/email",
+  "name": "@av/email",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
     "./abuse-report-email": "./src/emails/abuse-report-email.tsx",
-    "./magic-link-email": "./src/emails/magic-link-email.tsx",
+    "./verification-request-email": "./src/emails/verification-request-email.tsx",
     "./team-invite-email": "./src/emails/team-invite-email.tsx",
     "./welcome-email": "./src/emails/welcome-email.tsx"
   },
@@ -20,9 +20,9 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@and-voila/eslint-config": "workspace:^0.2.0",
-    "@and-voila/prettier-config": "workspace:^0.1.0",
-    "@and-voila/tsconfig": "workspace:^0.1.0",
+    "@av/eslint-config": "workspace:^0.2.0",
+    "@av/prettier-config": "workspace:^0.1.0",
+    "@av/tsconfig": "workspace:^0.1.0",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "eslint": "^8.56.0",
@@ -32,12 +32,12 @@
   },
   "eslintConfig": {
     "extends": [
-      "@and-voila/eslint-config/base"
+      "@av/eslint-config/base"
     ]
   },
-  "prettier": "@and-voila/prettier-config",
+  "prettier": "@av/prettier-config",
   "dependencies": {
-    "@and-voila/utils": "workspace:^0.1.0",
+    "@av/utils": "workspace:^0.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-email": "^2.0.0",

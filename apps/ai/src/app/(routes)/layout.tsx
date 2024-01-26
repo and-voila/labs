@@ -1,4 +1,4 @@
-import '@and-voila/ui/styles/globals.css';
+import '@av/ui/styles/globals.css';
 
 import { env } from '#/env';
 
@@ -6,8 +6,8 @@ import type { Viewport } from 'next';
 
 import { fontBricolage } from 'public/fonts';
 
-import { cn } from '@and-voila/ui';
-import { ensureStartsWith } from '@and-voila/utils';
+import { cn } from '@av/ui';
+import { ensureStartsWith } from '@av/utils';
 
 import { siteConfig } from '#/config/site';
 

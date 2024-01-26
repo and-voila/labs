@@ -1,6 +1,6 @@
 'use server';
 
-import { AbuseReportEmail } from '@and-voila/email/abuse-report-email';
+import { AbuseReportEmail } from '@av/email/abuse-report-email';
 
 import { siteConfig } from '#/config/site';
 

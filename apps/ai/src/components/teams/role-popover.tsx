@@ -3,17 +3,17 @@
 import React, { useCallback } from 'react';
 import { MembershipRole } from '@prisma/client';
 
-import { cn } from '@and-voila/ui';
-import { Button } from '@and-voila/ui/button';
+import { cn } from '@av/ui';
+import { Button } from '@av/ui/button';
 import {
   Command,
   CommandGroup,
   CommandItem,
   CommandList,
-} from '@and-voila/ui/command';
-import { Icons } from '@and-voila/ui/icons';
-import { Popover, PopoverContent, PopoverTrigger } from '@and-voila/ui/popover';
-import { toast } from '@and-voila/ui/use-toast';
+} from '@av/ui/command';
+import { Icons } from '@av/ui/icons';
+import { Popover, PopoverContent, PopoverTrigger } from '@av/ui/popover';
+import { toast } from '@av/ui/use-toast';
 
 import { changeRoleAction } from '#/lib/actions/teams/member-list-management';
 

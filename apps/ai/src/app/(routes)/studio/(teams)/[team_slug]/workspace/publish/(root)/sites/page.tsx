@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 
 import { notFound } from 'next/navigation';
 
-import { Separator } from '@and-voila/ui/separator';
-import { APP_BP } from '@and-voila/utils';
+import { Separator } from '@av/ui/separator';
+import { APP_BP } from '@av/utils';
 
 import { siteConfig } from '#/config/site';
 

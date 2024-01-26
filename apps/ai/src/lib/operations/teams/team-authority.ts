@@ -1,6 +1,6 @@
 import { MembershipRole } from '@prisma/client';
 
-import { UnauthorizedError } from '@and-voila/utils/helpers/error-code';
+import { UnauthorizedError } from '@av/utils/helpers/error-code';
 
 import { db } from '#/lib/db';
 

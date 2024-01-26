@@ -6,7 +6,7 @@ import * as React from 'react';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import { cva } from 'class-variance-authority';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 import { Icons } from './icons';
 

@@ -2,7 +2,7 @@ import type { NextRequest } from 'next/server';
 
 import { redirect } from 'next/navigation';
 
-import { APP_BP } from '@and-voila/utils';
+import { APP_BP } from '@av/utils';
 
 interface Props {
   params: {

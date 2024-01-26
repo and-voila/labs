@@ -2,11 +2,11 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { APP_BP } from '@and-voila/utils';
+import { APP_BP } from '@av/utils';
 import {
   InternalServerError,
   UnauthorizedError,
-} from '@and-voila/utils/helpers/error-code';
+} from '@av/utils/helpers/error-code';
 
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/operations/user/session';

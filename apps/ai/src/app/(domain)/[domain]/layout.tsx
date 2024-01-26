@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { fontMapper } from 'public/fonts';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 import { getSiteData } from '#/lib/operations/publish/publish-fetchers';
 import { placeholderBlurhash } from '#/lib/utils';

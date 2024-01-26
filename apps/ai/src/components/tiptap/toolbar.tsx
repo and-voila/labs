@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, HTMLProps } from 'react';
 
 import React, { forwardRef } from 'react';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 import type { ButtonProps } from './editor-button';
 

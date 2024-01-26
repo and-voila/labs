@@ -1,11 +1,11 @@
-import { Button } from '@and-voila/ui/button';
-import { Icons } from '@and-voila/ui/icons';
+import { Button } from '@av/ui/button';
+import { Icons } from '@av/ui/icons';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@and-voila/ui/tooltip';
+} from '@av/ui/tooltip';
 
 interface EditorIpStatusIndicatorProps {
   aiContentPercentage: number;

@@ -5,8 +5,8 @@ import type { TeamSubscriptionPlan } from '#/lib/types';
 import * as React from 'react';
 import Link from 'next/link';
 
-import { cn } from '@and-voila/ui';
-import { buttonVariants } from '@and-voila/ui/button';
+import { cn } from '@av/ui';
+import { buttonVariants } from '@av/ui/button';
 import {
   Card,
   CardContent,
@@ -14,8 +14,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@and-voila/ui/card';
-import { APP_BP, formatDate } from '@and-voila/utils';
+} from '@av/ui/card';
+import { APP_BP, formatDate } from '@av/utils';
 
 interface BillingInfoProps extends React.HTMLAttributes<HTMLFormElement> {
   subscriptionPlan: TeamSubscriptionPlan;

@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { cn } from '@and-voila/ui';
-import { APP_BP } from '@and-voila/utils';
+import { cn } from '@av/ui';
+import { APP_BP } from '@av/utils';
 
 export interface NavbarLink {
   href: string;

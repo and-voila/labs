@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { cn } from '@and-voila/ui';
+import { cn } from '@av/ui';
 
 export interface ToggleProps {
   active?: boolean;

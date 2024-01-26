@@ -7,8 +7,8 @@ import { useEffect, useState, useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { cn } from '@and-voila/ui';
-import { buttonVariants } from '@and-voila/ui/button';
+import { cn } from '@av/ui';
+import { buttonVariants } from '@av/ui/button';
 import {
   Card,
   CardContent,
@@ -16,11 +16,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@and-voila/ui/card';
-import { Icons } from '@and-voila/ui/icons';
-import { Input } from '@and-voila/ui/input';
-import { Label } from '@and-voila/ui/label';
-import { toast } from '@and-voila/ui/use-toast';
+} from '@av/ui/card';
+import { Icons } from '@av/ui/icons';
+import { Input } from '@av/ui/input';
+import { Label } from '@av/ui/label';
+import { toast } from '@av/ui/use-toast';
 
 import { siteConfig } from '#/config/site';
 

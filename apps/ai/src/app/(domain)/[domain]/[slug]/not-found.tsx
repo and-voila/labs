@@ -4,9 +4,9 @@ import { headers } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { cn } from '@and-voila/ui';
-import { buttonVariants } from '@and-voila/ui/button';
-import { Icons } from '@and-voila/ui/icons';
+import { cn } from '@av/ui';
+import { buttonVariants } from '@av/ui/button';
+import { Icons } from '@av/ui/icons';
 
 import { getSiteData } from '#/lib/operations/publish/publish-fetchers';
 

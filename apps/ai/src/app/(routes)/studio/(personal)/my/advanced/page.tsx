@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { MembershipRole } from '@prisma/client';
 
-import { APP_BP } from '@and-voila/utils';
+import { APP_BP } from '@av/utils';
 
 import { siteConfig } from '#/config/site';
 

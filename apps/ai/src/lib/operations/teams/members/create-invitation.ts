@@ -1,6 +1,6 @@
 import type { MembershipRole } from '@prisma/client';
 
-import { generateNanoId } from '@and-voila/utils/helpers/id-helper';
+import { generateNanoId } from '@av/utils/helpers/id-helper';
 
 import { db } from '#/lib/db';
 

@@ -2,7 +2,7 @@
 
 import React, { forwardRef, useCallback } from 'react';
 
-import type { DropdownMenuItemProps } from '@and-voila/ui/dropdown-menu';
+import type { DropdownMenuItemProps } from '@av/ui/dropdown-menu';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,16 +13,16 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@and-voila/ui/alert-dialog';
-import { Button } from '@and-voila/ui/button';
+} from '@av/ui/alert-dialog';
+import { Button } from '@av/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@and-voila/ui/dropdown-menu';
-import { Icons } from '@and-voila/ui/icons';
-import { toast } from '@and-voila/ui/use-toast';
+} from '@av/ui/dropdown-menu';
+import { Icons } from '@av/ui/icons';
+import { toast } from '@av/ui/use-toast';
 
 import { deleteInviteAction } from '#/lib/actions/teams/member-list-management';
 

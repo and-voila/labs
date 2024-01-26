@@ -6,9 +6,9 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { cn } from '@and-voila/ui';
-import { Badge } from '@and-voila/ui/badge';
-import { Icons } from '@and-voila/ui/icons';
+import { cn } from '@av/ui';
+import { Badge } from '@av/ui/badge';
+import { Icons } from '@av/ui/icons';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -16,8 +16,8 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '@and-voila/ui/navigation-menu';
-import { APP_BP } from '@and-voila/utils';
+} from '@av/ui/navigation-menu';
+import { APP_BP } from '@av/utils';
 
 interface MainNavigationMenuProps {
   teams?: Team[];

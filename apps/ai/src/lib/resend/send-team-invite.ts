@@ -1,6 +1,6 @@
 'use server';
 
-import { TeamInviteEmail } from '@and-voila/email/team-invite-email';
+import { TeamInviteEmail } from '@av/email/team-invite-email';
 
 import { siteConfig } from '#/config/site';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { MembershipRole } from '@prisma/client';
 
-import { cn } from '@and-voila/ui';
-import { Badge } from '@and-voila/ui/badge';
+import { cn } from '@av/ui';
+import { Badge } from '@av/ui/badge';
 
 interface RoleBadgeProps {
   isPersonal: boolean;

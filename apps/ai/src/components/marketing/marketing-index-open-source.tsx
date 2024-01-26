@@ -2,7 +2,7 @@ import { env } from '#/env';
 
 import Link from 'next/link';
 
-import { Icons } from '@and-voila/ui/icons';
+import { Icons } from '@av/ui/icons';
 
 import { siteConfig } from '#/config/site';
 

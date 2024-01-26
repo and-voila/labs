@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { notFound } from 'next/navigation';
 
-import { APP_BP } from '@and-voila/utils';
+import { APP_BP } from '@av/utils';
 
 import { SITE_URL } from '#/lib/const';
 import { db } from '#/lib/db';
