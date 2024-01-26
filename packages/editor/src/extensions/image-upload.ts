@@ -1,6 +1,6 @@
 import { Node, ReactNodeViewRenderer } from '@tiptap/react';
 
-import { ImageUpload as ImageUploadComponent } from '../components/image-upload/image-upload';
+import { ImageUpload as ImageUploadComponent } from '#editor/components/image-upload/image-upload';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {

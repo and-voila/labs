@@ -1,6 +1,7 @@
 'use client';
 
 import type { HocuspocusProvider } from '@hocuspocus/provider';
+import type { EditorUser } from '#editor/types';
 
 import { Emoji } from '@tiptap-pro/extension-emoji';
 import { FileHandler } from '@tiptap-pro/extension-file-handler';
@@ -24,12 +25,11 @@ import { Underline } from '@tiptap/extension-underline';
 import { StarterKit } from '@tiptap/starter-kit';
 import { common, createLowlight } from 'lowlight';
 
-import type { EditorUser } from '../types';
+import { AiImage } from '#editor/components/ai-image/ai-image';
+import { AiWriter } from '#editor/components/ai-writer/ai-writer';
+import { TableOfContentNode } from '#editor/components/table-of-content-node';
+import { API } from '#editor/lib/api';
 
-import { AiImage } from '../components/ai-image/ai-image';
-import { AiWriter } from '../components/ai-writer/ai-writer';
-import { TableOfContentNode } from '../components/table-of-content-node';
-import { API } from '../lib/api';
 import { BlockquoteFigure } from './blockquote-figure/blockquote-figure';
 // import { PasteFromGoogleDoc } from './PasteFromGoogleDoc'
 import { Document } from './document';

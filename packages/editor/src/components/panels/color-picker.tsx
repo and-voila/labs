@@ -1,9 +1,10 @@
 import { useCallback, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 
-import { themeColors } from '../../lib/constants';
-import { Icon } from '../icon';
-import { Toolbar } from '../toolbar';
+import { Icon } from '#editor/components/icon';
+import { Toolbar } from '#editor/components/toolbar';
+import { themeColors } from '#editor/lib/constants';
+
 import { ColorButton } from './color-button';
 
 export interface ColorPickerProps {

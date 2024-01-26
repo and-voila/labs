@@ -7,14 +7,14 @@ import { NodeViewWrapper } from '@tiptap/react';
 import toast from 'react-hot-toast';
 import { v4 as uuid } from 'uuid';
 
-import { DropdownButton } from '../dropdown';
-import { Button } from '../editor-button';
-import { Icon } from '../icon';
-import { Loader } from '../loader';
-import { Panel, PanelHeadline } from '../panel';
-import { Surface } from '../surface';
-import { Textarea } from '../textarea';
-import { Toolbar } from '../toolbar';
+import { DropdownButton } from '#editor/components/dropdown';
+import { Button } from '#editor/components/editor-button';
+import { Icon } from '#editor/components/icon';
+import { Loader } from '#editor/components/loader';
+import { Panel, PanelHeadline } from '#editor/components/panel';
+import { Surface } from '#editor/components/surface';
+import { Textarea } from '#editor/components/textarea';
+import { Toolbar } from '#editor/components/toolbar';
 
 const imageStyles = [
   { name: 'photorealistic', label: 'Photorealistic', value: 'photorealistic' },

@@ -17,7 +17,11 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "#editor/*": ["../../packages/editor/src/*"]
+    }
   },
   "exclude": ["node_modules", "build", "dist", ".next", "cursor"]
 }

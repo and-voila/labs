@@ -10,7 +10,8 @@ import { ReactRenderer } from '@tiptap/react';
 import Suggestion from '@tiptap/suggestion';
 import tippy from 'tippy.js';
 
-import { MenuList } from '../../components/slash-command/menu-list';
+import { MenuList } from '#editor/components/slash-command/menu-list';
+
 import { GROUPS } from './groups';
 
 const extensionName = 'slashCommand';

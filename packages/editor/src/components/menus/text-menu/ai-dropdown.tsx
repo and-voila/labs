@@ -3,11 +3,11 @@ import type { Tone } from '@tiptap-pro/extension-ai';
 import { useCallback } from 'react';
 import * as Dropdown from '@radix-ui/react-dropdown-menu';
 
-import { languages, tones } from '../../../lib/constants';
-import { DropdownButton } from '../../dropdown';
-import { Icon } from '../../icon';
-import { Surface } from '../../surface';
-import { Toolbar } from '../../toolbar';
+import { DropdownButton } from '#editor/components/dropdown';
+import { Icon } from '#editor/components/icon';
+import { Surface } from '#editor/components/surface';
+import { Toolbar } from '#editor/components/toolbar';
+import { languages, tones } from '#editor/lib/constants';
 
 export interface AIDropdownProps {
   onSimplify: () => void;

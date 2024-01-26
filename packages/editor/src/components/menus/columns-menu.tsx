@@ -1,14 +1,14 @@
+import type { MenuProps } from '#editor/types';
+
 import { useCallback } from 'react';
 import { BubbleMenu as BaseBubbleMenu } from '@tiptap/react';
 import { sticky } from 'tippy.js';
 import { v4 as uuid } from 'uuid';
 
-import type { MenuProps } from '../../types';
-
-import { ColumnLayout } from '../../extensions/multi-column/columns';
-import { getRenderContainer } from '../../lib/utils/get-render-container';
-import { Icon } from '../icon';
-import { Toolbar } from '../toolbar';
+import { Icon } from '#editor/components/icon';
+import { Toolbar } from '#editor/components/toolbar';
+import { ColumnLayout } from '#editor/extensions/multi-column/columns';
+import { getRenderContainer } from '#editor/lib/utils/get-render-container';
 
 export const ColumnsMenu = ({ editor, appendTo }: MenuProps) => {
   const getReferenceClientRect = useCallback(() => {

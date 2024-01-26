@@ -1,7 +1,7 @@
-import { Icon } from '../icon';
-import { Surface } from '../surface';
-import { Toolbar } from '../toolbar';
-import Tooltip from '../tooltip';
+import { Icon } from '#editor/components/icon';
+import { Surface } from '#editor/components/surface';
+import { Toolbar } from '#editor/components/toolbar';
+import Tooltip from '#editor/components/tooltip';
 
 export interface LinkPreviewPanelProps {
   url: string;

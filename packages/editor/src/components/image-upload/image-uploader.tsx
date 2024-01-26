@@ -4,14 +4,14 @@ import { useCallback } from 'react';
 
 import { cn } from '@av/ui';
 
+import { Button } from '#editor/components/editor-button';
+import { Icon } from '#editor/components/icon';
+import { Spinner } from '#editor/components/spinner';
 import {
   useDropZone,
   useFileUpload,
   useUploader,
-} from '../../hooks/image-upload/hooks';
-import { Button } from '../editor-button';
-import { Icon } from '../icon';
-import { Spinner } from '../spinner';
+} from '#editor/hooks/image-upload-hooks';
 
 export const ImageUploader = ({
   onUpload,

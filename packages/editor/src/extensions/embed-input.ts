@@ -1,13 +1,13 @@
 // TODO:
 
+import type { EmbedService } from '#editor/lib/constants';
+
 import { getText, mergeAttributes, Node } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import type { EmbedService } from '../lib/constants';
-
-import { EmbedInputView } from '../components/embed-input-view';
+import { EmbedInputView } from '#editor/components/embed-input-view';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { embeds as services } from '../lib/constants';
+import { embeds as services } from '#editor/lib/constants';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {

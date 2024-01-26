@@ -3,7 +3,8 @@ import type { Range } from '@tiptap/core';
 import { mergeAttributes } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import { ImageBlockView } from '../components/image-block/image-block-view';
+import { ImageBlockView } from '#editor/components/image-block/image-block-view';
+
 import Image from './image';
 
 declare module '@tiptap/core' {

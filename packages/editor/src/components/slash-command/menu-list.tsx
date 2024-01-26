@@ -1,13 +1,13 @@
 import type { Editor } from '@tiptap/core';
+import type { Group } from '#editor/extensions/slash-command/groups';
 import type { icons } from 'lucide-react';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import type { Group } from '../../extensions/slash-command/groups';
+import { DropdownButton } from '#editor/components/dropdown';
+import { Icon } from '#editor/components/icon';
+import { Surface } from '#editor/components/surface';
 
-import { DropdownButton } from '../../components/dropdown';
-import { Icon } from '../../components/icon';
-import { Surface } from '../../components/surface';
 // TODO:
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CommandButton } from './command-button';

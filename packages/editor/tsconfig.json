@@ -1,6 +1,10 @@
 {
   "extends": "@av/tsconfig/base.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "#editor/*": ["./src/*"],
+    },
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
   },
   "include": ["*.ts", "src"],

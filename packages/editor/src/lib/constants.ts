@@ -1,4 +1,4 @@
-import type { AiToneOption, LanguageOption } from '../types';
+import type { AiToneOption, LanguageOption } from '#editor/types';
 
 export const languages: LanguageOption[] = [
   { name: 'arabic', label: 'Arabic', value: 'ar' as LanguageOption['value'] },

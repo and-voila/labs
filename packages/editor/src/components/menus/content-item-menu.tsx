@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import DragHandle from '@tiptap-pro/extension-drag-handle-react';
 
-import useContentItemActions from '../../hooks/content-item-menu/use-content-item-actions';
-import { useData } from '../../hooks/content-item-menu/use-data';
-import { DropdownButton } from '../dropdown';
-import { Icon } from '../icon';
-import { Surface } from '../surface';
-import { Toolbar } from '../toolbar';
+import { DropdownButton } from '#editor/components/dropdown';
+import { Icon } from '#editor/components/icon';
+import { Surface } from '#editor/components/surface';
+import { Toolbar } from '#editor/components/toolbar';
+import useContentItemActions from '#editor/hooks/use-content-item-actions';
+import { useData } from '#editor/hooks/use-data';
 
 export interface ContentItemMenuProps {
   editor: Editor;

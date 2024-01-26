@@ -1,8 +1,8 @@
 import * as Popover from '@radix-ui/react-popover';
 
-import { Icon } from '../../icon';
-import { LinkEditorPanel } from '../../panels/link-editor-panel';
-import { Toolbar } from '../../toolbar';
+import { Icon } from '#editor/components/icon';
+import { LinkEditorPanel } from '#editor/components/panels/link-editor-panel';
+import { Toolbar } from '#editor/components/toolbar';
 
 export interface EditLinkPopoverProps {
   onSetLink: (link: string, openInNewTab?: boolean) => void;

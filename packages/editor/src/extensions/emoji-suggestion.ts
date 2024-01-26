@@ -8,7 +8,7 @@ import type { Instance } from 'tippy.js';
 import { ReactRenderer } from '@tiptap/react';
 import tippy from 'tippy.js';
 
-import EmojiList from '../components/emoji-list';
+import EmojiList from '#editor/components/emoji-list';
 
 export const emojiSuggestion = {
   items: ({ editor, query }: { editor: Editor; query: string }) =>

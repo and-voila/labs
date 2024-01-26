@@ -4,13 +4,14 @@ import { memo } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import { BubbleMenu } from '@tiptap/react';
 
-import { useTextmenuCommands } from '../../hooks/text-menu/use-text-menu-commands';
-import { useTextmenuContentTypes } from '../../hooks/text-menu/use-text-menu-content-types';
-import { useTextmenuStates } from '../../hooks/text-menu/use-text-menu-states';
-import { Icon } from '../icon';
-import { ColorPicker } from '../panels/color-picker';
-import { Surface } from '../surface';
-import { Toolbar } from '../toolbar';
+import { Icon } from '#editor/components/icon';
+import { ColorPicker } from '#editor/components/panels/color-picker';
+import { Surface } from '#editor/components/surface';
+import { Toolbar } from '#editor/components/toolbar';
+import { useTextmenuCommands } from '#editor/hooks/use-text-menu-commands';
+import { useTextmenuContentTypes } from '#editor/hooks/use-text-menu-content-types';
+import { useTextmenuStates } from '#editor/hooks/use-text-menu-states';
+
 import { AIDropdown } from './text-menu/ai-dropdown';
 import { ContentTypePicker } from './text-menu/content-type-picker';
 import { EditLinkPopover } from './text-menu/edit-link-popover';

@@ -1,12 +1,12 @@
+import type { MenuProps, ShouldShowProps } from '#editor/types';
+
 import React, { useCallback } from 'react';
 import { BubbleMenu as BaseBubbleMenu } from '@tiptap/react';
 
-import type { MenuProps, ShouldShowProps } from '../../types';
-
-import { Icon } from '../../components/icon';
-import * as PopoverMenu from '../../components/popover-menu';
-import { Toolbar } from '../../components/toolbar';
-import { isColumnGripSelected } from '../../extensions/table/menus/table-menu-utils';
+import { Icon } from '#editor/components/icon';
+import * as PopoverMenu from '#editor/components/popover-menu';
+import { Toolbar } from '#editor/components/toolbar';
+import { isColumnGripSelected } from '#editor/extensions/table/menus/table-menu-utils';
 
 export const TableColumnMenu = React.memo(
   ({ editor, appendTo }: MenuProps): JSX.Element => {

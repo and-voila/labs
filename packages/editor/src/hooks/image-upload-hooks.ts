@@ -3,7 +3,7 @@ import type { DragEvent } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { API } from '../../lib/api';
+import { API } from '#editor/lib/api';
 
 export const useUploader = ({
   onUpload,

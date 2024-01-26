@@ -2,14 +2,14 @@ import type { Editor } from '@tiptap/react';
 
 import CodeBlock from '@tiptap/extension-code-block';
 
-import AiImage from '../../components/ai-image/ai-image';
-import AiWriter from '../../components/ai-writer/ai-writer';
-import { TableOfContentNode } from '../../components/table-of-content-node';
-import Figcaption from '../../extensions/figcaption';
-import HorizontalRule from '../../extensions/horizontal-rule';
-import ImageBlock from '../../extensions/image-block';
-import ImageUpload from '../../extensions/image-upload';
-import Link from '../../extensions/link';
+import AiImage from '#editor/components/ai-image/ai-image';
+import AiWriter from '#editor/components/ai-writer/ai-writer';
+import { TableOfContentNode } from '#editor/components/table-of-content-node';
+import Figcaption from '#editor/extensions/figcaption';
+import HorizontalRule from '#editor/extensions/horizontal-rule';
+import ImageBlock from '#editor/extensions/image-block';
+import ImageUpload from '#editor/extensions/image-upload';
+import Link from '#editor/extensions/link';
 
 export const isTableGripSelected = (node: HTMLElement) => {
   let container = node;

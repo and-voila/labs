@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 
 import { cn } from '@av/ui';
 
-import { Icon } from '../../components/icon';
+import { Icon } from '#editor/components/icon';
 
 export interface CommandButtonProps {
   active?: boolean;

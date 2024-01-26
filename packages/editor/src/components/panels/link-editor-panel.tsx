@@ -1,9 +1,9 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { Button } from '../editor-button';
-import { Icon } from '../icon';
-import { Surface } from '../surface';
-import { Toggle } from '../toggle';
+import { Button } from '#editor/components/editor-button';
+import { Icon } from '#editor/components/icon';
+import { Surface } from '#editor/components/surface';
+import { Toggle } from '#editor/components/toggle';
 
 export interface LinkEditorPanelProps {
   initialUrl?: string;

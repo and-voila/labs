@@ -1,4 +1,4 @@
-import type { Command } from '../../components/slash-command/menu-list';
+import type { Command } from '#editor/components/slash-command/menu-list';
 
 // import { EmbedService } from '#/lib/constants'
 

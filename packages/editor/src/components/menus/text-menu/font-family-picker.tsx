@@ -1,10 +1,13 @@
 import { useCallback } from 'react';
 import * as Dropdown from '@radix-ui/react-dropdown-menu';
 
-import { DropdownButton, DropdownCategoryTitle } from '../../dropdown';
-import { Icon } from '../../icon';
-import { Surface } from '../../surface';
-import { Toolbar } from '../../toolbar';
+import {
+  DropdownButton,
+  DropdownCategoryTitle,
+} from '#editor/components/dropdown';
+import { Icon } from '#editor/components/icon';
+import { Surface } from '#editor/components/surface';
+import { Toolbar } from '#editor/components/toolbar';
 
 const FONT_FAMILY_GROUPS = [
   {

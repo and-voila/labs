@@ -1,5 +1,6 @@
 import type { Tone } from '@tiptap-pro/extension-ai';
 import type { Extension, NodeViewWrapperProps } from '@tiptap/react';
+import type { AiToneOption } from '#editor/types';
 
 import { useCallback, useMemo, useState } from 'react';
 import * as Dropdown from '@radix-ui/react-dropdown-menu';
@@ -7,17 +8,15 @@ import { NodeViewWrapper } from '@tiptap/react';
 import toast from 'react-hot-toast';
 import { v4 as uuid } from 'uuid';
 
-import type { AiToneOption } from '../../types';
-
-import { tones } from '../../lib/constants';
-import { DropdownButton } from '../dropdown';
-import { Button } from '../editor-button';
-import { Icon } from '../icon';
-import { Loader } from '../loader';
-import { Panel, PanelHeadline } from '../panel';
-import { Surface } from '../surface';
-import { Textarea } from '../textarea';
-import { Toolbar } from '../toolbar';
+import { DropdownButton } from '#editor/components/dropdown';
+import { Button } from '#editor/components/editor-button';
+import { Icon } from '#editor/components/icon';
+import { Loader } from '#editor/components/loader';
+import { Panel, PanelHeadline } from '#editor/components/panel';
+import { Surface } from '#editor/components/surface';
+import { Textarea } from '#editor/components/textarea';
+import { Toolbar } from '#editor/components/toolbar';
+import { tones } from '#editor/lib/constants';
 
 export interface DataProps {
   text: string;
