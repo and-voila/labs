@@ -1,6 +1,6 @@
 'use server';
 
-import MagicLinkEmail from '@and-voila/email/magic-link-email';
+import VerificationRequestEmail from '@and-voila/email/verification-request-email';
 
 import { siteConfig } from '#/config/site';
 
@@ -42,7 +42,7 @@ export async function sendVerificationRequest({
           ? 'delivered@resend.dev'
           : identifier,
       subject: authSubject,
-      react: MagicLinkEmail({
+      react: VerificationRequestEmail({
         actionUrl: url,
         mailType: userVerified ? 'login' : 'register',
         siteName: siteConfig.name,

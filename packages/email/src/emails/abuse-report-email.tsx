@@ -20,7 +20,7 @@ export interface SendAbuseReportEmailProps {
   siteUrl: string;
 }
 
-export const SendAbuseReportEmail = ({
+export const AbuseReportEmail = ({
   urlToReport,
   siteName,
   siteUrl,
@@ -71,4 +71,4 @@ export const SendAbuseReportEmail = ({
   </Html>
 );
 
-export default SendAbuseReportEmail;
+export default AbuseReportEmail;
