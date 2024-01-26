@@ -1,4 +1,4 @@
-import '@av/ui/styles/globals.css';
+import '#/styles/globals.css';
 
 import { env } from '#/env';
 

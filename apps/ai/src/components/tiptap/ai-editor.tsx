@@ -6,7 +6,7 @@ import { EditorContent } from '@tiptap/react';
 
 import { useBlockEditor } from '#/hooks/tiptap/use-block-editor';
 
-import '../../../../../packages/ui/src/styles/partials/index.css';
+import '#/styles/partials/index.css';
 
 import type { TiptapProps } from '#/lib/types';
 
