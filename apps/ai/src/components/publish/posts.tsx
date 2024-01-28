@@ -1,6 +1,8 @@
 import React from 'react';
 import { redirect } from 'next/navigation';
 
+import { ScrollArea, ScrollBar } from '@av/ui/scroll-area';
+
 import { authOptions } from '#/lib/auth';
 import { db } from '#/lib/db';
 import { getTeam } from '#/lib/operations/teams/get-current-team';
@@ -12,9 +14,15 @@ interface PostsProps {
   siteId?: string;
   limit?: number;
   teamSlug: string;
+  published?: boolean;
 }
 
-export default async function Posts({ siteId, limit, teamSlug }: PostsProps) {
+export default async function Posts({
+  siteId,
+  limit,
+  teamSlug,
+  published,
+}: PostsProps) {
   const team = await getTeam(teamSlug);
   if (!team) {
     redirect(authOptions?.pages?.signIn ?? '/login');
@@ -24,6 +32,7 @@ export default async function Posts({ siteId, limit, teamSlug }: PostsProps) {
     where: {
       teamId: team.id,
       ...(siteId ? { siteId } : {}),
+      ...(published !== undefined ? { published } : {}),
     },
     orderBy: {
       updatedAt: 'desc',
@@ -35,10 +44,15 @@ export default async function Posts({ siteId, limit, teamSlug }: PostsProps) {
   });
 
   return posts.length > 0 ? (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {posts.map((post) => (
-        <PostCard key={post.id} data={post} teamSlug={teamSlug} />
-      ))}
+    <div className="relative">
+      <ScrollArea className="max-w-7xl whitespace-nowrap rounded-md border">
+        <div className="flex space-x-4 pb-4">
+          {posts.map((post) => (
+            <PostCard key={post.id} data={post} teamSlug={teamSlug} />
+          ))}
+        </div>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
     </div>
   ) : (
     <div className="flex flex-col items-start space-x-4">

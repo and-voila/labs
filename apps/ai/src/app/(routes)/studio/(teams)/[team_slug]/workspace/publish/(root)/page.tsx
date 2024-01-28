@@ -41,7 +41,7 @@ export default async function WorkspacePublishPage({
         <div>
           <h3 className="text-lg font-semibold leading-6">Workspace sites</h3>
           <Separator className="mb-6 mt-2" />
-          <Sites teamSlug={params.team_slug} />
+          <Sites teamSlug={params.team_slug} limit={8} />
         </div>
         <div>
           <h3 className="text-lg font-semibold leading-6">Recent posts</h3>

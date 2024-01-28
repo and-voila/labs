@@ -50,7 +50,6 @@ const getStatusProperties = (status: GeneralStatus) => {
         color: 'bg-green-600 dark:bg-green-500',
         text: 'Running smooth',
       };
-    case 'HASISSUES':
     case 'INVESTIGATING':
     case 'IDENTIFIED':
     case 'MONITORING':
@@ -58,6 +57,7 @@ const getStatusProperties = (status: GeneralStatus) => {
         color: 'bg-yellow-600 dark:bg-yellow-500',
         text: "Something's up",
       };
+    case 'HASISSUES':
     case 'UNDERMAINTENANCE':
     case 'NOTSTARTEDYET':
     case 'INPROGRESS':
@@ -70,7 +70,7 @@ const getStatusProperties = (status: GeneralStatus) => {
 const StatusIndicator = ({ status }: StatusIndicatorProps) => {
   const { color, text } = getStatusProperties(status);
   return (
-    <div className="flex items-center gap-2 md:ml-8">
+    <div className="flex items-center gap-2">
       <div className={`h-2 w-2 rounded-full ${color}`} />
       <span className="whitespace-nowrap font-semibold text-muted-foreground">
         {text}
@@ -97,7 +97,7 @@ const SystemStatusWidget = () => {
       rel="noopener noreferrer"
       aria-label="System Status Link"
     >
-      <div>
+      <div className="hover:underline hover:underline-offset-4">
         {statusData && (
           <div>
             <StatusIndicator status={statusData.page.status} />

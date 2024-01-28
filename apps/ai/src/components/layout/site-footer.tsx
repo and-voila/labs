@@ -84,7 +84,9 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           {links.map((link) => (
             <FooterLink key={link.href} {...link} />
           ))}
-          <SystemStatusWidget />
+          <div className="md:ml-8">
+            <SystemStatusWidget />
+          </div>
         </div>
         <ModeToggle />
       </div>

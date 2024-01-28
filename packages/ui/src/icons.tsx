@@ -7,6 +7,7 @@ export const Icons = {
   activity: (props: IconProps) => (
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -19,6 +20,7 @@ export const Icons = {
   airTrafficControl: (props: IconProps) => (
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -32,6 +34,7 @@ export const Icons = {
     // Phoshot chart-line
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -45,6 +48,7 @@ export const Icons = {
     // Phosphor apple-logo
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -58,6 +62,7 @@ export const Icons = {
     // Phosphor arrow-square-left
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -71,6 +76,7 @@ export const Icons = {
     // Phosphor arrow-left
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -84,6 +90,7 @@ export const Icons = {
     // Phosphor arrow-square-left
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -97,6 +104,7 @@ export const Icons = {
     // Phosphor arrow-square-out
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -110,6 +118,7 @@ export const Icons = {
     // Phosphor at
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -123,6 +132,7 @@ export const Icons = {
     // Phoshot chart-bar
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -136,6 +146,7 @@ export const Icons = {
     // Phospor bookmarks-simple
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -149,6 +160,7 @@ export const Icons = {
     // Phospor briefcase
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -162,6 +174,7 @@ export const Icons = {
     // Phospor browser
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -175,6 +188,7 @@ export const Icons = {
     // Phospor browsers
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -188,6 +202,7 @@ export const Icons = {
     // Phosphor caret-left
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -201,6 +216,7 @@ export const Icons = {
     // Phosphor caret-down
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -214,6 +230,7 @@ export const Icons = {
     // Phosphor caret-right
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -227,6 +244,7 @@ export const Icons = {
     // Phosphor caret-up-down
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -240,6 +258,7 @@ export const Icons = {
     // Phosphor caret-up
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -253,6 +272,7 @@ export const Icons = {
     // Phosphor chalkboard-teacher
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -266,6 +286,7 @@ export const Icons = {
     // Phosphor chat-text
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -279,6 +300,7 @@ export const Icons = {
     // Phosphor check
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -292,6 +314,7 @@ export const Icons = {
     // Phosphor circle
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -305,6 +328,7 @@ export const Icons = {
     // Phosphor circle-fill
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -318,6 +342,7 @@ export const Icons = {
     // Phosphor circle-check
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -331,6 +356,7 @@ export const Icons = {
     // Phosphor clock
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -344,6 +370,7 @@ export const Icons = {
     // Phosphor strategy
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -357,6 +384,7 @@ export const Icons = {
     // Phosphor credit-card
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -370,6 +398,7 @@ export const Icons = {
     // Phoshor x-circle
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -383,6 +412,7 @@ export const Icons = {
     // Phosphot x
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -396,6 +426,7 @@ export const Icons = {
     // Phosphor squares-four
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -409,6 +440,7 @@ export const Icons = {
     // Phosphor desktop
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -422,6 +454,7 @@ export const Icons = {
     // Phosphor device-mobile
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -434,6 +467,7 @@ export const Icons = {
   discord: (props: IconProps) => (
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -447,6 +481,7 @@ export const Icons = {
     // Phosphor book-open-text
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -460,6 +495,7 @@ export const Icons = {
     // Phosphor door-open
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -473,6 +509,7 @@ export const Icons = {
     // Phosphot dots-three
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -486,6 +523,7 @@ export const Icons = {
     // Phosphot dots-three
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -499,6 +537,7 @@ export const Icons = {
     // Phosphor dots-three-outline-vertical
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -512,6 +551,7 @@ export const Icons = {
     // Phosphor dots-six-vertical
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -525,6 +565,7 @@ export const Icons = {
     // Phosphor eye-slash
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -538,6 +579,7 @@ export const Icons = {
     // Phosphor eye
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -551,6 +593,7 @@ export const Icons = {
     // Phosphor gauge
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -564,6 +607,7 @@ export const Icons = {
     // Phosphor gauge
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -577,6 +621,7 @@ export const Icons = {
     // Phosphor facebook-logo
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -590,6 +635,7 @@ export const Icons = {
     // Phosphor file-text
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -603,6 +649,7 @@ export const Icons = {
     // Phosphor files
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -616,6 +663,7 @@ export const Icons = {
     // Phosphor fingerprint-simple
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -629,6 +677,7 @@ export const Icons = {
     // Phosphor github-logo
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -642,6 +691,7 @@ export const Icons = {
     // Phosphor list
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -655,6 +705,7 @@ export const Icons = {
     // Phosphor heart
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -668,6 +719,7 @@ export const Icons = {
     // Phosphor question
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -681,6 +733,7 @@ export const Icons = {
     // Phosphor house
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -694,6 +747,7 @@ export const Icons = {
     // Phosphor image
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -707,6 +761,7 @@ export const Icons = {
     // Phosphor laptop
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -720,6 +775,7 @@ export const Icons = {
     // Phosphor link-simple-horizontal
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -733,6 +789,7 @@ export const Icons = {
     // Phosphor linkedin-logo
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -746,6 +803,7 @@ export const Icons = {
     // Phosphor list-bullets
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -759,6 +817,7 @@ export const Icons = {
     // Phosphor lock-simple
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -790,6 +849,7 @@ export const Icons = {
     // Phosphor sparkle
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -803,6 +863,7 @@ export const Icons = {
     // Phosphor moon-stars
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -816,6 +877,7 @@ export const Icons = {
     // Phosphor notion-logo
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -829,6 +891,7 @@ export const Icons = {
     // Phosphor paper-plane-tilt
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -842,6 +905,7 @@ export const Icons = {
     // Phosphor pencil-simple
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -855,6 +919,7 @@ export const Icons = {
     // Phosphor pen-nib
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -868,6 +933,7 @@ export const Icons = {
     // Phosphor play
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -881,6 +947,7 @@ export const Icons = {
     // Phosphor plugs
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -894,6 +961,7 @@ export const Icons = {
     // Phosphor plus-circle
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -907,6 +975,7 @@ export const Icons = {
     // Phosphor robot
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -920,6 +989,7 @@ export const Icons = {
     // Phosphor rocket-launch
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -933,6 +1003,7 @@ export const Icons = {
     // Phosphor scissors
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -946,6 +1017,7 @@ export const Icons = {
     // Phosphor magnifying-glass
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -959,6 +1031,7 @@ export const Icons = {
     // Phosphor gear-six
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -972,6 +1045,7 @@ export const Icons = {
     // Phosphor sign-out
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -985,6 +1059,7 @@ export const Icons = {
     // Phosphor circle-notch
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -998,6 +1073,7 @@ export const Icons = {
     // Phosphor star
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1011,6 +1087,7 @@ export const Icons = {
     // Phosphor sun-dim
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1024,6 +1101,7 @@ export const Icons = {
     // Phosphor users-three
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1037,6 +1115,7 @@ export const Icons = {
     // Phosphor terminal
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1050,6 +1129,7 @@ export const Icons = {
     // Phosphor toolbox
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1063,6 +1143,7 @@ export const Icons = {
     // Phosphor trash
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1076,6 +1157,7 @@ export const Icons = {
     // Phosphor twitter-logo
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1089,6 +1171,7 @@ export const Icons = {
     // Phosphor lock-simple-open
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1102,6 +1185,7 @@ export const Icons = {
     // Phosphor trash-simple
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1115,6 +1199,7 @@ export const Icons = {
     // Phosphor user-minus
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1128,6 +1213,7 @@ export const Icons = {
     // Phosphor user-plus
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1141,6 +1227,7 @@ export const Icons = {
     // Phosphor video
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1153,6 +1240,7 @@ export const Icons = {
   warning: (props: IconProps) => (
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1166,6 +1254,7 @@ export const Icons = {
     // Phosphor tree-structure
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"
@@ -1180,6 +1269,7 @@ export const Icons = {
     // Phosphor youtube-logo
     <svg
       role="img"
+      aria-hidden="true"
       width="24"
       height="24"
       fill="currentColor"

@@ -27,11 +27,20 @@ export default async function WorkspacePostsPage({
         description="Select a post to manage or edit."
       />
       <div className="my-8 flex flex-col md:my-12">
-        <h3 className="text-lg font-semibold leading-6">
-          Recent posts from your workspace
-        </h3>
-        <Separator className="mb-6 mt-2" />
-        <Posts teamSlug={params.team_slug} limit={8} />
+        <div>
+          <h3 className="text-lg font-semibold leading-6">
+            Recent drafts in your workspace
+          </h3>
+          <Separator className="mb-6 mt-2" />
+          <Posts teamSlug={params.team_slug} limit={8} published={false} />
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold leading-6">
+            Recently published in your workspace
+          </h3>
+          <Separator className="mb-6 mt-2" />
+          <Posts teamSlug={params.team_slug} limit={8} published={true} />
+        </div>
       </div>
     </div>
   );
