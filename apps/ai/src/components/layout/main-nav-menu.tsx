@@ -156,6 +156,18 @@ export const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({
                   </a>
                 </NavigationMenuLink>
               </li>
+              <ListItem
+                href={`${APP_BP}/${activeSlug}/workspace/publish`}
+                title="Create a site"
+              >
+                Create your own site with custom domain in under 3 mins.
+              </ListItem>
+              <ListItem
+                href={`${APP_BP}/${activeSlug}/workspace/publish`}
+                title="Create content"
+              >
+                Draft content with an AI-assisted editor that has your back.
+              </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>

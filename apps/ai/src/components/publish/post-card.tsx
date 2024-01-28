@@ -31,7 +31,7 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
             alt={data.title ?? 'Card thumbnail'}
             width={500}
             height={400}
-            className="h-44 object-cover grayscale group-hover:grayscale-0"
+            className="h-44 object-cover transition-colors group-hover:grayscale"
             src={data.image ?? '/post-placeholder.jpg'}
             placeholder="blur"
             blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
@@ -46,12 +46,12 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
                   height={48}
                   src={data.site?.logo ?? '/default-site-logo.jpg'}
                   alt=""
-                  className="h-5 w-5 flex-none rounded-full bg-background/10"
+                  className="h-5 w-5 flex-none rounded-full bg-background/10 transition-colors group-hover:grayscale"
                   placeholder="blur"
                   blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
                 />
               </div>
-              <h3 className="text-sm font-semibold leading-6 text-primary">
+              <h3 className="text-sm font-semibold leading-6 text-primary transition-colors group-hover:text-muted-foreground">
                 <span className="absolute inset-0" />
                 {data.site?.name}
               </h3>
@@ -72,17 +72,17 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
             }
             target="_blank"
             rel="noreferrer"
-            className="truncate rounded-md py-2 text-xs text-muted-foreground underline underline-offset-4 transition-colors group-hover:text-foreground"
+            className="truncate rounded-md py-2 text-sm text-alternate underline underline-offset-4 transition-colors group-hover:text-alternate/80"
           >
-            <span className="flex flex-row items-center gap-1 text-primary">
+            <span className="flex flex-row items-center gap-1">
               Visit post
               {''}
-              <Icons.arrowSquareOut className="ml-1 h-3 w-3 text-muted-foreground transition-colors group-hover:text-foreground" />
+              <Icons.arrowSquareOut className="ml-1 h-4 w-4 text-alternate" />
             </span>
           </a>
         </div>
       ) : (
-        <span className="absolute bottom-4 mx-4 rounded-sm border border-muted-foreground bg-foreground px-1  text-sm font-medium text-primary-foreground shadow-md">
+        <span className="absolute bottom-4 mx-4 rounded-sm border border-alternate px-1 text-sm font-medium text-alternate">
           Draft
         </span>
       )}

@@ -107,9 +107,9 @@ export default function Form({
             <input
               {...inputAttrs}
               required
-              className="z-10 flex-1 rounded-l-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
+              className="z-10 h-9 flex-1 rounded-l-md border bg-background px-3 py-1 text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
             />
-            <div className="flex items-center rounded-r-lg border border-l-0 bg-primary/20 px-3 text-sm">
+            <div className="flex items-center rounded-r-lg border border-l-0 px-3 text-sm text-alternate">
               {env.NEXT_PUBLIC_ROOT_DOMAIN}
             </div>
           </div>
@@ -117,7 +117,7 @@ export default function Form({
           <div className="relative flex w-full max-w-md">
             <input
               {...inputAttrs}
-              className="z-10 flex-1 rounded-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
+              className="z-10 h-9 flex-1 rounded-md border bg-background px-3 py-1 text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
             />
             {inputAttrs.defaultValue && (
               <div className="absolute right-3 z-10 flex h-full items-center">
@@ -130,13 +130,13 @@ export default function Form({
             {...inputAttrs}
             rows={3}
             required
-            className="w-full max-w-xl rounded-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
+            className="h-20 w-full max-w-xl rounded-md border bg-background px-3 py-2 text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
           />
         ) : (
           <input
             {...inputAttrs}
             required
-            className="w-full max-w-md rounded-md border bg-background text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
+            className="h-9 w-full max-w-md rounded-md border bg-background px-3 py-1 text-sm text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-ring"
           />
         )}
       </div>

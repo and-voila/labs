@@ -87,7 +87,7 @@ export default async function AdminPage() {
                 >
                   {item.linkText}
                   <Icons.arrowRight
-                    className="h-5 w-5 justify-end text-primary"
+                    className="h-5 w-5 justify-end text-alternate"
                     aria-hidden="true"
                   />
                 </button>
@@ -106,7 +106,7 @@ export default async function AdminPage() {
                 >
                   {item.linkText}
                   <Icons.arrowRight
-                    className="h-5 w-5 justify-end text-primary"
+                    className="h-5 w-5 justify-end text-alternate"
                     aria-hidden="true"
                   />
                 </Link>

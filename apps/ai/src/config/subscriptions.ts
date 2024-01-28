@@ -52,7 +52,7 @@ export const pricingData: SubscriptionPlan[] = [
       'AI-enhanced SEO tools',
       'Unlimited access to Discord channels',
       'Attend all expert AMAs',
-      'Personalized AMAs with expert moderators',
+      'Book personal AMAs',
       '24/7 live support',
       '100% Delight Guarantee',
     ],

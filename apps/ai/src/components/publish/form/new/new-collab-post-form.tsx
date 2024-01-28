@@ -98,7 +98,7 @@ export const NewCollabPostForm: React.FC<NewCollabPostFormProps> = ({
         </FormControl>
         <FormDescription className="my-2 text-xs text-muted-foreground">
           <span className="font-medium">your-subdomain.andvoila.gg</span>
-          <span className="font-medium text-primary">
+          <span className="font-medium text-alternate">
             {slugPreview ? `/${slugPreview}` : '/...'}
           </span>
         </FormDescription>

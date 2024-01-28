@@ -143,7 +143,7 @@ export default function CreateSiteModal({ teamSlug }: CreateSiteModalProps) {
               required
               className="w-full rounded-md border border-input bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-ring focus:outline-none focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
             />
-            <div className="flex items-center rounded-r-lg border border-l-0 bg-primary/20 px-3 text-sm">
+            <div className="flex items-center rounded-r-lg border border-l-0 px-3 text-sm text-alternate">
               .{env.NEXT_PUBLIC_ROOT_DOMAIN}
             </div>
           </div>

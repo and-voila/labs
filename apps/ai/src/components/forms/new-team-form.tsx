@@ -87,7 +87,7 @@ export const NewTeamForm: React.FC = () => {
         <FormDescription className="my-2 text-sm text-muted-foreground">
           Your team workspace will be{' '}
           <span className="font-medium">labs.andvoila.gg</span>
-          <span className="font-medium text-primary">
+          <span className="font-medium text-alternate">
             {slugPreview ? `/${slugPreview}` : '/...'}
           </span>
         </FormDescription>
