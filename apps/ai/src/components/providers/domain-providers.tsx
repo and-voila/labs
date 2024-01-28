@@ -1,7 +1,5 @@
 import type { ReactNode } from 'react';
 
-import { Provider as BalancerProvider } from 'react-wrap-balancer';
-
 import { Toaster } from '@av/ui/toaster';
 
 import { ThemeProvider } from '#/components/providers/theme-provider';
@@ -16,7 +14,6 @@ export function DomainProviders({ children }: { children: ReactNode }) {
         {children}
       </ModalProvider>
       <Toaster />
-      <BalancerProvider />
     </ThemeProvider>
   );
 }
