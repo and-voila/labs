@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 
 import Link from 'next/link';
-import Balancer from 'react-wrap-balancer';
 
 import { cn } from '@av/ui';
 import { buttonVariants } from '@av/ui/button';
@@ -22,13 +21,11 @@ const NotAuthorizedPage = () => {
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
           A little bit Alexis
         </h1>
-        <Balancer>
-          <p className="mx-auto mt-4 max-w-2xl text-base sm:mt-6 lg:text-lg">
-            Looks like you&apos;ve taken a wrong turn on the way to Café
-            Tropical. A mistake you say? Contact Stevie at the front desk for
-            assistance. Just don&apos;t ask for a wake-up call.
-          </p>
-        </Balancer>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-base sm:mt-6 lg:text-lg">
+          Looks like you&apos;ve taken a wrong turn on the way to Café Tropical.
+          A mistake you say? Contact Stevie at the front desk for assistance.
+          Just don&apos;t ask for a wake-up call.
+        </p>
 
         <div className="mt-10 flex justify-center">
           <Link

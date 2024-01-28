@@ -58,6 +58,8 @@ export async function generateMetadata({
         },
       ],
     },
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore TODO: This is erroring occassionaly due to env.js
     ...(params.domain.endsWith(`.${env.NEXT_PUBLIC_ROOT_DOMAIN}`) &&
       siteData.customDomain && {
         alternates: {

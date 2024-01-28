@@ -1,5 +1,3 @@
-import Balancer from 'react-wrap-balancer';
-
 import {
   Accordion,
   AccordionContent,
@@ -146,14 +144,12 @@ export function PricingFaq() {
     <section className="container max-w-3xl py-2">
       <div className="mb-14 space-y-6 text-center">
         <h2 className="text-center text-3xl font-bold md:text-5xl">
-          <Balancer>Frequently Asked Questions</Balancer>
+          Frequently Asked Questions
         </h2>
-        <p className="text-md text-muted-foreground">
-          <Balancer>
-            Explore our comprehensive FAQ to find quick answers to common
-            inquiries. If you need further assistance, don&apos;t hesitate to
-            contact us for personalized help.
-          </Balancer>
+        <p className="text-md text-balance text-muted-foreground">
+          Explore our comprehensive FAQ to find quick answers to common
+          inquiries. If you need further assistance, don&apos;t hesitate to
+          contact us for personalized help.
         </p>
       </div>
       <Accordion type="single" collapsible className="w-full">

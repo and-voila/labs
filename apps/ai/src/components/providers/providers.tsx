@@ -3,7 +3,6 @@
 import type { ReactNode } from 'react';
 
 import { SessionProvider } from 'next-auth/react';
-import { Provider as BalancerProvider } from 'react-wrap-balancer';
 
 import { Toaster } from '@av/ui/toaster';
 
@@ -22,7 +21,6 @@ export function Providers({ children }: { children: ReactNode }) {
         </ModalProvider>
         <ConfettiProvider />
         <Toaster />
-        <BalancerProvider />
       </SessionProvider>
     </ThemeProvider>
   );

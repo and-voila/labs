@@ -3,7 +3,6 @@
 import type { TeamSubscriptionPlan } from '#/lib/types';
 
 import { useCallback, useState } from 'react';
-import Balancer from 'react-wrap-balancer';
 
 import { cn } from '@av/ui';
 import { Switch } from '@av/ui/switch';
@@ -85,19 +84,17 @@ export function PricingCards({
         ))}
       </div>
 
-      <p className="mt-6 text-center text-base text-muted-foreground">
-        <Balancer>
-          Reach out to our{' '}
-          <a
-            className="font-medium text-primary hover:underline"
-            href="mailto:yo@andvoila.gg"
-          >
-            Support Team
-          </a>{' '}
-          if you have any questions.
-          <br />
-          <strong>Backed by our 100% Delight Guarantee. Cancel anytime.</strong>
-        </Balancer>
+      <p className="mt-6 text-balance text-center text-base text-muted-foreground">
+        Reach out to our{' '}
+        <a
+          className="font-medium text-primary hover:underline"
+          href="mailto:yo@andvoila.gg"
+        >
+          Support Team
+        </a>{' '}
+        if you have any questions.
+        <br />
+        <strong>Backed by our 100% Delight Guarantee. Cancel anytime.</strong>
       </p>
     </section>
   );

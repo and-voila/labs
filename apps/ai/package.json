@@ -64,7 +64,6 @@
     "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",
-    "react-wrap-balancer": "^1.1.0",
     "resend": "^2.1.0",
     "slugify": "^1.6.6",
     "stripe": "^14.12.0",
