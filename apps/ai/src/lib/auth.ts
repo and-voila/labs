@@ -9,10 +9,11 @@ import GoogleProvider from 'next-auth/providers/google';
 
 import { db } from '#/lib/db';
 import { createPersonalTeam } from '#/lib/operations/user/create-personal-team';
-import { generateUniqueDisplayName } from '#/lib/operations/user/generate-unique-display-name';
 import { getSession } from '#/lib/operations/user/session';
 import { sendVerificationRequest } from '#/lib/resend/send-verification-request';
 import { sendWelcomeEmail } from '#/lib/resend/send-welcome-email';
+
+import { updateNewUser } from './operations/user/update-new-user';
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
@@ -94,16 +95,12 @@ export const authOptions: NextAuthOptions = {
         return token;
       }
 
-      if (!dbUser.displayName) {
-        const uniqueUsername = await generateUniqueDisplayName();
-        await db.user.update({
-          where: { id: dbUser.id },
-          data: { displayName: uniqueUsername },
-        });
-        token.displayName = uniqueUsername;
-      } else {
-        token.displayName = dbUser.displayName;
-      }
+      const updates = await updateNewUser(dbUser.id);
+
+      token.displayName = updates.displayName ?? dbUser.displayName;
+      token.image = updates.image ?? dbUser.image;
+      token.name = updates.name ?? dbUser.name;
+      token.username = updates.username ?? dbUser.username;
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { team, isNew } = await createPersonalTeam(dbUser.id);
