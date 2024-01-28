@@ -7,6 +7,8 @@ import { siteConfig } from '#/config/site';
 
 import { ModeToggle } from '#/components/layout/mode-toggle';
 
+import SystemStatusWidget from './system-status';
+
 interface FooterLinkData {
   href: string;
   label: string;
@@ -82,6 +84,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           {links.map((link) => (
             <FooterLink key={link.href} {...link} />
           ))}
+          <SystemStatusWidget />
         </div>
         <ModeToggle />
       </div>
