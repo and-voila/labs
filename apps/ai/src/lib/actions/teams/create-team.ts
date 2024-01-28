@@ -10,6 +10,7 @@ import { APP_BP } from '@av/utils';
 
 import { db } from '#/lib/db';
 import { getSession } from '#/lib/operations/user/session';
+import { createImage } from '#/lib/operations/user/update-new-user';
 
 export const createTeam = async (data: NewTeamFormValues) => {
   'use server';
@@ -29,10 +30,13 @@ export const createTeam = async (data: NewTeamFormValues) => {
   });
   //console.log('Generated slug:', slug);
 
+  const teamImageUrl = createImage(session.user.id, 'team');
+
   const team = await db.team.create({
     data: {
       name: data.name,
       slug,
+      image: teamImageUrl,
       members: {
         create: {
           userId: session.user.id,

@@ -110,11 +110,12 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                 }
                 alt={activeTeam?.name ?? 'Active Team'}
               />
-              <AvatarFallback>
-                {(activeTeam?.name ?? 'Active Team')[0]}
-              </AvatarFallback>
+              <AvatarFallback>&!</AvatarFallback>
             </Avatar>
-            {activeTeam?.name ?? 'Active Team'}
+            <span className="truncate text-xs">
+              {activeTeam?.name ?? 'Active Team'}
+            </span>
+
             <Icons.caretDown
               className={cn(
                 'ml-auto h-4 w-4 shrink-0 transition-transform',
@@ -154,9 +155,11 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                         personalTeam?.name ?? 'Personal Team'
                       }`}
                     />
-                    <AvatarFallback>{personalTeam?.name?.[0]}</AvatarFallback>
+                    <AvatarFallback>&!</AvatarFallback>
                   </Avatar>
-                  {personalTeam?.name ?? 'Personal Team'}
+                  <span className="truncate text-xs">
+                    {personalTeam?.name ?? 'Personal Team'}
+                  </span>
                   <Icons.check
                     className={cn(
                       'ml-auto h-4 w-4 text-foreground',
@@ -191,9 +194,9 @@ export const TeamSwitcher: React.FC<TeamSwitcherProps> = (props) => {
                           }
                           alt={`Profile avatar of ${team?.name ?? 'My Team'}`}
                         />
-                        <AvatarFallback>{team.name?.[0]}</AvatarFallback>
+                        <AvatarFallback>&!</AvatarFallback>
                       </Avatar>
-                      <p className="truncate">{team.name}</p>
+                      <span className="truncate">{team.name}</span>
                       <Icons.check
                         className={cn(
                           'ml-auto h-4 w-4 text-foreground',
