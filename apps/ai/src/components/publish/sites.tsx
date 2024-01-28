@@ -1,5 +1,8 @@
 import { redirect } from 'next/navigation';
 
+import { ScrollArea } from '@av/ui/scroll-area';
+import { ScrollBar } from '@av/ui/scroll-bar';
+
 import { authOptions } from '#/lib/auth';
 import { db } from '#/lib/db';
 import { getTeam } from '#/lib/operations/teams/get-current-team';
@@ -31,10 +34,15 @@ export default async function Sites({ teamSlug, limit }: SitesProps) {
   });
 
   return sites.length > 0 ? (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {sites.map((site) => (
-        <SiteCard key={site.id} data={site} teamSlug={teamSlug} />
-      ))}
+    <div className="relative">
+      <ScrollArea className="max-w-7xl whitespace-nowrap rounded-md border">
+        <div className="flex space-x-4 pb-4">
+          {sites.map((site) => (
+            <SiteCard key={site.id} data={site} teamSlug={teamSlug} />
+          ))}
+        </div>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
     </div>
   ) : (
     <div className="mt-20 flex flex-col items-start space-x-4">

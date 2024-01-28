@@ -72,6 +72,7 @@ export default async function SiteManage({
         <Posts
           siteId={decodeURIComponent(params.id)}
           teamSlug={params.team_slug}
+          limit={8}
         />
       </div>
     </div>

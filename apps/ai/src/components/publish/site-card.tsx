@@ -4,6 +4,7 @@ import type { Site } from '@prisma/client';
 
 import Link from 'next/link';
 
+import { Card, CardContent, CardHeader, CardTitle } from '@av/ui/card';
 import { Icons } from '@av/ui/icons';
 import { APP_BP } from '@av/utils';
 
@@ -19,44 +20,31 @@ interface SiteCardProps {
 export default function SiteCard({ data, teamSlug }: SiteCardProps) {
   const url = `${data.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}`;
   return (
-    <div
-      key={data.name}
-      className="group relative isolate flex flex-col justify-end overflow-hidden rounded-lg border px-4 pb-4 pt-48"
-    >
+    <div className="group w-72 bg-card pb-6">
       <Link href={`${APP_BP}/${teamSlug}/workspace/publish/site/${data.id}`}>
-        <BlurImage
-          src={data.image ?? '/site-placeholder.jpg'}
-          alt={data.name ?? 'Card thumbnail'}
-          width={500}
-          height={400}
-          className="absolute inset-0 -z-10 h-full w-full object-cover transition-colors group-hover:grayscale"
-          placeholder="blur"
-          blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-background via-background/60" />
-        <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-background/10" />
-
-        <div className="flex flex-wrap items-center gap-y-1 overflow-hidden">
-          <div className="flex items-center gap-x-2">
-            <div className="flex gap-x-1">
+        <Card key={data.name}>
+          <CardHeader className="pb-3">
+            <CardTitle className="flex flex-row items-center justify-between">
               <BlurImage
                 width={48}
                 height={48}
                 src={data.logo ?? '/default-site-logo.jpg'}
                 alt=""
-                className="h-6 w-6 flex-none rounded-full bg-background/10 group-hover:grayscale"
+                className="h-8 w-8 flex-none rounded-full transition-colors group-hover:grayscale"
                 placeholder="blur"
                 blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
               />
-            </div>
-            <h3 className="text-lg font-semibold leading-6 text-primary transition-colors group-hover:text-foreground">
-              <span className="absolute inset-0" />
+              <Icons.browser className="h-5 w-5 text-alternate" />
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="truncate text-lg font-semibold transition-colors group-hover:text-foreground">
               {data.name}
-            </h3>
-          </div>
-        </div>
+            </p>
+          </CardContent>
+        </Card>
       </Link>
-      <div className="mt-2 flex w-full justify-between space-x-4">
+      <div className="flex w-full justify-between space-x-4 px-6">
         <a
           href={
             process.env.NEXT_PUBLIC_VERCEL_ENV
@@ -65,7 +53,8 @@ export default function SiteCard({ data, teamSlug }: SiteCardProps) {
           }
           target="_blank"
           rel="noreferrer"
-          className="truncate rounded-md py-2 text-xs text-muted-foreground underline underline-offset-4 transition-colors group-hover:text-foreground"
+          aria-label={`Open ${data.name} in a new tab`}
+          className="truncate rounded-md pb-1 text-xs text-muted-foreground underline underline-offset-4 transition-colors group-hover:text-foreground"
         >
           <span className="flex flex-row items-center gap-1">
             {url}
