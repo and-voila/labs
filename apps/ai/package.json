@@ -8,12 +8,13 @@
     "clean": "git clean -xdf .next .turbo node_modules",
     "dev": "prisma generate && pnpm with-env next dev --port 3001",
     "format": "prettier --check . --ignore-path ../../.gitignore",
+    "generate": "pnpm with-env prisma generate",
     "knip": "knip",
     "lint": "dotenv -v SKIP_ENV_VALIDATION=1 next lint",
-    "start": "prisma generate && pnpm with-env next start",
-    "studio": "prisma studio --dotenv=../../../../.env",
+    "start": "pnpm with-env prisma generate && pnpm with-env next start",
     "typecheck": "tsc --noEmit",
-    "with-env": "dotenv -e ../../.env --"
+    "with-env": "dotenv -e ../../.env --",
+    "with-env-production": "dotenv -e ../../.env.production --"
   },
   "prisma": {
     "schema": "./src/prisma/schema.prisma"
