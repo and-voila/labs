@@ -29,7 +29,7 @@ export default function SiteCard({ data, teamSlug }: SiteCardProps) {
           alt={data.name ?? 'Card thumbnail'}
           width={500}
           height={400}
-          className="absolute inset-0 -z-10 h-full w-full object-cover grayscale group-hover:grayscale-0"
+          className="absolute inset-0 -z-10 h-full w-full object-cover transition-colors group-hover:grayscale"
           placeholder="blur"
           blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
         />
@@ -44,12 +44,12 @@ export default function SiteCard({ data, teamSlug }: SiteCardProps) {
                 height={48}
                 src={data.logo ?? '/default-site-logo.jpg'}
                 alt=""
-                className="h-6 w-6 flex-none rounded-full bg-background/10 grayscale group-hover:grayscale-0"
+                className="h-6 w-6 flex-none rounded-full bg-background/10 group-hover:grayscale"
                 placeholder="blur"
                 blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
               />
             </div>
-            <h3 className="text-lg font-semibold leading-6 text-foreground">
+            <h3 className="text-lg font-semibold leading-6 text-primary transition-colors group-hover:text-foreground">
               <span className="absolute inset-0" />
               {data.name}
             </h3>
@@ -70,7 +70,7 @@ export default function SiteCard({ data, teamSlug }: SiteCardProps) {
           <span className="flex flex-row items-center gap-1">
             {url}
             {''}
-            <Icons.arrowSquareOut className="ml-1 h-3 w-3 text-muted-foreground transition-colors group-hover:text-foreground" />
+            <Icons.arrowSquareOut className="ml-1 h-3 w-3 text-alternate" />
           </span>
         </a>
       </div>

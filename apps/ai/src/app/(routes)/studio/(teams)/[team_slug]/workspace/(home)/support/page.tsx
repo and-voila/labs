@@ -98,7 +98,7 @@ export default async function SupportPage() {
                 {item.linkText}
                 {''}
                 <Icons.arrowRight
-                  className="h-5 w-5 justify-end text-primary"
+                  className="h-5 w-5 justify-end text-alternate"
                   aria-hidden="true"
                 />
               </Link>

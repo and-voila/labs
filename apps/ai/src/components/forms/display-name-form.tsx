@@ -107,7 +107,7 @@ export function DisplayNameForm({ user }: DisplayNameFormProps) {
             />
             <p className="my-2 text-sm text-muted-foreground">
               Your display name will appear as:{' '}
-              <span className="font-medium text-primary">
+              <span className="font-medium text-alternate">
                 @{transformedDisplayName}
               </span>
             </p>

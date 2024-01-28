@@ -121,7 +121,7 @@ const TeamWorkspaceIndex: NextPage<Props> = async (props) => {
                 >
                   {item.linkText}
                   <Icons.arrowRight
-                    className="h-5 w-5 justify-end text-primary"
+                    className="h-5 w-5 justify-end text-alternate"
                     aria-hidden="true"
                   />
                 </button>
@@ -140,7 +140,7 @@ const TeamWorkspaceIndex: NextPage<Props> = async (props) => {
                 >
                   {item.linkText}
                   <Icons.arrowRight
-                    className="h-5 w-5 justify-end text-primary"
+                    className="h-5 w-5 justify-end text-alternate"
                     aria-hidden="true"
                   />
                 </Link>

@@ -55,11 +55,11 @@ export default async function SiteManage({
           }
           target="_blank"
           rel="noreferrer"
-          className="mr-2 mt-4 inline-flex w-full items-center truncate rounded-md text-xs text-foreground underline underline-offset-4 transition-colors hover:opacity-70 md:mt-0 md:w-auto md:py-0"
+          className="mr-2 mt-4 inline-flex w-full items-center truncate rounded-md text-xs text-alternate underline underline-offset-4 transition-colors hover:text-alternate/80 md:mt-0 md:w-auto md:py-0"
         >
           {url}
           {''}
-          <Icons.arrowSquareOut className="ml-1 h-4 w-4 text-primary" />
+          <Icons.arrowSquareOut className="ml-1 h-4 w-4 text-alternate" />
         </a>
         <OverviewSitesCTA teamSlug={params.team_slug} />
         <NewCollabPostButton />

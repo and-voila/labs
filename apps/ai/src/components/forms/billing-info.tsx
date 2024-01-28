@@ -35,7 +35,7 @@ export function BillingInfo({
         <CardDescription>
           Your workspace for <span className="font-semibold">{teamName}</span>{' '}
           is on the{' '}
-          <span className="text-primary">
+          <span className="text-alternate">
             <strong>{subscriptionPlan.title}</strong>
           </span>{' '}
           plan.
@@ -62,7 +62,7 @@ export function BillingInfo({
             {subscriptionPlan.isCanceled
               ? 'Your plan will be canceled on '
               : 'Your plan renews on '}
-            <span className="font-bold text-primary">
+            <span className="font-bold text-alternate">
               {subscriptionPlan.stripeCurrentPeriodEnd
                 ? formatDate(subscriptionPlan.stripeCurrentPeriodEnd)
                 : 'N/A'}
