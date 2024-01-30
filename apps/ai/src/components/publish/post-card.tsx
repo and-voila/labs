@@ -21,7 +21,7 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
   const url = `${data.site?.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}/${data.slug}`;
 
   return (
-    <div className="group relative rounded-lg border bg-card pb-10 shadow">
+    <div className="group relative rounded-xl border bg-card pb-10 shadow">
       <Link
         href={`${APP_BP}/${teamSlug}/workspace/publish/post/${data.id}`}
         className="flex w-72 flex-col overflow-hidden rounded-lg"
@@ -37,7 +37,7 @@ export default function PostCard({ data, teamSlug }: PostCardProps) {
             blurDataURL={data.imageBlurhash ?? placeholderBlurhash}
           />
         </div>
-        <div className="space-y-2 border-t p-4">
+        <div className="space-y-2 p-4">
           <div className="flex flex-row items-center justify-between gap-x-2">
             <div className="flex gap-x-1">
               <Image

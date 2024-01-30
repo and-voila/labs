@@ -50,7 +50,7 @@ export function NavBar({ user, teams, activeTeamSlug }: NavBarProps) {
           )}
         </div>
 
-        <div className="flex flex-1 justify-center">
+        <div className="hidden justify-center lg:flex lg:flex-1">
           <MainNavigationMenu
             teams={teams}
             user={user}
