@@ -15,6 +15,7 @@ interface FooterLinkData {
   ariaLabel: string;
   preText?: string;
   mobileOnly?: boolean;
+  isLocal?: boolean;
 }
 
 const getCopyright = () => {
@@ -34,6 +35,7 @@ const FooterLink: React.FC<FooterLinkData> = ({
   ariaLabel,
   preText,
   mobileOnly,
+  isLocal = false,
 }) => (
   <>
     <hr
@@ -44,8 +46,7 @@ const FooterLink: React.FC<FooterLinkData> = ({
       <a
         href={href}
         aria-label={ariaLabel}
-        target="_blank"
-        rel="noopener noreferrer"
+        {...(!isLocal && { target: '_blank', rel: 'noopener noreferrer' })}
         className="text-sm font-medium text-primary transition-all hover:text-primary/80 hover:underline hover:underline-offset-4"
       >
         {label}
@@ -62,10 +63,11 @@ const links: FooterLinkData[] = [
     preText: 'Designed in California by ',
   },
   {
-    href: 'https://andvoila.gg/pricing',
+    href: '/pricing',
     label: 'Pricing',
-    ariaLabel: 'Navigate to Pricing page in a new window.',
+    ariaLabel: 'Navigate to Pricing page.',
     mobileOnly: true,
+    isLocal: true,
   },
   {
     href: 'https://andvoila.gg/privacy',
