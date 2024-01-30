@@ -26,13 +26,23 @@ const WorkspaceBillingPage: NextPage<Props> = async ({ params }) => {
   }
 
   const subscriptionPlan = await getTeamSubscriptionPlan(team.id);
+  let descriptionText;
+
+  if (subscriptionPlan.title === 'Good') {
+    descriptionText = `Your workspace is on the free ${subscriptionPlan.title} plan.`;
+  } else {
+    const billingInterval =
+      subscriptionPlan.interval === 'month' ? 'monthly' : 'yearly';
+    descriptionText = `Your workspace is on the ${subscriptionPlan.title} plan, billed ${billingInterval}.`;
+  }
 
   return (
     <div className="flex flex-col gap-8 md:gap-12">
       <DashboardHeader
         title="Team workspace billing"
-        description="Manage your team's subscriptions. Powered by Stripe."
+        description={descriptionText}
       />
+
       <PricingCards
         teamId={team.id}
         subscriptionPlan={subscriptionPlan}

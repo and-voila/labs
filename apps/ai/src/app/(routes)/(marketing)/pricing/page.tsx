@@ -2,24 +2,33 @@ import type { Metadata } from 'next';
 
 import { SITE_URL } from '#/lib/const';
 import { getTeamSubscriptionPlan } from '#/lib/operations/subsctiptions/subscription';
-import { getSession } from '#/lib/operations/user/session';
+import { getTeams } from '#/lib/operations/teams/get-teams';
 
 import { PricingCards } from '#/components/marketing/pricing-cards';
 import { PricingFaq } from '#/components/marketing/pricing-faq';
 
 export default async function PricingPage() {
-  const session = await getSession();
-  const user = session?.user ?? null;
+  const { teams, activeTeamSlug } = await getTeams();
 
   let subscriptionPlan;
+  const teamSlug = activeTeamSlug ?? undefined;
+  let teamId = null;
 
-  if (user) {
-    subscriptionPlan = await getTeamSubscriptionPlan(user.id);
+  const activeTeam = teams.find((team) => team.slug === activeTeamSlug);
+  teamId = activeTeam?.id;
+
+  if (teamId) {
+    subscriptionPlan = await getTeamSubscriptionPlan(teamId);
   }
 
   return (
     <div className="flex w-full flex-col gap-16 py-8">
-      <PricingCards subscriptionPlan={subscriptionPlan} isPublic />
+      <PricingCards
+        subscriptionPlan={subscriptionPlan}
+        isPublic
+        teamSlug={teamSlug}
+        teamId={teamId}
+      />
       <hr className="container" />
       <PricingFaq />
     </div>
