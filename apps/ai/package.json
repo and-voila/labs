@@ -12,6 +12,8 @@
     "knip": "knip",
     "lint": "dotenv -v SKIP_ENV_VALIDATION=1 next lint",
     "start": "pnpm with-env prisma generate && pnpm with-env next start",
+    "stripe": "stripe listen --forward-to localhost:3001/api/webhook",
+    "studio": "pnpm with-env prisma studio",
     "typecheck": "tsc --noEmit",
     "with-env": "dotenv -e ../../.env --",
     "with-env-production": "dotenv -e ../../.env.production --"

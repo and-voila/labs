@@ -9,7 +9,6 @@ import { APP_BP } from '@av/utils';
 
 import { authOptions } from '#/lib/auth';
 import { SITE_URL } from '#/lib/const';
-import { db } from '#/lib/db';
 import { getTeamSubscriptionPlan } from '#/lib/operations/subsctiptions/subscription';
 import { stripe } from '#/lib/stripe';
 
@@ -32,31 +31,9 @@ export async function generateUserStripe(
       throw new Error('Unauthorized');
     }
 
-    let stripeCustomer = await db.stripeCustomer.findUnique({
-      where: {
-        teamId: teamId,
-      },
-    });
-
-    if (!stripeCustomer) {
-      const customer = await stripe.customers.create({
-        email: session.user.email,
-        metadata: {
-          teamId: teamId,
-        },
-      });
-
-      stripeCustomer = await db.stripeCustomer.create({
-        data: {
-          teamId: teamId,
-          stripeCustomerId: customer.id,
-        },
-      });
-    }
+    const billingUrl = `${SITE_URL}${APP_BP}/${teamSlug}/workspace/billing`;
 
     const subscriptionPlan = await getTeamSubscriptionPlan(teamId);
-
-    const billingUrl = `${SITE_URL}${APP_BP}/${teamSlug}/workspace/billing`;
 
     if (subscriptionPlan.isPaid && subscriptionPlan.stripeCustomerId) {
       const stripeSession = await stripe.billingPortal.sessions.create({
@@ -86,6 +63,11 @@ export async function generateUserStripe(
         ],
         metadata: {
           teamId: teamId,
+        },
+        subscription_data: {
+          metadata: {
+            teamId: teamId,
+          },
         },
       });
 

@@ -19,12 +19,11 @@ model Team {
   image      String?
   isPersonal Boolean @default(false)
 
-  members          Membership[]
-  subscription     StripeSubscription?
-  stripeCustomerId StripeCustomer?
-  invitations      TeamInvitation[]
-  sites            Site[]
-  posts            Post[]
+  members      Membership[]
+  subscription StripeSubscription?
+  invitations  TeamInvitation[]
+  sites        Site[]
+  posts        Post[]
 
   @@index([name, slug])
   @@index([slug])
@@ -242,14 +241,13 @@ model SiteMeta {
 }
 
 enum SubscriptionStatus {
-  TRIALING
-  ACTIVE
-  PAUSED
-  CANCELED
-  PAST_DUE
-  UNPAID
-  INCOMPLETE
-  EXPIRED
+  incomplete
+  incomplete_expired
+  trialing
+  active
+  past_due
+  canceled
+  unpaid
 }
 
 model StripeSubscription {
@@ -269,20 +267,4 @@ model StripeSubscription {
 
   @@index([teamId])
   @@map(name: "stripe_subscriptions")
-}
-
-model StripeCustomer {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  userId           String? @unique
-  teamId           String  @unique
-  stripeCustomerId String  @unique
-
-  team Team @relation(fields: [teamId], references: [id])
-
-  @@index([userId])
-  @@index([teamId])
-  @@map(name: "stripe_customers")
 }

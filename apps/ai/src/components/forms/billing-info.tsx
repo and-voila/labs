@@ -28,6 +28,8 @@ export function BillingInfo({
   teamName,
   teamSlug,
 }: BillingInfoProps) {
+  const billingInterval =
+    subscriptionPlan.interval === 'month' ? 'monthly' : 'yearly';
   return (
     <Card>
       <CardHeader>
@@ -38,7 +40,11 @@ export function BillingInfo({
           <span className="text-alternate">
             <strong>{subscriptionPlan.title}</strong>
           </span>{' '}
-          plan.
+          plan, billled{' '}
+          <span className="text-alternate">
+            <strong>{billingInterval}</strong>
+          </span>{' '}
+          .
         </CardDescription>
       </CardHeader>
       <CardContent className="text-muted-foreground">

@@ -3,7 +3,6 @@ import { env } from '#/env';
 import type Stripe from 'stripe';
 
 import { headers } from 'next/headers';
-import { NextResponse } from 'next/server';
 
 import { db } from '#/lib/db';
 import { stripe } from '#/lib/stripe';
@@ -20,105 +19,94 @@ export async function POST(req: Request) {
       signature,
       env.STRIPE_WEBHOOK_SECRET,
     );
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    return new NextResponse(`Webhook Error: ${error.message}`, { status: 400 });
+  } catch (error: unknown) {
+    const e = error as Error;
+    return new Response(`❌ Webhook Error: ${e.message}`, { status: 400 });
   }
 
   if (
-    !['checkout.session.completed', 'invoice.payment_succeeded'].includes(
-      event.type,
-    )
+    ![
+      'checkout.session.completed',
+      'invoice.payment_succeeded',
+      'customer.subscription.updated',
+    ].includes(event.type)
   ) {
     // Added to silence Stripe staging webhook events that aren't subscribed to
     // eslint-disable-next-line no-console
-    console.log(`Received unhandled event type: ${event.type}`);
-    return new NextResponse(null, { status: 200 });
+    console.log(`⚠️ Received unhandled event type: ${event.type}`);
+    return new Response(null, { status: 200 });
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
 
   if (!session?.metadata?.teamId) {
-    return new NextResponse('Team id is required', { status: 400 });
+    return new Response('❌ Team id is required', { status: 400 });
   }
 
   const teamId = session?.metadata?.teamId;
 
   if (event.type === 'checkout.session.completed') {
-    if (session.subscription) {
-      const subscription = await stripe.subscriptions.retrieve(
-        session.subscription as string,
-      );
-
-      const stripePriceId = subscription.items?.data[0]?.price?.id;
-      if (!stripePriceId) {
-        return new NextResponse('Stripe price ID not found', { status: 400 });
-      }
-
-      if (!teamId) {
-        return new NextResponse('Team id is required', { status: 400 });
-      }
-
-      const team = await db.team.findUnique({ where: { id: teamId } });
-      if (!team) {
-        return new NextResponse('Team not found', { status: 400 });
-      }
-
-      await db.stripeSubscription.create({
-        data: {
-          teamId: teamId,
-          stripeSubscriptionId: subscription.id,
-          stripeCustomerId: subscription.customer as string,
-          stripePriceId: stripePriceId,
-          stripeCurrentPeriodEnd: new Date(
-            subscription.current_period_end * 1000,
-          ),
-        },
-      });
-    }
-  } else if (event.type === 'invoice.payment_succeeded') {
     const subscription = await stripe.subscriptions.retrieve(
       session.subscription as string,
     );
 
-    const stripeSubscription = await db.stripeSubscription.findUnique({
-      where: { stripeSubscriptionId: subscription.id },
+    await db.stripeSubscription.create({
+      data: {
+        teamId: teamId,
+        stripeSubscriptionId: subscription.id,
+        stripeCustomerId: subscription.customer as string,
+        stripePriceId: subscription.items.data[0]?.price.id,
+        stripeCurrentPeriodEnd: new Date(
+          subscription.current_period_end * 1000,
+        ),
+      },
     });
-
-    const stripePriceId = subscription.items?.data[0]?.price?.id;
-    if (!stripePriceId) {
-      return new NextResponse('Stripe price ID not found', { status: 400 });
-    }
-
-    if (!stripeSubscription) {
-      await db.stripeSubscription.create({
-        data: {
-          teamId: session?.metadata?.teamId,
-          stripeSubscriptionId: subscription.id,
-          stripeCustomerId: subscription.customer as string,
-          stripePriceId: stripePriceId,
-          stripeCurrentPeriodEnd: new Date(
-            subscription.current_period_end * 1000,
-          ),
-        },
-      });
-    } else {
-      await db.stripeSubscription.update({
-        where: { stripeSubscriptionId: subscription.id },
-        data: {
-          stripePriceId: stripePriceId,
-          stripeCurrentPeriodEnd: new Date(
-            subscription.current_period_end * 1000,
-          ),
-        },
-      });
-    }
-  } else {
-    return new NextResponse(
-      `Webhook Error: Unhandled event type ${event.type}`,
-      { status: 200 },
-    );
   }
 
-  return new NextResponse(null, { status: 200 });
+  if (event.type === 'invoice.payment_succeeded') {
+    const subscription = await stripe.subscriptions.retrieve(
+      session.subscription as string,
+    );
+
+    await db.stripeSubscription.update({
+      where: {
+        stripeSubscriptionId: subscription.id,
+      },
+      data: {
+        stripePriceId: subscription.items.data[0]?.price.id,
+        stripeCurrentPeriodEnd: new Date(
+          subscription.current_period_end * 1000,
+        ),
+      },
+    });
+  }
+
+  if (event.type === 'customer.subscription.updated') {
+    try {
+      const subscriptionId = event.data.object.id;
+
+      if (!subscriptionId) {
+        throw new Error('❌ Subscription ID is undefined');
+      }
+
+      const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+
+      await db.stripeSubscription.update({
+        where: {
+          stripeSubscriptionId: subscription.id,
+        },
+        data: {
+          stripePriceId: subscription.items.data[0]?.price.id,
+          stripeCurrentPeriodEnd: new Date(
+            subscription.current_period_end * 1000,
+          ),
+        },
+      });
+    } catch (error: unknown) {
+      const e = error as Error;
+      throw new Error(`❌Failed to update subscription: ${e.message}`);
+    }
+  }
+
+  return new Response(null, { status: 200 });
 }

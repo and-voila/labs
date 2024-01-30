@@ -80,6 +80,7 @@ export function PricingCards({
             teamId={teamId}
             subscriptionPlan={subscriptionPlan}
             teamSlug={teamSlug}
+            isPublic={isPublic}
           />
         ))}
       </div>

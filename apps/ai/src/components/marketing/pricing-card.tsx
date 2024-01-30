@@ -3,7 +3,7 @@ import type { SubscriptionPlan, TeamSubscriptionPlan } from '#/lib/types';
 import Link from 'next/link';
 
 import { cn } from '@av/ui';
-import { buttonVariants } from '@av/ui/button';
+import { Button, buttonVariants } from '@av/ui/button';
 import { Icons } from '@av/ui/icons';
 import { APP_BP } from '@av/utils';
 
@@ -15,6 +15,7 @@ interface PricingCardProps {
   teamId?: string;
   subscriptionPlan?: TeamSubscriptionPlan;
   teamSlug?: string;
+  isPublic?: boolean;
 }
 
 const PricingCard = ({
@@ -23,10 +24,11 @@ const PricingCard = ({
   teamId,
   subscriptionPlan,
   teamSlug,
+  isPublic,
 }: PricingCardProps) => {
   return (
     <div
-      className="relative flex flex-col overflow-hidden rounded-xl border bg-card p-6 shadow"
+      className="relative flex min-w-[340px] flex-col overflow-hidden rounded-xl border bg-card p-6 shadow"
       key={plan.title}
     >
       <div className="min-h-[120px] items-start space-y-4 ">
@@ -64,10 +66,24 @@ const PricingCard = ({
             </li>
           ))}
         </ul>
-        {teamId && teamSlug && subscriptionPlan ? (
+        {!isPublic && teamId && teamSlug && subscriptionPlan ? (
+          plan.title === 'Good' ? (
+            <Button className="pointer-events-none w-full" variant="secondary">
+              Current plan
+            </Button>
+          ) : (
+            <BillingFormButton
+              year={isYearly}
+              offer={plan}
+              subscriptionPlan={subscriptionPlan}
+              teamId={teamId}
+              teamSlug={teamSlug}
+            />
+          )
+        ) : isPublic && teamId && teamSlug && subscriptionPlan ? (
           plan.title === 'Good' ? (
             <Link
-              href={`${APP_BP}/${teamSlug}/workspace`}
+              href={`${APP_BP}/${teamSlug}/workspace/billing`}
               className={buttonVariants({
                 className: 'w-full',
                 variant: 'secondary',
