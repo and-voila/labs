@@ -20,9 +20,9 @@ interface SiteCardProps {
 export default function SiteCard({ data, teamSlug }: SiteCardProps) {
   const url = `${data.subdomain}.${env.NEXT_PUBLIC_ROOT_DOMAIN}`;
   return (
-    <div className="group w-72 bg-card pb-6">
+    <div className="group w-72 rounded-xl border bg-card pb-6 shadow">
       <Link href={`${APP_BP}/${teamSlug}/workspace/publish/site/${data.id}`}>
-        <Card key={data.name}>
+        <Card key={data.name} className=" border-transparent shadow-none">
           <CardHeader className="pb-3">
             <CardTitle className="flex flex-row items-center justify-between">
               <BlurImage
